@@ -1,0 +1,45 @@
+.main-banner {
+    background: linear-gradient(91deg, rgba(0, 0, 0, 0.65) 33.57%, rgba(0, 0, 0, 0.32) 118.84%),
+    url('../images/banner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+   
+}
+.nav-link{
+    text-decoration: none;
+    list-style-type:none;
+    position: relative;
+    transition: .3s ease-in;
+}
+
+.nav-link:hover::after{
+    content: "";
+    position: absolute;
+    background-color: #ed1c24;
+    width: 100%;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+}
+.tabs{
+   border-bottom: 1px solid white;
+   background: #1C2452;
+}
+.tab-link{
+    transition: .3s ease-in;
+}
+.tab-link:hover{
+    font-weight: 700;
+}
+.tab-link:hover::after,.tab-link.active::after{
+    content:'';
+    position: absolute;
+    width: 100%;
+    bottom: -75%;
+    left: 0;
+    height: 2px;
+   background-color:  white;
+   
+    
+}
