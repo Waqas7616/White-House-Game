@@ -5,7 +5,9 @@ export default {
     extend: {
       colors: {
         redish: "#ED1C24",
-
+        redShade: "#ED1C244D",
+        lightBlue: "#546BED",
+        blueShade: "#454C72",
         blackColor: "#000",
         whiteColor: "#FFF",
       },
@@ -15,7 +17,7 @@ export default {
       screens: {
         sm: "640px",
         md: "768px",
-        lg: "1025px",
+        lg: "1024px",
         "lg-a": "1149px",
         xl: "1280px",
         "xl-a": "1460px",

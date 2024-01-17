@@ -43,3 +43,19 @@
    
     
 }
+.customSlider{
+   
+    padding: 80px 0px!important;
+}
+.democratic{
+    background-color: #ed1c244d;
+}
+.republic{
+    background-color: #546bed4d;
+}
+.independent{
+    background-color: #ffffff4d;
+}
+/* select{
+    border: 1px solid white;
+} */

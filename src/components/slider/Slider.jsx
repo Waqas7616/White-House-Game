@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick-theme.css";
 import { firestore } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import obama from '../../images/Condidates/Barak Obama (Dem).jpg'
@@ -126,7 +126,32 @@ function CustomSlider() {
         slidesToShow: 7,
         slidesToScroll: 1,
         customNextArrow: <CustomNextArrow />,
-        customPrevArrow: <CustomPrevArrow />
+        customPrevArrow: <CustomPrevArrow />,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll:1
+                },
+                
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll:1
+                },
+                
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 1
+                }
+              }
+        ]
     }
 
     const candidateData = [
@@ -158,9 +183,9 @@ function CustomSlider() {
     ]
     return (
         <>
-            <div className='bg-[gray]'>
+            <div className='customSlider'>
                 <div className="titles flex justify-between items-center w-10/12 m-auto">
-                    <h1 className='orbit9 text-blackColor text-[37px]' >Candidates List</h1>
+                    <h1 className='orbit9 text-blackColor md:text-[37px]' >Candidates List</h1>
                     <h2 className='orbit7 text-redish uppercase text-[16px] cursor-pointer' onClick={handleExtention}>{extended ? 'see less' : 'see all'}</h2>
                 </div>
                 <div className="candidatesList w-10/12 m-auto mt-8 relative">
@@ -188,13 +213,13 @@ function CustomSlider() {
                 </div>
             </div>
             {popupCandidate !== null && (
-            <div onClick={console.log('Popup Candidate Index:', popupCandidate)}> <CandidatePopup
+                <div onClick={console.log('Popup Candidate Index:', popupCandidate)}> <CandidatePopup
                     candidateIndex={data[popupCandidate]}
                     onClose={handlePopupClose}
                     data={data}
                 /></div>
-               
-              
+
+
             )}
         </>
 
