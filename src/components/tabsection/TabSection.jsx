@@ -8,6 +8,7 @@ import democrat from '../../images/democrat.png'
 import republic from '../../images/republican.png'
 import independ from '../../images/independent.png'
 import '../banner.css'
+import Map from '../Map'
 
 function TabSection() {
   const [tabs, setTabs] = useState(0);
@@ -41,19 +42,19 @@ function TabSection() {
     <div className="w-full bg-[#1c2452] py-8">
       <div className='w-10/12 m-auto '>
         <div className="flex justify-between items-center tabs py-5 flex-wrap">
-          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs===0?'active':''}`} onClick={()=>setTabs(0)}>All</h2>
-          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs===1?'active':''}`} onClick={()=>setTabs(1)}>Electoral College</h2>
-          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs===2?'active':''}`} onClick={()=>setTabs(2)}>Sex</h2>
-          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs===3?'active':''}`} onClick={()=>setTabs(3)}>2020 Election</h2>
-          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs===4?'active':''}`} onClick={()=>setTabs(4)}>Age groups</h2>
-          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs===5?'active':''}`} onClick={()=>setTabs(5)}>Ethnicity</h2>
-          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs===6?'active':''}`} onClick={()=>setTabs(6)}>Country of birth</h2>
-          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs===7?'active':''}`} onClick={()=>setTabs(7)}>Language</h2>
-          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs===8?'active':''}`} onClick={()=>setTabs(8)}>Employment status</h2>
-          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs===9?'active':''}`} onClick={()=>setTabs(9)}>Millitary</h2>
+          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 0 ? 'active' : ''}`} onClick={() => setTabs(0)}>All</h2>
+          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 1 ? 'active' : ''}`} onClick={() => setTabs(1)}>Electoral College</h2>
+          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 2 ? 'active' : ''}`} onClick={() => setTabs(2)}>Sex</h2>
+          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 3 ? 'active' : ''}`} onClick={() => setTabs(3)}>2020 Election</h2>
+          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 4 ? 'active' : ''}`} onClick={() => setTabs(4)}>Age groups</h2>
+          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 5 ? 'active' : ''}`} onClick={() => setTabs(5)}>Ethnicity</h2>
+          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 6 ? 'active' : ''}`} onClick={() => setTabs(6)}>Country of birth</h2>
+          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 7 ? 'active' : ''}`} onClick={() => setTabs(7)}>Language</h2>
+          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 8 ? 'active' : ''}`} onClick={() => setTabs(8)}>Employment status</h2>
+          <h2 className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 9 ? 'active' : ''}`} onClick={() => setTabs(9)}>Millitary</h2>
         </div>
         <div className="tab-content">
-          <div className={`all-tab-content  ${tabs===0?'block':'hidden'}`}>
+          <div className={`all-tab-content  ${tabs === 0 ? 'block' : 'hidden'}`}>
             <h2 className="orbit7 mt-8 text-whiteColor text-center w-[245px] flex justify-between items-center m-auto md:text-[60px]"><span><img className='w-[50px]' src={stats} alt="" /> </span> stats</h2>
             <p className="poppins5 text-whiteColor mb-4 text-center">Who our players expect to win on November 5, 2024</p>
             <div className="search-section flex flex-col  sm:flex-row  justify-between">
@@ -84,8 +85,8 @@ function TabSection() {
                       <div className=' overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ' ><img className='w-full h-full object-cover' src={kennedy} alt="" /></div>
                       <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">{item.name}</p>
                       <div className='bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]'>
-                      <img className='w-[20px] sm:w-auto' src={item.party==='republican'?republic:item.party==="democratic"?democrat:independ} alt="" />
-</div>
+                        <img className='w-[20px] sm:w-auto' src={item.party === 'republican' ? republic : item.party === "democratic" ? democrat : independ} alt="" />
+                      </div>
                     </div>
                     <div className="president-votes w-3/4">
                       <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
@@ -120,8 +121,8 @@ function TabSection() {
                         <div className=' overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ' ><img className='w-full h-full object-cover' src={kennedy} alt="" /></div>
                         <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">{item.name}</p>
                         <div className='bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]'>
-                        <img className='w-[20px] sm:w-auto' src={item.party==='republican'?republic:item.party==="democratic"?democrat:independ} alt="" />
-</div>
+                          <img className='w-[20px] sm:w-auto' src={item.party === 'republican' ? republic : item.party === "democratic" ? democrat : independ} alt="" />
+                        </div>
                       </div>
                       <div className="president-votes w-3/4">
                         <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
@@ -147,11 +148,11 @@ function TabSection() {
                 <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">Vice President</h2>
               </div>
               <div className="searchBar flex flex-col ">
-                <label htmlFor="search "  className='text-whiteColor text-center poppins4 text-[14px]'>Select State</label>
+                <label htmlFor="search " className='text-whiteColor text-center poppins4 text-[14px]'>Select State</label>
                 <select name="states" id="search" className='bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[420px] px-3 py-2 rounded-[10px] text-whiteColor'>
                   <option className='bg-[#000]' value="">Select State</option>
-                  <option className='bg-[#000]'  value="ny">New york</option>
-                  <option className='bg-[#000]'  value="hst">Houston</option>
+                  <option className='bg-[#000]' value="ny">New york</option>
+                  <option className='bg-[#000]' value="hst">Houston</option>
                 </select>
               </div>
               <div className="votes-count flex items-center justify-between">
@@ -169,8 +170,8 @@ function TabSection() {
                       <div className=' overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ' ><img className='w-full h-full object-cover' src={kennedy} alt="" /></div>
                       <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">{item.name}</p>
                       <div className='bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]'>
-                      <img className='w-[20px] sm:w-auto' src={item.party==='republican'?republic:item.party==="democratic"?democrat:independ} alt="" />
-</div>
+                        <img className='w-[20px] sm:w-auto' src={item.party === 'republican' ? republic : item.party === "democratic" ? democrat : independ} alt="" />
+                      </div>
                     </div>
                     <div className="president-votes w-3/4">
                       <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
@@ -205,7 +206,7 @@ function TabSection() {
                         <div className=' overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ' ><img className='w-full h-full object-cover' src={kennedy} alt="" /></div>
                         <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">{item.name}</p>
                         <div className='bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]'>
-                        <img className='' src={item.party === 'republican' ? republic : item.party === "democratic" ? democrat : independ} alt="" />
+                          <img className='' src={item.party === 'republican' ? republic : item.party === "democratic" ? democrat : independ} alt="" />
                         </div>
                       </div>
                       <div className="president-votes w-3/4">
@@ -223,6 +224,8 @@ function TabSection() {
               </>}
 
             </div>
+            <Map/>
+
 
           </div>
         </div>

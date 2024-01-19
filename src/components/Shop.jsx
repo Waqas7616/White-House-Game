@@ -291,10 +291,10 @@ export default function Shop() {
                       20%OFF
                     </h2>
                   </div>
-                  <div className="bg-[#FFFFFF] flex justify-center flex-col items-center h-[340px]  relative">
+                  <div className="bg-white/80 flex justify-center flex-col items-center h-[340px]  relative">
                     <div className="">
                       {changeColor === item?.id ? (
-                        <img src={item.Image_Url} alt="i" />
+                        <img className="" src={item.Image_Url} alt="i" />
                       ) : changeColor === item?.id ? (
                         <img src={item.red} alt="e" />
                       ) : (
