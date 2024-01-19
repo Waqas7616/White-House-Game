@@ -20,7 +20,7 @@ export default function DownloadApp() {
             <img src={mobile} alt="" className="rounded-[48px]" />
           </div>
           <div className="">
-            <h2 className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[41px]  text-[#fff]  orbit9">
+            <h2 className="text-[18px] sm:text-[20px] md:text-[23px] lg:text-[41px]  text-[#fff]  orbit9">
               Download{" "}
               <span className="text-redish ">The White House Game </span>
               <br />
