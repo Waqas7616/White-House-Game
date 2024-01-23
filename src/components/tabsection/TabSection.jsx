@@ -10,6 +10,10 @@ import independ from "../../images/independent.png";
 import "../banner.css";
 import VoteGraph from "./VoteGraph";
 import Election2020 from "./Election2020";
+import AgeGroups from "./AgeGroups";
+import Ethnicity from "./Ethnicity";
+import CountryOfBirth from "./CountryOfBirth";
+import ByLanguage from "./ByLanguage";
 
 function TabSection() {
   const [tabs, setTabs] = useState(0);
@@ -38,7 +42,7 @@ function TabSection() {
     votes: candidate.votes,
     percentage: Math.round((candidate.votes / totalVotes) * 100),
   }));
-  console.log("all data", percentages);
+  // console.log("all data", percentages);
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto ">
@@ -574,6 +578,26 @@ function TabSection() {
             className={`all-tab-content  ${tabs === 3 ? "block" : "hidden"}`}
           >
           <Election2020/>
+          </div>
+          <div
+            className={`all-tab-content  ${tabs === 4 ? "block" : "hidden"}`}
+          >
+          <AgeGroups/>
+          </div>
+          <div
+            className={`all-tab-content  ${tabs === 5 ? "block" : "hidden"}`}
+          >
+          <Ethnicity/>
+          </div>
+          <div
+            className={`all-tab-content  ${tabs === 6 ? "block" : "hidden"}`}
+          >
+          <CountryOfBirth/>
+          </div>
+          <div
+            className={`all-tab-content  ${tabs === 7 ? "block" : "hidden"}`}
+          >
+          <ByLanguage/>
           </div>
         </div>
       </div>
