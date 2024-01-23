@@ -11,6 +11,7 @@ function Homepage() {
       <TabSection/>
       <Shop/>
       <DownloadApp/>
+      
     </div>
   )
 }
