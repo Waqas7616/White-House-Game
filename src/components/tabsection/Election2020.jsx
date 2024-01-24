@@ -74,8 +74,9 @@ export default function Election2020() {
         stats
       </h2>
       <p className="poppins5 text-whiteColor mb-4 text-center">
-        Who our players expect to win on November 5, 2024
+      2020 Election 2024
       </p>
+      <p className="text-center poppins3 text-whiteColor text-[14px]">What our app voters are predicting</p>
       <div className="search-section text-center">
         <div className="votes-count flex items-center justify-end">
           <img src={ballot} alt="ballot" />

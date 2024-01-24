@@ -14,6 +14,9 @@ import AgeGroups from "./AgeGroups";
 import Ethnicity from "./Ethnicity";
 import CountryOfBirth from "./CountryOfBirth";
 import ByLanguage from "./ByLanguage";
+import EmploymentStatus from "./EmploymentStatus";
+import Military from "./Military";
+import ElectoralCollege from "./ElectoralCollege";
 
 function TabSection() {
   const [tabs, setTabs] = useState(0);
@@ -347,6 +350,7 @@ function TabSection() {
                       <path
                         d="M36.4022 54.8707L27.5334 46.0019L25 48.5353L36.4022 59.9375L47.8043 48.5353L45.2709 46.0019L36.4022 54.8707Z"
                         fill="white"
+                        transform="rotate(180 36 50)"
                       />
                     </svg>
                   </button>
@@ -562,6 +566,7 @@ function TabSection() {
                       <path
                         d="M36.4022 54.8707L27.5334 46.0019L25 48.5353L36.4022 59.9375L47.8043 48.5353L45.2709 46.0019L36.4022 54.8707Z"
                         fill="white"
+                        transform="rotate(180 36 50)"
                       />
                     </svg>
                   </button>
@@ -570,34 +575,49 @@ function TabSection() {
             </div>
           </div>
           <div
+            className={`all-tab-content  ${tabs === 1 ? "block" : "hidden"}`}
+          >
+            <ElectoralCollege />
+          </div>
+          <div
             className={`all-tab-content  ${tabs === 2 ? "block" : "hidden"}`}
           >
-           <VoteGraph/>
+            <VoteGraph />
           </div>
           <div
             className={`all-tab-content  ${tabs === 3 ? "block" : "hidden"}`}
           >
-          <Election2020/>
+            <Election2020 />
           </div>
           <div
             className={`all-tab-content  ${tabs === 4 ? "block" : "hidden"}`}
           >
-          <AgeGroups/>
+            <AgeGroups />
           </div>
           <div
             className={`all-tab-content  ${tabs === 5 ? "block" : "hidden"}`}
           >
-          <Ethnicity/>
+            <Ethnicity />
           </div>
           <div
             className={`all-tab-content  ${tabs === 6 ? "block" : "hidden"}`}
           >
-          <CountryOfBirth/>
+            <CountryOfBirth />
           </div>
           <div
             className={`all-tab-content  ${tabs === 7 ? "block" : "hidden"}`}
           >
-          <ByLanguage/>
+            <ByLanguage />
+          </div>
+          <div
+            className={`all-tab-content  ${tabs === 8 ? "block" : "hidden"}`}
+          >
+            <EmploymentStatus />
+          </div>
+          <div
+            className={`all-tab-content  ${tabs === 9 ? "block" : "hidden"}`}
+          >
+            <Military />
           </div>
         </div>
       </div>
