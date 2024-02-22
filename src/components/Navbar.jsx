@@ -22,8 +22,8 @@ function Navbar() {
     }
     return (
         <div className={`navbar mt-4 m-auto bg-[#41414163] backdrop-blur-[6px]  px-4 py-1 flex ${toggle?'flex-col rounded-lg relative':'rounded-[100px] w-10/12 '}  items-center justify-between`}>
-            {isMobile ? <><div className="logo"><a href="#"><img src={logo} alt="" /></a></div> <div onClick={toggleMenu}>{!toggle?<img width={30} src={burger}  alt="" />:<img className='absolute right-3 top-3' width={30} src={closeMenu} alt='close icon'/>}</div></> : <>
-                <div className="logo"><a href="#"><img src={logo} alt="" /></a></div>
+            {isMobile ? <><div className="logo"><a href="/"><img src={logo} alt="" /></a></div> <div onClick={toggleMenu}>{!toggle?<img width={30} src={burger}  alt="" />:<img className='absolute right-3 top-3' width={30} src={closeMenu} alt='close icon'/>}</div></> : <>
+                <div className="logo"><a href="/"><img src={logo} alt="" /></a></div>
                 <div className="nav-links flex gap-8 ">
                     <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">Home</li>
                     <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">About Us</li>
