@@ -551,7 +551,10 @@ function TabSection() {
                 </>
               )}
             </div>
-            <Map />
+            <div className="w-fit m-auto mt-8">
+              <Map />
+            </div>
+
           </div>
           <div
             className={`all-tab-content  ${tabs === 2 ? "block" : "hidden"}`}
