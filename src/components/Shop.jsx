@@ -1,30 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick-theme.css";
 // import img from "../images/cloths.png";
 // import ballot from "../images/ballot.png";
-import black from "../images/black.jpg";
-import red from "../images/red.jpg";
-import navy from "../images/navy.jpg";
-import burgundy1 from "../images/burgundy1.jpg";
-import red1 from "../images/red1.jpg";
-import navy1 from "../images/navy1.jpg";
+import black from "../images/black.png";
+import red from "../images/red.png";
+import navy from "../images/navy.png";
+import burgundy1 from "../images/burgundy1.png";
+import red1 from "../images/red1.png";
+import navy1 from "../images/navy1.png";
 // import burgundy1 from '../images/burgundy1.jpg'
-import red2 from "../images/red2.jpg";
-import navy2 from "../images/navy2.jpg";
-import burgundy2 from "../images/burgundy2.jpg";
-import red3 from "../images/red3.jpg";
-import navy3 from "../images/navy3.jpg";
-import burgundy3 from "../images/burgundy3.jpg";
-import red4 from "../images/red4.jpg";
-import navy4 from "../images/navy4.jpg";
-import burgundy4 from "../images/burgundy4.jpg";
+import red2 from "../images/red2.png";
+import navy2 from "../images/navy2.png";
+import burgundy2 from "../images/burgundy2.png";
+import red3 from "../images/red3.png";
+import navy3 from "../images/navy3.png";
+import burgundy3 from "../images/burgundy3.png";
+import red4 from "../images/red4.png";
+import navy4 from "../images/navy4.png";
+import burgundy4 from "../images/burgundy4.png";
 
 const CustomNextArrow = (props) => (
   <div
     {...props}
-    className="absolute top-[30%] lg:right-[0%] xl:right-[2%] transform cursor-pointer"
+    className="absolute top-[30%] right-[-20%] sm:right-[-10%] md:right-[-7%] lg:right-[-5%] xl:right-[-3%]  cursor-pointer"
   >
     <span className="text-2xl">
       <svg
@@ -106,7 +106,7 @@ const CustomNextArrow = (props) => (
 const CustomPrevArrow = (props) => (
   <div
     {...props}
-    className="absolute top-[30%] left-[-3%] z-50 transform translate-y-2 cursor-pointer"
+    className="absolute top-[30%] left-[-18%] sm:left-[-10%] md:left-[-7%] lg:left-[-5%] xl:left-[-3%] z-50  cursor-pointer"
   >
     <span className="text-2xl ">
       <svg
@@ -177,11 +177,13 @@ const CustomPrevArrow = (props) => (
 );
 
 export default function Shop() {
+  useEffect(() => {
+    console.log("my screen is ", window.innerHeight);
+  }, []);
   const [changeColor, setChangeColor] = useState("");
-  const ChnageColor = (item) => {
-    console.log("Indes of shirt :", item);
-    setChangeColor(item);
-    // console.log("click", changeColor);
+  const ChangeIndex = (index) => {
+    // console.log("Indes of shirt :", item);
+    setChangeColor(index);
   };
   const settings1 = {
     className: "center",
@@ -269,65 +271,327 @@ export default function Shop() {
     <div className="CondidateList-section py-12">
       <div className="w-8/12 m-auto">
         <div>
-          <h2 className="text-[36px] text-[#000] orbit9 flex justify-between items-center mb-5">
+          <h2 className="md:text-[36px] text-[#000] orbit9 flex justify-between items-center mb-5">
             {" "}
-            Shop <span className="text-redish text-[16px]">ALL PRODUCTS</span>
+            Shop{" "}
+            <a
+              href="https://thewhitehousegame.myspreadshop.com/"
+              className="text-redish md:text-[16px]"
+            >
+              ALL PRODUCTS
+            </a>
           </h2>
           <Slider {...settings1}>
-            {Porducts.map((item, index) => (
-              <div key={index} className="    relative">
-                <div className="px-2 w-[255px] ">
-                  <div>
-                    <h2 className="absolute top-1 left-3 z-50 bg-[#1C2452] text-[#fff] text-[14px] poppins4 px-3 ">
-                      NEW
-                    </h2>
-                    <h2
-                      className="absolute top-7 left-3 z-50 text-[#fff] text-[14px] poppins4 px-4 "
-                      style={{
-                        background:
-                          "linear-gradient(90deg, #ED1C24 0%, #1C2452 100%)",
-                      }}
-                    >
-                      20%OFF
-                    </h2>
-                  </div>
-                  <div className="bg-white/80 flex justify-center flex-col items-center h-[340px]  relative">
-                    <div className="">
-                      {changeColor === item?.id ? (
-                        <img className="" src={item.Image_Url} alt="i" />
-                      ) : changeColor === item?.id ? (
-                        <img src={item.red} alt="e" />
-                      ) : (
-                        <img src={item.navy} alt="nothing" />
-                      )}
-                    </div>
-                    <div className="shopDots flex gap-3  absolute bottom-4">
-                      <div
-                        className="bg-[#8D3450] w-[10px] h-[10px] rounded-full "
-                        onClick={() => ChnageColor(item?.id)}
-                      ></div>
-                      <div
-                        className="bg-redish w-[10px] h-[10px] rounded-full"
-                        onClick={() => ChnageColor(item?.id)}
-                      ></div>
-                      <div
-                        className="bg-[#2E343E] w-[10px] h-[10px] rounded-full"
-                        onClick={() => ChnageColor(item?.id)}
-                      ></div>
-                    </div>
-                  </div>
-                  <p className="flex items-start justify-between text-[#363636] text-[14px] poppins3 mt-3">
-                    {item.product_name}{" "}
-                    <span className="text-redish text poppins4">
-                      {item.price}
-                    </span>
-                  </p>
-                  <p className="text-[12px] text-[#000] poppins3 underline mt-3">
-                    Select options
-                  </p>
+            <div className="    relative ">
+              <div className="px-2  ">
+                <div>
+                  <h2 className="absolute top-1 left-3 z-50 bg-[#1C2452] text-[#fff] text-[14px] poppins4 px-3 ">
+                    NEW
+                  </h2>
+                  <h2
+                    className="absolute top-7 left-3 z-50 text-[#fff] text-[14px] poppins4 px-4 "
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #ED1C24 0%, #1C2452 100%)",
+                    }}
+                  >
+                    20%OFF
+                  </h2>
                 </div>
+                <div className="bg-[#F9F6E5] flex justify-center flex-col items-center xl-a:h-[340px] acer:h-[410px]  relative">
+                  <div className="py-5">
+                    <img
+                      src={
+                        changeColor === 1
+                          ? black
+                          : changeColor === 2
+                          ? red
+                          : navy
+                      }
+                      alt=""
+                    />
+                  </div>
+                  <div className="shopDots flex gap-3  absolute bottom-5">
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#000] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(1)}>
+                    <div
+                      className="bg-[#000] w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1" onClick={() => ChangeIndex(2)}>
+                    <div
+                      className="bg-redish w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(3)}>
+                    <div 
+                      className="bg-[#2E343E] w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                  </div>
+                </div>
+                <p className="flex items-start justify-between text-[#363636] text-[14px] poppins3 mt-3">
+                  Believe Design Products
+                  <span className="text-redish text poppins4">$120</span>
+                </p>
+                <a
+                  href="https://thewhitehousegame.myspreadshop.com/believe+design+products-A655c9cfab17f820ce648a9be?productType=812&sellable=ZbogDxayRkFLbxb73MR2-812-7&appearance=397"
+                  className="text-[12px] text-[#000] poppins3 underline mt-3"
+                >
+                  Select options
+                </a>
               </div>
-            ))}
+            </div>
+            <div className="    relative">
+              <div className="px-2  ">
+                <div>
+                  <h2 className="absolute top-1 left-3 z-50 bg-[#1C2452] text-[#fff] text-[14px] poppins4 px-3 ">
+                    NEW
+                  </h2>
+                  <h2
+                    className="absolute top-7 left-3 z-50 text-[#fff] text-[14px] poppins4 px-4 "
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #ED1C24 0%, #1C2452 100%)",
+                    }}
+                  >
+                    20%OFF
+                  </h2>
+                </div>
+                <div className="bg-[#E8F0F3] flex justify-center flex-col items-center xl-a:h-[340px] acer:h-[410px]  relative">
+                  <div className="">
+                    <img
+                      src={
+                        changeColor === 4
+                          ? burgundy2
+                          : changeColor === 5
+                          ? red2
+                          : navy2
+                      }
+                      alt=""
+                    />
+                  </div>
+                  <div className="shopDots flex gap-3  absolute bottom-5">
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(4)}>
+                    <div
+                      className="bg-[#8A344D] w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1" onClick={() => ChangeIndex(5)}>
+                    <div
+                      className="bg-redish w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(6)}>
+                    <div 
+                      className="bg-[#2E343E] w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                  </div>
+                </div>
+                <p className="flex items-start justify-between text-[#363636] text-[14px] poppins3 mt-3">
+                  Bidden and trump Funny pictures on shirt
+                  <span className="text-redish text poppins4">$52.99</span>
+                </p>
+                <a
+                  href="https://thewhitehousegame.myspreadshop.com/bidden+and+trump+funny+pictures+on+shirt-A655b3ef2b17f820ce6792ffb?productType=20&sellable=Ln4k1Qxz75IJoGoG5BwO-20-22&appearance=4"
+                  className="text-[12px] text-[#000] poppins3 underline mt-3"
+                >
+                  Select options
+                </a>
+              </div>
+            </div>
+            <div className="    relative">
+              <div className="px-2  ">
+                <div>
+                  <h2 className="absolute top-1 left-3 z-50 bg-[#1C2452] text-[#fff] text-[14px] poppins4 px-3 ">
+                    NEW
+                  </h2>
+                  <h2
+                    className="absolute top-7 left-3 z-50 text-[#fff] text-[14px] poppins4 px-4 "
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #ED1C24 0%, #1C2452 100%)",
+                    }}
+                  >
+                    20%OFF
+                  </h2>
+                </div>
+                <div className="bg-[#EEEFE9] flex justify-center flex-col items-center xl-a:h-[340px] acer:h-[410px]  relative">
+                  <div className="">
+                    <img
+                      src={
+                        changeColor === 7
+                          ? burgundy1
+                          : changeColor === 8
+                          ? red1
+                          : navy1
+                      }
+                      alt=""
+                    />
+                  </div>
+                  <div className="shopDots flex gap-3  absolute bottom-5">
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(7)}>
+                    <div
+                      className="bg-[#8A344D] w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1" onClick={() => ChangeIndex(8)}>
+                    <div
+                      className="bg-redish w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#353983] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(9)}>
+                    <div 
+                      className="bg-[#353983] w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                  </div>
+                </div>
+                <p className="flex items-start justify-between text-[#363636] text-[14px] poppins3 mt-3">
+                  Black Grunge Christmas T Shirts, Hoodeis
+                  <span className="text-redish text poppins4">$27.99</span>
+                </p>
+                <a
+                  href="https://thewhitehousegame.myspreadshop.com/black+grunge+christmas+t+shirts+hoodeis-A655c9b63b17f820ce642c62b?productType=815&sellable=2LV0YLZV07uRy0ym2VMJ-815-9&appearance=317"
+                  className="text-[12px] text-[#000] poppins3 underline mt-3"
+                >
+                  Select options
+                </a>
+              </div>
+            </div>
+            <div className="    relative">
+              <div className="px-2  ">
+                <div>
+                  <h2 className="absolute top-1 left-3 z-50 bg-[#1C2452] text-[#fff] text-[14px] poppins4 px-3 ">
+                    NEW
+                  </h2>
+                  <h2
+                    className="absolute top-7 left-3 z-50 text-[#fff] text-[14px] poppins4 px-4 "
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #ED1C24 0%, #1C2452 100%)",
+                    }}
+                  >
+                    20%OFF
+                  </h2>
+                </div>
+                <div className="bg-[#E4E9ED] flex justify-center flex-col items-center xl-a:h-[340px] acer:h-[410px]  relative">
+                  <div className="">
+                    <img
+                      src={
+                        changeColor === 10
+                          ? burgundy4
+                          : changeColor === 11
+                          ? red4
+                          : navy4
+                      }
+                      alt=""
+                    />
+                  </div>
+                  <div className="shopDots flex gap-3  absolute bottom-5">
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(10)}>
+                    <div
+                      className="bg-[#8A344D] w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1" onClick={() => ChangeIndex(11)}>
+                    <div
+                      className="bg-redish w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(12)}>
+                    <div 
+                      className="bg-[#2E343E] w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                  </div>
+                </div>
+                <p className="flex items-start justify-between text-[#363636] text-[14px] poppins3 mt-3">
+                  Cat Shirts
+                  <span className="text-redish text poppins4">$26.99</span>
+                </p>
+                <a
+                  href="https://thewhitehousegame.myspreadshop.com/cat+shirts-A655b3b4c8ba6e22839213f65?productType=210&sellable=wQO8dpZjn4u9Qon997Lv-210-7&appearance=231"
+                  className="text-[12px] text-[#000] poppins3 underline mt-3"
+                >
+                  Select options
+                </a>
+              </div>
+            </div>
+            <div className="    relative">
+              <div className="px-2  ">
+                <div>
+                  <h2 className="absolute top-1 left-3 z-50 bg-[#1C2452] text-[#fff] text-[14px] poppins4 px-3 ">
+                    NEW
+                  </h2>
+                  <h2
+                    className="absolute top-7 left-3 z-50 text-[#fff] text-[14px] poppins4 px-4 "
+                    style={{
+                      background:
+                        "linear-gradient(90deg, #ED1C24 0%, #1C2452 100%)",
+                    }}
+                  >
+                    20%OFF
+                  </h2>
+                </div>
+                <div className="bg-[#E8F0F3] flex justify-center flex-col items-center xl-a:h-[340px] acer:h-[410px]  relative">
+                  <div className="">
+                    <img
+                      src={
+                        changeColor === 13
+                          ? burgundy3
+                          : changeColor === 14
+                          ? red3
+                          : navy3
+                      }
+                      alt=""
+                    />
+                  </div>
+                  <div className="shopDots flex gap-3  absolute bottom-5">
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(13)}>
+                    <div
+                      className="bg-[#8A344D] w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1" onClick={() => ChangeIndex(14)}>
+                    <div
+                      className="bg-redish w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(15)}>
+                    <div 
+                      className="bg-[#2E343E] w-[10px] h-[10px] rounded-full"
+                      
+                    ></div>
+                    </div>
+                  </div>
+                </div>
+                <p className="flex items-start justify-between text-[#363636] text-[14px] poppins3 mt-3">
+                  The White House Game
+                  <span className="text-redish text poppins4">$41.49</span>
+                </p>
+                <a
+                  href="https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
+                  className="text-[12px] text-[#000] poppins3 underline mt-3"
+                >
+                  Select options
+                </a>
+              </div>
+            </div>
           </Slider>
         </div>
       </div>
