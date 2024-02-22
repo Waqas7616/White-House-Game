@@ -56,10 +56,11 @@ export default function VoteGraph() {
         </span>{" "}
         stats
       </h2>
-      <p className="poppins5 text-whiteColor mb-4 text-center">
-        Who our players expect to win on November 5, 2024
+      <p className="poppins5 text-whiteColor mb-4 text-center">By Sex</p>
+      <p className="text-center poppins3 text-whiteColor text-[14px]">
+        How Males and Females indent to vote
       </p>
-      <div className="search-section flex flex-col  sm:flex-row  justify-between">
+      <div className="search-section flex flex-col  sm:flex-row  justify-between mt-12">
         <div className="badge flex items-center justify-between">
           <img src={badge} alt="" />
           <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
@@ -110,13 +111,16 @@ export default function VoteGraph() {
                     : "independent"
                 }`}
               >
-                <div style={{background:`${
-                    item.party === "republican"
-                      ? "#546BED"
-                      : item.party === "democratic"
-                      ? "#ED1C24"
-                      : "white"
-                  }`}}
+                <div
+                  style={{
+                    background: `${
+                      item.party === "republican"
+                        ? "#546BED"
+                        : item.party === "democratic"
+                        ? "#ED1C24"
+                        : "white"
+                    }`,
+                  }}
                   className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
                 >
                   <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
@@ -147,13 +151,16 @@ export default function VoteGraph() {
                   <div className="w-[98%] h-[62px]  rounded-r-lg  flex flex-col justify-center ">
                     <div className="w-100 bg-[#454C72] rounded-[8px]">
                       <div
-                        style={{ width: `${item.malepercentage}%`,background:`${
-                          item.party === "republican"
-                          ? "#546BED"
-                          : item.party === "democratic"
-                          ? "#ED1C24"
-                          : "white"
-                        }` }}
+                        style={{
+                          width: `${item.malepercentage}%`,
+                          background: `${
+                            item.party === "republican"
+                              ? "#546BED"
+                              : item.party === "democratic"
+                              ? "#ED1C24"
+                              : "white"
+                          }`,
+                        }}
                         className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
                       >
                         <div className="text-[#65D2E6] text-[15px] poppins4 italic flex items-center ">
@@ -168,13 +175,16 @@ export default function VoteGraph() {
                     </div>
                     <div className="w-100 bg-[#454C72] rounded-[8px] mt-1">
                       <div
-                        style={{ width: `${item.femalepercentage}%`,background:`${
-                          item.party === "republican"
-                          ? "#546BED"
-                          : item.party === "democratic"
-                          ? "#ED1C24"
-                          : "white"
-                        }` }}
+                        style={{
+                          width: `${item.femalepercentage}%`,
+                          background: `${
+                            item.party === "republican"
+                              ? "#546BED"
+                              : item.party === "democratic"
+                              ? "#ED1C24"
+                              : "white"
+                          }`,
+                        }}
                         className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
                       >
                         <div className="text-[#F0788C] text-[15px] poppins4 italic flex items-center ">
@@ -213,94 +223,103 @@ export default function VoteGraph() {
           <>
             {percentages.map((item, index) => (
               <div
-              key={index}
-              className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px]  rounded-[8px] mt-8 ${
-                item.party === "republican"
-                  ? "republic"
-                  : item.party === "democratic"
-                  ? "democratic"
-                  : "independent"
-              }`}
-            >
-              <div style={{background:`${
+                key={index}
+                className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px]  rounded-[8px] mt-8 ${
                   item.party === "republican"
-                    ? "#546BED"
+                    ? "republic"
                     : item.party === "democratic"
-                    ? "#ED1C24"
-                    : "white"
-                }`}}
-                className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
+                    ? "democratic"
+                    : "independent"
+                }`}
               >
-                <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
-                  <img
-                    className="w-full h-full object-cover"
-                    src={kennedy}
-                    alt=""
-                  />
-                </div>
-                <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                  {item.name}
-                </p>
-                <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
-                  <img
-                    className="w-[20px] sm:w-auto"
-                    src={
+                <div
+                  style={{
+                    background: `${
                       item.party === "republican"
-                        ? republic
-                        : item.party === "democratic"
-                        ? democrat
-                        : independ
-                    }
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="president-votes w-3/4">
-                <div className="w-[98%] h-[62px]  rounded-r-lg  flex flex-col justify-center ">
-                  <div className="w-100 bg-[#454C72] rounded-[8px]">
-                    <div
-                      style={{ width: `${item.malepercentage}%`,background:`${
-                        item.party === "republican"
                         ? "#546BED"
                         : item.party === "democratic"
                         ? "#ED1C24"
                         : "white"
-                      }` }}
-                      className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                    >
-                      <div className="text-[#65D2E6] text-[15px] poppins4 italic flex items-center ">
-                        <img src={male} alt="" />
-                        Male
-                      </div>
-                      <p className="flex-1 text-center">
-                        {" "}
-                        {item.malepercentage}%{" "}
-                      </p>
-                    </div>
+                    }`,
+                  }}
+                  className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
+                >
+                  <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
+                    <img
+                      className="w-full h-full object-cover"
+                      src={kennedy}
+                      alt=""
+                    />
                   </div>
-                  <div className="w-100 bg-[#454C72] rounded-[8px] mt-1">
-                    <div
-                      style={{ width: `${item.femalepercentage}%`,background:`${
+                  <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+                    {item.name}
+                  </p>
+                  <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
+                    <img
+                      className="w-[20px] sm:w-auto"
+                      src={
                         item.party === "republican"
-                        ? "#546BED"
-                        : item.party === "democratic"
-                        ? "#ED1C24"
-                        : "white"
-                      }` }}
-                      className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                    >
-                      <div className="text-[#F0788C] text-[15px] poppins4 italic flex items-center ">
-                        <img src={female} alt="" />
-                        Female
+                          ? republic
+                          : item.party === "democratic"
+                          ? democrat
+                          : independ
+                      }
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div className="president-votes w-3/4">
+                  <div className="w-[98%] h-[62px]  rounded-r-lg  flex flex-col justify-center ">
+                    <div className="w-100 bg-[#454C72] rounded-[8px]">
+                      <div
+                        style={{
+                          width: `${item.malepercentage}%`,
+                          background: `${
+                            item.party === "republican"
+                              ? "#546BED"
+                              : item.party === "democratic"
+                              ? "#ED1C24"
+                              : "white"
+                          }`,
+                        }}
+                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
+                      >
+                        <div className="text-[#65D2E6] text-[15px] poppins4 italic flex items-center ">
+                          <img src={male} alt="" />
+                          Male
+                        </div>
+                        <p className="flex-1 text-center">
+                          {" "}
+                          {item.malepercentage}%{" "}
+                        </p>
                       </div>
-                      <p className="flex-1 text-center">
-                        {item.femalepercentage}%
-                      </p>
+                    </div>
+                    <div className="w-100 bg-[#454C72] rounded-[8px] mt-1">
+                      <div
+                        style={{
+                          width: `${item.femalepercentage}%`,
+                          background: `${
+                            item.party === "republican"
+                              ? "#546BED"
+                              : item.party === "democratic"
+                              ? "#ED1C24"
+                              : "white"
+                          }`,
+                        }}
+                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
+                      >
+                        <div className="text-[#F0788C] text-[15px] poppins4 italic flex items-center ">
+                          <img src={female} alt="" />
+                          Female
+                        </div>
+                        <p className="flex-1 text-center">
+                          {item.femalepercentage}%
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             ))}
             <button
               className="absolute bottom-[-20px] left-[50%]"
@@ -317,6 +336,7 @@ export default function VoteGraph() {
                 <path
                   d="M36.4022 54.8707L27.5334 46.0019L25 48.5353L36.4022 59.9375L47.8043 48.5353L45.2709 46.0019L36.4022 54.8707Z"
                   fill="white"
+                  transform="rotate(180 36 50)"
                 />
               </svg>
             </button>
