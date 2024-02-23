@@ -2,6 +2,8 @@ import React from "react";
 import bg from "../images/AppFrame.png";
 import mobile from "../images/Moblie.png";
 import logo from "../images/logo1.png";
+import app from "../images/App.png";
+import play from "../images/Play.png";
 
 export default function DownloadApp() {
   return (
@@ -30,6 +32,10 @@ export default function DownloadApp() {
               Predict who you think will win. Open an account and if you change
               your mind, update your choice. This game is for THINKING people
             </p>
+            <div className="mt-8 flex items-center gap-3">
+        <img src={app} alt="app" />
+        <img src={play} alt="play" />
+      </div>
           </div>
         </div>
       </div>
@@ -38,11 +44,13 @@ export default function DownloadApp() {
       <div className="footer w-10/12 m-auto mt-20 pb-4 border-b-[1px] border-[rgba(255,255,255,0.6)]">
         <div className="flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center">
           <div className="logo">
-            <img src={logo} alt=""  />
+            <img src={logo} alt="" />
           </div>
           <div>
             <div className="flex gap-4">
-              <h2 className="text-[12px] lg:text-[16px] poppins4 text-[#fff]">Contact Us</h2>
+              <h2 className="text-[12px] lg:text-[16px] poppins4 text-[#fff]">
+                Contact Us
+              </h2>
               <h2 className="text-[12px] lg:text-[16px] poppins4 text-[#fff]">
                 Privacy Policy
               </h2>
@@ -84,7 +92,10 @@ export default function DownloadApp() {
         </div>
         {/* <hr className="bg-[red] h-[1px]" /> */}
       </div>
-      <p className="text-[14px] text-[#fff] poppins3 text-center mt-3">THE WHITE HOUSE GAME. COPYRIGHT © 2024. ALL RIGHTS RESERVED</p>
+      <p className="text-[14px] text-[#fff] poppins3 text-center mt-3">
+        THE WHITE HOUSE GAME. COPYRIGHT © 2024. ALL RIGHTS RESERVED
+      </p>
+      
     </div>
   );
 }
