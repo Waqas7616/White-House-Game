@@ -3,7 +3,7 @@ import './Mao.css'
 
 function Map() {
     return (
-        <div className='w-[1200px]'>
+        <div className='w-[100%]'>
             <svg className='w-full' viewBox="0 0 1020 593" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1_2)">
                     <mask id="mask0_1_2" maskType='luminance' maskUnits="userSpaceOnUse" x="0" y="0" width="1020" height="593">

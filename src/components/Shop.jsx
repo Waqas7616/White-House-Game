@@ -204,7 +204,7 @@ export default function Shop() {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
         },
       },
       {
@@ -298,7 +298,7 @@ export default function Shop() {
                     20%OFF
                   </h2>
                 </div>
-                <div className="bg-[#F9F6E5] flex justify-center flex-col items-center xl-a:h-[340px] acer:h-[410px]  relative">
+                <div className="bg-[#F9F6E5] flex justify-center flex-col items-center h-[410px] acer:h-[410px]  relative">
                   <div className="py-5">
                     <img
                       src={
@@ -360,7 +360,7 @@ export default function Shop() {
                     20%OFF
                   </h2>
                 </div>
-                <div className="bg-[#E8F0F3] flex justify-center flex-col items-center xl-a:h-[340px] acer:h-[410px]  relative">
+                <div className="bg-[#E8F0F3] flex justify-center flex-col items-center h-[410px] acer:h-[410px]  relative">
                   <div className="">
                     <img
                       src={
@@ -422,9 +422,9 @@ export default function Shop() {
                     20%OFF
                   </h2>
                 </div>
-                <div className="bg-[#EEEFE9] flex justify-center flex-col items-center xl-a:h-[340px] acer:h-[410px]  relative">
+                <div className="bg-[#f9f6e5] flex justify-center flex-col items-center h-[410px] acer:h-[410px]  relative">
                   <div className="">
-                    <img
+                    <img className=""
                       src={
                         changeColor === 7
                           ? burgundy1
@@ -484,7 +484,7 @@ export default function Shop() {
                     20%OFF
                   </h2>
                 </div>
-                <div className="bg-[#E4E9ED] flex justify-center flex-col items-center xl-a:h-[340px] acer:h-[410px]  relative">
+                <div className="bg-[#E4E9ED] flex justify-center flex-col items-center h-[410px] acer:h-[410px]  relative">
                   <div className="">
                     <img
                       src={
@@ -546,7 +546,7 @@ export default function Shop() {
                     20%OFF
                   </h2>
                 </div>
-                <div className="bg-[#E8F0F3] flex justify-center flex-col items-center xl-a:h-[340px] acer:h-[410px]  relative">
+                <div className="bg-[#E8F0F3] flex justify-center flex-col items-center h-[410px] acer:h-[410px]  relative">
                   <div className="">
                     <img
                       src={
