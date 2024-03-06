@@ -49,7 +49,7 @@ function TabSection() {
   // console.log("all data", percentages);
   return (
     <div className="w-full bg-[#1c2452] py-8">
-      <div className="w-10/12 m-auto ">
+      <div className="w-10/12 m-auto resp ">
         <div className="flex justify-between items-center tabs py-5 flex-wrap">
           <h2
             className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 0 ? "active" : ""

@@ -1,34 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import Navbar from '../Navbar'
 
-import './banner.css'
-import ios from '../images/App Store.png'
-import bg from '../images/banner.png'
-import playstore from '../images/Google Play.png'
-import president from '../images/presidents.png'
-
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import CustomSlider from './slider/Slider'
-import Navbar from './Navbar'
-
-
-
-function Banner() {
-   
-
-    const settings = {
-        dots: false,
-        arrow:true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 7,
-        slideToScroll:1
-    }
-    
-    return (
-        <>
-            <div className='banner'>
+function AppBanner({bannerDesc,bannerTitle,redTitle}) {
+  return (
+    <div className='banner'>
                 <div className='bg-redish hidden sm:flex'>
                     <div className="top-section resp  p-4 flex justify-between w-10/12 m-auto items-center ">
                         <div className="social-icons flex gap-3  ">
@@ -67,25 +42,17 @@ function Banner() {
                         </div>
                     </div>
                 </div>
-                <div className="main-banner relative overflow-hidden h-[85vh] ">
+                <div className="app-banner  overflow-hidden h-[55vh] ">
                    <Navbar/>
-                    <div className="title-info w-10/12 m-auto  h-[80%] flex flex-col justify-center resp">
-                        <h1 className='text-whiteColor sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9'>the <span className="text-redish">white house </span>game</h1>
-                        <p className='text-whiteColor space lg:text-[13px] '>Predict the next President of the United States and tell the world what you think!</p>
-                        <div className="buttons mt-16 flex gap-4">
-                            <button className='border-0'><img src={ios} alt="" /></button>
-                            <button className='border-0'><img src={playstore} alt="" /></button>
-                        </div>
-                    </div>
-                    <img className='w-[50%] absolute bottom-[-8%] right-0' src={president} alt="" />
+                   <div className="flex flex-col text-center items-center justify-center h-[80%]">
+                    <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9"> <span className='text-redish'>{redTitle}</span> {bannerTitle}</h1>
+                    <p className="text-whiteColor space  poppins4 w-[32%]">{bannerDesc}</p>
+                   </div>
                 </div>
 
 
             </div>
-            <CustomSlider/>
-           
-        </>
-    )
+  )
 }
 
-export default Banner
+export default AppBanner

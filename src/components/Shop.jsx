@@ -269,7 +269,7 @@ export default function Shop() {
   ];
   return (
     <div className="CondidateList-section py-12">
-      <div className="w-8/12 m-auto">
+      <div className="w-8/12 m-auto resp">
         <div>
           <h2 className="md:text-[36px] text-[#000] orbit9 flex justify-between items-center mb-5">
             {" "}

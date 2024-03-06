@@ -32,3 +32,10 @@
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 400;
 }
+
+@media(min-width:1440px){
+   .resp{
+    width: 1420px !important;
+    margin-inline: auto !important;
+} 
+}

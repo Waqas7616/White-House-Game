@@ -6,6 +6,14 @@
     background-position: center;
    
 }
+.app-banner {
+    background: linear-gradient(91deg, rgba(0, 0, 0, 0.65) 33.57%, rgba(0, 0, 0, 0.32) 118.84%),
+    url('../images/div.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+   
+}
 .nav-link{
     text-decoration: none;
     list-style-type:none;

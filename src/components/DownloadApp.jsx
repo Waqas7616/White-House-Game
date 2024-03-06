@@ -9,7 +9,7 @@ export default function DownloadApp() {
   return (
     <div className="bg-[#1C2452] pt-20 pb-4">
       <div
-        className="w-10/12 m-auto rounded-[48px]  flex items-center justify-start relative pr-2"
+        className="w-10/12 resp m-auto rounded-[48px]  flex items-center justify-start relative pr-2"
         style={{
           background: `url(${bg})`,
           backgroundRepeat: "no-repeat",
@@ -41,7 +41,7 @@ export default function DownloadApp() {
       </div>
 
       {/* -----FOOTER----- */}
-      <div className="footer w-10/12 m-auto mt-20 pb-4 border-b-[1px] border-[rgba(255,255,255,0.6)]">
+      <div className="footer w-10/12 resp m-auto mt-20 pb-4 border-b-[1px] border-[rgba(255,255,255,0.6)]">
         <div className="flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center">
           <div className="logo">
             <img src={logo} alt="" />
@@ -74,7 +74,7 @@ export default function DownloadApp() {
             </p>
             <div className="bg-[#fff] flex justify-between pl-2 rounded-l-[6px]">
               <input
-                className="border-0 bg-transparent text-[10px] lg:text-[13px]"
+                className="border-0 bg-transparent text-[10px] lg:text-[13px] outline-none"
                 type="text"
                 placeholder="Enter your email"
               />

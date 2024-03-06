@@ -1,4 +1,5 @@
 
+import About from "./pages/About";
 import Homepage from "./pages/Homepage";
 
 
@@ -7,6 +8,7 @@ function App() {
     <div className="">
       
 <Homepage/>
+{/* <About/> */}
     </div>
   );
 }
