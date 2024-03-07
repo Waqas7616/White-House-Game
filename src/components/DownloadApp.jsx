@@ -32,10 +32,10 @@ export default function DownloadApp() {
               Predict who you think will win. Open an account and if you change
               your mind, update your choice. This game is for THINKING people
             </p>
-            <div className="mt-8 flex items-center gap-3">
-        <img src={app} alt="app" />
-        <img src={play} alt="play" />
-      </div>
+            <div className="mt-8 flex items-center flex-wrap gap-3">
+              <img src={app} alt="app" />
+              <img src={play} alt="play" />
+            </div>
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@ export default function DownloadApp() {
       <p className="text-[14px] text-[#fff] poppins3 text-center mt-3">
         THE WHITE HOUSE GAME. COPYRIGHT © 2024. ALL RIGHTS RESERVED
       </p>
-      
+
     </div>
   );
 }
