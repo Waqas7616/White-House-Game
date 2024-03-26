@@ -239,7 +239,7 @@ export default function ElectoralCollege() {
                   <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
                     <div
                       style={{ width: `${item.percentage}%` }}
-                      className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] w-[85%]"
+                      className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px]"
                     >
                       {" "}
                       {item.percentage}%

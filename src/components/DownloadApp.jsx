@@ -74,7 +74,7 @@ export default function DownloadApp() {
             </p>
             <div className="bg-[#fff] flex justify-between pl-2 rounded-l-[6px]">
               <input
-                className="border-0 bg-transparent text-[10px] lg:text-[13px]"
+                className="border-0 bg-transparent text-[10px] lg:text-[13px] outline-none"
                 type="text"
                 placeholder="Enter your email"
               />

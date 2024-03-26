@@ -90,7 +90,7 @@ export default function AgeGroups() {
             <select
               name="states"
               id="search"
-              className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+              className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[420px] px-3 py-2 rounded-[10px] text-whiteColor "
             >
               <option className="bg-[#000] " value="">
                 Select State

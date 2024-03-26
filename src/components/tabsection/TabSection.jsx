@@ -152,7 +152,7 @@ function TabSection() {
                   President
                 </h2>
               </div>
-              <div className="searchBar flex flex-col ">
+              <div className="searchBar flex flex-col w-[30%]">
                 <label
                   htmlFor="search "
                   className="text-whiteColor text-center poppins4 text-[14px]"
@@ -162,7 +162,7 @@ function TabSection() {
                 <select
                   name="states"
                   id="search"
-                  className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+                  className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor   px-3 py-2 rounded-[10px] text-whiteColor"
                 >
                   <option className="bg-[#000] " value="">
                     Select State
