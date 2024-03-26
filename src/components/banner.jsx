@@ -30,7 +30,7 @@ function Banner() {
         <>
             <div className='banner'>
                 <div className='bg-redish hidden sm:flex'>
-                    <div className="top-section  p-4 flex justify-between w-10/12 m-auto items-center ">
+                    <div className="top-section resp  p-4 flex justify-between w-10/12 m-auto items-center ">
                         <div className="social-icons flex gap-3  ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M15.7956 17.77H1.97444C0.884057 17.77 0 16.8859 0 15.7956V1.97444C0 0.884057 0.884057 0 1.97444 0H15.7956C16.8859 0 17.77 0.884057 17.77 1.97444V15.7956C17.77 16.8859 16.8859 17.77 15.7956 17.77Z" fill="white" />
@@ -69,9 +69,9 @@ function Banner() {
                 </div>
                 <div className="main-banner relative overflow-hidden h-[85vh] ">
                    <Navbar/>
-                    <div className="title-info w-10/12 m-auto  h-[80%] flex flex-col justify-center">
+                    <div className="title-info w-10/12 m-auto  h-[80%] flex flex-col justify-center resp">
                         <h1 className='text-whiteColor sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9'>the <span className="text-redish">white house </span>game</h1>
-                        <p className='text-whiteColor space lg:text-[13px]'>Predict the next President of the United States and tell the world what you think!</p>
+                        <p className='text-whiteColor space lg:text-[13px] '>Predict the next President of the United States and tell the world what you think!</p>
                         <div className="buttons mt-16 flex gap-4">
                             <button className='border-0'><img src={ios} alt="" /></button>
                             <button className='border-0'><img src={playstore} alt="" /></button>

@@ -196,11 +196,11 @@ function CustomSlider() {
     return (
         <>
             <div className='customSlider'>
-                <div className="titles flex justify-between items-center w-10/12 m-auto">
+                <div className="titles flex justify-between items-center resp w-10/12 m-auto">
                     <h1 className='orbit9 text-blackColor md:text-[37px]' >Candidates List</h1>
                     <h2 className='orbit7 text-redish uppercase text-[16px] cursor-pointer' onClick={handleExtention}>{extended ? 'see less' : 'see all'}</h2>
                 </div>
-                <div className="candidatesList  w-10/12 m-auto mt-8 relative">
+                <div className="candidatesList  w-10/12 m-auto mt-8 resp relative">
                     {!extended ? <Slider {...settings}>
                         {candidateData.map((item, index) => (
                             <div key={index} className="candidate flex flex-col items-center justify-between gap-[10px] " onClick={() => handleCandidateClick(index)}>

@@ -4,31 +4,44 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;500;600&family=Space+Grotesk&display=swap');
 
-.orbit9{
+.orbit9 {
     font-family: 'Orbitron', sans-serif;
     font-weight: 900;
 }
-.orbit7{
+
+.orbit7 {
     font-family: 'Orbitron', sans-serif;
     font-weight: 700;
 }
-.poppins3{
+
+.poppins3 {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
 }
-.poppins4{
+
+.poppins4 {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
 }
-.poppins5{
+
+.poppins5 {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
-.poppins6{
+
+.poppins6 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
-.space{
+
+.space {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 400;
+}
+
+@media(min-width:1439px) {
+    .resp {
+        width: 1420px !important;
+        margin-inline: auto !important;
+    }
 }

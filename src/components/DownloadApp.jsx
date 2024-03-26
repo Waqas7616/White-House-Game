@@ -9,7 +9,7 @@ export default function DownloadApp() {
   return (
     <div className="bg-[#1C2452] pt-20 pb-4">
       <div
-        className="w-10/12 m-auto rounded-[48px]  flex items-center justify-start relative pr-2"
+        className="w-10/12 resp m-auto rounded-[48px]  flex items-center justify-start relative pr-2"
         style={{
           background: `url(${bg})`,
           backgroundRepeat: "no-repeat",
@@ -32,16 +32,16 @@ export default function DownloadApp() {
               Predict who you think will win. Open an account and if you change
               your mind, update your choice. This game is for THINKING people
             </p>
-            <div className="mt-8 flex items-center gap-3">
-        <img src={app} alt="app" />
-        <img src={play} alt="play" />
-      </div>
+            <div className="mt-8 flex items-center flex-wrap gap-3">
+              <img src={app} alt="app" />
+              <img src={play} alt="play" />
+            </div>
           </div>
         </div>
       </div>
 
       {/* -----FOOTER----- */}
-      <div className="footer w-10/12 m-auto mt-20 pb-4 border-b-[1px] border-[rgba(255,255,255,0.6)]">
+      <div className="footer w-10/12 resp m-auto mt-20 pb-4 border-b-[1px] border-[rgba(255,255,255,0.6)]">
         <div className="flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center">
           <div className="logo">
             <img src={logo} alt="" />
@@ -95,7 +95,7 @@ export default function DownloadApp() {
       <p className="text-[14px] text-[#fff] poppins3 text-center mt-3">
         THE WHITE HOUSE GAME. COPYRIGHT © 2024. ALL RIGHTS RESERVED
       </p>
-      
+
     </div>
   );
 }
