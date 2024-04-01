@@ -29,8 +29,39 @@ import scott from "../../images/Condidates/Tim Scott (Rep).jpg";
 import tucker from "../../images/Condidates/Tucker Carlson.jpeg";
 import tulsi from "../../images/Condidates/Tulsi Gabbard (Ind).jpg";
 import CandidatePopup from "../Popup";
+import { Modal } from "../modal/Modal";
+import { Modalone } from "../modalone/Modalone";
+import Modaltwo from "../modaltwo/Modaltwo";
+import Modalthree from "../modalthree/Modalthree";
 
 function CustomSlider() {
+    const [openModalIndex, setOpenModalIndex] = useState(null);
+
+   const handleShow = (index) => setOpenModalIndex(index);
+
+   const handleClose = () => setOpenModalIndex(null);
+
+   
+
+   useEffect(() => {
+     const handleClickOutside = (event) => {
+       if (!event.target.closest(".modal-container")) {
+         handleClose();
+       }
+     };
+
+     document.addEventListener("mousedown", handleClickOutside);
+
+     return () => {
+       document.removeEventListener("mousedown", handleClickOutside);
+     };
+   }, []);
+
+
+
+
+
+
   const [data, setData] = useState([]);
   const [popupCandidate, setPopupCandidate] = useState(null);
   useEffect(() => {
@@ -281,6 +312,21 @@ function CustomSlider() {
   ];
   return (
     <>
+     {openModalIndex !== null && (
+        <div className="fixed top-4 left-0 w-full h-[27rem] flex items-center justify-center z-50 backdrop-blur-sm bg-black bg-opacity-50">
+          <div className="absolute z-50 direction-center modal-container">
+            {openModalIndex === 0 ? (
+              <Modal handleClose={handleClose} />
+            ) : openModalIndex === 1 ? (
+              <Modalone handleClose={handleClose} />
+            ) : openModalIndex === 2 ? (
+              <Modaltwo handleClose={handleClose} />
+            ) : (
+              <Modalthree handleClose={handleClose} />
+            )}
+          </div>
+        </div>
+      )}
       <div className="customSlider">
         <div className="titles flex justify-between items-center resp w-10/12 m-auto">
           <h1 className="orbit9 text-blackColor md:text-[37px]">
@@ -304,9 +350,10 @@ function CustomSlider() {
                 >
                   <div className="image w-[116px] h-[116px] rounded-[50%]  flex">
                     <img
-                      className=" w-[116px] h-[116px] rounded-[50%] object-cover"
+                      className=" w-[116px] h-[116px] rounded-[50%] object-cover cursor-pointer"
                       src={item.image_url}
                       alt=""
+                      onClick={() => handleShow(index)}
                     />
                   </div>
                   <h5 className="poppins5 text-[17px] text-blackColor">
@@ -324,9 +371,10 @@ function CustomSlider() {
                 >
                   <div className="image w-[116px] h-[116px] rounded-[50%]  flex">
                     <img
-                      className=" w-[116px] h-[116px] rounded-[50%] object-fit"
+                      className=" w-[116px] h-[116px] rounded-[50%] object-fit cursor-pointer"
                       src={item.image_url}
                       alt=""
+                      onClick={() => handleShow(index)}
                     />
                   </div>
                   <h5 className="poppins5 text-[17px] text-blackColor">
@@ -338,7 +386,7 @@ function CustomSlider() {
           )}
         </div>
       </div>
-      {popupCandidate !== null && (
+      {/* {popupCandidate !== null && (
         <div onClick={console.log("Popup Candidate Index:", popupCandidate)}>
           {" "}
           <CandidatePopup
@@ -347,7 +395,7 @@ function CustomSlider() {
             data={data}
           />
         </div>
-      )}
+      )} */}
     </>
   );
 }

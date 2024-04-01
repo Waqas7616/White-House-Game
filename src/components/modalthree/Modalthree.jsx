@@ -1,26 +1,21 @@
 import React, { useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Avatar,
-  Tooltip,
-} from "@material-tailwind/react";
-import robert from '../../images/robert.png'
-import cross from '../../images/cross.png'
-import republican from '../../images/republican.png'
+import { Card, CardHeader, Typography } from "@material-tailwind/react";
 
-export const Modalone = () => {
-    const [popup, setPopup] = useState(true);
-    const closePopup = () => {
-        setPopup(false);
-    }
+import kamala from "../../images/kamala.png";
+import republican from "../../images/republican.png";
+
+import cross from "../../images/cross.png";
+
+const Modalthree = () => {
+  const [popup, setPopup] = useState(true);
+
+  const closePopup = () => {
+    setPopup(false);
+  };
 
   return (
     <>
-     {popup && (
+      {popup && (
         <div>
           <Card className="max-w-[20rem] overflow-hidden h-[435px] rounded-lg">
             <CardHeader
@@ -29,7 +24,7 @@ export const Modalone = () => {
               color="transparent"
               className="m-0 rounded-none "
             >
-              <img src={robert} alt="ui/ux review check" />
+              <img src={kamala} alt="ui/ux review check" />
               <div className="absolute top-2 right-3 ">
                 <img
                   onClick={closePopup}
@@ -50,56 +45,65 @@ export const Modalone = () => {
                 <div className="border-2 border-[#ED1C24] w-[69px]" />
               </div>
             </div>
-            <div className="bg-[white] items-center flex flex-col h-[277px] pt-3 ">
+            <div className="bg-[#232C5F] items-center flex flex-col h-[277px] pt-3 ">
               <Typography
                 variant="h6"
                 color="textWhite"
-                className="mb-3 font-extrabold font-poppins text-[#333333] text-[13px] "
+                className="mb-3 font-extrabold text-white text-[13px] font-poppins "
               >
-                ROBERT F. KENNEDY JR
+                Kamala Harris
               </Typography>
               <Typography
                 variant="body1"
                 color="textSecondary"
-                className="mb-3 text-[#333333] text-[12px] font-poppins"
+                className="mb-3 text-white text-[12px] font-poppins"
               >
-                Born January 17, 1954,
+                Born October 20, 1964,
               </Typography>
               <Typography
                 variant="body1"
                 color="textSecondary"
-                className="mb-3 text-[#333333] text-[9px] font-poppins"
+                className="mb-3 text-white text-[9px] font-poppins"
               >
-                Georgetown University Hospital, Washington DC
+                Oakland, California
               </Typography>
               <Typography
                 variant="body1"
                 color="textPrimary"
-                className="mb-3 text-[#333333] text-[11px] w-[189px] text-center font-poppins"
+                className="mb-3 text-white text-[11px] w-[189px] text-center font-poppins"
               >
-                <span className="font-extrabold">Occupation:</span>{" "}
-                Environmental lawyer, author, health advocate
+                <span className="font-extrabold">Occupation:</span> Lawyer,
+                author, politician
               </Typography>
               <Typography
                 variant="body1"
                 color="textPrimary"
-                className="mb-3 text-[#333333] text-[11px] w-[172px] text-center font-poppins"
+                className="mb-3 text-white text-[11px] w-[172px] text-center font-poppins"
               >
-                Son of (assassinated) 64th Attorney General of the United
-                States, RFK
+                49th Vice President of the United States{" "}
+                <span className="font-extrabold">(2021-2025)</span>
               </Typography>
               <Typography
                 variant="body1"
                 color="textPrimary"
-                className="mb-3 text-[#333333] text-[11px] w-[205px] text-center font-poppins"
+                className="mb-3 text-white text-[11px] w-[205px] text-center font-poppins"
               >
-                Nephew of (assassinated) 35th President of the United States,
-                JFK
+                Senator representing California{" "}
+                <span className="font-extrabold">(2017-2021)</span>
+              </Typography>
+              <Typography
+                variant="body1"
+                color="textSecondary"
+                className="mb-3 text-white text-[11px] font-poppins"
+              >
+                Attorney General for California (2011-17)
               </Typography>
             </div>
           </Card>
         </div>
       )}
     </>
-  )
-}
+  );
+};
+
+export default Modalthree;
