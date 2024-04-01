@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom'
 function Navbar() {
     const [isMobile, setIsMobile] = useState(false)
     const [toggle, setToggle] = useState(false)
-
+    const [link, setLink] = useState(0);
+    console.log("link value is :", link)
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768)
@@ -16,7 +17,12 @@ function Navbar() {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
+
     }, []);
+
+    const handleLinks = (e) => {
+        setLink(prevLink => (prevLink === e ? null : e))
+    }
 
     const toggleMenu = () => {
         setToggle(!toggle)
@@ -26,10 +32,11 @@ function Navbar() {
             {isMobile ? <><div className="logo"><a href="/"><img src={logo} alt="" /></a></div> <div onClick={toggleMenu}>{!toggle ? <img width={30} src={burger} alt="" /> : <img className='absolute right-3 top-3' width={30} src={closeMenu} alt='close icon' />}</div></> : <>
                 <div className="logo"><a href="/"><img src={logo} alt="" /></a></div>
                 <div className="nav-links flex gap-8 ">
-                    <Link to={"/"}> <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">Home</li></Link>
-                    <Link to={'/about'}> <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">About Us</li></Link>
-                    <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">Services</li>
-                    <Link to={'/contact'}> <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">Contact Us</li></Link>
+                    <Link to={"/"}> <li onClick={() => handleLinks(0)} className={`nav-link poppins4 hover:text-redish ${link === 0 ? "active" : ""} cursor-pointer hover:font-[500] text-whiteColor`}>Home</li></Link>
+                    <Link to={'/about'}> <li onClick={() => handleLinks(1)} className={`nav-link poppins4 hover:text-redish ${link === 1 ? "active" : ""}  cursor-pointer hover:font-[500] text-whiteColor`}>About Us</li></Link>
+
+                    <Link to={'/contact'}> <li onClick={() => handleLinks(2)} className={`nav-link poppins4 hover:text-redish ${link === 2 ? "active" : ""}  cursor-pointer hover:font-[500] text-whiteColor`}>Contact Us</li></Link>
+                    <Link to={'/predict'}> <li onClick={() => handleLinks(3)} className={`nav-link poppins4 hover:text-redish ${link === 3 ? "active" : ""}  cursor-pointer hover:font-[500] text-whiteColor`}>Predict</li></Link>
                 </div>
                 <div className="download-button flex items-center justify-between gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

@@ -1,7 +1,8 @@
 import React from 'react'
 import Navbar from '../Navbar'
 
-function AppBanner({ bannerDesc, bannerTitle, redTitle }) {
+
+function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
     return (
         <div className='banner'>
             <div className='bg-redish hidden sm:flex'>
@@ -42,11 +43,15 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle }) {
                     </div>
                 </div>
             </div>
-            <div className="app-banner  overflow-hidden h-[55vh] ">
+            <div className="app-banner  overflow-hidden h-[55vh] "
+                style={{
+                    background: `linear-gradient(91deg, rgba(0, 0, 0, 0.65) 33.57%, rgba(0, 0, 0, 0.32) 118.84%), url(${bg})`,
+
+                }}>
                 <Navbar />
                 <div className="flex flex-col text-center items-center justify-center h-[80%]">
-                    <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[50%] uppercase orbit9"> <span className='text-redish'>{redTitle}</span> {bannerTitle}</h1>
-                    <p className="text-whiteColor space  poppins4 w-[90%] xl:w-[34%] text-[10px] xl:text-[17px]">{bannerDesc}</p>
+                    <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9"> <span className='text-redish'>{redTitle}</span> {bannerTitle}</h1>
+                    <p className="text-whiteColor space  poppins4 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px] xl:text-[17px]">{bannerDesc}</p>
                 </div>
             </div>
 
