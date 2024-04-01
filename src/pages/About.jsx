@@ -1,17 +1,19 @@
 import React from 'react'
 import AppBanner from '../components/appbanner/AppBanner'
 import mobile from '../images/about-mobile.png'
-import count1 from '../images/1.png'
+// import count1 from '../images/1.png'
 import smile from '../images/smile.png'
 import verify from '../images/verify.png'
 import foriegn from '../images/foriegnicon.png'
 import play from '../images/gameplay.png'
 import DownloadApp from '../components/DownloadApp'
+import bg from '../images/div.png'
 
 function About() {
+
   return (
     <div>
-      <AppBanner redTitle={'About'} bannerTitle={'US'} bannerDesc={'We believe the 2024 Presidential Election is the most important since 1860. The results of that election triggered a Civil War. Will this one do the same?'} />
+      <AppBanner redTitle={'About'} bg={bg} bannerTitle={'US'} bannerDesc={'We believe the 2024 Presidential Election is the most important since 1860. The results of that election triggered a Civil War. Will this one do the same?'} />
 
       {/* ABOUT SEC  */}
       <div className=" bg-[#1c2452] py-[100px]">
