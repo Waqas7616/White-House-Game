@@ -3,11 +3,12 @@ import AppBanner from '../components/appbanner/AppBanner'
 import bg from '../images/form.png'
 import Shop from '../components/Shop'
 import DownloadApp from '../components/DownloadApp'
+import background from '../images/contactbg.png'
 
 function Contact() {
     return (
         <div>
-            <AppBanner bannerTitle={'US'} redTitle={'CONTACT'} bannerDesc={'We hope you enjoyed predicting who the next President and Vice President will be in this year’s HISTORIC and EXCITING election.'} />
+            <AppBanner bannerTitle={'US'} bg={background} redTitle={'CONTACT'} bannerDesc={'We hope you enjoyed predicting who the next President and Vice President will be in this year’s HISTORIC and EXCITING election.'} />
 
             <div className="w-full py-[100px] bg-[#1c2452]">
                 <div className="resp m-auto w-10/12">
