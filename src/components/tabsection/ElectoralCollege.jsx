@@ -60,7 +60,7 @@ export default function ElectoralCollege() {
       <div className="search-section flex flex-col  sm:flex-row  justify-between mt-12">
         <div className="badge flex items-center justify-between">
           <img src={badge} alt="" />
-          <h2 className="poppins6 text-whiteColor text-[20px] md:text-[36px] ms-3">
+          <h2 className="poppins6 text-whiteColor text-[20px] md:text-[25px] lg:text-[36px] ms-3">
             President
           </h2>
         </div>
@@ -74,7 +74,7 @@ export default function ElectoralCollege() {
           <select
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor  lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[230px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
           >
             <option className="bg-[#000] " value="">
               Select State
@@ -89,7 +89,7 @@ export default function ElectoralCollege() {
         </div>
         <div className="votes-count flex items-center justify-between">
           <img src={ballot} alt="ballot" />
-          <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
+          <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
             Votes : {totalVotes}
           </h2>
         </div>

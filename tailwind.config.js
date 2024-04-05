@@ -21,7 +21,7 @@ export default {
         "lg-a": "1149px",
         xl: "1280px",
         "xl-a": "1460px",
-"acer":"1910px",
+        "acer": "1910px",
         "2xl": "2000px",
 
       },
