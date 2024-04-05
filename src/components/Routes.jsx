@@ -4,6 +4,7 @@ import Home from '../pages/Homepage'
 import About from '../pages/About'
 import Contact from '../pages/Contact'
 import Prediction from '../pages/Prediction'
+import { Modal } from './modal/Modal'
 
 function AppRoutes() {
     return (
@@ -13,9 +14,10 @@ function AppRoutes() {
                 <Route path='/about' element={<About />} />
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/predict' element={<Prediction />} />
+                
             </Routes>
         </Router>
     )
 }
 
-export default AppRoutes
+export default AppRoutes;
