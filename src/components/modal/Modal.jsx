@@ -24,14 +24,15 @@ export const Modal = ({ candidate, onClose }) => {
 
   return (
     <>
-      <div className="">
-        <Card className="relative max-w-[20rem] overflow-hidden h-[435px] rounded-lg shadow-2xl bg-black-50/50  ">
+      <div className="rounded-lg ">
+        <Card className=" max-w-[20rem] overflow-hidden h-[435px] rounded-lg shadow-2xl bg-black-50/50  ">
           <CardHeader
             floated={false}
             shadow={false}
             color="transparent"
             className="m-0 rounded-none "
           >
+            <div className="relative">
             <img
               src={`${imageUrl}${candidate?.candidate_image}`}
               alt="ui/ux review check"
@@ -45,8 +46,7 @@ export const Modal = ({ candidate, onClose }) => {
                 alt=""
               />
             </div>
-          </CardHeader>
-          <div className=" absolute  flex justify-center items-center top-28 left-4 space-x-2 mb-4">
+            <div className=" absolute  flex justify-center items-center bottom-5 left-4 space-x-2 mb-4">
             <div className="flex justify-center items-center ml-12">
               <div className="border-2 border-[#ED1C24] w-[69px]" />
             </div>
@@ -61,6 +61,9 @@ export const Modal = ({ candidate, onClose }) => {
               <div className="border-2 border-[#ED1C24] w-[69px]" />
             </div>
           </div>
+          </div>
+          </CardHeader>
+          
           <div
             className={` items-center flex flex-col h-[277px] pt-3 ${getBackgroundColor(
               candidate?.party?.party_name
