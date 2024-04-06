@@ -74,9 +74,9 @@ function CustomSlider() {
   const CustomNextArrow = (props) => (
     <div
       {...props}
-      className="absolute top-[10%] right-[4%] transform cursor-pointer"
+      className="absolute top-[10%] right-[2.5%] transform cursor-pointer"
     >
-      <span className="text-2xl">
+      <span className="text-2xl opacity-[0.5] hover:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" width="90" height="91" viewBox="0 0 90 91" fill="none">
           <g filter="url(#filter0_d_49_552)">
             <rect x="25" y="25" width="40" height="41" rx="10" fill="url(#paint0_linear_49_552)" />
@@ -106,9 +106,9 @@ function CustomSlider() {
   const CustomPrevArrow = (props) => (
     <div
       {...props}
-      className="absolute top-[10%] left-[-3%] z-50 transform translate-y-2 cursor-pointer"
+      className="absolute top-[10%] left-[-3%] z-50  cursor-pointer"
     >
-      <span className="text-2xl ">
+      <span className="text-2xl opacity-[0.5] hover:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" width="90" height="91" viewBox="0 0 90 91" fill="none">
           <g >
             <g filter="url(#paint0_linear_49_552)">
@@ -136,7 +136,7 @@ function CustomSlider() {
   const [extended, setExtended] = useState(false);
   const handleExtention = () => {
     setExtended(!extended);
-    console.log(extended)
+    // console.log(extended)
   }
   const settings = {
     arrows: true,
@@ -144,8 +144,8 @@ function CustomSlider() {
     speed: 500,
     slidesToShow: 7,
     slidesToScroll: 1,
-    customNextArrow: <CustomNextArrow />,
-    customPrevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
