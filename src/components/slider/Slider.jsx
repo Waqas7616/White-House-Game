@@ -65,16 +65,10 @@ function CustomSlider() {
   const CustomNextArrow = (props) => (
     <div
       {...props}
-      className="absolute top-[10%] right-[4%] transform cursor-pointer"
+      className="absolute top-[10%] right-[2.5%] transform cursor-pointer"
     >
-      <span className="text-2xl">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="90"
-          height="91"
-          viewBox="0 0 90 91"
-          fill="none"
-        >
+      <span className="text-2xl opacity-[0.5] hover:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="91" viewBox="0 0 90 91" fill="none">
           <g filter="url(#filter0_d_49_552)">
             <rect
               x="25"
@@ -147,17 +141,11 @@ function CustomSlider() {
   const CustomPrevArrow = (props) => (
     <div
       {...props}
-      className="absolute top-[10%] left-[-3%] z-50 transform translate-y-2 cursor-pointer"
+      className="absolute top-[10%] left-[-3%] z-50  cursor-pointer"
     >
-      <span className="text-2xl ">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="90"
-          height="91"
-          viewBox="0 0 90 91"
-          fill="none"
-        >
-          <g>
+      <span className="text-2xl opacity-[0.5] hover:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="91" viewBox="0 0 90 91" fill="none">
+          <g >
             <g filter="url(#paint0_linear_49_552)">
               <rect
                 x="25"
@@ -220,16 +208,16 @@ function CustomSlider() {
   const [extended, setExtended] = useState(false);
   const handleExtention = () => {
     setExtended(!extended);
-    console.log(extended);
-  };
+    // console.log(extended)
+  }
   const settings = {
     arrows: true,
     infinite: true,
     speed: 500,
     slidesToShow: 7,
     slidesToScroll: 1,
-    customNextArrow: <CustomNextArrow />,
-    customPrevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
@@ -259,8 +247,8 @@ function CustomSlider() {
     <>
       {selectedCandidateIndex !== null && (
         <div className="shadow-2xl">
-          <div className="fixed top-5 left-0 w-full h-[27rem] flex items-center justify-center z-50   ">
-            <div className="absolute z-50 direction-center modal-container top-5 ">
+          <div className="fixed flex items-center justify-center w-full h-full top-0  z-50 ">
+            <div className=" z-50  modal-container ">
               <Modal
                 candidate={data[selectedCandidateIndex]}
                 onClose={() => setSelectedCandidateIndex(null)}
