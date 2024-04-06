@@ -18,7 +18,7 @@ export default function DownloadApp() {
         }}
       >
         <div className="flex items-center  w-full ">
-          <div>
+          <div className="hidden md:block">
             <img src={mobile} alt="" className="rounded-[48px]" />
           </div>
           <div className="">

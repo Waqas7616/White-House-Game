@@ -110,9 +110,9 @@ function About() {
               </div>
             </div>
 
-            <DownloadApp />
           </div>
         </div>
+            <DownloadApp />
       </div>
     </div>
   )
