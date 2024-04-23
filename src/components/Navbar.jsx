@@ -139,7 +139,7 @@ function Navbar() {
 
       {isMobile && toggle && (
         <>
-          <div className="nav-links flex flex-col gap-8">
+          <div className="nav-links flex flex-col gap-8 items-center">
           <Link to={"/"}>
             <li onClick={() => handleLinks(0)} className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
                 

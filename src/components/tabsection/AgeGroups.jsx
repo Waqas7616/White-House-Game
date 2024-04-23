@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../banner.css";
 import kennedy from "../../images/image 46.png";
 import stats from "../../images/stats.png";
@@ -11,8 +11,25 @@ import democrat from "../../images/democrat.png";
 import republic from "../../images/republican.png";
 import up from "../../images/greenarrow.png";
 import down from "../../images/redarrow.png";
+import axios from "axios";
 
 export default function AgeGroups() {
+  const [AgeGroup, setAgeGroup] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://pankhay.com/thewhitehousegame/public/api/get_user_age")
+      .then((response) => {
+        // console.log("Age Group:", response.data.user_age);
+
+        setAgeGroup(response.data.user_age);
+      })
+      .catch((error) => {
+        console.error("Error fetching Age Group:", error);
+      });
+  }, []);
+
+
+
   const candidateData = [
     {
       name: "Kennedy",
@@ -80,7 +97,7 @@ export default function AgeGroups() {
               President
             </h2>
           </div>
-          <div className="searchBar flex flex-col justify-center items-center ">
+          {/* <div className="searchBar flex flex-col justify-center items-center ">
             <label
               htmlFor="search "
               className="text-whiteColor text-center poppins4 text-[14px]"
@@ -102,7 +119,32 @@ export default function AgeGroups() {
                 Houston
               </option>
             </select>
-          </div>
+          </div> */}
+
+<div className="searchBar flex flex-col ">
+          <label
+            htmlFor="search"
+            className="text-whiteColor text-center poppins4 text-[14px]"
+          >
+            Select Age Group
+          </label>
+          <select
+            name="states"
+            id="search"
+            className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+          >
+            <option className="bg-[#000]" value="">
+              Select Age Group
+            </option>
+            {AgeGroup?.map((item) => (
+              <option className="bg-[#000]" key={item.id} value={item?.range}>
+                {item?.range}
+              </option>
+            ))}
+          </select>
+        </div>
+
+
           <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
             <img src={ballot} alt="ballot" />
             <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">

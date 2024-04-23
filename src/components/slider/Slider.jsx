@@ -58,14 +58,14 @@ function CustomSlider() {
     console.log(error);
   }, []);
 
-  useEffect(() => {
-    console.log("habibi", data);
-  }, []);
+  // useEffect(() => {
+  //   console.log("habibi", data);
+  // }, []);
 
   const CustomNextArrow = (props) => (
     <div
       {...props}
-      className="absolute top-[10%] right-[2.5%] transform cursor-pointer"
+      className="absolute top-[10%] right-[-2.5%] transform cursor-pointer"
     >
       <span className="text-2xl opacity-[0.5] hover:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" width="90" height="91" viewBox="0 0 90 91" fill="none">

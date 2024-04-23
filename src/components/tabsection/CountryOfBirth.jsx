@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import stats from "../../images/stats.png";
 import badge from "../../images/president.png";
 import ballot from "../../images/ballot.png";
@@ -12,8 +12,27 @@ import VoteGraph from "./VoteGraph";
 import Election2020 from "./Election2020";
 import AgeGroups from "./AgeGroups";
 import Ethnicity from "./Ethnicity";
+import axios from "axios";
 
 export default function CountryOfBirth() {
+  const [CountryBirth , setCountryBirth] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://pankhay.com/thewhitehousegame/public/api/get_all_user_country_birth")
+      .then((response) => {
+      //   console.log("Age Group:", response.data.user_country_birth
+      // );
+
+        setCountryBirth(response.data.user_country_birth
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching Country Birth:", error);
+      });
+  }, []);
+
+
     const candidateData = [
         { name: "Kennedy", party: "independent", votes: "140" },
         { name: "Obama", party: "republican", votes: "40" },
@@ -47,7 +66,10 @@ export default function CountryOfBirth() {
               President
             </h2>
           </div> */}
-          <div className="searchBar flex flex-col ">
+
+
+
+          {/* <div className="searchBar flex flex-col ">
             <label
               htmlFor="search "
               className="text-whiteColor text-center poppins4 text-[14px]"
@@ -69,7 +91,37 @@ export default function CountryOfBirth() {
                 Houston
               </option>
             </select>
-          </div>
+          </div> */}
+
+<div className="searchBar flex flex-col ">
+          <label
+            htmlFor="search"
+            className="text-whiteColor text-center poppins4 text-[14px]"
+          >
+            Select Country Of Birth
+          </label>
+          <select
+            name="states"
+            id="search"
+            className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+          >
+            <option className="bg-[#000]" value="">
+              Select Country Of Birth
+            </option>
+            {CountryBirth?.map((item) => (
+              <option className="bg-[#000]" key={item.id} value={item?.name}>
+                {item?.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+          
+
+
+
+
+
           {/* <div className="votes-count flex items-center justify-between">
             <img src={ballot} alt="ballot" />
             <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
