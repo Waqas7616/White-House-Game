@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../banner.css";
 import kennedy from "../../images/image 46.png";
 import stats from "../../images/stats.png";
@@ -11,8 +11,26 @@ import democrat from "../../images/democrat.png";
 import republic from "../../images/republican.png";
 import up from "../../images/greenarrow.png";
 import down from "../../images/redarrow.png";
+import axios from "axios";
 
 export default function EmploymentStatus() {
+
+  const [Employment, setEmployment] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://pankhay.com/thewhitehousegame/public/api/get_all_user_employement")
+      .then((response) => {
+        console.log("User Employment:", response.data.user_employement
+      );
+
+      setEmployment(response.data.user_employement
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching user Employment:", error);
+      });
+  }, []);
     const candidateData = [
         {
           name: "Kennedy",
@@ -79,7 +97,35 @@ export default function EmploymentStatus() {
               President
             </h2>
           </div> */}
-          <div className="searchBar flex flex-col ">
+
+<div className="searchBar flex flex-col ">
+          <label
+            htmlFor="search"
+            className="text-whiteColor text-center poppins4 text-[14px]"
+          >
+            Select Employment Status
+          </label>
+          <select
+            name="states"
+            id="search"
+            className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+          >
+            <option className="bg-[#000]" value="">
+              Select Employment Status
+            </option>
+            {Employment?.map((item) => (
+              <option className="bg-[#000]" key={item.id} value={item?.employement_status
+              }>
+                {item?.employement_status
+}
+              </option>
+            ))}
+          </select>
+        </div>
+
+
+
+          {/* <div className="searchBar flex flex-col ">
             <label
               htmlFor="search "
               className="text-whiteColor text-center poppins4 text-[14px]"
@@ -101,7 +147,11 @@ export default function EmploymentStatus() {
                 Houston
               </option>
             </select>
-          </div>
+          </div> */}
+
+
+
+
           {/* <div className="votes-count flex items-center justify-between">
             <img src={ballot} alt="ballot" />
             <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">

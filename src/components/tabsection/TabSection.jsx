@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import stats from "../../images/stats.png";
 import badge from "../../images/president.png";
 import ballot from "../../images/ballot.png";
@@ -18,8 +18,24 @@ import ByLanguage from "./ByLanguage";
 import EmploymentStatus from "./EmploymentStatus";
 import Military from "./Military";
 import ElectoralCollege from "./ElectoralCollege";
+import axios from "axios";
 
 function TabSection() {
+  const [allstates, setAllStates] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://pankhay.com/thewhitehousegame/public/api/get_user_state")
+      .then((response) => {
+        console.log("All States:", response.data.user_state);
+
+        setAllStates(response.data.user_state);
+      })
+      .catch((error) => {
+        console.error("Error fetching All States:", error);
+      });
+  }, []);
+
   const [tabs, setTabs] = useState(0);
   const [expandedVotes, setExpandedVotes] = useState(false);
   const [viceVotes, setViceVotes] = useState(false);
@@ -50,7 +66,7 @@ function TabSection() {
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto resp ">
-        <div className="flex justify-between items-center tabs py-5 flex-wrap">
+        <div className="flex justify-between items-center tabs py-5 flex-wrap ">
           <h2
             className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 0 ? "active" : ""
@@ -132,7 +148,7 @@ function TabSection() {
             Millitary
           </h2>
         </div>
-        <div className="tab-content">
+        <div className="tab-content ">
           <div
             className={`all-tab-content  ${tabs === 0 ? "block" : "hidden"}`}
           >
@@ -152,7 +168,7 @@ function TabSection() {
                   President
                 </h2>
               </div>
-              <div className="searchBar flex flex-col justify-center items-center ">
+              {/* <div className="searchBar flex flex-col justify-center items-center ">
                 <label
                   htmlFor="search "
                   className="text-whiteColor text-center poppins4 text-[14px]"
@@ -174,7 +190,35 @@ function TabSection() {
                     Houston
                   </option>
                 </select>
+              </div> */}
+
+              <div className="searchBar flex flex-col ">
+                <label
+                  htmlFor="search"
+                  className="text-whiteColor text-center poppins4 text-[14px]"
+                >
+                  Select All States
+                </label>
+                <select
+                  name="states"
+                  id="search"
+                  className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+                >
+                  <option className="bg-[#000]" value="">
+                    Select All States
+                  </option>
+                  {allstates?.map((item) => (
+                    <option
+                      className="bg-[#000]"
+                      key={item.id}
+                      value={item?.name}
+                    >
+                      {item?.name}
+                    </option>
+                  ))}
+                </select>
               </div>
+
               <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
                 <img src={ballot} alt="ballot" />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
@@ -368,7 +412,7 @@ function TabSection() {
                   Vice President
                 </h2>
               </div>
-              <div className="searchBar flex flex-col justify-center items-center ">
+              {/* <div className="searchBar flex flex-col justify-center items-center ">
                 <label
                   htmlFor="search "
                   className="text-whiteColor text-center poppins4 text-[14px]"
@@ -390,7 +434,37 @@ function TabSection() {
                     Houston
                   </option>
                 </select>
+              </div> */}
+
+<div className="searchBar flex flex-col ">
+                <label
+                  htmlFor="search"
+                  className="text-whiteColor text-center poppins4 text-[14px]"
+                >
+                  Select All States
+                </label>
+                <select
+                  name="states"
+                  id="search"
+                  className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+                >
+                  <option className="bg-[#000]" value="">
+                    Select All States
+                  </option>
+                  {allstates?.map((item) => (
+                    <option
+                      className="bg-[#000]"
+                      key={item.id}
+                      value={item?.name}
+                    >
+                      {item?.name}
+                    </option>
+                  ))}
+                </select>
               </div>
+
+
+
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
                 <img src={ballot} alt="ballot" />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
