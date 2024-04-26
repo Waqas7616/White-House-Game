@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const LogIn = () => {
-    const navigate = useNavigate();
-    const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState(""); // State to store email
-    const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -19,41 +19,32 @@ export const LogIn = () => {
 
     try {
       const response = await axios.post(
-        "https://pankhay.com/thewhitehousegame/public/api/login", // API endpoint
+        "https://pankhay.com/thewhitehousegame/public/api/login",
         {
           email: email,
           password: password,
         }
       );
 
-      console.log(response.data); // Log the response data
+      console.log(response.data);
 
-      // Check if login was successful
       if (response.status === 200) {
-        // Login successful, perform any action needed
-        // For example, redirect user to dashboard
-        // navigate("/dashboard");
-        alert("login successfull")
+        navigate("/PutData");
       } else {
-        // Login failed, show error message
         alert("Login failed. Please check your credentials and try again.");
       }
     } catch (error) {
       console.error("Error:", error);
-      // Handle error, show error message to user
+
       alert("An error occurred. Please try again later.");
     }
   };
 
-
-
   return (
     <>
       <div className="bg-[#1c2452] pb-10 ">
-       
         <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">Login</h2>
-          
         </div>
         <div className="flex justify-center pt-5">
           <img src={logo1} alt="" />
@@ -73,7 +64,10 @@ export const LogIn = () => {
         </div>
 
         <div className="pt-5">
-          <form onSubmit={handleSubmit} class="max-w-sm mx-auto rounded-lg bg-[#131A41] px-10 py-10">
+          <form
+            onSubmit={handleSubmit}
+            class="max-w-sm mx-auto rounded-lg bg-[#131A41] px-10 py-10"
+          >
             <div class="mb-5">
               <label
                 for="email"
@@ -159,11 +153,11 @@ export const LogIn = () => {
                 Forget Pasword?
               </h6>
             </div>
-          <div className="flex justify-center mt-5 ">
-            <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
-              Login
-            </button>
-          </div>
+            <div className="flex justify-center mt-5 ">
+              <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
+                Login
+              </button>
+            </div>
           </form>
           <div className="flex justify-center items-center gap-2 mt-2">
             <p className="text-white font-poppins">Don't have an account ? </p>
