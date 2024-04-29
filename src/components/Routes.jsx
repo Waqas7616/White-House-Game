@@ -13,6 +13,11 @@ import { ResetPassword } from './resetpassword/ResetPassword'
 import EmailVerification from './emailverification/EmailVerification'
 import { ForgotModal } from './forgotmodal/ForgotModal'
 import { PutData } from './putdata/PutData'
+import { PredictNext } from './predictnext/PredictNext'
+import { Rules } from './rules/Rules'
+import { OptionOne } from './optionone/OptionOne'
+import { OptionTwo } from './optiontwo/OptionTwo'
+import { Version } from './version/Version'
 
 function AppRoutes() {
     return (
@@ -29,7 +34,12 @@ function AppRoutes() {
                 <Route path='/emailverification' element={<EmailVerification/>}/>
                 <Route path='/forgotmodal' element={<ForgotModal/>}/>
                 <Route path='/putdata' element={<PutData/>}/>
-                
+                <Route path='/predictnext' element={<PredictNext/>}/>
+                <Route path='/rules' element={<Rules/>}/>
+                <Route path='/optionone' element={<OptionOne/>}/>
+                <Route path='/optiontwo' element={<OptionTwo/>}/>
+                <Route path='/version' element={<Version/>}/>
+                 
             </Routes>
         </Router>
     )
