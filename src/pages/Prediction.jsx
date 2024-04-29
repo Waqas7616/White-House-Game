@@ -17,9 +17,9 @@ function Prediction() {
           "Predict the next President of the United States and tell the world what you think!"
         }
       />
-      <Predict titleImage={dem} />
-      <Predict titleImage={rep} />
-      <Predict titleImage={ind} />
+      <Predict titleImage={dem} party={'Democratic'} />
+      <Predict titleImage={rep} party={'Republican'} />
+      <Predict titleImage={ind} party={"Independent('Kennedy')"} />
       <div className="buttons flex items-center justify-center gap-4 xl:mt-[54px]">
         <button className="rounded-[6px] text-white"></button>
         <button className="rounded-[6px] text-white"></button>

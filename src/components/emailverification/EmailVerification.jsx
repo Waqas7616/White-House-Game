@@ -111,6 +111,7 @@ useEffect(() => {
   
       if (response.status === 200) {
          localStorage.setItem('token',response?.data?.access_token)
+         localStorage.setItem('id',response?.data?.user?.id )
 
         // alert("OTP verified successfully!");
         // Redirect or perform any other action upon successful OTP verification

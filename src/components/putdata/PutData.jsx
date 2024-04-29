@@ -1,16 +1,18 @@
 import logo1 from "../../images/logo1.png";
-import Vector from "../../images/Vector.png";
+
 import Layer from "../../images/Layer.png";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const PutData = () => {
+  const navigate = useNavigate();
   const [AgeGroup, setAgeGroup] = useState([]);
   useEffect(() => {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_user_age")
       .then((response) => {
-        // console.log("Age Group:", response.data.user_age);
+        console.log("Age Group:", response.data.user_age);
 
         setAgeGroup(response.data.user_age);
       })
@@ -25,8 +27,6 @@ export const PutData = () => {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_user_state")
       .then((response) => {
-        console.log("All States:", response.data.user_state);
-
         setAllStates(response.data.user_state);
       })
       .catch((error) => {
@@ -40,8 +40,6 @@ export const PutData = () => {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_user_ethnicty")
       .then((response) => {
-        //  console.log("Ethnicity Data:", response.data.user_ethnicity);
-
         setEthnicityData(response.data.user_ethnicity);
       })
       .catch((error) => {
@@ -57,9 +55,6 @@ export const PutData = () => {
         "https://pankhay.com/thewhitehousegame/public/api/get_all_user_country_birth"
       )
       .then((response) => {
-        //   console.log("Age Group:", response.data.user_country_birth
-        // );
-
         setCountryBirth(response.data.user_country_birth);
       })
       .catch((error) => {
@@ -73,9 +68,6 @@ export const PutData = () => {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_all_language")
       .then((response) => {
-        //   console.log("by Language:", response.data.language
-        // );
-
         setByLanguage(response.data.language);
       })
       .catch((error) => {
@@ -91,7 +83,7 @@ export const PutData = () => {
         "https://pankhay.com/thewhitehousegame/public/api/get_all_user_employement"
       )
       .then((response) => {
-        console.log("User Employment:", response.data.user_employement);
+        // console.log("User Employment:", response.data.user_employement);
 
         setEmployment(response.data.user_employement);
       })
@@ -106,13 +98,70 @@ export const PutData = () => {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_all_education")
       .then((response) => {
-        console.log("education data is ", response.data.education);
         setHigherEducation(response.data.education);
       })
       .catch((error) => {
         console.log("Error in education api", error);
       });
   }, []);
+
+  const [votedIn2020, setVotedIn2020] = useState(false);
+
+  const [jwtToken, setJwtToken] = useState("");
+  console.log("token :", jwtToken);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    console.log("token", storedToken);
+    if (storedToken) {
+      setJwtToken(storedToken);
+    } else {
+    }
+  }, []);
+
+  let id = localStorage.getItem("id");
+  console.log(id, "data");
+
+  const [payload, setPayLoad] = useState({
+    id: id,
+    language_id: "",
+    user_age_id: "",
+    user_ethnicity_id: "",
+    user_country_birth_id: "",
+    user_employement_id: "",
+    user_gender_id: "",
+    education_id: "",
+    user_state_id: "",
+    is_veteran: "",
+    is_votted_2020: "",
+    voter_candidate_id: "",
+    source: "",
+
+    user_votter_party: "",
+  });
+
+  const handleSaveButtonClick = async () => {
+    try {
+      const response = await axios.post(
+        "https://pankhay.com/thewhitehousegame/public/api/update_user_info",
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      console.log("My payload is:", payload);
+      console.log(response.data);
+
+      navigate("/OptionTwo");
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <>
       <div className="bg-[#1c2452] pb-10 ">
@@ -147,7 +196,10 @@ export const PutData = () => {
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                   id="male"
-                  defaultChecked
+                  value="1"
+                  onChange={(e) =>
+                    setPayLoad({ ...payload, user_gender_id: e.target.value })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -173,10 +225,14 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="gender"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
+                  id="female"
+                  value="2"
+                  onChange={(e) =>
+                    setPayLoad({ ...payload, user_gender_id: e.target.value })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -209,12 +265,15 @@ export const PutData = () => {
             name="states"
             id="search"
             className="bg-transparent poppins4 text-[14px] border-transparent w-[200px] lg:w-[220px] px-3 py-2 rounded-[10px] text-whiteColor"
+            onChange={(e) =>
+              setPayLoad({ ...payload, user_age_id: parseInt(e.target.value) })
+            }
           >
             {AgeGroup?.map((item) => (
               <option
                 className="bg-[#000] border-transparent"
                 key={item.id}
-                value={item?.range}
+                value={item.id}
               >
                 {item?.range}
               </option>
@@ -238,7 +297,7 @@ export const PutData = () => {
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                   id="red"
-                  defaultChecked 
+                  defaultChecked
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -303,13 +362,15 @@ export const PutData = () => {
                 name="states"
                 id="search"
                 className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                onChange={(e) =>
+                  setPayLoad({
+                    ...payload,
+                    user_state_id: parseInt(e.target.value),
+                  })
+                }
               >
                 {allstates?.map((item) => (
-                  <option
-                    className="bg-[#000]"
-                    key={item.id}
-                    value={item?.name}
-                  >
+                  <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
                   </option>
                 ))}
@@ -329,13 +390,15 @@ export const PutData = () => {
                 name="states"
                 id="search"
                 className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                onChange={(e) =>
+                  setPayLoad({
+                    ...payload,
+                    user_ethnicity_id: parseInt(e.target.value),
+                  })
+                }
               >
                 {ethnicityData?.map((item) => (
-                  <option
-                    className="bg-[#000]"
-                    key={item.id}
-                    value={item?.name}
-                  >
+                  <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
                   </option>
                 ))}
@@ -355,13 +418,15 @@ export const PutData = () => {
                 name="states"
                 id="search"
                 className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                onChange={(e) =>
+                  setPayLoad({
+                    ...payload,
+                    user_country_birth_id: parseInt(e.target.value),
+                  })
+                }
               >
                 {CountryBirth?.map((item) => (
-                  <option
-                    className="bg-[#000]"
-                    key={item.id}
-                    value={item?.name}
-                  >
+                  <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
                   </option>
                 ))}
@@ -381,13 +446,15 @@ export const PutData = () => {
                 name="states"
                 id="search"
                 className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                onChange={(e) =>
+                  setPayLoad({
+                    ...payload,
+                    language_id: parseInt(e.target.value),
+                  })
+                }
               >
                 {byLanguage?.map((item) => (
-                  <option
-                    className="bg-[#000]"
-                    key={item.id}
-                    value={item?.name}
-                  >
+                  <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
                   </option>
                 ))}
@@ -407,13 +474,15 @@ export const PutData = () => {
                 name="states"
                 id="search"
                 className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                onChange={(e) =>
+                  setPayLoad({
+                    ...payload,
+                    user_employement_id: parseInt(e.target.value),
+                  })
+                }
               >
                 {Employment?.map((item) => (
-                  <option
-                    className="bg-[#000]"
-                    key={item.id}
-                    value={item?.employement_status}
-                  >
+                  <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.employement_status}
                   </option>
                 ))}
@@ -433,13 +502,15 @@ export const PutData = () => {
                 name="states"
                 id="search"
                 className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                onChange={(e) =>
+                  setPayLoad({
+                    ...payload,
+                    education_id: parseInt(e.target.value),
+                  })
+                }
               >
                 {highereducation?.map((item) => (
-                  <option
-                    className="bg-[#000]"
-                    key={item.id}
-                    value={item?.name}
-                  >
+                  <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
                   </option>
                 ))}
@@ -449,7 +520,9 @@ export const PutData = () => {
         </div>
 
         <div className="flex justify-center items-center mt-10">
-            <h2 className="font-poppins text-white text-[16px]">Are you a Veteran or in Military service?</h2>
+          <h2 className="font-poppins text-white text-[16px]">
+            Are you a Veteran or in Military service?
+          </h2>
         </div>
 
         <div className="flex justify-center gap-5 pt-3">
@@ -460,11 +533,14 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="veteran"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
-                  defaultChecked 
+                  id="veteran"
+                  value="yes"
+                  onChange={(e) =>
+                    setPayLoad({ ...payload, is_veteran: e.target.value })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -517,9 +593,10 @@ export const PutData = () => {
         </div>
 
         <div className="flex justify-center items-center mt-10">
-            <h2 className="font-poppins text-white text-[16px]">Did you vote in 2020?</h2>
+          <h2 className="font-poppins text-white text-[16px]">
+            Did you vote in 2020?
+          </h2>
         </div>
-
         <div className="flex justify-center gap-5 pt-3">
           <div class="flex gap-10">
             <div class="inline-flex items-center">
@@ -528,10 +605,14 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="voted2020"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                   id="red"
+                  value="yes"
+                  onChange={(e) =>
+                    setPayLoad({ ...payload, is_votted_2020: e.target.value })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -557,10 +638,10 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="voted2020"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
+                  id="no"
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -585,7 +666,9 @@ export const PutData = () => {
         <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
 
         <div className="flex justify-center items-center mt-10">
-            <h2 className="font-poppins text-white text-[16px]">who did you vote for in 2020</h2>
+          <h2 className="font-poppins text-white text-[16px]">
+            who did you vote for in 2020
+          </h2>
         </div>
 
         <div className="flex justify-center gap-5 pt-3">
@@ -596,11 +679,17 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="candidate"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
-                  defaultChecked 
+                  id="bidenHarris"
+                  value="1"
+                  onChange={(e) =>
+                    setPayLoad({
+                      ...payload,
+                      voter_candidate_id: e.target.value,
+                    })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -626,10 +715,17 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="candidate"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
+                  id="Trump/Pense"
+                  value="2"
+                  onChange={(e) =>
+                    setPayLoad({
+                      ...payload,
+                      voter_candidate_id: e.target.value,
+                    })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -660,11 +756,17 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="candidate"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
-                  
+                  id="Other"
+                  value="3"
+                  onChange={(e) =>
+                    setPayLoad({
+                      ...payload,
+                      voter_candidate_id: e.target.value,
+                    })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -684,13 +786,14 @@ export const PutData = () => {
                 Other
               </label>
             </div>
-            
           </div>
         </div>
         <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
 
         <div className="flex justify-center items-center mt-10">
-            <h2 className="font-poppins text-white text-[16px]">How did you cast your vote in 2020?</h2>
+          <h2 className="font-poppins text-white text-[16px]">
+            How did you cast your vote in 2020?
+          </h2>
         </div>
 
         <div className="flex justify-center gap-5 pt-3">
@@ -701,10 +804,14 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="polling"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
+                  id="polling"
+                  value="polling"
+                  onChange={(e) =>
+                    setPayLoad({ ...payload, source: e.target.value })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -730,10 +837,14 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="mail"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
+                  id="mail"
+                  value="mail"
+                  onChange={(e) =>
+                    setPayLoad({ ...payload, source: e.target.value })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -758,7 +869,9 @@ export const PutData = () => {
         <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
 
         <div className="flex justify-center items-center mt-10 ">
-            <h2 className="font-poppins text-white text-[16px] w-[345px] text-center">Which party’s candidate would you vote for today?</h2>
+          <h2 className="font-poppins text-white text-[16px] w-[345px] text-center">
+            Which party’s candidate would you vote for today?
+          </h2>
         </div>
 
         <div className="flex justify-center gap-5 pt-3">
@@ -769,11 +882,17 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="party"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
-                  defaultChecked
+                  id="Democratic"
+                  value="1"
+                  onChange={(e) =>
+                    setPayLoad({
+                      ...payload,
+                      user_votter_party: e.target.value,
+                    })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -799,10 +918,17 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="party"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
+                  id="Republican"
+                  value="2"
+                  onChange={(e) =>
+                    setPayLoad({
+                      ...payload,
+                      user_votter_party: e.target.value,
+                    })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -833,10 +959,17 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="party"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
+                  id="Independent"
+                  value="3"
+                  onChange={(e) =>
+                    setPayLoad({
+                      ...payload,
+                      user_votter_party: e.target.value,
+                    })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -862,10 +995,17 @@ export const PutData = () => {
                 htmlFor="red"
               >
                 <input
-                  name="color"
+                  name="party"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
+                  id="Other"
+                  value="4"
+                  onChange={(e) =>
+                    setPayLoad({
+                      ...payload,
+                      user_votter_party: e.target.value,
+                    })
+                  }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -890,7 +1030,9 @@ export const PutData = () => {
         <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
 
         <div className="flex justify-center items-center mt-10">
-            <h2 className="font-poppins text-white text-[16px]">Keep me Informed</h2>
+          <h2 className="font-poppins text-white text-[16px]">
+            Keep me Informed
+          </h2>
         </div>
 
         <div className="flex justify-center gap-5 pt-3">
@@ -925,16 +1067,17 @@ export const PutData = () => {
                 Join our monthly newsletter
               </label>
             </div>
-            
           </div>
         </div>
         <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
         <div className="flex justify-center mt-5 ">
-            <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
-              Save
-            </button>
-          </div>
-
+          <button
+            onClick={handleSaveButtonClick}
+            className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins"
+          >
+            Save
+          </button>
+        </div>
       </div>
     </>
   );
