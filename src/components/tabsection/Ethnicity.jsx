@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../banner.css";
 import kennedy from "../../images/image 46.png";
 import stats from "../../images/stats.png";
@@ -11,8 +11,24 @@ import democrat from "../../images/democrat.png";
 import republic from "../../images/republican.png";
 import up from "../../images/greenarrow.png";
 import down from "../../images/redarrow.png";
+import axios from "axios";
 
 export default function Ethnicity() {
+  const [ethnicityData, setEthnicityData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://pankhay.com/thewhitehousegame/public/api/get_user_ethnicty")
+      .then((response) => {
+        //  console.log("Ethnicity Data:", response.data.user_ethnicity);
+
+        setEthnicityData(response.data.user_ethnicity);
+      })
+      .catch((error) => {
+        console.error("Error fetching ethnicity data:", error);
+      });
+  }, []);
+
   const candidateData = [
     {
       name: "Kennedy",
@@ -63,52 +79,77 @@ export default function Ethnicity() {
   });
   return (
     <div>
-       <h2 className="orbit7 mt-8 text-whiteColor text-center w-[245px] flex justify-between items-center m-auto md:text-[60px]">
-          <span>
-            <img className="w-[50px]" src={stats} alt="" />{" "}
-          </span>{" "}
-          stats
-        </h2>
-        <p className="poppins5 text-whiteColor mb-4 text-center">
+      <h2 className="orbit7 mt-8 text-whiteColor text-center w-[245px] flex justify-between items-center m-auto md:text-[60px]">
+        <span>
+          <img className="w-[50px]" src={stats} alt="" />{" "}
+        </span>{" "}
+        stats
+      </h2>
+      <p className="poppins5 text-whiteColor mb-4 text-center">
         Party support by community
-        </p>
-        <div className="search-section flex flex-col  sm:flex-row  justify-center my-16">
-          {/* <div className="badge flex items-center justify-between">
+      </p>
+      <div className="search-section flex flex-col  sm:flex-row  justify-center my-16">
+        {/* <div className="badge flex items-center justify-between">
             <img src={badge} alt="" />
             <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
               President
             </h2>
           </div> */}
-          <div className="searchBar flex flex-col ">
-            <label
-              htmlFor="search "
-              className="text-whiteColor text-center poppins4 text-[14px]"
-            >
+
+        <div className="searchBar flex flex-col ">
+          <label
+            htmlFor="search"
+            className="text-whiteColor text-center poppins4 text-[14px]"
+          >
+            Select Etnicity
+          </label>
+          <select
+            name="states"
+            id="search"
+            className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+          >
+            <option className="bg-[#000]" value="">
+              Select Etnicity
+            </option>
+            {ethnicityData?.map((item) => (
+              <option className="bg-[#000]" key={item.id} value={item?.name}>
+                {item?.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* <div className="searchBar flex flex-col ">
+          <label
+            htmlFor="search "
+            className="text-whiteColor text-center poppins4 text-[14px]"
+          >
+            Select State
+          </label>
+          <select
+            name="states"
+            id="search"
+            className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+          >
+            
+            <option className="bg-[#000] " value="">
               Select State
-            </label>
-            <select
-              name="states"
-              id="search"
-              className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
-            >
-              <option className="bg-[#000] " value="">
-                Select State
-              </option>
-              <option className="bg-[#000] " value="ny">
-                New york
-              </option>
-              <option className="bg-[#000] " value="hst">
-                Houston
-              </option>
-            </select>
-          </div>
-          {/* <div className="votes-count flex items-center justify-between">
+            </option>
+            <option className="bg-[#000] " value="ny">
+              New york
+            </option>
+            <option className="bg-[#000] " value="hst">
+              Houston
+            </option>
+          </select>
+        </div> */}
+        {/* <div className="votes-count flex items-center justify-between">
             <img src={ballot} alt="ballot" />
             <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
               Votes : {totalVotes}
             </h2>
           </div> */}
-        </div>
+      </div>
       <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
         {percentages.slice(0, 3).map((item, index) => (
           <div

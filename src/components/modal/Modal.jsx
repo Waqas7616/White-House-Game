@@ -52,7 +52,7 @@ export const Modal = ({ candidate, onClose }) => {
             </div>
             <div className="w-[42px] h-[42px] flex justify-center items-center rounded-full bg-white">
               <img
-                className=""
+                className=" h-7 w-7"
                 src={`${imageUrl}${candidate?.party?.party_badge}`}
                 alt=""
               />
