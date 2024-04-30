@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import logo from "../images/logo.png";
 import burger from "../images/hamburger.png";
 import closeMenu from "../images/closeMenu.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 function Navbar() {
+  const location = useLocation();
   const [isMobile, setIsMobile] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const [link, setLink] = useState(0);
-  console.log("link value is :", link);
+
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -19,18 +20,15 @@ function Navbar() {
     };
   }, []);
 
-  const handleLinks = (e) => {
-    setLink((prevLink) => (prevLink === e ? null : e));
-  };
+
 
   const toggleMenu = () => {
     setToggle(!toggle);
   };
   return (
     <div
-      className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex ${
-        toggle ? "flex-col rounded-lg relative" : "rounded-[100px] w-10/12 "
-      }  items-center justify-between`}
+      className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex ${toggle ? "flex-col rounded-lg relative" : "rounded-[100px] w-10/12 "
+        }  items-center justify-between`}
     >
       {isMobile ? (
         <>
@@ -63,10 +61,9 @@ function Navbar() {
             <Link to={"/"}>
               {" "}
               <li
-                onClick={() => handleLinks(0)}
-                className={`nav-link poppins4 hover:text-redish ${
-                  link === 0 ? "active" : ""
-                } cursor-pointer hover:font-[500] text-whiteColor`}
+
+                className={`nav-link poppins4 hover:text-redish ${location.pathname === '/' ? "active" : ""
+                  } cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Home
               </li>
@@ -74,10 +71,9 @@ function Navbar() {
             <Link to={"/about"}>
               {" "}
               <li
-                onClick={() => handleLinks(1)}
-                className={`nav-link poppins4 hover:text-redish ${
-                  link === 1 ? "active" : ""
-                }  cursor-pointer hover:font-[500] text-whiteColor`}
+
+                className={`nav-link poppins4 hover:text-redish ${location.pathname === '/about' ? "active" : ""
+                  }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 About Us
               </li>
@@ -86,10 +82,9 @@ function Navbar() {
             <Link to={"/contact"}>
               {" "}
               <li
-                onClick={() => handleLinks(2)}
-                className={`nav-link poppins4 hover:text-redish ${
-                  link === 2 ? "active" : ""
-                }  cursor-pointer hover:font-[500] text-whiteColor`}
+
+                className={`nav-link poppins4 hover:text-redish ${location.pathname === '/contact' ? "active" : ""
+                  }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Contact Us
               </li>
@@ -97,10 +92,9 @@ function Navbar() {
             <Link to={"/predict"}>
               {" "}
               <li
-                onClick={() => handleLinks(3)}
-                className={`nav-link poppins4 hover:text-redish ${
-                  link === 3 ? "active" : ""
-                }  cursor-pointer hover:font-[500] text-whiteColor`}
+
+                className={`nav-link poppins4 hover:text-redish ${location.pathname === '/predict' ? "active" : ""
+                  }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Predict
               </li>
@@ -140,36 +134,36 @@ function Navbar() {
       {isMobile && toggle && (
         <>
           <div className="nav-links flex flex-col gap-8 items-center">
-          <Link to={"/"}>
-            <li onClick={() => handleLinks(0)} className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
-                
-              Home
-            </li>
+            <Link to={"/"}>
+              <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
+
+                Home
+              </li>
             </Link>
 
             <Link to={"/about"}>
-            <li onClick={() => handleLinks(1)}  className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
-              About Us
-            </li>
+              <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
+                About Us
+              </li>
             </Link>
-            
-            
+
+
 
             <Link to={"/predict"}>
-            <li onClick={() => handleLinks(2)} className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
-              Predict
-            </li>
+              <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
+                Predict
+              </li>
             </Link>
 
 
-           
+
 
             <Link to={"/contact"}>
-            <li onClick={() => handleLinks(3)} className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
-              Contact Us
-            </li>
+              <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
+                Contact Us
+              </li>
             </Link>
-            
+
 
 
           </div>

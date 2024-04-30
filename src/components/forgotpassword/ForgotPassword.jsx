@@ -4,9 +4,10 @@ import Vector from "../../images/Vector.png";
 import Layer from "../../images/Layer.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AppBanner from "../appbanner/AppBanner";
 
 export const ForgotPassword = () => {
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState(""); // State to store email
 
   const handleSubmit = async (e) => {
@@ -40,9 +41,10 @@ export const ForgotPassword = () => {
     }
   };
   return (
-    <>
-      <div className="bg-[#1c2452] pb-10 ">
-        <div className="flex justify-center pt-5 ">
+    <div className="h-screen">
+      <AppBanner bannerTitle={'Password'} redTitle={'Forgot'} bannerDesc={'Forgot your password?'} />
+      <div className="bg-[#1c2452] py-10 ">
+        {/* <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">
             Forgot Password
           </h2>
@@ -55,7 +57,7 @@ export const ForgotPassword = () => {
         </div>
         <div className="flex justify-center pt-3">
           <h2 className="text-white font-poppins">Forgot your password?</h2>
-        </div>
+        </div> */}
         <div className="flex justify-center items-center h-full">
           <div className="w-[379px] px-6 py-4  text-white rounded-lg">
             <p className="text-center font-poppins text-[12px]">
@@ -84,21 +86,21 @@ export const ForgotPassword = () => {
                 placeholder="Enter Email Address"
                 required
                 onChange={(e) => setEmail(e.target.value)}
-                
+
               />
             </div>
-          <div className="flex justify-center mt-5 ">
-            <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
-              Send
-            </button>
-          </div>
+            <div className="flex justify-center mt-5 ">
+              <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
+                Send
+              </button>
+            </div>
           </form>
           <div className="flex justify-center items-center gap-2 mt-2">
             <p className="text-white font-poppins text-[10px]">Check your email for password reset instructions </p>
-           
+
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

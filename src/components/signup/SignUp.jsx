@@ -3,6 +3,7 @@ import logo1 from "../../images/logo1.png";
 import Vector from "../../images/Vector.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import AppBanner from "../appbanner/AppBanner";
 
 export const SignUp = () => {
   const [name, setName] = useState(""); // State for name
@@ -62,14 +63,15 @@ export const SignUp = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <>
-      <div className="bg-[#1c2452] pb-10 ">
-        <div className="flex justify-center pt-5 ">
+    <div className="h-screen">
+      <AppBanner bannerTitle={'up'} redTitle={'Sign'} bannerDesc={'Sign up to continue'} />
+      <div className="bg-[#1c2452] py-10 ">
+        {/* <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">Sign Up</h2>
         </div>
         <div className="flex justify-center pt-5">
           <img src={logo1} alt="" />
-        </div>
+        </div> */}
 
         <div className="flex justify-center items-center h-full">
           <div className="w-[402px] px-6 py-4  text-white rounded-lg">
@@ -263,6 +265,6 @@ export const SignUp = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

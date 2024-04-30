@@ -3,12 +3,14 @@ import logo1 from "../../images/logo1.png";
 import Vector from "../../images/Vector.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../Navbar";
+import AppBanner from "../appbanner/AppBanner";
 
 export const LogIn = () => {
-    const navigate = useNavigate();
-    const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState(""); // State to store email
-    const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState(""); // State to store email
+  const [password, setPassword] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -48,19 +50,20 @@ export const LogIn = () => {
 
 
   return (
-    <>
-      <div className="bg-[#1c2452] pb-10 ">
-       
-        <div className="flex justify-center pt-5 ">
+    <div className=" h-screen">
+      <AppBanner bannerTitle={'in'} redTitle={'Log'} bannerDesc={'Log in to continue'} />
+      <div className="bg-[#1c2452] py-10 ">
+
+        {/* <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">Login</h2>
-          
-        </div>
-        <div className="flex justify-center pt-5">
+
+        </div> */}
+        {/* <div className="flex justify-center pt-5">
           <img src={logo1} alt="" />
-        </div>
-        <div className="flex justify-center pt-3">
+        </div> */}
+        {/* <div className="flex justify-center pt-3">
           <h2 className="text-white font-poppins">Login to your account</h2>
-        </div>
+        </div> */}
         <div className="flex justify-center items-center h-full">
           <div className="w-[344px] px-6 py-4  text-white rounded-lg">
             <p className="text-center font-poppins">
@@ -159,11 +162,11 @@ export const LogIn = () => {
                 Forget Pasword?
               </h6>
             </div>
-          <div className="flex justify-center mt-5 ">
-            <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
-              Login
-            </button>
-          </div>
+            <div className="flex justify-center mt-5 ">
+              <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
+                Login
+              </button>
+            </div>
           </form>
           <div className="flex justify-center items-center gap-2 mt-2">
             <p className="text-white font-poppins">Don't have an account ? </p>
@@ -176,6 +179,6 @@ export const LogIn = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
