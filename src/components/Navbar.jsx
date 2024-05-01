@@ -4,11 +4,13 @@ import burger from "../images/hamburger.png";
 import closeMenu from "../images/closeMenu.png";
 import { Link } from "react-router-dom";
 import { Version } from "./version/Version";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 function Navbar() {
 
-  const login = localStorage.getItem( 'email' );
   const navigate = useNavigate();
+  const location=useLocation();
+  const login = localStorage.getItem( 'email' );
+  const token=localStorage.getItem('token')
   const [showModal, setShowModal] = useState(false);
 
   const handlePredictClick = () => {
@@ -51,6 +53,13 @@ function Navbar() {
   const toggleMenu = () => {
     setToggle(!toggle);
   };
+
+
+// const submitLogout=()=>{
+
+// }
+
+
   return (
     <div
       className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex ${
@@ -88,9 +97,8 @@ function Navbar() {
             <Link to={"/"}>
               {" "}
               <li
-                onClick={() => handleLinks(0)}
-                className={`nav-link poppins4 hover:text-redish ${
-                  link === 0 ? "active" : ""
+              
+                className={`nav-link poppins4 hover:text-redish ${location.pathname==='/' ? "active" : ""
                 } cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Home
@@ -99,9 +107,9 @@ function Navbar() {
             <Link to={"/about"}>
               {" "}
               <li
-                onClick={() => handleLinks(1)}
+                
                 className={`nav-link poppins4 hover:text-redish ${
-                  link === 1 ? "active" : ""
+                 location.pathname==='/about' ? "active" : ""
                 }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 About Us
@@ -111,9 +119,9 @@ function Navbar() {
             <Link to={"/contact"}>
               {" "}
               <li
-                onClick={() => handleLinks(2)}
+               
                 className={`nav-link poppins4 hover:text-redish ${
-                  link === 2 ? "active" : ""
+                  location.pathname==='/contact' ? "active" : ""
                 }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Contact Us
@@ -125,7 +133,7 @@ function Navbar() {
                 // onClick={() => handleLinks(3)}
                 onClick={handlePredictClick}
                 className={`nav-link poppins4 hover:text-redish ${
-                  link === 3 ? "active" : ""
+                  location.pathname==='/predict' ? "active" : ""
                 }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Predict
@@ -138,7 +146,7 @@ function Navbar() {
             </div>
           </div>
           <div className="download-button flex items-center justify-between gap-10">
-            {!login?
+            {!login &&!token?
             <div>
             <h2 onClick={() => navigate('/LogIn')} className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}>Login</h2>
           </div>:<div>

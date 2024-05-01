@@ -1,6 +1,3 @@
-
-
-
 import AppRoutes from "./components/Routes";
 import { StatePredictionsProvider } from "./utils/StateIDs";
 

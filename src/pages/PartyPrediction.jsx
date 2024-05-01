@@ -13,6 +13,7 @@ import axios from 'axios';
 function PartyPrediction() {
     const [isButtonClicked, setIsButtonClicked] = useState(false)
     const [sliderBackground, setSliderBackground] = useState("transparent");
+    const [predict,setPredict]=useState(0)
     const location = useLocation();
     const data = location.state || {}
     console.log('transferred data', data)
@@ -49,12 +50,12 @@ function PartyPrediction() {
     console.log("my data is :", candidateData);
     // console.log(data.voting[0].president_id)
 
-    const handleButtonClick = () => {
-        setIsButtonClicked(true);
+    const handleButtonClick = (e) => {
+        // setIsButtonClicked(true);
         setSliderBackground(
           "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)"
         );
-
+setPredict(e)
 
     };
 
@@ -82,8 +83,8 @@ function PartyPrediction() {
                         <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
                     </p>
 
-                    <div style={{ background: sliderBackground }}
-                        className={`w-full rounded-lg  pb-24  relative ${isButtonClicked&&"border-8 "}
+                    <div style={{ background: `${predict===1&&sliderBackground}` }}
+                        className={`w-full rounded-lg  pb-24  relative ${predict===1&&"border-8 "}
             `}
 
                     >
@@ -104,16 +105,16 @@ function PartyPrediction() {
                             </div>
                         </div>
 
-                        {isButtonClicked && <img
+                        {predict===1 && <img
                                 className="w-12 h-12 absolute left-[49%] transform -translate-x-2 -bottom-5 border-[5px] rounded-full border-[#1c2452]"
                                 src={check}
                                 alt=""
                             />}
                     </div>
-                    <div className="flex justify-start relative mt-24">
+                    <div className="flex justify-start relative translate-x-16 mt-2">
                             {/* Button */}
                             <button
-                                onClick={handleButtonClick}
+                                onClick={()=>handleButtonClick(1)}
                                 className={`rounded-lg px-5 py-3 bg-red-500 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 `}
                             >
                                 <img src={check} className="w-4" alt="" />{" "}
@@ -140,8 +141,8 @@ function PartyPrediction() {
                         <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
                     </p>
 
-                    <div style={{background:sliderBackground}}
-                        className={`w-full rounded-lg  pb-24  relative ${isButtonClicked&&"border-8"}`}
+                    <div style={{background:`${predict===2&&sliderBackground}`}}
+                        className={`w-full rounded-lg  pb-24  relative ${predict===2&&"border-8"}`}
 
                     >
                         <div className="flex gap-4 items-center justify-start w-full m-auto mt-[50px]">
@@ -161,16 +162,16 @@ function PartyPrediction() {
                             </div>
                         </div>
 
-                        {isButtonClicked&& <img
+                        {predict===2&& <img
                                 className="w-12 h-12 absolute left-[49%] transform -translate-x-2 -bottom-5 border-[5px] rounded-full border-[#1c2452]"
                                 src={check}
                                 alt=""
                             />}
                     </div>
-                    <div className="flex justify-start relative mt-24">
+                    <div className="flex justify-start relative translate-x-16 mt-2">
                             {/* Button */}
                             <button
-                                  onClick={handleButtonClick}
+                                  onClick={()=>handleButtonClick(2)}
                                 className={`rounded-lg px-5 py-3 bg-red-500 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 `}
                             >
                                 <img src={check} className="w-4" alt="" />{" "}
@@ -198,8 +199,8 @@ function PartyPrediction() {
                         <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
                     </p>
 
-                    <div style={{background:sliderBackground}}
-                        className={`w-full rounded-lg pb-24 relative ${isButtonClicked&&"border-8"}`}
+                    <div style={{background:`${predict===3&&sliderBackground}`}}
+                        className={`w-full rounded-lg pb-24 relative ${predict===3&&"border-8"}`}
 
                     >
                         <div className="flex gap-4 items-center justify-start w-full m-auto mt-[50px]">
@@ -219,16 +220,16 @@ function PartyPrediction() {
                             </div>
                         </div>
 
-                       {isButtonClicked&&  <img
+                       {predict===3&&  <img
                                 className="w-12 h-12 absolute left-[49%] transform -translate-x-2 -bottom-5 border-[5px] border-[#1c2452] rounded-full"
                                 src={check}
                                 alt=""
                             />}
                     </div>
-                    <div className="flex justify-start relative mt-24">
+                    <div className="flex justify-start relative translate-x-16 mt-2">
                             {/* Button */}
                             <button
-                                  onClick={handleButtonClick}
+                                  onClick={()=>handleButtonClick(3)}
                                 className={`rounded-lg px-5 py-3 bg-red-500 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 `}
                             >
                                 <img src={check} className="w-4" alt="" />{" "}

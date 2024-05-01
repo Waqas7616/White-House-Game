@@ -208,7 +208,7 @@ function PredictSlider({ data, data1, printData, party_name, afterChange }) {
     slidesToScroll: 1,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
-    afterChange: afterChange,
+    
   };
 
   return (

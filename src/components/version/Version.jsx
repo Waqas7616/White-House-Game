@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Layer from "../../images/Layer.png";
 import { useNavigate } from "react-router-dom";
@@ -9,9 +9,24 @@ import { Card } from "@material-tailwind/react";
 export const Version = () => {
     const navigate  = useNavigate();
 
-    const handlenavigate = () => {
-        navigate('/predict');
-    }
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleNavigate = () => {
+        if (selectedOption === "predict") {
+            navigate('/predict');
+        } else if (selectedOption === "electoral") {
+            navigate('/electoral');
+        }
+    };
+
+    const handleOptionSelect = (option) => {
+        setSelectedOption(option);
+    };
+
+
+    // const handlenavigate = () => {
+    //     navigate('/predict');
+    // }
   return (
     <>
       <Card className="max-w-[30rem] flex justify-center mx-auto mt-6 mb-6 ">
@@ -33,13 +48,13 @@ export const Version = () => {
                 htmlFor="red"
               >
                 <input
-                  name="gender"
+                  name="option"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="male"
+                  id="predict"
                 
                 // onClick={()=>navigate("/predict")}
-                onClick={handlenavigate}
+                onClick={() => handleOptionSelect("predict")}
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -67,12 +82,12 @@ export const Version = () => {
                 htmlFor="red"
               >
                 <input
-                  name="gender"
+                  name="option"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="male"
+                  id="electoral"
                   value="1"
-                //   onClick={() => navigate("/predict")}
+                  onClick={() => handleOptionSelect("electoral")}
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -94,7 +109,7 @@ export const Version = () => {
             </div>
           </div>
           <div className="flex justify-center pb-10 mt-10 ">
-            <button onClick={handlenavigate} className="rounded-lg px-5 py-3 bg-red-500 w-[250px] h-[50px] text-white font-poppins">
+            <button onClick={handleNavigate} className="rounded-lg px-5 py-3 bg-red-500 w-[250px] h-[50px] text-white font-poppins">
               Next
             </button>
             

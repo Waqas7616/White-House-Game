@@ -102,9 +102,9 @@ function ElectoralCollege() {
             <div className="voting w-10/12  resp m-auto py-[102px] bg-[#1c2452]"  >
                 <div className="state-data  mb-[110px] m-auto px-[120px] py-16 bg-redish rounded-[18.06px] relative flex justify-evenly items-center">
                     <img src={circle} alt="" className="absolute right-0" />
-                    <div className="map"><img src={`${imageUrl}${previousData?.states?.[step]?.map_url}`} alt="" /></div>
+                    <div className="map"><img className='w-[150px]' src={`${imageUrl}${previousData?.states?.[step]?.map_url}`} alt="" /></div>
                     <div className="info flex justify-center gap-5 items-center">
-                        <div className="flag"><img src={`${imageUrl}${previousData?.states?.[step]?.image_url
+                        <div className="flag"><img className='w-[100px]' src={`${imageUrl}${previousData?.states?.[step]?.image_url
                             }`} alt="" /></div>
                         <div className="name"><h6 className='poppins6 text-white text-[33px]'>{previousData?.states?.[step]?.name}</h6>
                             <p className='poppins4 text-white text-[28px]'>9 Electoral College votes</p></div>
