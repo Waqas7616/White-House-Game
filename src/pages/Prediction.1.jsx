@@ -7,9 +7,8 @@ import rep from "../images/repTITLE.png";
 import ind from "../images/indTITLE.png";
 import axios from "axios";
 
-function Prediction() {
+export function Prediction() {
   const [candidateData, setCandidateData] = useState([]);
-  const [president, setPresident] = useState();
   const [data, setData] = useState({
     votter_party_id: 1,
     president_id: 2,
@@ -53,8 +52,11 @@ function Prediction() {
       .catch((err) => {
         alert("the error is :", err);
       });
-    console.log(president);
   };
+
+  cosnt;
+  handleAfterChange = () => {};
+
   return (
     <div>
       <AppBanner
@@ -69,15 +71,7 @@ function Prediction() {
         titleImage={dem}
         party={"Democratic"}
         submitData={submitData}
-        afterchange={(index) =>
-          setPresident((prev) => ({
-            ...prev,
-            data: {
-              ...prev.data,
-              president_id: 44,
-            },
-          }))
-        }
+        afterchange={handleAfterChange}
       />
       <Predict
         titleImage={rep}
@@ -110,5 +104,3 @@ function Prediction() {
     </div>
   );
 }
-
-export default Prediction;
