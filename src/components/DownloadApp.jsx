@@ -21,20 +21,20 @@ export default function DownloadApp() {
           <div className="hidden md:block">
             <img src={mobile} alt="" className="rounded-[48px]" />
           </div>
-          <div className="text-center pt-2 sm:pt-0">
-            <h2 className="text-[18px] sm:text-[20px] md:text-[23px] lg:text-[41px]  text-[#fff]  orbit9">
+          <div className="text-center pt-4 sm:pt-0">
+            <h2 className="text-[15px] sm:text-[20px] md:text-[23px] lg:text-[41px]  text-[#fff]  orbit9">
               Download{" "}
               <span className="text-redish ">The White House Game </span>
               <br />
               And make your voice heard!
             </h2>
-            <p className="text-[#fff] px-2 sm:px-0 text-[10px] md:text-[14px] lg:text-[16px] lg:w-[700px] xl:w-[800px]">
+            <p className="text-[#fff] pt-3 sm:pt-1 px-2 sm:px-0 text-[10px] md:text-[14px] lg:text-[16px] lg:w-[700px] xl:w-[800px]">
               Predict who you think will win. Open an account and if you change
               your mind, update your choice. This game is for THINKING people
             </p>
-            <div className="mt-8 flex items-center flex-wrap gap-3 pb-5 ps-3 sm:ps-0 sm:pb-0">
-              <img src={app} alt="app" />
-              <img src={play} alt="play" />
+            <div className="mt-8 flex items-center flex-wrap gap-3 pb-5 ps-3 sm:ps-0 sm:pb-2">
+              <img className="mx-12 sm:mx-0 w-[8rem] md:w-[9rem]" src={app} alt="app" />
+              <img className="mx-12 sm:mx-0 w-[8rem] md:w-[9rem]" src={play} alt="play" />
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@ export default function DownloadApp() {
             <img src={logo} alt="" />
           </div>
           <div>
-            <div className="flex gap-4">
+            <div className="flex gap-10 sm:gap-12 mx-10 sm:mx-0">
               <h2 className="text-[12px] lg:text-[16px] poppins4 text-[#fff]">
                 Contact Us
               </h2>

@@ -116,19 +116,19 @@ function Banner() {
         <div className="main-banner relative overflow-hidden h-[85vh] ">
           <Navbar />
           <div className="title-info w-10/12 m-auto  h-[80%] flex flex-col justify-center resp">
-            <h1 className="text-whiteColor sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9">
+            <h1 className="text-whiteColor text-[17px] sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9">
               the <span className="text-redish">white house </span>game
             </h1>
-            <p className="text-whiteColor space lg:text-[13px] ">
+            <p className="text-whiteColor space text-[13px] sm:text-[18px] lg:text-[18px] xl:text-[23px] 2xl:text-[49px] ">
               Predict the next President of the United States and tell the world
               what you think!
             </p>
             <div className="buttons mt-16 flex gap-4">
               <button className="border-0">
-                <img src={ios} alt="" />
+                <img className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]" src={ios} alt="" />
               </button>
               <button className="border-0">
-                <img src={playstore} alt="" />
+                <img className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]" src={playstore} alt="" />
               </button>
             </div>
           </div>
