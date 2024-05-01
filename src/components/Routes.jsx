@@ -14,7 +14,7 @@ import EmailVerification from './emailverification/EmailVerification'
 import { ForgotModal } from './forgotmodal/ForgotModal'
 import { PutData } from './putdata/PutData'
 import ElectoralCollege from '../pages/ElectoralCollege'
-
+import PartyPrediction from '../pages/PartyPrediction'
 
 function AppRoutes() {
     return (
@@ -32,6 +32,7 @@ function AppRoutes() {
                 <Route path='/forgotmodal' element={<ForgotModal />} />
                 <Route path='/putdata' element={<PutData />} />
                 <Route path='/electoral' element={<ElectoralCollege />} />
+                <Route path='/party-prediction' element={<PartyPrediction />} />
 
             </Routes>
         </Router>

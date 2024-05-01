@@ -10,7 +10,7 @@ import question from '../images/question.png'
 import democratic from '../images/democraticflag.png'
 import republican from '../images/republicflag.png'
 import independent from '../images/independentflag.png'
-import { useStatePredictions, } from '../utils/StateIDs'
+import { useStatePredictions,StatePredictionsProvider } from '../utils/StateIDs'
 import axios from 'axios'
 import Prediction from './Prediction'
 

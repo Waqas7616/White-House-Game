@@ -2,13 +2,37 @@ import React, { useState, useEffect } from "react";
 import logo from "../images/logo.png";
 import burger from "../images/hamburger.png";
 import closeMenu from "../images/closeMenu.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Version } from "./version/Version";
+import { useNavigate } from "react-router-dom";
 function Navbar() {
-  const location = useLocation();
+
+  const login = localStorage.getItem( 'email' );
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+
+  const handlePredictClick = () => {
+    
+    setShowModal(true);
+
+   
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".modal-container")) {
+        setShowModal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  };
+
   const [isMobile, setIsMobile] = useState(false);
   const [toggle, setToggle] = useState(false);
-
-
+  const [link, setLink] = useState(0);
+  // console.log("link value is :", link);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -20,15 +44,18 @@ function Navbar() {
     };
   }, []);
 
-
+  const handleLinks = (e) => {
+    setLink((prevLink) => (prevLink === e ? null : e));
+  };
 
   const toggleMenu = () => {
     setToggle(!toggle);
   };
   return (
     <div
-      className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex ${toggle ? "flex-col rounded-lg relative" : "rounded-[100px] w-10/12 "
-        }  items-center justify-between`}
+      className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex ${
+        toggle ? "flex-col rounded-lg relative" : "rounded-[100px] w-10/12 "
+      }  items-center justify-between`}
     >
       {isMobile ? (
         <>
@@ -61,9 +88,10 @@ function Navbar() {
             <Link to={"/"}>
               {" "}
               <li
-
-                className={`nav-link poppins4 hover:text-redish ${location.pathname === '/' ? "active" : ""
-                  } cursor-pointer hover:font-[500] text-whiteColor`}
+                onClick={() => handleLinks(0)}
+                className={`nav-link poppins4 hover:text-redish ${
+                  link === 0 ? "active" : ""
+                } cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Home
               </li>
@@ -71,9 +99,10 @@ function Navbar() {
             <Link to={"/about"}>
               {" "}
               <li
-
-                className={`nav-link poppins4 hover:text-redish ${location.pathname === '/about' ? "active" : ""
-                  }  cursor-pointer hover:font-[500] text-whiteColor`}
+                onClick={() => handleLinks(1)}
+                className={`nav-link poppins4 hover:text-redish ${
+                  link === 1 ? "active" : ""
+                }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 About Us
               </li>
@@ -82,26 +111,42 @@ function Navbar() {
             <Link to={"/contact"}>
               {" "}
               <li
-
-                className={`nav-link poppins4 hover:text-redish ${location.pathname === '/contact' ? "active" : ""
-                  }  cursor-pointer hover:font-[500] text-whiteColor`}
+                onClick={() => handleLinks(2)}
+                className={`nav-link poppins4 hover:text-redish ${
+                  link === 2 ? "active" : ""
+                }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Contact Us
               </li>
             </Link>
-            <Link to={"/predict"}>
+            
               {" "}
               <li
-
-                className={`nav-link poppins4 hover:text-redish ${location.pathname === '/predict' ? "active" : ""
-                  }  cursor-pointer hover:font-[500] text-whiteColor`}
+                // onClick={() => handleLinks(3)}
+                onClick={handlePredictClick}
+                className={`nav-link poppins4 hover:text-redish ${
+                  link === 3 ? "active" : ""
+                }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Predict
               </li>
-            </Link>
+           
+            <div className="fixed flex items-center justify-center w-full h-full left-0 top-32  z-50 ">
+              <div className=" absolute z-50 modal-container ">
+                {showModal && <Version />}
+              </div>
+            </div>
           </div>
-          <div className="download-button flex items-center justify-between gap-2">
-            <svg
+          <div className="download-button flex items-center justify-between gap-10">
+            {!login?
+            <div>
+            <h2 onClick={() => navigate('/LogIn')} className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}>Login</h2>
+          </div>:<div>
+            <h2  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}>Logout</h2>
+          </div>
+            }
+            
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -123,7 +168,7 @@ function Navbar() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-            </svg>
+            </svg> */}
             <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px]">
               Download Now
             </button>
@@ -135,40 +180,49 @@ function Navbar() {
         <>
           <div className="nav-links flex flex-col gap-8 items-center">
             <Link to={"/"}>
-              <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
-
+              <li
+                onClick={() => handleLinks(0)}
+                className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
+              >
                 Home
               </li>
             </Link>
 
             <Link to={"/about"}>
-              <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
+              <li
+                onClick={() => handleLinks(1)}
+                className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
+              >
                 About Us
               </li>
             </Link>
 
-
-
-            <Link to={"/predict"}>
-              <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
+          
+              <li
+                // onClick={() => handleLinks(2)}
+                onClick={handlePredictClick}
+                className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
+              >
                 Predict
               </li>
-            </Link>
-
-
-
+              <div className="fixed flex items-center justify-center w-full h-full left-0 top-8  z-50 ">
+              <div className=" z-10 modal-container ">
+                {showModal && <Version />}
+              </div>
+            </div>
+          
 
             <Link to={"/contact"}>
-              <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
+              <li
+                onClick={() => handleLinks(3)}
+                className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
+              >
                 Contact Us
               </li>
             </Link>
-
-
-
           </div>
           <div className="download-button flex items-center justify-between gap-2">
-            <svg
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -190,7 +244,10 @@ function Navbar() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-            </svg>
+            </svg> */}
+            <div>
+              <h2 onClick={() => navigate('/LogIn')} className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}>Login</h2>
+            </div>
             <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px]">
               Download Now
             </button>

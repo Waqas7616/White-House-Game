@@ -4,6 +4,15 @@ const StatePredictionsContext = React.createContext();
 
 function StatePredictionsProvider({ children }) {
   const [state_predictions, setState_predictions] = useState([]);
+  const [voting,setVoting]=useState([])
+  const [president, setPresident] = useState();
+  const [vicePresident, setVicePresident] = useState();
+  const [party, setParty] = useState();
+
+
+const addVoting=(vote)=>{
+  setVoting((prev)=>[...prev,vote])
+}
 
   const addPrediction = (prediction) => {
     setState_predictions((prevPredictions) => [...prevPredictions, prediction]);
@@ -14,7 +23,7 @@ function StatePredictionsProvider({ children }) {
   };
 
   return (
-    <StatePredictionsContext.Provider value={{ state_predictions, addPrediction, clearPredictions }}>
+    <StatePredictionsContext.Provider value={{voting,addVoting, state_predictions, addPrediction, clearPredictions,party,setParty, president, setPresident, vicePresident, setVicePresident }}>
       {children}
     </StatePredictionsContext.Provider>
   );

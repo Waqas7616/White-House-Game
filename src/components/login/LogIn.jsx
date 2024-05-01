@@ -9,7 +9,7 @@ import AppBanner from "../appbanner/AppBanner";
 export const LogIn = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState(""); // State to store email
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const togglePasswordVisibility = () => {
@@ -21,33 +21,28 @@ export const LogIn = () => {
 
     try {
       const response = await axios.post(
-        "https://pankhay.com/thewhitehousegame/public/api/login", // API endpoint
+        "https://pankhay.com/thewhitehousegame/public/api/login",
         {
           email: email,
           password: password,
         }
       );
 
-      console.log(response.data); // Log the response data
+      console.log(response.data);
 
-      // Check if login was successful
       if (response.status === 200) {
-        // Login successful, perform any action needed
-        // For example, redirect user to dashboard
-        // navigate("/dashboard");
-        alert("login successfull")
+        console.log('login res',response)
+        localStorage.setItem('token',response.data.user.token)
+        navigate("/PutData");
       } else {
-        // Login failed, show error message
         alert("Login failed. Please check your credentials and try again.");
       }
     } catch (error) {
       console.error("Error:", error);
-      // Handle error, show error message to user
+
       alert("An error occurred. Please try again later.");
     }
   };
-
-
 
   return (
     <div className=" h-screen">
@@ -76,7 +71,10 @@ export const LogIn = () => {
         </div>
 
         <div className="pt-5">
-          <form onSubmit={handleSubmit} class="max-w-sm mx-auto rounded-lg bg-[#131A41] px-10 py-10">
+          <form
+            onSubmit={handleSubmit}
+            class="max-w-sm mx-auto rounded-lg bg-[#131A41] px-10 py-10"
+          >
             <div class="mb-5">
               <label
                 for="email"
