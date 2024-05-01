@@ -4,7 +4,7 @@ import Home from '../pages/Homepage'
 import About from '../pages/About'
 import Contact from '../pages/Contact'
 import Prediction from '../pages/Prediction'
-import { Modal } from './modal/Modal'
+
 
 import { LogIn } from './login/LogIn'
 import { SignUp } from './signup/SignUp'
