@@ -32,9 +32,9 @@ export default function DownloadApp() {
               Predict who you think will win. Open an account and if you change
               your mind, update your choice. This game is for THINKING people
             </p>
-            <div className="mt-8 flex items-center flex-wrap gap-3 pb-5 ps-3 sm:ps-0 sm:pb-0">
-              <img src={app} alt="app" />
-              <img src={play} alt="play" />
+            <div className="mt-8 flex justify-center items-center sm:flex sm:justify-normal gap-3 pb-5 ps-3 sm:ps-0 sm:pb-5 ">
+              <img className="w-[7rem] sm:w-[10rem]" src={app} alt="app" />
+              <img className="w-[7rem] sm:w-[10rem]" src={play} alt="play" />
             </div>
           </div>
         </div>

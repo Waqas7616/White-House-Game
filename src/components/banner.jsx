@@ -133,7 +133,7 @@ function Banner() {
             </div>
           </div>
           <img
-            className="w-[50%] absolute bottom-[-8%] right-0"
+            className="w-[50%] absolute -z-10 bottom-[-8%] right-0"
             src={president}
             alt=""
           />

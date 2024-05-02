@@ -66,7 +66,7 @@ function TabSection() {
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto resp ">
-        <div className="flex justify-between items-center tabs py-5 flex-wrap ">
+        <div className="flex items-center gap-7 sm:flex sm:justify-between sm:items-center tabs py-5 overflow-x-auto  w-[20rem] sm:w-full " style={{ scrollBehavior: 'smooth' }}>
           <h2
             className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 0 ? "active" : ""
@@ -76,7 +76,7 @@ function TabSection() {
             All
           </h2>
           <h2
-            className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+            className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 1 ? "active" : ""
             }`}
             onClick={() => setTabs(1)}
@@ -92,7 +92,7 @@ function TabSection() {
             Sex
           </h2>
           <h2
-            className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+            className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 3 ? "active" : ""
             }`}
             onClick={() => setTabs(3)}
@@ -100,7 +100,7 @@ function TabSection() {
             2020 Election
           </h2>
           <h2
-            className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+            className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 4 ? "active" : ""
             }`}
             onClick={() => setTabs(4)}
@@ -116,7 +116,7 @@ function TabSection() {
             Ethnicity
           </h2>
           <h2
-            className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+            className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 6 ? "active" : ""
             }`}
             onClick={() => setTabs(6)}
@@ -132,7 +132,7 @@ function TabSection() {
             Language
           </h2>
           <h2
-            className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+            className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 8 ? "active" : ""
             }`}
             onClick={() => setTabs(8)}
