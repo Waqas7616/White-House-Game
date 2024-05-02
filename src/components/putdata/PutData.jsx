@@ -123,7 +123,7 @@ export const PutData = () => {
   console.log(id, "data");
 
   const [payload, setPayLoad] = useState({
-    id: 4,
+    id: id,
     language_id: "",
     user_age_id: "",
     user_ethnicity_id: "",
@@ -156,7 +156,7 @@ export const PutData = () => {
       console.log("My payload is:", payload);
       console.log(response.data);
 
-      navigate("/OptionTwo");
+      navigate("/login");
     } catch (error) {
       console.error("Error:", error);
     }

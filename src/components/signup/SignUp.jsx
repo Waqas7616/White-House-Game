@@ -44,6 +44,7 @@ export const SignUp = () => {
       // Check if registration was successful
       if (response.status === 200) {
         localStorage.setItem("email", email);
+        localStorage.setItem('id',response.data.user.id)
         // Registration successful, redirect user to login page
         // alert("Registration successful!");
         // navigate("/emailverification", { state: { email: email } });
