@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "../banner.css";
-import kennedy from "../../images/image 46.png";
+
 import stats from "../../images/stats.png";
-import badge from "../../images/president.png";
-import ballot from "../../images/ballot.png";
-import male from "../../images/Condidates/Male.png";
-import female from "../../images/Condidates/Female.png";
+
+
+
 import independ from "../../images/independent.png";
 import democrat from "../../images/democrat.png";
 import republic from "../../images/republican.png";
-import up from "../../images/greenarrow.png";
-import down from "../../images/redarrow.png";
+
 import axios from "axios";
 
 export default function EmploymentStatus() {
@@ -21,14 +19,13 @@ export default function EmploymentStatus() {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_all_user_employement")
       .then((response) => {
-        console.log("User Employment:", response.data.user_employement
-      );
+       
 
       setEmployment(response.data.user_employement
         );
       })
       .catch((error) => {
-        console.error("Error fetching user Employment:", error);
+        
       });
   }, []);
     const candidateData = [

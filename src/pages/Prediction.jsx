@@ -6,39 +6,48 @@ import dem from "../images/demTITLE.png";
 import rep from "../images/repTITLE.png";
 import ind from "../images/indTITLE.png";
 import axios from "axios";
+import { useStatePredictions } from "../utils/StateIDs";
+import DownloadApp from "../components/DownloadApp";
+import { useNavigate} from "react-router-dom";
 
 function Prediction() {
-  const [candidateData, setCandidateData] = useState([]);
-  const [president, setPresident] = useState();
+  // const [candidateData, setCandidateData] = useState([]);
+  // const [president, setPresident] = useState();
+  const navigate=useNavigate();
+  const { president, vicePresident, party, voting, addVoting } = useStatePredictions()
+  
   const [data, setData] = useState({
-    votter_party_id: 1,
-    president_id: 2,
-    vice_president_id: 3,
+    votter_party_id: party,
+    president_id: president,
+    vice_president_id: vicePresident,
   });
   useEffect(() => {
-    axios
-      .get(
-        "https://pankhay.com/thewhitehousegame/public/api/get_votter_candidate",
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      )
-      .then((res) => {
-        setCandidateData(res.data.votter_candidate);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }, []);
+    setData({
+      votter_party_id: party,
+      president_id: president,
+      vice_president_id: vicePresident,
+    });
+  }, [president, vicePresident])
+ 
   const token = localStorage.getItem("token");
 
   const submitData = () => {
+    addVoting({
+      votter_party_id: party,
+      president_id: president,
+      vice_president_id: vicePresident,
+    });
+    
+  };
+
+
+  const sendPrediction = () => {
     axios
       .post(
         "https://pankhay.com/thewhitehousegame/public/api/select_party_leaders",
-        data,
+        {
+          "parties": voting
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -48,15 +57,16 @@ function Prediction() {
         }
       )
       .then((res) => {
-        alert("res is :", res);
+        alert("res is :", res.message);
       })
       .catch((err) => {
-        alert("the error is :", err);
+        alert("the error is :", err.message);
       });
-    console.log(president);
-  };
+      navigate('/party-prediction',{state:{voting}})
+  }
+
   return (
-    <div>
+    <div className="">
       <AppBanner
         redTitle={"YOUR"}
         bg={bg}
@@ -69,44 +79,26 @@ function Prediction() {
         titleImage={dem}
         party={"Democratic"}
         submitData={submitData}
-        // afterchange={(index) =>
-        //   setPresident((prev) => ({
-        //     ...prev,
-        //     data: {
-        //       ...prev.data,
-        //       president_id: 44,
-        //     },
-        //   }))
-        // }
+      // afterchange={(index)=>{console.log(candidateData.filter((item)=>item?.party.party_name==="Democratic")[index])}}
+      // afterchange={(index) => { console.log(index) }}
       />
       <Predict
         titleImage={rep}
         party={"Republican"}
         submitData={submitData}
-        // afterchange={(index) =>
-        //   console.log(
-        //     candidateData?.filter(
-        //       (item) => item.party.party_name === "Republican"
-        //     )[index]
-        //   )
-        // }
       />
       <Predict
         titleImage={ind}
-        submitData={submitData}
         party={"Independent('Kennedy')"}
-        // afterchange={(index) =>
-        //   console.log(
-        //     candidateData?.filter(
-        //       (item) => item.party.party_name === "Independent('Kennedy')"
-        //     )[index]
-        //   )
-        // }
+        submitData={submitData}
+
+
       />
-      <div className="buttons flex items-center justify-center gap-4 xl:mt-[54px]">
-        <button className="rounded-[6px] text-white"></button>
-        <button className="rounded-[6px] text-white"></button>
+      <div className="buttons flex items-center justify-center gap-4 xl:mt-[54px] mb-3 ">
+        <button className="rounded-[6px] text-white poppins-6 border-[1px] border-white px-10 py-2 ">Edit my predictions</button>
+        <button onClick={sendPrediction} className="rounded-[6px] text-white poppins-6 border-[1px] border-redish px-10 py-2 bg-redish">Next</button>
       </div>
+      <DownloadApp/>
     </div>
   );
 }

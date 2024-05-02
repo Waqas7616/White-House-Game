@@ -1,19 +1,18 @@
-
-
-
 import AppRoutes from "./components/Routes";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Homepage from "./pages/Homepage";
+import { StatePredictionsProvider } from "./utils/StateIDs";
+
 
 
 function App() {
   return (
-    <div className="">
+    <StatePredictionsProvider>
+      <div className="">
 
 
-      <AppRoutes />
-    </div>
+        <AppRoutes />
+        {/* <ElectoralCollege /> */}
+      </div>
+    </StatePredictionsProvider>
   );
 }
 

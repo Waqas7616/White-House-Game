@@ -105,7 +105,7 @@ export const PutData = () => {
       });
   }, []);
 
-  const [votedIn2020, setVotedIn2020] = useState(false);
+  
 
   const [jwtToken, setJwtToken] = useState("");
   console.log("token :", jwtToken);
@@ -123,7 +123,7 @@ export const PutData = () => {
   console.log(id, "data");
 
   const [payload, setPayLoad] = useState({
-    id: id,
+    id: 4,
     language_id: "",
     user_age_id: "",
     user_ethnicity_id: "",

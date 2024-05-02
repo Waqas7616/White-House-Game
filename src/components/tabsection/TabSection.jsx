@@ -3,7 +3,7 @@ import stats from "../../images/stats.png";
 import badge from "../../images/president.png";
 import ballot from "../../images/ballot.png";
 import kennedy from "../../images/image 46.png";
-import president from "../../images/president.png";
+
 import democrat from "../../images/democrat.png";
 import republic from "../../images/republican.png";
 import independ from "../../images/independent.png";
@@ -27,12 +27,12 @@ function TabSection() {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_user_state")
       .then((response) => {
-        console.log("All States:", response.data.user_state);
+        
 
         setAllStates(response.data.user_state);
       })
       .catch((error) => {
-        console.error("Error fetching All States:", error);
+        
       });
   }, []);
 

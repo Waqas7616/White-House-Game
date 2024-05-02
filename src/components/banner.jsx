@@ -93,8 +93,8 @@ function Banner() {
               </svg>
             </div>
             <div className="languages flex items-center gap-4">
-              <p>ENGLISH</p>
-              <p>ESPANOL</p>
+              <p className="text-white">ENGLISH</p>
+              <p className="text-white">ESPANOL</p>
               <div className="mail flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@ function Banner() {
                     fill="white"
                   />
                 </svg>
-                <p>thewhitehousegame@gmail.com</p>
+                <p className="text-white">thewhitehousegame@gmail.com</p>
               </div>
             </div>
           </div>
@@ -116,19 +116,19 @@ function Banner() {
         <div className="main-banner relative overflow-hidden h-[85vh] ">
           <Navbar />
           <div className="title-info w-10/12 m-auto  h-[80%] flex flex-col justify-center resp">
-            <h1 className="text-whiteColor sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9">
+            <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9">
               the <span className="text-redish">white house </span>game
             </h1>
-            <p className="text-whiteColor space lg:text-[13px] ">
+            <p className="text-whiteColor space lg:text-[16px] ">
               Predict the next President of the United States and tell the world
               what you think!
             </p>
             <div className="buttons mt-16 flex gap-4">
               <button className="border-0">
-                <img src={ios} alt="" />
+                <img className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]" src={ios} alt="" />
               </button>
               <button className="border-0">
-                <img src={playstore} alt="" />
+                <img className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]" src={playstore} alt="" />
               </button>
             </div>
           </div>

@@ -2,11 +2,18 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
+import { useStatePredictions } from "../../utils/StateIDs";
 
-function PredictSlider({ data, printData, party_name, afterChange }) {
+function PredictSlider({ data, data1, printData, party_name, afterChange }) {
+  const {  setPresident,  setVicePresident,setParty } = useStatePredictions();
+  const [imageSelect,setImageSelect]=useState(false)
   const [candidatedata, setCandidateData] = useState([]);
-  const [currentSlide, setCurrentSlide] = useState(0);
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+  // const [presidentId, setPresidentId] = useState("")
+  // const [vicePresidentId, setVicePresidentId] = useState("")
+  // console.log("presidentId :", presidentId)
+  // console.log("vicePresidentId :", vicePresidentId)
   const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
 
   useEffect(() => {
@@ -20,14 +27,22 @@ function PredictSlider({ data, printData, party_name, afterChange }) {
             },
           }
         );
-        setCandidateData(response.data.votter_candidate);
+        setCandidateData(response?.data?.votter_candidate);
       } catch (error) {
         console.log("Error: ", error);
       }
     };
     fetchData();
-    console.log("my data is :", candidatedata);
+    
   }, []);
+
+  const handleImage = (id,party) => {
+    
+    data1 === "president" && setPresident(id) || data1 === "VicePresident" && setVicePresident(id)
+    party_name==="Democratic"&&setParty(party)|| party_name==="Republican"&&setParty(party)||party_name==="Independent('Kennedy')"&&setParty(party)
+    setImageSelect(true)
+   
+  }
 
   const CustomNextArrow = (props) => (
     <div
@@ -35,7 +50,7 @@ function PredictSlider({ data, printData, party_name, afterChange }) {
       // onClick={() => console.log(slide)}
       className="absolute bottom-[-25%] right-2 sm:top-[40%] w-14 sm:w-[90px] sm:h-[91px] md:right-[0%]  cursor-pointer"
     >
-      <span className="text-2xl opacity-[0.3]  hover:opacity-100 ">
+      <span onClick={()=>setImageSelect(false)} className="text-2xl opacity-[0.3]  hover:opacity-100 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           // width="90"
@@ -117,7 +132,7 @@ function PredictSlider({ data, printData, party_name, afterChange }) {
       {...props}
       className="absolute bottom-[-25%] left-2 sm:top-[40%] sm:left-[0%] w-14 sm:w-[90px] sm:h-[91px]   z-50  cursor-pointer"
     >
-      <span className="text-2xl  opacity-[0.3] hover:opacity-100 ">
+      <span onClick={()=>setImageSelect(false)} className="text-2xl  opacity-[0.3] hover:opacity-100 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           // width="90"
@@ -193,7 +208,7 @@ function PredictSlider({ data, printData, party_name, afterChange }) {
     slidesToScroll: 1,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
-    afterChange: afterChange,
+    
   };
 
   return (
@@ -204,7 +219,8 @@ function PredictSlider({ data, printData, party_name, afterChange }) {
           .map((item, index) => (
             <div
               key={index}
-              className="w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] hover:border-white"
+              onClick={() => handleImage(item?.id,item?.votter_party_id)}
+              className={`w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${imageSelect&&"border-white border-[10px] rounded[28.43px]"}`}
             >
               <img
                 onClick={printData}

@@ -6,31 +6,32 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function EmailVerification(props) {
-    const  navigate = useNavigate();
-    // console.log("Email from props:", props.email);
-    // const { email } = props.location.state;
+  const navigate = useNavigate();
 
-    const [email, setEmail] = useState(""); // State to store email from local storage
+  // console.log("Email from props:", props.email);
+  // const { email } = props.location.state;
+
+  const [email, setEmail] = useState(""); // State to store email from local storage
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");
-     // Retrieve email from local storage
+    // Retrieve email from local storage
     if (storedEmail) {
       setEmail(storedEmail);
     } else {
       // Handle case if email is not found in local storage
     }
   }, []);
-    
+
   const formRef = useRef(null);
   const inputsRef = useRef(Array(4).fill(null)); // Initialize inputsRef with an array of null values
 
-//   const form = formRef.current;
-const [form, setForm] = useState(null); // State to store form element reference
+  //   const form = formRef.current;
+  const [form, setForm] = useState(null); // State to store form element reference
 
-useEffect(() => {
-  setForm(formRef.current); // Initialize form element reference
-}, []);
+  useEffect(() => {
+    setForm(formRef.current); // Initialize form element reference
+  }, []);
   const inputs = inputsRef.current;
 
   const handleKeyDown = (e) => {
@@ -80,24 +81,24 @@ useEffect(() => {
     form.querySelector("button[type=submit]").focus();
   };
 
-  
-//   if (!props.location.state || !props.location.state.email) {
-//       // Agar undefined hai, toh koi fallback ya error message render karein
-//       return <div>Error: Email not found!</div>;
-//     }
+
+  //   if (!props.location.state || !props.location.state.email) {
+  //       // Agar undefined hai, toh koi fallback ya error message render karein
+  //       return <div>Error: Email not found!</div>;
+  //     }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const otp = inputsRef.current.map(input => input.value).join(""); // Join OTP digits into a single string
-  
+
     try {
       const response = await axios.post(
         "https://pankhay.com/thewhitehousegame/public/api/match_otp",
         {
           otp: otp,
           email: email
-          
+
         },
         {
           headers: {
@@ -106,12 +107,11 @@ useEffect(() => {
           }
         }
       );
-  
+
       console.log(response.data); // Log the response data
-  
+
       if (response.status === 200) {
-         localStorage.setItem('token',response?.data?.access_token)
-         localStorage.setItem('id',response?.data?.user?.id )
+        localStorage.setItem('token', response?.data?.access_token)
 
         // alert("OTP verified successfully!");
         // Redirect or perform any other action upon successful OTP verification
@@ -124,7 +124,7 @@ useEffect(() => {
       alert("An error occurred while verifying OTP. Please try again later.");
     }
   };
-  
+
 
   return (
     <>
