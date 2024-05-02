@@ -9,23 +9,41 @@ import check from "../../images/check.png";
 import axios from "axios";
 import { Await } from "react-router-dom";
 
-function Predict({ titleImage, party,afterchange,submitData }) {
+function Predict({ titleImage, party, afterchange, submitData }) {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [candidateData, setCandidateData] = useState([]);
+  console.log("candidateData", candidateData)
 
-  
 
   const [sliderBackground, setSliderBackground] = useState("transparent");
 
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       "https://pankhay.com/thewhitehousegame/public/api/get_votter_candidate",
+  //       {
+  //         headers: {
+  //           Accept: "application/json",
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       setCandidateData(res.data.votter_candidate);
+  //     })
+  //     .catch((err) => {
+  //       alert(err);
+  //     });
+  // }, []);
   const handleButtonClick = () => {
     setIsButtonClicked(true);
     setSliderBackground(
       "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)"
     );
-submitData()
-  
+    submitData()
+
   };
   const data = [obama, west];
-  
+
 
   return (
     <div className="bg-[#1c2452] py-[100px]">
@@ -43,20 +61,23 @@ submitData()
         </p>
 
         <div
-          className={`w-full rounded-lg  relative ${
-            isButtonClicked && "border-8"
-          }`}
+          className={`w-full rounded-lg  relative ${isButtonClicked && "border-8"
+            }`}
           style={{ background: sliderBackground }}
         >
           <div className="flex gap-4 items-center justify-start w-full m-auto mt-[50px]">
             <div className="w-[120px] h-[130px] sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[562px] xl-a:h-[572px] m-auto">
               <h4 className="poppins6 text-white xl:text-[38px]">President</h4>
-              <div>
+              <div
+
+
+              >
                 <PredictSlider
                   party_name={party}
                   data={data}
                   printData={console.log("hello")}
-                  afterChange={afterchange}
+                  data1="president"
+
                 />
               </div>
             </div>
@@ -65,7 +86,7 @@ submitData()
                 Vice President
               </h4>
               <div>
-                <PredictSlider party_name={party} data={data} afterChange={afterchange}/>
+                <PredictSlider party_name={party} data={data} afterChange={afterchange} data1="VicePresident" />
               </div>
             </div>
           </div>
@@ -74,9 +95,8 @@ submitData()
             {/* Button */}
             <button
               onClick={handleButtonClick}
-              className={`rounded-lg px-5 py-3 bg-red-500 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 ${
-                isButtonClicked ? "hidden" : ""
-              }`}
+              className={`rounded-lg px-5 py-3 bg-red-500 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 ${isButtonClicked ? "hidden" : ""
+                }`}
             >
               <img src={check} className="w-4" alt="" />{" "}
               {isButtonClicked ? "Selected" : "Select"}

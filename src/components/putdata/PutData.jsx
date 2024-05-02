@@ -105,7 +105,7 @@ export const PutData = () => {
       });
   }, []);
 
-  const [votedIn2020, setVotedIn2020] = useState(false);
+  
 
   const [jwtToken, setJwtToken] = useState("");
   console.log("token :", jwtToken);
@@ -156,7 +156,7 @@ export const PutData = () => {
       console.log("My payload is:", payload);
       console.log(response.data);
 
-      navigate("/OptionTwo");
+      navigate("/login");
     } catch (error) {
       console.error("Error:", error);
     }

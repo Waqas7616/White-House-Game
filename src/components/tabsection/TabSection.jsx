@@ -3,7 +3,7 @@ import stats from "../../images/stats.png";
 import badge from "../../images/president.png";
 import ballot from "../../images/ballot.png";
 import kennedy from "../../images/image 46.png";
-import president from "../../images/president.png";
+
 import democrat from "../../images/democrat.png";
 import republic from "../../images/republican.png";
 import independ from "../../images/independent.png";
@@ -27,12 +27,12 @@ function TabSection() {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_user_state")
       .then((response) => {
-        console.log("All States:", response.data.user_state);
+        
 
         setAllStates(response.data.user_state);
       })
       .catch((error) => {
-        console.error("Error fetching All States:", error);
+        
       });
   }, []);
 
@@ -66,7 +66,7 @@ function TabSection() {
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto resp ">
-        <div className="flex items-center gap-7 sm:flex sm:justify-between sm:items-center tabs py-5 overflow-x-auto  w-[20rem] sm:w-full " style={{ scrollBehavior: 'smooth' }}>
+        <div className="flex items-center gap-7 sm:flex sm:justify-between sm:items-center tabs py-5 overflow-x-auto md:overflow-x-hidden w-[20rem] sm:w-full " style={{ scrollBehavior: 'smooth' }}>
           <h2
             className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 0 ? "active" : ""
