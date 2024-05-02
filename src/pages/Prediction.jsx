@@ -69,39 +69,39 @@ function Prediction() {
         titleImage={dem}
         party={"Democratic"}
         submitData={submitData}
-        afterchange={(index) =>
-          setPresident((prev) => ({
-            ...prev,
-            data: {
-              ...prev.data,
-              president_id: 44,
-            },
-          }))
-        }
+        // afterchange={(index) =>
+        //   setPresident((prev) => ({
+        //     ...prev,
+        //     data: {
+        //       ...prev.data,
+        //       president_id: 44,
+        //     },
+        //   }))
+        // }
       />
       <Predict
         titleImage={rep}
         party={"Republican"}
         submitData={submitData}
-        afterchange={(index) =>
-          console.log(
-            candidateData?.filter(
-              (item) => item.party.party_name === "Republican"
-            )[index]
-          )
-        }
+        // afterchange={(index) =>
+        //   console.log(
+        //     candidateData?.filter(
+        //       (item) => item.party.party_name === "Republican"
+        //     )[index]
+        //   )
+        // }
       />
       <Predict
         titleImage={ind}
         submitData={submitData}
         party={"Independent('Kennedy')"}
-        afterchange={(index) =>
-          console.log(
-            candidateData?.filter(
-              (item) => item.party.party_name === "Independent('Kennedy')"
-            )[index]
-          )
-        }
+        // afterchange={(index) =>
+        //   console.log(
+        //     candidateData?.filter(
+        //       (item) => item.party.party_name === "Independent('Kennedy')"
+        //     )[index]
+        //   )
+        // }
       />
       <div className="buttons flex items-center justify-center gap-4 xl:mt-[54px]">
         <button className="rounded-[6px] text-white"></button>

@@ -86,7 +86,7 @@ function Navbar() {
               <li
                 onClick={() => handleLinks(0)}
                 className={`nav-link poppins4 hover:text-redish ${
-                  link === 0 ? "active" : ""
+                  link === 0 ? "active text-redish" : ""
                 } cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Home
@@ -97,7 +97,7 @@ function Navbar() {
               <li
                 onClick={() => handleLinks(1)}
                 className={`nav-link poppins4 hover:text-redish ${
-                  link === 1 ? "active" : ""
+                  link === 1 ? "active text-redish" : ""
                 }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 About Us
@@ -109,7 +109,7 @@ function Navbar() {
               <li
                 onClick={() => handleLinks(2)}
                 className={`nav-link poppins4 hover:text-redish ${
-                  link === 2 ? "active" : ""
+                  link === 2 ? "active text-redish" : ""
                 }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Contact Us
@@ -121,7 +121,7 @@ function Navbar() {
                 // onClick={() => handleLinks(3)}
                 onClick={handlePredictClick}
                 className={`nav-link poppins4 hover:text-redish ${
-                  link === 3 ? "active" : ""
+                  link === 3 ? "active text-redish" : ""
                 }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Predict

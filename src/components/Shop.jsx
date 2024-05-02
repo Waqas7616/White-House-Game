@@ -177,13 +177,13 @@ const CustomPrevArrow = (props) => (
 );
 
 export default function Shop() {
-  useEffect(() => {
-    console.log("my screen is ", window.innerHeight);
-  }, []);
-  const [changeColor, setChangeColor] = useState("");
+  
+  const initialActiveIndex = parseInt(localStorage.getItem('activeIndex')) || 1;
+  const [changeColor, setChangeColor] = useState(initialActiveIndex);
   const ChangeIndex = (index) => {
     // console.log("Indes of shirt :", item);
     setChangeColor(index);
+    localStorage.setItem('activeIndex', index);
   };
   const settings1 = {
     className: "center",
@@ -312,19 +312,19 @@ export default function Shop() {
                     />
                   </div>
                   <div className="shopDots flex gap-3  absolute bottom-5">
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#000] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(1)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#000] hover:rounded-full hover:p-1${changeColor===1?"border-[1px] border-[#000] rounded-full p-1":""}`} onClick={() => ChangeIndex(1)}>
                       <div
                         className="bg-[#000] w-[10px] h-[10px] rounded-full"
 
                       ></div>
                     </div>
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1" onClick={() => ChangeIndex(2)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1 ${changeColor===2?"border-[1px] border-redish rounded-full p-1":""}`} onClick={() => ChangeIndex(2)}>
                       <div
                         className="bg-redish w-[10px] h-[10px] rounded-full"
 
                       ></div>
                     </div>
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(3)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1 ${changeColor===3?"border-[1px] border-[#2E343E] rounded-full p-1":""}`} onClick={() => ChangeIndex(3)}>
                       <div
                         className="bg-[#2E343E] w-[10px] h-[10px] rounded-full"
 
@@ -374,19 +374,19 @@ export default function Shop() {
                     />
                   </div>
                   <div className="shopDots flex gap-3  absolute bottom-5">
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(4)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1${changeColor===4?"border-[1px] border-[#8A344D] rounded-full p-1":""}`} onClick={() => ChangeIndex(4)}>
                       <div
                         className="bg-[#8A344D] w-[10px] h-[10px] rounded-full"
 
                       ></div>
                     </div>
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1" onClick={() => ChangeIndex(5)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1${changeColor===5?"border-[1px] border-redish rounded-full p-1":""}`} onClick={() => ChangeIndex(5)}>
                       <div
                         className="bg-redish w-[10px] h-[10px] rounded-full"
 
                       ></div>
                     </div>
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(6)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1${changeColor===6?"border-[1px] border-[#2E343E] rounded-full p-1":""}`} onClick={() => ChangeIndex(6)}>
                       <div
                         className="bg-[#2E343E] w-[10px] h-[10px] rounded-full"
 
@@ -436,19 +436,19 @@ export default function Shop() {
                     />
                   </div>
                   <div className="shopDots flex gap-3  absolute bottom-5">
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(7)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1${changeColor===7?"border-[1px] border-[#8A344D] rounded-full p-1":""}`} onClick={() => ChangeIndex(7)}>
                       <div
                         className="bg-[#8A344D] w-[10px] h-[10px] rounded-full"
 
                       ></div>
                     </div>
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1" onClick={() => ChangeIndex(8)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1${changeColor===8?"border-[1px] border-redish rounded-full p-1":""}`} onClick={() => ChangeIndex(8)}>
                       <div
                         className="bg-redish w-[10px] h-[10px] rounded-full"
 
                       ></div>
                     </div>
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#353983] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(9)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#353983] hover:rounded-full hover:p-1${changeColor===9?"border-[1px] border-[#353983] rounded-full p-1":""}`} onClick={() => ChangeIndex(9)}>
                       <div
                         className="bg-[#353983] w-[10px] h-[10px] rounded-full"
 
@@ -498,19 +498,19 @@ export default function Shop() {
                     />
                   </div>
                   <div className="shopDots flex gap-3  absolute bottom-5">
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(10)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1${changeColor===10?"border-[1px] border-[#8A344D] rounded-full p-1":""}`} onClick={() => ChangeIndex(10)}>
                       <div
                         className="bg-[#8A344D] w-[10px] h-[10px] rounded-full"
 
                       ></div>
                     </div>
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1" onClick={() => ChangeIndex(11)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1${changeColor===11?"border-[1px] border-redish rounded-full p-1":""}`} onClick={() => ChangeIndex(11)}>
                       <div
                         className="bg-redish w-[10px] h-[10px] rounded-full"
 
                       ></div>
                     </div>
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(12)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1${changeColor===12?"border-[1px] border-[#2E343E] rounded-full p-1":""}`} onClick={() => ChangeIndex(12)}>
                       <div
                         className="bg-[#2E343E] w-[10px] h-[10px] rounded-full"
 
@@ -560,19 +560,19 @@ export default function Shop() {
                     />
                   </div>
                   <div className="shopDots flex gap-3  absolute bottom-5">
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(13)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#8A344D] hover:rounded-full hover:p-1${changeColor===13?"border-[1px] border-[#8A344D] rounded-full p-1":""}`} onClick={() => ChangeIndex(13)}>
                       <div
                         className="bg-[#8A344D] w-[10px] h-[10px] rounded-full"
 
                       ></div>
                     </div>
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1" onClick={() => ChangeIndex(14)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-redish hover:rounded-full hover:p-1${changeColor===14?"border-[1px] border-redish rounded-full p-1":""}`} onClick={() => ChangeIndex(14)}>
                       <div
                         className="bg-redish w-[10px] h-[10px] rounded-full"
 
                       ></div>
                     </div>
-                    <div className="border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1" onClick={() => ChangeIndex(15)}>
+                    <div className={`border-[1px] border-transparent rounded-full p-1 hover:border-[1px] hover:border-[#2E343E] hover:rounded-full hover:p-1${changeColor===15?"border-[1px] border-[#2E343E] rounded-full p-1":""}`} onClick={() => ChangeIndex(15)}>
                       <div
                         className="bg-[#2E343E] w-[10px] h-[10px] rounded-full"
 
