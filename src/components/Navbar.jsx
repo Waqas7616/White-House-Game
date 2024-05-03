@@ -11,6 +11,7 @@ function Navbar() {
   const login = localStorage.getItem("email");
   const token = localStorage.getItem("token");
   const [showModal, setShowModal] = useState(false);
+  // const login = localStorage.getItem("email")
 
   const handlePredictClick = () => {
     setShowModal(true);
@@ -60,7 +61,7 @@ function Navbar() {
 
   return (
     <div
-      className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex ${
+      className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex  ${
         toggle ? "flex-col rounded-lg relative" : "rounded-[100px] w-10/12 "
       }  items-center justify-between`}
     >
@@ -131,8 +132,9 @@ function Navbar() {
             >
               Predict
             </li>
-            <div className="fixed flex items-center justify-center w-full h-full left-0 top-32  z-50 ">
-              <div className=" absolute z-50 modal-container ">
+            {/* </Link> */}
+            <div className="fixed flex items-center justify-center w-full h-full left-0 top-[10.5rem]  z-50 ">
+              <div className=" z-50  modal-container ">
                 {showModal && <Version />}
               </div>
             </div>
@@ -150,7 +152,6 @@ function Navbar() {
             ) : (
               <div>
                 <h2
-                  onClick={logOut}
                   className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
                 >
                   Logout
@@ -216,11 +217,12 @@ function Navbar() {
             >
               Predict
             </li>
-            <div className="fixed flex items-center justify-center w-full h-full left-0 top-8  z-50 ">
-              <div className=" z-10 modal-container ">
-                {showModal && <Version />}
+            {showModal &&
+            <div className="relative flex items-center justify-center w-full h-full left-0 -top-52  z-50 ">
+              <div className=" z-50 modal-container ">
+                 <Version />
               </div>
-            </div>
+            </div>}
 
             <Link to={"/contact"}>
               <li
@@ -255,15 +257,33 @@ function Navbar() {
                 strokeLinejoin="round"
               />
             </svg> */}
-            <div>
+            {/* <div>
               <h2
                 onClick={() => navigate("/LogIn")}
                 className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Login
               </h2>
-            </div>
-            <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px]">
+            </div> */}
+            {!login && !token ? (
+              <div>
+                <h2
+                  onClick={() => navigate("/LogIn")}
+                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+                >
+                  Login
+                </h2>
+              </div>
+            ) : (
+              <div>
+                <h2
+                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+                >
+                  Logout
+                </h2>
+              </div>
+            )}
+            <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px] my-8">
               Download Now
             </button>
           </div>
