@@ -113,7 +113,7 @@ function Banner() {
             </div>
           </div>
         </div>
-        <div className="main-banner relative overflow-hidden h-[85vh] z-30">
+        <div className="main-banner relative overflow-hidden h-[85vh] lg:z-30">
           <Navbar />
           <div className="title-info w-10/12 m-auto  h-[80%] flex flex-col justify-center resp">
             <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9">
@@ -133,7 +133,7 @@ function Banner() {
             </div>
           </div>
           <img
-            className="w-[50%] absolute -z-10 bottom-[-8%] right-0"
+            className="w-[50%] absolute md:-z-10 bottom-[-8%] right-0"
             src={presidents}
             alt=""
           />

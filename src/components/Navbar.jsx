@@ -130,7 +130,7 @@ function Navbar() {
               Predict
             </li>
             {/* </Link> */}
-            <div className="fixed flex items-center justify-center w-full h-full left-0 top-36  z-50 ">
+            <div className="fixed flex items-center justify-center w-full h-full left-0 top-[10.5rem]  z-50 ">
               <div className=" z-50  modal-container ">
                 {showModal && <Version />}
               </div>
@@ -198,14 +198,14 @@ function Navbar() {
               </li>
             </Link>
 
-            {/* <Link to={"/about"}> */}
+            <Link to={"/about"}>
               <li
-                onClick={() => navigate('/about')}
+                onClick={() => handleLinks(1)}
                 className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
               >
                 About Us
               </li>
-            {/* </Link> */}
+            </Link>
 
             <li
               // onClick={() => handleLinks(2)}
@@ -214,11 +214,12 @@ function Navbar() {
             >
               Predict
             </li>
-            <div className="fixed flex items-center justify-center w-full h-full left-0 top-8  z-30 ">
-              <div className=" z-0 modal-container ">
-                {showModal && <Version />}
+            {showModal &&
+            <div className="relative flex items-center justify-center w-full h-full left-0 -top-52  z-50 ">
+              <div className=" z-50 modal-container ">
+                 <Version />
               </div>
-            </div>
+            </div>}
 
             <Link to={"/contact"}>
               <li
@@ -253,15 +254,33 @@ function Navbar() {
                 strokeLinejoin="round"
               />
             </svg> */}
-            <div>
+            {/* <div>
               <h2
                 onClick={() => navigate("/LogIn")}
                 className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Login
               </h2>
-            </div>
-            <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px]">
+            </div> */}
+            {!login && !token ? (
+              <div>
+                <h2
+                  onClick={() => navigate("/LogIn")}
+                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+                >
+                  Login
+                </h2>
+              </div>
+            ) : (
+              <div>
+                <h2
+                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+                >
+                  Logout
+                </h2>
+              </div>
+            )}
+            <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px] my-8">
               Download Now
             </button>
           </div>

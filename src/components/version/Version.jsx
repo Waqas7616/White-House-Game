@@ -29,19 +29,19 @@ export const Version = () => {
     // }
   return (
     <>
-      <Card className="max-w-[30rem] flex justify-center mx-auto mt-6 mb-6 ">
+      <Card className="max-w-[18rem] lg:max-w-[30rem] flex justify-center mx-auto lg:mt-6 lg:mb-6  ">
         <div className="bg-[#1c2452]  rounded-lg">
           
 
-          <div className="flex justify-center items-center pt-5">
-            <img src={Layer} alt="" />
+          <div className="flex justify-center items-center pt-3 lg:pt-5">
+            <img className="w-10 h-10 lg:w-20 lg:h-20" src={Layer} alt="" />
           </div>
-          <div className="flex justify-center pt-10">
-            <h2 className="text-white text-[19px] font-poppins">
+          <div className="flex justify-center pt-3 lg:pt-10">
+            <h2 className="text-white text-[12px]  lg:text-[19px] font-poppins">
               Which option do you want to play
             </h2>
           </div>
-          <div className="flex justify-center items-center text-center pt-5  mx-16">
+          <div className="flex justify-center items-center text-center pt-3 lg:pt-5 mr-7 lg:mr-0">
             <div class="inline-flex items-center">
               <label
                 class="relative flex items-center p-3 rounded-full cursor-pointer"
@@ -68,7 +68,7 @@ export const Version = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none text-[16px]"
+                class="mt-px font-poppins text-white cursor-pointer select-none text-[9px] whitespace-nowrap lg:text-[16px]"
                 htmlFor="react"
               >
                 Predict who will be next President
@@ -101,7 +101,7 @@ export const Version = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none text-[14px] "
+                class="mt-px font-poppins text-white cursor-pointer select-none text-[9px] whitespace-nowrap lg:text-[14px] "
                 htmlFor="react"
               >
                 Predict President and Electoral College
