@@ -22,6 +22,7 @@ import axios from "axios";
 
 function TabSection() {
   const [allstates, setAllStates] = useState([]);
+  const [id,setId]=useState(1)
 
   useEffect(() => {
     axios
@@ -35,6 +36,29 @@ function TabSection() {
         
       });
   }, []);
+  useEffect(() => {
+    const ParamBody = new URLSearchParams({
+      "user_state_id": id,
+    });
+    axios
+      .get(
+        `https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("Response:", res.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  }, [id]);
+  const handleId = (selectedId) => {
+    setId(selectedId);
+  };
 
   const [tabs, setTabs] = useState(0);
   const [expandedVotes, setExpandedVotes] = useState(false);
@@ -200,6 +224,13 @@ function TabSection() {
                   Select All States
                 </label>
                 <select
+                onChange={(e) => {
+                  const selectedName = e.target.value;
+                  const selectedId = allstates.find(
+                    (item) => item.name === selectedName
+                  )?.id;
+                  handleId(selectedId);
+                }}
                   name="states"
                   id="search"
                   className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] ml-8 md:ml-0 px-3 py-2 rounded-[10px] text-whiteColor"

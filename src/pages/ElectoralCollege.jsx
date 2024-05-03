@@ -22,6 +22,7 @@ function ElectoralCollege() {
     useStatePredictions();
   const [step, setStep] = useState(0);
   const [previousData, setPreviousData] = useState([]);
+  const [selectedButtonId, setSelectedButtonId] = useState(null);
 
   const handleClick = (stateId, partyId) => {
     // Add prediction
@@ -29,6 +30,7 @@ function ElectoralCollege() {
       state_id: stateId,
       party_id: partyId,
     });
+    setSelectedButtonId(partyId);
   };
   const token = localStorage.getItem("token");
   const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
@@ -116,7 +118,7 @@ function ElectoralCollege() {
       />
 
       <div className="voting w-10/12  resp m-auto py-[102px] bg-[#1c2452]">
-        <div className="state-data  mb-[110px] m-auto px-[120px] py-16 bg-redish rounded-[18.06px] relative flex justify-evenly items-center">
+        <div className="state-data  mb-[110px] m-auto px-[120px] h-64 bg-redish rounded-[18.06px] relative flex justify-evenly items-center">
           <img src={circle} alt="" className="absolute right-0" />
           <div className="map">
             <img
@@ -164,19 +166,25 @@ function ElectoralCollege() {
           }`}</h6>
           <div className="flex justify-between gap-3 ">
             <div
-              className="democratic rounded-[45px]"
+              className={`${
+                selectedButtonId === 1 ? "border-red-600 border-[10px]" : ""
+              }  rounded-[54px] border-[10px] border-[#1c2452]`}
               onClick={() => handleClick(previousData?.states?.[step]?.id, 1)}
             >
               <img src={democratic} className="" alt="" />
             </div>
             <div
-              className="republican"
+              className={`${
+                selectedButtonId === 2 ? "border-red-600 border-[10px]" : ""
+              }  rounded-[54px] border-[10px] border-[#1c2452] `}
               onClick={() => handleClick(previousData?.states?.[step]?.id, 2)}
             >
               <img src={republican} alt="" />
             </div>
             <div
-              className="independent rounded-[45px]"
+              className={`${
+                selectedButtonId === 3 ? "border-red-600 border-[10px]" : ""
+              }  rounded-[54px] border-[10px] border-[#1c2452]`}
               onClick={() => handleClick(previousData?.states?.[step]?.id, 3)}
             >
               <img src={independent} alt="" />

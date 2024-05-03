@@ -14,6 +14,8 @@ import down from "../../images/redarrow.png";
 import axios from "axios";
 
 export default function AgeGroups() {
+  const [id, setId] = useState(1);
+
   const [AgeGroup, setAgeGroup] = useState([]);
   useEffect(() => {
     axios
@@ -28,7 +30,29 @@ export default function AgeGroups() {
       });
   }, []);
 
-
+  useEffect(() => {
+    const ParamBody = new URLSearchParams({
+      "user_age_id": id,
+    });
+    axios
+      .get(
+        `https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("Response:", res.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  }, [id]);
+  const handleId = (selectedId) => {
+    setId(selectedId);
+  };
 
   const candidateData = [
     {
@@ -129,6 +153,13 @@ export default function AgeGroups() {
             Select Age Group
           </label>
           <select
+          onChange={(e) => {
+            const selectedName = e.target.value;
+            const selectedId = AgeGroup.find(
+              (item) => item.range === selectedName
+            )?.id;
+            handleId(selectedId);
+          }}
             name="states"
             id="search"
             className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"

@@ -86,7 +86,6 @@ function Prediction() {
         titleImage={rep}
         party={"Republican"}
         submitData={submitData}
-
       />
       <Predict
         titleImage={ind}

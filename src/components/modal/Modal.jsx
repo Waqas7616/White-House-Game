@@ -23,47 +23,47 @@ export const Modal = ({ candidate, onClose }) => {
   };
 
   return (
-    <>
+    <div className="">
       <div className="rounded-lg ">
-        <Card className=" max-w-[20rem] overflow-hidden h-[435px] rounded-lg shadow-2xl bg-black-50/50  ">
+        <Card className="relative max-w-[20rem] overflow-hidden h-[435px] rounded-lg shadow-2xl bg-black-50/50  ">
           <CardHeader
             floated={false}
             shadow={false}
             color="transparent"
             className="m-0 rounded-none "
           >
-            <div className="relative">
-            <img
-              src={`${imageUrl}${candidate?.candidate_image}`}
-              alt="ui/ux review check"
-              className="h-[14rem] w-[25rem] object-fill"
-            />
-            <div className="absolute top-2 right-3 ">
+            <div className="h-56 w-96 overflow-hidden ">
               <img
-                onClick={onClose}
-                className="w-7 h-7 cursor-pointer"
-                src={cross}
-                alt=""
+                src={`${imageUrl}${candidate?.candidate_image}`}
+                alt="ui/ux review check"
+                className="h-56 w-96 object-cover"
               />
+              <div className="absolute top-2 right-3 ">
+                <img
+                  onClick={onClose}
+                  className="w-7 h-7 cursor-pointer"
+                  src={cross}
+                  alt=""
+                />
+              </div>
+              <div className=" absolute  flex justify-center items-center bottom-[-10px] left-4 space-x-2 mb-4">
+                <div className="flex justify-center items-center ml-12">
+                  <div className="border-2 border-[#ED1C24] w-[69px]" />
+                </div>
+                <div className="w-[42px] h-[42px] flex justify-center items-center rounded-full bg-white">
+                  <img
+                    className=" h-7 w-7"
+                    src={`${imageUrl}${candidate?.party?.party_badge}`}
+                    alt=""
+                  />
+                </div>
+                <div className="flex justify-center items-center">
+                  <div className="border-2 border-[#ED1C24] w-[69px]" />
+                </div>
+              </div>
             </div>
-            <div className=" absolute  flex justify-center items-center bottom-5 left-4 space-x-2 mb-4">
-            <div className="flex justify-center items-center ml-12">
-              <div className="border-2 border-[#ED1C24] w-[69px]" />
-            </div>
-            <div className="w-[42px] h-[42px] flex justify-center items-center rounded-full bg-white">
-              <img
-                className=" h-7 w-7"
-                src={`${imageUrl}${candidate?.party?.party_badge}`}
-                alt=""
-              />
-            </div>
-            <div className="flex justify-center items-center">
-              <div className="border-2 border-[#ED1C24] w-[69px]" />
-            </div>
-          </div>
-          </div>
           </CardHeader>
-          
+
           <div
             className={` items-center flex flex-col h-[277px] pt-3 ${getBackgroundColor(
               candidate?.party?.party_name
@@ -109,6 +109,6 @@ export const Modal = ({ candidate, onClose }) => {
           </div>
         </Card>
       </div>
-    </>
+    </div>
   );
 };

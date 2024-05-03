@@ -28,6 +28,9 @@ function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   };
+  const logOut = () => {
+    localStorage.clear("token", "email");
+  };
 
   const [isMobile, setIsMobile] = useState(false);
   const [toggle, setToggle] = useState(false);
