@@ -4,7 +4,7 @@ import "./banner.css";
 import ios from "../images/App Store.png";
 import bg from "../images/banner.png";
 import playstore from "../images/Google Play.png";
-import president from "../images/presidents.png";
+import presidents from "../images/presidents.png";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -113,7 +113,7 @@ function Banner() {
             </div>
           </div>
         </div>
-        <div className="main-banner relative overflow-hidden h-[85vh] ">
+        <div className="main-banner relative overflow-hidden h-[85vh] lg:z-30">
           <Navbar />
           <div className="title-info w-10/12 m-auto  h-[80%] flex flex-col justify-center resp">
             <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9">
@@ -133,8 +133,8 @@ function Banner() {
             </div>
           </div>
           <img
-            className="w-[50%] absolute bottom-[-8%] right-0"
-            src={president}
+            className="w-[50%] absolute md:-z-10 bottom-[-8%] right-0"
+            src={presidents}
             alt=""
           />
         </div>

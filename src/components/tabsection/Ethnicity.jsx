@@ -139,7 +139,7 @@ export default function Ethnicity() {
           }}
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3 md:mt-0"
           >
             <option className="bg-[#000]" value="">
               Select Etnicity

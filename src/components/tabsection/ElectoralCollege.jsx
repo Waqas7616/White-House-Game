@@ -74,7 +74,7 @@ export default function ElectoralCollege() {
           <select
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[230px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[230px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
           >
             <option className="bg-[#000] " value="">
               Select State
@@ -87,7 +87,7 @@ export default function ElectoralCollege() {
             </option>
           </select>
         </div>
-        <div className="votes-count flex items-center justify-between">
+        <div className="votes-count flex items-center justify-between mt-5 md:mt-0">
           <img src={ballot} alt="ballot" />
           <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
             Votes : {totalVotes}
