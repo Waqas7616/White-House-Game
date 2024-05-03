@@ -19,7 +19,7 @@ function About() {
       <div className=" bg-[#1c2452] py-[100px]">
         <div className='resp about w-10/12 m-auto'>
           <h2 className="text-center text-white orbit7 sm:text-[23px] xl-a:text-[50px] ">
-            About THE White House Game
+            <span className="text-redish">About</span> The White House Game
           </h2>
           <div className="flex xl:gap-16 mt-[50px] flex-wrap">
             <div className="">
@@ -66,7 +66,7 @@ function About() {
       <div className="bg-gradient-to-r from-[#ED1C24] from-0% via-[#BE1E2E]  to-[#1C2452]  py-[100px]">
         <div className="resp w-10/12 m-auto">
           <h2 className="orbit9 text-center xl:text-[50px] text-white xl:w-[70%] m-auto">
-            Who designed and built The White House Game
+            Who designed and built<br /> The White House Game
           </h2>
           <p className="poppins3 text-white/90 xl:text-[20px] text-center xl:w-[70%] m-auto mt-8">
             The game was designed and built by Abacus Multimedia (make this a hyperlink) as an example of what we can do. We have a team of highly skilled graphic designers and our own frontend and backend teams. We have our SEO technicians, supervise language translations in-house and have our own content creators. If you need an App or Website built on any budget, contact us.
@@ -78,7 +78,7 @@ function About() {
       <div className="bg-[#1c2452] py-[100px]">
         <div className="resp w-10/12 m-auto">
           <h2 className="orbit9 text-center xl:text-[50px] text-white xl:w-[70%] m-auto">
-            What to know about The White House Game
+            What to know about<br /> The White House Game
           </h2>
           <div className="flex flex-wrap justify-between mt-8 gap-5">
             <div className="bg-white flex items-start gap-4 xl:w-[48%] rounded-[46.69px] p-[23.35px] mt-3">
@@ -112,7 +112,7 @@ function About() {
 
           </div>
         </div>
-            <DownloadApp />
+        <DownloadApp />
       </div>
     </div>
   )

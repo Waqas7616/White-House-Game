@@ -19,8 +19,8 @@ function Contact() {
                         FEEL FREE TO DROP US A MESSAGE
                     </p>
 
-                    <div className="contact-form mt-8 flex gap-4 items-start mb-20 ">
-                        <div className="form basis-[70%] ">
+                    <div className="contact-form mt-8 flex gap-4 items-start h-[550px] mb-20 ">
+                        <div className="flex-1 ">
                             <input type="text" placeholder='Name' className='outline-none border-[1.5px] border-[#dedede] rounded-[4px] px-4 py-2 w-full mt-3 text-[#757575] poppins4 text-[16px]' />
                             <input type="email" placeholder='Email' className='outline-none border-[1.5px] border-[#dedede] rounded-[4px] px-4 py-2 w-full mt-3 text-[#757575] poppins4 text-[16px]' />
                             <input type="text" placeholder='Subject' className='outline-none border-[1.5px] border-[#dedede] rounded-[4px] px-4 py-2 w-full mt-3 text-[#757575] poppins4 text-[16px]' />
@@ -30,7 +30,7 @@ function Contact() {
                             </button>
 
                         </div>
-                        <div className="form-bg flex-1 w-full h-full py-[13px] " >
+                        <div className="form-bg flex-1 w-full h-[88%] overflow-hidden py-[13px] " >
                             <img className="w-full" src={bg} alt="" />
                         </div>
                     </div>
