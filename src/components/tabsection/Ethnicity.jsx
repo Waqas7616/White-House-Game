@@ -15,6 +15,11 @@ import axios from "axios";
 
 export default function Ethnicity() {
   const [ethnicityData, setEthnicityData] = useState([]);
+  const [ethnicity2,setEthnicity2]=useState([])
+  const [id,setId]=useState(1)
+  useEffect(()=>{
+    console.log('hello',id)
+  },[id])
 
   useEffect(() => {
     axios
@@ -28,7 +33,27 @@ export default function Ethnicity() {
         console.error("Error fetching ethnicity data:", error);
       });
   }, []);
-
+  useEffect(() => {
+    const ParamBody = new URLSearchParams({
+      "user_ethnicity_id": id
+    });
+    axios.get(`https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`, {
+      
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+    .then((res) => {
+      console.log('Response:', res.data);
+    })
+    .catch((err) => {
+      console.error('Error:', err);
+    });
+  }, [id]);
+  const handleId=(selectedId)=>{
+    
+    setId(selectedId)
+  }
   const candidateData = [
     {
       name: "Kennedy",
@@ -66,6 +91,7 @@ export default function Ethnicity() {
         parseInt(formerTotalVotes, 10)) *
         100
     );
+   
 
     return {
       name: candidate.name,
@@ -77,6 +103,8 @@ export default function Ethnicity() {
       percentageDifference: formerpercentage - currentpercentage,
     };
   });
+
+
   return (
     <div>
       <h2 className="orbit7 mt-8 text-whiteColor text-center w-[245px] flex justify-between items-center m-auto md:text-[60px]">
@@ -104,6 +132,11 @@ export default function Ethnicity() {
             Select Etnicity
           </label>
           <select
+          onChange={(e)=>{
+          const selectedName=e.target.value;
+          const selectedId=ethnicityData.find(item=>item.name===selectedName)?.id;
+          handleId(selectedId)
+          }}
             name="states"
             id="search"
             className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"

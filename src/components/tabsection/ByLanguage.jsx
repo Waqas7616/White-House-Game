@@ -14,7 +14,7 @@ import down from "../../images/redarrow.png";
 import axios from "axios";
 
 export default function ByLanguage() {
-
+const [id,setId]=useState(1)
   const [byLanguage, setByLanguage] = useState([]);
 
   useEffect(() => {
@@ -31,6 +31,30 @@ export default function ByLanguage() {
         console.error("Error fetching by Language:", error);
       });
   }, []);
+
+  useEffect(() => {
+    const ParamBody = new URLSearchParams({
+      "user_employement_id": id,
+    });
+    axios
+      .get(
+        `https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("Response:", res.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  }, [id]);
+  const handleId = (selectedId) => {
+    setId(selectedId);
+  };
     const candidateData = [
         {
           name: "Kennedy",
@@ -133,6 +157,13 @@ export default function ByLanguage() {
             Select By Language
           </label>
           <select
+           onChange={(e) => {
+            const selectedName = e.target.value;
+            const selectedId = byLanguage.find(
+              (item) => item.name === selectedName
+            )?.id;
+            handleId(selectedId);
+          }}
             name="states"
             id="search"
             className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"

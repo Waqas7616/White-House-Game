@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../Navbar";
 import AppBanner from "../appbanner/AppBanner";
+import { useStatePredictions } from "../../utils/StateIDs";
 
 export const LogIn = () => {
   const navigate = useNavigate();
+  const { setToken } = useStatePredictions();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,9 +33,12 @@ export const LogIn = () => {
       console.log(response.data);
 
       if (response.status === 200) {
-        console.log('login res',response)
-        localStorage.setItem('token',response.data.user.token)
-        navigate("/PutData");
+        console.log("login res", response);
+        localStorage.setItem("token", response.data.user.token);
+        localStorage.setItem("email", response.data.user.email);
+        localStorage.setItem("id", response.data.user.id);
+        setToken(response.data.user.token);
+        navigate("/");
       } else {
         alert("Login failed. Please check your credentials and try again.");
       }
@@ -46,9 +51,12 @@ export const LogIn = () => {
 
   return (
     <div className=" h-screen">
-      <AppBanner bannerTitle={'in'} redTitle={'Log'} bannerDesc={'Log in to continue'} />
+      <AppBanner
+        bannerTitle={"in"}
+        redTitle={"Log"}
+        bannerDesc={"Log in to continue"}
+      />
       <div className="bg-[#1c2452] py-10 ">
-
         {/* <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">Login</h2>
 
