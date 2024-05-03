@@ -94,7 +94,7 @@ function Predict({ titleImage, party, afterchange, submitData }) {
             
           </div>
 
-          <div className="flex justify-start relative  mt-24">
+          <div className="flex justify-center relative  mt-24">
             {/* Button */}
             <button
               onClick={handleButtonClick}

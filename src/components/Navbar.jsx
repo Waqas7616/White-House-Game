@@ -4,20 +4,17 @@ import burger from "../images/hamburger.png";
 import closeMenu from "../images/closeMenu.png";
 import { Link } from "react-router-dom";
 import { Version } from "./version/Version";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 function Navbar() {
-
   const navigate = useNavigate();
-  const location=useLocation();
-  const login = localStorage.getItem( 'email' );
-  const token=localStorage.getItem('token')
+  const location = useLocation();
+  const login = localStorage.getItem("email");
+  const token = localStorage.getItem("token");
   const [showModal, setShowModal] = useState(false);
 
   const handlePredictClick = () => {
-    
     setShowModal(true);
 
-   
     const handleClickOutside = (event) => {
       if (!event.target.closest(".modal-container")) {
         setShowModal(false);
@@ -29,6 +26,9 @@ function Navbar() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+  };
+  const logOut = () => {
+    localStorage.clear("token", "email");
   };
 
   const [isMobile, setIsMobile] = useState(false);
@@ -54,11 +54,9 @@ function Navbar() {
     setToggle(!toggle);
   };
 
+  // const submitLogout=()=>{
 
-// const submitLogout=()=>{
-
-// }
-
+  // }
 
   return (
     <div
@@ -97,8 +95,8 @@ function Navbar() {
             <Link to={"/"}>
               {" "}
               <li
-              
-                className={`nav-link poppins4 hover:text-redish ${location.pathname==='/' ? "active" : ""
+                className={`nav-link poppins4 hover:text-redish ${
+                  location.pathname === "/" ? "active" : ""
                 } cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Home
@@ -107,38 +105,32 @@ function Navbar() {
             <Link to={"/about"}>
               {" "}
               <li
-                
                 className={`nav-link poppins4 hover:text-redish ${
-                 location.pathname==='/about' ? "active" : ""
+                  location.pathname === "/about" ? "active" : ""
                 }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 About Us
               </li>
             </Link>
-
             <Link to={"/contact"}>
               {" "}
               <li
-               
                 className={`nav-link poppins4 hover:text-redish ${
-                  location.pathname==='/contact' ? "active" : ""
+                  location.pathname === "/contact" ? "active" : ""
                 }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Contact Us
               </li>
-            </Link>
-            
-              {" "}
-              <li
-                // onClick={() => handleLinks(3)}
-                onClick={handlePredictClick}
-                className={`nav-link poppins4 hover:text-redish ${
-                  location.pathname==='/predict' ? "active" : ""
-                }  cursor-pointer hover:font-[500] text-whiteColor`}
-              >
-                Predict
-              </li>
-           
+            </Link>{" "}
+            <li
+              // onClick={() => handleLinks(3)}
+              onClick={handlePredictClick}
+              className={`nav-link poppins4 hover:text-redish ${
+                location.pathname === "/predict" ? "active" : ""
+              }  cursor-pointer hover:font-[500] text-whiteColor`}
+            >
+              Predict
+            </li>
             <div className="fixed flex items-center justify-center w-full h-full left-0 top-32  z-50 ">
               <div className=" absolute z-50 modal-container ">
                 {showModal && <Version />}
@@ -146,14 +138,26 @@ function Navbar() {
             </div>
           </div>
           <div className="download-button flex items-center justify-between gap-10">
-            {!login &&!token?
-            <div>
-            <h2 onClick={() => navigate('/LogIn')} className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}>Login</h2>
-          </div>:<div>
-            <h2  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}>Logout</h2>
-          </div>
-            }
-            
+            {!login && !token ? (
+              <div>
+                <h2
+                  onClick={() => navigate("/LogIn")}
+                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+                >
+                  Login
+                </h2>
+              </div>
+            ) : (
+              <div>
+                <h2
+                  onClick={logOut}
+                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+                >
+                  Logout
+                </h2>
+              </div>
+            )}
+
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -205,20 +209,18 @@ function Navbar() {
               </li>
             </Link>
 
-          
-              <li
-                // onClick={() => handleLinks(2)}
-                onClick={handlePredictClick}
-                className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
-              >
-                Predict
-              </li>
-              <div className="fixed flex items-center justify-center w-full h-full left-0 top-8  z-50 ">
+            <li
+              // onClick={() => handleLinks(2)}
+              onClick={handlePredictClick}
+              className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
+            >
+              Predict
+            </li>
+            <div className="fixed flex items-center justify-center w-full h-full left-0 top-8  z-50 ">
               <div className=" z-10 modal-container ">
                 {showModal && <Version />}
               </div>
             </div>
-          
 
             <Link to={"/contact"}>
               <li
@@ -254,7 +256,12 @@ function Navbar() {
               />
             </svg> */}
             <div>
-              <h2 onClick={() => navigate('/LogIn')} className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}>Login</h2>
+              <h2
+                onClick={() => navigate("/LogIn")}
+                className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+              >
+                Login
+              </h2>
             </div>
             <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px]">
               Download Now

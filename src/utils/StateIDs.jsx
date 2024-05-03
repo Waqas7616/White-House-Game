@@ -8,6 +8,7 @@ function StatePredictionsProvider({ children }) {
   const [president, setPresident] = useState();
   const [vicePresident, setVicePresident] = useState();
   const [party, setParty] = useState();
+  const [token,setToken]=useState();
 
 
 const addVoting=(vote)=>{
@@ -23,7 +24,7 @@ const addVoting=(vote)=>{
   };
 
   return (
-    <StatePredictionsContext.Provider value={{voting,addVoting, state_predictions, addPrediction, clearPredictions,party,setParty, president, setPresident, vicePresident, setVicePresident }}>
+    <StatePredictionsContext.Provider value={{voting,addVoting, token, setToken, state_predictions, addPrediction, clearPredictions,party,setParty, president, setPresident, vicePresident, setVicePresident }}>
       {children}
     </StatePredictionsContext.Provider>
   );

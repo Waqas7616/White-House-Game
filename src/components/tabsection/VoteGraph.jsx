@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import kennedy from "../../images/image 46.png";
 import stats from "../../images/stats.png";
 import badge from "../../images/president.png";
@@ -8,11 +8,41 @@ import female from "../../images/Condidates/Female.png";
 import independ from "../../images/independent.png";
 import democrat from "../../images/democrat.png";
 import republic from "../../images/republican.png";
+import axios from "axios";
 
 export default function VoteGraph() {
   const [expendedCandidates, setExpandedCandidates] = useState(false);
+  const [id, setId] = useState(1);
+  const [gender, setGender] = useState([
+    { id: 1, name: "Male" },
+    { id: 2, name: "Female" },
+  ]);
+console.log('my gender',gender)
   const expendCandidate = () => {
     setExpandedCandidates(!expendedCandidates);
+  };
+  useEffect(() => {
+    const ParamBody = new URLSearchParams({
+      user_gender_id: id,
+    });
+    axios
+      .get(
+        `https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log("Response:", res.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  }, [id]);
+  const handleId = (selectedId) => {
+    setId(selectedId);
   };
   const candidateData = [
     {
@@ -75,19 +105,25 @@ export default function VoteGraph() {
             Select State
           </label>
           <select
+            onChange={(e) => {
+              const selectedName = e.target.value;
+              const selectedId = gender.find(
+                (item) => item.name === selectedName
+              )?.id;
+              handleId(selectedId);
+            }}
             name="states"
             id="search"
             className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
           >
-            <option className="bg-[#000] " value="">
-              Select State
+            <option className="bg-[#000]" value="">
+              Select Gender
             </option>
-            <option className="bg-[#000] " value="ny">
-              New york
-            </option>
-            <option className="bg-[#000] " value="hst">
-              Houston
-            </option>
+            {gender?.map((item) => (
+              <option className="bg-[#000]" key={item.id} value={item?.name}>
+                {item?.name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
