@@ -15,8 +15,12 @@ import Ethnicity from "./Ethnicity";
 import axios from "axios";
 
 export default function CountryOfBirth() {
+  const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
+
   const [CountryBirth , setCountryBirth] = useState([]);
+  const [countryOfBirth,setCountryOfBirth] = useState([])
   const [id,setId]=useState(1)
+
 
   useEffect(() => {
     axios
@@ -47,7 +51,7 @@ export default function CountryOfBirth() {
         }
       )
       .then((res) => {
-        console.log("Response:", res.data);
+        setCountryOfBirth(res.data);
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -163,43 +167,43 @@ export default function CountryOfBirth() {
       <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
              
             
-                  {percentages.slice(0, 3).map((item, index) => (
+                  {countryOfBirth?.data?.candidate_percentages.slice(0, 3).map((item, index) => (
                     <div
                       key={index}
                       className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
-                        item.party === "republican"
+                        item.party_name === "Republican"
                           ? "republic"
-                          : item.party === "democratic"
+                          : item.party_name === "Democratic"
                           ? "democratic"
                           : "independent"
                       } rounded-[8px] mt-8`}
                     >
                       <div
                         className={`president-info relative bg-${
-                          item.party === "republican"
+                          item.party_name === "Republican"
                             ? "[#546BED]"
-                            : item.party === "democratic"
+                            : item.party_name === "Democratic"
                             ? "redish"
                             : "whiteColor"
                         } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                       >
-                        <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
+                        <div className=" overflow-hidden overflow-y-hidden w-[50px] h-[60px] ">
                           <img
                             className="w-full h-full object-cover"
-                            src={kennedy}
+                            src={`${imageUrl}${item.candidate_image}`}
                             alt=""
                           />
                         </div>
                         <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                          {item.name}
+                          {item.candidate_name.split(" ")[1]}
                         </p>
                         <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                           <img
                             className="w-[20px] sm:w-auto"
                             src={
-                              item.party === "republican"
+                              item.party_name === "Republican"
                                 ? republic
-                                : item.party === "democratic"
+                                : item.party_name === "Democratic"
                                 ? democrat
                                 : independ
                             }
@@ -210,11 +214,20 @@ export default function CountryOfBirth() {
                       <div className="president-votes w-3/4">
                         <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
                           <div
-                            style={{ width: `${item.percentage}%` }}
+                            style={{
+                              width: `${item.percentage}%`,
+                              background: `${
+                                item.party_name === "Republican"
+                                  ? "#546BED"
+                                  : item.party_name === "Democratic"
+                                  ? "#ED1C24"
+                                  : "white"
+                              }`,
+                            }}
                             className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                           >
                             {" "}
-                            {item.percentage}%
+                            {Math.round(item.percentage)}%
                           </div>
                         </div>
                       </div>

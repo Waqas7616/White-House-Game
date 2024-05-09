@@ -15,8 +15,10 @@ import axios from "axios";
 
 export default function AgeGroups() {
   const [id, setId] = useState(1);
-
+  const [ageGroupPer, setAgeGroupPer] = useState([]);
   const [AgeGroup, setAgeGroup] = useState([]);
+  const [tabName, setTabName] = useState("Under 16 years old");
+  console.log("ageGroup", ageGroupPer);
   useEffect(() => {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_user_age")
@@ -32,7 +34,7 @@ export default function AgeGroups() {
 
   useEffect(() => {
     const ParamBody = new URLSearchParams({
-      "user_age_id": id,
+      user_age_id: id,
     });
     axios
       .get(
@@ -44,7 +46,7 @@ export default function AgeGroups() {
         }
       )
       .then((res) => {
-        console.log("Response:", res.data);
+        setAgeGroupPer(res.data);
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -145,470 +147,151 @@ export default function AgeGroups() {
             </select>
           </div> */}
 
-<div className="searchBar flex flex-col ">
-          <label
-            htmlFor="search"
-            className="text-whiteColor text-center poppins4 text-[14px]"
-          >
-            Select Age Group
-          </label>
-          <select
-          onChange={(e) => {
-            const selectedName = e.target.value;
-            const selectedId = AgeGroup.find(
-              (item) => item.range === selectedName
-            )?.id;
-            handleId(selectedId);
-          }}
-            name="states"
-            id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
-          >
-            <option className="bg-[#000]" value="">
+          <div className="searchBar flex flex-col ">
+            <label
+              htmlFor="search"
+              className="text-whiteColor text-center poppins4 text-[14px]"
+            >
               Select Age Group
-            </option>
-            {AgeGroup?.map((item) => (
-              <option className="bg-[#000]" key={item.id} value={item?.range}>
-                {item?.range}
-              </option>
-            ))}
-          </select>
-        </div>
-
+            </label>
+            <select
+              onChange={(e) => {
+                const selectedName = e.target.value;
+                setTabName(selectedName)
+                const selectedId = AgeGroup.find(
+                  (item) => item.range === selectedName
+                )?.id;
+                handleId(selectedId);
+              }}
+              name="states"
+              id="search"
+              className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            >
+              {/* <option className="bg-[#000]" value="">
+                Select Age Group
+              </option> */}
+              {AgeGroup?.map((item) => (
+                <option className="bg-[#000]" key={item.id} value={item?.range}>
+                  {item?.range}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
             <img src={ballot} alt="ballot" />
             <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
-              Votes : {totalVotes}
+              Votes : {ageGroupPer?.data?.totalPredictions}
             </h2>
           </div>
         </div>
         <h2 className="text-[#fff] text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
-          Age 18-24
+          {tabName}
         </h2>
         <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
           <>
-            {percentages.slice(0, 3).map((item, index) => (
-              <div
-                key={index}
-                className={`voteCount ${
-                  item.party === "republican"
-                    ? "republic"
-                    : item.party === "democratic"
-                    ? "democratic"
-                    : "independent"
-                } flex gap-1 sm:gap-5 items-center h-[60px] rounded-[8px] my-8`}
-              >
+            {ageGroupPer?.data?.party_percentages
+              .slice(0, 3)
+              .map((item, index) => (
                 <div
-                  style={{
-                    background: `${
-                      item.party === "republican"
-                        ? "#546BED"
-                        : item.party === "democratic"
-                        ? "#ED1C24"
-                        : "white"
-                    }`,
-                  }}
-                  className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
+                  key={index}
+                  className={`voteCount ${
+                    item.party_name === "Republican"
+                      ? "republic"
+                      : item.party_name === "Democratic"
+                      ? "democratic"
+                      : "independent"
+                  } flex gap-1 sm:gap-5 items-center h-[60px] rounded-[8px] my-8`}
                 >
-                  <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
-                    <img
-                      className="w-[20px] sm:w-auto"
-                      src={
-                        item.party === "republican"
-                          ? republic
-                          : item.party === "democratic"
-                          ? democrat
-                          : independ
-                      }
-                      alt=""
-                    />
-                  </div>
-                  <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                    {item.percentageDifference}%
-                  </p>
-                  <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
-                    <img
-                      className=" sm:w-auto"
-                      src={item.percentageDifference > 0 ? up : down}
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div className="president-votes w-3/4">
-                  <div className="w-[98%] h-[62px]  rounded-r-lg  flex flex-col justify-center">
-                    <div className="w-100 bg-[#454C72] rounded-[8px]">
-                      <div
-                        style={{
-                          width: `${item.currentpercentage}%`,
-                          background: `${
-                            item.party === "republican"
-                              ? "#546BED"
-                              : item.party === "democratic"
-                              ? "#ED1C24"
-                              : "white"
-                          }`,
-                        }}
-                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                      >
-                        <div className="text-[#65D2E6] text-[15px] poppins4 italic flex items-center ">
-                          <img src={male} alt="" />
-                          Male
-                        </div>
-                        <p className="flex-1 text-center">
-                          {" "}
-                          {item.currentpercentage}%{" "}
-                        </p>
-                      </div>
+                  <div
+                    style={{
+                      background: `${
+                        item.party_name === "Republican"
+                          ? "#546BED"
+                          : item.party_name === "Democratic"
+                          ? "#ED1C24"
+                          : "white"
+                      }`,
+                    }}
+                    className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
+                  >
+                    <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
+                      <img
+                        className="w-[20px] sm:w-auto"
+                        src={
+                          item.party_name === "Republican"
+                            ? republic
+                            : item.party_name === "Democratic"
+                            ? democrat
+                            : independ
+                        }
+                        alt=""
+                      />
                     </div>
-                    <div className="w-100 bg-[#454C72] rounded-[8px] mt-1">
-                      <div
-                        style={{
-                          width: `${item.formerpercentage}%`,
-                          background: `${
-                            item.party === "republican"
-                              ? "#546BED"
-                              : item.party === "democratic"
-                              ? "#ED1C24"
-                              : "white"
-                          }`,
-                        }}
-                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                      >
-                        <div className="text-[#F0788C] text-[15px] poppins4 italic flex items-center ">
-                          <img src={female} alt="" />
-                          Female
-                        </div>
-                        <p className="flex-1 text-center">
-                          {item.formerpercentage}%
-                        </p>
-                      </div>
+                    <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+                      {Math.round(item.percentage)}%
+                    </p>
+                    <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
+                      <img
+                        className=" sm:w-auto"
+                        src={item.percentageDifference > 0 ? up : down}
+                        alt=""
+                      />
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </>
-        </div>
-        <h2 className="text-[#fff] text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
-          Age 25-44
-        </h2>
-        <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
-          <>
-            {percentages.slice(0, 3).map((item, index) => (
-              <div
-                key={index}
-                className={`voteCount ${
-                  item.party === "republican"
-                    ? "republic"
-                    : item.party === "democratic"
-                    ? "democratic"
-                    : "independent"
-                } flex gap-1 sm:gap-5 items-center h-[60px] rounded-[8px] my-8`}
-              >
-                <div
-                  style={{
-                    background: `${
-                      item.party === "republican"
-                        ? "#546BED"
-                        : item.party === "democratic"
-                        ? "#ED1C24"
-                        : "white"
-                    }`,
-                  }}
-                  className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
-                >
-                  <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
-                    <img
-                      className="w-[20px] sm:w-auto"
-                      src={
-                        item.party === "republican"
-                          ? republic
-                          : item.party === "democratic"
-                          ? democrat
-                          : independ
-                      }
-                      alt=""
-                    />
-                  </div>
-                  <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                    {item.percentageDifference}%
-                  </p>
-                  <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
-                    <img
-                      className=" sm:w-auto"
-                      src={item.percentageDifference > 0 ? up : down}
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div className="president-votes w-3/4">
-                  <div className="w-[98%] h-[62px]  rounded-r-lg  flex flex-col justify-center">
-                    <div className="w-100 bg-[#454C72] rounded-[8px]">
-                      <div
-                        style={{
-                          width: `${item.currentpercentage}%`,
-                          background: `${
-                            item.party === "republican"
-                              ? "#546BED"
-                              : item.party === "democratic"
-                              ? "#ED1C24"
-                              : "white"
-                          }`,
-                        }}
-                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                      >
-                        <div className="text-[#65D2E6] text-[15px] poppins4 italic flex items-center ">
-                          <img src={male} alt="" />
-                          Male
+                  <div className="president-votes w-3/4">
+                    <div className="w-[98%] h-[62px]  rounded-r-lg  flex flex-col justify-center">
+                      <div className="w-100 bg-[#454C72] rounded-[8px]">
+                        <div
+                          style={{
+                            width: `${item.male_ratio}%`,
+                            background: `${
+                              item.party_name === "Republican"
+                                ? "#546BED"
+                                : item.party_name === "Democratic"
+                                ? "#ED1C24"
+                                : "white"
+                            }`,
+                          }}
+                          className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
+                        >
+                          <div className="text-[#65D2E6] text-[15px] poppins4 italic flex items-center ">
+                            <img src={male} alt="" />
+                            Male
+                          </div>
+                          <p className="flex-1 text-center">
+                            {" "}
+                            {item.male_ratio}%{" "}
+                          </p>
                         </div>
-                        <p className="flex-1 text-center">
-                          {" "}
-                          {item.currentpercentage}%{" "}
-                        </p>
                       </div>
-                    </div>
-                    <div className="w-100 bg-[#454C72] rounded-[8px] mt-1">
-                      <div
-                        style={{
-                          width: `${item.formerpercentage}%`,
-                          background: `${
-                            item.party === "republican"
-                              ? "#546BED"
-                              : item.party === "democratic"
-                              ? "#ED1C24"
-                              : "white"
-                          }`,
-                        }}
-                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                      >
-                        <div className="text-[#F0788C] text-[15px] poppins4 italic flex items-center ">
-                          <img src={female} alt="" />
-                          Female
+                      <div className="w-100 bg-[#454C72] rounded-[8px] mt-1">
+                        <div
+                          style={{
+                            width: `${item.female_ratio}%`,
+                            background: `${
+                              item.party_name === "Republican"
+                                ? "#546BED"
+                                : item.party_name === "Democratic"
+                                ? "#ED1C24"
+                                : "white"
+                            }`,
+                          }}
+                          className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
+                        >
+                          <div className="text-[#F0788C] text-[15px] poppins4 italic flex items-center ">
+                            <img src={female} alt="" />
+                            Female
+                          </div>
+                          <p className="flex-1 text-center">
+                            {item.female_ratio}%
+                          </p>
                         </div>
-                        <p className="flex-1 text-center">
-                          {item.formerpercentage}%
-                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </>
-        </div>
-        <h2 className="text-[#fff] text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
-          Age 45-64
-        </h2>
-        <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
-          <>
-            {percentages.slice(0, 3).map((item, index) => (
-              <div
-                key={index}
-                className={`voteCount ${
-                  item.party === "republican"
-                    ? "republic"
-                    : item.party === "democratic"
-                    ? "democratic"
-                    : "independent"
-                } flex gap-1 sm:gap-5 items-center h-[60px] rounded-[8px] my-8`}
-              >
-                <div
-                  style={{
-                    background: `${
-                      item.party === "republican"
-                        ? "#546BED"
-                        : item.party === "democratic"
-                        ? "#ED1C24"
-                        : "white"
-                    }`,
-                  }}
-                  className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
-                >
-                  <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
-                    <img
-                      className="w-[20px] sm:w-auto"
-                      src={
-                        item.party === "republican"
-                          ? republic
-                          : item.party === "democratic"
-                          ? democrat
-                          : independ
-                      }
-                      alt=""
-                    />
-                  </div>
-                  <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                    {item.percentageDifference}%
-                  </p>
-                  <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
-                    <img
-                      className=" sm:w-auto"
-                      src={item.percentageDifference > 0 ? up : down}
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div className="president-votes w-3/4">
-                  <div className="w-[98%] h-[62px]  rounded-r-lg  flex flex-col justify-center">
-                    <div className="w-100 bg-[#454C72] rounded-[8px]">
-                      <div
-                        style={{
-                          width: `${item.currentpercentage}%`,
-                          background: `${
-                            item.party === "republican"
-                              ? "#546BED"
-                              : item.party === "democratic"
-                              ? "#ED1C24"
-                              : "white"
-                          }`,
-                        }}
-                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                      >
-                        <div className="text-[#65D2E6] text-[15px] poppins4 italic flex items-center ">
-                          <img src={male} alt="" />
-                          Male
-                        </div>
-                        <p className="flex-1 text-center">
-                          {" "}
-                          {item.currentpercentage}%{" "}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="w-100 bg-[#454C72] rounded-[8px] mt-1">
-                      <div
-                        style={{
-                          width: `${item.formerpercentage}%`,
-                          background: `${
-                            item.party === "republican"
-                              ? "#546BED"
-                              : item.party === "democratic"
-                              ? "#ED1C24"
-                              : "white"
-                          }`,
-                        }}
-                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                      >
-                        <div className="text-[#F0788C] text-[15px] poppins4 italic flex items-center ">
-                          <img src={female} alt="" />
-                          Female
-                        </div>
-                        <p className="flex-1 text-center">
-                          {item.formerpercentage}%
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </>
-        </div>
-        <h2 className="text-[#fff] text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
-          Age 65+
-        </h2>
-        <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
-          <>
-            {percentages.slice(0, 3).map((item, index) => (
-              <div
-                key={index}
-                className={`voteCount ${
-                  item.party === "republican"
-                    ? "republic"
-                    : item.party === "democratic"
-                    ? "democratic"
-                    : "independent"
-                } flex gap-1 sm:gap-5 items-center h-[60px] rounded-[8px] my-8`}
-              >
-                <div
-                  style={{
-                    background: `${
-                      item.party === "republican"
-                        ? "#546BED"
-                        : item.party === "democratic"
-                        ? "#ED1C24"
-                        : "white"
-                    }`,
-                  }}
-                  className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
-                >
-                  <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
-                    <img
-                      className="w-[20px] sm:w-auto"
-                      src={
-                        item.party === "republican"
-                          ? republic
-                          : item.party === "democratic"
-                          ? democrat
-                          : independ
-                      }
-                      alt=""
-                    />
-                  </div>
-                  <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                    {item.percentageDifference}%
-                  </p>
-                  <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
-                    <img
-                      className=" sm:w-auto"
-                      src={item.percentageDifference > 0 ? up : down}
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div className="president-votes w-3/4">
-                  <div className="w-[98%] h-[62px]  rounded-r-lg  flex flex-col justify-center">
-                    <div className="w-100 bg-[#454C72] rounded-[8px]">
-                      <div
-                        style={{
-                          width: `${item.currentpercentage}%`,
-                          background: `${
-                            item.party === "republican"
-                              ? "#546BED"
-                              : item.party === "democratic"
-                              ? "#ED1C24"
-                              : "white"
-                          }`,
-                        }}
-                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                      >
-                        <div className="text-[#65D2E6] text-[15px] poppins4 italic flex items-center ">
-                          <img src={male} alt="" />
-                          Male
-                        </div>
-                        <p className="flex-1 text-center">
-                          {" "}
-                          {item.currentpercentage}%{" "}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="w-100 bg-[#454C72] rounded-[8px] mt-1">
-                      <div
-                        style={{
-                          width: `${item.formerpercentage}%`,
-                          background: `${
-                            item.party === "republican"
-                              ? "#546BED"
-                              : item.party === "democratic"
-                              ? "#ED1C24"
-                              : "white"
-                          }`,
-                        }}
-                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                      >
-                        <div className="text-[#F0788C] text-[15px] poppins4 italic flex items-center ">
-                          <img src={female} alt="" />
-                          Female
-                        </div>
-                        <p className="flex-1 text-center">
-                          {item.formerpercentage}%
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
           </>
         </div>
       </div>
