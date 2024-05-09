@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import { useStatePredictions } from "../../utils/StateIDs";
 
-function PredictSlider({ data, data1, printData, party_name, afterChange }) {
+function PredictSlider({ data, data1, printData, party_name, afterChange, selecClass }) {
   const { setPresident, setVicePresident, setParty } = useStatePredictions();
   const [imageSelect, setImageSelect] = useState(false)
   const [candidatedata, setCandidateData] = useState([]);
@@ -33,6 +33,7 @@ function PredictSlider({ data, data1, printData, party_name, afterChange }) {
       }
     };
     fetchData();
+    console.log('class selected is :', selecClass)
 
   }, []);
 
@@ -48,9 +49,9 @@ function PredictSlider({ data, data1, printData, party_name, afterChange }) {
     <div
       {...props}
       // onClick={() => console.log(slide)}
-      className="absolute bottom-[-25%] right-2 sm:top-[40%] w-14 sm:w-[90px] sm:h-[91px] md:right-[0%]  cursor-pointer"
+      className="absolute bottom-[-25%] right-2 sm:top-[40%] w-14 sm:w-[90px] sm:h-[91px] md:right-[0%]  cursor-pointer "
     >
-      <span onClick={() => setImageSelect(false)} className="text-2xl opacity-[0.3]  hover:opacity-100 ">
+      <span onClick={() => setImageSelect(false)} className={`text-2xl opacity-[0.3]  hover:opacity-100 ${selecClass ? 'block' : 'hidden'}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           // width="90"
@@ -132,7 +133,7 @@ function PredictSlider({ data, data1, printData, party_name, afterChange }) {
       {...props}
       className="absolute bottom-[-25%] left-2 sm:top-[40%] sm:left-[0%] w-14 sm:w-[90px] sm:h-[91px]   z-50  cursor-pointer"
     >
-      <span onClick={() => setImageSelect(false)} className="text-2xl  opacity-[0.3] hover:opacity-100 ">
+      <span onClick={() => setImageSelect(false)} className={`text-2xl  opacity-[0.3] hover:opacity-100 ${selecClass === true ? 'block' : 'hidden'}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           // width="90"
@@ -203,6 +204,10 @@ function PredictSlider({ data, data1, printData, party_name, afterChange }) {
   const settings = {
     arrows: true,
     infinite: true,
+
+    draggable: selecClass ? true : false,
+    swipe: selecClass ? true : false,
+    touchMove: selecClass ? true : false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,

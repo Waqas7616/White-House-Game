@@ -105,7 +105,7 @@ export const PutData = () => {
       });
   }, []);
 
-  
+
 
   const [jwtToken, setJwtToken] = useState("");
   console.log("token :", jwtToken);
@@ -118,7 +118,7 @@ export const PutData = () => {
     } else {
     }
   }, []);
-
+  const email = localStorage.getItem('email')
   let id = localStorage.getItem("id");
   console.log(id, "data");
 
@@ -136,7 +136,7 @@ export const PutData = () => {
     is_votted_2020: "",
     voter_candidate_id: "",
     source: "",
-
+    is_subscription_newsletter: "yes",
     user_votter_party: "",
   });
 
@@ -1051,6 +1051,7 @@ export const PutData = () => {
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                   id="red"
+
                   defaultChecked
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">

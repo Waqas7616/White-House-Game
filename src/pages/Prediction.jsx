@@ -8,14 +8,14 @@ import ind from "../images/indTITLE.png";
 import axios from "axios";
 import { useStatePredictions } from "../utils/StateIDs";
 import DownloadApp from "../components/DownloadApp";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Prediction() {
   // const [candidateData, setCandidateData] = useState([]);
   // const [president, setPresident] = useState();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const { president, vicePresident, party, voting, addVoting } = useStatePredictions()
-  
+
   const [data, setData] = useState({
     votter_party_id: party,
     president_id: president,
@@ -28,7 +28,7 @@ function Prediction() {
       vice_president_id: vicePresident,
     });
   }, [president, vicePresident])
- 
+
   const token = localStorage.getItem("token");
 
   const submitData = () => {
@@ -37,7 +37,7 @@ function Prediction() {
       president_id: president,
       vice_president_id: vicePresident,
     });
-    
+
   };
 
 
@@ -62,7 +62,7 @@ function Prediction() {
       .catch((err) => {
         alert("the error is :", err.message);
       });
-      navigate('/party-prediction',{state:{voting}})
+    navigate('/party-prediction', { state: { voting } })
   }
 
   return (
@@ -98,7 +98,7 @@ function Prediction() {
         <button className="rounded-[6px] text-white poppins-6 border-[1px] border-white px-10 py-2 ">Edit my predictions</button>
         <button onClick={sendPrediction} className="rounded-[6px] text-white poppins-6 border-[1px] border-redish px-10 py-2 bg-redish">Next</button>
       </div>
-      <DownloadApp/>
+      <DownloadApp />
     </div>
   );
 }

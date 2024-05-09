@@ -27,9 +27,7 @@ function AppRoutes() {
         setUser(user);
         setLocalToken(tokens);
         setLoading(false)
-        console.log("my email is :", user);
-        console.log("my token is :", tokens);
-        console.log("context token is :", token);
+
     }, []);
     if (loading) {
         return <div className="text-white h-screen w-[100vw] flex justify-center items-center text-[50px]">Loading</div>

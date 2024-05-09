@@ -11,52 +11,64 @@ export const SignUp = () => {
   const [password, setPassword] = useState(""); // State for password
   const [confirmed, setConfirmed] = useState(""); // State for confirm password
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+  const [error, setError] = useState('')
   const navigate = useNavigate();
-
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmed) {
-      // console.log("fff",password)
-      alert("Password and confirm password do not match");
-      return;
+    if (!name || !email || !password || !confirmed) {
+      setError("All fields are required")
+    } else if (!isValidEmail) {
+      setError('Invalid Email')
     }
-
-    try {
-      const response = await axios.post(
-        "https://pankhay.com/thewhitehousegame/public/api/register",
-        {
-          name: name,
-          email: email,
-          password: password,
-          password_confirmation: confirmed,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
+    else if (password !== confirmed) {
+      setError('Passwords do not match')
+    }
+    else if (password.length < 8) {
+      setError('Password must contain 8 characters')
+    }
+    else {
+      try {
+        const response = await axios.post(
+          "https://pankhay.com/thewhitehousegame/public/api/register",
+          {
+            name: name,
+            email: email,
+            password: password,
+            password_confirmation: confirmed,
           },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          }
+        );
+
+        console.log(response.data); // Log the response data
+
+        // Check if registration was successful
+        if (response.status === 200) {
+          localStorage.setItem("email", email);
+          localStorage.setItem('id', response.data.user.id)
+          // Registration successful, redirect user to login page
+          // alert("Registration successful!");
+          // navigate("/emailverification", { state: { email: email } });
+          navigate("/emailverification")
+        } else {
+          // Registration failed, show error message
+          alert("Registration failed. Please try again later.");
         }
-      );
+      } catch (error) {
+        console.error("Error:", error);
+        setError(error.response.data.message)
+        // Handle error, show error message to user
 
-      console.log(response.data); // Log the response data
-
-      // Check if registration was successful
-      if (response.status === 200) {
-        localStorage.setItem("email", email);
-        localStorage.setItem('id',response.data.user.id)
-        // Registration successful, redirect user to login page
-        // alert("Registration successful!");
-        // navigate("/emailverification", { state: { email: email } });
-        navigate("/emailverification")
-      } else {
-        // Registration failed, show error message
-        alert("Registration failed. Please try again later.");
       }
-    } catch (error) {
-      console.error("Error:", error);
-      // Handle error, show error message to user
-      alert("An error occurred. Please try again later.");
     }
   };
 
@@ -101,9 +113,9 @@ export const SignUp = () => {
               <input
                 type="name"
                 id="name"
-                className="bg-gray-500 border border-gray-500 text-white text-sm rounded-lg focus:ring-gray-500 focus:gray-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="border-[1px] border-white/15 bg-[#1c2452]  text-white text-sm rounded-lg outline-none  block w-full p-2.5 "
                 placeholder="Enter Name"
-                required
+
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
@@ -119,9 +131,9 @@ export const SignUp = () => {
                 type="email"
                 id="email"
                 value={email}
-                className="bg-gray-500 border border-gray-500 text-white text-sm rounded-lg focus:ring-gray-500 focus:gray-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="border-[1px] border-white/15 bg-[#1c2452]  text-white text-sm rounded-lg outline-none  block w-full p-2.5 "
                 placeholder="Enter Email Address"
-                required
+
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -137,8 +149,8 @@ export const SignUp = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="*******"
-                className="bg-gray-500 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-10"
-                required
+                className="border-[1px] border-white/15 bg-[#1c2452]  text-white text-sm rounded-lg outline-none  block w-full p-2.5 "
+
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button
@@ -199,8 +211,8 @@ export const SignUp = () => {
                 type={showPassword ? "text" : "password"}
                 id="confirmPassword"
                 placeholder="*******"
-                className="bg-gray-500 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-10"
-                required
+                className="border-[1px] border-white/15 bg-[#1c2452]  text-white text-sm rounded-lg outline-none  block w-full p-2.5 "
+
                 onChange={(e) => setConfirmed(e.target.value)}
               />
               <button
@@ -246,6 +258,9 @@ export const SignUp = () => {
                 )}
               </button>
             </div>
+            <p className="text-redish poppins4 mt-2">
+              {error}
+            </p>
             <div className="flex justify-center mt-5 ">
               <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
                 Signup

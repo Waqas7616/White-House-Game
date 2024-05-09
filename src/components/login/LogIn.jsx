@@ -13,41 +13,52 @@ export const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("")
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
-
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      setError("Email and Passwords are required")
+    } else if (!isValidEmail) {
+      setError("Invalid Email");
+    } else if (password.length < 8) {
+      setError('Password should contain atleast 8 characters')
+    } else {
 
-    try {
-      const response = await axios.post(
-        "https://pankhay.com/thewhitehousegame/public/api/login",
-        {
-          email: email,
-          password: password,
+
+      try {
+        const response = await axios.post(
+          "https://pankhay.com/thewhitehousegame/public/api/login",
+          {
+            email: email,
+            password: password,
+          }
+        );
+
+        console.log(response.data);
+
+        if (response.status === 200) {
+          console.log("login res", response);
+          localStorage.setItem("token", response.data.user.token);
+          localStorage.setItem("email", response.data.user.email);
+          localStorage.setItem("id", response.data.user.id);
+          setToken(response.data.user.token);
+          navigate("/");
         }
-      );
+      } catch (error) {
 
-      console.log(response.data);
-
-      if (response.status === 200) {
-        console.log("login res", response);
-        localStorage.setItem("token", response.data.user.token);
-        localStorage.setItem("email", response.data.user.email);
-        localStorage.setItem("id", response.data.user.id);
-        setToken(response.data.user.token);
-        navigate("/");
-      } else {
-        alert("Login failed. Please check your credentials and try again.");
+        setError(error.response.data.error)
       }
-    } catch (error) {
-      console.error("Error:", error);
+    };
 
-      alert("An error occurred. Please try again later.");
-    }
-  };
+  }
 
   return (
     <div className=" h-screen">
@@ -94,9 +105,9 @@ export const LogIn = () => {
                 type="email"
                 id="email"
                 value={email}
-                className="bg-gray-500 border border-gray-500 text-white text-sm rounded-lg focus:ring-gray-500 focus:gray-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className={` border-[1px] border-white/15 bg-[#1c2452]  text-white text-sm rounded-lg outline-none  block w-full p-2.5 `}
                 placeholder="Enter Email Address"
-                required
+
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -112,8 +123,8 @@ export const LogIn = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="*******"
-                className="bg-gray-500 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-10"
-                required
+                className="border-[1px] border-white/15 bg-[#1c2452]  text-white text-sm rounded-lg outline-none  block w-full p-2.5 "
+
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button
@@ -168,6 +179,9 @@ export const LogIn = () => {
                 Forget Pasword?
               </h6>
             </div>
+            <p className="text-redish poppins4 mt-2">
+              {error}
+            </p>
             <div className="flex justify-center mt-5 ">
               <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
                 Login
