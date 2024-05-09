@@ -16,11 +16,11 @@ import axios from "axios";
 export default function Ethnicity() {
   const [ethnicityData, setEthnicityData] = useState([]);
   const [ethnicity2,setEthnicity2]=useState([])
-  const [id,setId]=useState(1)
-  useEffect(()=>{
-    console.log('hello',id)
-  },[id])
-
+  const [id, setId] = useState(1);
+  useEffect(() => {
+    console.log("hello", id);
+  }, [id]);
+  
   useEffect(() => {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_user_ethnicty")
@@ -35,25 +35,27 @@ export default function Ethnicity() {
   }, []);
   useEffect(() => {
     const ParamBody = new URLSearchParams({
-      "user_ethnicity_id": id
+      user_ethnicity_id: id,
     });
-    axios.get(`https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`, {
-      
-      headers: {
-        Accept: 'application/json'
-      }
-    })
-    .then((res) => {
-      console.log('Response:', res.data);
-    })
-    .catch((err) => {
-      console.error('Error:', err);
-    });
+    axios
+      .get(
+        `https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        setEthnicity2( res.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
   }, [id]);
-  const handleId=(selectedId)=>{
-    
-    setId(selectedId)
-  }
+  const handleId = (selectedId) => {
+    setId(selectedId);
+  };
   const candidateData = [
     {
       name: "Kennedy",
@@ -91,7 +93,6 @@ export default function Ethnicity() {
         parseInt(formerTotalVotes, 10)) *
         100
     );
-   
 
     return {
       name: candidate.name,
@@ -103,7 +104,6 @@ export default function Ethnicity() {
       percentageDifference: formerpercentage - currentpercentage,
     };
   });
-
 
   return (
     <div>
@@ -132,11 +132,13 @@ export default function Ethnicity() {
             Select Etnicity
           </label>
           <select
-          onChange={(e)=>{
-          const selectedName=e.target.value;
-          const selectedId=ethnicityData.find(item=>item.name===selectedName)?.id;
-          handleId(selectedId)
-          }}
+            onChange={(e) => {
+              const selectedName = e.target.value;
+              const selectedId = ethnicityData.find(
+                (item) => item.name === selectedName
+              )?.id;
+              handleId(selectedId);
+            }}
             name="states"
             id="search"
             className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3 md:mt-0"
@@ -184,13 +186,13 @@ export default function Ethnicity() {
           </div> */}
       </div>
       <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
-        {percentages.slice(0, 3).map((item, index) => (
+        {ethnicity2?.data?.party_percentages.slice(0, 3).map((item, index) => (
           <div
             key={index}
             className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
-              item.party === "republican"
+              item.party_name === "Republican"
                 ? "republic"
-                : item.party === "democratic"
+                : item.party_name === "Democratic"
                 ? "democratic"
                 : "independent"
             } rounded-[8px] my-8`}
@@ -198,9 +200,9 @@ export default function Ethnicity() {
             <div
               style={{
                 background: `${
-                  item.party === "republican"
+                  item.party_name === "Republican"
                     ? "#546BED"
-                    : item.party === "democratic"
+                    : item.party_name === "Democratic"
                     ? "#ED1C24"
                     : "white"
                 }`,
@@ -211,9 +213,9 @@ export default function Ethnicity() {
                 <img
                   className="w-[20px] sm:w-auto"
                   src={
-                    item.party === "republican"
+                    item.party_name === "Republican"
                       ? republic
-                      : item.party === "democratic"
+                      : item.party_name === "Democratic"
                       ? democrat
                       : independ
                   }
@@ -221,7 +223,7 @@ export default function Ethnicity() {
                 />
               </div>
               <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                {item.party}
+                {item.party_name.split("(")[0]}
               </p>
               {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                 <img
@@ -241,11 +243,11 @@ export default function Ethnicity() {
               <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
                 <div
                   style={{
-                    width: `${item.pollingStation}%`,
+                    width: `${item.percentage}%`,
                     background: `${
-                      item.party === "democratic"
+                      item.party_name === "Democratic"
                         ? "#ED1C24"
-                        : item.party === "republican"
+                        : item.party_name === "Republican"
                         ? "#546BED"
                         : "white"
                     }`,
@@ -253,7 +255,7 @@ export default function Ethnicity() {
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {item.pollingStation}%
+                  {item.percentage}%
                 </div>
               </div>
             </div>

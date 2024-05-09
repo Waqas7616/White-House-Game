@@ -4,11 +4,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import { useStatePredictions } from "../../utils/StateIDs";
 
-function PredictSlider({ data, data1, printData, party_name, afterChange }) {
-  const {  setPresident,  setVicePresident,setParty } = useStatePredictions();
-  const [imageSelect,setImageSelect]=useState(false)
+function PredictSlider({ data, data1, printData, party_name, afterChange, selecClass }) {
+  const { setPresident, setVicePresident, setParty } = useStatePredictions();
+  const [imageSelect, setImageSelect] = useState(false);
   const [candidatedata, setCandidateData] = useState([]);
-
+  // console.log(candidatedata)
   const [currentSlide, setCurrentSlide] = useState(0);
   // const [presidentId, setPresidentId] = useState("")
   // const [vicePresidentId, setVicePresidentId] = useState("")
@@ -33,24 +33,26 @@ function PredictSlider({ data, data1, printData, party_name, afterChange }) {
       }
     };
     fetchData();
-    
+    console.log('class selected is :', selecClass)
+
   }, []);
 
-  const handleImage = (id,party) => {
-    
-    data1 === "president" && setPresident(id) || data1 === "VicePresident" && setVicePresident(id)
-    party_name==="Democratic"&&setParty(party)|| party_name==="Republican"&&setParty(party)||party_name==="Independent('Kennedy')"&&setParty(party)
-    setImageSelect(true)
-   
-  }
+  const handleImage = (id, party) => {
+    (data1 === "president" && setPresident(id)) ||
+      (data1 === "VicePresident" && setVicePresident(id));
+    (party_name === "Democratic" && setParty(party)) ||
+      (party_name === "Republican" && setParty(party)) ||
+      (party_name === "Independent('Kennedy')" && setParty(party));
+    setImageSelect(true);
+  };
 
   const CustomNextArrow = (props) => (
     <div
       {...props}
       // onClick={() => console.log(slide)}
-      className="absolute bottom-[-25%] right-2 sm:top-[40%] w-14 sm:w-[90px] sm:h-[91px] md:right-[0%]  cursor-pointer"
+      className="absolute bottom-[-25%] right-2 sm:top-[40%] w-14 sm:w-[90px] sm:h-[91px] md:right-[0%]  cursor-pointer "
     >
-      <span onClick={()=>setImageSelect(false)} className="text-2xl opacity-[0.3]  hover:opacity-100 ">
+      <span onClick={() => setImageSelect(false)} className={`text-2xl opacity-[0.3]  hover:opacity-100 ${selecClass ? 'block' : 'hidden'}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           // width="90"
@@ -132,7 +134,7 @@ function PredictSlider({ data, data1, printData, party_name, afterChange }) {
       {...props}
       className="absolute bottom-[-25%] left-2 sm:top-[40%] sm:left-[0%] w-14 sm:w-[90px] sm:h-[91px]   z-50  cursor-pointer"
     >
-      <span onClick={()=>setImageSelect(false)} className="text-2xl  opacity-[0.3] hover:opacity-100 ">
+      <span onClick={() => setImageSelect(false)} className={`text-2xl  opacity-[0.3] hover:opacity-100 ${selecClass === true ? 'block' : 'hidden'}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           // width="90"
@@ -203,24 +205,28 @@ function PredictSlider({ data, data1, printData, party_name, afterChange }) {
   const settings = {
     arrows: true,
     infinite: true,
+
+    draggable: selecClass ? true : false,
+    swipe: selecClass ? true : false,
+    touchMove: selecClass ? true : false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
-    
   };
 
   return (
-    <div className=" ">
+    <div className="relative ">
       <Slider {...settings}>
         {candidatedata
           ?.filter((item) => item.party.party_name === party_name)
           .map((item, index) => (
             <div
               key={index}
-              onClick={() => handleImage(item?.id,item?.votter_party_id)}
-              className={`w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${imageSelect&&"border-white border-[10px] rounded[28.43px]"}`}
+              onClick={() => handleImage(item?.id, item?.votter_party_id)}
+              className={`w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${imageSelect && "border-white border-[10px] rounded[28.43px]"
+                }`}
             >
               <img
                 onClick={printData}
@@ -228,6 +234,16 @@ function PredictSlider({ data, data1, printData, party_name, afterChange }) {
                 src={`${imageUrl}${item?.candidate_image}`}
                 alt=""
               />
+              <h2
+                className={`poppins6  text-center text-[10px] md:text-[16px] absolute bottom-8 md:ml-4 ${party_name === "Democratic"
+                    ? "bg-redish text-white"
+                    : party_name === "Republican"
+                      ? "bg-[#1c2452] text-white"
+                      : "bg-white text-black"
+                  } px-1  md:px-4 md:py-1 z-50`}
+              >
+                {item?.candidate_name}
+              </h2>
             </div>
           ))}
       </Slider>

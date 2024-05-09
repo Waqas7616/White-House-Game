@@ -77,21 +77,22 @@ function Predict({ titleImage, party, afterchange, submitData }) {
                   data={data}
                   printData={console.log("hello")}
                   data1="president"
+                  selecClass={isButtonClicked ? false : true}
 
                 />
               </div>
-              
+
             </div>
             <div className="w-[120px] h-[130px] sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[562px] xl-a:h-[572px] m-auto">
               <h4 className="poppins6 text-white xl:text-[38px]">
                 Vice President
               </h4>
               <div>
-                <PredictSlider party_name={party} data={data} afterChange={afterchange} data1="VicePresident" />
+                <PredictSlider party_name={party} data={data} afterChange={afterchange} data1="VicePresident" selecClass={isButtonClicked ? false : true} />
               </div>
-              
+
             </div>
-            
+
           </div>
 
           <div className="flex justify-center relative  mt-24">

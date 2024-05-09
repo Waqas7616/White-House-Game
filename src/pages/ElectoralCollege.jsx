@@ -58,6 +58,7 @@ function ElectoralCollege() {
   }, [state_predictions]);
 
   const handleSteps = () => {
+    setSelectedButtonId(0)
     if (step < previousData?.states?.length - 1) {
       setStep(step + 1);
       console.log("Incrementing step:", step + 1);
@@ -161,30 +162,26 @@ function ElectoralCollege() {
         </div>
 
         <div className="badges my-[77px]">
-          <h6 className="text-white text-right mb-8">{`${step + 1} of ${
-            previousData?.states?.length
-          }`}</h6>
+          <h6 className="text-white text-right mb-8">{`${step + 1} of ${previousData?.states?.length
+            }`}</h6>
           <div className="flex justify-between gap-3 ">
             <div
-              className={`${
-                selectedButtonId === 1 ? "border-red-600 border-[10px]" : ""
-              }  rounded-[54px] border-[10px] border-[#1c2452]`}
+              className={`${selectedButtonId === 1 ? "border-red-600 border-[10px]" : ""
+                }  rounded-[54px] border-[10px] border-[#1c2452]`}
               onClick={() => handleClick(previousData?.states?.[step]?.id, 1)}
             >
               <img src={democratic} className="" alt="" />
             </div>
             <div
-              className={`${
-                selectedButtonId === 2 ? "border-red-600 border-[10px]" : ""
-              }  rounded-[54px] border-[10px] border-[#1c2452] `}
+              className={`${selectedButtonId === 2 ? "border-red-600 border-[10px]" : ""
+                }  rounded-[54px] border-[10px] border-[#1c2452] `}
               onClick={() => handleClick(previousData?.states?.[step]?.id, 2)}
             >
               <img src={republican} alt="" />
             </div>
             <div
-              className={`${
-                selectedButtonId === 3 ? "border-red-600 border-[10px]" : ""
-              }  rounded-[54px] border-[10px] border-[#1c2452]`}
+              className={`${selectedButtonId === 3 ? "border-red-600 border-[10px]" : ""
+                }  rounded-[54px] border-[10px] border-[#1c2452]`}
               onClick={() => handleClick(previousData?.states?.[step]?.id, 3)}
             >
               <img src={independent} alt="" />

@@ -70,9 +70,8 @@ function Navbar() {
 
   return (
     <div
-      className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex  ${
-        toggle ? "flex-col rounded-lg relative" : "rounded-[100px] w-10/12 "
-      }  items-center justify-between`}
+      className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex  ${toggle ? "flex-col rounded-lg relative" : "rounded-[100px] w-10/12 "
+        }  items-center justify-between`}
     >
       {isMobile ? (
         <>
@@ -105,9 +104,8 @@ function Navbar() {
             <Link to={"/"}>
               {" "}
               <li
-                className={`nav-link poppins4 hover:text-redish ${
-                  location.pathname === "/" ? "active" : ""
-                } cursor-pointer hover:font-[500] text-whiteColor`}
+                className={`nav-link poppins4 hover:text-redish ${location.pathname === "/" ? "active" : ""
+                  } cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Home
               </li>
@@ -115,9 +113,8 @@ function Navbar() {
             <Link to={"/about"}>
               {" "}
               <li
-                className={`nav-link poppins4 hover:text-redish ${
-                  location.pathname === "/about" ? "active" : ""
-                }  cursor-pointer hover:font-[500] text-whiteColor`}
+                className={`nav-link poppins4 hover:text-redish ${location.pathname === "/about" ? "active" : ""
+                  }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 About Us
               </li>
@@ -125,9 +122,8 @@ function Navbar() {
             <Link to={"/contact"}>
               {" "}
               <li
-                className={`nav-link poppins4 hover:text-redish ${
-                  location.pathname === "/contact" ? "active" : ""
-                }  cursor-pointer hover:font-[500] text-whiteColor`}
+                className={`nav-link poppins4 hover:text-redish ${location.pathname === "/contact" ? "active" : ""
+                  }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Contact Us
               </li>
@@ -135,9 +131,8 @@ function Navbar() {
             <li
               // onClick={() => handleLinks(3)}
               onClick={handlePredictClick}
-              className={`nav-link poppins4 hover:text-redish ${
-                location.pathname === "/predict" ? "active" : ""
-              }  cursor-pointer hover:font-[500] text-whiteColor`}
+              className={`nav-link poppins4 hover:text-redish ${location.pathname === "/predict" ? "active" : ""
+                }  cursor-pointer hover:font-[500] text-whiteColor`}
             >
               Predict
             </li>
@@ -228,11 +223,11 @@ function Navbar() {
               Predict
             </li>
             {showModal &&
-            <div className="relative flex items-center justify-center w-full h-full left-0 -top-52  z-50 ">
-              <div className=" z-50 modal-container ">
-                 <Version />
-              </div>
-            </div>}
+              <div className="relative flex items-center justify-center w-full h-full left-0 -top-52  z-50 ">
+                <div className=" z-50 modal-container ">
+                  <Version />
+                </div>
+              </div>}
 
             <Link to={"/contact"}>
               <li

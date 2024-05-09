@@ -10,10 +10,19 @@ import check from "../images/check.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import DownloadApp from "../components/DownloadApp";
+import logo from '../images/logo1.png'
+import confetti from '../images/confetti.png'
+import badge from '../images/democrat.png'
+import badge2 from '../images/republican.png'
+import badge3 from '../images/independent.png'
 
 function PartyPrediction() {
   const navigate = useNavigate();
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [popPresident, setPopPresident] = useState();
+  const [popvicePresident, setPopvicePresident] = useState();
+  const [popUp, setPopUp] = useState(false);
+  const [test, setTest] = useState(false);
   const [sliderBackground, setSliderBackground] = useState("transparent");
   const [partyData, setPartyData] = useState({
     votter_party_id: 1,
@@ -23,37 +32,34 @@ function PartyPrediction() {
   const [predict, setPredict] = useState(0);
   const location = useLocation();
   const data = location.state || {};
-  console.log("transferred data", data);
+  // console.log("transferred data", data);
   const [candidateData, setCandidateData] = useState([]);
   const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
   // const id=localStorage.getItem('id');
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
 
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://pankhay.com/thewhitehousegame/public/api/get_predict_party_candidate/${id}`,
-
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              Accept: "application/json",
-            },
-          }
-        );
-        setCandidateData(response.data);
-        navigate("/party-prediction");
-      } catch (error) {
-        console.log("Error: ", error);
+    axios.get(`https://pankhay.com/thewhitehousegame/public/api/get_predict_party_candidate/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json'
+        }
       }
-    };
-    fetchData();
-  }, []);
+    ).then((response) => {
 
-  console.log("my data is :", candidateData);
-  // console.log(data.voting[0].president_id)
+      setCandidateData(response?.data)
+    }).catch((error) => {
+      alert(error)
+    });
+    setTest(true)
+  }, [test]);
+
+
+  // console.log("my data is :", candidateData);
+  // console.log('ayeeeee', data.voting[0].president_id)
 
   const handleButtonClick = (e) => {
     // setIsButtonClicked(true);
@@ -62,7 +68,7 @@ function PartyPrediction() {
     );
     setPredict(e);
 
-    console.log("selected party", partyData);
+    // console.log("selected party", partyData);
   };
   useEffect(() => {
     if (predict === 1) {
@@ -107,17 +113,74 @@ function PartyPrediction() {
         }
       )
       .then((res) => {
-        console.log("my response message is :", res.message);
+        console.log("my response message is :", res.data.message);
       })
       .catch((err) => {
-        console.log("my error message is :", err);
+        console.log("my error message is :", err.data.error);
       });
+    setPopUp(true)
   };
 
-  console.log("selected party", partyData);
+  useEffect(() => {
+    if (candidateData?.chosen_candidate?.length > 0) {
+      const President = candidateData?.chosen_candidate.find((item) => item.voter_candidate_id === partyData.president_id)
+      const vicePresident = candidateData?.chosen_candidate.find((item) => item.voter_candidate_id === partyData.vice_president_id)
+      setPopPresident(President);
+      setPopvicePresident(vicePresident)
+    }
+  }, [candidateData, partyData.president_id, partyData.vice_president_id])
+  // console.log("selected party", partyData);
+
+
+
+
+
+
 
   return (
-    <div>
+    <div className="">
+      {popUp &&
+        <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
+          <div className="popup bg-[#1C2452] w-5/12  h-[95vh] rounded-[30px]  ">
+            <div className="popup-content">
+              <img src={logo} className="m-auto w-[90px]" alt="" />
+              <h1 className="poppins6 text-white text-center">Who you expect to win</h1>
+              <div style={{ background: `url(${confetti})` }} className="p-4 w-20 mb-2 rounded-full m-auto flex justify-center items-center">
+                <div className="party-badge bg-white rounded-full w-10 h-10 flex items-center justify-center">
+                  <img className="w-5" src={popPresident.votter_party_id === 1 ? badge : popPresident.votter_party_id === 2 ? badge2 : badge3} alt="" />
+                </div>
+              </div>
+              <div className="flex gap-5 w-fit m-auto items-center justify-center p-4 border-[2px] border-white rounded-[18.5px] mb-10" style={{ background: "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)" }}>
+                <div>
+                  <h1 className="text-white poppins6 mb-2">President</h1>
+                  <div className="w-[200px] h-[180px]  overflow-hidden rounded-[10.96px]">
+
+                    {popPresident && popPresident.voter_candidate && <img className="w-full object-cover" src={`${imageUrl}${popPresident.voter_candidate.candidate_image}`} alt="" />}
+                  </div>
+                </div>
+                <div>
+                  <h1 className="text-white poppins6 mb-2">Vice President</h1>
+                  <div className="w-[200px] h-[180px]  overflow-hidden rounded-[10.96px]">
+                    {popvicePresident && popvicePresident.voter_candidate && <img className="w-full object-cover" src={`${imageUrl}${popvicePresident.voter_candidate.candidate_image}`} alt="" />}
+                  </div>
+                </div>
+              </div>
+              <h1 className="poppins6 text-white text-center">Electoral College</h1>
+              <p className="poppins4 text-white text-center mb-5">You have not completed Electoral College!</p>
+              <button onClick={() => navigate('/electoral')} className="bg-redish px-5 m-auto block py-3 rounded-[6px] poppins6 text-white text-center mb-3">Complete electoral college</button>
+              <p className="text-white text-center poppins4">A lot can happen before election day</p>
+              <p className="poppins4 text-white/80 xl:text-[15px] text-center justify-center flex items-center gap-2 m-auto mt-2">
+                <img className="w-[15px]" src={calender} alt="" />
+                Tuesday, November
+                <span className="poppins4 text-white xl:text-[15px]">5, 2024</span>
+              </p>
+              <p className="text-white text-center poppins4 text-[13px] w-1/2 m-auto mt-5">If you change your mind and would like to update your Prediction </p>
+              <button onClick={() => setPopUp(false)} className="rounded-[6px] border-[1px] px-20 block m-auto py-3 mt-5 border-white poppins7 text-white text-center">Done</button>
+            </div>
+          </div>
+        </div>
+      }
+
       <AppBanner
         redTitle={"YOUR"}
         bg={bg}
@@ -142,9 +205,8 @@ function PartyPrediction() {
 
           <div
             style={{ background: `${predict === 1 && sliderBackground}` }}
-            className={`w-full rounded-lg  pb-24  relative ${
-              predict === 1 && "border-8 "
-            }
+            className={`w-full rounded-lg  pb-24  relative ${predict === 1 && "border-8 "
+              }
             `}
           >
             <div className="flex gap-4 items-center justify-start w-full m-auto mt-[50px]">
@@ -209,9 +271,8 @@ function PartyPrediction() {
 
           <div
             style={{ background: `${predict === 2 && sliderBackground}` }}
-            className={`w-full rounded-lg  pb-24  relative ${
-              predict === 2 && "border-8"
-            }`}
+            className={`w-full rounded-lg  pb-24  relative ${predict === 2 && "border-8"
+              }`}
           >
             <div className="flex gap-4 items-center justify-start w-full m-auto mt-[50px]">
               <div className="w-[120px] h-[130px] sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[562px] xl-a:h-[572px] m-auto">
@@ -276,9 +337,8 @@ function PartyPrediction() {
 
           <div
             style={{ background: `${predict === 3 && sliderBackground}` }}
-            className={`w-full rounded-lg pb-24 relative ${
-              predict === 3 && "border-8"
-            }`}
+            className={`w-full rounded-lg pb-24 relative ${predict === 3 && "border-8"
+              }`}
           >
             <div className="flex gap-4 items-center justify-start w-full m-auto mt-[50px]">
               <div className="w-[120px] h-[130px] sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[562px] xl-a:h-[572px] m-auto">

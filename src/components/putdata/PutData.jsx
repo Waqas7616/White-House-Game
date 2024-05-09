@@ -106,7 +106,7 @@ export const PutData = () => {
       });
   }, []);
 
-  
+
 
   const [jwtToken, setJwtToken] = useState("");
   console.log("token :", jwtToken);
@@ -119,7 +119,7 @@ export const PutData = () => {
     } else {
     }
   }, []);
-
+  const email = localStorage.getItem('email')
   let id = localStorage.getItem("id");
   console.log(id, "data");
   const [isSubscribed, setIsSubscribed] = useState(false);
