@@ -90,7 +90,7 @@ function TabSection() {
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto resp ">
-        <div className="flex items-center gap-7 sm:flex sm:justify-between sm:items-center tabs py-5 overflow-x-auto md:overflow-x-hidden w-[20rem] sm:w-full " style={{ scrollBehavior: 'smooth' }}>
+        <div className="flex items-center gap-3 sm:flex sm:justify-between sm:items-center tabs py-5 overflow-x-auto lg:overflow-x-hidden w-[17rem] sm:w-full " style={{ scrollBehavior: 'smooth' }}>
           <h2
             className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 0 ? "active" : ""
@@ -233,7 +233,7 @@ function TabSection() {
                 }}
                   name="states"
                   id="search"
-                  className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] ml-8 md:ml-0 px-3 py-2 rounded-[10px] text-whiteColor"
+                  className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px]  md:ml-0 px-3 py-2 rounded-[10px] text-whiteColor"
                 >
                   <option className="bg-[#000]" value="">
                     Select All States
@@ -477,7 +477,7 @@ function TabSection() {
                 <select
                   name="states"
                   id="search"
-                  className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor ml-8 md:ml-0 w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+                  className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor  md:ml-0 w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
                 >
                   <option className="bg-[#000]" value="">
                     Select All States

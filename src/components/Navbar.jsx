@@ -8,8 +8,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const login = localStorage.getItem("email");
-  const token = localStorage.getItem("token");
+  // const login = localStorage.getItem("email");
+  // const token = localStorage.getItem("token");
   const [showModal, setShowModal] = useState(false);
   // const login = localStorage.getItem("email")
 
@@ -28,8 +28,17 @@ function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   };
+  // const logOut = () => {
+  //   localStorage.clear("token", "email");
+  
+  // };
+
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("email") && localStorage.getItem("token"));
+
   const logOut = () => {
-    localStorage.clear("token", "email");
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    setIsLoggedIn(false); // Session expire karne ke baad isLoggedIn state ko false kar denge
   };
 
   const [isMobile, setIsMobile] = useState(false);
@@ -140,9 +149,10 @@ function Navbar() {
             </div>
           </div>
           <div className="download-button flex items-center justify-between gap-10">
-            {!login && !token ? (
+            {!isLoggedIn ? (
               <div>
                 <h2
+                  // onClick={() => navigate("/LogIn")}
                   onClick={() => navigate("/LogIn")}
                   className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
                 >
@@ -151,7 +161,7 @@ function Navbar() {
               </div>
             ) : (
               <div>
-                <h2
+                <h2 onClick={logOut}
                   className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
                 >
                   Logout
@@ -265,10 +275,11 @@ function Navbar() {
                 Login
               </h2>
             </div> */}
-            {!login && !token ? (
+            {!isLoggedIn  ? (
               <div>
                 <h2
                   onClick={() => navigate("/LogIn")}
+                  // onClick={() => setIsLoggedIn(true)}
                   className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
                 >
                   Login
@@ -276,7 +287,7 @@ function Navbar() {
               </div>
             ) : (
               <div>
-                <h2
+                <h2 onClick={logOut}
                   className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
                 >
                   Logout

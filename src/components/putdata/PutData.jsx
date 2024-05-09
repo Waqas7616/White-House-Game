@@ -4,6 +4,7 @@ import Layer from "../../images/Layer.png";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AppBanner from "../appbanner/AppBanner";
 
 export const PutData = () => {
   const navigate = useNavigate();
@@ -121,7 +122,7 @@ export const PutData = () => {
 
   let id = localStorage.getItem("id");
   console.log(id, "data");
-
+  const [isSubscribed, setIsSubscribed] = useState(false);
   const [payload, setPayLoad] = useState({
     id: id,
     language_id: "",
@@ -136,9 +137,27 @@ export const PutData = () => {
     is_votted_2020: "",
     voter_candidate_id: "",
     source: "",
+    is_subscription_newsletter:"No",
 
     user_votter_party: "",
   });
+
+  // const handleSubscriptionChange = (e) => {
+  //   const value = e.target.value === "yes" ? "yes" : "No"; // Set "No" if unselected
+  //   setPayLoad({ ...payload, is_subscription_newsletter: value });
+  // };
+
+  const handleSubscriptionChange = (e) => {
+    const isChecked = e.target.checked;
+    const value = isChecked ? "yes" : "No";
+    setIsSubscribed(isChecked); // Update state to reflect checkbox state
+    setPayLoad({ ...payload, is_subscription_newsletter: value });
+
+    // Check if not checked, update the payload to "No"
+    if (!isChecked) {
+      setPayLoad({ ...payload, is_subscription_newsletter: "No" });
+    }
+  };
 
   const handleSaveButtonClick = async () => {
     try {
@@ -164,12 +183,20 @@ export const PutData = () => {
 
   return (
     <>
-      <div className="bg-[#1c2452] pb-10 ">
-        <div className="flex justify-center pt-5 ">
+    <div className="h-screen">
+    <AppBanner
+        bannerTitle={"Data"}
+        redTitle={"Put"}
+        bannerDesc={"Put Data to continue"}
+      />
+      <div className="bg-[#1c2452] py-10 m-auto w-[80%] ">
+    
+      <div className="bg-[#1c2452] pb-10 m-auto  ">
+        {/* <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">
             Forgot Password
           </h2>
-        </div>
+        </div> */}
         <div className="flex justify-center pt-5">
           <img src={logo1} alt="" />
         </div>
@@ -182,7 +209,7 @@ export const PutData = () => {
           </h2>
         </div>
         <div className="flex justify-center pt-3 ">
-          <h2 className="text-white font-poppins">Your Bilogical Sex</h2>
+          <h2 className="text-white font-bold font-poppins">Your Bilogical Sex</h2>
         </div>
         <div className="flex justify-center gap-5 pt-3">
           <div class="flex gap-10">
@@ -213,7 +240,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Male
@@ -246,7 +273,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Female
@@ -254,9 +281,9 @@ export const PutData = () => {
             </div>
           </div>
         </div>
-        <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
+        <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
         <div className="flex justify-center pt-3">
-          <h2 className="text-white font-poppins text-[21px]">
+          <h2 className="text-white font-poppins text-[14px] font-bold md:text-[21px]">
             Your age group now
           </h2>
         </div>
@@ -264,11 +291,14 @@ export const PutData = () => {
           <select
             name="states"
             id="search"
-            className="bg-transparent poppins4 text-[14px] border-transparent w-[200px] lg:w-[220px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent poppins4 text-[12px] md:text-[14px] border-transparent w-[200px] lg:w-[220px] px-3 py-2 rounded-[10px] text-whiteColor"
             onChange={(e) =>
               setPayLoad({ ...payload, user_age_id: parseInt(e.target.value) })
             }
           >
+            <option className="bg-[#000]" value="">
+                    Select All Age Group
+                  </option>
             {AgeGroup?.map((item) => (
               <option
                 className="bg-[#000] border-transparent"
@@ -281,7 +311,7 @@ export const PutData = () => {
           </select>
         </div>
         <div className="flex justify-center items-center pt-3">
-          <h2 className="text-white text-[16px] font-poppins">
+          <h2 className="text-white text-[14px] font-bold md:text-[16px] font-poppins">
             are you a US voter
           </h2>
         </div>
@@ -311,7 +341,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Yes
@@ -340,7 +370,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 No
@@ -348,7 +378,7 @@ export const PutData = () => {
             </div>
           </div>
         </div>
-        <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
+        <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
         <div className="max-w-[32rem] mx-auto rounded-lg bg-[#131A41] px-10 py-10">
           <div className="flex justify-center items-center">
             <div className="searchBar flex flex-col ">
@@ -361,7 +391,7 @@ export const PutData = () => {
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -369,6 +399,9 @@ export const PutData = () => {
                   })
                 }
               >
+                <option className="bg-[#000]" value="">
+                    Select All States
+                  </option>
                 {allstates?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
@@ -389,7 +422,7 @@ export const PutData = () => {
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -397,6 +430,9 @@ export const PutData = () => {
                   })
                 }
               >
+                <option className="bg-[#000]" value="">
+                    Select All Ethnicity 
+                  </option>
                 {ethnicityData?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
@@ -417,7 +453,7 @@ export const PutData = () => {
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -425,6 +461,9 @@ export const PutData = () => {
                   })
                 }
               >
+                <option className="bg-[#000]" value="">
+                    Select All Country of Birth
+                  </option>
                 {CountryBirth?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
@@ -445,7 +484,7 @@ export const PutData = () => {
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -453,6 +492,9 @@ export const PutData = () => {
                   })
                 }
               >
+                <option className="bg-[#000]" value="">
+                    Select All Languages
+                  </option>
                 {byLanguage?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
@@ -473,7 +515,7 @@ export const PutData = () => {
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -481,6 +523,9 @@ export const PutData = () => {
                   })
                 }
               >
+                <option className="bg-[#000]" value="">
+                    Select All Employment Status
+                  </option>
                 {Employment?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.employement_status}
@@ -501,7 +546,7 @@ export const PutData = () => {
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -509,6 +554,9 @@ export const PutData = () => {
                   })
                 }
               >
+                <option className="bg-[#000]" value="">
+                    Select Highest Education
+                  </option>
                 {highereducation?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
@@ -520,7 +568,7 @@ export const PutData = () => {
         </div>
 
         <div className="flex justify-center items-center mt-10">
-          <h2 className="font-poppins text-white text-[16px]">
+          <h2 className="font-poppins text-white font-bold text-nowrap text-[14px] md:text-[18px]">
             Are you a Veteran or in Military service?
           </h2>
         </div>
@@ -537,9 +585,9 @@ export const PutData = () => {
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                   id="veteran"
-                  value="1"
+                  value="true"
                   onChange={(e) =>
-                    setPayLoad({ ...payload, is_veteran: e.target.value })
+                    setPayLoad({ ...payload, is_veteran: e.target.value === "true" })
                   }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
@@ -554,7 +602,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Yes
@@ -570,9 +618,10 @@ export const PutData = () => {
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                   id="veteran"
-                  value="2"
+                  value="false"
+                  defaultChecked
                   onChange={(e) =>
-                    setPayLoad({ ...payload, is_veteran: e.target.value })
+                    setPayLoad({ ...payload, is_veteran: e.target.value === "true" })
                   }
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
@@ -587,7 +636,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 No
@@ -597,7 +646,7 @@ export const PutData = () => {
         </div>
 
         <div className="flex justify-center items-center mt-10">
-          <h2 className="font-poppins text-white text-[16px]">
+          <h2 className="font-poppins text-white text-[14px] md:text-[18px] font-bold">
             Did you vote in 2020?
           </h2>
         </div>
@@ -630,7 +679,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Yes
@@ -659,7 +708,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 No
@@ -667,10 +716,10 @@ export const PutData = () => {
             </div>
           </div>
         </div>
-        <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
+        <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
 
         <div className="flex justify-center items-center mt-10">
-          <h2 className="font-poppins text-white text-[16px]">
+          <h2 className="font-poppins text-white text-[14px] md:text-[18px] font-bold">
             who did you vote for in 2020
           </h2>
         </div>
@@ -707,7 +756,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Biden/Harris
@@ -743,7 +792,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Trump/Pense
@@ -784,7 +833,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Other
@@ -792,10 +841,10 @@ export const PutData = () => {
             </div>
           </div>
         </div>
-        <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
+        <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
 
         <div className="flex justify-center items-center mt-10">
-          <h2 className="font-poppins text-white text-[16px]">
+          <h2 className="font-poppins text-white font-bold text-[14px] md:text-[18px]">
             How did you cast your vote in 2020?
           </h2>
         </div>
@@ -805,10 +854,10 @@ export const PutData = () => {
             <div class="inline-flex items-center">
               <label
                 class="relative flex items-center p-3 rounded-full cursor-pointer"
-                htmlFor="red"
+                htmlFor="polling"
               >
                 <input
-                  name="polling"
+                  name="source"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                   id="polling"
@@ -829,7 +878,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 At a polling station on election day
@@ -838,10 +887,10 @@ export const PutData = () => {
             <div class="inline-flex items-center">
               <label
                 class="relative flex items-center p-3 rounded-full cursor-pointer"
-                htmlFor="red"
+                htmlFor="mail"
               >
                 <input
-                  name="mail"
+                  name="source"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                   id="mail"
@@ -862,7 +911,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Mail-in ballot or use a drop-box
@@ -870,10 +919,10 @@ export const PutData = () => {
             </div>
           </div>
         </div>
-        <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
+        <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
 
         <div className="flex justify-center items-center mt-10 ">
-          <h2 className="font-poppins text-white text-[16px] w-[345px] text-center">
+          <h2 className="font-poppins text-white font-bold  text-[14px] md:text-[18px] w-[345px] text-center">
             Which party’s candidate would you vote for today?
           </h2>
         </div>
@@ -910,7 +959,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Democratic
@@ -946,7 +995,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Republican
@@ -987,7 +1036,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Independent (Kennedy)
@@ -1023,7 +1072,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Other
@@ -1031,10 +1080,10 @@ export const PutData = () => {
             </div>
           </div>
         </div>
-        <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
+        <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
 
         <div className="flex justify-center items-center mt-10">
-          <h2 className="font-poppins text-white text-[16px]">
+          <h2 className="font-poppins text-white font-bold text-[14px] md:text-[18px]">
             Keep me Informed
           </h2>
         </div>
@@ -1044,14 +1093,18 @@ export const PutData = () => {
             <div class="inline-flex items-center">
               <label
                 class="relative flex items-center p-3 rounded-full cursor-pointer"
-                htmlFor="red"
+                htmlFor="subscribe"
               >
                 <input
-                  name="color"
+                  name="newsletter"
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                  id="red"
-                  defaultChecked
+                  id="subscribe"
+                  value="yes"
+              //     checked={payload.is_subscription_newsletter === "yes"}
+              // onChange={handleSubscriptionChange}
+              checked={isSubscribed}
+              onChange={handleSubscriptionChange}
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -1065,7 +1118,7 @@ export const PutData = () => {
                 </span>
               </label>
               <label
-                class="mt-px font-poppins text-white cursor-pointer select-none"
+                class="mt-px font-poppins text-white text-nowrap text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
                 Join our monthly newsletter
@@ -1073,7 +1126,7 @@ export const PutData = () => {
             </div>
           </div>
         </div>
-        <hr class="h-px my-8 bg-white border-0 dark:bg-white mx-20" />
+        <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
         <div className="flex justify-center mt-5 ">
           <button
             onClick={handleSaveButtonClick}
@@ -1082,6 +1135,8 @@ export const PutData = () => {
             Save
           </button>
         </div>
+      </div>
+      </div>
       </div>
     </>
   );

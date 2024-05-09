@@ -9,7 +9,7 @@ export default function DownloadApp() {
   return (
     <div className="bg-[#1C2452] pt-20 pb-4">
       <div
-        className="w-10/12 resp m-auto rounded-[48px]  flex items-center justify-start relative pr-2"
+        className="w-10/12 resp m-auto rounded-[48px]  flex items-center justify-start relative pr-14"
         style={{
           background: `url(${bg})`,
           backgroundRepeat: "no-repeat",
@@ -17,24 +17,24 @@ export default function DownloadApp() {
           backgroundSize: "cover",
         }}
       >
-        <div className="flex items-center  w-full ">
+        <div className="flex items-center  w-full  ">
           <div className="hidden md:block">
             <img src={mobile} alt="" className="rounded-[48px]" />
           </div>
-          <div className="text-center pt-4 sm:pt-0 ">
-            <h2 className="text-[15px] sm:text-[20px] md:text-[23px] lg:text-[41px] px-5 lg:px-0  text-[#fff]  orbit9">
+          <div className="text-center sm:text-justify pt-4 sm:pt-0 lg:-ml-10 ">
+            <h2 className="text-[12px] sm:text-[20px] md:text-[15px] lg:text-[18px] xl:text-[31px] xl-a:text-[41px]  pl-[20px] lg:pl-0  text-[#fff]  orbit9">
               Download{" "}
               <span className="text-redish ">The White House Game </span>
               <br />
               And make your voice heard!
             </h2>
-            <p className="text-[#fff] pt-3 sm:pt-1 px-3  sm:px-0 text-[10px] md:text-[14px] lg:text-[16px] lg:w-[700px] xl:w-[800px]">
+            <p className="text-[#fff] pt-3 sm:pt-1 pl-[20px] lg:pl-0 text-[8px] md:text-[10px] lg:text-[10px] xl:text-[14px] xl-a:text-[18px] acer:text-[20px] 2xl:text-[25px] lg:w-[432px] xl:w-[625px] 2xl:w-[906px]">
               Predict who you think will win. Open an account and if you change
               your mind, update your choice. This game is for THINKING people
             </p>
-            <div className="mt-8 flex justify-center items-center sm:flex sm:justify-normal gap-3 pb-5 ps-3 sm:ps-0 sm:pb-5 ">
-              <img className="w-[7rem] sm:w-[10rem]" src={app} alt="app" />
-              <img className="w-[7rem] sm:w-[10rem]" src={play} alt="play" />
+            <div className="mt-8 flex justify-center items-center sm:flex sm:justify-normal gap-3 pb-5 ps-3 sm:ps-0 lg:ps-0 sm:pb-5 ">
+              <img className="w-[5rem] sm:w-[10rem]" src={app} alt="app" />
+              <img className="w-[5rem] sm:w-[10rem]" src={play} alt="play" />
             </div>
           </div>
         </div>
@@ -42,12 +42,12 @@ export default function DownloadApp() {
 
       {/* -----FOOTER----- */}
       <div className="footer w-10/12 resp m-auto mt-20 pb-4 border-b-[1px] border-[rgba(255,255,255,0.6)]">
-        <div className="flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center">
+        <div className="flex flex-col gap-4 md:gap-6 lg:gap-0 md:flex-row justify-between items-center">
           <div className="logo">
             <img src={logo} alt="" />
           </div>
           <div>
-            <div className="flex gap-10 sm:gap-12 mx-10 sm:mx-0">
+            <div className="flex gap-5 sm:gap-12 mx-5 sm:mx-0">
               <h2 className="text-[10px] text-nowrap lg:text-[16px] poppins4 text-[#fff]">
                 Contact Us
               </h2>
