@@ -62,7 +62,7 @@ function CustomSlider() {
   const CustomNextArrow = (props) => (
     <div
       {...props}
-      className="absolute top-[13%] right-[.5%] transform cursor-pointer"
+      className="absolute top-[13%] right-[.5%] sm:top-[13%] sm:-right-[1.5%] md:top-[13%] md:-right-[5.5%] lg:top-[13%] lg:-right-[4.6%] xl:top-[13%] xl:-right-[0%]  transform cursor-pointer"
     >
       <span className="text-2xl opacity-[0.5] hover:opacity-100">
         <svg
@@ -144,7 +144,7 @@ function CustomSlider() {
   const CustomPrevArrow = (props) => (
     <div
       {...props}
-      className="absolute top-[13%] left-[-3%] z-50  cursor-pointer"
+      className="absolute top-[13%] left-[-3%] sm:top-[13%] sm:-right-[1.5%] md:top-[13%] md:-right-[1.5%] lg:top-[13%] lg:-right-[1.5%] z-50  cursor-pointer"
     >
       <span className="text-2xl opacity-[0.5] hover:opacity-100">
         <svg

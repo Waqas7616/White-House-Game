@@ -95,7 +95,7 @@ function Prediction() {
 
       />
       <div className="buttons flex items-center justify-center gap-4 xl:mt-[54px] mb-3 ">
-        <button className="rounded-[6px] text-white poppins-6 border-[1px] border-white px-10 py-2 ">Edit my predictions</button>
+        <button className="rounded-[6px] text-white poppins-6 border-[1px] border-white px-5 py-2 sm:px-10 sm:py-2 ">Edit my predictions</button>
         <button onClick={sendPrediction} className="rounded-[6px] text-white poppins-6 border-[1px] border-redish px-10 py-2 bg-redish">Next</button>
       </div>
       <DownloadApp />
