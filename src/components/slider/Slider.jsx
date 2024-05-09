@@ -32,7 +32,7 @@ function CustomSlider() {
   const [data, setData] = useState([]);
 
   const [loading, setLoading] = useState(true);
-  
+
   const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
 
   useEffect(() => {
@@ -49,12 +49,10 @@ function CustomSlider() {
         setData(response.data.votter_candidate);
         setLoading(false);
       } catch (error) {
-        
         setLoading(false);
       }
     };
     fetchData();
-   
   }, []);
 
   useEffect(() => {
@@ -67,7 +65,13 @@ function CustomSlider() {
       className="absolute top-[13%] right-[.5%] transform cursor-pointer"
     >
       <span className="text-2xl opacity-[0.5] hover:opacity-100">
-        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="91" viewBox="0 0 90 91" fill="none">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="90"
+          height="91"
+          viewBox="0 0 90 91"
+          fill="none"
+        >
           <g filter="url(#filter0_d_49_552)">
             <rect
               x="25"
@@ -143,8 +147,14 @@ function CustomSlider() {
       className="absolute top-[13%] left-[-3%] z-50  cursor-pointer"
     >
       <span className="text-2xl opacity-[0.5] hover:opacity-100">
-        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="91" viewBox="0 0 90 91" fill="none">
-          <g >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="90"
+          height="91"
+          viewBox="0 0 90 91"
+          fill="none"
+        >
+          <g>
             <g filter="url(#paint0_linear_49_552)">
               <rect
                 x="25"
@@ -208,7 +218,7 @@ function CustomSlider() {
   const handleExtention = () => {
     setExtended(!extended);
     // console.log(extended)
-  }
+  };
   const settings = {
     arrows: true,
     infinite: true,
@@ -308,9 +318,9 @@ function CustomSlider() {
                   key={index}
                   className="candidate flex flex-col items-center justify-between gap-[10px]"
                 >
-                  <div className="image w-[150px] h-[150px] rounded-[50%]  flex">
+                  <div className="image w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%]  flex">
                     <img
-                      className=" w-[150px] h-[150px] rounded-[50%] object-fit cursor-pointer"
+                      className=" w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%] object-cover cursor-pointer"
                       src={`${imageUrl}${item?.candidate_image}`}
                       alt=""
                       onClick={() => handleCandidateClick(index)}
