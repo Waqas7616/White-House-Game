@@ -116,7 +116,7 @@ function PartyPrediction() {
         console.log("my response message is :", res.data.message);
       })
       .catch((err) => {
-        console.log("my error message is :", err.data.error);
+        // console.log("my error message is :", err.data.error);
       });
     setPopUp(true)
   };

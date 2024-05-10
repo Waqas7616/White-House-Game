@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import axios from "axios";
 
 import { Modal } from "../modal/Modal";
+import Loading from "../skeleton/Loading";
 
 function CustomSlider() {
   const [selectedCandidateIndex, setSelectedCandidateIndex] = useState(null);
@@ -282,12 +283,13 @@ function CustomSlider() {
         </div>
         <div className="candidatesList  w-10/12 m-auto mt-8 resp relative">
           {loading && (
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-900 opacity-75 text-[red]">
-                Loading
-              </span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[red]"></span>
-            </span>
+            // <span className="relative flex h-3 w-3">
+            //   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-900 opacity-75 text-[red]">
+            //     Loading
+            //   </span>
+            //   <span className="relative inline-flex rounded-full h-3 w-3 bg-[red]"></span>
+            // </span>
+            <Loading />
           )}
           {!extended ? (
             <Slider {...settings}>
