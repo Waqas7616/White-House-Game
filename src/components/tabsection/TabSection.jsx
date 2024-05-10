@@ -46,7 +46,7 @@ function TabSection() {
         }
       )
       .then((res) => {
-        console.log("Response:", res.data);
+        // setState(res.data);
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -55,7 +55,7 @@ function TabSection() {
   const handleId = (selectedId) => {
     setId(selectedId);
   };
-
+  // setPresident(state.filter((item)=>itemm.option==='president'))
   const [tabs, setTabs] = useState(0);
   const [expandedVotes, setExpandedVotes] = useState(false);
   const [viceVotes, setViceVotes] = useState(false);
