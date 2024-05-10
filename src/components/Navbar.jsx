@@ -5,9 +5,11 @@ import closeMenu from "../images/closeMenu.png";
 import { Link } from "react-router-dom";
 import { Version } from "./version/Version";
 import { useNavigate, useLocation } from "react-router-dom";
+
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+
   // const login = localStorage.getItem("email");
   // const token = localStorage.getItem("token");
   const [showModal, setShowModal] = useState(false);
@@ -38,7 +40,9 @@ function Navbar() {
   const logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
-    setIsLoggedIn(false); // Session expire karne ke baad isLoggedIn state ko false kar denge
+    localStorage.removeItem('id');
+    setIsLoggedIn(false); 
+    navigate('/login')// Session expire karne ke baad isLoggedIn state ko false kar denge
   };
 
   const [isMobile, setIsMobile] = useState(false);

@@ -22,23 +22,22 @@ import axios from "axios";
 
 function TabSection() {
   const [allstates, setAllStates] = useState([]);
-  const [id,setId]=useState(1)
+  const [state, setState] = useState([]);
+  const [president, setPresident] = useState([]);
+  const [vicePresident, setVicePresident] = useState([]);
+  const [id, setId] = useState(1);
 
   useEffect(() => {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_user_state")
       .then((response) => {
-        
-
         setAllStates(response.data.user_state);
       })
-      .catch((error) => {
-        
-      });
+      .catch((error) => {});
   }, []);
   useEffect(() => {
     const ParamBody = new URLSearchParams({
-      "user_state_id": id,
+      user_state_id: id,
     });
     axios
       .get(
@@ -50,7 +49,7 @@ function TabSection() {
         }
       )
       .then((res) => {
-        console.log("Response:", res.data);
+        setState(res.data);
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -59,7 +58,7 @@ function TabSection() {
   const handleId = (selectedId) => {
     setId(selectedId);
   };
-
+  // setPresident(state.filter((item)=>itemm.option==='president'))
   const [tabs, setTabs] = useState(0);
   const [expandedVotes, setExpandedVotes] = useState(false);
   const [viceVotes, setViceVotes] = useState(false);
@@ -90,7 +89,10 @@ function TabSection() {
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto resp ">
-        <div className="flex items-center gap-3 sm:flex sm:justify-between sm:items-center tabs py-5 overflow-x-auto lg:overflow-x-hidden w-[17rem] sm:w-full " style={{ scrollBehavior: 'smooth' }}>
+        <div
+          className="flex items-center gap-3 sm:flex sm:justify-between sm:items-center tabs py-5 overflow-x-auto lg:overflow-x-hidden w-[17rem] sm:w-full "
+          style={{ scrollBehavior: "smooth" }}
+        >
           <h2
             className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 0 ? "active" : ""
@@ -224,13 +226,13 @@ function TabSection() {
                   Select All States
                 </label>
                 <select
-                onChange={(e) => {
-                  const selectedName = e.target.value;
-                  const selectedId = allstates.find(
-                    (item) => item.name === selectedName
-                  )?.id;
-                  handleId(selectedId);
-                }}
+                  onChange={(e) => {
+                    const selectedName = e.target.value;
+                    const selectedId = allstates.find(
+                      (item) => item.name === selectedName
+                    )?.id;
+                    handleId(selectedId);
+                  }}
                   name="states"
                   id="search"
                   className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px]  md:ml-0 px-3 py-2 rounded-[10px] text-whiteColor"
@@ -467,7 +469,7 @@ function TabSection() {
                 </select>
               </div> */}
 
-<div className="searchBar flex flex-col ">
+              <div className="searchBar flex flex-col ">
                 <label
                   htmlFor="search"
                   className="text-whiteColor text-center poppins4 text-[14px]"
@@ -493,8 +495,6 @@ function TabSection() {
                   ))}
                 </select>
               </div>
-
-
 
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
                 <img src={ballot} alt="ballot" />

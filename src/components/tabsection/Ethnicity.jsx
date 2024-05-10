@@ -143,9 +143,7 @@ export default function Ethnicity() {
             id="search"
             className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3 md:mt-0"
           >
-            <option className="bg-[#000]" value="">
-              Select Etnicity
-            </option>
+           
             {ethnicityData?.map((item) => (
               <option className="bg-[#000]" key={item.id} value={item?.name}>
                 {item?.name}
@@ -255,7 +253,7 @@ export default function Ethnicity() {
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {item.percentage}%
+                  {item.percentage.toFixed(2)}%
                 </div>
               </div>
             </div>
