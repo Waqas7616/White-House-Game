@@ -136,7 +136,7 @@ export default function CountryOfBirth() {
             }}
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 mt-3 md:mt-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 mt-3 md:mt-0 border-whiteColor w-[226px] sm:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
           >
             {CountryBirth?.map((item) => (
               <option className="bg-[#000]" key={item.id} value={item?.name}>

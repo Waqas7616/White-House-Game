@@ -164,7 +164,7 @@ export default function ByLanguage() {
             }}
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 mt-3 md:mt-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 mt-3 md:mt-0 border-whiteColor w-[226px] sm:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
           >
            
             {byLanguage?.map((item) => (
@@ -204,7 +204,7 @@ export default function ByLanguage() {
                     : "white"
                 }`,
               }}
-              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-20 items-center rounded-l-lg`}
+              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-2 xl:gap-10 items-center rounded-l-lg`}
             >
               <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
                 <img

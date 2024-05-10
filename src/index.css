@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;500;600&family=Space+Grotesk&display=swap');
-body{
-    background-color:#1c2452 ;
+
+body {
+    background-color: #1c2452;
 }
+
 .orbit9 {
     font-family: 'Orbitron', sans-serif;
     font-weight: 900;
@@ -34,6 +36,17 @@ body{
 .poppins6 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
+}
+
+.svgModal {
+    position: absolute !important;
+    max-width: 300px !important;
+    min-width: 300px;
+    background-color: #ffffff1a;
+    z-index: 999999 !important;
+    top: 60% !important;
+    right: -13% !important;
+    transform: translateY(-50%);
 }
 
 .space {

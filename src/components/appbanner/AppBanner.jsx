@@ -93,7 +93,7 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
         </div>
       </div>
       <div
-        className="app-banner  overflow-hidden h-[62.9vh] "
+        className="app-banner  overflow-hidden h-[71.9vh] "
         style={{
           background: `linear-gradient(91deg, rgba(0, 0, 0, 0.65) 33.57%, rgba(0, 0, 0, 0.32) 118.84%), url(${bg})`,
         }}

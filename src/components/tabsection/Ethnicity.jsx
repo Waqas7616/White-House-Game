@@ -124,7 +124,7 @@ export default function Ethnicity() {
             </h2>
           </div> */}
 
-        <div className="searchBar flex flex-col ">
+        <div className="searchBar flex flex-col items-center">
           <label
             htmlFor="search"
             className="text-whiteColor text-center poppins4 text-[14px]"
@@ -141,7 +141,7 @@ export default function Ethnicity() {
             }}
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3 md:mt-0"
+            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3 md:mt-0"
           >
            
             {ethnicityData?.map((item) => (
@@ -205,7 +205,7 @@ export default function Ethnicity() {
                     : "white"
                 }`,
               }}
-              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-20 items-center rounded-l-lg`}
+              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-2 xl:gap-10 items-center rounded-l-lg`}
             >
               <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
                 <img
@@ -220,7 +220,7 @@ export default function Ethnicity() {
                   alt=""
                 />
               </div>
-              <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+              <p className="poppins4 w-[30%] sm:w-auto  text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
                 {item.party_name.split("(")[0]}
               </p>
               {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
@@ -253,7 +253,7 @@ export default function Ethnicity() {
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {item.percentage.toFixed(2)}%
+                  {parseFloat(item.percentage).toFixed(0)}%
                 </div>
               </div>
             </div>

@@ -64,7 +64,7 @@ export default function ElectoralCollege() {
             President
           </h2>
         </div>
-        <div className="searchBar flex flex-col ">
+        <div className="searchBar flex flex-col items-center ">
           <label
             htmlFor="search "
             className="text-whiteColor text-center poppins4 text-[14px]"
