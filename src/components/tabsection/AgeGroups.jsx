@@ -147,7 +147,7 @@ export default function AgeGroups() {
             </select>
           </div> */}
 
-          <div className="searchBar flex flex-col ">
+          <div className="searchBar flex flex-col items-center ">
             <label
               htmlFor="search"
               className="text-whiteColor text-center poppins4 text-[14px]"
@@ -165,7 +165,7 @@ export default function AgeGroups() {
               }}
               name="states"
               id="search"
-              className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+              className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
             >
               {/* <option className="bg-[#000]" value="">
                 Select Age Group
@@ -185,7 +185,7 @@ export default function AgeGroups() {
             </h2>
           </div>
         </div>
-        <h2 className="text-[#fff] text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
+        <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
           {tabName}
         </h2>
         <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
@@ -228,7 +228,7 @@ export default function AgeGroups() {
                         alt=""
                       />
                     </div>
-                    <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+                    <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
                       {Math.round(item.percentage)}%
                     </p>
                     <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">

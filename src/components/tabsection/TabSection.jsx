@@ -22,23 +22,19 @@ import axios from "axios";
 
 function TabSection() {
   const [allstates, setAllStates] = useState([]);
-  const [id,setId]=useState(1)
+  const [id, setId] = useState(1);
 
   useEffect(() => {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_user_state")
       .then((response) => {
-        
-
         setAllStates(response.data.user_state);
       })
-      .catch((error) => {
-        
-      });
+      .catch((error) => {});
   }, []);
   useEffect(() => {
     const ParamBody = new URLSearchParams({
-      "user_state_id": id,
+      user_state_id: id,
     });
     axios
       .get(
@@ -90,7 +86,11 @@ function TabSection() {
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto resp ">
-        <div className="flex items-center gap-3 sm:flex sm:justify-between sm:items-center tabs py-5 overflow-x-auto lg:overflow-x-hidden w-[17rem] sm:w-full " style={{ scrollBehavior: 'smooth' }}>
+        <div className="w-full overflow-x-auto lg:overflow-x-hidden tabs">
+        <div
+          className="flex items-center gap-3 sm:flex sm:justify-between sm:items-center  py-5   w-[27rem] sm:w-full "
+          style={{ scrollBehavior: "smooth" }}
+        >
           <h2
             className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
               tabs === 0 ? "active" : ""
@@ -172,6 +172,7 @@ function TabSection() {
             Millitary
           </h2>
         </div>
+        </div>
         <div className="tab-content ">
           <div
             className={`all-tab-content  ${tabs === 0 ? "block" : "hidden"}`}
@@ -216,7 +217,7 @@ function TabSection() {
                 </select>
               </div> */}
 
-              <div className="searchBar flex flex-col ">
+              <div className="searchBar flex  flex-col items-center ">
                 <label
                   htmlFor="search"
                   className="text-whiteColor text-center poppins4 text-[14px]"
@@ -224,13 +225,13 @@ function TabSection() {
                   Select All States
                 </label>
                 <select
-                onChange={(e) => {
-                  const selectedName = e.target.value;
-                  const selectedId = allstates.find(
-                    (item) => item.name === selectedName
-                  )?.id;
-                  handleId(selectedId);
-                }}
+                  onChange={(e) => {
+                    const selectedName = e.target.value;
+                    const selectedId = allstates.find(
+                      (item) => item.name === selectedName
+                    )?.id;
+                    handleId(selectedId);
+                  }}
                   name="states"
                   id="search"
                   className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px]  md:ml-0 px-3 py-2 rounded-[10px] text-whiteColor"
@@ -436,7 +437,7 @@ function TabSection() {
 
             {/* VICE PRESIDENT SECITON  */}
 
-            <div className="search-section flex flex-col  sm:flex-row  justify-between mt-16">
+            <div className="search-section flex flex-col sm:items-none  sm:flex-row  justify-between mt-16">
               <div className="badge flex items-center justify-between">
                 <img src={badge} alt="" />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
@@ -467,7 +468,7 @@ function TabSection() {
                 </select>
               </div> */}
 
-<div className="searchBar flex flex-col ">
+              <div className="searchBar flex flex-col items-center mx-5 ">
                 <label
                   htmlFor="search"
                   className="text-whiteColor text-center poppins4 text-[14px]"
@@ -493,8 +494,6 @@ function TabSection() {
                   ))}
                 </select>
               </div>
-
-
 
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
                 <img src={ballot} alt="ballot" />
