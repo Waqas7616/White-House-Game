@@ -22,23 +22,19 @@ import axios from "axios";
 
 function TabSection() {
   const [allstates, setAllStates] = useState([]);
-  const [id, setId] = useState(1)
+  const [id, setId] = useState(1);
 
   useEffect(() => {
     axios
       .get("https://pankhay.com/thewhitehousegame/public/api/get_user_state")
       .then((response) => {
-
-
         setAllStates(response.data.user_state);
       })
-      .catch((error) => {
-
-      });
+      .catch((error) => { });
   }, []);
   useEffect(() => {
     const ParamBody = new URLSearchParams({
-      "user_state_id": id,
+      user_state_id: id,
     });
     axios
       .get(
@@ -90,77 +86,82 @@ function TabSection() {
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto resp ">
-        <div className="flex items-center gap-3 sm:flex sm:justify-between sm:items-center tabs py-5 overflow-x-auto lg:overflow-x-hidden w-[17rem] sm:w-full " style={{ scrollBehavior: 'smooth' }}>
-          <h2
-            className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 0 ? "active" : ""
-              }`}
-            onClick={() => setTabs(0)}
+        <div className="w-full overflow-x-auto lg:overflow-x-hidden tabs">
+          <div
+            className="flex items-center gap-3 sm:flex sm:justify-between sm:items-center  py-5   w-[27rem] sm:w-full "
+            style={{ scrollBehavior: "smooth" }}
           >
-            All
-          </h2>
-          <h2
-            className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 1 ? "active" : ""
-              }`}
-            onClick={() => setTabs(1)}
-          >
-            Electoral College
-          </h2>
-          <h2
-            className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 2 ? "active" : ""
-              }`}
-            onClick={() => setTabs(2)}
-          >
-            Sex
-          </h2>
-          <h2
-            className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 3 ? "active" : ""
-              }`}
-            onClick={() => setTabs(3)}
-          >
-            2020 Election
-          </h2>
-          <h2
-            className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 4 ? "active" : ""
-              }`}
-            onClick={() => setTabs(4)}
-          >
-            Age groups
-          </h2>
-          <h2
-            className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 5 ? "active" : ""
-              }`}
-            onClick={() => setTabs(5)}
-          >
-            Ethnicity
-          </h2>
-          <h2
-            className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 6 ? "active" : ""
-              }`}
-            onClick={() => setTabs(6)}
-          >
-            Country of birth
-          </h2>
-          <h2
-            className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 7 ? "active" : ""
-              }`}
-            onClick={() => setTabs(7)}
-          >
-            Language
-          </h2>
-          <h2
-            className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 8 ? "active" : ""
-              }`}
-            onClick={() => setTabs(8)}
-          >
-            Employment status
-          </h2>
-          <h2
-            className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 9 ? "active" : ""
-              }`}
-            onClick={() => setTabs(9)}
-          >
-            Millitary
-          </h2>
+            <h2
+              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 0 ? "active" : ""
+                }`}
+              onClick={() => setTabs(0)}
+            >
+              All
+            </h2>
+            <h2
+              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 1 ? "active" : ""
+                }`}
+              onClick={() => setTabs(1)}
+            >
+              Electoral College
+            </h2>
+            <h2
+              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 2 ? "active" : ""
+                }`}
+              onClick={() => setTabs(2)}
+            >
+              Sex
+            </h2>
+            <h2
+              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 3 ? "active" : ""
+                }`}
+              onClick={() => setTabs(3)}
+            >
+              2020 Election
+            </h2>
+            <h2
+              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 4 ? "active" : ""
+                }`}
+              onClick={() => setTabs(4)}
+            >
+              Age groups
+            </h2>
+            <h2
+              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 5 ? "active" : ""
+                }`}
+              onClick={() => setTabs(5)}
+            >
+              Ethnicity
+            </h2>
+            <h2
+              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 6 ? "active" : ""
+                }`}
+              onClick={() => setTabs(6)}
+            >
+              Country of birth
+            </h2>
+            <h2
+              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 7 ? "active" : ""
+                }`}
+              onClick={() => setTabs(7)}
+            >
+              Language
+            </h2>
+            <h2
+              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 8 ? "active" : ""
+                }`}
+              onClick={() => setTabs(8)}
+            >
+              Employment status
+            </h2>
+            <h2
+              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 9 ? "active" : ""
+                }`}
+              onClick={() => setTabs(9)}
+            >
+              Millitary
+            </h2>
+          </div>
         </div>
         <div className="tab-content ">
           <div
@@ -206,7 +207,7 @@ function TabSection() {
                 </select>
               </div> */}
 
-              <div className="searchBar flex flex-col ">
+              <div className="searchBar flex  flex-col items-center ">
                 <label
                   htmlFor="search"
                   className="text-whiteColor text-center poppins4 text-[14px]"
@@ -422,7 +423,7 @@ function TabSection() {
 
             {/* VICE PRESIDENT SECITON  */}
 
-            <div className="search-section flex flex-col  sm:flex-row  justify-between mt-16">
+            <div className="search-section flex flex-col sm:items-none  sm:flex-row  justify-between mt-16">
               <div className="badge flex items-center justify-between">
                 <img src={badge} alt="" />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
@@ -453,7 +454,7 @@ function TabSection() {
                 </select>
               </div> */}
 
-              <div className="searchBar flex flex-col ">
+              <div className="searchBar flex flex-col items-center mx-5 ">
                 <label
                   htmlFor="search"
                   className="text-whiteColor text-center poppins4 text-[14px]"
@@ -479,8 +480,6 @@ function TabSection() {
                   ))}
                 </select>
               </div>
-
-
 
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
                 <img src={ballot} alt="ballot" />

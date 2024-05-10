@@ -10,8 +10,8 @@ import republic from "../../images/republican.png";
 import axios from "axios";
 
 export default function EmploymentStatus() {
-  const [id, setId] = useState(1);
   const [Employment, setEmployment] = useState([]);
+  const [id, setId] = useState(1);
   const [employmentStatus, setEmploymentStatus] = useState([]);
  
 
@@ -40,6 +40,7 @@ export default function EmploymentStatus() {
         }
       )
       .then((res) => {
+        console.log("employment response :", res.data);
         setEmploymentStatus(res.data);
       })
       .catch((err) => {
@@ -133,7 +134,7 @@ export default function EmploymentStatus() {
             }}
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 mt-3 md:mt-0 border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 mt-3 md:mt-0 border-whiteColor w-[204px] sm:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
           >
             <option className="bg-[#000]" value="">
               Select Employment Status
@@ -203,7 +204,7 @@ export default function EmploymentStatus() {
                     : "white"
                 }`,
               }}
-              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-20 items-center rounded-l-lg`}
+              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-2 xl:gap-10 items-center rounded-l-lg`}
             >
               <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
                 <img
@@ -218,7 +219,7 @@ export default function EmploymentStatus() {
                   alt=""
                 />
               </div>
-              <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+              <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
                 {item.party_name.split('(')[0]}
               </p>
               {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">

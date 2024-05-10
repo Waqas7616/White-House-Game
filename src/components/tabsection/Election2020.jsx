@@ -84,7 +84,7 @@ export default function Election2020() {
             Votes : {totalVotes}
           </h2>
         </div>
-        <h2 className="text-[#fff] text-[36px] orbit7 w-9/12 m-auto my-8">
+        <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-8">
           Who’s up and who’s down comparing last election to this year’s
           intentions
         </h2>
@@ -121,7 +121,7 @@ export default function Election2020() {
                     alt=""
                   />
                 </div>
-                <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+                <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
                   {item.percentageDifference}%
                 </p>
                 <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
@@ -185,7 +185,7 @@ export default function Election2020() {
           ))}
         </>
       </div>
-      <h2 className="text-[#fff] text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
+      <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
         Who voted at a polling station on election day 2020
       </h2>
       <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
@@ -210,7 +210,7 @@ export default function Election2020() {
                     : "white"
                 }`,
               }}
-              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-20 items-center rounded-l-lg`}
+              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-1 xl:gap-10 items-center rounded-l-lg`}
             >
               <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
                 <img
@@ -225,7 +225,7 @@ export default function Election2020() {
                   alt=""
                 />
               </div>
-              <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+              <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
                 {item.party}
               </p>
               {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
@@ -265,7 +265,7 @@ export default function Election2020() {
           </div>
         ))}
       </div>
-      <h2 className="text-[#fff] text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
+      <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
         Who voted using a Mail-in ballot or drop-box in 2020
       </h2>
       <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
@@ -290,7 +290,7 @@ export default function Election2020() {
                     : "white"
                 }`,
               }}
-              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-20 items-center rounded-l-lg`}
+              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-1 xl:gap-10 items-center rounded-l-lg`}
             >
               <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
                 <img
@@ -305,7 +305,7 @@ export default function Election2020() {
                   alt=""
                 />
               </div>
-              <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+              <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
                 {item.party}
               </p>
               {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
