@@ -58,7 +58,7 @@ function ElectoralCollege() {
   }, [state_predictions]);
 
   const handleSteps = () => {
-    setSelectedButtonId(0)
+    setSelectedButtonId(0);
     if (step < previousData?.states?.length - 1) {
       setStep(step + 1);
       console.log("Incrementing step:", step + 1);
@@ -162,26 +162,30 @@ function ElectoralCollege() {
         </div>
 
         <div className="badges my-[77px]">
-          <h6 className="text-white text-right mb-8">{`${step + 1} of ${previousData?.states?.length
-            }`}</h6>
+          <h6 className="text-white text-right mb-8">{`${step + 1} of ${
+            previousData?.states?.length
+          }`}</h6>
           <div className="flex justify-between gap-3 ">
             <div
-              className={`${selectedButtonId === 1 ? "border-red-600 border-[10px]" : ""
-                }  rounded-[54px] border-[10px] border-[#1c2452]`}
+              className={`${
+                selectedButtonId === 1 ? "border-red-600 border-[10px]" : ""
+              }  rounded-[54px] border-[10px] border-[#1c2452]`}
               onClick={() => handleClick(previousData?.states?.[step]?.id, 1)}
             >
               <img src={democratic} className="" alt="" />
             </div>
             <div
-              className={`${selectedButtonId === 2 ? "border-red-600 border-[10px]" : ""
-                }  rounded-[54px] border-[10px] border-[#1c2452] `}
+              className={`${
+                selectedButtonId === 2 ? "border-red-600 border-[10px]" : ""
+              }  rounded-[54px] border-[10px] border-[#1c2452] `}
               onClick={() => handleClick(previousData?.states?.[step]?.id, 2)}
             >
               <img src={republican} alt="" />
             </div>
             <div
-              className={`${selectedButtonId === 3 ? "border-red-600 border-[10px]" : ""
-                }  rounded-[54px] border-[10px] border-[#1c2452]`}
+              className={`${
+                selectedButtonId === 3 ? "border-red-600 border-[10px]" : ""
+              }  rounded-[54px] border-[10px] border-[#1c2452]`}
               onClick={() => handleClick(previousData?.states?.[step]?.id, 3)}
             >
               <img src={independent} alt="" />
@@ -207,7 +211,9 @@ function ElectoralCollege() {
           </h2>
           <div className="result rounded-[10.65px] bg-[#131A41] px-8 py-5">
             <div className="2020">
-              <p className="text-white mb-2 poppins4 text-[20px] md:text-[42.4px]">2020</p>
+              <p className="text-white mb-2 poppins4 text-[20px] md:text-[42.4px]">
+                2020
+              </p>
               <div className="flex  bg-[#131A41] rounded-[10.65px] mb-[23px]">
                 <div
                   className={`py-6 rounded-l-[10.65px] px-4 bg-[#5b4fd1]   flex justify-between items-center`}
@@ -263,7 +269,9 @@ function ElectoralCollege() {
                     width: `${previousData?.states?.[step]?.previous_election_state?.[1]?.vote_percentage}%`,
                   }}
                 >
-                  <p className="text-white poppins4 hidden sm:hidden md:hidden lg:block truncate sm:text-[22px]">Republic</p>
+                  <p className="text-white poppins4 hidden sm:hidden md:hidden lg:block truncate sm:text-[22px]">
+                    Republic
+                  </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-center text-[14px] sm:text-[28px] text-white">
                       <svg
@@ -333,7 +341,9 @@ function ElectoralCollege() {
               </div>
             </div>
             <div className="2016">
-              <p className="text-white mb-2 poppins4 text-[20px] md:text-[42.4px]">2016</p>
+              <p className="text-white mb-2 poppins4 text-[20px] md:text-[42.4px]">
+                2016
+              </p>
               <div className="flex  bg-[#131A41] rounded-[10.65px] mb-[23px]">
                 <div
                   className="py-6 rounded-l-[10.65px] px-4 bg-[#5b4fd1]  flex justify-between items-center"
@@ -389,7 +399,9 @@ function ElectoralCollege() {
                     width: `${previousData?.states?.[step]?.previous_election_state?.[4]?.vote_percentage}%`,
                   }}
                 >
-                  <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">Republic</p>
+                  <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
+                    Republic
+                  </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-[14px] sm:text-[28px] text-white">
                       <svg
@@ -515,7 +527,9 @@ function ElectoralCollege() {
                     width: `  ${previousData?.states?.[step]?.previous_election_state?.[7]?.vote_percentage}%`,
                   }}
                 >
-                  <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">Republic</p>
+                  <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
+                    Republic
+                  </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-[14px] sm:text-[28px] text-white">
                       <svg

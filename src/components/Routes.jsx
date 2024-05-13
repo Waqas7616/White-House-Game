@@ -16,6 +16,7 @@ import ElectoralCollege from "../pages/ElectoralCollege";
 import PartyPrediction from "../pages/PartyPrediction";
 import { Navigate } from "react-router-dom";
 import { useStatePredictions } from "../utils/StateIDs";
+import StateWinner from "./statewinner/StateWinner";
 function AppRoutes() {
     const { token } = useStatePredictions();
     const [user, setUser] = useState();
@@ -64,6 +65,7 @@ function AppRoutes() {
                 />
 
                 <Route path="/party-prediction" element={<PartyPrediction />} />
+                <Route path="/statewinner" element={<StateWinner/>}/>
             </Routes>
         </Router>
     );

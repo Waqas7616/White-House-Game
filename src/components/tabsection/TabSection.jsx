@@ -21,6 +21,7 @@ import ElectoralCollege from "./ElectoralCollege";
 import axios from "axios";
 
 function TabSection() {
+  const [updatestate, setUpdateState] = useState([]);
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(1);
 
@@ -46,7 +47,7 @@ function TabSection() {
         }
       )
       .then((res) => {
-        console.log("Response:", res.data);
+        setUpdateState("Response:", res.data);
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -264,6 +265,7 @@ function TabSection() {
               {!expandedVotes ? (
                 <>
                   {percentages.slice(0, 3).map((item, index) => (
+                  
                     <div
                       key={index}
                       className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
