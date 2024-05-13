@@ -709,9 +709,20 @@ function TabSection() {
           </div>
         </div>
       </div>
-      <div className="w-full" style={{
+      <div className="w-full py-8" style={{
         background: 'linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)'
       }}>
+        <div className="flex w-9/12 m-auto my-5">
+          <div className="flex-1">  <h3 className="text-center text-white poppins5 mb-2">Democratic</h3>
+            <div className="dem py-5  bg-redish"></div></div>
+          <div className="flex-1">     <h3 className="text-center text-white poppins5 mb-2">Republican</h3>
+            <div className="rep py-5 bg-blue-800"></div></div>
+          <div className="flex-1">
+            <h3 className="text-center text-white poppins5 mb-2">Independent</h3>
+            <div className="ind py-5  bg-white"></div>
+          </div>
+
+        </div>
         <div className="w-10/12 m-auto mt-12" >
           <Map />
         </div>
