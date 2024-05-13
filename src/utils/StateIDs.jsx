@@ -22,9 +22,12 @@ const addVoting=(vote)=>{
   const clearPredictions = () => {
     setState_predictions([]);
   };
-
+ 
+  const removeToken=()=>{
+    setToken("")
+  }
   return (
-    <StatePredictionsContext.Provider value={{voting,addVoting, token, setToken, state_predictions, addPrediction, clearPredictions,party,setParty, president, setPresident, vicePresident, setVicePresident }}>
+    <StatePredictionsContext.Provider value={{voting,addVoting, token, setToken, removeToken, state_predictions, addPrediction, clearPredictions,party,setParty, president, setPresident, vicePresident, setVicePresident }}>
       {children}
     </StatePredictionsContext.Provider>
   );
