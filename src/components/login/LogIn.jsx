@@ -184,7 +184,7 @@ export const LogIn = () => {
             </p>
             <div className="flex justify-center mt-5 ">
               <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
-                Login
+                Log In
               </button>
             </div>
           </form>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../images/logo.png";
+import logo from "../images/logo2.png";
 import burger from "../images/hamburger.png";
 import closeMenu from "../images/closeMenu.png";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  
 
   // const login = localStorage.getItem("email");
   // const token = localStorage.getItem("token");
@@ -81,7 +82,7 @@ function Navbar() {
         <>
           <div className="logo">
             <a href="/">
-              <img src={logo} alt="" />
+              <img src={logo} className="w-20" alt="" />
             </a>
           </div>{" "}
           <div onClick={toggleMenu}>
@@ -101,7 +102,7 @@ function Navbar() {
         <>
           <div className="logo">
             <a href="/">
-              <img src={logo} alt="" />
+              <img src={logo} className="w-28" alt="" />
             </a>
           </div>
           <div className="nav-links flex gap-8 ">
@@ -153,17 +154,17 @@ function Navbar() {
                 <h2
                   // onClick={() => navigate("/LogIn")}
                   onClick={() => navigate("/LogIn")}
-                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+                  className={` poppins4    cursor-pointer hover:font-[500]  bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px]`}
                 >
-                  Login
+                  Log In
                 </h2>
               </div>
             ) : (
               <div>
                 <h2 onClick={logOut}
-                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+                  className={` poppins4    cursor-pointer hover:font-[500]  bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px]`}
                 >
-                  Logout
+                  Log Out
                 </h2>
               </div>
             )}
@@ -191,8 +192,8 @@ function Navbar() {
                 strokeLinejoin="round"
               />
             </svg> */}
-            <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px]">
-              Download Now
+            <button className={`bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px] ${!isLoggedIn ? "block":"hidden"}`} onClick={()=>navigate('/signup')}>
+              Sign Up
             </button>
           </div>
         </>
@@ -293,7 +294,7 @@ function Navbar() {
                 </h2>
               </div>
             )}
-            <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px] my-8">
+            <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px] my-8" >
               Download Now
             </button>
           </div>
