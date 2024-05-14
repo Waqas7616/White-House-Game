@@ -23,6 +23,9 @@ import axios from "axios";
 function TabSection() {
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(1);
+  const [stats, setStats] = useState([]);
+  const [president, setPresident] = useState();
+  const [vicePresident, setVicePresident] = useState();
 
   useEffect(() => {
     axios
@@ -30,7 +33,7 @@ function TabSection() {
       .then((response) => {
         setAllStates(response.data.user_state);
       })
-      .catch((error) => { });
+      .catch((error) => {});
   }, []);
   useEffect(() => {
     const ParamBody = new URLSearchParams({
@@ -46,7 +49,8 @@ function TabSection() {
         }
       )
       .then((res) => {
-        // setState(res.data);
+        setStats(res.data);
+        console.log("statsssss", stats);
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -55,7 +59,7 @@ function TabSection() {
   const handleId = (selectedId) => {
     setId(selectedId);
   };
-  // setPresident(state.filter((item)=>itemm.option==='president'))
+
   const [tabs, setTabs] = useState(0);
   const [expandedVotes, setExpandedVotes] = useState(false);
   const [viceVotes, setViceVotes] = useState(false);
@@ -83,6 +87,23 @@ function TabSection() {
     percentage: Math.round((candidate.votes / totalVotes) * 100),
   }));
   // console.log("all data", percentages);
+
+  useEffect(() => {
+    if (stats?.data) {
+      setPresident(
+        stats?.data?.candidate_percentages.filter(
+          (item) => item.position === "president"
+        )
+      );
+      setVicePresident(
+        stats?.data?.candidate_percentages.filter(
+          (item) => item.position === "vice_president"
+        )
+      );
+    }
+  }, [id]);
+  console.log("takra sha", president);
+  console.log("tinga ka", vicePresident);
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto resp ">
@@ -92,71 +113,81 @@ function TabSection() {
             style={{ scrollBehavior: "smooth" }}
           >
             <h2
-              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 0 ? "active" : ""
-                }`}
+              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+                tabs === 0 ? "active" : ""
+              }`}
               onClick={() => setTabs(0)}
             >
               All
             </h2>
             <h2
-              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 1 ? "active" : ""
-                }`}
+              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+                tabs === 1 ? "active" : ""
+              }`}
               onClick={() => setTabs(1)}
             >
               Electoral College
             </h2>
             <h2
-              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 2 ? "active" : ""
-                }`}
+              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+                tabs === 2 ? "active" : ""
+              }`}
               onClick={() => setTabs(2)}
             >
               Sex
             </h2>
             <h2
-              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 3 ? "active" : ""
-                }`}
+              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+                tabs === 3 ? "active" : ""
+              }`}
               onClick={() => setTabs(3)}
             >
               2020 Election
             </h2>
             <h2
-              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 4 ? "active" : ""
-                }`}
+              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+                tabs === 4 ? "active" : ""
+              }`}
               onClick={() => setTabs(4)}
             >
               Age groups
             </h2>
             <h2
-              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 5 ? "active" : ""
-                }`}
+              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+                tabs === 5 ? "active" : ""
+              }`}
               onClick={() => setTabs(5)}
             >
               Ethnicity
             </h2>
             <h2
-              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 6 ? "active" : ""
-                }`}
+              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+                tabs === 6 ? "active" : ""
+              }`}
               onClick={() => setTabs(6)}
             >
               Country of birth
             </h2>
             <h2
-              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 7 ? "active" : ""
-                }`}
+              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+                tabs === 7 ? "active" : ""
+              }`}
               onClick={() => setTabs(7)}
             >
               Language
             </h2>
             <h2
-              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 8 ? "active" : ""
-                }`}
+              className={`tab-link whitespace-nowrap text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+                tabs === 8 ? "active" : ""
+              }`}
               onClick={() => setTabs(8)}
             >
               Employment status
             </h2>
             <h2
-              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${tabs === 9 ? "active" : ""
-                }`}
+              className={`tab-link text-whiteColor poppins4 relative  text-[13px] cursor-pointer md:text-[17px] ${
+                tabs === 9 ? "active" : ""
+              }`}
               onClick={() => setTabs(9)}
             >
               Millitary
@@ -253,23 +284,25 @@ function TabSection() {
             <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
               {!expandedVotes ? (
                 <>
-                  {percentages.slice(0, 3).map((item, index) => (
+                  {president.slice(0, 3).map((item, index) => (
                     <div
                       key={index}
-                      className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${item.party === "republican"
-                        ? "republic"
-                        : item.party === "democratic"
+                      className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
+                        item.party === "republican"
+                          ? "republic"
+                          : item.party === "democratic"
                           ? "democratic"
                           : "independent"
-                        } rounded-[8px] mt-8`}
+                      } rounded-[8px] mt-8`}
                     >
                       <div
-                        className={`president-info relative bg-${item.party === "republican"
-                          ? "[#546BED]"
-                          : item.party === "democratic"
+                        className={`president-info relative bg-${
+                          item.party === "republican"
+                            ? "[#546BED]"
+                            : item.party === "democratic"
                             ? "redish"
                             : "whiteColor"
-                          } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
+                        } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                       >
                         <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
                           <img
@@ -288,8 +321,8 @@ function TabSection() {
                               item.party === "republican"
                                 ? republic
                                 : item.party === "democratic"
-                                  ? democrat
-                                  : independ
+                                ? democrat
+                                : independ
                             }
                             alt=""
                           />
@@ -346,20 +379,22 @@ function TabSection() {
                   {percentages.map((item, index) => (
                     <div
                       key={index}
-                      className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${item.party === "republican"
-                        ? "republic"
-                        : item.party === "democratic"
+                      className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
+                        item.party === "republican"
+                          ? "republic"
+                          : item.party === "democratic"
                           ? "democratic"
                           : "independent"
-                        } mt-8 rounded-[8px]`}
+                      } mt-8 rounded-[8px]`}
                     >
                       <div
-                        className={`president-info relative bg-${item.party === "republican"
-                          ? "[#546BED]"
-                          : item.party === "democratic"
+                        className={`president-info relative bg-${
+                          item.party === "republican"
+                            ? "[#546BED]"
+                            : item.party === "democratic"
                             ? "redish"
                             : "whiteColor"
-                          } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
+                        } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                       >
                         <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
                           <img
@@ -378,8 +413,8 @@ function TabSection() {
                               item.party === "republican"
                                 ? republic
                                 : item.party === "democratic"
-                                  ? democrat
-                                  : independ
+                                ? democrat
+                                : independ
                             }
                             alt=""
                           />
@@ -496,20 +531,22 @@ function TabSection() {
                   {percentages.slice(0, 3).map((item, index) => (
                     <div
                       key={index}
-                      className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${item.party === "republican"
-                        ? "republic"
-                        : item.party === "democratic"
+                      className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
+                        item.party === "republican"
+                          ? "republic"
+                          : item.party === "democratic"
                           ? "democratic"
                           : "independent"
-                        } rounded-[8px] mt-8`}
+                      } rounded-[8px] mt-8`}
                     >
                       <div
-                        className={`president-info relative bg-${item.party === "republican"
-                          ? "[#546BED]"
-                          : item.party === "democratic"
+                        className={`president-info relative bg-${
+                          item.party === "republican"
+                            ? "[#546BED]"
+                            : item.party === "democratic"
                             ? "redish"
                             : "whiteColor"
-                          } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
+                        } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                       >
                         <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
                           <img
@@ -528,8 +565,8 @@ function TabSection() {
                               item.party === "republican"
                                 ? republic
                                 : item.party === "democratic"
-                                  ? democrat
-                                  : independ
+                                ? democrat
+                                : independ
                             }
                             alt=""
                           />
@@ -586,20 +623,22 @@ function TabSection() {
                   {percentages.map((item, index) => (
                     <div
                       key={index}
-                      className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${item.party === "republican"
-                        ? "republic"
-                        : item.party === "democratic"
+                      className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
+                        item.party === "republican"
+                          ? "republic"
+                          : item.party === "democratic"
                           ? "democratic"
                           : "independent"
-                        } mt-8 rounded-[8px]`}
+                      } mt-8 rounded-[8px]`}
                     >
                       <div
-                        className={`president-info relative bg-${item.party === "republican"
-                          ? "[#546BED]"
-                          : item.party === "democratic"
+                        className={`president-info relative bg-${
+                          item.party === "republican"
+                            ? "[#546BED]"
+                            : item.party === "democratic"
                             ? "redish"
                             : "whiteColor"
-                          } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
+                        } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                       >
                         <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
                           <img
@@ -618,8 +657,8 @@ function TabSection() {
                               item.party === "republican"
                                 ? republic
                                 : item.party === "democratic"
-                                  ? democrat
-                                  : independ
+                                ? democrat
+                                : independ
                             }
                             alt=""
                           />
@@ -660,7 +699,6 @@ function TabSection() {
                 </>
               )}
             </div>
-
           </div>
           <div
             className={`all-tab-content  ${tabs === 1 ? "block" : "hidden"}`}
@@ -709,10 +747,14 @@ function TabSection() {
           </div>
         </div>
       </div>
-      <div className="w-full" style={{
-        background: 'linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)'
-      }}>
-        <div className="w-10/12 m-auto mt-12" >
+      <div
+        className="w-full"
+        style={{
+          background:
+            "linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)",
+        }}
+      >
+        <div className="w-10/12 m-auto mt-12">
           <Map />
         </div>
       </div>

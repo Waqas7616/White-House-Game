@@ -61,6 +61,7 @@ function ElectoralCollege() {
     setSelectedButtonId(0)
     if (step < previousData?.states?.length - 1) {
       setStep(step + 1);
+      setSelectedButtonId(null);
       console.log("Incrementing step:", step + 1);
     } else if (step === previousData?.states?.length - 1) {
       axios
@@ -190,7 +191,10 @@ function ElectoralCollege() {
         </div>
         <button
           onClick={handleSteps}
-          className="btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 mb-[108px] ] py-2 text-white uppercase rounded-[6px]"
+          className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 mb-[108px] py-2 text-white uppercase rounded-[6px] ${
+            selectedButtonId === null ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
+          disabled={selectedButtonId === null}
         >
           {step === previousData?.states?.length - 1 ? "submit" : "next"}
         </button>
@@ -208,7 +212,7 @@ function ElectoralCollege() {
           <div className="result rounded-[10.65px] bg-[#131A41] px-8 py-5">
             <div className="2020">
               <p className="text-white mb-2 poppins4 text-[20px] md:text-[42.4px]">2020</p>
-              <div className="flex  bg-[#131A41] rounded-[10.65px] mb-[23px]">
+              <div className="flex  bg-[#131A41] rounded-[10.65px] mb-[23px] w-full">
                 <div
                   className={`py-6 rounded-l-[10.65px] px-4 bg-[#5b4fd1]   flex justify-between items-center`}
                   style={{
