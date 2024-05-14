@@ -80,7 +80,7 @@ function Navbar() {
     >
       {isMobile ? (
         <>
-          <div className="logo">
+          <div className="logo ">
             <a href="/">
               <img src={logo} className="w-20" alt="" />
             </a>
@@ -100,7 +100,7 @@ function Navbar() {
         </>
       ) : (
         <>
-          <div className="logo">
+          <div className="logo -mt-1">
             <a href="/">
               <img src={logo} className="w-28" alt="" />
             </a>

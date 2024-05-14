@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
+import text from '../../images/whitehouse.png'
 
 function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
+  const [active,setActive]=useState(0)
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
     hours: 0,
@@ -108,35 +110,65 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
                 />
               </svg>
             </div> */}
-          <div className="languages flex items-center gap-4">
-            <p className="text-white">English</p>
-            <p className="text-white">Español</p>
-          </div>
-          <div className="couter ">
-            <div className="flex items-center gap-4">
-              <p className="flex flex-col text-center poppins5 text-white">
-                {" "}
-                <span className="bg-white p-2 rounded-lg poppins4 w-[45px] text-black">
-                  {timeRemaining.days}
-                </span>{" "}
-                Days
-              </p>{" "}
-              <p className="flex flex-col text-center poppins5 text-white">
-                {" "}
-                <span className="bg-white p-2 poppins4 rounded-lg w-[45px] text-black">
-                  {timeRemaining.hours}
-                </span>{" "}
-                Hours
-              </p>{" "}
-              <p className="flex flex-col text-center poppins5 text-white">
-                {" "}
-                <span className="bg-white p-2 poppins4 rounded-lg w-[45px] text-center text-black">
-                  {timeRemaining.minutes}
-                </span>{" "}
-                Minutes
-              </p>{" "}
+         <div className="languages flex items-center gap-6 bg-[#131841] w-60 h-10 rounded-lg p-1">
+              <button className={` w-full h-full ${
+                  active === 0
+                    ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white"
+                    : "text-[rgba(255,255,255,.6)]"
+                }`}onClick={()=>setActive(0)}>English</button>
+              <button className={` w-full h-full ${
+                  active === 1
+                    ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white"
+                    : "text-[rgba(255,255,255,.6)]"
+                }`} onClick={()=>setActive(1)}>Español</button>
             </div>
-          </div>
+
+<div className="whiteHouseText">
+  <img src={text} className="w-32" alt="" />
+</div>
+
+            <div className="couter ">
+              <div className="flex items-center gap-4">
+                <div className="flex flex-col  poppins5 text-center text-white">
+                  <p className="flex gap-3 text-center">
+                    {" "}
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {Math.floor(timeRemaining.days / 100)}
+                    </span>{" "}
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {Math.floor((timeRemaining.days % 100) / 10)}
+                    </span>{" "}
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {timeRemaining.days % 10}
+                    </span>{" "}
+                  </p>
+                  Days
+                </div> 
+                <div className="  poppins5 text-center text-white">
+                  {/* Hours */}
+                  <p className="flex gap-3">
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {Math.floor(timeRemaining.hours / 10)}
+                    </span>{" "}
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {timeRemaining.hours % 10}
+                    </span>{" "}
+                  </p>
+                  <p>Hours</p>
+                </div>
+                <div className="text-center">
+                  <p className="flex gap-3">
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {Math.floor(timeRemaining.minutes / 10)}
+                    </span>{" "}
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {timeRemaining.minutes % 10}
+                    </span>{" "}
+                  </p>
+                  <p className="poppins5 text-white">Minutes</p>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
       <div
