@@ -15,18 +15,28 @@ export default function VoteGraph() {
 
   const [expendedCandidates, setExpandedCandidates] = useState(false);
   const [id, setId] = useState(1);
-  const [gender, setGender] = useState([
-    { id: 1, name: "Male" },
-    { id: 2, name: "Female" },
-  ]);
+  // const [gender, setGender] = useState([
+  //   { id: 1, name: "Male" },
+  //   { id: 2, name: "Female" },
+  // ]);
+  const [allstates, setAllStates] = useState([]);
+
   const [candidatedata, setCandidateData] = useState([]);
 
   const expendCandidate = () => {
     setExpandedCandidates(!expendedCandidates);
   };
   useEffect(() => {
+    axios
+      .get("https://pankhay.com/thewhitehousegame/public/api/get_user_state")
+      .then((response) => {
+        setAllStates(response.data.user_state);
+      })
+      .catch((error) => {});
+  }, []);
+  useEffect(() => {
     const ParamBody = new URLSearchParams({
-      user_gender_id: id,
+      user_state_id: id,
     });
     axios
       .get(
@@ -110,7 +120,7 @@ export default function VoteGraph() {
           <select
             onChange={(e) => {
               const selectedName = e.target.value;
-              const selectedId = gender.find(
+              const selectedId = allstates.find(
                 (item) => item.name === selectedName
               )?.id;
               handleId(selectedId);
@@ -119,7 +129,7 @@ export default function VoteGraph() {
             id="search"
             className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
           >
-            {gender?.map((item) => (
+            {allstates?.map((item) => (
               <option className="bg-[#000]" key={item.id} value={item?.name}>
                 {item?.name}
               </option>
@@ -141,21 +151,23 @@ export default function VoteGraph() {
               .map((item, index) => (
                 <div
                   key={index}
-                  className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px]  rounded-[8px] mt-8 ${item.party_name === "Republican"
+                  className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px]  rounded-[8px] mt-8 ${
+                    item.party_name === "Republican"
                       ? "republic"
                       : item.party_name === "Democratic"
-                        ? "democratic"
-                        : "independent"
-                    }`}
+                      ? "democratic"
+                      : "independent"
+                  }`}
                 >
                   <div
                     style={{
-                      background: `${item.party_name === "Republican"
+                      background: `${
+                        item.party_name === "Republican"
                           ? "#546BED"
                           : item.party_name === "Democratic"
-                            ? "#ED1C24"
-                            : "white"
-                        }`,
+                          ? "#ED1C24"
+                          : "white"
+                      }`,
                     }}
                     className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
                   >
@@ -176,8 +188,8 @@ export default function VoteGraph() {
                           item.party_name === "Republican"
                             ? republic
                             : item.party_name === "Democratic"
-                              ? democrat
-                              : independ
+                            ? democrat
+                            : independ
                         }
                         alt=""
                       />
@@ -189,12 +201,13 @@ export default function VoteGraph() {
                         <div
                           style={{
                             width: `${item.male_ratio}%`,
-                            background: `${item.party_name === "Republican"
+                            background: `${
+                              item.party_name === "Republican"
                                 ? "#546BED"
                                 : item.party_name === "Democratic"
-                                  ? "#ED1C24"
-                                  : "white"
-                              }`,
+                                ? "#ED1C24"
+                                : "white"
+                            }`,
                           }}
                           className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
                         >
@@ -212,12 +225,13 @@ export default function VoteGraph() {
                         <div
                           style={{
                             width: `${item.female_ratio}%`,
-                            background: `${item.party_name === "Republican"
+                            background: `${
+                              item.party_name === "Republican"
                                 ? "#546BED"
                                 : item.party_name === "Democratic"
-                                  ? "#ED1C24"
-                                  : "white"
-                              }`,
+                                ? "#ED1C24"
+                                : "white"
+                            }`,
                           }}
                           className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
                         >
@@ -258,21 +272,23 @@ export default function VoteGraph() {
             {candidatedata?.data?.candidate_percentages.map((item, index) => (
               <div
                 key={index}
-                className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px]  rounded-[8px] mt-8 ${item.party_name === "Republican"
+                className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px]  rounded-[8px] mt-8 ${
+                  item.party_name === "Republican"
                     ? "republic"
                     : item.party_name === "Democratic"
-                      ? "democratic"
-                      : "independent"
-                  }`}
+                    ? "democratic"
+                    : "independent"
+                }`}
               >
                 <div
                   style={{
-                    background: `${item.party_name === "Republican"
+                    background: `${
+                      item.party_name === "Republican"
                         ? "#546BED"
                         : item.party_name === "Democratic"
-                          ? "#ED1C24"
-                          : "white"
-                      }`,
+                        ? "#ED1C24"
+                        : "white"
+                    }`,
                   }}
                   className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
                 >
@@ -293,8 +309,8 @@ export default function VoteGraph() {
                         item.party_name === "Republican"
                           ? republic
                           : item.party_name === "Democratic"
-                            ? democrat
-                            : independ
+                          ? democrat
+                          : independ
                       }
                       alt=""
                     />
@@ -306,12 +322,13 @@ export default function VoteGraph() {
                       <div
                         style={{
                           width: `${item.male_ratio}%`,
-                          background: `${item.party_name === "Republican"
+                          background: `${
+                            item.party_name === "Republican"
                               ? "#546BED"
                               : item.party_name === "Democratic"
-                                ? "#ED1C24"
-                                : "white"
-                            }`,
+                              ? "#ED1C24"
+                              : "white"
+                          }`,
                         }}
                         className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
                       >
@@ -329,12 +346,13 @@ export default function VoteGraph() {
                       <div
                         style={{
                           width: `${item.female_ratio}%`,
-                          background: `${item.party_name === "Republican"
+                          background: `${
+                            item.party_name === "Republican"
                               ? "#546BED"
                               : item.party_name === "Democratic"
-                                ? "#ED1C24"
-                                : "white"
-                            }`,
+                              ? "#ED1C24"
+                              : "white"
+                          }`,
                         }}
                         className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
                       >
