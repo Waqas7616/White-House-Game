@@ -91,7 +91,7 @@ export default function ByLanguage() {
     const pollingpercentage = Math.round(
       (parseInt(candidate.pollingStation, 10) /
         parseInt(formerTotalVotes, 10)) *
-        100
+      100
     );
 
     return {
@@ -166,7 +166,7 @@ export default function ByLanguage() {
             id="search"
             className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 mt-3 md:mt-0 border-whiteColor w-[226px] sm:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
           >
-           
+
             {byLanguage?.map((item) => (
               <option className="bg-[#000]" key={item.id} value={item?.name}>
                 {item?.name}
@@ -186,23 +186,21 @@ export default function ByLanguage() {
         {language?.data?.party_percentages.slice(0, 3).map((item, index) => (
           <div
             key={index}
-            className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
-              item.party_name === "Republican"
+            className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${item.party_name === "Republican"
                 ? "republic"
                 : item.party_name === "Democratic"
-                ? "democratic"
-                : "independent"
-            } rounded-[8px] my-8`}
+                  ? "democratic"
+                  : "independent"
+              } rounded-[8px] my-8`}
           >
             <div
               style={{
-                background: `${
-                  item.party_name === "Republican"
+                background: `${item.party_name === "Republican"
                     ? "#546BED"
                     : item.party_name === "Democratic"
-                    ? "#ED1C24"
-                    : "white"
-                }`,
+                      ? "#ED1C24"
+                      : "white"
+                  }`,
               }}
               className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-2 xl:gap-10 items-center rounded-l-lg`}
             >
@@ -213,14 +211,14 @@ export default function ByLanguage() {
                     item.party_name === "Republican"
                       ? republic
                       : item.party_name === "Democratic"
-                      ? democrat
-                      : independ
+                        ? democrat
+                        : independ
                   }
                   alt=""
                 />
               </div>
               <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                {item.party_name.split("(")[0]}
+                {item.party_name && item.party_name.split("(")[0]}
               </p>
               {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                 <img
@@ -241,13 +239,12 @@ export default function ByLanguage() {
                 <div
                   style={{
                     width: `${item.percentage}%`,
-                    background: `${
-                      item.party_name === "Democratic"
+                    background: `${item.party_name === "Democratic"
                         ? "#ED1C24"
                         : item.party_name === "Republican"
-                        ? "#546BED"
-                        : "white"
-                    }`,
+                          ? "#546BED"
+                          : "white"
+                      }`,
                   }}
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >

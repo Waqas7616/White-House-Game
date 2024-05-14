@@ -62,7 +62,7 @@ function Map() {
             const maxCount = Math.max(...count);
             const largeIndex = count.indexOf(maxCount);
             const largeParty = parties[largeIndex]
-            return { largeParty, count: maxCount };
+            return { largeParty, count: maxCount, };
         }
         return {}
     }
