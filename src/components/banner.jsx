@@ -29,6 +29,8 @@ function Banner() {
     slidesToShow: 7,
     slideToScroll: 1,
   };
+  
+
   useEffect(() => {
     // Set up an interval to update the countdown every second
     const intervalId = setInterval(() => {
@@ -59,13 +61,13 @@ function Banner() {
 
     // Clean up function to clear the interval when the component unmounts
     return () => clearInterval(intervalId);
-  }, []); // Run this effect only once, when the component mounts
+  }, []);
 
   return (
     <>
       <div className="banner">
         <div className="bg-redish hidden sm:flex">
-          <div className="top-section resp  p-4 flex justify-between w-10/12 m-auto items-center ">
+          <div className="top-section resp  px-4 py-3 flex justify-between w-10/12 m-auto items-center ">
             {/* <div className="social-icons flex gap-3  ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -154,14 +156,17 @@ function Banner() {
               </button>
             </div>
             <div className="whiteHouseText">
-              <img src={text} className="w-32" alt="" />
+              <img src={text} className="w-44" alt="" />
             </div>
             <div className="couter ">
               <div className="flex items-center gap-6">
                 <div className="flex flex-col  poppins5 text-center text-white">
-                  <p className="flex gap-2 text-center">
+                  <p
+                    className="flex gap-2 text-center"
+                    
+                  >
                     {" "}
-                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black" >
                       {Math.floor(timeRemaining.days / 100)}
                     </span>{" "}
                     <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
@@ -175,7 +180,10 @@ function Banner() {
                 </div>
                 <div className="  poppins5 text-center text-white">
                   {/* Hours */}
-                  <p className="flex gap-2">
+                  <p
+                    className="flex gap-2"
+                   
+                  >
                     <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
                       {Math.floor(timeRemaining.hours / 10)}
                     </span>{" "}
@@ -186,7 +194,10 @@ function Banner() {
                   <p>Hours</p>
                 </div>
                 <div className="text-center">
-                  <p className="flex gap-2">
+                  <p
+                    className="flex gap-2"
+                    
+                  >
                     <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
                       {Math.floor(timeRemaining.minutes / 10)}
                     </span>{" "}
