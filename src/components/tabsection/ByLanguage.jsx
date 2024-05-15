@@ -220,7 +220,7 @@ export default function ByLanguage() {
                 />
               </div>
               <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                {item.party_name.split("(")[0]}
+                {item.party_name}
               </p>
               {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                 <img
@@ -252,7 +252,7 @@ export default function ByLanguage() {
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {item.percentage.toFixed(2)}%
+                  {item.percentage}%
                 </div>
               </div>
             </div>

@@ -221,7 +221,7 @@ export default function Ethnicity() {
                 />
               </div>
               <p className="poppins4 w-[30%] sm:w-auto  text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                {item.party_name.split("(")[0]}
+                {item.party_name}
               </p>
               {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                 <img
@@ -253,7 +253,7 @@ export default function Ethnicity() {
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {parseFloat(item.percentage).toFixed(0)}%
+                  {item.percentage}%
                 </div>
               </div>
             </div>

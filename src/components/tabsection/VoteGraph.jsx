@@ -207,7 +207,7 @@ export default function VoteGraph() {
                           </div>
                           <p className="flex-1 text-center">
                             {" "}
-                            {item.male_ratio.toFixed(2)}%
+                            {item.male_ratio}%
                           </p>
                         </div>
                       </div>

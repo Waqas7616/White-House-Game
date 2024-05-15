@@ -218,7 +218,7 @@ export default function EmploymentStatus() {
                 />
               </div>
               <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                {item.party_name.split('(')[0]}
+                {item.party_name}
               </p>
               {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                 <img
