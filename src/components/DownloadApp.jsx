@@ -48,9 +48,9 @@ export default function DownloadApp() {
           </div>
           <div>
             <div className="flex gap-3 sm:gap-8 mx-5 sm:mx-0">
-              <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
+              {/* <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
                 Contact Us
-              </h2>
+              </h2> */}
               <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
                 Privacy Policy
               </h2>
