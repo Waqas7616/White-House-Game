@@ -150,10 +150,11 @@ export default function ByLanguage() {
         <div className="searchBar flex flex-col ">
           <label
             htmlFor="search"
-            className="text-whiteColor text-center poppins4 text-[14px]"
+            className="text-whiteColor text-center poppins4 text-[14px] mb-2"
           >
             Select By Language
           </label>
+          <div className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-2 py-2 rounded-[10px] text-whiteColor">
           <select
             onChange={(e) => {
               const selectedName = e.target.value;
@@ -164,7 +165,7 @@ export default function ByLanguage() {
             }}
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 mt-3 md:mt-0 border-whiteColor w-[226px] sm:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent w-full"
           >
 
             {byLanguage?.map((item) => (
@@ -173,6 +174,7 @@ export default function ByLanguage() {
               </option>
             ))}
           </select>
+          </div>
         </div>
 
         {/* <div className="votes-count flex items-center justify-between">
@@ -249,7 +251,7 @@ export default function ByLanguage() {
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {item.percentage.toFixed(2)}%
+                  {item.percentage}%
                 </div>
               </div>
             </div>

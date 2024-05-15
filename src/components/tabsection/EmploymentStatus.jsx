@@ -120,10 +120,11 @@ export default function EmploymentStatus() {
         <div className="searchBar flex flex-col ">
           <label
             htmlFor="search"
-            className="text-whiteColor text-center poppins4 text-[14px]"
+            className="text-whiteColor text-center poppins4 text-[14px] mb-2"
           >
             Select Employment Status
           </label>
+          <div className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-2 py-2 rounded-[10px] text-whiteColor">
           <select
             onChange={(e) => {
               const selectedName = e.target.value;
@@ -134,7 +135,7 @@ export default function EmploymentStatus() {
             }}
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 mt-3 md:mt-0 border-whiteColor w-[204px] sm:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent w-full"
           >
 
             {Employment?.map((item) => (
@@ -147,6 +148,7 @@ export default function EmploymentStatus() {
               </option>
             ))}
           </select>
+          </div>
         </div>
 
         {/* <div className="searchBar flex flex-col ">
