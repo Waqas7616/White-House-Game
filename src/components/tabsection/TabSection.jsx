@@ -22,9 +22,13 @@ import axios from "axios";
 import StateWinner from "../statewinner/StateWinner";
 
 function TabSection() {
-  const [updatestate, setUpdateState] = useState([]);
+  const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
+
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(1);
+  const [stats, setStats] = useState([]);
+  const [president, setPresident] = useState();
+  const [vicePresident, setVicePresident] = useState();
 
   useEffect(() => {
     axios
@@ -48,7 +52,8 @@ function TabSection() {
         }
       )
       .then((res) => {
-        setUpdateState("Response:", res.data);
+        setStats(res.data);
+        console.log("statsssss", stats);
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -57,7 +62,7 @@ function TabSection() {
   const handleId = (selectedId) => {
     setId(selectedId);
   };
-  // setPresident(state.filter((item)=>itemm.option==='president'))
+
   const [tabs, setTabs] = useState(0);
   const [expandedVotes, setExpandedVotes] = useState(false);
   const [viceVotes, setViceVotes] = useState(false);
@@ -85,6 +90,23 @@ function TabSection() {
     percentage: Math.round((candidate.votes / totalVotes) * 100),
   }));
   // console.log("all data", percentages);
+
+  useEffect(() => {
+    if (stats?.data) {
+      setPresident(
+        stats?.data?.candidate_percentages.filter(
+          (item) => item.position === "president"
+        )
+      );
+      setVicePresident(
+        stats?.data?.candidate_percentages.filter(
+          (item) => item.position === "vice_president"
+        )
+      );
+    }
+  }, [id]);
+  console.log("takra sha", president);
+  console.log("tinga ka", vicePresident);
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto resp ">
@@ -171,7 +193,7 @@ function TabSection() {
               }`}
               onClick={() => setTabs(9)}
             >
-              Millitary
+              Military
             </h2>
           </div>
         </div>
@@ -190,8 +212,8 @@ function TabSection() {
             </p>
             <div className="search-section flex flex-col  sm:flex-row  justify-between">
               <div className="badge flex items-center justify-between">
-                <img src={badge} alt="" />
-                <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
+                <img className="w-8 h-8 lg:w-14 lg:h-14 object-cover" src={badge} alt="" />
+                <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[34px] ms-3">
                   President
                 </h2>
               </div>
@@ -238,9 +260,9 @@ function TabSection() {
                   id="search"
                   className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px]  md:ml-0 px-3 py-2 rounded-[10px] text-whiteColor"
                 >
-                  <option className="bg-[#000]" value="">
+                  {/* <option className="bg-[#000]" value="">
                     Select All States
-                  </option>
+                  </option> */}
                   {allstates?.map((item) => (
                     <option
                       className="bg-[#000]"
@@ -254,7 +276,7 @@ function TabSection() {
               </div>
 
               <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
-                <img src={ballot} alt="ballot" />
+                <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
                   Votes : {totalVotes}
                 </h2>
@@ -265,63 +287,73 @@ function TabSection() {
             <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
               {!expandedVotes ? (
                 <>
-                  {percentages.slice(0, 3).map((item, index) => (
-                    <div
-                      key={index}
-                      className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
-                        item.party === "republican"
-                          ? "republic"
-                          : item.party === "democratic"
-                          ? "democratic"
-                          : "independent"
-                      } rounded-[8px] mt-8`}
-                    >
+                  {president &&
+                    president?.slice(0,3).map((item, index) => (
                       <div
-                        className={`president-info relative bg-${
-                          item.party === "republican"
-                            ? "[#546BED]"
-                            : item.party === "democratic"
-                            ? "redish"
-                            : "whiteColor"
-                        } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
+                        key={index}
+                        className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
+                          item.party_name === "Republican"
+                            ? "republic"
+                            : item.party_name === "Democratic"
+                            ? "democratic"
+                            : "independent"
+                        } rounded-[8px] mt-8`}
                       >
-                        <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
-                          <img
-                            className="w-full h-full object-cover"
-                            src={kennedy}
-                            alt=""
-                          />
+                        <div
+                          className={`president-info relative bg-${
+                            item.party_name === "Republican"
+                              ? "[#546BED]"
+                              : item.party_name === "Democratic"
+                              ? "redish"
+                              : "whiteColor"
+                          } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
+                        >
+                          <div className=" overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
+                            <img
+                              className="w-full h-full object-cover"
+                              src={`${imageUrl}${item.candidate_image}`}
+                              alt=""
+                            />
+                          </div>
+                          <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+                            {item.candidate_name}
+                          </p>
+                          <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
+                            <img
+                              className="w-[20px] sm:w-auto"
+                              src={
+                                item.party_name === "Depublican"
+                                  ? republic
+                                  : item.party_name === "Democratic"
+                                  ? democrat
+                                  : independ
+                              }
+                              alt=""
+                            />
+                          </div>
                         </div>
-                        <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                          {item.name}
-                        </p>
-                        <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
-                          <img
-                            className="w-[20px] sm:w-auto"
-                            src={
-                              item.party === "republican"
-                                ? republic
-                                : item.party === "democratic"
-                                ? democrat
-                                : independ
-                            }
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <div className="president-votes w-3/4">
-                        <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
+                        <div className="president-votes w-3/4">
+                          <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
                           <div
-                            style={{ width: `${item.percentage}%` }}
-                            className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
-                          >
-                            {" "}
-                            {item.percentage}%
+                    style={{
+                      width: `${item.percentage}%`,
+                      background: `${
+                        item.party_name === "Republican"
+                          ? "#546BED"
+                          : item.party_name === "Democratic"
+                          ? "#ED1C24"
+                          : "white"
+                      }`,
+                    }}
+                    className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
+                  >
+                              {" "}
+                              {item.percentage}%
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
 
                   {/* <div className="voteCount flex gap-1 sm:gap-5 items-center h-[60px] mt-8  bg-[#ED1C244D] rounded-l-lg">
                   <div className="president-info relative bg-redish px-1 sm:px-4 w-2/4 sm:w-1/4 h-full flex justify-between  items-center rounded-l-lg">
@@ -357,43 +389,43 @@ function TabSection() {
                 </>
               ) : (
                 <>
-                  {percentages.map((item, index) => (
+                  {president && president?.map((item, index) => (
                     <div
                       key={index}
                       className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
-                        item.party === "republican"
+                        item.party_name === "Republican"
                           ? "republic"
-                          : item.party === "democratic"
+                          : item.party_name === "Democratic"
                           ? "democratic"
                           : "independent"
                       } mt-8 rounded-[8px]`}
                     >
                       <div
                         className={`president-info relative bg-${
-                          item.party === "republican"
+                          item.party_name === "Republican"
                             ? "[#546BED]"
-                            : item.party === "democratic"
+                            : item.party_name === "Democratic"
                             ? "redish"
                             : "whiteColor"
                         } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                       >
-                        <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
+                        <div className=" overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
                           <img
                             className="w-full h-full object-cover"
-                            src={kennedy}
+                            src={`${imageUrl}${item.candidate_image}`}
                             alt=""
                           />
                         </div>
                         <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                          {item.name}
+                          {item.candidate_name}
                         </p>
                         <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                           <img
                             className="w-[20px] sm:w-auto"
                             src={
-                              item.party === "republican"
+                              item.party_name === "Republican"
                                 ? republic
-                                : item.party === "democratic"
+                                : item.party_name === "Democratic"
                                 ? democrat
                                 : independ
                             }
@@ -403,10 +435,19 @@ function TabSection() {
                       </div>
                       <div className="president-votes w-3/4">
                         <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
-                          <div
-                            style={{ width: `${item.percentage}%` }}
-                            className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] w-[85%]"
-                          >
+                        <div
+                    style={{
+                      width: `${item.percentage}%`,
+                      background: `${
+                        item.party_name === "Republican"
+                          ? "#546BED"
+                          : item.party_name === "Democratic"
+                          ? "#ED1C24"
+                          : "white"
+                      }`,
+                    }}
+                    className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
+                  >
                             {" "}
                             {item.percentage}%
                           </div>
@@ -441,8 +482,8 @@ function TabSection() {
 
             <div className="search-section flex flex-col sm:items-none  sm:flex-row  justify-between mt-16">
               <div className="badge flex items-center justify-between">
-                <img src={badge} alt="" />
-                <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
+                <img className="w-8 h-8 lg:w-14 lg:h-14 object-cover" src={badge} alt="" />
+                <h2 className="poppins6 text-whiteColor text-nowrap md:text-[23px] lg:text-[30px] ms-3">
                   Vice President
                 </h2>
               </div>
@@ -478,13 +519,18 @@ function TabSection() {
                   Select All States
                 </label>
                 <select
+                onChange={(e) => {
+                  const selectedName = e.target.value;
+                  const selectedId = allstates.find(
+                    (item) => item.name === selectedName
+                  )?.id;
+                  handleId(selectedId);
+                }}
                   name="states"
                   id="search"
                   className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor  md:ml-0 w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
                 >
-                  <option className="bg-[#000]" value="">
-                    Select All States
-                  </option>
+                  
                   {allstates?.map((item) => (
                     <option
                       className="bg-[#000]"
@@ -498,7 +544,7 @@ function TabSection() {
               </div>
 
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
-                <img src={ballot} alt="ballot" />
+                <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
                   Votes : {totalVotes}
                 </h2>
@@ -509,43 +555,43 @@ function TabSection() {
             <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
               {!viceVotes ? (
                 <>
-                  {percentages.slice(0, 3).map((item, index) => (
+                  {vicePresident && vicePresident?.slice(0, 3).map((item, index) => (
                     <div
                       key={index}
                       className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
-                        item.party === "republican"
+                        item.party_name === "Republican"
                           ? "republic"
-                          : item.party === "democratic"
+                          : item.party_name === "Democratic"
                           ? "democratic"
                           : "independent"
                       } rounded-[8px] mt-8`}
                     >
                       <div
                         className={`president-info relative bg-${
-                          item.party === "republican"
+                          item.party_name === "Republican"
                             ? "[#546BED]"
-                            : item.party === "democratic"
+                            : item.party_name === "Democratic"
                             ? "redish"
                             : "whiteColor"
                         } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                       >
-                        <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
+                        <div className="overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
                           <img
                             className="w-full h-full object-cover"
-                            src={kennedy}
+                            src={`${imageUrl}${item.candidate_image}`}
                             alt=""
                           />
                         </div>
                         <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                          {item.name}
+                          {item.candidate_name}
                         </p>
                         <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                           <img
                             className="w-[20px] sm:w-auto"
                             src={
-                              item.party === "republican"
+                              item.party_name === "Republican"
                                 ? republic
-                                : item.party === "democratic"
+                                : item.party_name === "Democratic"
                                 ? democrat
                                 : independ
                             }
@@ -555,10 +601,19 @@ function TabSection() {
                       </div>
                       <div className="president-votes w-3/4">
                         <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
-                          <div
-                            style={{ width: `${item.percentage}%` }}
-                            className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
-                          >
+                        <div
+                    style={{
+                      width: `${item.percentage}%`,
+                      background: `${
+                        item.party_name === "Republican"
+                          ? "#546BED"
+                          : item.party_name === "Democratic"
+                          ? "#ED1C24"
+                          : "white"
+                      }`,
+                    }}
+                    className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
+                  >
                             {" "}
                             {item.percentage}%
                           </div>
@@ -601,43 +656,43 @@ function TabSection() {
                 </>
               ) : (
                 <>
-                  {percentages.map((item, index) => (
+                  {vicePresident && vicePresident?.map((item, index) => (
                     <div
                       key={index}
                       className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
-                        item.party === "republican"
+                        item.party_name === "Republican"
                           ? "republic"
-                          : item.party === "democratic"
+                          : item.party_name === "Democratic"
                           ? "democratic"
                           : "independent"
-                      } mt-8 rounded-[8px]`}
+                      } rounded-[8px] mt-8`}
                     >
                       <div
                         className={`president-info relative bg-${
-                          item.party === "republican"
+                          item.party_name === "Republican"
                             ? "[#546BED]"
-                            : item.party === "democratic"
+                            : item.party_name === "Democratic"
                             ? "redish"
                             : "whiteColor"
                         } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                       >
-                        <div className=" overflow-hidden overflow-y-hidden mb-[20px] md:mb-[30px] ">
+                        <div className="overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
                           <img
                             className="w-full h-full object-cover"
-                            src={kennedy}
+                            src={`${imageUrl}${item.candidate_image}`}
                             alt=""
                           />
                         </div>
                         <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                          {item.name}
+                          {item.candidate_name}
                         </p>
                         <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                           <img
-                            className=""
+                            className="w-[20px] sm:w-auto"
                             src={
-                              item.party === "republican"
+                              item.party_name === "Republican"
                                 ? republic
-                                : item.party === "democratic"
+                                : item.party_name === "Democratic"
                                 ? democrat
                                 : independ
                             }
@@ -647,10 +702,19 @@ function TabSection() {
                       </div>
                       <div className="president-votes w-3/4">
                         <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
-                          <div
-                            style={{ width: `${item.percentage}%` }}
-                            className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] w-[85%]"
-                          >
+                        <div
+                    style={{
+                      width: `${item.percentage}%`,
+                      background: `${
+                        item.party_name === "Republican"
+                          ? "#546BED"
+                          : item.party_name === "Democratic"
+                          ? "#ED1C24"
+                          : "white"
+                      }`,
+                    }}
+                    className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
+                  >
                             {" "}
                             {item.percentage}%
                           </div>
@@ -728,6 +792,7 @@ function TabSection() {
           </div>
         </div>
       </div>
+      
       <div
         className="w-full py-8"
         style={{
@@ -735,19 +800,23 @@ function TabSection() {
             "linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)",
         }}
       >
+        <div className="flex justify-center my-20 ">
+            <h2 className="text-white font-poppins font-black text-[14px] lg:text-[35px]">270 to win</h2>
+          </div>
         <div className="flex w-9/12 m-auto my-5">
+          
           <div className="flex-1">
             {" "}
-            <h3 className="text-center text-white poppins5 mb-2 text-[9px] lg:text-[26px]">Democratic</h3>
+            <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">Democratic</h3>
             <div className="dem py-5  bg-redish"></div>
           </div>
           <div className="flex-1">
             {" "}
-            <h3 className="text-center text-white poppins5 mb-2 text-[9px] lg:text-[26px]">Republican</h3>
+            <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">Republican</h3>
             <div className="rep py-5 bg-blue-800"></div>
           </div>
           <div className="flex-1">
-            <h3 className="text-center text-white poppins5 mb-2 text-[9px] lg:text-[26px]">
+            <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">
               Independent
             </h3>
             <div className="ind py-5  bg-white"></div>

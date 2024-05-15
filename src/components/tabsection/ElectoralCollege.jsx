@@ -54,27 +54,31 @@ export default function ElectoralCollege() {
       <p className="poppins5 text-whiteColor mb-4 text-center">
         Electoral College predictions
       </p>
-      <p className="text-center poppins3 text-whiteColor text-[14px]">
-        538 representatives elect the US President 270 needed to win
+      <p className="text-center poppins3 text-whiteColor text-[16px] pt-4">
+        538 representatives elect the US President
+      </p>
+      <p className="text-center poppins3 text-whiteColor text-[16px] pt-2">
+         270 are needed to win
       </p>
       <div className="search-section flex flex-col  sm:flex-row  justify-between mt-12">
         <div className="badge flex items-center justify-between">
-          <img src={badge} alt="" />
+          <img className="w-8 h-8 lg:w-14 lg:h-14 object-cover " src={badge} alt="" />
           <h2 className="poppins6 text-whiteColor text-[20px] md:text-[25px] lg:text-[36px] ms-3">
             President
           </h2>
         </div>
-        <div className="searchBar flex flex-col items-center ">
+        <div className="searchBar flex flex-col items-center mb-0 lg:mb-7">
           <label
             htmlFor="search "
-            className="text-whiteColor text-center poppins4 text-[14px]"
+            className="text-whiteColor text-center poppins4 text-[14px] mb-2"
           >
             Select State
           </label>
+          <div  className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[230px] lg:w-[420px] px-2 py-2 rounded-[10px] text-whiteColor">
           <select
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[230px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent w-full"
           >
             <option className="bg-[#000] " value="">
               Select State
@@ -86,9 +90,10 @@ export default function ElectoralCollege() {
               Houston
             </option>
           </select>
+          </div>
         </div>
         <div className="votes-count flex items-center justify-between mt-5 md:mt-0">
-          <img src={ballot} alt="ballot" />
+          <img className="w-6 h-6 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
           <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
             Votes : {totalVotes}
           </h2>

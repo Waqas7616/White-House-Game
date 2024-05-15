@@ -11,8 +11,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CustomSlider from "./slider/Slider";
 import Navbar from "./Navbar";
+import text from "../images/whitehouse.png";
 
 function Banner() {
+  const [active, setActive] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+  });
+
   const settings = {
     dots: false,
     arrow: true,
@@ -21,13 +29,44 @@ function Banner() {
     slidesToShow: 7,
     slideToScroll: 1,
   };
+  useEffect(() => {
+    // Set up an interval to update the countdown every second
+    const intervalId = setInterval(() => {
+      // Get the target date (November 5, 2024 00:00:00) in milliseconds
+      const countDownDate = new Date("November 5, 2024 00:00:00").getTime();
+      // Get the current time in milliseconds
+      const now = new Date().getTime();
+      // Calculate the difference between the target date and the current time
+      const distance = countDownDate - now;
+
+      // If there is time remaining
+      if (distance > 0) {
+        // Calculate days, hours, and minutes remaining
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        // Update the state with the time remaining
+        setTimeRemaining({ days, hours, minutes });
+      } else {
+        // If the countdown has reached zero, clear the interval
+        clearInterval(intervalId);
+        // Set the time remaining to 0
+        setTimeRemaining({ days: 0, hours: 0, minutes: 0 });
+      }
+    }, 1000); // Update every 1000 milliseconds (1 second)
+
+    // Clean up function to clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []); // Run this effect only once, when the component mounts
 
   return (
     <>
       <div className="banner">
         <div className="bg-redish hidden sm:flex">
           <div className="top-section resp  p-4 flex justify-between w-10/12 m-auto items-center ">
-            <div className="social-icons flex gap-3  ">
+            {/* <div className="social-icons flex gap-3  ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -91,24 +130,72 @@ function Banner() {
                   fill="white"
                 />
               </svg>
+            </div> */}
+            <div className="languages flex items-center gap-6 bg-[#131841] w-60 h-10 rounded-[5px] p-1">
+              <button
+                className={` w-full h-full ${
+                  active === 0
+                    ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white"
+                    : "text-[rgba(255,255,255,.6)]"
+                }`}
+                onClick={() => setActive(0)}
+              >
+                English
+              </button>
+              <button
+                className={` w-full h-full ${
+                  active === 1
+                    ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white"
+                    : "text-[rgba(255,255,255,.6)]"
+                }`}
+                onClick={() => setActive(1)}
+              >
+                Español
+              </button>
             </div>
-            <div className="languages flex items-center gap-4">
-              <p className="text-white">ENGLISH</p>
-              <p className="text-white">ESPANOL</p>
-              <div className="mail flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="11"
-                  viewBox="0 0 14 11"
-                  fill="none"
-                >
-                  <path
-                    d="M12.25 0H1.75C1.28602 0.00048128 0.841192 0.179423 0.513111 0.497563C0.18503 0.815702 0.00049632 1.24705 0 1.69697V8.9697C0.00049632 9.41961 0.18503 9.85097 0.513111 10.1691C0.841192 10.4872 1.28602 10.6662 1.75 10.6667H12.25C12.714 10.6662 13.1588 10.4872 13.4869 10.1691C13.815 9.85097 13.9995 9.41961 14 8.9697V1.69697C13.9995 1.24705 13.815 0.815702 13.4869 0.497563C13.1588 0.179423 12.714 0.00048128 12.25 0ZM11.8069 2.80697L7.30688 6.20091C7.21912 6.26706 7.11115 6.30297 7 6.30297C6.88885 6.30297 6.78088 6.26706 6.69312 6.20091L2.19313 2.80697C2.14025 2.76825 2.09585 2.71973 2.06248 2.66423C2.02911 2.60873 2.00746 2.54735 1.99877 2.48366C1.99007 2.41996 1.99452 2.35523 2.01185 2.29323C2.02919 2.23122 2.05905 2.17317 2.09972 2.12245C2.14039 2.07173 2.19104 2.02935 2.24874 1.99778C2.30645 1.96621 2.37004 1.94608 2.43584 1.93855C2.50164 1.93102 2.56832 1.93624 2.63201 1.95392C2.69571 1.9716 2.75515 2.00137 2.80687 2.04152L7 5.20394L11.1931 2.04152C11.298 1.96473 11.4298 1.93106 11.56 1.94777C11.6903 1.96448 11.8085 2.03024 11.8892 2.13083C11.9698 2.23141 12.0064 2.35873 11.991 2.48526C11.9756 2.61179 11.9095 2.72736 11.8069 2.80697Z"
-                    fill="white"
-                  />
-                </svg>
-                <p className="text-white">thewhitehousegame@gmail.com</p>
+            <div className="whiteHouseText">
+              <img src={text} className="w-32" alt="" />
+            </div>
+            <div className="couter ">
+              <div className="flex items-center gap-6">
+                <div className="flex flex-col  poppins5 text-center text-white">
+                  <p className="flex gap-2 text-center">
+                    {" "}
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {Math.floor(timeRemaining.days / 100)}
+                    </span>{" "}
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {Math.floor((timeRemaining.days % 100) / 10)}
+                    </span>{" "}
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {timeRemaining.days % 10}
+                    </span>{" "}
+                  </p>
+                  Days
+                </div>
+                <div className="  poppins5 text-center text-white">
+                  {/* Hours */}
+                  <p className="flex gap-2">
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {Math.floor(timeRemaining.hours / 10)}
+                    </span>{" "}
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {timeRemaining.hours % 10}
+                    </span>{" "}
+                  </p>
+                  <p>Hours</p>
+                </div>
+                <div className="text-center">
+                  <p className="flex gap-2">
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {Math.floor(timeRemaining.minutes / 10)}
+                    </span>{" "}
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                      {timeRemaining.minutes % 10}
+                    </span>{" "}
+                  </p>
+                  <p className="poppins5 text-white">Minutes</p>
+                </div>
               </div>
             </div>
           </div>
@@ -125,10 +212,18 @@ function Banner() {
             </p>
             <div className="buttons mt-16 flex gap-4">
               <button className="border-0">
-                <img className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]" src={ios} alt="" />
+                <img
+                  className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]"
+                  src={ios}
+                  alt=""
+                />
               </button>
               <button className="border-0">
-                <img className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]" src={playstore} alt="" />
+                <img
+                  className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]"
+                  src={playstore}
+                  alt=""
+                />
               </button>
             </div>
           </div>

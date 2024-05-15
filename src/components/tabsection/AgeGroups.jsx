@@ -56,54 +56,54 @@ export default function AgeGroups() {
     setId(selectedId);
   };
 
-  const candidateData = [
-    {
-      name: "Kennedy",
-      party: "independent",
-      votes: "100",
-      male: "83",
-      female: "17",
-    },
-    {
-      name: "Obama",
-      party: "republican",
-      votes: "140",
-      male: "90",
-      female: "50",
-    },
-    {
-      name: "Sanders",
-      party: "democratic",
-      votes: "130",
-      male: "110",
-      female: "20",
-    },
-  ];
-  const totalVotes = 345;
-  const formerTotalVotes = 531;
-  const percentages = candidateData.map((candidate, index) => {
-    const currentpercentage = Math.round(
-      (parseInt(candidate.votes, 10) / parseInt(totalVotes, 10)) * 100
-    );
-    const malepercentage = Math.round(
-      (parseInt(candidate.lastVotes, 10) / parseInt(formerTotalVotes, 10)) * 100
-    );
-    const femalepercentage = Math.round(
-      (parseInt(candidate.pollingStation, 10) /
-        parseInt(formerTotalVotes, 10)) *
-        100
-    );
+  // const candidateData = [
+  //   {
+  //     name: "Kennedy",
+  //     party: "independent",
+  //     votes: "100",
+  //     male: "83",
+  //     female: "17",
+  //   },
+  //   {
+  //     name: "Obama",
+  //     party: "republican",
+  //     votes: "140",
+  //     male: "90",
+  //     female: "50",
+  //   },
+  //   {
+  //     name: "Sanders",
+  //     party: "democratic",
+  //     votes: "130",
+  //     male: "110",
+  //     female: "20",
+  //   },
+  // ];
+  // const totalVotes = 345;
+  // const formerTotalVotes = 531;
+  // const percentages = candidateData.map((candidate, index) => {
+  //   const currentpercentage = Math.round(
+  //     (parseInt(candidate.votes, 10) / parseInt(totalVotes, 10)) * 100
+  //   );
+  //   const malepercentage = Math.round(
+  //     (parseInt(candidate.lastVotes, 10) / parseInt(formerTotalVotes, 10)) * 100
+  //   );
+  //   const femalepercentage = Math.round(
+  //     (parseInt(candidate.pollingStation, 10) /
+  //       parseInt(formerTotalVotes, 10)) *
+  //       100
+  //   );
 
-    return {
-      name: candidate.name,
-      party: candidate.party,
-      votes: candidate.votes,
-      malepercentage: malepercentage,
-      currentpercentage: currentpercentage,
-      femalepercentage: femalepercentage,
-      percentageDifference: malepercentage - femalepercentage,
-    };
-  });
+  //   return {
+  //     name: candidate.name,
+  //     party: candidate.party,
+  //     votes: candidate.votes,
+  //     malepercentage: malepercentage,
+  //     currentpercentage: currentpercentage,
+  //     femalepercentage: femalepercentage,
+  //     percentageDifference: malepercentage - femalepercentage,
+  //   };
+  // });
   return (
     <div>
       <div>
@@ -150,10 +150,11 @@ export default function AgeGroups() {
           <div className="searchBar flex flex-col items-center ">
             <label
               htmlFor="search"
-              className="text-whiteColor text-center poppins4 text-[14px]"
+              className="text-whiteColor text-center poppins4 text-[14px] mb-2"
             >
               Select Age Group
             </label>
+            <div className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-2 py-2 rounded-[10px] text-whiteColor">
             <select
               onChange={(e) => {
                 const selectedName = e.target.value;
@@ -165,7 +166,7 @@ export default function AgeGroups() {
               }}
               name="states"
               id="search"
-              className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+              className="bg-transparent w-full"
             >
               {/* <option className="bg-[#000]" value="">
                 Select Age Group
@@ -176,6 +177,7 @@ export default function AgeGroups() {
                 </option>
               ))}
             </select>
+            </div>
           </div>
 
           <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
@@ -191,27 +193,25 @@ export default function AgeGroups() {
         <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
           <>
             {ageGroupPer?.data?.party_percentages
-              .slice(0, 3)
+
               .map((item, index) => (
                 <div
                   key={index}
-                  className={`voteCount ${
-                    item.party_name === "Republican"
-                      ? "republic"
-                      : item.party_name === "Democratic"
+                  className={`voteCount ${item.party_id === 2
+                    ? "republic"
+                    : item.party_id === 1
                       ? "democratic"
                       : "independent"
-                  } flex gap-1 sm:gap-5 items-center h-[60px] rounded-[8px] my-8`}
+                    } flex gap-1 sm:gap-5 items-center h-[60px] rounded-[8px] my-8`}
                 >
                   <div
                     style={{
-                      background: `${
-                        item.party_name === "Republican"
-                          ? "#546BED"
-                          : item.party_name === "Democratic"
+                      background: `${item.party_id === 2
+                        ? "#546BED"
+                        : item.party_id === 1
                           ? "#ED1C24"
                           : "white"
-                      }`,
+                        }`,
                     }}
                     className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
                   >
@@ -219,17 +219,17 @@ export default function AgeGroups() {
                       <img
                         className="w-[20px] sm:w-auto"
                         src={
-                          item.party_name === "Republican"
+                          item.party_id === 2
                             ? republic
-                            : item.party_name === "Democratic"
-                            ? democrat
-                            : independ
+                            : item.party_id === 1
+                              ? democrat
+                              : independ
                         }
                         alt=""
                       />
                     </div>
                     <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
-                      {Math.round(item.percentage)}%
+                      {item.percentage}%
                     </p>
                     <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
                       <img
@@ -245,13 +245,12 @@ export default function AgeGroups() {
                         <div
                           style={{
                             width: `${item.male_ratio}%`,
-                            background: `${
-                              item.party_name === "Republican"
-                                ? "#546BED"
-                                : item.party_name === "Democratic"
+                            background: `${item.party_id === 2
+                              ? "#546BED"
+                              : item.party_id === 1
                                 ? "#ED1C24"
                                 : "white"
-                            }`,
+                              }`,
                           }}
                           className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
                         >
@@ -269,13 +268,12 @@ export default function AgeGroups() {
                         <div
                           style={{
                             width: `${item.female_ratio}%`,
-                            background: `${
-                              item.party_name === "Republican"
-                                ? "#546BED"
-                                : item.party_name === "Democratic"
+                            background: `${item.party_id === 2
+                              ? "#546BED"
+                              : item.party_id === 1
                                 ? "#ED1C24"
                                 : "white"
-                            }`,
+                              }`,
                           }}
                           className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
                         >
