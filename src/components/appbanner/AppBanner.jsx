@@ -124,7 +124,7 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
             </div>
 
 <div className="whiteHouseText">
-  <img src={text} className="w-32" alt="" />
+  <img src={text} className="w-44" alt="" />
 </div>
 
             <div className="couter ">

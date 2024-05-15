@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  
+  const [active, setActive] = useState(0);
 
   // const login = localStorage.getItem("email");
   // const token = localStorage.getItem("token");
@@ -33,17 +33,19 @@ function Navbar() {
   };
   // const logOut = () => {
   //   localStorage.clear("token", "email");
-  
+
   // };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("email") && localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("email") && localStorage.getItem("token")
+  );
 
   const logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
-    localStorage.removeItem('id');
-    setIsLoggedIn(false); 
-    navigate('/login')// Session expire karne ke baad isLoggedIn state ko false kar denge
+    localStorage.removeItem("id");
+    setIsLoggedIn(false);
+    navigate("/login"); // Session expire karne ke baad isLoggedIn state ko false kar denge
   };
 
   const [isMobile, setIsMobile] = useState(false);
@@ -75,8 +77,9 @@ function Navbar() {
 
   return (
     <div
-      className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex  ${toggle ? "flex-col rounded-lg relative" : "rounded-[100px] w-10/12 "
-        }  items-center justify-between`}
+      className={`navbar  m-auto bg-[#41414163] backdrop-blur-[6px] resp px-4 mt-4 py-1 flex  ${
+        toggle ? "flex-col rounded-lg relative" : "rounded-[100px] w-10/12 "
+      }  items-center justify-between`}
     >
       {isMobile ? (
         <>
@@ -109,8 +112,9 @@ function Navbar() {
             <Link to={"/"}>
               {" "}
               <li
-                className={`nav-link poppins4 hover:text-redish ${location.pathname === "/" ? "active" : ""
-                  } cursor-pointer hover:font-[500] text-whiteColor`}
+                className={`nav-link poppins4 hover:text-redish ${
+                  location.pathname === "/" ? "active" : ""
+                } cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Home
               </li>
@@ -118,8 +122,9 @@ function Navbar() {
             <Link to={"/about"}>
               {" "}
               <li
-                className={`nav-link poppins4 hover:text-redish ${location.pathname === "/about" ? "active" : ""
-                  }  cursor-pointer hover:font-[500] text-whiteColor`}
+                className={`nav-link poppins4 hover:text-redish ${
+                  location.pathname === "/about" ? "active" : ""
+                }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 About Us
               </li>
@@ -127,8 +132,9 @@ function Navbar() {
             <Link to={"/contact"}>
               {" "}
               <li
-                className={`nav-link poppins4 hover:text-redish ${location.pathname === "/contact" ? "active" : ""
-                  }  cursor-pointer hover:font-[500] text-whiteColor`}
+                className={`nav-link poppins4 hover:text-redish ${
+                  location.pathname === "/contact" ? "active" : ""
+                }  cursor-pointer hover:font-[500] text-whiteColor`}
               >
                 Contact Us
               </li>
@@ -136,8 +142,9 @@ function Navbar() {
             <li
               // onClick={() => handleLinks(3)}
               onClick={handlePredictClick}
-              className={`nav-link poppins4 hover:text-redish ${location.pathname === "/predict" ? "active" : ""
-                }  cursor-pointer hover:font-[500] text-whiteColor`}
+              className={`nav-link poppins4 hover:text-redish ${
+                location.pathname === "/predict" ? "active" : ""
+              }  cursor-pointer hover:font-[500] text-whiteColor`}
             >
               Predict
             </li>
@@ -148,21 +155,31 @@ function Navbar() {
               </div>
             </div>
           </div>
-          <div className="download-button flex items-center justify-between gap-10">
+          <div
+            className={` ${
+              !isLoggedIn
+                ? "languages flex items-center gap-2 bg-[#131841] w-60 h-10 rounded-[5px] p-1"
+                : ""
+            }`}
+          >
             {!isLoggedIn ? (
-              <div>
-                <h2
-                  // onClick={() => navigate("/LogIn")}
-                  onClick={() => navigate("/LogIn")}
-                  className={` poppins4    cursor-pointer hover:font-[500]  bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px]`}
-                >
-                  Log In
-                </h2>
-              </div>
+              <button
+                // onClick={() => navigate("/LogIn")}
+                onClick={() => navigate("/LogIn")}
+                className={` w-full h-full text-center cursor-pointer border-[1px] border-transparent                   
+                  hover:bg-[#1A2250] hover:rounded-[5px] hover:border-[1px] hover:border-[rgba(255,255,255,.2)] hover:text-white
+                  text-[rgba(255,255,255,.6)]
+                  `}
+              >
+                Log In
+              </button>
             ) : (
               <div>
-                <h2 onClick={logOut}
-                  className={` poppins4    cursor-pointer hover:font-[500]  bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px]`}
+                <h2
+                  onClick={logOut}
+                  className={` w-full h-full text-center cursor-pointer border-[1px] border-transparent bg-[#131841] px-6 py-2                   
+                  hover:bg-[#1A2250] rounded-[5px] hover:border-[1px] hover:border-[rgba(255,255,255,.2)] hover:text-white
+                  text-[rgba(255,255,255,.6)]`}
                 >
                   Log Out
                 </h2>
@@ -192,7 +209,15 @@ function Navbar() {
                 strokeLinejoin="round"
               />
             </svg> */}
-            <button className={`bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px] ${!isLoggedIn ? "block":"hidden"}`} onClick={()=>navigate('/signup')}>
+            <button
+              className={`w-full h-full ${
+                !isLoggedIn ? "block" : "hidden"
+              } border-[1px] border-transparent                    
+                      hover:bg-[#1A2250] hover:rounded-[5px] hover:border-[1px] hover:border-[rgba(255,255,255,.2)] hover:text-white
+                      text-[rgba(255,255,255,.6)]
+                  `}
+              onClick={() => navigate("/signup")}
+            >
               Sign Up
             </button>
           </div>
@@ -227,12 +252,13 @@ function Navbar() {
             >
               Predict
             </li>
-            {showModal &&
+            {showModal && (
               <div className="relative flex items-center justify-center w-full h-full left-0 -top-52  z-50 ">
                 <div className=" z-50 modal-container ">
                   <Version />
                 </div>
-              </div>}
+              </div>
+            )}
 
             <Link to={"/contact"}>
               <li
@@ -275,7 +301,7 @@ function Navbar() {
                 Login
               </h2>
             </div> */}
-            {!isLoggedIn  ? (
+            {!isLoggedIn ? (
               <div>
                 <h2
                   onClick={() => navigate("/LogIn")}
@@ -287,14 +313,15 @@ function Navbar() {
               </div>
             ) : (
               <div>
-                <h2 onClick={logOut}
+                <h2
+                  onClick={logOut}
                   className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
                 >
                   Logout
                 </h2>
               </div>
             )}
-            <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px] my-8" >
+            <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px] my-8">
               Download Now
             </button>
           </div>
