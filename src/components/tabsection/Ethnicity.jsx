@@ -127,10 +127,11 @@ export default function Ethnicity() {
         <div className="searchBar flex flex-col items-center">
           <label
             htmlFor="search"
-            className="text-whiteColor text-center poppins4 text-[14px]"
+            className="text-whiteColor text-center poppins4 text-[14px] mb-2"
           >
             Select Etnicity
           </label>
+          <div className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor">
           <select
             onChange={(e) => {
               const selectedName = e.target.value;
@@ -141,7 +142,7 @@ export default function Ethnicity() {
             }}
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3 md:mt-0"
+            className="bg-transparent w-full"
           >
 
             {ethnicityData?.map((item) => (
@@ -150,6 +151,7 @@ export default function Ethnicity() {
               </option>
             ))}
           </select>
+          </div>
         </div>
 
         {/* <div className="searchBar flex flex-col ">
@@ -250,7 +252,7 @@ export default function Ethnicity() {
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {parseFloat(item.percentage).toFixed(0)}%
+                  {item.percentage}%
                 </div>
               </div>
             </div>

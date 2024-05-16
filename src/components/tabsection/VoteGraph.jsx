@@ -113,10 +113,11 @@ export default function VoteGraph() {
         <div className="searchBar flex flex-col justify-center items-center ">
           <label
             htmlFor="search "
-            className="text-whiteColor text-center poppins4 text-[14px]"
+            className="text-whiteColor text-center poppins4 text-[14px] mb-2"
           >
             Select State
           </label>
+          <div className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-2 py-2 rounded-[10px] text-whiteColor">
           <select
             onChange={(e) => {
               const selectedName = e.target.value;
@@ -127,7 +128,7 @@ export default function VoteGraph() {
             }}
             name="states"
             id="search"
-            className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
+            className="bg-transparent w-full"
           >
             {allstates?.map((item) => (
               <option className="bg-[#000]" key={item.id} value={item?.name}>
@@ -135,6 +136,7 @@ export default function VoteGraph() {
               </option>
             ))}
           </select>
+          </div>
         </div>
         <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
           <img src={ballot} alt="ballot" />

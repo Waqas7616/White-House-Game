@@ -19,6 +19,7 @@ import EmploymentStatus from "./EmploymentStatus";
 import Military from "./Military";
 import ElectoralCollege from "./ElectoralCollege";
 import axios from "axios";
+import StateWinner from "../statewinner/StateWinner";
 
 function TabSection() {
   const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
@@ -220,8 +221,8 @@ function TabSection() {
             </p>
             <div className="search-section flex flex-col  sm:flex-row  justify-between">
               <div className="badge flex items-center justify-between">
-                <img src={badge} alt="" />
-                <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
+                <img className="w-8 h-8 lg:w-14 lg:h-14 object-cover" src={badge} alt="" />
+                <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[34px] ms-3">
                   President
                 </h2>
               </div>
@@ -286,7 +287,7 @@ function TabSection() {
               </div>
 
               <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
-                <img src={ballot} alt="ballot" />
+                <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
                   Votes : {totalVotes}
                 </h2>
@@ -493,8 +494,8 @@ function TabSection() {
 
             <div className="search-section flex flex-col sm:items-none  sm:flex-row  justify-between mt-16">
               <div className="badge flex items-center justify-between">
-                <img src={badge} alt="" />
-                <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
+                <img className="w-8 h-8 lg:w-14 lg:h-14 object-cover" src={badge} alt="" />
+                <h2 className="poppins6 text-whiteColor text-nowrap md:text-[23px] lg:text-[30px] ms-3">
                   Vice President
                 </h2>
               </div>
@@ -556,7 +557,7 @@ function TabSection() {
               </div>
 
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
-                <img src={ballot} alt="ballot" />
+                <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
                   Votes : {totalVotes}
                 </h2>
@@ -806,6 +807,7 @@ function TabSection() {
           </div>
         </div>
       </div>
+      
       <div
         className="w-full py-8"
         style={{
@@ -813,19 +815,23 @@ function TabSection() {
             "linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)",
         }}
       >
+        <div className="flex justify-center my-20 ">
+            <h2 className="text-white font-poppins font-black text-[14px] lg:text-[35px]">270 to win</h2>
+          </div>
         <div className="flex w-9/12 m-auto my-5">
+          
           <div className="flex-1">
             {" "}
-            <h3 className="text-center text-white poppins5 mb-2">Democratic</h3>
+            <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">Democratic</h3>
             <div className="dem py-5  bg-redish"></div>
           </div>
           <div className="flex-1">
             {" "}
-            <h3 className="text-center text-white poppins5 mb-2">Republican</h3>
+            <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">Republican</h3>
             <div className="rep py-5 bg-blue-800"></div>
           </div>
           <div className="flex-1">
-            <h3 className="text-center text-white poppins5 mb-2">
+            <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">
               Independent
             </h3>
             <div className="ind py-5  bg-white"></div>
@@ -833,6 +839,9 @@ function TabSection() {
         </div>
         <div className="w-10/12 m-auto mt-12">
           <Map />
+        </div>
+        <div className="w-10/12 m-auto mt-12">
+          <StateWinner />
         </div>
       </div>
     </div>

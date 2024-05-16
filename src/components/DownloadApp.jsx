@@ -42,20 +42,23 @@ export default function DownloadApp() {
 
       {/* -----FOOTER----- */}
       <div className="footer w-10/12 resp m-auto mt-20 pb-4 border-b-[1px] border-[rgba(255,255,255,0.6)]">
-        <div className="flex flex-col gap-4 md:gap-6 lg:gap-0 md:flex-row justify-between items-center">
+        <div className="flex flex-col gap-4 md:gap-6 lg:gap-6 md:flex-row justify-between items-center">
           <div className="logo">
             <img src={logo} alt="" />
           </div>
           <div>
-            <div className="flex gap-5 sm:gap-12 mx-5 sm:mx-0">
-              <h2 className="text-[10px] text-nowrap lg:text-[16px] poppins4 text-[#fff]">
+            <div className="flex gap-3 sm:gap-8 mx-5 sm:mx-0">
+              {/* <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
                 Contact Us
-              </h2>
-              <h2 className="text-[10px] text-nowrap lg:text-[16px] poppins4 text-[#fff]">
+              </h2> */}
+              <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
                 Privacy Policy
               </h2>
-              <h2 className="text-[10px] text-nowrap lg:text-[16px] poppins4 text-[#fff]">
+              <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
                 Terms and Conditions
+              </h2>
+              <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
+                White House Shop
               </h2>
             </div>
             <div className="flex items-center justify-center gap-4 mt-4">
@@ -92,8 +95,8 @@ export default function DownloadApp() {
         </div>
         {/* <hr className="bg-[red] h-[1px]" /> */}
       </div>
-      <p className="text-[14px] text-[#fff] poppins3 text-center mt-3">
-        THE WHITE HOUSE GAME. COPYRIGHT © 2024. ALL RIGHTS RESERVED
+      <p className="text-[14px] text-[#fff] poppins3 text-center mt-3 pb-20">
+      The White House Game © 2024. All rights reserved. Sitemap
       </p>
 
     </div>
