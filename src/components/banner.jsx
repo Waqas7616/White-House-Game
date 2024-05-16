@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 import CustomSlider from "./slider/Slider";
 import Navbar from "./Navbar";
 import text from "../images/whitehouse.png";
+import { Link } from "react-router-dom";
 
 function Banner() {
   const [active, setActive] = useState(0);
@@ -29,7 +30,6 @@ function Banner() {
     slidesToShow: 7,
     slideToScroll: 1,
   };
-  
 
   useEffect(() => {
     // Set up an interval to update the countdown every second
@@ -156,17 +156,14 @@ function Banner() {
               </button>
             </div>
             <div className="whiteHouseText">
-              <img src={text} className="w-44" alt="" />
+            <Link to="/"><img src={text} className="w-44" alt="" /></Link>
             </div>
             <div className="couter ">
               <div className="flex items-center gap-6">
                 <div className="flex flex-col  poppins5 text-center text-white">
-                  <p
-                    className="flex gap-2 text-center"
-                    
-                  >
+                  <p className="flex gap-2 text-center">
                     {" "}
-                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black" >
+                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
                       {Math.floor(timeRemaining.days / 100)}
                     </span>{" "}
                     <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
@@ -180,10 +177,7 @@ function Banner() {
                 </div>
                 <div className="  poppins5 text-center text-white">
                   {/* Hours */}
-                  <p
-                    className="flex gap-2"
-                   
-                  >
+                  <p className="flex gap-2">
                     <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
                       {Math.floor(timeRemaining.hours / 10)}
                     </span>{" "}
@@ -194,10 +188,7 @@ function Banner() {
                   <p>Hours</p>
                 </div>
                 <div className="text-center">
-                  <p
-                    className="flex gap-2"
-                    
-                  >
+                  <p className="flex gap-2">
                     <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
                       {Math.floor(timeRemaining.minutes / 10)}
                     </span>{" "}

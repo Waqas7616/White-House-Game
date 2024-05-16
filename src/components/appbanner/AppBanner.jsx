@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
 import text from '../../images/whitehouse.png'
+import { Link } from "react-router-dom";
+
 
 function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
   const [active,setActive]=useState(0)
@@ -124,7 +126,7 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
             </div>
 
 <div className="whiteHouseText">
-  <img src={text} className="w-44" alt="" />
+  <Link to="/"><img src={text} className="w-44" alt="" /></Link>
 </div>
 
             <div className="couter ">
