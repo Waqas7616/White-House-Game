@@ -6,6 +6,7 @@ import axios from "axios";
 import Navbar from "../Navbar";
 import AppBanner from "../appbanner/AppBanner";
 import { useStatePredictions } from "../../utils/StateIDs";
+import DownloadApp from "../DownloadApp";
 
 export const LogIn = () => {
   const navigate = useNavigate();
@@ -62,11 +63,20 @@ export const LogIn = () => {
 
   return (
     <div className=" h-screen">
-      <AppBanner
+      {/* <AppBanner
         bannerTitle={"in"}
         redTitle={"Log"}
         bannerDesc={"Log in to continue"}
-      />
+      /> */}
+      
+      <Navbar />
+      <div className="flex flex-col text-center items-center justify-center mt-5">
+          <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
+            {" "}
+            <span className="text-redish">Log</span> In
+          </h1>
+          
+        </div>
       <div className="bg-[#1c2452] py-10 ">
         {/* <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">Login</h2>
@@ -197,6 +207,9 @@ export const LogIn = () => {
               Sign up now
             </button>
           </div>
+        </div>
+        <div>
+          <DownloadApp/>
         </div>
       </div>
     </div>

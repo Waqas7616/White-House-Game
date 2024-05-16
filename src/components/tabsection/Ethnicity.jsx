@@ -142,7 +142,7 @@ export default function Ethnicity() {
             }}
             name="states"
             id="search"
-            className="bg-transparent w-full"
+            className="bg-transparent w-full outline-none"
           >
 
             {ethnicityData?.map((item) => (

@@ -268,7 +268,7 @@ function TabSection() {
                     }}
                     name="states"
                     id="search"
-                    className="bg-transparent w-full"
+                    className="bg-transparent w-full outline-none"
                   >
                     {/* <option className="bg-[#000]" value="">
                     Select All States
@@ -531,28 +531,28 @@ function TabSection() {
                   Select States
                 </label>
                 <div className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor  md:ml-0 w-[263px] lg:w-[420px] px-2 py-2 rounded-[10px] text-whiteColor">
-                  <select
-                    onChange={(e) => {
-                      const selectedName = e.target.value;
-                      const selectedId = allstates.find(
-                        (item) => item.name === selectedName
-                      )?.id;
-                      handleId(selectedId);
-                    }}
-                    name="states"
-                    id="search"
-                    className="bg-transparent w-full"
-                  >
-                    {allstates?.map((item) => (
-                      <option
-                        className="bg-[#000]"
-                        key={item.id}
-                        value={item?.name}
-                      >
-                        {item?.name}
-                      </option>
-                    ))}
-                  </select>
+                <select
+                  onChange={(e) => {
+                    const selectedName = e.target.value;
+                    const selectedId = allstates.find(
+                      (item) => item.name === selectedName
+                    )?.id;
+                    handleId(selectedId);
+                  }}
+                  name="states"
+                  id="search"
+                  className="bg-transparent w-full outline-none"
+                >
+                  {allstates?.map((item) => (
+                    <option
+                      className="bg-[#000]"
+                      key={item.id}
+                      value={item?.name}
+                    >
+                      {item?.name}
+                    </option>
+                  ))}
+                </select>
                 </div>
               </div>
 
