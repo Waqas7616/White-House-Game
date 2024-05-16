@@ -52,7 +52,17 @@ function TabSection() {
       )
       .then((res) => {
         setStats(res.data);
-        console.log("statsssss", stats);
+        setPresident(
+          res?.data?.data?.candidate_percentages.filter(
+            (item) => item.position === "president"
+          )
+        );
+        setVicePresident(
+          res?.data?.data?.candidate_percentages.filter(
+            (item) => item.position === "vice_president"
+          )
+        );
+        
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -67,7 +77,7 @@ function TabSection() {
   const [viceVotes, setViceVotes] = useState(false);
   const expandVotes = () => {
     setExpandedVotes(!expandedVotes);
-    console.log("votes", expandedVotes);
+  
   };
   const expandViceVotes = () => {
     setViceVotes(!viceVotes);
@@ -90,22 +100,21 @@ function TabSection() {
   }));
   // console.log("all data", percentages);
 
-  useEffect(() => {
-    if (stats?.data) {
-      setPresident(
-        stats?.data?.candidate_percentages.filter(
-          (item) => item.position === "president"
-        )
-      );
-      setVicePresident(
-        stats?.data?.candidate_percentages.filter(
-          (item) => item.position === "vice_president"
-        )
-      );
-    }
-  }, [id]);
-  console.log("takra sha", president);
-  console.log("tinga ka", vicePresident);
+  // useEffect(() => {
+  //   if (stats?.data) {
+  //     setPresident(
+  //       stats?.data?.candidate_percentages.filter(
+  //         (item) => item.position === "president"
+  //       )
+  //     );
+  //     setVicePresident(
+  //       stats?.data?.candidate_percentages.filter(
+  //         (item) => item.position === "vice_president"
+  //       )
+  //     );
+  //   }
+  // }, [id]);
+
   return (
     <div className="w-full bg-[#1c2452] py-8">
       <div className="w-10/12 m-auto resp ">
@@ -349,7 +358,7 @@ function TabSection() {
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage}%
+                              {item.percentage&&item.percentage.toFixed(2)}%
                             </div>
                           </div>
                         </div>
@@ -451,7 +460,7 @@ function TabSection() {
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage}%
+                              {item.percentage&&item.percentage.toFixed(2)}%
                             </div>
                           </div>
                         </div>
@@ -518,31 +527,31 @@ function TabSection() {
                   htmlFor="search"
                   className="text-whiteColor text-center poppins4 text-[14px] mb-2"
                 >
-                  Select  States
+                  Select States
                 </label>
                 <div className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor  md:ml-0 w-[263px] lg:w-[420px] px-2 py-2 rounded-[10px] text-whiteColor">
-                <select
-                  onChange={(e) => {
-                    const selectedName = e.target.value;
-                    const selectedId = allstates.find(
-                      (item) => item.name === selectedName
-                    )?.id;
-                    handleId(selectedId);
-                  }}
-                  name="states"
-                  id="search"
-                  className="bg-transparent w-full"
-                >
-                  {allstates?.map((item) => (
-                    <option
-                      className="bg-[#000]"
-                      key={item.id}
-                      value={item?.name}
-                    >
-                      {item?.name}
-                    </option>
-                  ))}
-                </select>
+                  <select
+                    onChange={(e) => {
+                      const selectedName = e.target.value;
+                      const selectedId = allstates.find(
+                        (item) => item.name === selectedName
+                      )?.id;
+                      handleId(selectedId);
+                    }}
+                    name="states"
+                    id="search"
+                    className="bg-transparent w-full"
+                  >
+                    {allstates?.map((item) => (
+                      <option
+                        className="bg-[#000]"
+                        key={item.id}
+                        value={item?.name}
+                      >
+                        {item?.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
@@ -619,7 +628,7 @@ function TabSection() {
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage}%
+                              {item.percentage&&item.percentage.toFixed(2)}%
                             </div>
                           </div>
                         </div>
@@ -721,7 +730,7 @@ function TabSection() {
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage}%
+                              {item.percentage&&item.percentage.toFixed(2)}%
                             </div>
                           </div>
                         </div>
