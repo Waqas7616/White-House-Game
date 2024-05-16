@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import logo1 from "../../images/logo1.png";
 import Vector from "../../images/Vector.png";
 import axios from "axios";
+import Navbar from "../Navbar";
+import DownloadApp from "../DownloadApp";
 
 export const ResetPassword = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -69,12 +71,16 @@ export const ResetPassword = () => {
 
   return (
     <>
+    <div className="h-screen">
+      <Navbar />
+      <div className="flex flex-col text-center items-center justify-center mt-5">
+        <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
+          {" "}
+          <span className="text-redish">Reset</span> Password
+        </h1>
+      </div>
       <div className="bg-[#1c2452] pb-10 ">
-        <div className="flex justify-center pt-5 ">
-          <h2 className="text-white text-[23px] font-poppins">
-            Reset Password
-          </h2>
-        </div>
+        
         <div className="flex justify-center pt-5">
           <img src={logo1} alt="" />
         </div>
@@ -184,6 +190,10 @@ export const ResetPassword = () => {
             </div>
           </form>
         </div>
+        <div>
+          <DownloadApp/>
+        </div>
+      </div>
       </div>
     </>
   );

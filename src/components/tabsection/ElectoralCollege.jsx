@@ -78,7 +78,7 @@ export default function ElectoralCollege() {
           <select
             name="states"
             id="search"
-            className="bg-transparent w-full"
+            className="bg-transparent w-full outline-none"
           >
             <option className="bg-[#000] " value="">
               Select State

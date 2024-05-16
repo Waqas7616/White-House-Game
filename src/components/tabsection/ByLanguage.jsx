@@ -165,7 +165,7 @@ export default function ByLanguage() {
             }}
             name="states"
             id="search"
-            className="bg-transparent w-full"
+            className="bg-transparent w-full outline-none"
           >
 
             {byLanguage?.map((item) => (

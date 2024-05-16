@@ -47,10 +47,21 @@ export default function DownloadApp() {
             <img src={logo} alt="" />
           </div>
           <div>
-            <div className="flex gap-3 sm:gap-8 mx-5 sm:mx-0">
-              {/* <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
+            <div>
+              <p className="text-[8px] lg:text-[12px] text-[#fff] poppins3 text-center mt-3">
+                Now you’ve played the Game - Buy the Shirt!
+                <a
+                  href="https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
+                  className="ml-1 font-black"
+                >
+                  OUR SHOP
+                </a>
+              </p>
+            </div>
+            <div className="flex gap-3 sm:gap-8 mx-5 sm:mx-0 mt-3">
+              <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
                 Contact Us
-              </h2> */}
+              </h2>
               <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
                 Privacy Policy
               </h2>
@@ -61,12 +72,12 @@ export default function DownloadApp() {
                 White House Shop
               </h2>
             </div>
-            <div className="flex items-center justify-center gap-4 mt-4">
+            {/* <div className="flex items-center justify-center gap-4 mt-4">
               <i className="text-white fa-brands fa-facebook-f"></i>
               <i className="text-white fa-brands fa-twitter"></i>
               <i className="text-white fa-brands fa-linkedin-in"></i>
               <i className="text-white fa-brands fa-instagram"></i>
-            </div>
+            </div> */}
           </div>
           <div>
             <h2 className="text-[#fff] orbit7 text-[14px] lg:text-[18px]">
@@ -96,9 +107,8 @@ export default function DownloadApp() {
         {/* <hr className="bg-[red] h-[1px]" /> */}
       </div>
       <p className="text-[14px] text-[#fff] poppins3 text-center mt-3 pb-20">
-      The White House Game © 2024. All rights reserved. Sitemap
+        The White House Game © 2024. All rights reserved. Sitemap
       </p>
-
     </div>
   );
 }

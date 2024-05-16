@@ -188,14 +188,15 @@ const StateWinner = () => {
               {stateData.parties[0].party_name === "Democratic" && (
                 <img
                   className="object-cover w-4 h-4 lg:w-10 lg:h-10"
-                  src={Democraticlogo}
+                  
+                  src={Republicanlogo}
                   alt="Democratic"
                 />
               )}
               {stateData.parties[0].party_name === "Republican" && (
                 <img
                   className="w-5 h-5 lg:w-10 lg:h-10"
-                  src={Republicanlogo}
+                  src={Democraticlogo}
                   alt="Republican"
                 />
               )}

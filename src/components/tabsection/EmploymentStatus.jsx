@@ -135,7 +135,7 @@ export default function EmploymentStatus() {
             }}
             name="states"
             id="search"
-            className="bg-transparent w-full"
+            className="bg-transparent w-full outline-none"
           >
 
             {Employment?.map((item) => (

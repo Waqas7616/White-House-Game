@@ -4,6 +4,8 @@ import Vector from "../../images/Vector.png";
 // import Layer from "../../images/Layer.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import DownloadApp from "../DownloadApp";
+import Navbar from "../Navbar";
 
 function EmailVerification(props) {
   const navigate = useNavigate();
@@ -128,6 +130,14 @@ function EmailVerification(props) {
 
   return (
     <>
+    <div className="h-screen">
+      <Navbar  />
+      <div className="flex flex-col text-center items-center justify-center mt-5">
+        <h1 className="text-whiteColor sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
+          {" "}
+          <span className="text-redish">Match</span> OTP
+        </h1>
+      </div>
       <div className="bg-[#1c2452] pb-10 ">
         <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">
@@ -139,7 +149,7 @@ function EmailVerification(props) {
         </div>
 
         <div className="flex justify-center pt-3">
-          <h2 className="text-white font-poppins">Forgot your password?</h2>
+          <h2 className="text-white font-poppins">Verify Email</h2>
         </div>
         <div className="flex justify-center items-center h-full">
           <div className=" px-6 py-4  text-white rounded-lg">
@@ -184,6 +194,10 @@ function EmailVerification(props) {
             </div>
           </form>
         </div>
+        <div>
+          <DownloadApp/>
+        </div>
+      </div>
       </div>
     </>
   );
