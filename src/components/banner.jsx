@@ -159,7 +159,7 @@ function Banner() {
             <Link to="/"><img src={text} className="w-44" alt="" /></Link>
             </div>
             <div className="couter ">
-              <h2 className="poppins5 text-center text-white">Voting starts</h2>
+              <h2 className="poppins5 text-center text-white mb-2">Voting starts</h2>
               <div className="flex items-center gap-6">
                 <div className="flex flex-col  poppins5 text-center text-white">
                   <p className="flex gap-2 text-center">
