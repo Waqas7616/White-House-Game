@@ -50,13 +50,13 @@ export const ForgotPassword = () => {
   return (
     <div className="h-screen">
       <Navbar />
-      <div className="flex flex-col text-center items-center justify-center mt-5">
+      <div className="flex flex-col text-center items-center justify-center mt-2">
         <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
           {" "}
           <span className="text-redish">Forgot</span> Password
         </h1>
       </div>
-      <div className="bg-[#1c2452] py-10 ">
+      <div className="bg-[#1c2452] ">
         <div className="flex justify-center items-center h-full">
           <div className="w-[379px] px-6 py-4  text-white rounded-lg">
             <p className="text-center font-poppins text-[12px]">
@@ -69,7 +69,7 @@ export const ForgotPassword = () => {
           <img src={Vector} alt="" />
         </div>
 
-        <div className="pt-5 relative">
+        <div className="pt-2 mx-3 sm:mx-5 lg:mx-0 relative">
           <form
             onSubmit={handleSubmit}
             class="max-w-sm mx-auto rounded-lg bg-[#131A41] px-7 py-7"

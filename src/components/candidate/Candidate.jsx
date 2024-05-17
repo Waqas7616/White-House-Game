@@ -229,13 +229,14 @@ const Candidate = () => {
         redTitle={"Candidate"}
         bannerDesc={"Candidiates and Parties"}
       />
-      <div className=''>
-            <div className='mt-5 m-auto w-[85%]' >
+      <div className='mt-5 m-auto w-[85%]'>
+            
                 <Slider {...settings}>
+                  
                     {data.map((item, index) => (
                         <div key={index} className="p-4">
                             <div className="bg-white shadow-2xl rounded-2xl overflow-hidden">
-                                <div className="w-full h-64 overflow-hidden">
+                                <div className="w-full h-64 2xl:h-[31rem] overflow-hidden">
                                     <img 
                                         src={`${imageUrl}${item?.candidate_image}`} 
                                         alt="profile-picture" 
@@ -250,8 +251,9 @@ const Candidate = () => {
                             </div>
                         </div>
                     ))}
+                    
                 </Slider>
-                </div>
+                
                 </div>
                 <div>
                   <DownloadApp/>

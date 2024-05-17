@@ -48,11 +48,11 @@ export default function DownloadApp() {
           </div>
           <div>
             <div>
-              <p className="text-[8px] lg:text-[12px] text-[#fff] poppins3 text-center mt-3">
+              <p className="text-[10px] lg:text-[18px] text-[#fff] poppins3 text-center mt-3">
                 Now you’ve played the Game - Buy the Shirt!
                 <a
                   href="https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
-                  className="ml-1 font-black"
+                  className="ml-1 font-black text-redish "
                 >
                   OUR SHOP
                 </a>
@@ -106,7 +106,7 @@ export default function DownloadApp() {
         </div>
         {/* <hr className="bg-[red] h-[1px]" /> */}
       </div>
-      <p className="text-[14px] text-[#fff] poppins3 text-center mt-3 pb-20">
+      <p className="text-[10px] md:text-[14px] text-[#fff] poppins3 text-center mt-3 pb-20 mx-10 ml-10 md:mr-28 xl:mr-36">
         The White House Game © 2024. All rights reserved. Sitemap
       </p>
     </div>

@@ -130,6 +130,7 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
 </div>
 
             <div className="couter ">
+              
               <div className="flex items-center gap-4">
                 <div className="flex flex-col  poppins5 text-center text-white">
                   <p className="flex gap-3 text-center">

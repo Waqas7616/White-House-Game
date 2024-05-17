@@ -41,6 +41,8 @@ const StateWinner = () => {
           });
         }
 
+        parsedData.sort((a, b) => a.state.localeCompare(b.state));
+
         setStatesData(parsedData);
       })
       .catch((err) => {
