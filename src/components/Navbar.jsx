@@ -129,6 +129,16 @@ function Navbar() {
                 About Us
               </li>
             </Link>
+            <Link to={"/candidate"}>
+              {" "}
+              <li
+                className={`nav-link poppins4 hover:text-redish ${
+                  location.pathname === "/candidate" ? "active" : ""
+                }  cursor-pointer hover:font-[500] text-whiteColor`}
+              >
+                Candidate
+              </li>
+            </Link>{" "}
             <Link to={"https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"}>
               {" "}
               <li
@@ -140,16 +150,6 @@ function Navbar() {
               </li>
             </Link>{" "}
 
-            <Link to={""}>
-              {" "}
-              <li
-                className={`nav-link poppins4 hover:text-redish ${
-                  location.pathname === "/contact" ? "active" : ""
-                }  cursor-pointer hover:font-[500] text-whiteColor`}
-              >
-                Candidate
-              </li>
-            </Link>{" "}
 
 
             <li
@@ -282,7 +282,7 @@ function Navbar() {
               </li>
             </Link>
 
-            <Link to={""}>
+            <Link to={"/candidate"}>
               <li
                 onClick={() => handleLinks(3)}
                 className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
