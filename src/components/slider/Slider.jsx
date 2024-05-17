@@ -307,7 +307,7 @@ function CustomSlider() {
                       onClick={() => handleCandidateClick(index)}
                     />
                   </div>
-                  <h5 className="poppins5 text-[17px] text-blackColor">
+                  <h5 className="poppins5 text-[17px] text-center text-blackColor">
                     {item.candidate_name}
                   </h5>
                 </div>
