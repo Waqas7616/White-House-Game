@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
 
   // const login = localStorage.getItem("email");
   // const token = localStorage.getItem("token");
@@ -84,9 +84,9 @@ function Navbar() {
       {isMobile ? (
         <>
           <div className="logo ">
-            <a href="/">
+            <Link to="/">
               <img src={logo} className="w-20" alt="" />
-            </a>
+            </Link>
           </div>{" "}
           <div onClick={toggleMenu}>
             {!toggle ? (
@@ -105,7 +105,7 @@ function Navbar() {
         <>
           <div className="logo -mt-1">
             <a href="/">
-              <img src={logo} className="w-28" alt="" />
+             <Link to="/"> <img src={logo} className="w-28" alt="" /></Link>
             </a>
           </div>
           <div className="nav-links flex gap-8 ">
@@ -175,14 +175,17 @@ function Navbar() {
                 : ""
             }`}
           >
+            {/* hover:bg-[#1A2250] hover:rounded-[5px] hover:border-[1px] hover:border-[rgba(255,255,255,.2)] hover:text-white
+                  text-[rgba(255,255,255,.6)] */}
             {!isLoggedIn ? (
               <button
                 // onClick={() => navigate("/LogIn")}
                 onClick={() => navigate("/LogIn")}
-                className={` w-full h-full text-center cursor-pointer border-[1px] border-transparent                   
-                  hover:bg-[#1A2250] hover:rounded-[5px] hover:border-[1px] hover:border-[rgba(255,255,255,.2)] hover:text-white
-                  text-[rgba(255,255,255,.6)]
-                  `}
+                className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
+                  location.pathname === "/LogIn"
+                    ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
+                    : ""
+                }`}
               >
                 Log In
               </button>
@@ -223,13 +226,14 @@ function Navbar() {
               />
             </svg> */}
             <button
-              className={`w-full h-full ${
-                !isLoggedIn ? "block" : "hidden"
-              } border-[1px] border-transparent                    
-                      hover:bg-[#1A2250] hover:rounded-[5px] hover:border-[1px] hover:border-[rgba(255,255,255,.2)] hover:text-white
-                      text-[rgba(255,255,255,.6)]
-                  `}
-              onClick={() => navigate("/signup")}
+              className={`w-full h-full ${!isLoggedIn ? "block" : "hidden"} ${
+                location.pathname !=="/LogIn"
+                  ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
+                  : "text-[rgba(255,255,255,.6)]"
+              }`}
+              onClick={() => {
+                navigate("/signup");
+              }}
             >
               Sign Up
             </button>
@@ -273,7 +277,11 @@ function Navbar() {
               </div>
             )}
 
-            <Link to={"https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"}>
+            <Link
+              to={
+                "https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
+              }
+            >
               <li
                 onClick={() => handleLinks(3)}
                 className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
@@ -290,8 +298,6 @@ function Navbar() {
                 Candidate
               </li>
             </Link>
-
-
           </div>
           <div className="download-button flex items-center justify-between gap-2">
             {/* <svg
