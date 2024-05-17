@@ -142,7 +142,7 @@ const StateWinner = () => {
       </div> */}
       <div className=" mx-auto w-11/12">
   <div className="text-center">
-    <h2 className="text-white font-poppins text-[12px] lg:text-[62px] font-black">
+    <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
       State Winner
     </h2>
   </div>

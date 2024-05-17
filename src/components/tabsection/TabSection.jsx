@@ -255,7 +255,7 @@ function TabSection() {
                   htmlFor="search"
                   className="text-whiteColor text-center poppins4 text-[14px] mb-2"
                 >
-                  Select States
+                  Select State
                 </label>
                 <div className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px]  md:ml-0 px-2 py-2  rounded-[10px] text-whiteColor">
                   <select
@@ -528,7 +528,7 @@ function TabSection() {
                   htmlFor="search"
                   className="text-whiteColor text-center poppins4 text-[14px] mb-2"
                 >
-                  Select States
+                  Select State
                 </label>
                 <div className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor  md:ml-0 w-[263px] lg:w-[420px] px-2 py-2 rounded-[10px] text-whiteColor">
                 <select
@@ -816,7 +816,7 @@ function TabSection() {
         }}
       >
         <div className="flex justify-center my-20 ">
-            <h2 className="text-white font-poppins font-black text-[14px] lg:text-[35px]">270 to win</h2>
+            <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto  text-center">270 to win</h2>
           </div>
         <div className="flex w-9/12 m-auto my-5">
           
