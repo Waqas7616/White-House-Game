@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import stats from "../../images/stats.png";
+import statsone from '../../images/statsone.png'
 import badge from "../../images/president.png";
 import ballot from "../../images/ballot.png";
 import kennedy from "../../images/image 46.png";
@@ -211,11 +211,11 @@ function TabSection() {
             className={`all-tab-content  ${tabs === 0 ? "block" : "hidden"}`}
           >
             <h2 className="orbit7 mt-8 text-whiteColor text-center w-[245px] flex justify-between items-center m-auto md:text-[60px]">
-              <span>
-                <img className="w-[50px]" src={stats} alt="" />{" "}
-              </span>{" "}
-              stats
-            </h2>
+        <span>
+          <img className="w-[50px]" src={statsone} alt="" />{" "}
+        </span>{" "}
+        stats
+      </h2>
             <p className="poppins5 text-whiteColor mb-4 text-center">
               Who our players expect to win on November 5, 2024
             </p>

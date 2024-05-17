@@ -70,14 +70,14 @@ export const LogIn = () => {
       /> */}
       
       <Navbar />
-      <div className="flex flex-col text-center items-center justify-center mt-5">
+      <div className="flex flex-col text-center items-center justify-center mt-2">
           <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
             {" "}
             <span className="text-redish">Log</span> In
           </h1>
           
         </div>
-      <div className="bg-[#1c2452] py-10 ">
+      <div className="bg-[#1c2452] ">
         {/* <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">Login</h2>
 
@@ -91,7 +91,7 @@ export const LogIn = () => {
         <div className="flex justify-center items-center h-full">
           <div className="w-[344px] px-6 py-4  text-white rounded-lg">
             <p className="text-center font-poppins">
-              Please login to continue using white house game
+            To play and access our services
             </p>
           </div>
         </div>
@@ -99,7 +99,7 @@ export const LogIn = () => {
           <img src={Vector} alt="" />
         </div>
 
-        <div className="pt-5">
+        <div className="pt-1 mx-3 sm:mx-5 lg:mx-0">
           <form
             onSubmit={handleSubmit}
             class="max-w-sm mx-auto rounded-lg bg-[#131A41] px-10 py-10"
@@ -109,14 +109,14 @@ export const LogIn = () => {
                 for="email"
                 class="block mb-2 text-sm font-medium text-white font-poppins"
               >
-                Email Address
+                Email address
               </label>
               <input
                 type="email"
                 id="email"
                 value={email}
                 className={` border-[1px] border-white/15 bg-[#1c2452]  text-white text-sm rounded-lg outline-none  block w-full p-2.5 `}
-                placeholder="Enter Email Address"
+                placeholder="Enter your email"
 
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -186,7 +186,7 @@ export const LogIn = () => {
                 onClick={() => navigate("/ForgotPassword")}
                 className="text-[#ED1C24] text-[12px] font-poppins cursor-pointer"
               >
-                Forget Pasword?
+                Forgot Password?
               </h6>
             </div>
             <p className="text-redish poppins4 mt-2">
@@ -199,12 +199,12 @@ export const LogIn = () => {
             </div>
           </form>
           <div className="flex justify-center items-center gap-2 mt-2">
-            <p className="text-white font-poppins">Don't have an account ? </p>
+            <p className="text-white font-poppins text-[10px] lg:text-[16px]">Don’t have an account?</p>
             <button
               onClick={() => navigate("/SignUp")}
-              className="underline underline-offset-4 text-white font-poppins cursor-pointer"
+              className=" text-white font-poppins cursor-pointer text-[10px] lg:text-[16px]"
             >
-              Sign up now
+              Sign Up now
             </button>
           </div>
         </div>
