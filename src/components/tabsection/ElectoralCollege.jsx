@@ -74,7 +74,11 @@ export default function ElectoralCollege() {
       )
       .then((res) => {
         setStats(res.data);
-        console.log("statsssss", stats);
+        setPresident(
+          res?.data?.data?.candidate_percentages.filter(
+            (item) => item.position === "president"
+          )
+        );
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -83,16 +87,16 @@ export default function ElectoralCollege() {
   const handleId = (selectedId) => {
     setId(selectedId);
   };
-  useEffect(() => {
-    if (stats?.data) {
-      setPresident(
-        stats?.data?.candidate_percentages.filter(
-          (item) => item.position === "president"
-        )
-      );
+  // useEffect(() => {
+  //   if (stats?.data) {
+  //     setPresident(
+  //       stats?.data?.candidate_percentages.filter(
+  //         (item) => item.position === "president"
+  //       )
+  //     );
       
-    }
-  }, [id]);
+  //   }
+  // }, [id]);
   console.log("chup sha", president);
   // console.log("tinga ka", vicePresident);
 
