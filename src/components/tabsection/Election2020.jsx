@@ -31,8 +31,9 @@ export default function Election2020() {
           response?.data?.source_percentages?.filter(
             (item) => item.source === "polling"
           )
+          
         );
-        console.log("2020 election", votePercentage);
+        console.log("2020 election", response);
         setMail(
           response?.data?.source_percentages?.filter(
             (item) => item.source === "mail"
