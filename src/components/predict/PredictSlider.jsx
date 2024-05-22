@@ -224,7 +224,7 @@ function PredictSlider({ data, data1, printData, party_name, afterChange, selecC
           .map((item, index) => (
             <div
               key={index}
-              onClick={() => handleImage(item?.id, item?.votter_party_id)}
+              onClick={() => handleImage(item?.id[1], item?.votter_party_id)}
               className={`w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${imageSelect && "border-white border-[10px] rounded[28.43px]"
                 }`}
             >
