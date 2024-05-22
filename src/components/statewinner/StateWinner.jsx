@@ -15,7 +15,7 @@ const StateWinner = () => {
   useEffect(() => {
     axios
       .get(
-        "https://pankhay.com/thewhitehousegame/public/api/getVoterPartyCount",
+        "https://thewhitehousegame.com/public/api/getVoterPartyCount",
         {
           headers: {
             Accept: "application/json",

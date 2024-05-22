@@ -34,10 +34,10 @@ function ElectoralCollege() {
     setSelectedButtonId(partyId);
   };
   const token = localStorage.getItem("token");
-  const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
+  const imageUrl = "https://thewhitehousegame.com/public/";
   useEffect(() => {
     axios
-      .get("https://pankhay.com/thewhitehousegame/public/api/getStateParty", {
+      .get("https://thewhitehousegame.com/public/api/getStateParty", {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "Application/json",
@@ -67,7 +67,7 @@ function ElectoralCollege() {
     } else if (step === previousData?.states?.length - 1) {
       axios
         .post(
-          "https://pankhay.com/thewhitehousegame/public/api/submit_electoral_college_prediction",
+          "https://thewhitehousegame.com/public/api/submit_electoral_college_prediction",
           {
             state_predictions: state_predictions,
           },

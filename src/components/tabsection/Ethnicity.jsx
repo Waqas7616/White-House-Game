@@ -23,7 +23,7 @@ export default function Ethnicity() {
 
   useEffect(() => {
     axios
-      .get("https://pankhay.com/thewhitehousegame/public/api/get_user_ethnicty")
+      .get("https://thewhitehousegame.com/public/api/get_user_ethnicty")
       .then((response) => {
         //  console.log("Ethnicity Data:", response.data.user_ethnicity);
 
@@ -39,7 +39,7 @@ export default function Ethnicity() {
     });
     axios
       .get(
-        `https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`,
+        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",

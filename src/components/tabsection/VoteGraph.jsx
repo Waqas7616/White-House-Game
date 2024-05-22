@@ -11,7 +11,7 @@ import republic from "../../images/republican.png";
 import axios from "axios";
 
 export default function VoteGraph() {
-  const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
+  const imageUrl = "https://thewhitehousegame.com/public/";
 
   const [expendedCandidates, setExpandedCandidates] = useState(false);
   const [id, setId] = useState(1);
@@ -28,7 +28,7 @@ export default function VoteGraph() {
   };
   useEffect(() => {
     axios
-      .get("https://pankhay.com/thewhitehousegame/public/api/get_user_state")
+      .get("https://thewhitehousegame.com/public/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
       })
@@ -40,7 +40,7 @@ export default function VoteGraph() {
     });
     axios
       .get(
-        `https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`,
+        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",

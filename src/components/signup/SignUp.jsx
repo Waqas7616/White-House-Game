@@ -541,7 +541,7 @@ export const SignUp = () => {
     } else {
       try {
         const response = await axios.post(
-          "https://pankhay.com/thewhitehousegame/public/api/register",
+          "https://thewhitehousegame.com/public/api/register",
           {
             name: name,
             email: email,

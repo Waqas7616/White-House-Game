@@ -22,7 +22,7 @@ export default function Military() {
     });
     axios
       .get(
-        `https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`,
+        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",
