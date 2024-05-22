@@ -2,7 +2,7 @@ import cross from "../../images/cross.png";
 import { Card, CardHeader, Typography } from "@material-tailwind/react";
 
 export const Modal = ({ candidate, onClose }) => {
-  const imageUrl = "https://thewhitehousegame.com/public/";
+  const imageUrl = "http://thewhitehousegame.com/public/";
 
   const getBackgroundColor = (partyName) => {
     if (partyName === "Democratic") {

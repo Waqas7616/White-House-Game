@@ -22,7 +22,7 @@ export default function Military() {
     });
     axios
       .get(
-        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
+        `http://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",
