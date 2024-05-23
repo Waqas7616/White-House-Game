@@ -16,7 +16,7 @@ function About() {
       <AppBanner redTitle={'About'} bg={bg} bannerTitle={'US'} bannerDesc={'We believe the 2024 Presidential Election is the most important since 1860. The results of that election triggered a Civil War. Will this one do the same?'} />
 
       {/* ABOUT SEC  */}
-      <div className=" bg-[#1c2452] py-[100px]">
+      <div className=" bg-[#1c2452] py-[101px]">
         <div className='resp about w-10/12 m-auto'>
           <h2 className="text-center text-white orbit7 sm:text-[23px] xl-a:text-[50px] ">
             <span className="text-redish">About</span> The White House Game

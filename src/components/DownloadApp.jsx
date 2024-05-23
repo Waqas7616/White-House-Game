@@ -4,8 +4,10 @@ import mobile from "../images/Moblie.png";
 import logo from "../images/logo1.png";
 import app from "../images/App.png";
 import play from "../images/Play.png";
+import { useNavigate } from "react-router-dom";
 
 export default function DownloadApp() {
+  const navigate = useNavigate();
   return (
     <div className="bg-[#1C2452] pt-20 pb-4">
       <div
@@ -65,7 +67,7 @@ export default function DownloadApp() {
               <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
                 Privacy Policy
               </h2>
-              <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
+              <h2 onClick={()=> navigate('/termscondition')} className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer">
                 Terms and Conditions
               </h2>
               <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">

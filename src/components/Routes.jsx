@@ -17,6 +17,7 @@ import PartyPrediction from "../pages/PartyPrediction";
 import { Navigate } from "react-router-dom";
 import StateWinner from "./statewinner/StateWinner";
 import Candidate from "./candidate/Candidate";
+import TermsCondition from "./termscondition/TermsCondition";
 function AppRoutes() {
   const [user, setUser] = useState();
   const [localToken, setLocalToken] = useState();
@@ -67,6 +68,7 @@ function AppRoutes() {
         <Route path="/statewinner" element={<StateWinner/>}/>
         <Route path="/candidate" element={<Candidate/>}/>
         <Route path="/forgetmodal" element={<ForgotModal/>}/>
+        <Route path="/termscondition" element={<TermsCondition/>}/>
       </Routes>
     </Router>
   );

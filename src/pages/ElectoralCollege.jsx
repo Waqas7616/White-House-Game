@@ -16,6 +16,7 @@ import {
 } from "../utils/StateIDs";
 import axios from "axios";
 import Prediction from "./Prediction";
+import StateWinner from "../components/statewinner/StateWinner";
 
 function ElectoralCollege() {
   const { state_predictions, addPrediction, clearPredictions } =
@@ -33,10 +34,10 @@ function ElectoralCollege() {
     setSelectedButtonId(partyId);
   };
   const token = localStorage.getItem("token");
-  const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
+  const imageUrl = "http://thewhitehousegame.com/public/";
   useEffect(() => {
     axios
-      .get("https://pankhay.com/thewhitehousegame/public/api/getStateParty", {
+      .get("http://thewhitehousegame.com/public/api/getStateParty", {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "Application/json",
@@ -66,7 +67,7 @@ function ElectoralCollege() {
     } else if (step === previousData?.states?.length - 1) {
       axios
         .post(
-          "https://pankhay.com/thewhitehousegame/public/api/submit_electoral_college_prediction",
+          "http://thewhitehousegame.com/public/api/submit_electoral_college_prediction",
           {
             state_predictions: state_predictions,
           },
@@ -90,7 +91,7 @@ function ElectoralCollege() {
   };
 
   // const submitData = () => {
-  //     axios.post('https://pankhay.com/thewhitehousegame/public/api/submit_electoral_college_prediction', {
+  //     axios.post('http://pankhay.com/thewhitehousegame/public/api/submit_electoral_college_prediction', {
   //         "state_predictions": state_predictions
   //     }, {
   //         headers: {
@@ -142,7 +143,9 @@ function ElectoralCollege() {
                 {previousData?.states?.[step]?.name}
               </h6>
               <p className="poppins4 text-white text-center text-[12px] sm:text-[28px]">
-                9 Electoral College votes
+                {/* 9 Electoral College votes */}
+                {previousData?.states?.[step]?.electrical_collage_number}{" "}
+                Electoral College votes
               </p>
             </div>
           </div>
@@ -196,7 +199,7 @@ function ElectoralCollege() {
         <button
           onClick={handleSteps}
           className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 mb-[108px] py-2 text-white uppercase rounded-[6px] ${
-            selectedButtonId === null ? 'opacity-50 cursor-not-allowed' : ''
+            selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
           }`}
           disabled={selectedButtonId === null}
         >
@@ -215,7 +218,9 @@ function ElectoralCollege() {
           </h2>
           <div className="result rounded-[10.65px] bg-[#131A41] px-8 py-5">
             <div className="2020">
-              <p className="text-white mb-2 poppins4 text-[20px] md:text-[42.4px]">2020</p>
+              <p className="text-white mb-2 poppins4 text-[20px] md:text-[42.4px]">
+                2020
+              </p>
               <div className="flex  bg-[#131A41] rounded-[10.65px] mb-[23px] w-full">
                 <div
                   className={`py-6 rounded-l-[10.65px] px-4 bg-[#5b4fd1]   flex justify-between items-center`}
@@ -322,7 +327,7 @@ function ElectoralCollege() {
                   <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-[#131A41] opacity-70 absolute left-1">
                     Others
                   </p>
-                  <div className="value poppins4 text-[14px] text-[#131A41] ml-0 sm:ml-20 opacity-70 ">
+                  <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-14 text-[#131A41] opacity-70 ">
                     <p className="flex items-center gap-3 ">
                       {/* <svg width="71" height="26" viewBox="0 0 71 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15.4206 25.6655C13.236 25.4884 11.2068 24.5159 9.75432 22.9501C8.96506 22.1374 7.99225 21.5067 6.90942 21.1056C6.22945 20.8731 5.4907 20.8463 4.7942 21.029C4.0977 21.2116 3.47739 21.5947 3.01777 22.126L3.02935 22.1091L0.5625 20.5403C1.3621 19.5248 2.47213 18.7704 3.73985 18.3811C5.00757 17.9918 6.37071 17.9866 7.64164 18.3663C9.19979 18.8624 10.6063 19.7158 11.7378 20.8512C13.8044 22.6294 14.9993 23.4987 17.5612 22.2647C19.7316 21.2117 20.4122 18.9459 21.1994 16.3282C22.089 13.3783 23.0881 10.0337 26.6565 8.38845C27.3986 7.9969 28.2265 7.77582 29.074 7.74245C29.9214 7.70908 30.7654 7.86437 31.5388 8.19624C32.7182 8.81181 33.7672 9.63089 34.6327 10.6118C36.3614 12.3419 37.5325 13.3725 39.7637 12.7987C42.3018 12.1456 44.0736 9.89267 45.949 7.50814C48.2425 4.59214 50.8414 1.28858 55.3082 0.864535C55.5944 0.837679 55.8789 0.825195 56.1606 0.825195C63.7868 0.825195 69.874 10.3108 70.1379 10.7292L67.5985 12.1879C67.5437 12.1002 62.113 3.65214 56.174 3.65214C55.9833 3.65214 55.7916 3.66115 55.5989 3.67906C52.4307 3.9773 50.4335 6.51584 48.3194 9.20286C46.2246 11.8658 44.0586 14.6191 40.5346 15.5252C36.4888 16.5669 34.1732 14.2533 32.4831 12.5571C30.7174 10.7903 29.8575 10.0452 27.9451 10.9273C25.573 12.0227 24.8656 14.3746 24.0472 17.0998C23.1933 19.9465 22.2238 23.1778 18.9029 24.7849C17.832 25.3381 16.6383 25.64 15.4206 25.6655Z" fill="url(#paint0_linear_650_2374)" />
@@ -452,7 +457,7 @@ function ElectoralCollege() {
                   <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-[#131A41] absolute left-1 opacity-70">
                     Others
                   </p>
-                  <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-4 text-[#131A41] opacity-70">
+                  <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-2   text-[#131A41] opacity-70">
                     <p className="flex items-center gap-3">
                       {/* <svg width="71" height="26" viewBox="0 0 71 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15.4206 25.6655C13.236 25.4884 11.2068 24.5159 9.75432 22.9501C8.96506 22.1374 7.99225 21.5067 6.90942 21.1056C6.22945 20.8731 5.4907 20.8463 4.7942 21.029C4.0977 21.2116 3.47739 21.5947 3.01777 22.126L3.02935 22.1091L0.5625 20.5403C1.3621 19.5248 2.47213 18.7704 3.73985 18.3811C5.00757 17.9918 6.37071 17.9866 7.64164 18.3663C9.19979 18.8624 10.6063 19.7158 11.7378 20.8512C13.8044 22.6294 14.9993 23.4987 17.5612 22.2647C19.7316 21.2117 20.4122 18.9459 21.1994 16.3282C22.089 13.3783 23.0881 10.0337 26.6565 8.38845C27.3986 7.9969 28.2265 7.77582 29.074 7.74245C29.9214 7.70908 30.7654 7.86437 31.5388 8.19624C32.7182 8.81181 33.7672 9.63089 34.6327 10.6118C36.3614 12.3419 37.5325 13.3725 39.7637 12.7987C42.3018 12.1456 44.0736 9.89267 45.949 7.50814C48.2425 4.59214 50.8414 1.28858 55.3082 0.864535C55.5944 0.837679 55.8789 0.825195 56.1606 0.825195C63.7868 0.825195 69.874 10.3108 70.1379 10.7292L67.5985 12.1879C67.5437 12.1002 62.113 3.65214 56.174 3.65214C55.9833 3.65214 55.7916 3.66115 55.5989 3.67906C52.4307 3.9773 50.4335 6.51584 48.3194 9.20286C46.2246 11.8658 44.0586 14.6191 40.5346 15.5252C36.4888 16.5669 34.1732 14.2533 32.4831 12.5571C30.7174 10.7903 29.8575 10.0452 27.9451 10.9273C25.573 12.0227 24.8656 14.3746 24.0472 17.0998C23.1933 19.9465 22.2238 23.1778 18.9029 24.7849C17.832 25.3381 16.6383 25.64 15.4206 25.6655Z" fill="url(#paint0_linear_650_2374)" />
@@ -580,7 +585,7 @@ function ElectoralCollege() {
                   <p className="poppins6 hidden sm:hidden md:hidden lg:block text-[22px] text-[#131A41] absolute left-1 opacity-70">
                     Others
                   </p>
-                  <div className="value poppins4 text-[14px] text-[#131A41] opacity-70">
+                  <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-0 text-[#131A41] opacity-70">
                     <p className="flex items-center gap-3 -ml-5 sm:ml-4">
                       {/* <svg width="71" height="26" viewBox="0 0 71 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M15.4206 25.6655C13.236 25.4884 11.2068 24.5159 9.75432 22.9501C8.96506 22.1374 7.99225 21.5067 6.90942 21.1056C6.22945 20.8731 5.4907 20.8463 4.7942 21.029C4.0977 21.2116 3.47739 21.5947 3.01777 22.126L3.02935 22.1091L0.5625 20.5403C1.3621 19.5248 2.47213 18.7704 3.73985 18.3811C5.00757 17.9918 6.37071 17.9866 7.64164 18.3663C9.19979 18.8624 10.6063 19.7158 11.7378 20.8512C13.8044 22.6294 14.9993 23.4987 17.5612 22.2647C19.7316 21.2117 20.4122 18.9459 21.1994 16.3282C22.089 13.3783 23.0881 10.0337 26.6565 8.38845C27.3986 7.9969 28.2265 7.77582 29.074 7.74245C29.9214 7.70908 30.7654 7.86437 31.5388 8.19624C32.7182 8.81181 33.7672 9.63089 34.6327 10.6118C36.3614 12.3419 37.5325 13.3725 39.7637 12.7987C42.3018 12.1456 44.0736 9.89267 45.949 7.50814C48.2425 4.59214 50.8414 1.28858 55.3082 0.864535C55.5944 0.837679 55.8789 0.825195 56.1606 0.825195C63.7868 0.825195 69.874 10.3108 70.1379 10.7292L67.5985 12.1879C67.5437 12.1002 62.113 3.65214 56.174 3.65214C55.9833 3.65214 55.7916 3.66115 55.5989 3.67906C52.4307 3.9773 50.4335 6.51584 48.3194 9.20286C46.2246 11.8658 44.0586 14.6191 40.5346 15.5252C36.4888 16.5669 34.1732 14.2533 32.4831 12.5571C30.7174 10.7903 29.8575 10.0452 27.9451 10.9273C25.573 12.0227 24.8656 14.3746 24.0472 17.0998C23.1933 19.9465 22.2238 23.1778 18.9029 24.7849C17.832 25.3381 16.6383 25.64 15.4206 25.6655Z" fill="url(#paint0_linear_650_2374)" />
@@ -603,6 +608,9 @@ function ElectoralCollege() {
           </div>
         </div>
       </div>
+
+      <StateWinner />
+
       <DownloadApp />
     </div>
   );

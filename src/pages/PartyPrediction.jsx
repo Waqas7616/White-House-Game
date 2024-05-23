@@ -34,14 +34,14 @@ function PartyPrediction() {
   const data = location.state || {};
   // console.log("transferred data", data);
   const [candidateData, setCandidateData] = useState([]);
-  const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
+  const imageUrl = "http://thewhitehousegame.com/public/";
   // const id=localStorage.getItem('id');
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
 
 
   useEffect(() => {
-    axios.get(`https://pankhay.com/thewhitehousegame/public/api/get_predict_party_candidate/${id}`,
+    axios.get(`http://thewhitehousegame.com/public/api/get_predict_party_candidate/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -102,7 +102,7 @@ function PartyPrediction() {
   const sendPartyData = () => {
     axios
       .post(
-        "https://pankhay.com/thewhitehousegame/public/api/predict_party_leader",
+        "http://thewhitehousegame.com/public/api/predict_party_leader",
         partyData,
         {
           headers: {

@@ -130,7 +130,7 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
 </div>
 
             <div className="couter ">
-            <h2 className="poppins5 text-center text-white mb-2">Voting starts</h2>
+            <h2 className="poppins5 text-center text-white pb-3">Voting starts</h2>
 
               <div className="flex items-center gap-4">
                 <div className="flex flex-col  poppins5 text-center text-white">

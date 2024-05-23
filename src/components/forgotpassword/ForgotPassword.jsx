@@ -19,7 +19,7 @@ export const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        "https://pankhay.com/thewhitehousegame/public/api/forget_password",
+        "http://thewhitehousegame.com/public/api/forget_password",
         {
           email: email,
         }

@@ -35,7 +35,7 @@
 //     else {
 //       try {
 //         const response = await axios.post(
-//           "https://pankhay.com/thewhitehousegame/public/api/register",
+//           "http://pankhay.com/thewhitehousegame/public/api/register",
 //           {
 //             name: name,
 //             email: email,
@@ -333,7 +333,7 @@
 //     } else {
 //       try {
 //         const response = await axios.post(
-//           "https://pankhay.com/thewhitehousegame/public/api/register",
+//           "http://pankhay.com/thewhitehousegame/public/api/register",
 //           {
 //             name: name,
 //             email: email,
@@ -541,7 +541,7 @@ export const SignUp = () => {
     } else {
       try {
         const response = await axios.post(
-          "https://pankhay.com/thewhitehousegame/public/api/register",
+          "http://thewhitehousegame.com/public/api/register",
           {
             name: name,
             email: email,
