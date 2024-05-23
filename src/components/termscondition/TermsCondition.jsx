@@ -94,8 +94,8 @@ export default function TermsCondition() {
               {paragraph.map((item, index) => (
                 <li
                   key={index}
-                  className={`mb-9 text-[14px] lg:text-[18px] xl:text-[28px] font-poppins ${
-                    /^[0-9]+\.\s/.test(item) ? "font-semibold" : "font-extralight"
+                  className={`mb-9 text-[14px] lg:text-[18px] xl:text-[24px] poppins ${
+                    /^[0-9]+\.\s/.test(item) ? " poppins6" : " poppins4"
                   }`}
                 >
                   {item}

@@ -164,13 +164,13 @@ function Banner() {
                 <div className="flex flex-col  poppins5 text-center text-white">
                   <p className="flex gap-2 text-center">
                     {" "}
-                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                    <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white ">
                       {Math.floor(timeRemaining.days / 100)}
                     </span>{" "}
-                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                    <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                       {Math.floor((timeRemaining.days % 100) / 10)}
                     </span>{" "}
-                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                    <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                       {timeRemaining.days % 10}
                     </span>{" "}
                   </p>
@@ -179,10 +179,10 @@ function Banner() {
                 <div className="  poppins5 text-center text-white">
                   {/* Hours */}
                   <p className="flex gap-2">
-                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                    <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                       {Math.floor(timeRemaining.hours / 10)}
                     </span>{" "}
-                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                    <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                       {timeRemaining.hours % 10}
                     </span>{" "}
                   </p>
@@ -190,10 +190,10 @@ function Banner() {
                 </div>
                 <div className="text-center">
                   <p className="flex gap-2">
-                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                    <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                       {Math.floor(timeRemaining.minutes / 10)}
                     </span>{" "}
-                    <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                    <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                       {timeRemaining.minutes % 10}
                     </span>{" "}
                   </p>

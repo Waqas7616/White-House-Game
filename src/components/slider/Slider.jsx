@@ -40,7 +40,7 @@ function CustomSlider() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://pankhay.com/public/api/get_votter_candidate",
+          "http://thewhitehousegame.com/public/api/get_votter_candidate",
           {
             headers: {
               Accept: "application/json",
@@ -48,7 +48,7 @@ function CustomSlider() {
           }
         );
         setData(response.data.votter_candidate);
-        console.log("halaka :", response)
+        console.log("halaka :", response);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -317,7 +317,9 @@ function CustomSlider() {
                   </div>
                   <h5 className="poppins5 text-[17px] text-center  lg:text-center lg:mr-10 text-blackColor">
                     {/* {item.candidate_name.split(" ")[1]} */}
-                    {item.candidate_name === 'Robert F Kennedy' ? item.candidate_name.split(" ")[2] : item.candidate_name.split(" ")[0]}
+                    {item.candidate_name === "Robert F Kennedy"
+                      ? item.candidate_name.split(" ")[2]
+                      : item.candidate_name.split(" ")[0]}
                     {/* {item.candidate_name.split(" ")[0]} */}
                   </h5>
                 </div>
@@ -339,7 +341,9 @@ function CustomSlider() {
                     />
                   </div>
                   <h5 className="poppins5 text-[17px] text-center text-blackColor">
-                    {item.candidate_name === 'Robert F Kennedy' ? item.candidate_name.split(" ")[2] : item.candidate_name.split(" ")[0]}
+                    {item.candidate_name === "Robert F Kennedy"
+                      ? item.candidate_name.split(" ")[2]
+                      : item.candidate_name.split(" ")[0]}
                   </h5>
                 </div>
               ))}
