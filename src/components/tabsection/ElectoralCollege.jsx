@@ -239,6 +239,7 @@ export default function ElectoralCollege() {
                 </div>
               </div>
             ))}
+            
 
             {/* <div className="voteCount flex gap-1 sm:gap-5 items-center h-[60px] mt-8  bg-[#ED1C244D] rounded-l-lg">
                   <div className="president-info relative bg-redish px-1 sm:px-4 w-2/4 sm:w-1/4 h-full flex justify-between  items-center rounded-l-lg">
@@ -271,7 +272,7 @@ export default function ElectoralCollege() {
                 />
               </svg>
             </button>
-          </>
+          </>      
         ) : (
           <>
             {president && president?.map((item, index) => (
@@ -280,7 +281,7 @@ export default function ElectoralCollege() {
                 className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
                   item.party_name === "Republican"
                     ? "republic"
-                    : item.party_name === "democratic"
+                    : item.party_name === "Democratic"
                     ? "democratic"
                     : "independent"
                 } mt-8 rounded-[8px]`}

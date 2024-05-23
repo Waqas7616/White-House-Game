@@ -596,10 +596,10 @@ export const SignUp = () => {
       </div>
       <div className="bg-[#1c2452]">
         <div className="flex justify-center items-center h-full">
-          <div className="w-[402px] px-6 py-4 text-white rounded-lg">
+          <div className="w-[420px] px-2 py-4 text-white rounded-lg">
             <p className="text-center font-poppins">
-              Create an account to play The White House Game. You can update
-              your prediction and view our Fascinating Election Statistics
+              Create an account to play The White House Game and view our
+              fascinating Election Stats.
             </p>
           </div>
         </div>
@@ -768,7 +768,7 @@ export const SignUp = () => {
           </form>
           <div className="flex justify-center items-center gap-2 mt-2">
             <p className="text-white font-poppins text-[11px]">
-            Already have an account?
+              Already have an account?
             </p>
             <button
               onClick={() => navigate("/LogIn")}
