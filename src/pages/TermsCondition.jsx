@@ -1,10 +1,12 @@
 import React from "react";
-import Navbar from "../Navbar";
-import AppBanner from "../appbanner/AppBanner";
-import Terms from "../../images/Terms.png";
-import logo from "../../images/logo.png";
+import Navbar from "../components/Navbar";
+import AppBanner from "../components/appbanner/AppBanner";
+import Terms from "../images/Terms.png";
+import logo from "../images/logo.png";
+import { useNavigate } from "react-router-dom";
 
 export default function TermsCondition() {
+  const navigate = useNavigate();
   const paragraph = [
     "1.	As well as complying with the laws of your country of citizenship, country of residence and where you are using our services, you are also obligated to obey our terms and conditions.",
     "1.1	The conditions we place on use are designed to maintain the integrity and reputation of our platform.",
@@ -103,14 +105,14 @@ export default function TermsCondition() {
               ))}
             </ul>
 
-            <div className="my-5">
-              <p className="text-white pt-3 text-[16px] lg:text-[24px]">
+            <div className="my-5 pl-5">
+              <p className="text-white pt-3 text-[16px] lg:text-[24px] poppins4">
                 The White House Game Terms and Conditions
               </p>
-              <p className="text-white pt-3 text-[16px] lg:text-[24px]">
+              <p className="text-white pt-3 text-[16px] lg:text-[24px] poppins4">
                 Version 24.05
               </p>
-              <p className="text-white pt-3 text-[16px] lg:text-[24px]">
+              <p className="text-white pt-3 text-[16px] lg:text-[24px] poppins4">
                 Last update: 22 May 2023
               </p>
             </div>
@@ -134,18 +136,30 @@ export default function TermsCondition() {
                 </p>
               </div>
               <div className="flex gap-3 sm:gap-8 mx-5 sm:mx-0 mt-3">
-                <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
+                <h2
+                  onClick={() => navigate("/contact")}
+                  className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
+                >
                   Contact Us
                 </h2>
-                <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
+                <h2
+                  onClick={() => navigate("/privacypolicy")}
+                  className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
+                >
                   Privacy Policy
                 </h2>
-                <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
+                <h2
+                  onClick={() => navigate("/termscondition")}
+                  className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
+                >
                   Terms and Conditions
                 </h2>
-                <h2 className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff]">
-                  White House Shop
-                </h2>
+                <a
+                  href="https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
+                  class="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
+                >
+                  <h2>White House Shop</h2>
+                </a>
               </div>
             </div>
             <div>
