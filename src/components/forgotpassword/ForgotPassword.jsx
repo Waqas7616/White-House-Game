@@ -53,15 +53,15 @@ export const ForgotPassword = () => {
       <div className="flex flex-col text-center items-center justify-center mt-2">
         <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
           {" "}
-          <span className="text-redish">Forgot</span> Password
+          <span className="text-redish">Forgot</span><br /> Password
         </h1>
       </div>
       <div className="bg-[#1c2452] ">
         <div className="flex justify-center items-center h-full">
-          <div className="w-[379px] px-6 py-4  text-white rounded-lg">
+          <div className="w-[270px] px-6 py-4  text-white rounded-lg">
             <p className="text-center font-poppins text-[12px]">
-              Even our security don’t know your password, so we’ll need to reset
-              it through your account’s email address
+            Even we don’t know your password 
+So we’ll need to Reset it
             </p>
           </div>
         </div>
@@ -79,13 +79,13 @@ export const ForgotPassword = () => {
                 for="email"
                 class="block mb-2 text-sm font-medium text-white font-poppins"
               >
-                Email Address
+                Email address
               </label>
               <input
                 type="email"
                 id="email"
                 className="bg-gray-500 border border-gray-500 text-white text-sm rounded-lg focus:ring-gray-500 focus:gray-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Enter Email Address"
+                placeholder="Enter your email"
                 required
                 onChange={(e) => setEmail(e.target.value)}
               />

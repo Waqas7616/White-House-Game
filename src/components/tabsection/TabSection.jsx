@@ -840,9 +840,9 @@ function TabSection() {
         <div className="w-10/12 m-auto mt-12">
           <Map />
         </div>
-        {/* <div className="w-10/12 m-auto mt-12">
+        <div className="w-10/12 m-auto mt-12">
           <StateWinner />
-        </div> */}
+        </div>
       </div>
     </div>
   );

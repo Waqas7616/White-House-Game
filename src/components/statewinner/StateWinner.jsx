@@ -192,7 +192,6 @@ const StateWinner = () => {
               count: count,
             })
           );
-
           parsedData.push({
             state: state,
             parties: stateParties,

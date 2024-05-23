@@ -91,7 +91,7 @@ export const LogIn = () => {
         <div className="flex justify-center items-center h-full">
           <div className="w-[344px] px-6 py-4  text-white rounded-lg">
             <p className="text-center font-poppins">
-            To play and access our services
+            To play and view results
             </p>
           </div>
         </div>
