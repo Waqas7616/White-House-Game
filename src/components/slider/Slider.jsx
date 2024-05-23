@@ -34,13 +34,13 @@ function CustomSlider() {
 
   const [loading, setLoading] = useState(true);
 
-  const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
+  const imageUrl = "http://thewhitehousegame.com/public/";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://pankhay.com/thewhitehousegame/public/api/get_votter_candidate",
+          "http://thewhitehousegame.com/public/api/get_votter_candidate",
           {
             headers: {
               Accept: "application/json",
@@ -48,6 +48,7 @@ function CustomSlider() {
           }
         );
         setData(response.data.votter_candidate);
+        console.log("halaka :", response)
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -63,7 +64,7 @@ function CustomSlider() {
   const CustomNextArrow = (props) => (
     <div
       {...props}
-      className="absolute top-[13%] right-[.5%] sm:top-[13%] sm:-right-[1.5%] md:top-[13%] md:-right-[5.5%] lg:top-[13%] lg:-right-[4.6%] xl:top-[13%] xl:-right-[0%]  transform cursor-pointer"
+      className="absolute top-[13%] right-[.5%] sm:top-[13%] sm:-right-[1.5%] md:top-[13%] md:-right-[5.5%] lg:top-[13%] lg:-right-[1%] xl:top-[13%] xl:-right-[0%]  transform cursor-pointer"
     >
       <span className="text-2xl opacity-[0.5] hover:opacity-100">
         <svg
@@ -230,9 +231,16 @@ function CustomSlider() {
     prevArrow: <CustomPrevArrow />,
     responsive: [
       {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 1,
         },
       },
@@ -301,14 +309,16 @@ function CustomSlider() {
                 >
                   <div className="image w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%]  flex">
                     <img
-                      className=" w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%] object-cover cursor-pointer"
+                      className=" w-[129px] h-[129px] sm:w-[130px] sm:h-[130px] md:w-[150px] md:h-[150px]   rounded-[50%] object-cover cursor-pointer"
                       src={`${imageUrl}${item?.candidate_image}`}
                       alt=""
                       onClick={() => handleCandidateClick(index)}
                     />
                   </div>
-                  <h5 className="poppins5 text-[17px] text-center text-blackColor">
-                    {item.candidate_name}
+                  <h5 className="poppins5 text-[17px] text-center  lg:text-center lg:mr-10 text-blackColor">
+                    {/* {item.candidate_name.split(" ")[1]} */}
+                    {item.candidate_name === 'Robert F Kennedy' ? item.candidate_name.split(" ")[2] : item.candidate_name.split(" ")[0]}
+                    {/* {item.candidate_name.split(" ")[0]} */}
                   </h5>
                 </div>
               ))}
@@ -328,8 +338,8 @@ function CustomSlider() {
                       onClick={() => handleCandidateClick(index)}
                     />
                   </div>
-                  <h5 className="poppins5 text-[17px] text-blackColor">
-                    {item.candidate_name}
+                  <h5 className="poppins5 text-[17px] text-center text-blackColor">
+                    {item.candidate_name === 'Robert F Kennedy' ? item.candidate_name.split(" ")[2] : item.candidate_name.split(" ")[0]}
                   </h5>
                 </div>
               ))}

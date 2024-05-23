@@ -21,7 +21,7 @@ import axios from "axios";
 export default function ElectoralCollege() {
   const [expandedVotes, setExpandedVotes] = useState(false);
   const [viceVotes, setViceVotes] = useState(false);
-  const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
+  const imageUrl = "http://thewhitehousegame.com/public/";
 
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(1);
@@ -53,9 +53,10 @@ export default function ElectoralCollege() {
 
   useEffect(() => {
     axios
-      .get("https://pankhay.com/thewhitehousegame/public/api/get_user_state")
+      .get("http://thewhitehousegame.com/public/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
+        // console.log("all states123", response.data.user_state);
       })
       .catch((error) => {});
   }, []);
@@ -65,7 +66,7 @@ export default function ElectoralCollege() {
     });
     axios
       .get(
-        `https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`,
+        `http://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",

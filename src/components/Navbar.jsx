@@ -105,7 +105,10 @@ function Navbar() {
         <>
           <div className="logo -mt-1">
             <a href="/">
-             <Link to="/"> <img src={logo} className="w-28" alt="" /></Link>
+              <Link to="/">
+                {" "}
+                <img src={logo} className="w-28" alt="" />
+              </Link>
             </a>
           </div>
           <div className="nav-links flex gap-8 ">
@@ -139,7 +142,11 @@ function Navbar() {
                 Candidates
               </li>
             </Link>{" "}
-            <Link to={"https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"}>
+            <Link
+              to={
+                "http://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
+              }
+            >
               {" "}
               <li
                 className={`nav-link poppins4 hover:text-redish ${
@@ -149,9 +156,6 @@ function Navbar() {
                 Shop
               </li>
             </Link>{" "}
-
-
-
             <li
               // onClick={() => handleLinks(3)}
               onClick={handlePredictClick}
@@ -227,7 +231,7 @@ function Navbar() {
             </svg> */}
             <button
               className={`w-full h-full ${!isLoggedIn ? "block" : "hidden"} ${
-                location.pathname !=="/LogIn"
+                location.pathname !== "/LogIn"
                   ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
                   : "text-[rgba(255,255,255,.6)]"
               }`}
@@ -279,7 +283,7 @@ function Navbar() {
 
             <Link
               to={
-                "https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
+                "http://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
               }
             >
               <li

@@ -164,13 +164,13 @@ const Candidate = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const imageUrl = "https://pankhay.com/thewhitehousegame/public/";
+    const imageUrl = "http://thewhitehousegame.com/public/";
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    "https://pankhay.com/thewhitehousegame/public/api/get_votter_candidate",
+                    "http://thewhitehousegame.com/public/api/get_votter_candidate",
                     {
                         headers: {
                             Accept: "application/json",

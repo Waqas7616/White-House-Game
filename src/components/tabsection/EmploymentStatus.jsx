@@ -18,7 +18,7 @@ export default function EmploymentStatus() {
   useEffect(() => {
     axios
       .get(
-        "https://pankhay.com/thewhitehousegame/public/api/get_all_user_employement"
+        "http://thewhitehousegame.com/public/api/get_all_user_employement"
       )
       .then((response) => {
         setEmployment(response.data.user_employement);
@@ -32,7 +32,7 @@ export default function EmploymentStatus() {
     });
     axios
       .get(
-        `https://pankhay.com/thewhitehousegame/public/api/filter?${ParamBody}`,
+        `http://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",
