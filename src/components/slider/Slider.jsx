@@ -40,7 +40,7 @@ function CustomSlider() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://pankhay.com/public/api/get_votter_candidate",
+          "https://pankhay.com/thewhitehousegame/public/api/get_votter_candidate",
           {
             headers: {
               Accept: "application/json",
