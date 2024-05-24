@@ -181,7 +181,7 @@ const backgroundColor = (state) => {
           <h1 className="text-[30px] orbit7 text-center text-white mb-3">
             {step} - {voteCount(step).electricalCollege}
           </h1>
-          <p className="text-[20px] poppins6 text-white text-center mb-2">
+          <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 px-3">
             DEMOCRATIC:{" "}
             <span className="poppins4">
               {!statesData[step].Democratic
@@ -189,7 +189,7 @@ const backgroundColor = (state) => {
                 : `${Math.round(statesData[step].Democratic)}%`}
             </span>
           </p>
-          <p className="text-[20px] poppins6 text-white text-center mb-2 uppercase">
+          <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 uppercase px-3">
             Republican:{" "}
             <span className="poppins4">
               {!statesData[step].Republican
@@ -197,7 +197,7 @@ const backgroundColor = (state) => {
                 : `${Math.round(statesData[step].Republican)}%`}
             </span>
           </p>
-          <p className="text-[20px] poppins6 text-white text-center mb-2 uppercase">
+          <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 uppercase px-3">
             Independent:{" "}
             <span className="poppins4">
               {!statesData[step]["Independent('Kennedy')"]

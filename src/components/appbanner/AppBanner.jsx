@@ -45,7 +45,7 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
   return (
     <div className="banner">
       <div className="bg-redish hidden sm:flex">
-        <div className="top-section resp  p-4 flex justify-between w-10/12 m-auto items-center ">
+        <div className="top-section resp  px-4 py-3 flex justify-between w-10/12 m-auto items-center ">
           {/* <div className="social-icons flex gap-3  ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +111,7 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
                 />
               </svg>
             </div> */}
-          <div className="languages flex items-center gap-6 bg-[#131841] w-60 h-10 rounded-lg p-1">
+          <div className="languages flex items-center gap-6 bg-[#131841] w-60 h-10 rounded-[5px] p-1">
             <button
               className={` w-full h-full ${
                 active === 0
@@ -141,21 +141,21 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
           </div>
 
           <div className="couter ">
-            <h2 className="poppins5 text-center text-white pb-3">
+            <h2 className="poppins5 text-center text-white mb-2">
               Voting starts
             </h2>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               <div className="flex flex-col  poppins5 text-center text-white">
-                <p className="flex gap-3 text-center">
+                <p className="flex gap-2 text-center">
                   {" "}
-                  <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                  <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                     {Math.floor(timeRemaining.days / 100)}
                   </span>{" "}
-                  <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                  <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                     {Math.floor((timeRemaining.days % 100) / 10)}
                   </span>{" "}
-                  <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                  <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                     {timeRemaining.days % 10}
                   </span>{" "}
                 </p>
@@ -163,22 +163,22 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
               </div>
               <div className="  poppins5 text-center text-white">
                 {/* Hours */}
-                <p className="flex gap-3">
-                  <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                <p className="flex gap-2">
+                  <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                     {Math.floor(timeRemaining.hours / 10)}
                   </span>{" "}
-                  <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                  <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                     {timeRemaining.hours % 10}
                   </span>{" "}
                 </p>
                 <p>Hours</p>
               </div>
               <div className="text-center">
-                <p className="flex gap-3">
-                  <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                <p className="flex gap-2">
+                  <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                     {Math.floor(timeRemaining.minutes / 10)}
                   </span>{" "}
-                  <span className="bg-white p-2 poppins4 rounded-lg w-[35px] h-[35px] text-black">
+                  <span className="bg-[#131841] p-2 poppins6 rounded-lg w-[35px] h-[35px] text-white">
                     {timeRemaining.minutes % 10}
                   </span>{" "}
                 </p>

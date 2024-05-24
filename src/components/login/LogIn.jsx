@@ -202,7 +202,7 @@ export const LogIn = () => {
             <p className="text-white font-poppins text-[10px] lg:text-[16px]">Don’t have an account?</p>
             <button
               onClick={() => navigate("/SignUp")}
-              className=" text-white font-poppins cursor-pointer text-[10px] lg:text-[16px]"
+              className=" text-white font-poppins cursor-pointer text-[10px] lg:text-[16px] hover:underline"
             >
               Sign Up now
             </button>
