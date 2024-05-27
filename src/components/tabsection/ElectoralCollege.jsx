@@ -21,7 +21,7 @@ import axios from "axios";
 export default function ElectoralCollege() {
   const [expandedVotes, setExpandedVotes] = useState(false);
   const [viceVotes, setViceVotes] = useState(false);
-  const imageUrl = "http://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/public/";
 
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(1);

@@ -34,7 +34,7 @@ function ElectoralCollege() {
     setSelectedButtonId(partyId);
   };
   const token = localStorage.getItem("token");
-  const imageUrl = "http://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/public/";
   useEffect(() => {
     axios
       .get("https://thewhitehousegame.com/public/api/getStateParty", {

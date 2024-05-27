@@ -11,7 +11,7 @@ import republic from "../../images/republican.png";
 import axios from "axios";
 
 export default function VoteGraph() {
-  const imageUrl = "http://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/public/";
 
   const [expendedCandidates, setExpandedCandidates] = useState(false);
   const [id, setId] = useState(1);
