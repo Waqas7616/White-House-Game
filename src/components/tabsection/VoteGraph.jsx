@@ -28,7 +28,7 @@ export default function VoteGraph() {
   };
   useEffect(() => {
     axios
-      .get("http://thewhitehousegame.com/public/api/get_user_state")
+      .get("https://thewhitehousegame.com/public/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
       })
@@ -40,7 +40,7 @@ export default function VoteGraph() {
     });
     axios
       .get(
-        `http://thewhitehousegame.com/public/api/filter?${ParamBody}`,
+        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",
@@ -128,7 +128,7 @@ export default function VoteGraph() {
             }}
             name="states"
             id="search"
-            className="bg-transparent w-full"
+            className="bg-transparent w-full outline-none"
           >
             {allstates?.map((item) => (
               <option className="bg-[#000]" key={item.id} value={item?.name}>

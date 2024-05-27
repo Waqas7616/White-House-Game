@@ -32,7 +32,7 @@ function TabSection() {
 
   useEffect(() => {
     axios
-      .get("http://thewhitehousegame.com/public/api/get_user_state")
+      .get("https://thewhitehousegame.com/public/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
       })
@@ -44,7 +44,7 @@ function TabSection() {
     });
     axios
       .get(
-        `http://thewhitehousegame.com/public/api/filter?${ParamBody}`,
+        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",
@@ -523,7 +523,7 @@ function TabSection() {
                 </select>
               </div> */}
 
-              <div className="searchBar flex flex-col items-center mx-5 ">
+              {/* <div className="searchBar flex flex-col items-center mx-5 ">
                 <label
                   htmlFor="search"
                   className="text-whiteColor text-center poppins4 text-[14px] mb-2"
@@ -554,7 +554,7 @@ function TabSection() {
                   ))}
                 </select>
                 </div>
-              </div>
+              </div> */}
 
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
                 <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
