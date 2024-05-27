@@ -21,7 +21,7 @@ export default function ByLanguage() {
 
   useEffect(() => {
     axios
-      .get("http://thewhitehousegame.com/public/api/get_all_language")
+      .get("https://thewhitehousegame.com/public/api/get_all_language")
       .then((response) => {
         //   console.log("by Language:", response.data.language
         // );
@@ -39,7 +39,7 @@ export default function ByLanguage() {
     });
     axios
       .get(
-        `http://thewhitehousegame.com/public/api/filter?${ParamBody}`,
+        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",

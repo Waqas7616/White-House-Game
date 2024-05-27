@@ -44,7 +44,7 @@ function Prediction() {
   const sendPrediction = () => {
     axios
       .post(
-        "http://thewhitehousegame.com/public/api/select_party_leaders",
+        "https://thewhitehousegame.com/public/api/select_party_leaders",
         {
           "parties": voting
         },

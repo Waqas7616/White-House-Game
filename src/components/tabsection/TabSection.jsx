@@ -22,7 +22,7 @@ import axios from "axios";
 import StateWinner from "../statewinner/StateWinner";
 
 function TabSection() {
-  const imageUrl = "http://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/public/";
 
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(1);
@@ -32,7 +32,7 @@ function TabSection() {
 
   useEffect(() => {
     axios
-      .get("http://thewhitehousegame.com/public/api/get_user_state")
+      .get("https://thewhitehousegame.com/public/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
       })
@@ -44,7 +44,7 @@ function TabSection() {
     });
     axios
       .get(
-        `http://thewhitehousegame.com/public/api/filter?${ParamBody}`,
+        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",
@@ -840,7 +840,7 @@ function TabSection() {
         <div className="w-10/12 m-auto mt-12">
           <Map />
         </div>
-        <div className="w-10/12 m-auto mt-12">
+        <div className="">
           <StateWinner />
         </div>
       </div>

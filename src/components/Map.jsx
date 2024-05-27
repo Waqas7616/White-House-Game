@@ -7,11 +7,11 @@ function Map() {
   const [step, setStep] = useState("");
   const [statesData, setStatesData] = useState([]);
   const [largeParty, setLargeParty] = useState("");
-  const ImageUrl = "http://thewhitehousegame.com/public/";
+  const ImageUrl = "https://thewhitehousegame.com/public/";
 
   useEffect(() => {
     axios
-      .get("http://thewhitehousegame.com/public/api/getVoterPartyCount", {
+      .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
         headers: {
           Accept: "application/json",
         },
@@ -458,7 +458,7 @@ const backgroundColor = (state) => {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Connecticut").electricalCollege}`}
+              {` ${voteCount("Iowa").electricalCollege}`}
             </text>
 
             {/* Idaho fuchsia  */}
