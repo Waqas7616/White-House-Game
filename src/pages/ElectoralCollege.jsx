@@ -37,7 +37,7 @@ function ElectoralCollege() {
   const imageUrl = "http://thewhitehousegame.com/public/";
   useEffect(() => {
     axios
-      .get("http://thewhitehousegame.com/public/api/getStateParty", {
+      .get("https://thewhitehousegame.com/public/api/getStateParty", {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "Application/json",
@@ -67,7 +67,7 @@ function ElectoralCollege() {
     } else if (step === previousData?.states?.length - 1) {
       axios
         .post(
-          "http://thewhitehousegame.com/public/api/submit_electoral_college_prediction",
+          "https://thewhitehousegame.com/public/api/submit_electoral_college_prediction",
           {
             state_predictions: state_predictions,
           },

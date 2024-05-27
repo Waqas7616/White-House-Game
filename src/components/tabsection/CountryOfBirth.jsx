@@ -24,7 +24,7 @@ export default function CountryOfBirth() {
   useEffect(() => {
     axios
       .get(
-        "http://thewhitehousegame.com/public/api/get_all_user_country_birth"
+        "https://thewhitehousegame.com/public/api/get_all_user_country_birth"
       )
       .then((response) => {
         //   console.log("Age Group:", response.data.user_country_birth
@@ -43,7 +43,7 @@ export default function CountryOfBirth() {
     });
     axios
       .get(
-        `http://thewhitehousegame.com/public/api/filter?${ParamBody}`,
+        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",

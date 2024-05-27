@@ -21,7 +21,7 @@ export default function AgeGroups() {
   console.log("ageGroup", ageGroupPer);
   useEffect(() => {
     axios
-      .get("http://thewhitehousegame.com/public/api/get_user_age")
+      .get("https://thewhitehousegame.com/public/api/get_user_age")
       .then((response) => {
         // console.log("Age Group:", response.data.user_age);
 
@@ -37,14 +37,11 @@ export default function AgeGroups() {
       user_age_id: id,
     });
     axios
-      .get(
-        `http://thewhitehousegame.com/public/api/filter?${ParamBody}`,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      )
+      .get(`https://thewhitehousegame.com/public/api/filter?${ParamBody}`, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
       .then((res) => {
         setAgeGroupPer(res.data);
       })
@@ -155,28 +152,32 @@ export default function AgeGroups() {
               Select Age Group
             </label>
             <div className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-2 py-2 rounded-[10px] text-whiteColor">
-            <select
-              onChange={(e) => {
-                const selectedName = e.target.value;
-                setTabName(selectedName)
-                const selectedId = AgeGroup.find(
-                  (item) => item.range === selectedName
-                )?.id;
-                handleId(selectedId);
-              }}
-              name="states"
-              id="search"
-              className="bg-transparent w-full outline-none"
-            >
-              {/* <option className="bg-[#000]" value="">
+              <select
+                onChange={(e) => {
+                  const selectedName = e.target.value;
+                  setTabName(selectedName);
+                  const selectedId = AgeGroup.find(
+                    (item) => item.range === selectedName
+                  )?.id;
+                  handleId(selectedId);
+                }}
+                name="states"
+                id="search"
+                className="bg-transparent w-full outline-none"
+              >
+                {/* <option className="bg-[#000]" value="">
                 Select Age Group
               </option> */}
-              {AgeGroup?.map((item) => (
-                <option className="bg-[#000]" key={item.id} value={item?.range}>
-                  {item?.range}
-                </option>
-              ))}
-            </select>
+                {AgeGroup?.map((item) => (
+                  <option
+                    className="bg-[#000]"
+                    key={item.id}
+                    value={item?.range}
+                  >
+                    {item?.range}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
@@ -192,104 +193,106 @@ export default function AgeGroups() {
         </h2>
         <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
           <>
-            {ageGroupPer?.data?.party_percentages
-
-              .map((item, index) => (
-                <div
-                  key={index}
-                  className={`voteCount ${item.party_id === 2
+            {ageGroupPer?.data?.party_percentages.map((item, index) => (
+              <div
+                key={index}
+                className={`voteCount ${
+                  item.party_id === 2
                     ? "republic"
                     : item.party_id === 1
-                      ? "democratic"
-                      : "independent"
-                    } flex gap-1 sm:gap-5 items-center h-[60px] rounded-[8px] my-8`}
-                >
-                  <div
-                    style={{
-                      background: `${item.party_id === 2
+                    ? "democratic"
+                    : "independent"
+                } flex gap-1 sm:gap-5 items-center h-[60px] rounded-[8px] my-8`}
+              >
+                <div
+                  style={{
+                    background: `${
+                      item.party_id === 2
                         ? "#546BED"
                         : item.party_id === 1
-                          ? "#ED1C24"
-                          : "white"
-                        }`,
-                    }}
-                    className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
-                  >
-                    <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
-                      <img
-                        className="w-[20px] sm:w-auto"
-                        src={
-                          item.party_id === 2
-                            ? republic
-                            : item.party_id === 1
-                              ? democrat
-                              : independ
-                        }
-                        alt=""
-                      />
-                    </div>
-                    <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
-                      {item.percentage}%
-                    </p>
-                    <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
-                      <img
-                        className=" sm:w-auto"
-                        src={item.percentageDifference > 0 ? up : down}
-                        alt=""
-                      />
-                    </div>
+                        ? "#ED1C24"
+                        : "white"
+                    }`,
+                  }}
+                  className={`president-info relative px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg `}
+                >
+                  <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
+                    <img
+                      className="w-[20px] sm:w-auto"
+                      src={
+                        item.party_id === 2
+                          ? republic
+                          : item.party_id === 1
+                          ? democrat
+                          : independ
+                      }
+                      alt=""
+                    />
                   </div>
-                  <div className="president-votes w-3/4">
-                    <div className="w-[98%] h-[62px]  rounded-r-lg  flex flex-col justify-center">
-                      <div className="w-100 bg-[#454C72] rounded-[8px]">
-                        <div
-                          style={{
-                            width: `${item.male_ratio}%`,
-                            background: `${item.party_id === 2
+                  <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
+                    {item.percentage}%
+                  </p>
+                  <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
+                    <img
+                      className=" sm:w-auto"
+                      src={item.percentageDifference > 0 ? up : down}
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div className="president-votes w-3/4">
+                  <div className="w-[98%] h-[62px]  rounded-r-lg  flex flex-col justify-center">
+                    <div className="w-100 bg-[#454C72] rounded-[8px]">
+                      <div
+                        style={{
+                          width: `${item.male_ratio}%`,
+                          background: `${
+                            item.party_id === 2
                               ? "#546BED"
                               : item.party_id === 1
-                                ? "#ED1C24"
-                                : "white"
-                              }`,
-                          }}
-                          className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                        >
-                          <div className="text-[#65D2E6] text-[15px] poppins4 italic flex items-center ">
-                            <img src={male} alt="" />
-                            Male
-                          </div>
-                          <p className="flex-1 text-center">
-                            {" "}
-                            {item.male_ratio}%{" "}
-                          </p>
+                              ? "#ED1C24"
+                              : "white"
+                          }`,
+                        }}
+                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
+                      >
+                        <div className="text-[#65D2E6] text-[15px] poppins4 italic flex items-center ">
+                          <img src={male} alt="" />
+                          Male
                         </div>
+                        <p className="flex-1 text-center">
+                          {" "}
+                          {item.male_ratio}%{" "}
+                        </p>
                       </div>
-                      <div className="w-100 bg-[#454C72] rounded-[8px] mt-1">
-                        <div
-                          style={{
-                            width: `${item.female_ratio}%`,
-                            background: `${item.party_id === 2
+                    </div>
+                    <div className="w-100 bg-[#454C72] rounded-[8px] mt-1">
+                      <div
+                        style={{
+                          width: `${item.female_ratio}%`,
+                          background: `${
+                            item.party_id === 2
                               ? "#546BED"
                               : item.party_id === 1
-                                ? "#ED1C24"
-                                : "white"
-                              }`,
-                          }}
-                          className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
-                        >
-                          <div className="text-[#F0788C] text-[15px] poppins4 italic flex items-center ">
-                            <img src={female} alt="" />
-                            Female
-                          </div>
-                          <p className="flex-1 text-center">
-                            {item.female_ratio}%
-                          </p>
+                              ? "#ED1C24"
+                              : "white"
+                          }`,
+                        }}
+                        className={` w-[80%] text-xs font-medium text-black-100 h-6 text-center p-1 pl-4 poppins5  leading-none rounded-[8px] flex items-center gap-5 `}
+                      >
+                        <div className="text-[#F0788C] text-[15px] poppins4 italic flex items-center ">
+                          <img src={female} alt="" />
+                          Female
                         </div>
+                        <p className="flex-1 text-center">
+                          {item.female_ratio}%
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
           </>
         </div>
       </div>

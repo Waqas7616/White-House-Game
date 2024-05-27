@@ -24,7 +24,7 @@ export default function Election2020() {
 
   useEffect(() => {
     axios
-      .get("http://thewhitehousegame.com/public/api/getVotesPercentage2020")
+      .get("https://thewhitehousegame.com/public/api/getVotesPercentage2020")
       .then((response) => {
         setVotePercentage(response.data);
         setPolling(
