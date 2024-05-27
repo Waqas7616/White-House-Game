@@ -360,7 +360,7 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Colorado")}
             />
             <text
-              x="300"
+              x="315"
               y="280"
               textAnchor="middle"
               fill="white"
@@ -469,7 +469,7 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Idaho")}
             />
             <text
-              x="170"
+              x="180"
               y="150"
               textAnchor="middle"
               fill="black"
@@ -650,7 +650,7 @@ const backgroundColor = (state) => {
             />
             <text
               x="500"
-              y="100"
+              y="133"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -704,7 +704,7 @@ const backgroundColor = (state) => {
             />
             <text
               x="270"
-              y="80"
+              y="97"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -739,7 +739,7 @@ const backgroundColor = (state) => {
               fill={backgroundColor("North Dakota")}
             />
             <text
-              x="400"
+              x="410"
               y="100"
               textAnchor="middle"
               fill="black"
@@ -757,8 +757,9 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Nebraska")}
             />
             <text
-              x="405"
-              y="220"
+            className="text-center"
+              x="415"
+              y="230"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -830,7 +831,7 @@ const backgroundColor = (state) => {
             />
             <text
               x="130"
-              y="220"
+              y="235"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -902,7 +903,7 @@ const backgroundColor = (state) => {
             />
             <text
               x="90"
-              y="120"
+              y="130"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -973,8 +974,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("South Dakota")}
             />
             <text
-              x="400"
-              y="160"
+              x="410"
+              y="165"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -1028,8 +1029,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Utah")}
             />
             <text
-              x="220"
-              y="260"
+              x="215"
+              y="265"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -1083,7 +1084,7 @@ const backgroundColor = (state) => {
             />
             <text
               x="110"
-              y="50"
+              y="55"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -1136,7 +1137,7 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Wyoming")}
             />
             <text
-              x="300"
+              x="290"
               y="185"
               textAnchor="middle"
               fill="black"

@@ -170,11 +170,11 @@ const TABLE_HEAD = ["2020", "State", "2024"];
 const StateWinner = () => {
   const [statesData, setStatesData] = useState([]);
   const [originalData, setOriginalData] = useState({});
-  const ImageUrl = "http://thewhitehousegame.com/public/";
+  const ImageUrl = "https://thewhitehousegame.com/public/";
 
   useEffect(() => {
     axios
-      .get("http://thewhitehousegame.com/public/api/getVoterPartyCount", {
+      .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
         headers: {
           Accept: "application/json",
         },
@@ -215,7 +215,9 @@ const StateWinner = () => {
 
   const getLeadingParty = (parties) => {
     if (!parties || parties.length === 0) return "";
-    return parties.reduce((prev, current) => (prev.count > current.count ? prev : current)).party_name;
+    return parties.reduce((prev, current) =>
+      prev.count > current.count ? prev : current
+    ).party_name;
   };
 
   return (
@@ -236,9 +238,15 @@ const StateWinner = () => {
               style={{ zIndex: 1 }}
             >
               <tr className="bg-[#272f5b]  border-b-2 dark:bg-gray-800 dark:border-gray-700">
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">2020</th>
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">State</th>
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">2024</th>
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                  2020
+                </th>
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                  State
+                </th>
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                  2024
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -285,7 +293,8 @@ const StateWinner = () => {
                         alt="Republican"
                       />
                     )}
-                    {getLeadingParty(stateData.parties) === "Independent('Kennedy')" && (
+                    {getLeadingParty(stateData.parties) ===
+                      "Independent('Kennedy')" && (
                       <img
                         className="w-5 h-5 lg:w-10 lg:h-10"
                         src={Independentlogo}
@@ -293,7 +302,6 @@ const StateWinner = () => {
                       />
                     )}
                   </td>
-
                 </tr>
               ))}
             </tbody>
@@ -305,10 +313,6 @@ const StateWinner = () => {
 };
 
 export default StateWinner;
-
-
-
-
 
 {
   /* <Typography
