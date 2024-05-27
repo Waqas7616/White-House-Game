@@ -458,7 +458,7 @@ const backgroundColor = (state) => {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Connecticut").electricalCollege}`}
+              {` ${voteCount("Iowa").electricalCollege}`}
             </text>
 
             {/* Idaho fuchsia  */}

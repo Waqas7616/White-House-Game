@@ -22,7 +22,7 @@ import axios from "axios";
 import StateWinner from "../statewinner/StateWinner";
 
 function TabSection() {
-  const imageUrl = "http://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/public/";
 
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(1);
@@ -840,7 +840,7 @@ function TabSection() {
         <div className="w-10/12 m-auto mt-12">
           <Map />
         </div>
-        <div className="w-10/12 m-auto mt-12">
+        <div className="">
           <StateWinner />
         </div>
       </div>

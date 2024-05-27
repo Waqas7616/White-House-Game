@@ -215,14 +215,19 @@ const StateWinner = () => {
 
   const getLeadingParty = (parties) => {
     if (!parties || parties.length === 0) return "";
-    return parties.reduce((prev, current) =>
-      prev.count > current.count ? prev : current
-    ).party_name;
+    return parties.reduce((prev, current) => (prev.count > current.count ? prev : current)).party_name.split('(')[0].trim();
   };
+  // const getLeadingParty = (parties) => {
+  //   const leadingParty = parties.find(party => party.party_name.startsWith('Independent'));
+  //   if (leadingParty) {
+  //     return leadingParty.party_name.split('(')[0].trim();
+  //   }
+  //   return null;
+  // };
 
   return (
     <>
-      <div className="resp m-auto w-10/12">
+      <div className=" m-auto w-10/12">
         <div className="text-center">
           <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
             State Winner
@@ -237,32 +242,26 @@ const StateWinner = () => {
               className="text-[40px] text-white uppercase bg-[#272f5b]  sticky top-0"
               style={{ zIndex: 1 }}
             >
-              <tr className="bg-[#272f5b]  border-b-2 dark:bg-gray-800 dark:border-gray-700">
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
-                  2020
-                </th>
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
-                  State
-                </th>
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
-                  2024
-                </th>
+              <tr className="bg-[#272f5b]  border-b-2 dark:bg-gray-800 dark:border-gray-700 flex justify-around items-center">
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">2020</th>
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">State</th>
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">2024</th>
               </tr>
             </thead>
             <tbody>
               {statesData.map((stateData, index) => (
                 <tr
                   key={index}
-                  className="even:bg-blue-gray-50/50 bg-[#272f5b] border-b border-[rgba(255,255,255,.2)] dark:bg-gray-800 dark:border-gray-700"
+                  className="even:bg-blue-gray-50/50 bg-[#272f5b] border-b border-[rgba(255,255,255,.2)] dark:bg-gray-800 dark:border-gray-700 flex justify-around items-center"
                 >
-                  <td className="p-4 flex items-center justify-center py-1 lg:py-10">
+                  <td className="p-4 flex items-center justify-evenly py-1 lg:py-10">
                     <span className="text-white text-center font-poppins font-medium text-[9px] lg:text-[22px]">
                       {getLeadingParty(stateData.parties)}
                     </span>
                   </td>
-                  <td className="p-4">
+                  <td className="p-4 flex justify-center items-center text-center">
                     <span className="font-medium font-poppins text-[9px] lg:text-[22px] text-white text-center">
-                      {stateData.state}
+                      {stateData.state.split('(')[0].trim()}
                     </span>
                   </td>
                   {/* <td className="p-4 flex flex-col items-center text-center">
@@ -293,8 +292,7 @@ const StateWinner = () => {
                         alt="Republican"
                       />
                     )}
-                    {getLeadingParty(stateData.parties) ===
-                      "Independent('Kennedy')" && (
+                    {getLeadingParty(stateData.parties) === "Independent" && (
                       <img
                         className="w-5 h-5 lg:w-10 lg:h-10"
                         src={Independentlogo}

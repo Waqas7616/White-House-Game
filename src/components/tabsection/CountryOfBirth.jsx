@@ -15,7 +15,7 @@ import Ethnicity from "./Ethnicity";
 import axios from "axios";
 
 export default function CountryOfBirth() {
-  const imageUrl = "http://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/public/";
 
   const [CountryBirth, setCountryBirth] = useState([]);
   const [countryOfBirth, setCountryOfBirth] = useState([]);
