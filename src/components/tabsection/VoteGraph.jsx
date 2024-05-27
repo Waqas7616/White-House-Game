@@ -128,7 +128,7 @@ export default function VoteGraph() {
             }}
             name="states"
             id="search"
-            className="bg-transparent w-full"
+            className="bg-transparent w-full outline-none"
           >
             {allstates?.map((item) => (
               <option className="bg-[#000]" key={item.id} value={item?.name}>

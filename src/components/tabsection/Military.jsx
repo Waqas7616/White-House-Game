@@ -107,7 +107,7 @@ export default function Military() {
               President
             </h2>
           </div> */}
-        <div className="searchBar flex flex-col ">
+        {/* <div className="searchBar flex flex-col ">
           <label
             htmlFor="search "
             className="text-whiteColor text-center poppins4 text-[14px] mb-2"
@@ -131,7 +131,7 @@ export default function Military() {
             </option>
           </select>
           </div>
-        </div>
+        </div> */}
         {/* <div className="votes-count flex items-center justify-between">
             <img src={ballot} alt="ballot" />
             <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
