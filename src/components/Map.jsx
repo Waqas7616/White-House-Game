@@ -117,57 +117,6 @@ function Map() {
 
   return (
     <div className="w-10/12 m-auto relative">
-      {/* {tooltip && <div className='svgModal py-5 shadow-md shadow-black px-5 rounded-[10px]' >
-                <h1 className='text-[30px] orbit7 text-center text-white mb-5'>{step}</h1>
-                <p className='text-[20px] poppins6 text-white text-center mb-2'>DEMOCRATIC: <span className='poppins4'>{!statesData[step].Democratic ? 0 : statesData[step].Democratic}</span></p>
-                <p className='text-[20px] poppins6 text-white text-center mb-2 uppercase'>Republican: <span className='poppins4'>{!statesData[step].Republican ? 0 : statesData[step].Republican}</span></p>
-                <p className='text-[20px] poppins6 text-white text-center mb-2 uppercase'>independent: <span className='poppins4'>{!statesData[step]["Independent('Kennedy')"] ? 0 : statesData[step]["Independent('Kennedy')"]}</span></p>
-            </div>} */}
-      {/* {tooltip && (
-        <div className="svgModal py-5 shadow-md shadow-black px-5 rounded-[10px]">
-          <h1 className="text-[30px] orbit7 text-center text-white mb-3">
-            {step}
-          </h1>
-          {statesData[step].state_image_url && (
-            <img
-              src={`${ImageUrl}${statesData[step].state_image_url}`}
-              alt={`${step} image`}
-              className=" object-cover m-auto mb-2"
-            />
-          )}{" "}
-          
-          <p className="text-[20px] poppins6 text-white text-center mb-2">
-            DEMOCRATIC:{" "}
-            <span className="poppins4">
-              {!statesData[step].Democratic ? 0 : statesData[step].Democratic}
-            </span>
-          </p>
-          <p className="text-[20px] poppins6 text-white text-center mb-2 uppercase">
-            Republican:{" "}
-            <span className="poppins4">
-              {!statesData[step].Republican ? 0 : statesData[step].Republican}
-            </span>
-          </p>
-          <p className="text-[20px] poppins6 text-white text-center mb-2 uppercase">
-            independent:{" "}
-            <span className="poppins4">
-              {!statesData[step]["Independent('Kennedy')"]
-                ? 0
-                : statesData[step]["Independent('Kennedy')"]}
-            </span>
-          </p>
-          <p className="text-[20px] poppins6 text-white text-center mb-2">
-            Electoral College:{" "}
-            <span className="poppins4">
-              {!statesData[step].electrical_collage
-                ? 0
-                : statesData[step].electrical_collage}
-            </span>
-          </p>{" "}
-          
-        </div>
-      )} */}
-
       {tooltip && (
         <div className="svgModal py-5 shadow-md shadow-black px-5 rounded-[10px]">
           {statesData[step].state_image_url && (
@@ -204,14 +153,6 @@ function Map() {
                 : `${Math.round(statesData[step]["Independent('Kennedy')"])}%`}
             </span>
           </p>
-          {/* <p className="text-[20px] poppins6 text-white text-center mb-2">
-            Electoral College:{" "}
-            <span className="poppins4">
-              {!statesData[step].electrical_collage
-                ? 0
-                : statesData[step].electrical_collage}
-            </span>
-          </p> */}
         </div>
       )}
 
@@ -239,16 +180,7 @@ function Map() {
               onMouseOut={handleMouseOut}
               onMouseOver={() => handleToolTip("Alaska")}
               d="M161.1 453.7L160.8 539.1L162.4 540.1L165.5 540.3L167 539.2H169.6L169.8 542.1L176.8 548.9L177.3 551.5L180.7 549.6L181.3 549.4L181.6 546.3L183.1 544.7L184.2 544.5L186.1 543L189.2 545.1L189.8 548L191.7 549.1L192.8 551.5L196.7 553.3L200.1 559.3L202.8 563.2L205.1 565.9L206.6 569.6L211.6 571.4L216.8 573.5L217.8 577.9L218.3 581L217.3 584.4L215.5 586.7L213.9 585.9L212.4 582.8L209.7 581.3L207.9 580.2L207.1 581L208.6 583.7L208.8 587.4L207.7 587.9L205.8 586L203.7 584.7L204.2 586.3L205.5 588.1L204.7 588.9C204.7 588.9 203.9 588.6 203.4 587.9C202.9 587.3 201.3 584.5 201.3 584.5L200.3 582.2C200.3 582.2 200 583.5 199.3 583.2C198.7 582.9 198 581.7 198 581.7L199.8 579.8L198.3 578.3V573.3H197.5L196.7 576.7L195.6 577.2L194.6 573.5L194 569.8L193.2 569.3L193.5 575V576.1L192 574.8L188.4 568.8L186.3 568.3L185.7 564.6L184.1 561.7L182.5 560.6V558.3L184.6 557L184.1 556.7L181.5 557.3L178.1 554.9L175.5 552L170.7 549.4L166.7 546.8L168 543.6V542L166.2 543.6L163.3 544.7L159.6 543.6L153.9 541.2H148.4L147.8 541.7L141.3 537.8L139.2 537.5L136.5 531.7L132.9 532L129.3 533.5L129.8 538L130.9 535.1L131.9 535.4L130.4 539.8L133.6 537.1L134.2 538.7L130.3 543.1L129 542.8L128.5 540.9L127.2 540.1L125.9 541.2L123.2 539.4L120.1 541.5L118.3 543.6L114.9 545.7L110.2 545.5L109.7 543.4L113.4 542.8V541.5L111.1 540.9L112.1 538.5L114.4 534.6V532.8L114.6 532L119 529.7L120 531H122.7L121.4 528.4L117.7 528.1L112.7 530.8L110.3 534.2L108.5 536.8L107.4 539.1L103.2 540.6L100.1 543.2L99.8 544.8L102.1 545.8L102.9 547.9L100.2 551.1L93.7 555.3L85.9 559.5L83.8 560.6L78.5 561.7L73.2 564L75 565.3L73.5 566.8L73 567.9L70.3 566.9L67.1 567.1L66.3 569.4H65.3L65.6 567L62 568.3L59.1 569.3L55.7 568L52.8 569.9H49.6L47.5 571.2L45.9 572L43.8 571.7L41.2 570.6L38.9 571.2L37.9 572.2L36.3 571.1V569.2L39.4 567.9L45.7 568.5L50.1 566.9L52.2 564.8L55.1 564.2L56.9 563.4L59.6 563.6L61.2 564.9L62.2 564.6L64.5 561.9L67.6 560.9L71 560.3L72.3 560L72.9 560.5H73.7L75 556.8L79 555.3L80.9 551.6L83.2 547.1L84.8 545.6L85.1 543L83.5 544.3L80.1 544.9L79.5 542.5L78.2 542.2L77.2 543.2L77 546.1L75.5 545.9L74 540.1L72.7 541.4L71.6 540.9L71.3 539L67.3 539.2L65.2 540.3L62.6 540L64.1 538.5L64.6 535.9L64 534L65.5 533L66.8 532.8L66.2 531V526.6L65.2 525.6L64.4 527.1H58.3L56.8 525.8L56.2 521.9L54.1 518.3V517.3L56.2 516.5L56.4 514.4L57.5 513.3L56.7 512.8L55.4 513.3L54.3 510.6L55.3 505.6L59.8 502.4L62.4 500.8L64.3 497.1L67 495.8L69.6 496.9L69.9 499.3L72.3 499L75.5 496.6L77.1 497.2L78.1 497.8H79.7L82 496.5L82.8 492.1C82.8 492.1 83.1 489.2 83.8 488.7C84.4 488.2 84.8 487.7 84.8 487.7L83.7 485.8L81.1 486.6L77.9 487.4L76 486.9L72.4 485.1L67.4 484.9L63.8 481.2L64.3 477.3L64.9 474.9L62.8 473.1L60.9 469.4L61.4 468.6L68.2 468.1H70.3L71.3 469.1H71.9L71.7 467.5L75.6 466.9L78.2 467.2L79.7 468.3L78.2 470.4L77.7 471.9L80.4 473.5L85.4 475.3L87.2 474.3L84.9 469.9L83.9 466.7L84.9 465.9L81.5 464L81 462.9L81.5 461.3L80.7 457.4L77.8 452.7L75.4 448.5L78.3 446.6H81.5L83.3 447.2L87.5 447L91.2 443.4L92.3 440.3L96 437.9L97.6 438.9L100.3 438.3L104 436.2L105.1 436L106.1 436.8L110.6 436.6L113.3 433.5H114.4L118 435.9L119.9 438L119.4 439.1L120 440.2L121.6 438.6L125.5 438.9L125.8 442.6L127.7 444.1L134.8 444.7L141.1 448.9L142.6 447.9L147.8 450.5L149.9 449.9L151.8 449.1L156.6 451L161.1 453.7ZM46 482.6L48.1 487.9L47.9 488.9L45 488.6L43.2 484.6L41.4 483.1H39L38.8 480.5L40.6 478.1L41.7 480.5L43.2 482L46 482.6ZM43.4 516.1L47.1 516.9L50.8 517.9L51.6 518.9L50 522.6L46.9 522.4L43.5 518.8L43.4 516.1ZM22.7 502L23.8 504.6L24.9 506.2L23.8 507L21.7 503.9V502H22.7ZM9 575.1L12.4 572.8L15.8 571.8L18.4 572.1L18.9 573.7L20.8 574.2L22.7 572.3L22.4 570.7L25.1 570.1L28 572.7L26.9 574.5L22.5 575.6L19.8 575.1L16.1 574L11.7 575.5L10.1 575.8L9 575.1ZM57.9 570.6L59.5 572.5L61.6 570.9L60.1 569.6L57.9 570.6ZM60.8 573.6L61.9 571.3L64 571.6L63.2 573.5H60.8V573.6ZM84.4 571.7L85.9 573.5L86.9 572.4L86.1 570.5L84.4 571.7ZM93.2 559.2L94.3 565L97.2 565.8L102.2 562.9L106.6 560.3L105 557.9L105.5 555.5L103.4 556.8L100.5 556L102.1 554.9L104 555.7L107.9 553.9L108.4 552.4L106 551.6L106.8 549.7L104.1 551.6L99.4 555.2L94.6 558.1L93.2 559.2ZM135.5 539.4L137.9 537.9L136.9 536.1L135.1 537.1L135.5 539.4Z"
-              fill={
-                // (statesData['Alaska'].Democratic && statesData['Alaska'].Republican && statesData['Alaska']["Independent('Kennedy')"] ? (
-                //     statesData['Alaska'].Democratic > statesData['Alaska'].Republican && statesData['Alaska']["Independent('Kennedy')"] ? '#ed1c24' :
-                //         statesData['Alaska'].Republican > statesData['Alaska'].Democratic && statesData['Alaska']["Independent('Kennedy')"] ? '#546bed' :
-                //             statesData['Alaska']["Independent('Kennedy')"] > statesData['Alaska'].Democratic && statesData['Alaska']["Independent('Kennedy')"] > statesData['Alaska'].Republican ? 'white' : 'cyan'
-                // ) : (statesData['Alaska'].Democratic && statesData['Alaska'].Republican) ? (
-                //     statesData['Alaska'].Democratic > statesData['Alaska'].Republican ? '#ed1c24' : '#546bed'
-                // ) : (''))
-                backgroundColor("Alaska")
-              }
+              fill={backgroundColor("Alaska")}
             ></path>
             <text
               x="120"
@@ -260,6 +192,7 @@ function Map() {
             >
               {` ${voteCount("Alaska").electricalCollege}`}
             </text>
+          
 
             {/* HAWAII CYAN  */}
             <path
