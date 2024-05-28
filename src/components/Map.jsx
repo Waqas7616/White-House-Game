@@ -306,7 +306,7 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Arkansas")}
             />
             <text
-              x="535"
+              x="539"
               y="380"
               textAnchor="middle"
               fill="black"
@@ -324,8 +324,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Arizona")}
             />
             <text
-              x="180"
-              y="350"
+              x="200"
+              y="370"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -378,15 +378,25 @@ const backgroundColor = (state) => {
               d="M852 190.9L855.6 187.7L857.5 185.6L858.3 186.2L861 184.7L866.2 183.6L873.2 180.1L872.6 175.9L871.8 171.5L870.2 165.5L865.9 166.6L844.1 171.3L844.7 174.4L846.2 181.7V190L845.3 192.1L847 194.3L852 190.9Z"
               fill={backgroundColor("Connecticut")}
             />
+             <line
+    x1="890"
+    y1="210"
+    x2="870"  
+    y2="182" 
+   
+    stroke="black"
+    strokeWidth="2"
+    className=" "
+  />
             <text
-              x="860"
-              y="183"
+              x="910"
+              y="223"
               textAnchor="middle"
               fill="black"
-              fontSize="10"
+              fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Connecticut").electricalCollege}`}
+             CT {` ${voteCount("Connecticut").electricalCollege}`}
             </text>
 
             {/* DELAWARE lightgreen */}
@@ -396,15 +406,26 @@ const backgroundColor = (state) => {
               d="M834.401 247.2L833.401 247.7L829.801 245.3L828.001 240.6L826.101 237L823.801 236L821.701 232.4L822.201 230.4L822.701 228.1L822.801 227L822.201 227.1L820.501 228.1L818.501 229.8L818.301 230.1L819.701 234.2L822.001 239.8L825.701 255.9L830.701 255.6L836.701 254.5L834.401 247.2Z"
               fill={backgroundColor("Delaware")}
             />
+
+<line
+    x1="836"
+    y1="250"
+    x2="880"  
+    y2="275" 
+   
+    stroke="black"
+    strokeWidth="2"
+    className=" "
+  />
             <text
-              x="830"
-              y="255"
+              x="905"
+              y="285"
               textAnchor="middle"
               fill="black"
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Delaware").electricalCollege}`}
+             DE {` ${voteCount("Delaware").electricalCollege}`}
             </text>
 
             {/* FLORIDA PINK  */}
@@ -487,7 +508,7 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Illinois")}
             />
             <text
-              x="580"
+              x="590"
               y="260"
               textAnchor="middle"
               fill="black"
@@ -505,8 +526,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Indiana")}
             />
             <text
-              x="640"
-              y="240"
+              x="643"
+              y="260"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -523,8 +544,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Kansas")}
             />
             <text
-              x="420"
-              y="280"
+              x="440"
+              y="300"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -541,7 +562,7 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Kentucky")}
             />
             <text
-              x="650"
+              x="670"
               y="310"
               textAnchor="middle"
               fill="black"
@@ -559,8 +580,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Louisiana")}
             />
             <text
-              x="560"
-              y="480"
+              x="545"
+              y="460"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -576,7 +597,8 @@ const backgroundColor = (state) => {
               d="M887.499 172.5L886.999 170.2L887.799 168.7L890.699 167.2L891.499 170.3L890.999 172.1L888.599 173.6V174.6L890.499 173.1L894.399 168.6L898.299 166.7L902.499 165.2L902.199 162.8L901.199 159.9L899.299 157.5L897.499 156.7L895.399 156.9L894.899 157.4L895.899 158.7L897.399 157.9L899.499 159.5L900.299 162.2L898.499 164L896.199 165L892.599 164.5L888.699 158.5L886.399 155.9H884.599L883.499 156.7L881.599 154.1L881.899 152.6L884.299 147.4L881.399 143L877.699 144.8L875.899 147.7L857.599 152.4L843.799 154.9L843.199 165.5L843.899 170.4L865.899 165.6L877.099 162.8L879.099 164.4L882.499 168.7L885.399 173.4L887.499 172.5ZM899.999 173.9L902.199 173.2L902.699 171.5L903.699 171.6L904.699 173.9L903.399 174.4L899.499 174.5L899.999 173.9ZM890.599 174.7L892.899 172.1H894.499L896.299 173.6L893.899 174.6L891.699 175.6L890.599 174.7Z"
               fill={backgroundColor("Massachusetts")}
             />
-            <text
+            {/* <text
+            className=" "
               x="870"
               y="160"
               textAnchor="middle"
@@ -585,7 +607,33 @@ const backgroundColor = (state) => {
               fontWeight={700}
             >
               {` ${voteCount("Massachusetts").electricalCollege}`}
-            </text>
+            </text> */}
+           
+           <line
+    x1="920"
+    y1="155"
+    x2="890"  
+    y2="155" 
+   
+    stroke="black"
+    strokeWidth="2"
+    className=" "
+  />
+
+
+ 
+
+  
+  <text
+    x="950"  
+    y="160"
+    textAnchor="middle"
+    fill="black"
+    fontSize="19"
+    fontWeight="700"
+  >
+   MA {voteCount("Massachusetts").electricalCollege}
+  </text>
 
             {/* Maryland khaki */}
             <path
@@ -594,15 +642,25 @@ const backgroundColor = (state) => {
               d="M834.8 264.1L836.5 260.3L837 255.5L830.7 256.6L824.9 256.9L821.1 240.1L818.8 234.6L817.3 230L795.1 234.3L757.5 241.9L759.5 252.3L764.3 247.4L766.8 246.7L768.2 245.2L770 242.5L771.6 243.2L774.2 243L776.8 240.9L778.8 239.4L780.9 238.8L782.4 239.9L785.1 241.3L787 243.1L788.3 244.5L793.1 246.1L792.5 249L798.3 251.1L800.4 248.5L804.1 251L802 254.3L801.3 257.6L799.5 260.2V262.3L799.8 263.1L801.8 264.4L805.2 265.5L809.5 265.4L812.6 266.4L814.7 266.7L815.7 264.6L814.2 262.5V260.7L811.8 258.6L809.7 253.1L811 247.8L810.8 245.7L809.5 244.4C809.5 244.4 811 242.8 811 242.1C811 241.5 811.5 240 811.5 240L813.4 238.7L815.3 237.1L815.8 238.1L814.3 239.7L813 243.4L813.3 244.5L815.1 244.8L815.6 250.3L813.5 251.3L813.8 254.9L814.3 254.7L815.4 252.8L817 254.6L815.4 255.9L815.1 259.3L817.7 262.7L821.6 263.2L823.2 262.4L826.4 266.6L827.4 267L834.8 264.1ZM820.3 264.3L821.4 266.8L821.6 268.6L822.7 270.5C822.7 270.5 823.6 269.6 823.6 269.3C823.6 269 822.9 266.2 822.9 266.2L822.2 263.9L820.3 264.3Z"
               fill={backgroundColor("Maryland")}
             />
+            <line
+    x1="816"
+    y1="250"
+    x2="870"  
+    y2="310" 
+   
+    stroke="black"
+    strokeWidth="2"
+    className=" "
+  />
             <text
-              x="800"
-              y="245"
+              x="900"
+              y="320"
               textAnchor="middle"
               fill="black"
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Maryland").electricalCollege}`}
+             ML {` ${voteCount("Maryland").electricalCollege}`}
             </text>
 
             {/* Maine Lavender  */}
@@ -631,7 +689,7 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Michigan")}
             />
             <text
-              x="670"
+              x="655"
               y="180"
               textAnchor="middle"
               fill="black"
@@ -667,7 +725,7 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Missouri")}
             />
             <text
-              x="530"
+              x="537"
               y="300"
               textAnchor="middle"
               fill="black"
@@ -721,8 +779,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("North Carolina")}
             />
             <text
-              x="800"
-              y="330"
+              x="790"
+              y="340"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -775,15 +833,25 @@ const backgroundColor = (state) => {
               d="M881.7 141.301L882.8 138.101L880.1 136.901L879.6 133.801L875.5 132.701L875.2 129.701L863.5 92.2207L862.8 92.3007L862.2 93.9007L861.6 93.4007L860.6 92.4007L859.1 94.3007L858.9 96.5907L859.4 105.001L861.3 107.801V112.101L857.4 116.901L855 117.801V118.501L856.1 120.401V129.001L855.3 138.201L855.1 142.901L856.1 144.301L855.9 149.001L855.4 150.501L856.4 151.601L861.5 150.401L875.3 146.901L877 144.001L881 142.101L881.7 141.301Z"
               fill={backgroundColor("New Hampshire")}
             />
+            <line
+    x1="855"
+    y1="40"
+    x2="862"  
+    y2="90" 
+   
+    stroke="black"
+    strokeWidth="2"
+    className=" "
+  />
             <text
-              x="870"
-              y="140"
+              x="850"
+              y="35"
               textAnchor="middle"
               fill="black"
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("New Hampshire").electricalCollege}`}
+             NH {` ${voteCount("New Hampshire").electricalCollege}`}
             </text>
 
             {/* NewJersey mistyrose */}
@@ -793,15 +861,25 @@ const backgroundColor = (state) => {
               d="M823.7 228.3L823.8 226.8L826.5 225.5L828.2 222.7L829.9 220.3L833.2 217.1V215.9L827.1 211.8L826.1 209.1L823.4 208.8L823.3 207.9L822.6 205.7L824.8 204.6L825 201.7L823.7 200.4L823.9 199.2L825.8 196.1V193L828.3 189.9L833.9 192.4L840.3 194.3L842.8 195.5L842.9 197.3L842.4 200L842.8 204.5L840.7 206.4L839.6 207.4L840.1 207.9L842.8 207.6L843.9 206.8L845.5 210.2L845.7 219.6L846.3 220.7L845.2 226.2L842.1 232.7L839.4 236.7L838.6 241.5L836.5 243.9H835.7L835.4 241.2L836.2 240.2L836 238.7L832 238.1L827.2 235.8L824 232.9L823 230.9L823.7 228.3Z"
               fill={backgroundColor("New Jersey")}
             />
+            <line
+    x1="846"
+    y1="220"
+    x2="870"  
+    y2="235" 
+   
+    stroke="black"
+    strokeWidth="2"
+    className=" "
+  />
             <text
-              x="835"
-              y="230"
+              x="900"
+              y="245"
               textAnchor="middle"
               fill="black"
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("New Jersey").electricalCollege}`}
+             NJ {` ${voteCount("New Jersey").electricalCollege}`}
             </text>
 
             {/* NewMexico orange */}
@@ -866,8 +944,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Ohio")}
             />
             <text
-              x="705"
-              y="230"
+              x="700"
+              y="245"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -937,15 +1015,25 @@ const backgroundColor = (state) => {
               d="M873.599 175.701L872.799 171.301L871.199 165.301L876.899 163.801L878.399 165.101L881.799 169.401L884.599 173.801L881.799 175.201L880.499 175.001L879.399 176.801L876.999 178.701L874.199 179.801L873.599 175.701Z"
               fill={backgroundColor("Rhode Island")}
             />
+            <line
+    x1="910"
+    y1="190"
+    x2="880"  
+    y2="175" 
+   
+    stroke="black"
+    strokeWidth="2"
+    className=" "
+  />
             <text
-              x="880"
-              y="180"
+              x="930"
+              y="200"
               textAnchor="middle"
               fill="black"
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Rhode Island").electricalCollege}`}
+             RI {` ${voteCount("Rhode Island").electricalCollege}`}
             </text>
 
             {/* SouthCarolina #698DC5  */}
@@ -1010,8 +1098,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Texas")}
             />
             <text
-              x="400"
-              y="460"
+              x="410"
+              y="450"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -1064,15 +1152,25 @@ const backgroundColor = (state) => {
               d="M832.7 111.3L835.1 117.8L835.9 123.1L834.9 127L837.4 131.4L838.3 133.7L837.6 136.3L840.9 137.8L843.8 148.6V153.9L855.3 151.8L854.3 150.7L854.9 148.8L855.1 144.5L854.1 143.1L854.3 138.4L855.1 129.1V120.6L854 118.8V117.2L856.8 116.1L860.3 111.7V108.1L858.4 105.4L858.1 99.6104L832 106.4L832.7 111.3Z"
               fill={backgroundColor("Vermont")}
             />
+            <line
+    x1="830"
+    y1="80"
+    x2="840"  
+    y2="104" 
+   
+    stroke="black"
+    strokeWidth="2"
+    className=" "
+  />
             <text
-              x="845"
-              y="130"
+              x="815"
+              y="75"
               textAnchor="middle"
               fill="black"
               fontSize="19"
-              fontWeight={600}
+              fontWeight={700}
             >
-              {` ${voteCount("Vermont").electricalCollege}`}
+             VT {` ${voteCount("Vermont").electricalCollege}`}
             </text>
 
             {/* WASHINGTON  LIME*/}
@@ -1101,8 +1199,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Wisconsin")}
             />
             <text
-              x="570"
-              y="155"
+              x="575"
+              y="163"
               textAnchor="middle"
               fill="black"
               fontSize="19"
@@ -1119,8 +1217,8 @@ const backgroundColor = (state) => {
               fill={backgroundColor("West Virginia")}
             />
             <text
-              x="750"
-              y="265"
+              x="740"
+              y="275"
               textAnchor="middle"
               fill="black"
               fontSize="19"
