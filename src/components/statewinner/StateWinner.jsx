@@ -300,7 +300,6 @@ const StateWinner = () => {
                       />
                     )}
                   </td>
-
                 </tr>
               ))}
             </tbody>
@@ -312,10 +311,6 @@ const StateWinner = () => {
 };
 
 export default StateWinner;
-
-
-
-
 
 {
   /* <Typography
