@@ -55,24 +55,24 @@ function Map() {
   //     }
   // }
 
-//   const backgroundColor = (state) => {
-//     if (statesData[state]) {
-//       const parties = Object.keys(statesData[state]);
-//       const counts = Object.values(statesData[state]);
-//       const maxCount = Math.max(...counts);
-//       const maxPartyIndex = counts.indexOf(maxCount);
-//       const maxParty = parties[maxPartyIndex];
-//       if (maxParty === "Democratic") {
-//         return "#ed1c24";
-//       } else if (maxParty === "Republican") {
-//         return "#546bed";
-//       } else {
-//         return "white";
-//       }
-//     }
-//   };
+  //   const backgroundColor = (state) => {
+  //     if (statesData[state]) {
+  //       const parties = Object.keys(statesData[state]);
+  //       const counts = Object.values(statesData[state]);
+  //       const maxCount = Math.max(...counts);
+  //       const maxPartyIndex = counts.indexOf(maxCount);
+  //       const maxParty = parties[maxPartyIndex];
+  //       if (maxParty === "Democratic") {
+  //         return "#ed1c24";
+  //       } else if (maxParty === "Republican") {
+  //         return "#546bed";
+  //       } else {
+  //         return "white";
+  //       }
+  //     }
+  //   };
 
-const backgroundColor = (state) => {
+  const backgroundColor = (state) => {
     if (statesData[state]) {
       const democraticCount = statesData[state].Democratic || 0;
       const republicanCount = statesData[state].Republican || 0;
@@ -85,7 +85,7 @@ const backgroundColor = (state) => {
       }
     }
     return "white"; // Default color if state data is not available
-};
+  };
 
   // const voteCount = (state) => {
   //     if (statesData[state]) {
@@ -170,16 +170,15 @@ const backgroundColor = (state) => {
 
       {tooltip && (
         <div className="svgModal py-5 shadow-md shadow-black px-5 rounded-[10px]">
-          
           {statesData[step].state_image_url && (
             <img
-            src={`${ImageUrl}${statesData[step].state_image_url}`}
-            alt={`${step} image`}
-            className=" object-cover m-auto mb-2"
-          />
+              src={`${ImageUrl}${statesData[step].state_image_url}`}
+              alt={`${step} image`}
+              className=" object-cover m-auto mb-2"
+            />
           )}
-          <h1 className="text-[30px] orbit7 text-center text-white mb-3">
-            {step} - {voteCount(step).electricalCollege}
+          <h1 className="text-[25px] orbit7 text-center text-white mb-3">
+            {step}  {voteCount(step).electricalCollege}
           </h1>
           <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 px-3">
             DEMOCRATIC:{" "}
@@ -378,25 +377,24 @@ const backgroundColor = (state) => {
               d="M852 190.9L855.6 187.7L857.5 185.6L858.3 186.2L861 184.7L866.2 183.6L873.2 180.1L872.6 175.9L871.8 171.5L870.2 165.5L865.9 166.6L844.1 171.3L844.7 174.4L846.2 181.7V190L845.3 192.1L847 194.3L852 190.9Z"
               fill={backgroundColor("Connecticut")}
             />
-             <line
-    x1="890"
-    y1="210"
-    x2="870"  
-    y2="182" 
-   
-    stroke="black"
-    strokeWidth="2"
-    className=" "
-  />
+            <line
+              x1="890"
+              y1="210"
+              x2="870"
+              y2="182"
+              stroke="black"
+              strokeWidth="2"
+              className=" "
+            />
             <text
               x="910"
               y="223"
               textAnchor="middle"
-              fill="black"
+              fill="white"
               fontSize="19"
               fontWeight={700}
             >
-             CT {` ${voteCount("Connecticut").electricalCollege}`}
+              CT {` ${voteCount("Connecticut").electricalCollege}`}
             </text>
 
             {/* DELAWARE lightgreen */}
@@ -407,25 +405,24 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Delaware")}
             />
 
-<line
-    x1="836"
-    y1="250"
-    x2="880"  
-    y2="275" 
-   
-    stroke="black"
-    strokeWidth="2"
-    className=" "
-  />
+            <line
+              x1="836"
+              y1="250"
+              x2="880"
+              y2="275"
+              stroke="black"
+              strokeWidth="2"
+              className=" "
+            />
             <text
               x="905"
               y="285"
               textAnchor="middle"
-              fill="black"
+              fill="white"
               fontSize="19"
               fontWeight={700}
             >
-             DE {` ${voteCount("Delaware").electricalCollege}`}
+              DE {` ${voteCount("Delaware").electricalCollege}`}
             </text>
 
             {/* FLORIDA PINK  */}
@@ -608,32 +605,27 @@ const backgroundColor = (state) => {
             >
               {` ${voteCount("Massachusetts").electricalCollege}`}
             </text> */}
-           
-           <line
-    x1="920"
-    y1="155"
-    x2="890"  
-    y2="155" 
-   
-    stroke="black"
-    strokeWidth="2"
-    className=" "
-  />
 
+            <line
+              x1="920"
+              y1="155"
+              x2="890"
+              y2="155"
+              stroke="black"
+              strokeWidth="2"
+              className=" "
+            />
 
- 
-
-  
-  <text
-    x="950"  
-    y="160"
-    textAnchor="middle"
-    fill="black"
-    fontSize="19"
-    fontWeight="700"
-  >
-   MA {voteCount("Massachusetts").electricalCollege}
-  </text>
+            <text
+              x="950"
+              y="160"
+              textAnchor="middle"
+              fill="white"
+              fontSize="19"
+              fontWeight="700"
+            >
+              MA {voteCount("Massachusetts").electricalCollege}
+            </text>
 
             {/* Maryland khaki */}
             <path
@@ -643,24 +635,23 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Maryland")}
             />
             <line
-    x1="816"
-    y1="250"
-    x2="870"  
-    y2="310" 
-   
-    stroke="black"
-    strokeWidth="2"
-    className=" "
-  />
+              x1="816"
+              y1="250"
+              x2="870"
+              y2="310"
+              stroke="black"
+              strokeWidth="2"
+              className=" "
+            />
             <text
               x="900"
               y="320"
               textAnchor="middle"
-              fill="black"
+              fill="white"
               fontSize="19"
               fontWeight={700}
             >
-             ML {` ${voteCount("Maryland").electricalCollege}`}
+              ML {` ${voteCount("Maryland").electricalCollege}`}
             </text>
 
             {/* Maine Lavender  */}
@@ -815,7 +806,7 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Nebraska")}
             />
             <text
-            className="text-center"
+              className="text-center"
               x="415"
               y="230"
               textAnchor="middle"
@@ -834,24 +825,23 @@ const backgroundColor = (state) => {
               fill={backgroundColor("New Hampshire")}
             />
             <line
-    x1="855"
-    y1="40"
-    x2="862"  
-    y2="90" 
-   
-    stroke="black"
-    strokeWidth="2"
-    className=" "
-  />
+              x1="855"
+              y1="40"
+              x2="862"
+              y2="90"
+              stroke="black"
+              strokeWidth="2"
+              className=" "
+            />
             <text
               x="850"
               y="35"
               textAnchor="middle"
-              fill="black"
+              fill="white"
               fontSize="19"
               fontWeight={700}
             >
-             NH {` ${voteCount("New Hampshire").electricalCollege}`}
+              NH {` ${voteCount("New Hampshire").electricalCollege}`}
             </text>
 
             {/* NewJersey mistyrose */}
@@ -862,24 +852,23 @@ const backgroundColor = (state) => {
               fill={backgroundColor("New Jersey")}
             />
             <line
-    x1="846"
-    y1="220"
-    x2="870"  
-    y2="235" 
-   
-    stroke="black"
-    strokeWidth="2"
-    className=" "
-  />
+              x1="846"
+              y1="220"
+              x2="870"
+              y2="235"
+              stroke="black"
+              strokeWidth="2"
+              className=" "
+            />
             <text
               x="900"
               y="245"
               textAnchor="middle"
-              fill="black"
+              fill="white"
               fontSize="19"
               fontWeight={700}
             >
-             NJ {` ${voteCount("New Jersey").electricalCollege}`}
+              NJ {` ${voteCount("New Jersey").electricalCollege}`}
             </text>
 
             {/* NewMexico orange */}
@@ -1016,24 +1005,23 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Rhode Island")}
             />
             <line
-    x1="910"
-    y1="190"
-    x2="880"  
-    y2="175" 
-   
-    stroke="black"
-    strokeWidth="2"
-    className=" "
-  />
+              x1="910"
+              y1="190"
+              x2="880"
+              y2="175"
+              stroke="black"
+              strokeWidth="2"
+              className=" "
+            />
             <text
               x="930"
               y="200"
               textAnchor="middle"
-              fill="black"
+              fill="white"
               fontSize="19"
               fontWeight={700}
             >
-             RI {` ${voteCount("Rhode Island").electricalCollege}`}
+              RI {` ${voteCount("Rhode Island").electricalCollege}`}
             </text>
 
             {/* SouthCarolina #698DC5  */}
@@ -1106,7 +1094,6 @@ const backgroundColor = (state) => {
               fontWeight={600}
             >
               {` ${voteCount("Texas").electricalCollege}`}
-              
             </text>
 
             {/* utah dodgerblue */}
@@ -1140,11 +1127,39 @@ const backgroundColor = (state) => {
               textAnchor="middle"
               fill="black"
               fontSize="19"
-              fontWeight={600}
+              fontWeight={700}
             >
               {` ${voteCount("Virginia").electricalCollege}`}
             </text>
 
+            {/* DC */}
+
+            <path
+              onMouseOut={handleMouseOut}
+              onMouseOver={() => handleToolTip("DC")}
+              d="M805 260L800 257L795 260L796 255L791 250L798 249L801 243L804 249L811 250L806 255L805 260Z"
+              fill={backgroundColor("DC")}
+              stroke="rgba(0, 0, 0, 0.6)"
+            />
+            <line
+              x1="800"
+              y1="250"
+              x2="850"
+              y2="360"
+              stroke="black"
+              strokeWidth="2"
+              className=" "
+            />
+            <text
+              x="875"
+              y="380"
+              textAnchor="middle"
+              fill="white"
+              fontSize="19"
+              fontWeight={700}
+            >
+             DC {` ${voteCount("DC").electricalCollege}`}
+            </text>
             {/* vermont rosybrown */}
             <path
               onMouseOut={handleMouseOut}
@@ -1153,24 +1168,23 @@ const backgroundColor = (state) => {
               fill={backgroundColor("Vermont")}
             />
             <line
-    x1="830"
-    y1="80"
-    x2="840"  
-    y2="104" 
-   
-    stroke="black"
-    strokeWidth="2"
-    className=" "
-  />
+              x1="830"
+              y1="80"
+              x2="840"
+              y2="104"
+              stroke="black"
+              strokeWidth="2"
+              className=" "
+            />
             <text
               x="815"
               y="75"
               textAnchor="middle"
-              fill="black"
+              fill="white"
               fontSize="19"
               fontWeight={700}
             >
-             VT {` ${voteCount("Vermont").electricalCollege}`}
+              VT {` ${voteCount("Vermont").electricalCollege}`}
             </text>
 
             {/* WASHINGTON  LIME*/}
