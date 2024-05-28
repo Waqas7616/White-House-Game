@@ -215,7 +215,10 @@ const StateWinner = () => {
 
   const getLeadingParty = (parties) => {
     if (!parties || parties.length === 0) return "";
-    return parties.reduce((prev, current) => (prev.count > current.count ? prev : current)).party_name.split('(')[0].trim();
+    return parties
+      .reduce((prev, current) => (prev.count > current.count ? prev : current))
+      .party_name.split("(")[0]
+      .trim();
   };
   // const getLeadingParty = (parties) => {
   //   const leadingParty = parties.find(party => party.party_name.startsWith('Independent'));
@@ -227,7 +230,7 @@ const StateWinner = () => {
 
   return (
     <>
-      <div className=" m-auto w-10/12">
+      {/* <div className=" m-auto w-10/12">
         <div className="text-center">
           <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
             State Winner
@@ -242,17 +245,23 @@ const StateWinner = () => {
               className="text-[40px] text-white uppercase bg-[#272f5b]  sticky top-0"
               style={{ zIndex: 1 }}
             >
-              <tr className="bg-[#272f5b]  border-b-2 dark:bg-gray-800 dark:border-gray-700 flex justify-around items-center">
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">2020</th>
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">State</th>
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">2024</th>
+              <tr className="bg-[#272f5b]  border-b-2 dark:bg-gray-800 dark:border-gray-700 flex justify-around items-center w-[95%]">
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                  2020
+                </th>
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                  State
+                </th>
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                  2024
+                </th>
               </tr>
             </thead>
             <tbody>
               {statesData.map((stateData, index) => (
                 <tr
                   key={index}
-                  className="even:bg-blue-gray-50/50 bg-[#272f5b] border-b border-[rgba(255,255,255,.2)] dark:bg-gray-800 dark:border-gray-700 flex justify-around items-center"
+                  className="even:bg-blue-gray-50/50 bg-[#272f5b] border-b border-[rgba(255,255,255,.2)] dark:bg-gray-800 dark:border-gray-700 flex justify-around items-center w-[95%]"
                 >
                   <td className="p-4 flex items-center justify-evenly py-1 lg:py-10">
                     <span className="text-white text-center font-poppins font-medium text-[9px] lg:text-[22px]">
@@ -261,23 +270,11 @@ const StateWinner = () => {
                   </td>
                   <td className="p-4 flex justify-center items-center text-center">
                     <span className="font-medium font-poppins text-[9px] lg:text-[22px] text-white text-center">
-                      {stateData.state.split('(')[0].trim()}
+                      {stateData.state.split("(")[0].trim()}
                     </span>
                   </td>
-                  {/* <td className="p-4 flex flex-col items-center text-center">
-                    {stateData.state_image_url && (
-                      <img
-                        className="w-10 h-10 lg:w-20 lg:h-20 mb-2"
-                        src={`${ImageUrl}${stateData.state_image_url}`}
-                        alt={`${stateData.state} image`}
-                      />
-                    )}
-                    <span className="text-white text-center font-poppins font-medium text-[9px] lg:text-[22px]">
-                      Electoral College: {stateData.electricalCollege}
-                    </span>
-                  </td> */}
+
                   <td className="p-4 flex justify-center items-center text-center">
-                    {/* Display party logo based on party name */}
                     {getLeadingParty(stateData.parties) === "Democratic" && (
                       <img
                         className="object-cover w-4 h-4 lg:w-10 lg:h-10"
@@ -305,7 +302,96 @@ const StateWinner = () => {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
+
+      
+  <div className="m-auto w-10/12">
+  <div className="text-center">
+    <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
+      State Winner
+    </h2>
+  </div>
+  <div
+    className="overflow-y-scroll h-[20rem] lg:h-[45rem] rounded-xl bg-[#272f5b] mt-5"
+    style={{ scrollbarWidth: "thin", scrollbarColor: "#FFFFFF #272f5b" }}
+  >
+    <table className="text-sm text-center w-full">
+      <thead
+        className="text-[40px] text-white uppercase bg-[#272f5b] sticky top-0"
+        style={{ zIndex: 1 }}
+      >
+        <tr className="bg-[#272f5b] border-b-2 dark:bg-gray-800 dark:border-gray-700">
+          
+          <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+            <div className="flex justify-center items-center">
+              <span>2020</span>
+            </div>
+          </th>
+          <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+            <div className="flex justify-center items-center">
+              <span>State</span>
+            </div>
+          </th>
+          <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+            <div className="flex justify-center items-center">
+              <span>2024</span>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {statesData.map((stateData, index) => (
+          <tr
+            key={index}
+            className="even:bg-blue-gray-50/50 bg-[#272f5b] border-b border-[rgba(255,255,255,.2)] dark:bg-gray-800 dark:border-gray-700"
+          >
+            <td className="px-6 py-3 lg:py-10 ml-6">
+              <span className="text-white font-poppins font-medium text-[9px] lg:text-[22px]">
+                {getLeadingParty(stateData.parties)}
+              </span>
+            </td>
+            <td className="px-6 py-3 lg:py-10 ml-6">
+              <span className="font-medium font-poppins text-[9px] lg:text-[22px] text-white">
+                {stateData.state.split("(")[0].trim()}
+              </span>
+            </td>
+            <td className="px-6 py-3 lg:py-10 flex justify-center items-center">
+              <span className="mr-2 lg:mr-4">
+                {getLeadingParty(stateData.parties) === "Democratic" && (
+                  <img
+                    className="object-cover w-4 h-4 lg:w-10 lg:h-10"
+                    src={Democraticlogo}
+                    alt="Democratic"
+                  />
+                )}
+                {getLeadingParty(stateData.parties) === "Republican" && (
+                  <img
+                    className="w-5 h-5 lg:w-10 lg:h-10"
+                    src={Republicanlogo}
+                    alt="Republican"
+                  />
+                )}
+                {getLeadingParty(stateData.parties) === "Independent" && (
+                  <img
+                    className="w-5 h-5 lg:w-10 lg:h-10"
+                    src={Independentlogo}
+                    alt="Independent('Kennedy')"
+                  />
+                )}
+              </span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
     </>
   );
 };

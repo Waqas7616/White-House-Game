@@ -165,7 +165,7 @@ export default function ElectoralCollege() {
         <div className="votes-count flex items-center justify-between mt-5 md:mt-0">
           <img className="w-6 h-6 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
           <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
-            Votes : {totalVotes}
+            Votes : {stats?.data?.totalPredictions}
           </h2>
         </div>
       </div>
