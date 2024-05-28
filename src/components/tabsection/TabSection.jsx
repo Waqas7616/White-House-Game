@@ -35,6 +35,7 @@ function TabSection() {
       .get("https://thewhitehousegame.com/public/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
+        
       })
       .catch((error) => {});
   }, []);
@@ -53,11 +54,13 @@ function TabSection() {
       )
       .then((res) => {
         setStats(res.data);
+        console.log("count voters:", res.data)
         setPresident(
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "president"
           )
         );
+        
         setVicePresident(
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "vice_president"
@@ -71,6 +74,7 @@ function TabSection() {
   }, [id]);
   const handleId = (selectedId) => {
     setId(selectedId);
+    
   };
 
   const [tabs, setTabs] = useState(0);
@@ -288,9 +292,13 @@ function TabSection() {
 
               <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
                 <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
-                <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
-                  Votes : {totalVotes}
+                
+                  <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
+                  Votes : {stats?.data?.totalPredictions}
                 </h2>
+
+                
+                
               </div>
             </div>
 
@@ -559,7 +567,7 @@ function TabSection() {
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
                 <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
-                  Votes : {totalVotes}
+                  Votes : {stats?.data?.totalPredictions}
                 </h2>
               </div>
             </div>
