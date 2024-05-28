@@ -235,7 +235,8 @@ const Candidate = () => {
                   
                     {data.map((item, index) => (
                         <div key={index} className="p-4">
-                            <div className="bg-white shadow-2xl rounded-2xl overflow-hidden">
+                            <div className="bg-white shadow-2xl rounded-2xl overflow-hidden relative">
+                            <svg className='flip absolute  right-3 top-1 ' xmlns="http://www.w3.org/2000/svg" fill='white'  width="24" height="24" viewBox="0 0 24 24"><path d="M12 24c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12zm1-6h-2v-8h2v8zm-1-12.25c.69 0 1.25.56 1.25 1.25s-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25.56-1.25 1.25-1.25z"/></svg>
                                 <div className="w-full h-64 2xl:h-[31rem] overflow-hidden">
                                     <img 
                                         src={`${imageUrl}${item?.candidate_image}`} 
@@ -243,6 +244,7 @@ const Candidate = () => {
                                         className="w-full h-full object-cover"
                                     />
                                 </div>
+
                                 <div className="p-4 text-center">
                                     <h3 className="text-lg font-semibold text-gray-900 mb-2">{item?.candidate_name}</h3>
                                     <p className="text-gray-700">{item?.party?.party_name.split("(")[0]}</p>
