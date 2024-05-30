@@ -201,7 +201,7 @@ export default function ElectoralCollege() {
                       alt=""
                     />
                   </div>
-                  <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+                  <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis sm:text-nowrap">
                   {item.candidate_name}
                   </p>
                   <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">

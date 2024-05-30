@@ -110,7 +110,7 @@ export default function Election2020() {
         <div className="votes-count flex items-center justify-end">
           <img src={ballot} alt="ballot" />
           <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
-            Votes : {polling?.data?.totalPredictions}
+            Votes : {polling?.data?.TotalVotes}
           </h2>
         </div>
         <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-8">

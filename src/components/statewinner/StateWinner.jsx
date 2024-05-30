@@ -307,10 +307,13 @@ const StateWinner = () => {
       
   <div className="m-auto w-10/12">
   <div className="text-center">
-    <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
-      State Winner
+    <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto mt-3 text-center">
+      State Winners
     </h2>
   </div>
+  <div className="flex justify-center mb-9 ">
+            <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">What our players are predicting </h2>
+          </div>
   <div
     className="overflow-y-scroll h-[20rem] lg:h-[45rem] rounded-xl bg-[#272f5b] mt-5"
     style={{ scrollbarWidth: "thin", scrollbarColor: "#FFFFFF #272f5b" }}

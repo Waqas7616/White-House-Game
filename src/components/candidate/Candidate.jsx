@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import AppBanner from '../appbanner/AppBanner';
-import DownloadApp from '../DownloadApp';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import AppBanner from "../appbanner/AppBanner";
+import DownloadApp from "../DownloadApp";
+import Democraticlogo from "../../images/Democraticlogo.png";
+import Republicanlogo from "../../images/Republicanlogo.png";
+import Independentlogo from "../../images/Independentlogo.png";
 
 const Candidate = () => {
+  const [showCard, setShowCard] = useState(null);
+
+  const handleSvgClick = (index) => {
+    setShowCard(showCard === index ? null : index);
+  };
+
   const CustomNextArrow = (props) => (
     <div
       {...props}
@@ -87,7 +96,6 @@ const Candidate = () => {
       </span>
     </div>
   );
-
   const CustomPrevArrow = (props) => (
     <div
       {...props}
@@ -161,107 +169,219 @@ const Candidate = () => {
     </div>
   );
 
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const imageUrl = "https://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/public/";
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(
-                    "https://thewhitehousegame.com/public/api/get_votter_candidate",
-                    {
-                        headers: {
-                            Accept: "application/json",
-                        },
-                    }
-                );
-                setData(response.data.votter_candidate);
-                console.log("candidate data is :", response.data.votter_candidate);
-                setLoading(false);
-            } catch (error) {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, []);
+  const getBackgroundColor = (partyName) => {
+    if (
+      partyName.includes("Democratic") ||
+      partyName.includes("Republican") ||
+      partyName.includes("Independent")
+    ) {
+      return "bg-white";
 
-    const settings = {
-        arrows: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        nextArrow: <CustomNextArrow />,
-        prevArrow: <CustomPrevArrow />,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                },
+      return "bg-white";
+    }
+  };
+
+  const getBackgroundImageStyle = (partyName) => {
+    if (partyName.includes("Democratic")) {
+      return {
+        backgroundImage: `url(${Democraticlogo})`,
+      };
+    } else if (partyName.includes("Republican")) {
+      return {
+        backgroundImage: `url(${Republicanlogo})`,
+      };
+    } else if (partyName.includes("Independent")) {
+      return {
+        backgroundImage: `url(${Independentlogo})`,
+      };
+    }
+    return {};
+  };
+
+  const getTextColor = (partyName) => {
+    if (partyName.includes("Democratic") || partyName.includes("Republican")) {
+      return "text-white";
+    } else {
+      return "text-gray-700";
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://thewhitehousegame.com/public/api/get_votter_candidate",
+          {
+            headers: {
+              Accept: "application/json",
             },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
+          }
+        );
+        setData(response.data.votter_candidate);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
     };
+    fetchData();
+  }, []);
 
-    return (
-        <>
-        <div className="h-screen">
-          
+  const settings = {
+    arrows: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  return (
+    <>
+      <div className="h-screen">
         <AppBanner
-        bannerTitle={"Data"}
-        redTitle={"Candidate"}
-        bannerDesc={"Candidiates and Parties"}
-      />
-      <div className='mt-5 m-auto w-[85%]'>
-            
-                <Slider {...settings}>
-                  
-                    {data.map((item, index) => (
-                        <div key={index} className="p-4">
-                            <div className="bg-white shadow-2xl rounded-2xl overflow-hidden">
-                                <div className="w-full h-64 2xl:h-[31rem] overflow-hidden">
-                                    <img 
-                                        src={`${imageUrl}${item?.candidate_image}`} 
-                                        alt="profile-picture" 
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                                <div className="p-4 text-center">
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{item?.candidate_name}</h3>
-                                    <p className="text-gray-700">{item?.party?.party_name.split("(")[0]}</p>
-                                    <p className="text-gray-700 mt-2">{item?.candidate_description}</p>
-                                </div>
-                            </div>
+          bannerTitle={"Data"}
+          redTitle={"Candidate"}
+          bannerDesc ={"Candidates and potential Candidates for President and Vice President"}
+        />
+        <div className="mt-5 m-auto w-[85%] border-none">
+        <div className="flex justify-center my-8 ">
+            <h2 className="text-[#fff] text-[9px] md:text-[18px] orbit7 w-9/12 m-auto  text-center">A lot can happen before the country votes on Tuesday November 5, 2024 </h2>
+          </div>
+          <Slider {...settings}>
+            {data.map((item, index) => (
+              <div key={index} className="p-4 relative">
+                <div className="bg-white shadow-2xl rounded-2xl overflow-hidden relative ">
+                  <svg
+                    onClick={() => handleSvgClick(index)}
+                    className="flip absolute right-3 top-1 cursor-pointer fill-current text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 24c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12zm1-6h-2v-8h2v8zm-1-12.25c.69 0 1.25.56 1.25 1.25s-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25.56-1.25 1.25-1.25z" />
+                  </svg>
+                  <div className="w-full h-64 2xl:h-[31rem] overflow-hidden">
+                    <img
+                      src={`${imageUrl}${item?.candidate_image}`}
+                      alt="profile-picture"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-row items-center gap-5 justify-center mt-2 mb-3">
+                    <div className="rounded-full h-[38px] w-[38px] shadow-xl shadow-[#0000004d]">
+                      <img
+                        className="w-9 text-center"
+                        src={`${imageUrl}${item?.party?.party_badge}`}
+                        alt=""
+                      />
+                    </div>
+                    <div className="flex flex-col text-right items-center mr-10">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        {item?.candidate_name}
+                      </h3>
+                      <p className="text-gray-700">
+                        {item?.party?.party_name.split("(")[0]}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {showCard === index && (
+                  <div className="absolute inset-0  shadow-2xl rounded-2xl overflow-hidden transform flip-animation z-10   border-none bg-[white]">
+                    <div className="relative p-4 flex flex-col justify-start h-full">
+                      <svg
+                        onClick={() => handleSvgClick(index)}
+                        className="flip absolute right-3 top-1 cursor-pointer fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 24c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12zm1-6h-2v-8h2v8zm-1-12.25c.69 0 1.25.56 1.25 1.25s-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25.56-1.25 1.25-1.25z" />
+                      </svg>
+
+                      <div style={{ position: "relative", height: "100%" }}>
+                        <img
+                          src={
+                            item?.party?.party_name.includes("Democratic")
+                              ? Democraticlogo
+                              : item?.party?.party_name.includes("Republican")
+                              ? Republicanlogo
+                              : item?.party?.party_name.includes("Independent")
+                              ? Independentlogo
+                              : ""
+                          }
+                          alt=""
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "100% 60%",
+                            opacity: "0.25",
+                          }}
+                        />
+                        <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-start items-start text-white">
+                          <h3 className="mb-3 font-extrabold font-poppins text-[19px] text-black">
+                            {item?.candidate_name}
+                          </h3>
+                          <p className="mb-3 text-[14px] font-poppins text-black">
+                            {item?.dob}
+                          </p>
+                          <p className="mb-3 text-[14px] font-poppins text-black">
+                            {item?.birth_place}
+                          </p>
+                          <p className="mb-3 text-[14px] font-poppins text-black">
+                            {item?.occupation}
+                          </p>
+                          <p className="mb-3 text-[14px] font-poppins text-black">
+                            {item?.party?.party_name}
+                          </p>
+                          <p className="mb-3 text-[14px] font-poppins text-black">
+                            {item?.position}
+                          </p>
                         </div>
-                    ))}
-                    
-                </Slider>
-                
-                </div>
-                <div>
-                  <DownloadApp/>
-                </div>
-                </div>
-            
-        </>
-    );
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </Slider>
+        </div>
+        <div>
+          <DownloadApp />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Candidate;
