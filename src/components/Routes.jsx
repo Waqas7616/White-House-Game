@@ -19,6 +19,7 @@ import StateWinner from "./statewinner/StateWinner";
 import Candidate from "./candidate/Candidate";
 import TermsCondition from "../pages/TermsCondition"
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import MyVote from "../pages/MyVote";
 
 function AppRoutes() {
   const [user, setUser] = useState();
@@ -72,6 +73,7 @@ function AppRoutes() {
         <Route path="/forgetmodal" element={<ForgotModal/>}/>
         <Route path="/termscondition" element={<TermsCondition/>}/>
         <Route path="/privacypolicy" element={<PrivacyPolicy/>}/>
+        <Route path="/myvote" element={<MyVote/>}/>
       </Routes>
     </Router>
   );
