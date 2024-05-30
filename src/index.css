@@ -42,7 +42,7 @@ body {
     position: absolute !important;
     max-width: 300px !important;
     min-width: 300px;
-    background-color: #ffffff1a;
+    background-color: #3a0404c9;
     z-index: 999999 !important;
     top: 60% !important;
     right: -13% !important;
@@ -69,3 +69,52 @@ select::-ms-expand {
         margin-inline: auto !important;
     }
 }
+
+@keyframes flip {
+    from {
+      transform: perspective(400px) rotateY(0);
+    }
+    to {
+      transform: perspective(400px) rotateY(180deg);
+    }
+  }
+  
+  .flip-animation {
+    animation-name: flip;
+    animation-duration: 0.6s;
+  }
+
+  /* .backgroundImageWithOpacity::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    opacity: 0.1!important;
+    z-index: -1;
+    
+  } */
+
+  .backgroundImageWithOpacity {
+    position: relative;
+    background-size: cover;
+    /* background-position: center; */
+    
+}
+
+.backgroundImageWithOpacity::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    opacity: 0.05; /* Yahan aap opacity adjust kar sakte hain */
+    z-index: -1; /* Ensure background is behind content */
+}
+
+  
+  

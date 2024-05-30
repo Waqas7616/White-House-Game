@@ -6,9 +6,9 @@ export const Modal = ({ candidate, onClose }) => {
 
   const getBackgroundColor = (partyName) => {
     if (partyName === "Democratic") {
-      return "bg-[#546BED] text-[white]";
+      return "bg-red-500 border-red-500 text-[white]";
     } else if (partyName === "Republican") {
-      return "bg-red-500 text-[white]";
+      return "bg-blue-500 border-[blue] text-[white]";
     } else {
       return "bg-[white] text-[black]";
     }
@@ -47,25 +47,33 @@ export const Modal = ({ candidate, onClose }) => {
                 />
               </div>
               <div className=" absolute  flex justify-center items-center bottom-[-10px] left-4 space-x-2 mb-4">
-                <div className="flex justify-center items-center ml-12">
-                  <div className="border-2 border-[#ED1C24] w-[69px]" />
+                <div className="flex justify-center items-center ml-12 ">
+                  <div
+                    className={`border-2 w-[69px] ${getBackgroundColor(
+                      candidate?.party?.party_name
+                    )}`} 
+                  />
                 </div>
-                <div className="w-[42px] h-[42px] flex justify-center items-center rounded-full bg-white">
+                <div className="w-[48px] h-[48px] flex justify-center items-center rounded-full bg-white">
                   <img
-                    className=" h-7 w-7"
+                    className=" h-9 w-9"
                     src={`${imageUrl}${candidate?.party?.party_badge}`}
                     alt=""
                   />
                 </div>
-                <div className="flex justify-center items-center">
-                  <div className="border-2 border-[#ED1C24] w-[69px]" />
+                <div className="flex justify-center items-center ">
+                <div
+                    className={`border-2 w-[69px] ${getBackgroundColor(
+                      candidate?.party?.party_name
+                    )}`}
+                  />
                 </div>
               </div>
             </div>
           </CardHeader>
 
           <div
-            className={` items-center flex flex-col h-[277px] pt-3 ${getBackgroundColor(
+            className={` flex flex-col justify-start pl-10 h-[210px] pt-3 ${getBackgroundColor(
               candidate?.party?.party_name
             )} ${getTextColor(candidate?.party?.party_name)}`}
           >
@@ -86,7 +94,7 @@ export const Modal = ({ candidate, onClose }) => {
             <Typography
               variant="body1"
               color="textSecondary"
-              className="mb-3  text-[11px] w-[189px] text-center font-poppins"
+              className="mb-3  text-[11px]  font-poppins"
             >
               {/* Georgetown University Hospital, Washington DC */}
               {candidate?.birth_place}
@@ -94,7 +102,7 @@ export const Modal = ({ candidate, onClose }) => {
             <Typography
               variant="body1"
               color="textPrimary"
-              className="mb-3  text-[11px] w-[189px] text-center font-poppins"
+              className="mb-3  text-[11px]  font-poppins"
             >
               <span className="font-extrabold">Occupation:</span>{" "}
               {candidate?.occupation}
@@ -102,7 +110,7 @@ export const Modal = ({ candidate, onClose }) => {
             <Typography
               variant="body1"
               color="textPrimary"
-              className="mb-3  text-[11px] w-[172px] text-center font-poppins"
+              className="mb-3  text-[11px] font-poppins"
             >
               {candidate?.position}
             </Typography>

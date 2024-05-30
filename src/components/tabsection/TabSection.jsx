@@ -334,7 +334,7 @@ function TabSection() {
                               alt=""
                             />
                           </div>
-                          <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+                          <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis sm:text-nowrap">
                             {item.candidate_name}
                           </p>
                           <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
@@ -823,20 +823,23 @@ function TabSection() {
             "linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)",
         }}
       >
-        <div className="flex justify-center my-20 ">
-            <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto  text-center">270 to win</h2>
+        <div className="flex justify-center my-8 ">
+            <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto  text-center">270 to Win</h2>
           </div>
-        <div className="flex w-9/12 m-auto my-5">
+          <div className="flex justify-center my-8 ">
+            <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">What our game players Predict </h2>
+          </div>
+        <div className="flex w-9/12 m-auto my-8">
           
           <div className="flex-1">
             {" "}
             <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">Democratic</h3>
-            <div className="dem py-5  bg-redish"></div>
+            <div className="dem py-5   bg-blue-800"></div>
           </div>
           <div className="flex-1">
             {" "}
             <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">Republican</h3>
-            <div className="rep py-5 bg-blue-800"></div>
+            <div className="rep py-5 bg-redish"></div>
           </div>
           <div className="flex-1">
             <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">
