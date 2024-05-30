@@ -194,15 +194,27 @@ function Navbar() {
                 Log In
               </button>
             ) : (
-              <div>
-                <h2
+              <div className={` ${
+                isLoggedIn
+                  ? "languages flex items-center gap-2 bg-[#131841] w-60 h-10 rounded-[5px] p-1"
+                  : ""
+              }`}>
+                <button className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
+                  location.pathname === "/myvote"
+                    ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
+                    : ""
+                }`} onClick={()=>navigate("/myvote")}>My Vote</button>
+                <button
                   onClick={logOut}
-                  className={` w-full h-full text-center cursor-pointer border-[1px] border-transparent bg-[#131841] px-6 py-2                   
-                  hover:bg-[#1A2250] rounded-[5px] hover:border-[1px] hover:border-[rgba(255,255,255,.2)] hover:text-white
-                  text-[rgba(255,255,255,.6)]`}
+                  className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
+                    location.pathname !== "/myvote" 
+                      ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
+                      : ""
+                  }`}
                 >
                   Log Out
-                </h2>
+                </button>
+                
               </div>
             )}
 
