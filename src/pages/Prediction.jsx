@@ -28,7 +28,7 @@ function Prediction() {
       vice_president_id: vicePresident,
     });
   }, [president, vicePresident])
-
+console.log('waqas voting data',data)
   const token = localStorage.getItem("token");
 
   const submitData = () => {
@@ -39,7 +39,7 @@ function Prediction() {
     });
 
   };
-
+console.log('check this',voting)
 
   const sendPrediction = () => {
     axios

@@ -165,9 +165,9 @@ export default function VoteGraph() {
                     style={{
                       background: `${
                         item.party_name === "Republican"
-                          ? "#546BED"
-                          : item.party_name === "Democratic"
                           ? "#ED1C24"
+                          : item.party_name === "Democratic"
+                          ? "#546BED"
                           : "white"
                       }`,
                     }}
@@ -205,9 +205,9 @@ export default function VoteGraph() {
                             width: `${item.male_ratio}%`,
                             background: `${
                               item.party_name === "Republican"
-                                ? "#546BED"
-                                : item.party_name === "Democratic"
                                 ? "#ED1C24"
+                                : item.party_name === "Democratic"
+                                ? "#546BED"
                                 : "white"
                             }`,
                           }}
@@ -229,9 +229,9 @@ export default function VoteGraph() {
                             width: `${item.female_ratio}%`,
                             background: `${
                               item.party_name === "Republican"
-                                ? "#546BED"
-                                : item.party_name === "Democratic"
                                 ? "#ED1C24"
+                                : item.party_name === "Democratic"
+                                ? "#546BED"
                                 : "white"
                             }`,
                           }}
@@ -286,9 +286,9 @@ export default function VoteGraph() {
                   style={{
                     background: `${
                       item.party_name === "Republican"
-                        ? "#546BED"
-                        : item.party_name === "Democratic"
                         ? "#ED1C24"
+                        : item.party_name === "Democratic"
+                        ? "#546BED"
                         : "white"
                     }`,
                   }}
@@ -326,9 +326,9 @@ export default function VoteGraph() {
                           width: `${item.male_ratio}%`,
                           background: `${
                             item.party_name === "Republican"
-                              ? "#546BED"
-                              : item.party_name === "Democratic"
                               ? "#ED1C24"
+                              : item.party_name === "Democratic"
+                              ? "#546BED"
                               : "white"
                           }`,
                         }}
@@ -350,9 +350,9 @@ export default function VoteGraph() {
                           width: `${item.female_ratio}%`,
                           background: `${
                             item.party_name === "Republican"
-                              ? "#546BED"
-                              : item.party_name === "Democratic"
                               ? "#ED1C24"
+                              : item.party_name === "Democratic"
+                              ? "#546BED"
                               : "white"
                           }`,
                         }}

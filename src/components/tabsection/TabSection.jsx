@@ -321,9 +321,9 @@ function TabSection() {
                         <div
                           className={`president-info relative bg-${
                             item.party_name === "Republican"
-                              ? "[#546BED]"
+                              ? " redish"
                               : item.party_name === "Democratic"
-                              ? "redish"
+                              ? "[#546BED]"
                               : "whiteColor"
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
@@ -358,9 +358,9 @@ function TabSection() {
                                 width: `${item.percentage}%`,
                                 background: `${
                                   item.party_name === "Republican"
-                                    ? "#546BED"
-                                    : item.party_name === "Democratic"
                                     ? "#ED1C24"
+                                    : item.party_name === "Democratic"
+                                    ? "#546BED"
                                     : "white"
                                 }`,
                               }}
@@ -423,9 +423,9 @@ function TabSection() {
                         <div
                           className={`president-info relative bg-${
                             item.party_name === "Republican"
-                              ? "[#546BED]"
-                              : item.party_name === "Democratic"
                               ? "redish"
+                              : item.party_name === "Democratic"
+                              ? "[#546BED]"
                               : "whiteColor"
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
@@ -460,9 +460,9 @@ function TabSection() {
                                 width: `${item.percentage}%`,
                                 background: `${
                                   item.party_name === "Republican"
-                                    ? "#546BED"
-                                    : item.party_name === "Democratic"
                                     ? "#ED1C24"
+                                    : item.party_name === "Democratic"
+                                    ? "#546BED"
                                     : "white"
                                 }`,
                               }}
@@ -591,9 +591,9 @@ function TabSection() {
                         <div
                           className={`president-info relative bg-${
                             item.party_name === "Republican"
-                              ? "[#546BED]"
-                              : item.party_name === "Democratic"
                               ? "redish"
+                              : item.party_name === "Democratic"
+                              ? "[#546BED]"
                               : "whiteColor"
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
@@ -628,9 +628,9 @@ function TabSection() {
                                 width: `${item.percentage}%`,
                                 background: `${
                                   item.party_name === "Republican"
-                                    ? "#546BED"
-                                    : item.party_name === "Democratic"
                                     ? "#ED1C24"
+                                    : item.party_name === "Democratic"
+                                    ? "#546BED"
                                     : "white"
                                 }`,
                               }}
@@ -693,9 +693,9 @@ function TabSection() {
                         <div
                           className={`president-info relative bg-${
                             item.party_name === "Republican"
-                              ? "[#546BED]"
-                              : item.party_name === "Democratic"
                               ? "redish"
+                              : item.party_name === "Democratic"
+                              ? "[#546BED]"
                               : "whiteColor"
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
@@ -730,9 +730,9 @@ function TabSection() {
                                 width: `${item.percentage}%`,
                                 background: `${
                                   item.party_name === "Republican"
-                                    ? "#546BED"
-                                    : item.party_name === "Democratic"
                                     ? "#ED1C24"
+                                    : item.party_name === "Democratic"
+                                    ? "#546BED"
                                     : "white"
                                 }`,
                               }}
