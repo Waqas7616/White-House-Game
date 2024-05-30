@@ -61,7 +61,7 @@ function Predict({ titleImage, party, afterchange, submitData }) {
         </p>
 
         <div
-          className={`w-full rounded-lg  relative ${isButtonClicked && "border-8"
+          className={`w-full rounded-lg  relative mt-12 ${isButtonClicked && "border-8"
             }`}
           style={{ background: sliderBackground }}
         >
