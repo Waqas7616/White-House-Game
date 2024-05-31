@@ -201,9 +201,9 @@ export default function Ethnicity() {
             <div
               style={{
                 background: `${item.party_name === "Republican"
-                    ? "#546BED"
+                    ? "#ED1C24"
                     : item.party_name === "Democratic"
-                      ? "#ED1C24"
+                      ? "#546BED"
                       : "white"
                   }`,
               }}
@@ -214,9 +214,9 @@ export default function Ethnicity() {
                   className="w-[20px] sm:w-auto"
                   src={
                     item.party_name === "Republican"
-                      ? republic
+                      ?  democrat
                       : item.party_name === "Democratic"
-                        ? democrat
+                        ? republic
                         : independ
                   }
                   alt=""
@@ -245,9 +245,9 @@ export default function Ethnicity() {
                   style={{
                     width: `${item.percentage}%`,
                     background: `${item.party_name === "Democratic"
-                        ? "#ED1C24"
+                        ? "#546BED"
                         : item.party_name === "Republican"
-                          ? "#546BED"
+                          ? "#ED1C24"
                           : "white"
                       }`,
                   }}
