@@ -4,8 +4,8 @@ import badge from "../../images/president.png";
 import ballot from "../../images/ballot.png";
 import kennedy from "../../images/image 46.png";
 
-import democrat from "../../images/democrat.png";
-import republic from "../../images/republican.png";
+import  republic from "../../images/democrat.png";
+import democrat from "../../images/republican.png";
 import independ from "../../images/independent.png";
 import "../banner.css";
 import VoteGraph from "./VoteGraph";
@@ -319,12 +319,12 @@ function TabSection() {
                         } rounded-[8px] mt-8`}
                       >
                         <div
-                          className={`president-info relative bg-${
+                          className={`president-info relative ${
                             item.party_name === "Republican"
-                              ? " redish"
+                              ? "bg-redish"
                               : item.party_name === "Democratic"
-                              ? "[#546BED]"
-                              : "whiteColor"
+                              ? "bg-[#546BED]"
+                              : "bg-whiteColor"
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className=" overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
@@ -341,10 +341,10 @@ function TabSection() {
                             <img
                               className="w-[20px] sm:w-auto"
                               src={
-                                item.party_name === "Depublican"
+                                item.party_name === "Republican"
                                   ? republic
                                   : item.party_name === "Democratic"
-                                  ? democrat
+                                  ?   democrat
                                   : independ
                               }
                               alt=""
@@ -421,12 +421,12 @@ function TabSection() {
                         } mt-8 rounded-[8px]`}
                       >
                         <div
-                          className={`president-info relative bg-${
+                          className={`president-info relative ${
                             item.party_name === "Republican"
-                              ? "redish"
+                              ? "bg-redish"
                               : item.party_name === "Democratic"
-                              ? "[#546BED]"
-                              : "whiteColor"
+                              ? "bg-[#546BED]"
+                              : "bg-whiteColor"
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className=" overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
@@ -444,9 +444,9 @@ function TabSection() {
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
-                                  ? republic
+                                  ?  republic
                                   : item.party_name === "Democratic"
-                                  ? democrat
+                                  ?  democrat
                                   : independ
                               }
                               alt=""
@@ -589,12 +589,12 @@ function TabSection() {
                         } rounded-[8px] mt-8`}
                       >
                         <div
-                          className={`president-info relative bg-${
+                          className={`president-info relative ${
                             item.party_name === "Republican"
-                              ? "redish"
+                              ? "bg-redish"
                               : item.party_name === "Democratic"
-                              ? "[#546BED]"
-                              : "whiteColor"
+                              ? "bg-[#546BED]"
+                              : "bg-whiteColor"
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className="overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
@@ -612,9 +612,9 @@ function TabSection() {
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
-                                  ? republic
+                                  ?republic
                                   : item.party_name === "Democratic"
-                                  ? democrat
+                                  ?   democrat
                                   : independ
                               }
                               alt=""
@@ -691,12 +691,12 @@ function TabSection() {
                         } rounded-[8px] mt-8`}
                       >
                         <div
-                          className={`president-info relative bg-${
+                          className={`president-info relative ${
                             item.party_name === "Republican"
-                              ? "redish"
+                              ? "bg-redish"
                               : item.party_name === "Democratic"
-                              ? "[#546BED]"
-                              : "whiteColor"
+                              ? "bg-[#546BED]"
+                              : "bg-whiteColor"
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className="overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
@@ -716,7 +716,7 @@ function TabSection() {
                                 item.party_name === "Republican"
                                   ? republic
                                   : item.party_name === "Democratic"
-                                  ? democrat
+                                  ?  democrat
                                   : independ
                               }
                               alt=""

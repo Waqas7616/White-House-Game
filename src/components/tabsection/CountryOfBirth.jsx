@@ -170,11 +170,11 @@ export default function CountryOfBirth() {
               } rounded-[8px] mt-8`}
             >
               <div
-                className={`president-info relative bg-${
+                className={`president-info relative ${
                   item.party_name === "Republican"
-                    ? "[#546BED]"
+                    ? "bg-redish"
                     : item.party_name === "Democratic"
-                    ? "redish"
+                    ? "bg-[#546BED]"
                     : "whiteColor"
                 } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
               >
@@ -193,9 +193,9 @@ export default function CountryOfBirth() {
                     className="w-[20px] sm:w-auto"
                     src={
                       item.party_name === "Republican"
-                        ? republic
-                        : item.party_name === "Democratic"
                         ? democrat
+                        : item.party_name === "Democratic"
+                        ?  republic
                         : independ
                     }
                     alt=""
@@ -209,9 +209,9 @@ export default function CountryOfBirth() {
                       width: `${item.percentage}%`,
                       background: `${
                         item.party_name === "Republican"
-                          ? "#546BED"
-                          : item.party_name === "Democratic"
                           ? "#ED1C24"
+                          : item.party_name === "Democratic"
+                          ? "#546BED"
                           : "white"
                       }`,
                     }}
