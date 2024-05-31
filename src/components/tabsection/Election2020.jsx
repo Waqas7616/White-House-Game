@@ -240,9 +240,9 @@ export default function Election2020() {
               style={{
                 background: `${
                   item.party === "Republican"
-                    ? "#546BED"
+                    ? " #ED1C24"
                     : item.party === "Democratic"
-                    ? "#ED1C24"
+                    ? "#546BED"
                     : "white"
                 }`,
               }}
@@ -253,9 +253,9 @@ export default function Election2020() {
                   className="w-[20px] sm:w-auto"
                   src={
                     item.party === "Republican"
-                      ? republic
+                      ?  democrat
                       : item.party === "Democratic"
-                      ? democrat
+                      ? republic
                       : independ
                   }
                   alt=""
@@ -285,9 +285,9 @@ export default function Election2020() {
                     width: `${item.percentage}%`,
                     background: `${
                       item.party === "Democratic"
-                        ? "#ED1C24"
-                        : item.party === "Republican"
                         ? "#546BED"
+                        : item.party === "Republican"
+                        ? "#ED1C24 "
                         : "white"
                     }`,
                   }}
@@ -320,9 +320,9 @@ export default function Election2020() {
                 style={{
                   background: `${
                     item.party === "Republican"
-                      ? "#546BED"
-                      : item.party === "Democratic"
                       ? "#ED1C24"
+                      : item.party === "Democratic"
+                      ? "#546BED"
                       : "white"
                   }`,
                 }}
@@ -333,9 +333,9 @@ export default function Election2020() {
                     className="w-[20px] sm:w-auto"
                     src={
                       item.party === "Republican"
-                        ? republic
-                        : item.party === "Democratic"
                         ? democrat
+                        : item.party === "Democratic"
+                        ?  republic
                         : independ
                     }
                     alt=""
@@ -365,9 +365,9 @@ export default function Election2020() {
                       width: `${item.percentage}%`,
                       background: `${
                         item.party === "Democratic"
-                          ? "#ED1C24"
-                          : item.party === "Republican"
                           ? "#546BED"
+                          : item.party === "Republican"
+                          ? "#ED1C24"
                           : "white"
                       }`,
                     }}

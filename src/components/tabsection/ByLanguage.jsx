@@ -196,7 +196,7 @@ export default function ByLanguage() {
               style={{
                 background: `${
                   item.party_name === "Republican"
-                    ? "#546BED"
+                    ? "#546BED "
                     : item.party_name === "Democratic"
                     ? "#ED1C24"
                     : "white"
@@ -209,9 +209,9 @@ export default function ByLanguage() {
                   className="w-[20px] sm:w-auto"
                   src={
                     item.party_name === "Republican"
-                      ? republic
+                      ?  republic
                       : item.party_name === "Democratic"
-                      ? democrat
+                      ?  democrat
                       : independ
                   }
                   alt=""
@@ -241,9 +241,9 @@ export default function ByLanguage() {
                     width: `${item.percentage}%`,
                     background: `${
                       item.party_name === "Democratic"
-                        ? "#ED1C24"
-                        : item.party_name === "Republican"
                         ? "#546BED"
+                        : item.party_name === "Republican"
+                        ? "#ED1C24"
                         : "white"
                     }`,
                   }}

@@ -209,9 +209,9 @@ export default function ElectoralCollege() {
                       className="w-[20px] sm:w-auto"
                       src={
                         item.party_name === "Republican"
-                          ? republic
-                          : item.party_name === "Democratic"
                           ? democrat
+                          : item.party_name === "Democratic"
+                          ?  republic
                           : independ
                       }
                       alt=""
@@ -311,9 +311,9 @@ export default function ElectoralCollege() {
                       className="w-[20px] sm:w-auto"
                       src={
                         item.party_name === "Republican"
-                          ? republic
+                          ?  democrat
                           : item.party_name === "Democratic"
-                          ? democrat
+                          ? republic
                           : independ
                       }
                       alt=""

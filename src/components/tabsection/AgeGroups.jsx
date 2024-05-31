@@ -208,9 +208,9 @@ export default function AgeGroups() {
                   style={{
                     background: `${
                       item.party_id === 2
-                        ? "#546BED"
-                        : item.party_id === 1
                         ? "#ED1C24"
+                        : item.party_id === 1
+                        ? "#546BED "
                         : "white"
                     }`,
                   }}
@@ -221,9 +221,9 @@ export default function AgeGroups() {
                       className="w-[20px] sm:w-auto"
                       src={
                         item.party_id === 2
-                          ? republic
-                          : item.party_id === 1
                           ? democrat
+                          : item.party_id === 1
+                          ?  republic
                           : independ
                       }
                       alt=""
@@ -248,9 +248,9 @@ export default function AgeGroups() {
                           width: `${item.male_ratio}%`,
                           background: `${
                             item.party_id === 2
-                              ? "#546BED"
-                              : item.party_id === 1
                               ? "#ED1C24"
+                              : item.party_id === 1
+                              ? "#546BED"
                               : "white"
                           }`,
                         }}
@@ -272,9 +272,9 @@ export default function AgeGroups() {
                           width: `${item.female_ratio}%`,
                           background: `${
                             item.party_id === 2
-                              ? "#546BED"
-                              : item.party_id === 1
                               ? "#ED1C24"
+                              : item.party_id === 1
+                              ? "#546BED"
                               : "white"
                           }`,
                         }}
