@@ -8,6 +8,8 @@ import DownloadApp from "../components/DownloadApp";
 import republic from "../images/democrat.png";
 import democrat from "../images/republican.png";
 import independ from "../images/independent.png";
+import check from "../images/check.png";
+
 
 export default function MyVote() {
   const [userVote, setUserVote] = useState([]);
@@ -158,6 +160,9 @@ export default function MyVote() {
                     {userVote?.PredictedCandidateDetails?.[1]?.candidate_name}
                   </h2>
                 </div>
+              </div>
+              <div className="absolute bottom-5 left-48">
+                <img className="w-[40px] h-[40px] m-auto" src={check} alt="" />
               </div>
             </div>
 
