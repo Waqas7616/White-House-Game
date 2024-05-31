@@ -5,8 +5,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import bg from "../images/images.jpg";
 import DownloadApp from "../components/DownloadApp";
-import democrat from "../images/democrat.png";
-import republic from "../images/republican.png";
+import republic from "../images/democrat.png";
+import democrat from "../images/republican.png";
 import independ from "../images/independent.png";
 import check from "../images/check.png";
 
@@ -21,6 +21,7 @@ export default function MyVote() {
   const token = localStorage.getItem("token");
   // console.log(token)
   const imageUrl = "https://thewhitehousegame.com/public/";
+  
 
   useEffect(() => {
     axios
@@ -75,13 +76,21 @@ export default function MyVote() {
           </div>
           <div className="flex gap-4">
             <div
-              style={{
-                background:
-                  "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
-              }}
-              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative `}
+              // style={{
+              //   background:
+              //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
+              // }}
+              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative ${
+                userVote?.PredictedCandidateDetails?.[0]?.party_name ===
+                "Republican"
+                  ? "bg-redish"
+                  : userVote?.PredictedCandidateDetails?.[0]?.party_name ===
+                    "Democratic"
+                  ? "bg-[#546BED]"
+                  : "bg-white"
+              }`}
             >
-              <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-white w-fit">
+              <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
                 <img
                   className="w-[20px] h-[20px] sm:w-auto"
                   src={
@@ -159,154 +168,163 @@ export default function MyVote() {
 
             {/* other parties */}
 
-            
-              <div
-               
-                className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative `}
-                style={{
-                  background:
-                    "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
-                }}
-              >
-                <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-white w-fit">
-                  <img
-                    className="w-[20px] h-[20px] sm:w-auto"
-                    src={
-                      selected?.[0]?.party_name === "Republican"
-                        ? republic
-                        : selected?.[0]?.party_name === "Democratic"
-                        ? democrat
-                        : independ
-                    }
-                    alt=""
-                  />
-                  <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                    {selected?.[0]?.party_name}
+            <div
+              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative ${
+                selected?.[0]?.party_name === "Republican"
+                  ? "bg-redish"
+                  : selected?.[0]?.party_name === "Democratic"
+                  ? "bg-[#546BED]"
+                  : "bg-white"
+              }`}
+              // style={{
+              //   background:
+              //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
+              // }}
+            >
+              <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
+                <img
+                  className="w-[20px] h-[20px] sm:w-auto"
+                  src={
+                    selected?.[0]?.party_name === "Republican"
+                      ? republic
+                      : selected?.[0]?.party_name === "Democratic"
+                      ? democrat
+                      : independ
+                  }
+                  alt=""
+                />
+                <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
+                  {selected?.[0]?.party_name}
+                </h2>
+              </div>
+              <div className="flex gap-4 items-center justify-start w-full m-auto ">
+                <div className="w-[200px] h-[220px] m-auto relative">
+                  <h4 className="poppins6 text-white xl:text-[20px]">
+                    President
+                  </h4>
+                  <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
+                    <img
+                      className="h-full w-full object-cover"
+                      src={`${imageUrl}${selected?.[0]?.candidate_image}`}
+                      alt=""
+                    />
+                  </div>
+                  <h2
+                    className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
+                      selected?.[0]?.party_name === "Democratic"
+                        ? "bg-[#1c2452] text-white"
+                        : selected?.[0]?.party_name === "Republican"
+                        ? "bg-redish text-white"
+                        : "bg-white text-black"
+                    } px-1  md:px-4 md:py-1 z-50`}
+                  >
+                    {selected?.[0]?.candidate_name}
                   </h2>
                 </div>
-                <div className="flex gap-4 items-center justify-start w-full m-auto ">
-                  <div className="w-[200px] h-[220px] m-auto relative">
-                    <h4 className="poppins6 text-white xl:text-[20px]">
-                      President
-                    </h4>
-                    <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={`${imageUrl}${selected?.[0]?.candidate_image}`}
-                        alt=""
-                      />
-                    </div>
-                    <h2
-                      className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
-                        selected?.[0]?.party_name === "Democratic"
-                          ? "bg-[#1c2452] text-white"
-                          : selected?.[0]?.party_name === "Republican"
-                          ? "bg-redish text-white"
-                          : "bg-white text-black"
-                      } px-1  md:px-4 md:py-1 z-50`}
-                    >
-                      {selected?.[0]?.candidate_name}
-                    </h2>
+                <div className="w-[200px] h-[220px] m-auto relative">
+                  <h4 className="poppins6 text-white xl:text-[20px]">
+                    Vice President
+                  </h4>
+                  <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
+                    <img
+                      className="h-full w-full object-cover"
+                      src={`${imageUrl}${selected?.[1]?.candidate_image}`}
+                      alt=""
+                    />
                   </div>
-                  <div className="w-[200px] h-[220px] m-auto relative">
-                    <h4 className="poppins6 text-white xl:text-[20px]">
-                      Vice President
-                    </h4>
-                    <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={`${imageUrl}${selected?.[1]?.candidate_image}`}
-                        alt=""
-                      />
-                    </div>
-                    <h2
-                      className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
-                        selected?.[1]?.party_name === "Democratic"
-                          ? " bg-[#1c2452] text-white"
-                          : selected?.[1]?.party_name === "Republican"
-                          ? "bg-redish text-white"
-                          : "bg-white text-black"
-                      } px-1  md:px-4 md:py-1 z-50`}
-                    >
-                      {selected?.[1]?.candidate_name}
-                    </h2>
-                  </div>
-                </div>
-              </div>
-              <div
-               
-                className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative `}
-                style={{
-                  background:
-                    "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
-                }}
-              >
-                <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-white w-fit">
-                  <img
-                    className="w-[20px] h-[20px] sm:w-auto"
-                    src={
-                      selected?.[2]?.party_name === "Republican"
-                        ? republic
-                        : selected?.[2]?.party_name === "Democratic"
-                        ? democrat
-                        : independ
-                    }
-                    alt=""
-                  />
-                  <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                    {selected?.[2]?.party_name}
+                  <h2
+                    className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
+                      selected?.[1]?.party_name === "Democratic"
+                        ? " bg-[#1c2452] text-white"
+                        : selected?.[1]?.party_name === "Republican"
+                        ? "bg-redish text-white"
+                        : "bg-white text-black"
+                    } px-1  md:px-4 md:py-1 z-50`}
+                  >
+                    {selected?.[1]?.candidate_name}
                   </h2>
                 </div>
-                <div className="flex gap-4 items-center justify-start w-full m-auto ">
-                  <div className="w-[200px] h-[220px] m-auto relative">
-                    <h4 className="poppins6 text-white xl:text-[20px]">
-                      President
-                    </h4>
-                    <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={`${imageUrl}${selected?.[2]?.candidate_image}`}
-                        alt=""
-                      />
-                    </div>
-                    <h2
-                      className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
-                        selected?.[2]?.party_name === "Democratic"
-                          ? "bg-[#1c2452]  text-white"
-                          : selected?.[2]?.party_name === "Republican"
-                          ? " bg-redish text-white"
-                          : "bg-white text-black"
-                      } px-1  md:px-4 md:py-1 z-50`}
-                    >
-                      {selected?.[2]?.candidate_name}
-                    </h2>
+              </div>
+            </div>
+            <div
+              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative ${
+                selected?.[2]?.party_name === "Republican"
+                  ? "bg-redish"
+                  : selected?.[2]?.party_name === "Democratic"
+                  ? "bg-[#546BED]"
+                  : "bg-white"
+              }`}
+
+              // style={{
+              //   background:
+              //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
+              // }}
+            >
+              <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
+                <img
+                  className="w-[20px] h-[20px] sm:w-auto"
+                  src={
+                    selected?.[2]?.party_name === "Republican"
+                      ? republic
+                      : selected?.[2]?.party_name === "Democratic"
+                      ? democrat
+                      : independ
+                  }
+                  alt=""
+                />
+                <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
+                  {selected?.[2]?.party_name}
+                </h2>
+              </div>
+              <div className="flex gap-4 items-center justify-start w-full m-auto ">
+                <div className="w-[200px] h-[220px] m-auto relative">
+                  <h4 className="poppins6 text-white xl:text-[20px]">
+                    President
+                  </h4>
+                  <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
+                    <img
+                      className="h-full w-full object-cover"
+                      src={`${imageUrl}${selected?.[2]?.candidate_image}`}
+                      alt=""
+                    />
                   </div>
-                  <div className="w-[200px] h-[220px] m-auto relative">
-                    <h4 className="poppins6 text-white xl:text-[20px]">
-                      Vice President
-                    </h4>
-                    <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
-                      <img
-                        className="h-full w-full object-cover"
-                        src={`${imageUrl}${selected?.[3]?.candidate_image}`}
-                        alt=""
-                      />
-                    </div>
-                    <h2
-                      className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
-                        selected?.[3]?.party_name === "Democratic"
-                          ? " bg-[#1c2452] text-white"
-                          : selected?.[3]?.party_name === "Republican"
-                          ? "bg-redish text-white"
-                          : "bg-white text-black"
-                      } px-1  md:px-4 md:py-1 z-50`}
-                    >
-                      {selected?.[3]?.candidate_name}
-                    </h2>
+                  <h2
+                    className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
+                      selected?.[2]?.party_name === "Democratic"
+                        ? "bg-[#1c2452]  text-white"
+                        : selected?.[2]?.party_name === "Republican"
+                        ? " bg-redish text-white"
+                        : "bg-white text-black"
+                    } px-1  md:px-4 md:py-1 z-50`}
+                  >
+                    {selected?.[2]?.candidate_name}
+                  </h2>
+                </div>
+                <div className="w-[200px] h-[220px] m-auto relative">
+                  <h4 className="poppins6 text-white xl:text-[20px]">
+                    Vice President
+                  </h4>
+                  <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
+                    <img
+                      className="h-full w-full object-cover"
+                      src={`${imageUrl}${selected?.[3]?.candidate_image}`}
+                      alt=""
+                    />
                   </div>
+                  <h2
+                    className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
+                      selected?.[3]?.party_name === "Democratic"
+                        ? " bg-[#1c2452] text-white"
+                        : selected?.[3]?.party_name === "Republican"
+                        ? "bg-redish text-white"
+                        : "bg-white text-black"
+                    } px-1  md:px-4 md:py-1 z-50`}
+                  >
+                    {selected?.[3]?.candidate_name}
+                  </h2>
                 </div>
               </div>
-          
+            </div>
           </div>
 
           <div className="text-center flex justify-center items-center gap-5">
