@@ -18,7 +18,7 @@ const Candidate = () => {
   const CustomNextArrow = (props) => (
     <div
       {...props}
-      className="absolute top-[24%] right-[.5%] sm:top-[24%] sm:-right-[1.5%] md:top-[24%] md:-right-[5.5%] lg:top-[24%] lg:-right-[4.6%] xl:top-[24%] xl:-right-[0%]  transform cursor-pointer"
+      className="absolute  right-[.5%]  sm:-right-[1.5%]  md:-right-[5.5%]  lg:-right-[4.6%] top-[50%] translate-y-[-50%] xl:-right-[0%]  transform cursor-pointer"
     >
       <span className="text-2xl opacity-[0.5] hover:opacity-100">
         <svg
@@ -99,7 +99,7 @@ const Candidate = () => {
   const CustomPrevArrow = (props) => (
     <div
       {...props}
-      className="absolute w-fit top-[24%] left-[-3%] sm:top-[24%] sm:-right-[1.5%] md:top-[24%] md:-right-[2.5%] lg:top-[24%] lg:-right-[1.5%] z-50  cursor-pointer"
+      className="absolute w-fit  left-[-3%] top-[50%] translate-y-[-50%] sm:-right-[1.5%]  md:-right-[2.5%]  lg:-right-[1.5%] z-50  cursor-pointer"
     >
       <span className="text-2xl opacity-[0.5] hover:opacity-100">
         <svg
@@ -279,7 +279,7 @@ const Candidate = () => {
           <Slider {...settings}>
             {data.map((item, index) => (
               <div key={index} className="p-4 relative">
-                <div className="bg-white shadow-2xl rounded-2xl overflow-hidden relative ">
+                <div className="bg-white shadow-xl h-[450px] rounded-2xl overflow-hidden relative ">
                   <svg
                     onClick={() => handleSvgClick(index)}
                     className="flip absolute right-3 top-1 cursor-pointer fill-current text-white"
@@ -290,14 +290,14 @@ const Candidate = () => {
                   >
                     <path d="M12 24c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12zm1-6h-2v-8h2v8zm-1-12.25c.69 0 1.25.56 1.25 1.25s-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25.56-1.25 1.25-1.25z" />
                   </svg>
-                  <div className="w-full h-64 2xl:h-[31rem] overflow-hidden">
+                  <div className="w-full h-full overflow-hidden">
                     <img
                       src={`${imageUrl}${item?.candidate_image}`}
                       alt="profile-picture"
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="flex flex-row items-center gap-5 justify-center mt-2 mb-3">
+                  <div className={`absolute ${showCard===index?'z-0':'z-50'} -bottom-3 left-[50%] translate-x-[-50%] w-full bg-white flex flex-row items-center gap-5 justify-center h-[80px] mt-2 mb-3`}>
                     <div className="rounded-full h-[38px] w-[38px] shadow-xl shadow-[#0000004d]">
                       <img
                         className="w-9 text-center"
@@ -317,7 +317,7 @@ const Candidate = () => {
                 </div>
                 {showCard === index && (
                   <div className="absolute inset-0  shadow-2xl rounded-2xl overflow-hidden transform flip-animation z-10   border-none bg-[white]">
-                    <div className="relative p-4 flex flex-col justify-start h-full">
+                    <div className="relative py-8 px-5 flex flex-col justify-start h-full">
                       <svg
                         onClick={() => handleSvgClick(index)}
                         className="flip absolute right-3 top-1 cursor-pointer fill-current"
@@ -349,23 +349,25 @@ const Candidate = () => {
                           }}
                         />
                         <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-start items-start text-white">
-                          <h3 className="mb-3 font-extrabold font-poppins text-[19px] text-black">
+                          <h3 className="mb-3 font-extrabold poppins6 text-[25px] text-black">
                             {item?.candidate_name}
                           </h3>
-                          <p className="mb-3 text-[14px] font-poppins text-black">
+                          <p className="mb-3 text-[18px] poppins4 text-black">
                             {item?.dob}
                           </p>
-                          <p className="mb-3 text-[14px] font-poppins text-black">
+                          <p className="mb-3 text-[18px] poppins4 text-black">
                             {item?.birth_place}
                           </p>
-                          <p className="mb-3 text-[14px] font-poppins text-black">
-                            {item?.occupation}
+                          <p className="mb-3 text-[18px] poppins4 text-black">
+                            {item?.occupation.split}
                           </p>
-                          <p className="mb-3 text-[14px] font-poppins text-black">
+                          <p className="mb-3 text-[18px] poppins6 text-black">
                             {item?.party?.party_name}
                           </p>
-                          <p className="mb-3 text-[14px] font-poppins text-black">
-                            {item?.position}
+                          <p className="mb-3 text-[18px] poppins4 text-black">
+                            {item?.position.split(",").map((item)=>(
+                              <p className="mb-3 text-[18px] poppins4 text-black">{item}</p>
+                            ))}
                           </p>
                         </div>
                       </div>

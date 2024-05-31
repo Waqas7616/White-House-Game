@@ -183,7 +183,9 @@ export default function EmploymentStatus() {
           </div> */}
       </div>
       <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
-        {employmentStatus?.data?.party_percentages.slice(0, 3).map((item, index) => (
+        {employmentStatus?.data?.party_percentages.length===0?
+        <p className="text-white text-center poppins5">No data for this employment status yet</p>:
+        employmentStatus?.data?.party_percentages.slice(0, 3).map((item, index) => (
           <div
             key={index}
             className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${item.party_name === "Republican"

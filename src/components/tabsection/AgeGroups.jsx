@@ -193,7 +193,9 @@ export default function AgeGroups() {
         </h2>
         <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
           <>
-            {ageGroupPer?.data?.party_percentages.map((item, index) => (
+            {ageGroupPer?.data?.party_percentages.length===0?
+            <p className="poppins5 text-center text-white ">No data is available yet for this age bracket</p>
+            :ageGroupPer?.data?.party_percentages.map((item, index) => (
               <div
                 key={index}
                 className={`voteCount ${

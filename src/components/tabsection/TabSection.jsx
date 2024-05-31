@@ -307,6 +307,10 @@ function TabSection() {
               {!expandedVotes ? (
                 <>
                   {president &&
+                   president?.length===0?
+                   <p className="poppins5 text-center text-white">
+                    No data available for this state
+                   </p>:
                     president?.slice(0, 3).map((item, index) => (
                       <div
                         key={index}
@@ -577,6 +581,10 @@ function TabSection() {
               {!viceVotes ? (
                 <>
                   {vicePresident &&
+                    vicePresident.length===0?
+                    <p className="poppins5 text-center text-white">
+                    No data available for this state
+                   </p>:
                     vicePresident?.slice(0, 3).map((item, index) => (
                       <div
                         key={index}
