@@ -112,6 +112,39 @@ function ElectoralCollege() {
 
   // }
 
+  const [statesData, setStatesData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("states data is :", res.data.data);
+        setStatesData(res.data.data);
+      })
+      .catch((err) => {
+        console.log("the error is :", err);
+      });
+  }, []);
+
+  const voteCount = (state) => {
+    if (statesData[state]) {
+      const parties = Object.keys(statesData[state]);
+      const count = Object.values(statesData[state]).filter(
+        (value) => typeof value === "number"
+      );
+      const maxCount = Math.max(...count);
+      const largeIndex = count.indexOf(maxCount);
+      const largeParty = parties[largeIndex];
+      const electricalCollege = statesData[state].electrical_collage; // Access electrical_collage
+      return { largeParty, maxCount, electricalCollege, parties };
+    }
+    return {};
+  };
+
   return (
     <div className=" bg-[#1c2452]">
       <AppBanner
@@ -475,6 +508,9 @@ function ElectoralCollege() {
 
 
 
+
+
+
         {/* <button
   className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 py-2 text-white uppercase rounded-[6px] ${
     selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
@@ -571,11 +607,50 @@ function ElectoralCollege() {
   </svg>
 </button> */}
 
-        <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
-          <div className="py-4 bg-[#031BBB] w-[50%]"></div>
-          <div className="py-4 bg-white w-[15%]"></div>
-          <div className="py-4 bg-redish w-[35%]"></div>
-        </div>
+        {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
+          <div className="py-4 bg-[#031BBB] w-[50%]">
+          <span className="poppins4">
+              {!statesData[step].Democratic
+                ? "0%"
+                : `${Math.round(statesData[step].Democratic)}%`}
+            </span>
+          </div>
+          <div className="py-4 bg-white w-[15%]">
+          
+            <span className="poppins4">
+              {!statesData[step]["Independent('Kennedy')"]
+                ? "0%"
+                : `${Math.round(statesData[step]["Independent('Kennedy')"])}%`}
+            </span>
+          </div>
+          <div className="py-4 bg-redish w-[35%]">
+          <span className="poppins4">
+              {!statesData[step].Republican
+                ? "0%"
+                : `${Math.round(statesData[step].Republican)}%`}
+            </span>
+          </div>
+        </div> */}
+
+<div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
+  <div className="py-4 bg-[#031BBB] w-[50%]">
+    <span className="poppins4 flex justify-center items-center">
+      {statesData[step]?.Democratic ? `${Math.round(statesData[step].Democratic)}%` : "0%"}
+      {/* {voteCount(step).electricalCollege} */}
+    </span>
+  </div>
+  <div className="py-4 bg-white w-[15%]">
+    <span className="poppins4 flex justify-center items-center">
+      {statesData[step]?.["Independent('Kennedy')"] ? `${Math.round(statesData[step]["Independent('Kennedy')"])}%` : "0%"}
+    </span>
+  </div>
+  <div className="py-4 bg-redish w-[35%]">
+    <span className="poppins4 flex justify-center items-center">
+      {statesData[step]?.Republican ? `${Math.round(statesData[step].Republican)}%` : "0%"}
+    </span>
+  </div>
+</div>
+
 
         <div className="result-card ">
           <h2 className="text-white mb-12 poppins6 text-[25.4px] md:text-[56.4px]">
