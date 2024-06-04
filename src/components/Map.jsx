@@ -205,7 +205,7 @@ function Map() {
               x="300"
               y="560"
               textAnchor="middle"
-              fill="black"
+              fill="white"
               fontSize="19"
               fontWeight={700}
             >
@@ -708,7 +708,7 @@ function Map() {
               textAnchor="middle"
               fill="black"
               fontSize="19"
-              fontWeight={600}
+              fontWeight={700}
             >
               {` ${voteCount("North Carolina").electricalCollege}`}
             </text>
@@ -1006,7 +1006,7 @@ function Map() {
               textAnchor="middle"
               fill="black"
               fontSize="19"
-              fontWeight={600}
+              fontWeight={700}
             >
               {` ${voteCount("Tennessee").electricalCollege}`}
             </text>
@@ -1024,7 +1024,7 @@ function Map() {
               textAnchor="middle"
               fill="black"
               fontSize="19"
-              fontWeight={600}
+              fontWeight={700}
             >
               {` ${voteCount("Texas").electricalCollege}`}
             </text>
@@ -1042,7 +1042,7 @@ function Map() {
               textAnchor="middle"
               fill="black"
               fontSize="19"
-              fontWeight={600}
+              fontWeight={700}
             >
               {` ${voteCount("Utah").electricalCollege}`}
             </text>
@@ -1133,7 +1133,7 @@ function Map() {
               textAnchor="middle"
               fill="black"
               fontSize="19"
-              fontWeight={600}
+              fontWeight={700}
             >
               {` ${voteCount("Washington").electricalCollege}`}
             </text>
@@ -1151,7 +1151,7 @@ function Map() {
               textAnchor="middle"
               fill="black"
               fontSize="19"
-              fontWeight={600}
+              fontWeight={700}
             >
               {` ${voteCount("Wisconsin").electricalCollege}`}
             </text>
@@ -1169,7 +1169,7 @@ function Map() {
               textAnchor="middle"
               fill="black"
               fontSize="19"
-              fontWeight={600}
+              fontWeight={700}
             >
               {` ${voteCount("West Virginia").electricalCollege}`}
             </text>
@@ -1187,7 +1187,7 @@ function Map() {
               textAnchor="middle"
               fill="black"
               fontSize="19"
-              fontWeight={600}
+              fontWeight={700}
             >
               {` ${voteCount("Wyoming").electricalCollege}`}
             </text>

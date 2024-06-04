@@ -17,6 +17,7 @@ import {
 import axios from "axios";
 import Prediction from "./Prediction";
 import StateWinner from "../components/statewinner/StateWinner";
+import abc from '../images/Alabamas 1.svg'
 
 
 function ElectoralCollege() {
@@ -156,25 +157,28 @@ function ElectoralCollege() {
         </div>
 
         <div className="flex flex-col items-center lg:flex lg:flex-row lg:items-center ">
-          <div className="question flex flex-col justify-center items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
+          <div className="question flex flex-col justify-center gap-4 items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
             {previousData &&
               previousData?.states &&
               previousData?.states[step] && (
                 <img
                   src={`${imageUrl}${previousData?.states?.[step]?.state_image_url}`}
-                
+                // src={abc}
                   alt=""
-                  className="w-12 lg:w-12 xl:w-20 2xl:w-24 object-cover mt-3"
+                  className="w-12 lg:w-12 xl:w-24 2xl:w-24 object-cover "
                 />
               )}
-            <div className="m-auto ">
+            <div className="">
               <h4 className="text-white text-center poppins6  text-[17px] sm:text-[16px] lg:text-[15px] xl:text-[19px]  ">
                 Who do you predict will win?
               </h4>
-              <h2 className="text-redish text-center poppins6 text-[19.4px] mt-2">
+              
+            </div>
+            <div>
+            <h2 className="text-redish text-center poppins6 text-[19.4px] ">
                 {previousData?.states?.[step]?.name}
               </h2>
-            </div>
+              </div>
           </div>
 
           <div className="badges my-10">
