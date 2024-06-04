@@ -38,7 +38,7 @@ export const Version = () => {
           </div>
           <div className="flex justify-center pt-3 lg:pt-10">
             <h2 className="text-white text-[12px]  lg:text-[19px] font-poppins">
-              Which option do you want to play
+            Tell us who you think will win
             </h2>
           </div>
           <div className="flex justify-center items-center text-center pt-3 lg:pt-5 mr-7 lg:mr-0">

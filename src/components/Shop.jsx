@@ -273,7 +273,8 @@ export default function Shop() {
         <div>
           <h2 className="md:text-[36px] text-[#000] orbit9 flex justify-between items-center mb-5">
             {" "}
-            Shop{" "}
+            <span>
+            The <span className="text-redish">White House </span>{" "}Shop</span>
             <a
               href="https://thewhitehousegame.myspreadshop.com/"
               className="text-redish md:text-[16px]"
