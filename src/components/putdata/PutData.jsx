@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AppBanner from "../appbanner/AppBanner";
+import bg from '../../images/images1.jpg'
 
 export const PutData = () => {
   const navigate = useNavigate();
@@ -185,9 +186,10 @@ export const PutData = () => {
     <>
     <div className="h-screen">
     <AppBanner
-        bannerTitle={"Data"}
-        redTitle={"Put"}
-        bannerDesc={"Put Data to continue"}
+        bannerTitle={"an account"}
+        redTitle={"create"}
+        bannerDesc={"And help us predict the mood of the nation"}
+        bg={bg}
       />
       <div className="bg-[#1c2452] py-10 m-auto w-[80%] ">
     
@@ -209,7 +211,7 @@ export const PutData = () => {
           </h2>
         </div>
         <div className="flex justify-center pt-3 ">
-          <h2 className="text-white font-bold font-poppins">Your Bilogical Sex</h2>
+          <h2 className="text-white font-bold font-poppins">Your biological sex</h2>
         </div>
         <div className="flex justify-center gap-5 pt-3">
           <div class="flex gap-10">
@@ -287,17 +289,21 @@ export const PutData = () => {
             Your age group now
           </h2>
         </div>
-        <div className="flex justify-center items-center pt-3">
+        <div className="flex justify-center items-center  pt-3">
+          <div 
+            className="bg-transparent poppins4 text-[12px] md:text-[14px] border-white border-[1px] w-[28%] px-2 py-2 rounded-[10px] text-whiteColor"
+          
+          >
           <select
+          className="bg-transparent w-full outline-none"
             name="states"
             id="search"
-            className="bg-transparent poppins4 text-[12px] md:text-[14px] border-transparent w-[200px] lg:w-[220px] px-3 py-2 rounded-[10px] text-whiteColor"
             onChange={(e) =>
               setPayLoad({ ...payload, user_age_id: parseInt(e.target.value) })
             }
           >
             <option className="bg-[#000]" value="">
-                    Select All Age Group
+            Select your age group
                   </option>
             {AgeGroup?.map((item) => (
               <option
@@ -309,10 +315,13 @@ export const PutData = () => {
               </option>
             ))}
           </select>
+          </div>
         </div>
+        <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
+
         <div className="flex justify-center items-center pt-3">
           <h2 className="text-white text-[14px] font-bold md:text-[16px] font-poppins">
-            are you a US voter
+          Are you a US voter?
           </h2>
         </div>
         <div className="flex justify-center gap-5 pt-3">
@@ -380,18 +389,22 @@ export const PutData = () => {
         </div>
         <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
         <div className="max-w-[32rem] mx-auto rounded-lg bg-[#131A41] px-10 py-10">
-          <div className="flex justify-center items-center">
-            <div className="searchBar flex flex-col ">
+          <div className="flex justify-center items-center ">
+            <div className="searchBar flex flex-col w-full">
               <label
                 htmlFor="search"
                 className="text-whiteColor text-start poppins4 text-[14px]"
               >
                 Your State
               </label>
+              <div 
+            className="bg-transparent poppins4 text-[12px] md:text-[14px] border-white border-[1px]  px-2 py-2 rounded-[10px] text-whiteColor mt-3"
+          
+          >
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent outline-none w-full"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -400,7 +413,7 @@ export const PutData = () => {
                 }
               >
                 <option className="bg-[#000]" value="">
-                    Select All States
+                Where you live
                   </option>
                 {allstates?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
@@ -408,21 +421,26 @@ export const PutData = () => {
                   </option>
                 ))}
               </select>
+              </div>
             </div>
           </div>
 
           <div className="flex justify-center items-center mt-10">
-            <div className="searchBar flex flex-col ">
+            <div className="searchBar flex flex-col w-full">
               <label
                 htmlFor="search"
                 className="text-whiteColor text-start poppins4 text-[14px]"
               >
-                Your Ethnicity
+                Your ethnicity
               </label>
+              <div 
+            className="bg-transparent poppins4 text-[12px] md:text-[14px] border-white border-[1px] px-2 py-2 rounded-[10px] text-whiteColor mt-3"
+          
+          >
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent outline-none w-full"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -431,7 +449,7 @@ export const PutData = () => {
                 }
               >
                 <option className="bg-[#000]" value="">
-                    Select All Ethnicity 
+                Select your ethnicity 
                   </option>
                 {ethnicityData?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
@@ -439,21 +457,26 @@ export const PutData = () => {
                   </option>
                 ))}
               </select>
+              </div>
             </div>
           </div>
 
           <div className="flex justify-center items-center mt-10">
-            <div className="searchBar flex flex-col ">
+            <div className="searchBar flex flex-col w-full">
               <label
                 htmlFor="search"
                 className="text-whiteColor text-start poppins4 text-[14px]"
               >
-                Your Country Of Birth
+                Your country of birth
               </label>
+              <div 
+            className="bg-transparent poppins4 text-[12px] md:text-[14px] border-white border-[1px] px-2 py-2 rounded-[10px] text-whiteColor mt-3"
+          
+          >
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent w-full outline-none"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -461,30 +484,35 @@ export const PutData = () => {
                   })
                 }
               >
-                <option className="bg-[#000]" value="">
-                    Select All Country of Birth
-                  </option>
+                {/* <option className="bg-[#000]" value="">
+                   USA
+                  </option> */}
                 {CountryBirth?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
                   </option>
                 ))}
               </select>
+              </div>
             </div>
           </div>
 
           <div className="flex justify-center items-center mt-10">
-            <div className="searchBar flex flex-col ">
+            <div className="searchBar flex flex-col w-full">
               <label
                 htmlFor="search"
                 className="text-whiteColor text-start poppins4 text-[14px]"
               >
                 What language do you speak at home?
               </label>
+              <div 
+            className="bg-transparent poppins4 text-[12px] md:text-[14px] border-white border-[1px] px-2 py-2 rounded-[10px] text-whiteColor mt-3"
+          
+          >
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent w-full outline-none"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -492,30 +520,35 @@ export const PutData = () => {
                   })
                 }
               >
-                <option className="bg-[#000]" value="">
+                {/* <option className="bg-[#000]" value="">
                     Select All Languages
-                  </option>
+                  </option> */}
                 {byLanguage?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
                     {item?.name}
                   </option>
                 ))}
               </select>
+              </div>
             </div>
           </div>
 
           <div className="flex justify-center items-center mt-10">
-            <div className="searchBar flex flex-col ">
+            <div className="searchBar flex flex-col w-full">
               <label
                 htmlFor="search"
                 className="text-whiteColor text-start poppins4 text-[14px]"
               >
-                Your Employment Status
+                Your employment status
               </label>
+              <div 
+            className="bg-transparent poppins4 text-[12px] md:text-[14px] border-white border-[1px] px-2 py-2 rounded-[10px] text-whiteColor mt-3"
+          
+          >
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent w-full outline-none"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -524,7 +557,7 @@ export const PutData = () => {
                 }
               >
                 <option className="bg-[#000]" value="">
-                    Select All Employment Status
+                Select best description
                   </option>
                 {Employment?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
@@ -532,21 +565,26 @@ export const PutData = () => {
                   </option>
                 ))}
               </select>
+              </div>
             </div>
           </div>
 
           <div className="flex justify-center items-center mt-10">
-            <div className="searchBar flex flex-col ">
+            <div className="searchBar flex flex-col w-full">
               <label
                 htmlFor="search"
                 className="text-whiteColor text-start poppins4 text-[14px]"
               >
-                Your Highest Education
+                Your highest education
               </label>
+              <div 
+            className="bg-transparent poppins4 text-[12px] md:text-[14px] border-white border-[1px] px-2 py-2 rounded-[10px] text-whiteColor mt-3"
+          
+          >
               <select
                 name="states"
                 id="search"
-                className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[225px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor mt-3"
+                className="bg-transparent w-full outline-none"
                 onChange={(e) =>
                   setPayLoad({
                     ...payload,
@@ -555,7 +593,7 @@ export const PutData = () => {
                 }
               >
                 <option className="bg-[#000]" value="">
-                    Select Highest Education
+                Select best description
                   </option>
                 {highereducation?.map((item) => (
                   <option className="bg-[#000]" key={item.id} value={item.id}>
@@ -563,6 +601,7 @@ export const PutData = () => {
                   </option>
                 ))}
               </select>
+              </div>
             </div>
           </div>
         </div>
@@ -720,7 +759,7 @@ export const PutData = () => {
 
         <div className="flex justify-center items-center mt-10">
           <h2 className="font-poppins text-white text-[14px] md:text-[18px] font-bold">
-            who did you vote for in 2020
+            Who did you vote for in 2020
           </h2>
         </div>
 
@@ -1135,6 +1174,14 @@ export const PutData = () => {
             Save
           </button>
         </div>
+<div className="mt-7">
+        <h2 className="text-center font-poppins text-white text-[14px] md:text-[18px] ">
+        Would you like to see what others think?
+          </h2>
+          <h2 className="mt-5 text-center font-poppins text-white text-[14px] md:text-[18px] font-bold">
+          View our Stats
+          </h2>
+          </div>
       </div>
       </div>
       </div>

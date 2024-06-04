@@ -186,7 +186,7 @@ function Map() {
               x="120"
               y="500"
               textAnchor="middle"
-              fill="white"
+              fill="black"
               fontSize="19"
               fontWeight={700}
             >
@@ -205,7 +205,7 @@ function Map() {
               x="300"
               y="560"
               textAnchor="middle"
-              fill="white"
+              fill="black"
               fontSize="19"
               fontWeight={700}
             >
@@ -295,7 +295,7 @@ function Map() {
               x="315"
               y="280"
               textAnchor="middle"
-              fill="white"
+              fill="black"
               z={999}
               fontSize="19"
               fontWeight={700}
@@ -366,7 +366,7 @@ function Map() {
               fill={backgroundColor("Florida")}
             />
             <text
-              x="750"
+              x="760"
               y="500"
               textAnchor="middle"
               fill="black"

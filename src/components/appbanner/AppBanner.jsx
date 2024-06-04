@@ -200,7 +200,7 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
             {" "}
             <span className="text-redish">{redTitle}</span> {bannerTitle}
           </h1>
-          <p className="text-whiteColor space  poppins4 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px] xl:text-[17px]">
+          <p className="text-whiteColor space  poppins4 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px] xl:text-[30px]">
             {bannerDesc}
           </p>
         </div>
