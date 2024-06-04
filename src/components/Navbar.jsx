@@ -122,7 +122,7 @@ function Navbar() {
                 Home
               </li>
             </Link>
-            <Link to={"/about"}>
+            {/* <Link to={"/about"}>
               {" "}
               <li
                 className={`nav-link poppins4 hover:text-redish ${
@@ -131,17 +131,7 @@ function Navbar() {
               >
                 About Us
               </li>
-            </Link>
-            <Link to={"/candidate"}>
-              {" "}
-              <li
-                className={`nav-link poppins4 hover:text-redish ${
-                  location.pathname === "/candidate" ? "active" : ""
-                }  cursor-pointer hover:font-[500] text-whiteColor`}
-              >
-                Candidates
-              </li>
-            </Link>{" "}
+            </Link> */}
             <Link
             target="_blank"
               to={
@@ -157,6 +147,16 @@ function Navbar() {
                 Shop
               </li>
             </Link>{" "}
+            <Link to={"/candidate"}>
+              {" "}
+              <li
+                className={`nav-link poppins4 hover:text-redish ${
+                  location.pathname === "/candidate" ? "active" : ""
+                }  cursor-pointer hover:font-[500] text-whiteColor`}
+              >
+                Candidates
+              </li>
+            </Link>{" "}
             <li
               // onClick={() => handleLinks(3)}
               onClick={handlePredictClick}
@@ -164,7 +164,7 @@ function Navbar() {
                 location.pathname === "/predict" ? "active" : ""
               }  cursor-pointer hover:font-[500] text-whiteColor`}
             >
-              Predict
+              Tell us who you think will win ?
             </li>
             {/* </Link> */}
             <div className="fixed flex items-center justify-center w-full h-full left-0 top-[10.5rem]  z-50 ">
@@ -195,27 +195,33 @@ function Navbar() {
                 Log In
               </button>
             ) : (
-              <div className={` ${
-                isLoggedIn
-                  ? "languages flex items-center gap-2 bg-[#131841] w-60 h-10 rounded-[5px] p-1"
-                  : ""
-              }`}>
-                <button className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
-                  location.pathname === "/myvote"
-                    ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
+              <div
+                className={` ${
+                  isLoggedIn
+                    ? "languages flex items-center gap-2 bg-[#131841] w-60 h-10 rounded-[5px] p-1"
                     : ""
-                }`} onClick={()=>navigate("/myvote")}>My Vote</button>
+                }`}
+              >
+                <button
+                  className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
+                    location.pathname === "/myvote"
+                      ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
+                      : ""
+                  }`}
+                  onClick={() => navigate("/myvote")}
+                >
+                  My Vote
+                </button>
                 <button
                   onClick={logOut}
                   className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
-                    location.pathname !== "/myvote" 
+                    location.pathname !== "/myvote"
                       ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
                       : ""
                   }`}
                 >
                   Log Out
                 </button>
-                
               </div>
             )}
 
@@ -270,30 +276,14 @@ function Navbar() {
               </li>
             </Link>
 
-            <Link to={"/about"}>
+            {/* <Link to={"/about"}>
               <li
                 onClick={() => handleLinks(1)}
                 className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
               >
                 About Us
               </li>
-            </Link>
-
-            <li
-              // onClick={() => handleLinks(2)}
-              onClick={handlePredictClick}
-              className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
-            >
-              Predict
-            </li>
-            {showModal && (
-              <div className="relative flex items-center justify-center w-full h-full left-0 -top-52  z-50 ">
-                <div className=" z-50 modal-container ">
-                  <Version />
-                </div>
-              </div>
-            )}
-
+            </Link> */}
             <Link
               to={
                 "http://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
@@ -306,7 +296,6 @@ function Navbar() {
                 Shop
               </li>
             </Link>
-
             <Link to={"/candidate"}>
               <li
                 onClick={() => handleLinks(3)}
@@ -315,6 +304,23 @@ function Navbar() {
                 Candidates
               </li>
             </Link>
+
+            <li
+              // onClick={() => handleLinks(2)}
+              onClick={handlePredictClick}
+              className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor"
+            >
+              Tell us who you think will win ?
+            </li>
+            {showModal && (
+              <div className="relative flex items-center justify-center w-full h-full left-0 -top-52  z-50 ">
+                <div className=" z-50 modal-container ">
+                  <Version />
+                </div>
+              </div>
+            )}
+
+           
           </div>
           <div className="download-button flex items-center justify-between gap-2">
             {/* <svg
