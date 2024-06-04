@@ -472,6 +472,9 @@ function ElectoralCollege() {
 
 
 
+
+
+
         {/* <button
   className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 py-2 text-white uppercase rounded-[6px] ${
     selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
