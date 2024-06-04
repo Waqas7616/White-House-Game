@@ -270,11 +270,16 @@ const Candidate = () => {
         <AppBanner
           bannerTitle={"Data"}
           redTitle={"Candidate"}
-          bannerDesc ={"Candidates and potential Candidates for President and Vice President"}
+          bannerDesc={
+            "Candidates and potential Candidates for President and Vice President"
+          }
         />
         <div className="mt-5 m-auto w-[85%] border-none">
-        <div className="flex justify-center my-8 ">
-            <h2 className="text-[#fff] text-[9px] md:text-[18px] orbit7 w-9/12 m-auto  text-center">A lot can happen before the country votes on Tuesday November 5, 2024 </h2>
+          <div className="flex justify-center my-8 ">
+            <h2 className="text-[#fff] text-[9px] md:text-[18px] orbit7 w-9/12 m-auto  text-center">
+              A lot can happen before the country votes on Tuesday November 5,
+              2024{" "}
+            </h2>
           </div>
           <Slider {...settings}>
             {data.map((item, index) => (
@@ -297,7 +302,11 @@ const Candidate = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className={`absolute ${showCard===index?'z-0':'z-50'} -bottom-3 left-[50%] translate-x-[-50%] w-full bg-white flex flex-row items-center gap-5 justify-center h-[80px] mt-2 mb-3`}>
+                  <div
+                    className={`absolute ${
+                      showCard === index ? "z-0" : "z-50"
+                    } -bottom-3 left-[50%] translate-x-[-50%] w-full bg-white flex flex-row items-center gap-5 justify-center h-[80px] mt-2 mb-3`}
+                  >
                     <div className="rounded-full h-[38px] w-[38px] shadow-xl shadow-[#0000004d]">
                       <img
                         className="w-9 text-center"
@@ -353,10 +362,10 @@ const Candidate = () => {
                             {item?.candidate_name}
                           </h3>
                           <p className="mb-3 text-[18px] poppins4 text-black">
-                            {item?.dob}
+                          Born: {item?.dob}
                           </p>
                           <p className="mb-3 text-[18px] poppins4 text-black">
-                            {item?.birth_place}
+                             {item?.birth_place}
                           </p>
                           <p className="mb-3 text-[18px] poppins4 text-black">
                             {item?.occupation.split}
@@ -365,8 +374,10 @@ const Candidate = () => {
                             {item?.party?.party_name}
                           </p>
                           <p className="mb-3 text-[18px] poppins4 text-black">
-                            {item?.position.split(",").map((item)=>(
-                              <p className="mb-3 text-[18px] poppins4 text-black">{item}</p>
+                            {item?.position.split(",").map((item) => (
+                              <p className="mb-3 text-[18px] poppins4 text-black">
+                                {item}
+                              </p>
                             ))}
                           </p>
                         </div>
