@@ -197,7 +197,7 @@ function PartyPrediction() {
             Select who you think will be the Democratic Party&apos;s
             Presidential candidate on
           </p>
-          <p className="poppins4 text-white/80 xl:text-[22px] text-center justify-center flex items-center gap-2 m-auto mt-5">
+          <p className="poppins4 text-white/80 xl:text-[22px] text-center justify-center flex items-center gap-2 m-auto mt-5 mb-8">
             <img src={calender} alt="" />
             Tuesday, November
             <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
@@ -244,7 +244,7 @@ function PartyPrediction() {
               />
             )}
           </div>
-          <div className="flex justify-center relative  mt-2">
+          <div className="flex justify-center relative  mt-7">
             {/* Button */}
             <button
               onClick={() => handleButtonClick(1)}

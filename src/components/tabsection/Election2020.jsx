@@ -136,9 +136,9 @@ export default function Election2020() {
                   style={{
                     background: `${
                       item.party_name === "Republican"
-                        ? "#546BED"
-                        : item.party_name === "Democratic"
                         ? "#ED1C24"
+                        : item.party_name === "Democratic"
+                        ? "#546BED"
                         : "white"
                     }`,
                   }}
@@ -149,9 +149,9 @@ export default function Election2020() {
                       className="w-[20px] sm:w-auto"
                       src={
                         item.party_name === "Republican"
-                          ? republic
+                          ?  democrat
                           : item.party_name === "Democratic"
-                          ? democrat
+                          ? republic
                           : independ
                       }
                       alt=""
@@ -176,9 +176,9 @@ export default function Election2020() {
                           width: `${item.percentage_2020}%`,
                           background: `${
                             item.party_name === "Republican"
-                              ? "#546BED"
-                              : item.party_name === "Democratic"
                               ? "#ED1C24"
+                              : item.party_name === "Democratic"
+                              ? "#546BED"
                               : "white"
                           }`,
                         }}
@@ -199,9 +199,9 @@ export default function Election2020() {
                           width: `${item.percentage_2024}%`,
                           background: `${
                             item.party_name === "Republican"
-                              ? "#546BED"
-                              : item.party_name === "Democratic"
                               ? "#ED1C24"
+                              : item.party_name === "Democratic"
+                              ? "#546BED"
                               : "white"
                           }`,
                         }}
