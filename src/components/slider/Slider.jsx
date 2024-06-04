@@ -315,12 +315,12 @@ function CustomSlider() {
                       onClick={() => handleCandidateClick(index)}
                     />
                   </div>
-                  <h5 className="poppins5 text-[12px] text-center sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[17px] xl:text-center text-blackColor">
+                  <h5 className="poppins5 text-[12px] text-left -ml-10 mt-3 sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[17px] xl:text-center text-blackColor">
                     {/* {item.candidate_name.split(" ")[1]} */}
-                    {item.candidate_name === "Robert F Kennedy"
+                    {/* {item.candidate_name === "Robert F Kennedy"
                       ? `${item.candidate_name.split(" ")[0]} ${item.candidate_name.split(" ")[1]}`
-                      : item.candidate_name}
-                    {/* {item.candidate_name.split(" ")[0]} */}
+                      : item.candidate_name} */}
+                    {item.candidate_name}
                   </h5>
                 </div>
               ))}
@@ -341,9 +341,10 @@ function CustomSlider() {
                     />
                   </div>
                   <h5 className="poppins5 text-[17px] text-center text-blackColor">
-                    {item.candidate_name === "Robert F Kennedy"
+                    {/* {item.candidate_name === "Robert F Kennedy"
                       ? item.candidate_name.split(" ")[2]
-                      : item.candidate_name.split(" ")[0]}
+                      : item.candidate_name.split(" ")[0]} */}
+                      {item.candidate_name}
                   </h5>
                 </div>
               ))}

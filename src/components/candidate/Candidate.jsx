@@ -345,7 +345,7 @@ const Candidate = () => {
                               ? Democraticlogo
                               : item?.party?.party_name.includes("Republican")
                               ? Republicanlogo
-                              : item?.party?.party_name.includes("Independent")
+                              : item?.party?.party_name.includes("Independent('Kennedy')")
                               ? Independentlogo
                               : ""
                           }

@@ -131,7 +131,7 @@ export default function VoteGraph() {
             className="bg-transparent w-full outline-none"
           >
             {allstates?.map((item) => (
-              <option className="bg-[#000]" key={item.id} value={item?.name}>
+              <option className="bg-[#1c2452]" key={item.id} value={item?.name}>
                 {item?.name}
               </option>
             ))}
@@ -181,7 +181,7 @@ export default function VoteGraph() {
                       />
                     </div>
                     <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                      {item.candidate_name.split(" ")[0]}
+                      {item.candidate_name.split(" ")[1]}
                     </p>
                     <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
                       <img
@@ -302,7 +302,7 @@ export default function VoteGraph() {
                     />
                   </div>
                   <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                    {item.candidate_name.split(" ")[0]}
+                    {item.candidate_name.split(" ")[1]}
                   </p>
                   <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
                     <img
