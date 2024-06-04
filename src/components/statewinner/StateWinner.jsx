@@ -358,7 +358,7 @@ const StateWinner = () => {
                 {stateData.state.split("(")[0].trim()}
               </span>
             </td>
-            <td className="px-6 py-3 lg:py-10 flex justify-center items-center">
+            <td className="px-6 py-3 lg:py-10 flex justify-center items-center" >
               <span className="mr-2 lg:mr-4">
                 {getLeadingParty(stateData.parties) === "Democratic" && (
                   <img

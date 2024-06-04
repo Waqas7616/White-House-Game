@@ -165,7 +165,7 @@ export default function ByLanguage() {
               className="bg-transparent w-full outline-none"
             >
               {byLanguage?.map((item) => (
-                <option className="bg-[#000]" key={item.id} value={item?.name}>
+                <option className="bg-[#1c2452]" key={item.id} value={item?.name}>
                   {item?.name}
                 </option>
               ))}

@@ -140,7 +140,7 @@ export default function EmploymentStatus() {
 
             {Employment?.map((item) => (
               <option
-                className="bg-[#000]"
+                className="bg-[#1c2452]"
                 key={item.id}
                 value={item?.employement_status}
               >

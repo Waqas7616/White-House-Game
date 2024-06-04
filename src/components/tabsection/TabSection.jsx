@@ -272,14 +272,14 @@ function TabSection() {
                     }}
                     name="states"
                     id="search"
-                    className="bg-transparent w-full outline-none"
+                    className="bg-transparent w-full outline-none "
                   >
                     {/* <option className="bg-[#000]" value="">
                     Select All States
                   </option> */}
                     {allstates?.map((item) => (
                       <option
-                        className="bg-[#000]"
+                        className="bg-[#1c2452]"
                         key={item.id}
                         value={item?.name}
                       >

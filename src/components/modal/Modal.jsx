@@ -6,9 +6,9 @@ export const Modal = ({ candidate, onClose }) => {
 
   const getBackgroundColor = (partyName) => {
     if (partyName === "Democratic") {
-      return "bg-red-500 border-red-500 text-[white]";
+      return " bg-blue-500  border-[blue] text-[white]";
     } else if (partyName === "Republican") {
-      return "bg-blue-500 border-[blue] text-[white]";
+      return "bg-red-500 border-red-500 text-[white]";
     } else {
       return "bg-[white] text-[black]";
     }
