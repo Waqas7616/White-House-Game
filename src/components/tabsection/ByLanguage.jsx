@@ -181,7 +181,9 @@ export default function ByLanguage() {
           </div> */}
       </div>
       <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
-        {language?.data?.party_percentages.slice(0, 3).map((item, index) => (
+        {language?.data?.party_percentages.length===0?
+        <p className="poppins5 text-center text-white">No data is available yet for this language</p>:
+        language?.data?.party_percentages.slice(0, 3).map((item, index) => (
           <div
             key={index}
             className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
@@ -196,9 +198,9 @@ export default function ByLanguage() {
               style={{
                 background: `${
                   item.party_name === "Republican"
-                    ? "#546BED "
-                    : item.party_name === "Democratic"
                     ? "#ED1C24"
+                    : item.party_name === "Democratic"
+                    ? "#546BED "
                     : "white"
                 }`,
               }}
@@ -209,9 +211,9 @@ export default function ByLanguage() {
                   className="w-[20px] sm:w-auto"
                   src={
                     item.party_name === "Republican"
-                      ?  republic
-                      : item.party_name === "Democratic"
                       ?  democrat
+                      : item.party_name === "Democratic"
+                      ?  republic
                       : independ
                   }
                   alt=""

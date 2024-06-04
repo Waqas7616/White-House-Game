@@ -174,7 +174,8 @@ export default function ElectoralCollege() {
       <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
         {!expandedVotes ? (
           <>
-            {president && president?.slice(0, 3).map((item, index) => (
+            {president &&president?.length===0?
+            <p className="text-center text-white poppins5">No one voted from this state yet</p>: president?.slice(0, 3).map((item, index) => (
               <div
                 key={index}
                 className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${

@@ -45,6 +45,7 @@ function PredictSlider({ data, data1, printData, party_name, afterChange, selecC
       (party_name === "Independent('Kennedy')" && setParty(party));
     setImageSelect(true);
   };
+  const [arrow,setArrow]=useState(true);
 
   const CustomNextArrow = (props) => (
     <div
@@ -203,7 +204,7 @@ function PredictSlider({ data, data1, printData, party_name, afterChange, selecC
   );
 
   const settings = {
-    arrows: true,
+    arrows: arrow,
     infinite: true,
 
     draggable: selecClass ? true : false,
@@ -229,7 +230,7 @@ function PredictSlider({ data, data1, printData, party_name, afterChange, selecC
                 }`}
             >
               <img
-                onClick={printData}
+                onClick={()=>setArrow(false)}
                 className="w-full h-full object-cover"
                 src={`${imageUrl}${item?.candidate_image}`}
                 alt=""

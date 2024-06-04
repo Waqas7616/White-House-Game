@@ -136,9 +136,9 @@ export default function Election2020() {
                   style={{
                     background: `${
                       item.party_name === "Republican"
-                        ? "#546BED"
-                        : item.party_name === "Democratic"
                         ? "#ED1C24"
+                        : item.party_name === "Democratic"
+                        ? "#546BED"
                         : "white"
                     }`,
                   }}
@@ -149,16 +149,16 @@ export default function Election2020() {
                       className="w-[20px] sm:w-auto"
                       src={
                         item.party_name === "Republican"
-                          ? republic
+                          ?  democrat
                           : item.party_name === "Democratic"
-                          ? democrat
+                          ? republic
                           : independ
                       }
                       alt=""
                     />
                   </div>
                   <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
-                    {item.difference}%
+                    {item.difference&&item.difference.toFixed(1) }%
                   </p>
                   <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
                     <img
@@ -176,9 +176,9 @@ export default function Election2020() {
                           width: `${item.percentage_2020}%`,
                           background: `${
                             item.party_name === "Republican"
-                              ? "#546BED"
-                              : item.party_name === "Democratic"
                               ? "#ED1C24"
+                              : item.party_name === "Democratic"
+                              ? "#546BED"
                               : "white"
                           }`,
                         }}
@@ -189,7 +189,7 @@ export default function Election2020() {
                         </div>
                         <p className="flex-1 text-center">
                           {" "}
-                          {item.percentage_2020}%{" "}
+                          {item.percentage_2020 && item?.percentage_2020}%{" "}
                         </p>
                       </div>
                     </div>
@@ -199,9 +199,9 @@ export default function Election2020() {
                           width: `${item.percentage_2024}%`,
                           background: `${
                             item.party_name === "Republican"
-                              ? "#546BED"
-                              : item.party_name === "Democratic"
                               ? "#ED1C24"
+                              : item.party_name === "Democratic"
+                              ? "#546BED"
                               : "white"
                           }`,
                         }}
@@ -211,7 +211,7 @@ export default function Election2020() {
                           {2024}
                         </div>
                         <p className="flex-1 text-center">
-                          {item.percentage_2024}%
+                          {item.percentage_2024&&item.percentage_2024.toFixed(1)}%
                         </p>
                       </div>
                     </div>

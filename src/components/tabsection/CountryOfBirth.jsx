@@ -156,7 +156,9 @@ export default function CountryOfBirth() {
           </div> */}
       </div>
       <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
-        {countryOfBirth?.data?.candidate_percentages
+        {countryOfBirth?.data?.candidate_percentages.length===0?
+        <p className="poppins5 text-center text-white">No one from this country has made predictions yet</p>:
+        countryOfBirth?.data?.candidate_percentages
           .slice(0, 3)
           .map((item, index) => (
             <div

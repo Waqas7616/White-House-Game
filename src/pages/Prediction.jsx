@@ -79,6 +79,7 @@ console.log('check this',voting)
         titleImage={dem}
         party={"Democratic"}
         submitData={submitData}
+        
       // afterchange={(index)=>{console.log(candidateData.filter((item)=>item?.party.party_name==="Democratic")[index])}}
       // afterchange={(index) => { console.log(index) }}
       />
