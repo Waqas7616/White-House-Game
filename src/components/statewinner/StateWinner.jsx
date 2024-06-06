@@ -170,6 +170,8 @@ const TABLE_HEAD = ["2020", "State", "2024"];
 const StateWinner = () => {
   const [statesData, setStatesData] = useState([]);
   const [originalData, setOriginalData] = useState({});
+  const [step, setStep] = useState("");
+
   const ImageUrl = "https://thewhitehousegame.com/public/";
 
   useEffect(() => {
@@ -180,8 +182,8 @@ const StateWinner = () => {
         },
       })
       .then((res) => {
-        console.log("state result data:", res.data.data);
-        setOriginalData(res.data.data);
+        console.log("state result data:", res.data.data_of_2020.original.data);
+        setOriginalData(res.data.data_of_2020.original.data);
         const parsedData = [];
 
         for (const state in res.data.data) {
@@ -196,12 +198,10 @@ const StateWinner = () => {
             state: state,
             parties: stateParties,
             electricalCollege: parties.electrical_collage, // electrical collage ko include karna
-            state_image_url: parties.state_image_url, // state image url ko include karna
+            map_url: parties.map_url, // state image url ko include karna
           });
         }
 
-        // electrical collage ke hisaab se descending order mein sort karna
-        // parsedData.sort((a, b) => b.electricalCollege - a.electricalCollege);
         parsedData.sort((a, b) => a.state.localeCompare(b.state));
 
         setStatesData(parsedData);
@@ -220,20 +220,20 @@ const StateWinner = () => {
       .party_name.split("(")[0]
       .trim();
   };
-  // const getLeadingParty = (parties) => {
-  //   const leadingParty = parties.find(party => party.party_name.startsWith('Independent'));
-  //   if (leadingParty) {
-  //     return leadingParty.party_name.split('(')[0].trim();
-  //   }
-  //   return null;
-  // };
 
   return (
     <>
-      {/* <div className=" m-auto w-10/12">
+      
+
+      {/* <div className="m-auto w-10/12">
         <div className="text-center">
-          <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
-            State Winner
+          <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto mt-3 text-center">
+            State Winners
+          </h2>
+        </div>
+        <div className="flex justify-center mb-9 ">
+          <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">
+            What our players are predicting{" "}
           </h2>
         </div>
         <div
@@ -242,18 +242,24 @@ const StateWinner = () => {
         >
           <table className="text-sm text-center w-full">
             <thead
-              className="text-[40px] text-white uppercase bg-[#272f5b]  sticky top-0"
+              className="text-[40px] text-white uppercase bg-[#272f5b] sticky top-0"
               style={{ zIndex: 1 }}
             >
-              <tr className="bg-[#272f5b]  border-b-2 dark:bg-gray-800 dark:border-gray-700 flex justify-around items-center w-[95%]">
+              <tr className="bg-[#272f5b] border-b-2 dark:bg-gray-800 dark:border-gray-700">
                 <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
-                  2020
+                  <div className="flex justify-center items-center">
+                    <span>2020 winner</span>
+                  </div>
                 </th>
                 <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
-                  State
+                  <div className="flex justify-center items-center">
+                    <span>State</span>
+                  </div>
                 </th>
                 <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
-                  2024
+                  <div className="flex justify-center items-center">
+                    <span>2024 prediction</span>
+                  </div>
                 </th>
               </tr>
             </thead>
@@ -261,140 +267,256 @@ const StateWinner = () => {
               {statesData.map((stateData, index) => (
                 <tr
                   key={index}
-                  className="even:bg-blue-gray-50/50 bg-[#272f5b] border-b border-[rgba(255,255,255,.2)] dark:bg-gray-800 dark:border-gray-700 flex justify-around items-center w-[95%]"
+                  className="even:bg-blue-gray-50/50 bg-[#272f5b] border-b border-[rgba(255,255,255,.2)] dark:bg-gray-800 dark:border-gray-700"
                 >
-                  <td className="p-4 flex items-center justify-evenly py-1 lg:py-10">
-                    <span className="text-white text-center font-poppins font-medium text-[9px] lg:text-[22px]">
-                      {getLeadingParty(stateData.parties)}
-                    </span>
-                  </td>
-                  <td className="p-4 flex justify-center items-center text-center">
-                    <span className="font-medium font-poppins text-[9px] lg:text-[22px] text-white text-center">
-                      {stateData.state.split("(")[0].trim()}
-                    </span>
-                  </td>
-
-                  <td className="p-4 flex justify-center items-center text-center">
-                    {getLeadingParty(stateData.parties) === "Democratic" && (
+                  <td className="px-6 py-3 lg:py-10  flex justify-center items-center gap-5">
+                    {originalData[stateData.state] && originalData[stateData.state].winning_party === "Democratic" && (
                       <img
                         className="object-cover w-4 h-4 lg:w-10 lg:h-10"
                         src={Democraticlogo}
                         alt="Democratic"
                       />
                     )}
-                    {getLeadingParty(stateData.parties) === "Republican" && (
+                    {originalData[stateData.state] && originalData[stateData.state].winning_party === "Republican" && (
                       <img
                         className="w-5 h-5 lg:w-10 lg:h-10"
                         src={Republicanlogo}
                         alt="Republican"
                       />
                     )}
-                    {getLeadingParty(stateData.parties) === "Independent" && (
+                    {originalData[stateData.state] && originalData[stateData.state].winning_party === "Independent" && (
                       <img
                         className="w-5 h-5 lg:w-10 lg:h-10"
                         src={Independentlogo}
                         alt="Independent('Kennedy')"
                       />
                     )}
+                    <span className="text-white font-poppins font-medium text-[9px] lg:text-[14px]">
+                    {originalData[stateData.state] && originalData[stateData.state].winning_party}
+                    </span>
+                  </td>
+
+                  <td className="px-6 py-3 lg:py-10 ml-6">
+                    <span className="font-medium font-poppins text-[9px] lg:text-[22px] text-white">
+                      {stateData.state.split("(")[0].trim()}
+                    </span>
+                  </td>
+                  <td className="px-6 py-3 lg:py-10 flex justify-center items-center">
+                    <span className="mr-2 lg:mr-4">
+                      {getLeadingParty(stateData.parties) === "Democratic" && (
+                        <div className="flex items-center gap-3">
+                          <img
+                            className="object-cover w-4 h-4 lg:w-10 lg:h-10"
+                            src={Democraticlogo}
+                            alt="Democratic"
+                          />
+                          <span className="text-white font-poppins font-medium text-[9px] lg:text-[14px]">
+                            {getLeadingParty(stateData.parties)}
+                          </span>
+                        </div>
+                      )}
+                      {getLeadingParty(stateData.parties) === "Republican" && (
+                        <div className="flex items-center gap-3">
+                          <img
+                            className="w-5 h-5 lg:w-10 lg:h-10"
+                            src={Republicanlogo}
+                            alt="Republican"
+                          />
+                          <span className="text-white font-poppins font-medium text-[9px] lg:text-[14px]">
+                            {getLeadingParty(stateData.parties)}
+                          </span>
+                        </div>
+                      )}
+                      {getLeadingParty(stateData.parties) === "Independent" && (
+                        <div className="flex items-center gap-3">
+                          <img
+                            className="w-5 h-5 lg:w-10 lg:h-10"
+                            src={Independentlogo}
+                            alt="Independent('Kennedy')"
+                          />
+                          <span className="text-white font-poppins font-medium text-[9px] lg:text-[14px]">
+                            {getLeadingParty(stateData.parties)}
+                          </span>
+                        </div>
+                      )}
+                    </span>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      </div> */}
+      </div>  */}
 
-      
-  <div className="m-auto w-10/12">
-  <div className="text-center">
-    <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto mt-3 text-center">
-      State Winners
-    </h2>
-  </div>
-  <div className="flex justify-center mb-9 ">
-            <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">What our players are predicting </h2>
-          </div>
-  <div
-    className="overflow-y-scroll h-[20rem] lg:h-[45rem] rounded-xl bg-[#272f5b] mt-5"
-    style={{ scrollbarWidth: "thin", scrollbarColor: "#FFFFFF #272f5b" }}
-  >
-    <table className="text-sm text-center w-full">
-      <thead
-        className="text-[40px] text-white uppercase bg-[#272f5b] sticky top-0"
-        style={{ zIndex: 1 }}
-      >
-        <tr className="bg-[#272f5b] border-b-2 dark:bg-gray-800 dark:border-gray-700">
-          
-          <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
-            <div className="flex justify-center items-center">
-              <span>2020</span>
-            </div>
-          </th>
-          <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
-            <div className="flex justify-center items-center">
-              <span>State</span>
-            </div>
-          </th>
-          <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
-            <div className="flex justify-center items-center">
-              <span>2024</span>
-            </div>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {statesData.map((stateData, index) => (
-          <tr
-            key={index}
-            className="even:bg-blue-gray-50/50 bg-[#272f5b] border-b border-[rgba(255,255,255,.2)] dark:bg-gray-800 dark:border-gray-700"
-          >
-            <td className="px-6 py-3 lg:py-10 ml-6">
-              <span className="text-white font-poppins font-medium text-[9px] lg:text-[22px]">
-                {getLeadingParty(stateData.parties)}
-              </span>
-            </td>
-            <td className="px-6 py-3 lg:py-10 ml-6">
-              <span className="font-medium font-poppins text-[9px] lg:text-[22px] text-white">
-                {stateData.state.split("(")[0].trim()}
-              </span>
-            </td>
-            <td className="px-6 py-3 lg:py-10 flex justify-center items-center">
-              <span className="mr-2 lg:mr-4">
-                {getLeadingParty(stateData.parties) === "Democratic" && (
+      <div className="m-auto w-10/12">
+        <div className="text-center">
+          <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto mt-3 text-center">
+            State Winners
+          </h2>
+        </div>
+        <div className="flex justify-center mb-9 ">
+          <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">
+            What our players are predicting{" "}
+          </h2>
+        </div>
+        <div
+          className="overflow-y-scroll h-[20rem] lg:h-[45rem] rounded-xl bg-[#272f5b] mt-5"
+          style={{ scrollbarWidth: "thin", scrollbarColor: "#FFFFFF #272f5b" }}
+        >
+          <table className="text-sm text-center w-full">
+            <thead
+              className="text-[40px] text-white  bg-[#272f5b] sticky top-0 "
+              style={{ zIndex: 1 }}
+            >
+              <tr className="bg-[#272f5b] border-b-2 dark:bg-gray-800 dark:border-gray-700">
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                  <div className="flex justify-center items-center">
+                    <span>2020 Winner</span>
+                  </div>
+                </th>
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                  <div className="flex justify-center items-center">
+                    <span>STATE</span>
+                  </div>
+                </th>
+                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                  <div className="flex justify-center items-center">
+                    <span>2024 Prediction</span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="w-full">
+              {statesData.map((stateData, index) => (
+                <tr
+                  key={index}
+                  className="even:bg-blue-gray-50/50 bg-[#272f5b] border-b border-[rgba(255,255,255,.2)] dark:bg-gray-800 dark:border-gray-700 "
+                >
+                  {/* <td className="px-6 py-3 lg:py-10 ml-6">
+            {getLeadingParty(stateData.parties) === "Democratic" && "Republican" && "Independent"  || (<div className="flex items-center gap-3">
                   <img
                     className="object-cover w-4 h-4 lg:w-10 lg:h-10"
                     src={Democraticlogo}
                     alt="Democratic"
                   />
-                )}
-                {getLeadingParty(stateData.parties) === "Republican" && (
                   <img
                     className="w-5 h-5 lg:w-10 lg:h-10"
                     src={Republicanlogo}
                     alt="Republican"
                   />
-                )}
-                {getLeadingParty(stateData.parties) === "Independent" && (
                   <img
                     className="w-5 h-5 lg:w-10 lg:h-10"
                     src={Independentlogo}
                     alt="Independent('Kennedy')"
                   />
-                )}
+                  <span className="text-white font-poppins font-medium text-[9px] lg:text-[14px]">
+                {getLeadingParty(stateData.parties)}
               </span>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
+              </div>
+                )}
+            </td> */}
+                  <td className="px-6 py-3 lg:py-10  flex justify-center items-center gap-5 ">
+                    {originalData[stateData.state] && originalData[stateData.state].winning_party === "Democratic" && (
+                      <span className="bg-white rounded-full p-2">
+                      <img
+                        className="object-cover w-4 h-4 lg:w-7 lg:h-7"
+                        src={Democraticlogo}
+                        alt="Democratic"
+                      />
+                    </span>
+                    )}
+                    {originalData[stateData.state] && originalData[stateData.state].winning_party === "Republican" && (
+                      <span className="bg-white rounded-full p-2">
+                      <img
+                        className="w-4 h-4 lg:w-7 lg:h-7"
+                        src={Republicanlogo}
+                        alt="Republican"
+                      />
+                    </span>
+                    )}
+                    {originalData[stateData.state] && originalData[stateData.state].winning_party === "Independent" && (
+                       <span className="bg-white rounded-full p-1">
+                       <img
+                         className="w-4 h-4 lg:w-8 lg:h-8"
+                         src={Independentlogo}
+                         alt="Independent('Kennedy')"
+                       />
+                     </span>
+                    )}
+                    <span className="text-white font-poppins font-medium text-[9px] lg:text-[19px]">
+                    {originalData[stateData.state] && originalData[stateData.state].winning_party}
+                    </span>
+                  </td>
 
-
-
-
-
-
+                  <td className="px-6 py-3 lg:py-1 ml-6 ">
+                    <div className="flex items-center justify-center  gap-3">
+                      <span className="">
+                        {stateData.map_url ? (
+                          <img
+                            src={`${ImageUrl}${stateData.map_url}`}
+                            alt={`${stateData.state} State Winner`}
+                          />
+                        ) : (
+                          <p>No image available</p>
+                        )}
+                      </span>
+                      <span className="font-medium font-poppins text-[9px] lg:text-[27px] text-white truncate">
+                        {stateData.state.split("(")[0].trim()}
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-3 lg:py-10 flex-1">
+                    <span className="mr-2 lg:mr-4 flex items-center justify-center">
+                      {getLeadingParty(stateData.parties) === "Democratic" && (
+                        <div className="flex items-center gap-3">
+                          <span className="text-white font-poppins font-medium text-[9px] lg:text-[19px]">
+                            {getLeadingParty(stateData.parties)}
+                          </span>
+                          <span className="bg-white rounded-full p-2">
+                            <img
+                              className="object-cover w-4 h-4 lg:w-7 lg:h-7"
+                              src={Democraticlogo}
+                              alt="Democratic"
+                            />
+                          </span>
+                        </div>
+                      )}
+                      {getLeadingParty(stateData.parties) === "Republican" && (
+                        <div className="flex items-center gap-3">
+                          <span className="text-white font-poppins font-medium text-[9px] lg:text-[19px]">
+                            {getLeadingParty(stateData.parties)}
+                          </span>
+                          <span className="bg-white rounded-full p-2">
+                            <img
+                              className="w-4 h-4 lg:w-7 lg:h-7"
+                              src={Republicanlogo}
+                              alt="Republican"
+                            />
+                          </span>
+                        </div>
+                      )}
+                      {getLeadingParty(stateData.parties) === "Independent" && (
+                        <div className="flex items-center gap-3">
+                          <span className="text-white font-poppins font-medium text-[9px] lg:text-[19px]">
+                            {getLeadingParty(stateData.parties)}
+                          </span>
+                          <span className="bg-white rounded-full p-1">
+                            <img
+                              className="w-4 h-4 lg:w-8 lg:h-8"
+                              src={Independentlogo}
+                              alt="Independent('Kennedy')"
+                            />
+                          </span>
+                        </div>
+                      )}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </>
   );
 };

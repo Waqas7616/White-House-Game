@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import statsone from "../../images/statsone.png";
-import badge from "../../images/president.png";
-import ballot from "../../images/ballot.png";
+import badge from "../../images/president.svg";
+import ballot from "../../images/vote.svg";
 import kennedy from "../../images/image 46.png";
 import president from "../../images/president.png";
-import democrat from "../../images/democrat.png";
-import republic from "../../images/republican.png";
-import independ from "../../images/independent.png";
+import democrat from "../../images/Democratic_Party-logo-108C42372F-seeklogo 1.svg";
+import republic from "../../images/Republicanlogo 1.svg";
+import independ from "../../images/Constitution_Party_(USA)_logo 1.svg";
 import "../banner.css";
 import VoteGraph from "./VoteGraph";
 import Election2020 from "./Election2020";
@@ -152,7 +152,7 @@ export default function ElectoralCollege() {
                   </option> */}
                     {allstates?.map((item) => (
                       <option
-                        className="bg-[#000]"
+                        className="bg-[#1c2452]"
                         key={item.id}
                         value={item?.name}
                       >

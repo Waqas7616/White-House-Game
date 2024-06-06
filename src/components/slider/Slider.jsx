@@ -309,18 +309,18 @@ function CustomSlider() {
                 >
                   <div className="image w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%]  flex">
                     <img
-                      className=" w-[129px] h-[129px] sm:w-[130px] sm:h-[130px] md:w-[150px] md:h-[150px]   rounded-[50%] object-cover cursor-pointer"
+                      className=" w-[129px] h-[129px] sm:w-[130px] sm:h-[130px] md:w-[145px] md:h-[145px]   rounded-[50%] object-cover cursor-pointer"
                       src={`${imageUrl}${item?.candidate_image}`}
                       alt=""
                       onClick={() => handleCandidateClick(index)}
                     />
                   </div>
-                  <h5 className="poppins5 text-[12px] text-left -ml-10 mt-3 sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[17px] xl:text-center text-blackColor">
+                  <h5 className="poppins5 text-[12px] text-left -ml-10 mt-2 sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px]  xl:text-center xl:ml-1 text-blackColor">
                     {/* {item.candidate_name.split(" ")[1]} */}
-                    {item.candidate_name === "Robert F Kennedy"
+                    {/* {item.candidate_name === "Robert F Kennedy"
                       ? `${item.candidate_name.split(" ")[0]} ${item.candidate_name.split(" ")[1]}`
-                      : item.candidate_name}
-                    {/* {item.candidate_name.split(" ")[0]} */}
+                      : item.candidate_name} */}
+                    {item.candidate_name}
                   </h5>
                 </div>
               ))}
@@ -341,9 +341,10 @@ function CustomSlider() {
                     />
                   </div>
                   <h5 className="poppins5 text-[17px] text-center text-blackColor">
-                    {item.candidate_name === "Robert F Kennedy"
+                    {/* {item.candidate_name === "Robert F Kennedy"
                       ? item.candidate_name.split(" ")[2]
-                      : item.candidate_name.split(" ")[0]}
+                      : item.candidate_name.split(" ")[0]} */}
+                      {item.candidate_name}
                   </h5>
                 </div>
               ))}

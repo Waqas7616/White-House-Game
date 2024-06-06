@@ -6,9 +6,9 @@ export const Modal = ({ candidate, onClose }) => {
 
   const getBackgroundColor = (partyName) => {
     if (partyName === "Democratic") {
-      return "bg-red-500 border-red-500 text-[white]";
+      return " bg-blue-500  border-[blue] text-[white]";
     } else if (partyName === "Republican") {
-      return "bg-blue-500 border-[blue] text-[white]";
+      return "bg-red-500 border-red-500 text-[white]";
     } else {
       return "bg-[white] text-[black]";
     }
@@ -25,7 +25,9 @@ export const Modal = ({ candidate, onClose }) => {
   return (
     <div className="">
       <div className="rounded-lg ">
-        <Card className="relative max-w-[20rem] overflow-hidden h-[450px] rounded-lg shadow-2xl bg-black-50/50  ">
+        <Card className={`relative max-w-[20rem] overflow-hidden h-[450px] rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
+                      candidate?.party?.party_name
+                    )}`}>
           <CardHeader
             floated={false}
             shadow={false}
@@ -73,7 +75,7 @@ export const Modal = ({ candidate, onClose }) => {
           </CardHeader>
 
           <div
-            className={` flex flex-col justify-start px-5 h-[210px] pt-3 ${getBackgroundColor(
+            className={` flex flex-col justify-start px-5 h-[220px] pt-3  ${getBackgroundColor(
               candidate?.party?.party_name
             )} ${getTextColor(candidate?.party?.party_name)}`}
           >
@@ -89,7 +91,7 @@ export const Modal = ({ candidate, onClose }) => {
               color="textSecondary"
               className="mb-3  text-[12px] font-poppins"
             >
-              Born {candidate?.dob}
+              Born: {candidate?.dob}
             </Typography>
             <Typography
               variant="body1"
@@ -112,7 +114,18 @@ export const Modal = ({ candidate, onClose }) => {
               color="textPrimary"
               className="mb-3  text-[11px] font-poppins"
             >
-              {candidate?.position}
+              <ul >
+                              {candidate?.position
+                                .split(",")
+                                .map((positionItem, index) => (
+                                  <li
+                                    key={index}
+                                    className=""
+                                  >
+                                    {positionItem.trim()}
+                                  </li>
+                                ))}
+                            </ul>
             </Typography>
           </div>
         </Card>

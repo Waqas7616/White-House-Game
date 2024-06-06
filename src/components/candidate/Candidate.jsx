@@ -4,9 +4,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import AppBanner from "../appbanner/AppBanner";
 import DownloadApp from "../DownloadApp";
-import Democraticlogo from "../../images/Democraticlogo.png";
-import Republicanlogo from "../../images/Republicanlogo.png";
-import Independentlogo from "../../images/Independentlogo.png";
+import Democraticlogo from "../../images/Democratic_Party-logo-108C42372F-seeklogo 1.svg";
+import Republicanlogo from "../../images/Republicanlogo 1.svg";
+import Independentlogo from "../../images/Constitution_Party_(USA)_logo 1.svg";
+import bg from "../../images/candidatebg.jpg";
 
 const Candidate = () => {
   const [showCard, setShowCard] = useState(null);
@@ -223,6 +224,7 @@ const Candidate = () => {
           }
         );
         setData(response.data.votter_candidate);
+        console.log("candidatessss Data", data);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -270,11 +272,17 @@ const Candidate = () => {
         <AppBanner
           bannerTitle={"Data"}
           redTitle={"Candidate"}
-          bannerDesc ={"Candidates and potential Candidates for President and Vice President"}
+          bannerDesc={
+            "Candidates and potential Candidates for President and Vice President"
+          }
+          bg={bg}
         />
         <div className="mt-5 m-auto w-[85%] border-none">
-        <div className="flex justify-center my-8 ">
-            <h2 className="text-[#fff] text-[9px] md:text-[18px] orbit7 w-9/12 m-auto  text-center">A lot can happen before the country votes on Tuesday November 5, 2024 </h2>
+          <div className="flex justify-center my-8 ">
+            <h2 className="text-[#fff] text-[9px] md:text-[18px] orbit7 w-9/12 m-auto  text-center">
+              A lot can happen before the country votes on Tuesday November 5,
+              2024{" "}
+            </h2>
           </div>
           <Slider {...settings}>
             {data.map((item, index) => (
@@ -282,7 +290,7 @@ const Candidate = () => {
                 <div className="bg-white shadow-xl h-[450px] rounded-2xl overflow-hidden relative ">
                   <svg
                     onClick={() => handleSvgClick(index)}
-                    className="flip absolute right-3 top-1 cursor-pointer fill-current text-white"
+                    className="flip absolute right-4 top-3 cursor-pointer fill-current text-white"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
@@ -297,7 +305,11 @@ const Candidate = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className={`absolute ${showCard===index?'z-0':'z-50'} -bottom-3 left-[50%] translate-x-[-50%] w-full bg-white flex flex-row items-center gap-5 justify-center h-[80px] mt-2 mb-3`}>
+                  <div
+                    className={`absolute ${
+                      showCard === index ? "z-0" : "z-50"
+                    } -bottom-3 left-[50%] translate-x-[-50%] w-full bg-white flex flex-row items-center gap-5 justify-center h-[80px] mt-2 mb-3`}
+                  >
                     <div className="rounded-full h-[38px] w-[38px] shadow-xl shadow-[#0000004d]">
                       <img
                         className="w-9 text-center"
@@ -318,15 +330,30 @@ const Candidate = () => {
                 {showCard === index && (
                   <div className="absolute inset-0  shadow-2xl rounded-2xl overflow-hidden transform flip-animation z-10   border-none bg-[white]">
                     <div className="relative py-8 px-5 flex flex-col justify-start h-full">
-                      <svg
+                      {/* <svg
                         onClick={() => handleSvgClick(index)}
-                        className="flip absolute right-3 top-1 cursor-pointer fill-current"
+                        className="flip absolute right-4 top-3 cursor-pointer fill-current"
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
                       >
                         <path d="M12 24c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12zm1-6h-2v-8h2v8zm-1-12.25c.69 0 1.25.56 1.25 1.25s-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25.56-1.25 1.25-1.25z" />
+                      </svg> */}
+                      <svg
+                        onClick={() => handleSvgClick(index)}
+                        className="flip absolute right-4 top-3 cursor-pointer fill-current w-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 18 18 6M6 6l12 12"
+                        />
                       </svg>
 
                       <div style={{ position: "relative", height: "100%" }}>
@@ -336,7 +363,9 @@ const Candidate = () => {
                               ? Democraticlogo
                               : item?.party?.party_name.includes("Republican")
                               ? Republicanlogo
-                              : item?.party?.party_name.includes("Independent")
+                              : item?.party?.party_name.includes(
+                                  "Independent('Kennedy')"
+                                )
                               ? Independentlogo
                               : ""
                           }
@@ -352,22 +381,40 @@ const Candidate = () => {
                           <h3 className="mb-3 font-extrabold poppins6 text-[25px] text-black">
                             {item?.candidate_name}
                           </h3>
-                          <p className="mb-3 text-[18px] poppins4 text-black">
-                            {item?.dob}
+                          <p className=" text-[18px] poppins4 text-black">
+                            Born: {item?.dob}
                           </p>
                           <p className="mb-3 text-[18px] poppins4 text-black">
                             {item?.birth_place}
                           </p>
                           <p className="mb-3 text-[18px] poppins4 text-black">
-                            {item?.occupation.split}
+                            Occupation: {item?.occupation}
                           </p>
-                          <p className="mb-3 text-[18px] poppins6 text-black">
-                            {item?.party?.party_name}
+                          <p className="mb-1 text-[18px] poppins6 text-black">
+                            {item?.party?.party_name ===
+                              "Independent('Kennedy')" &&
+                            (item?.id === 33 || item.id===34)
+                              ? "Kennedy Independent"
+                              : item?.party?.party_name ===
+                                  "Independent('Kennedy')" &&
+                                  (item?.id === 3 || item.id===10)
+                              ? "Green Party Independent"
+                              : item?.party?.party_name.split('(')[0]}
                           </p>
-                          <p className="mb-3 text-[18px] poppins4 text-black">
-                            {item?.position.split(",").map((item)=>(
-                              <p className="mb-3 text-[18px] poppins4 text-black">{item}</p>
-                            ))}
+                          <p className=" text-[18px] poppins4 text-black ">
+                            <ul>
+                              {item.position &&
+                                item?.position
+                                  .split(",")
+                                  .map((positionItem, index) => (
+                                    <li
+                                      key={index}
+                                      className="mb-2 text-[18px] poppins4 text-black"
+                                    >
+                                      {positionItem.trim()}
+                                    </li>
+                                  ))}
+                            </ul>
                           </p>
                         </div>
                       </div>
