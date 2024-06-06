@@ -860,25 +860,30 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
           <div className="flex justify-center my-8 ">
             <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">What our game players Predict </h2>
           </div>
-          <div className="flex  w-9/12 m-auto my-8 ">
-            
-  <div className="py-4 bg-[#031BBB]" style={{ width: democraticBarLength }}>
-    <span className="poppins6 text-white flex justify-center items-center" >
-      {statesData && statesData.Democratic ? `${statesData.Democratic}` : "0"}
-    </span>
+          <div className="flex flex-col w-9/12 m-auto my-8">
+    <div className="flex justify-around mb-2">
+      <span className="text-white poppins6">Democratic</span>
+      <span className="text-white poppins6">Republican</span>
+      <span className="text-white poppins6">Independent</span>
+    </div>
+    <div className="flex w-full">
+      <div className="flex-1 py-4 bg-[#031BBB]" style={{ width: democraticBarLength }}>
+        <span className="poppins4 flex justify-center items-center">
+          {statesData && statesData.Democratic ? `${statesData.Democratic}` : "0"}
+        </span>
+      </div>
+      <div className="flex-1 py-4 bg-redish" style={{ width: republicanBarLength }}>
+        <span className="poppins4 flex justify-center items-center">
+          {statesData && statesData.Republican ? `${statesData.Republican}` : "0"}
+        </span>
+      </div>
+      <div className="flex-1 py-4 bg-white" style={{ width: independentBarLength }}>
+        <span className="poppins4 flex justify-center items-center">
+          {statesData && statesData["Independent('Kennedy')"] ? `${statesData["Independent('Kennedy')"]}` : "0"}
+        </span>
+      </div>
+    </div>
   </div>
-  
-  <div className="py-4 bg-redish"style={{ width: republicanBarLength }} >
-    <span className="poppins6 text-white flex justify-center items-center" >
-      {statesData && statesData.Republican ? `${statesData.Republican}` : "0"}
-    </span>
-  </div>
-  <div className="py-4 bg-white"style={{ width: independentBarLength }} >
-    <span className="poppins6 flex justify-center items-center" >
-      {statesData && statesData["Independent('Kennedy')"] ? `${statesData["Independent('Kennedy')"]}` : "0"}
-    </span>
-  </div>
-</div>
         <div className="w-10/12 m-auto mt-12">
           <Map />
         </div>
