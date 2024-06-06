@@ -663,20 +663,20 @@ const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] 
 <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
   <div>
     
-  <div className="py-4 bg-[#031BBB]" >
-    <span className="poppins6 text-white flex justify-center items-center" style={{ width: democraticBarLength }}>
+  <div className="py-4 bg-[#031BBB]" style={{ width: democraticBarLength }}>
+    <span className="poppins6 text-white flex justify-center items-center" >
       {statesDatas && statesDatas.Democratic ? `${statesDatas.Democratic}` : "0"}
     </span>
   </div>
   </div>
   
-  <div className="py-4 bg-redish" >
-    <span className="poppins6 text-white flex justify-center items-center" style={{ width: republicanBarLength }}>
+  <div className="py-4 bg-redish" style={{ width: republicanBarLength }}>
+    <span className="poppins6 text-white flex justify-center items-center" >
       {statesDatas && statesDatas.Republican ? `${statesDatas.Republican}` : "0"}
     </span>
   </div>
-  <div className="py-4 bg-white" >
-    <span className="poppins6 flex justify-center items-center" style={{ width: independentBarLength }}>
+  <div className="py-4 bg-white" style={{ width: independentBarLength }}>
+    <span className="poppins6 flex justify-center items-center" >
       {statesDatas && statesDatas["Independent('Kennedy')"] ? `${statesDatas["Independent('Kennedy')"]}` : "0"}
     </span>
   </div>

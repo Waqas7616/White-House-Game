@@ -418,7 +418,7 @@ const StateWinner = () => {
                           <p>No image available</p>
                         )}
                       </span>
-                      <span className="font-medium font-poppins text-[9px] lg:text-[27px] text-white truncate">
+                      <span className="font-medium font-poppins text-[9px] lg:text-[27px] text-white truncate py-3 ">
                         {stateData.state.split("(")[0].trim()}
                       </span>
                     </div>
@@ -441,7 +441,7 @@ const StateWinner = () => {
                       )}
                       {getLeadingParty(stateData.parties) === "Republican" && (
                         <div className="flex items-center gap-3">
-                          <span className="text-white font-poppins font-medium text-[9px] lg:text-[19px]">
+                          <span className="text-white font-poppins font-medium text-[9px] lg:text-[19px] ">
                             {getLeadingParty(stateData.parties)}
                           </span>
                           <span className="bg-white rounded-full p-2">

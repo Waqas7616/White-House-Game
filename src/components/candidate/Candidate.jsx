@@ -390,7 +390,7 @@ const Candidate = () => {
                           <p className="mb-3 text-[18px] poppins4 text-black">
                             Occupation: {item?.occupation}
                           </p>
-                          <p className="mb-1 text-[18px] poppins6 text-black">
+                          <p className="mb-3 text-[18px] poppins6 text-black">
                             {item?.party?.party_name ===
                               "Independent('Kennedy')" &&
                             (item?.id === 33 || item.id===34)
