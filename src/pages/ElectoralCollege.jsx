@@ -19,7 +19,6 @@ import Prediction from "./Prediction";
 import StateWinner from "../components/statewinner/StateWinner";
 import abc from '../images/Alabamas 1.svg'
 
-
 function ElectoralCollege() {
   const { state_predictions, addPrediction, clearPredictions } =
     useStatePredictions();
@@ -113,7 +112,7 @@ function ElectoralCollege() {
 
   // }
 
-  const [statesData, setStatesData] = useState([]);
+  const [statesData, setStatesData] = useState({});
 
   useEffect(() => {
     axios
@@ -123,13 +122,36 @@ function ElectoralCollege() {
         },
       })
       .then((res) => {
-        console.log("states data is :", res.data.data);
-        setStatesData(res.data.data);
+        console.log("states ka data hai:", res.data.electoral_votes_by_party);
+        setStatesData(res.data.electoral_votes_by_party);
       })
       .catch((err) => {
-        console.log("the error is :", err);
+        console.log("error hai:", err);
       });
   }, []);
+
+  // const totalVotes = statesData && statesData.Democratic + statesData["Independent('Kennedy')"] + statesData.Republican;
+  // const democraticPercentage = (statesData && (statesData.Democratic / totalVotes) * 100) || 0;
+  // const independentPercentage = (statesData && (statesData["Independent('Kennedy')"] / totalVotes) * 100) || 0;
+  // const republicanPercentage = (statesData && (statesData.Republican / totalVotes) * 100) || 0;
+
+  const maxVotes = Math.max(
+    statesData.Democratic,
+    statesData.Republican,
+    statesData["Independent('Kennedy')"]
+  );
+  const democraticBarLength =
+    maxVotes === statesData.Democratic
+      ? "100%"
+      : `${(statesData.Democratic / maxVotes) * 100}%`;
+  const republicanBarLength =
+    maxVotes === statesData.Republican
+      ? "100%"
+      : `${(statesData.Republican / maxVotes) * 100}%`;
+  const independentBarLength =
+    maxVotes === statesData["Independent('Kennedy')"]
+      ? "100%"
+      : `${(statesData["Independent('Kennedy')"] / maxVotes) * 100}%`;
 
   const voteCount = (state) => {
     if (statesData[state]) {
@@ -165,10 +187,10 @@ useEffect(() => {
     });
 }, []);
 
-  const maxVotes = Math.max(statesDatas.Democratic, statesDatas.Republican, statesDatas["Independent('Kennedy')"]);
-const democraticBarLength = maxVotes === statesDatas.Democratic ? '100%' : `${(statesDatas.Democratic / maxVotes) * 100}%`;
-const republicanBarLength = maxVotes === statesDatas.Republican ? '100%' : `${(statesDatas.Republican / maxVotes) * 100}%`;
-const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] ? '100%' : `${(statesDatas["Independent('Kennedy')"] / maxVotes) * 100}%`;
+//   const maxVotes = Math.max(statesDatas.Democratic, statesDatas.Republican, statesDatas["Independent('Kennedy')"]);
+// const democraticBarLength = maxVotes === statesDatas.Democratic ? '100%' : `${(statesDatas.Democratic / maxVotes) * 100}%`;
+// const republicanBarLength = maxVotes === statesDatas.Republican ? '100%' : `${(statesDatas.Republican / maxVotes) * 100}%`;
+// const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] ? '100%' : `${(statesDatas["Independent('Kennedy')"] / maxVotes) * 100}%`;
 
   return (
     <div className=" bg-[#1c2452]">
@@ -180,7 +202,6 @@ const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] 
           "Predict the next President of the United States and tell the world what you think!"
         }
       />
-      
 
       <div className="voting w-10/12  resp m-auto py-[102px] bg-[#1c2452]">
         <div className="state-data  mb-[110px] m-auto px-[120px] h-72 sm:h-64 bg-redish rounded-[18.06px] relative flex flex-col justify-center  sm:flex sm:flex-row sm:justify-evenly items-center">
@@ -467,77 +488,72 @@ const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] 
           </button>
         </div> */}
 
-<div className="flex items-center justify-center  w-full mt-5 mb-[60px] mx-auto">
-  <button
-    onClick={() => {
-      if (step > 0) {
-        setStep(step - 1);
-        setSelectedButtonId(null);
-        console.log("Decrementing step:", step - 1);
-      }
-    }}
-    className={`bg-redish p-2 rounded-l-[6px] ${
-      selectedButtonId === null ? "" : "opacity-50"
-    }`}
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="size-6"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15.75 19.5 8.25 12l7.5-7.5"
-      />
-    </svg>
-  </button>
+        <div className="flex items-center justify-center  w-full mt-5 mb-[60px] mx-auto">
+          <button
+            onClick={() => {
+              if (step > 0) {
+                setStep(step - 1);
+                setSelectedButtonId(null);
+                console.log("Decrementing step:", step - 1);
+              }
+            }}
+            className={`bg-redish p-2 rounded-l-[6px] ${
+              selectedButtonId === null ? "" : "opacity-50"
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5 8.25 12l7.5-7.5"
+              />
+            </svg>
+          </button>
 
-  <button
-    onClick={handleSteps}
-    className={`btn bg-redish w-[258px] sm:w-[200px] px-8 py-2 text-white uppercase ${
-      selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-    } flex justify-center items-center`}
-    disabled={selectedButtonId === null}
-  >
-    <span>{step === previousData?.states?.length - 1 ? "Submit" : ""}</span>
-    <h6 className="text-white mb-0 ml-2 text-[16px] lowercase">{`${step + 1} of ${
-      previousData?.states?.length
-    }`}</h6>
-  </button>
+          <button
+            onClick={handleSteps}
+            className={`btn bg-redish w-[258px] sm:w-[200px] px-8 py-2 text-white uppercase ${
+              selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
+            } flex justify-center items-center`}
+            disabled={selectedButtonId === null}
+          >
+            <span>
+              {step === previousData?.states?.length - 1 ? "Submit" : ""}
+            </span>
+            <h6 className="text-white mb-0 ml-2 text-[16px] lowercase">{`${
+              step + 1
+            } of ${previousData?.states?.length}`}</h6>
+          </button>
 
-  <button
-    onClick={handleSteps}
-    className={`bg-redish p-2 rounded-r-[6px] ${
-      selectedButtonId === null ? "" : "opacity-50"
-    }`}
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="size-6"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="m8.25 4.5 7.5 7.5-7.5 7.5"
-      />
-    </svg>
-  </button>
-</div>
-
-
-
-
-
-
-
+          <button
+            onClick={handleSteps}
+            className={`bg-redish p-2 rounded-r-[6px] ${
+              selectedButtonId === null ? "" : "opacity-50"
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </button>
+        </div>
 
         {/* <button
   className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 py-2 text-white uppercase rounded-[6px] ${
@@ -660,7 +676,7 @@ const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] 
           </div>
         </div> */}
 
-<div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
+{/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
   <div>
     
   <div className="py-4 bg-[#031BBB]" >
@@ -680,8 +696,99 @@ const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] 
       {statesDatas && statesDatas["Independent('Kennedy')"] ? `${statesDatas["Independent('Kennedy')"]}` : "0"}
     </span>
   </div>
-</div>
+</div>  */}
 
+        {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
+  <div className="py-4 bg-[#031BBB] w-[50%]">
+    <span className="poppins4 flex justify-center items-center">
+      {statesData && statesData.Democratic ? `${statesData.Democratic}` : "0"}
+    </span>
+  </div>
+  <div className="py-4 bg-white w-[15%]">
+    <span className="poppins4 flex justify-center items-center">
+      {statesData && statesData["Independent('Kennedy')"] ? `${statesData["Independent('Kennedy')"]}` : "0"}
+    </span>
+  </div>
+  <div className="py-4 bg-redish w-[35%]">
+    <span className="poppins4 flex justify-center items-center">
+      {statesData && statesData.Republican ? `${statesData.Republican}` : "0"}
+    </span>
+  </div>
+</div> */}
+
+        <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
+          <div
+            className="py-4 bg-[#031BBB]"
+            style={{ width: democraticBarLength }}
+          >
+            <span className="poppins4 flex justify-center items-center">
+              {statesData && statesData.Democratic
+                ? `${statesData.Democratic}`
+                : "0"}
+            </span>
+          </div>
+
+          <div
+            className="py-4 bg-redish"
+            style={{ width: republicanBarLength }}
+          >
+            <span className="poppins4 flex justify-center items-center">
+              {statesData && statesData.Republican
+                ? `${statesData.Republican}`
+                : "0"}
+            </span>
+          </div>
+          <div
+            className="py-4 bg-white"
+            style={{ width: independentBarLength }}
+          >
+            <span className="poppins4 flex justify-center items-center">
+              {statesData && statesData["Independent('Kennedy')"]
+                ? `${statesData["Independent('Kennedy')"]}`
+                : "0"}
+            </span>
+          </div>
+        </div>
+
+        {/* <div className="flex flex-col items-center w-full mb-[83px]">
+          <div className="flex justify-between items-center text-center w-full mb-4">
+            <span className="text-white poppins6 ">Democratic</span>
+            <span className="text-white poppins6 mr-12 ">Republican</span>
+            <span className="text-white poppins6">Independent</span>
+          </div>
+          <div className="flex w-full bg-[#131A41] rounded-[10.65px]">
+            <div
+              className="py-4 bg-[#031BBB]"
+              style={{ width: democraticBarLength }}
+            >
+              <span className="poppins4 flex justify-center items-center">
+                {statesData && statesData.Democratic
+                  ? `${statesData.Democratic}`
+                  : "0"}
+              </span>
+            </div>
+            <div
+              className="py-4 bg-redish"
+              style={{ width: republicanBarLength }}
+            >
+              <span className="poppins4 flex justify-center items-center">
+                {statesData && statesData.Republican
+                  ? `${statesData.Republican}`
+                  : "0"}
+              </span>
+            </div>
+            <div
+              className="py-4 bg-white"
+              style={{ width: independentBarLength }}
+            >
+              <span className="poppins4 flex justify-center items-center">
+                {statesData && statesData["Independent('Kennedy')"]
+                  ? `${statesData["Independent('Kennedy')"]}`
+                  : "0"}
+              </span>
+            </div>
+          </div>
+        </div> */}
 
         <div className="result-card ">
           <h2 className="text-white mb-12 poppins6 text-[25.4px] md:text-[56.4px]">
