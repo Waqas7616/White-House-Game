@@ -343,11 +343,18 @@ const Candidate = () => {
                       <svg
                         onClick={() => handleSvgClick(index)}
                         className="flip absolute right-4 top-3 cursor-pointer fill-current w-6"
-
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
-  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-</svg>
-
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 18 18 6M6 6l12 12"
+                        />
+                      </svg>
 
                       <div style={{ position: "relative", height: "100%" }}>
                         <img
@@ -384,20 +391,29 @@ const Candidate = () => {
                             Occupation: {item?.occupation}
                           </p>
                           <p className="mb-1 text-[18px] poppins6 text-black">
-                            {item?.party?.party_name==="Independent('Kennedy')" ?"Kennedy Independent" : item?.party?.party_name}
+                            {item?.party?.party_name ===
+                              "Independent('Kennedy')" &&
+                            (item?.id === 33 || item.id===34)
+                              ? "Kennedy Independent"
+                              : item?.party?.party_name ===
+                                  "Independent('Kennedy')" &&
+                                  (item?.id === 3 || item.id===10)
+                              ? "Green Party Independent"
+                              : item?.party?.party_name.split('(')[0]}
                           </p>
                           <p className=" text-[18px] poppins4 text-black ">
-                            <ul >
-                              {item.position&&item?.position
-                                .split(",")
-                                .map((positionItem, index) => (
-                                  <li
-                                    key={index}
-                                    className="mb-2 text-[18px] poppins4 text-black"
-                                  >
-                                    {positionItem.trim()}
-                                  </li>
-                                ))}
+                            <ul>
+                              {item.position &&
+                                item?.position
+                                  .split(",")
+                                  .map((positionItem, index) => (
+                                    <li
+                                      key={index}
+                                      className="mb-2 text-[18px] poppins4 text-black"
+                                    >
+                                      {positionItem.trim()}
+                                    </li>
+                                  ))}
                             </ul>
                           </p>
                         </div>
