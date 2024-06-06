@@ -132,9 +132,9 @@ function Map() {
           <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 px-3">
             DEMOCRATIC:{" "}
             <span className="poppins4">
-              {!statesData[step]
+              {!statesData[step].Democratic
                 ? "0%"
-                : `${Math.round(statesData[step])}%`}
+                : `${Math.round(statesData[step].Democratic)}%`}
             </span>
           </p>
           <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 uppercase px-3">
