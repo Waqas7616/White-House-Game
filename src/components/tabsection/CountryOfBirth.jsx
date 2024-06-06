@@ -177,7 +177,7 @@ export default function CountryOfBirth() {
                     ? "bg-redish"
                     : item.party_name === "Democratic"
                     ? "bg-[#546BED]"
-                    : "whiteColor"
+                    : "bg-whiteColor"
                 } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
               >
                 <div className=" overflow-hidden overflow-y-hidden w-[50px] h-[60px] ">

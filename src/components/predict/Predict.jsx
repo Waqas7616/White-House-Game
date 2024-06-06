@@ -9,7 +9,7 @@ import check from "../../images/check.png";
 import axios from "axios";
 import { Await } from "react-router-dom";
 
-function Predict({ titleImage, party, afterchange, submitData }) {
+function Predict({ titleImage, party, afterchange, submitData,name }) {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [candidateData, setCandidateData] = useState([]);
   console.log("candidateData", candidateData)
@@ -51,7 +51,7 @@ function Predict({ titleImage, party, afterchange, submitData }) {
         <img src={question} alt="" className="m-auto" />
         <img src={titleImage} alt="" className="m-auto mt-5" />
         <p className="poppins4 text-white text-center xl:w-[55%] xl:text-[30px] m-auto mt-5">
-          Select who you think will be the Democratic Party&apos;s Presidential
+          Select who you think will be the {name} Party&apos;s Presidential
           candidate on
         </p>
         <p className="poppins4 text-white/80 xl:text-[22px] text-center justify-center flex items-center gap-2 m-auto mt-5">
