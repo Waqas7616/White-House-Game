@@ -240,7 +240,8 @@ function PredictSlider({
   return (
     <div className="relative ">
       <Slider {...settings}>
-        {candidatedata
+        {data1==='president'?
+        candidatedata
           ?.filter((item) => item.party.party_name === party_name)
           .map((item, index) => (
             <div
@@ -268,7 +269,36 @@ function PredictSlider({
                 {item?.candidate_name}
               </h2>
             </div>
-          ))}
+          ))
+        :(data1==='VicePresident'&&
+        candidatedata.sort((a,b)=>a-b)
+        ?.filter((item) => item.party.party_name === party_name)
+        .map((item, index) => (
+          <div
+            key={index}
+            onClick={() => handleImage(item?.id, item?.votter_party_id)}
+            className={`w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${imageSelect && "border-white border-[10px] rounded[28.43px]"
+              }`}
+          >
+            <img
+              onClick={()=>setArrow(false)}
+              className="w-full h-full object-cover"
+              src={`${imageUrl}${item?.candidate_image}`}
+              alt=""
+            />
+            <h2
+              className={`poppins6  text-center text-[10px] md:text-[16px] absolute bottom-8 md:ml-4 ${party_name === "Democratic"
+                  ? "bg-redish text-white"
+                  : party_name === "Republican"
+                    ? "bg-[#1c2452] text-white"
+                    : "bg-white text-black"
+                } px-1  md:px-4 md:py-1 z-50`}
+            >
+              {item?.candidate_name}
+            </h2>
+          </div>
+        ))
+        )}
       </Slider>
     </div>
   );

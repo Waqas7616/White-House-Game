@@ -42,7 +42,7 @@ function Predict({ titleImage, party, afterchange, submitData,name }) {
     submitData()
 
   };
-  const data = [obama, west];
+  // const data = [obama, west];
 
 
   return (
@@ -74,7 +74,7 @@ function Predict({ titleImage, party, afterchange, submitData,name }) {
               >
                 <PredictSlider
                   party_name={party}
-                  data={data}
+                  // data={data}
                   printData={console.log("hello")}
                   data1="president"
                   selecClass={isButtonClicked ? false : true}
@@ -88,7 +88,7 @@ function Predict({ titleImage, party, afterchange, submitData,name }) {
                 Vice President
               </h4>
               <div>
-                <PredictSlider party_name={party} data={data} afterChange={afterchange} data1="VicePresident" selecClass={isButtonClicked ? false : true} />
+                <PredictSlider party_name={party}  afterChange={afterchange} data1="VicePresident" selecClass={isButtonClicked ? false : true} />
               </div>
 
             </div>
