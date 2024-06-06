@@ -76,6 +76,7 @@ console.log('check this',voting)
         }
       />
       <Predict
+      name={'Democratic'}
         titleImage={dem}
         party={"Democratic"}
         submitData={submitData}
@@ -84,11 +85,13 @@ console.log('check this',voting)
       // afterchange={(index) => { console.log(index) }}
       />
       <Predict
+      name={'Republican'}
         titleImage={rep}
         party={"Republican"}
         submitData={submitData}
       />
       <Predict
+      name={'Independent'}
         titleImage={ind}
         party={"Independent('Kennedy')"}
         submitData={submitData}

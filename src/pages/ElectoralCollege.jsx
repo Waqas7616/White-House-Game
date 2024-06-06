@@ -146,6 +146,30 @@ function ElectoralCollege() {
     return {};
   };
 
+  const [statesDatas, setStatesDatas] = useState({});
+
+useEffect(() => {
+  axios
+    .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
+      headers: {
+        Accept: "application/json",
+      },
+    })
+    .then((res) => {
+      console.log("states ka data hai:", res.data.electoral_votes_by_party
+    );
+      setStatesDatas(res.data.electoral_votes_by_party);
+    })
+    .catch((err) => {
+      console.log("error hai:", err);
+    });
+}, []);
+
+  const maxVotes = Math.max(statesDatas.Democratic, statesDatas.Republican, statesDatas["Independent('Kennedy')"]);
+const democraticBarLength = maxVotes === statesDatas.Democratic ? '100%' : `${(statesDatas.Democratic / maxVotes) * 100}%`;
+const republicanBarLength = maxVotes === statesDatas.Republican ? '100%' : `${(statesDatas.Republican / maxVotes) * 100}%`;
+const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] ? '100%' : `${(statesDatas["Independent('Kennedy')"] / maxVotes) * 100}%`;
+
   return (
     <div className=" bg-[#1c2452]">
       <AppBanner
@@ -636,21 +660,24 @@ function ElectoralCollege() {
           </div>
         </div> */}
 
-<div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
-  <div className="py-4 bg-[#031BBB] w-[50%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData[step]?.Democratic ? `${Math.round(statesData[step].Democratic)}%` : "0%"}
-      {/* {voteCount(step).electricalCollege} */}
+<div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
+  <div>
+    
+  <div className="py-4 bg-[#031BBB]" >
+    <span className="poppins6 text-white flex justify-center items-center" style={{ width: democraticBarLength }}>
+      {statesDatas && statesDatas.Democratic ? `${statesDatas.Democratic}` : "0"}
     </span>
   </div>
-  <div className="py-4 bg-white w-[15%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData[step]?.["Independent('Kennedy')"] ? `${Math.round(statesData[step]["Independent('Kennedy')"])}%` : "0%"}
+  </div>
+  
+  <div className="py-4 bg-redish" >
+    <span className="poppins6 text-white flex justify-center items-center" style={{ width: republicanBarLength }}>
+      {statesDatas && statesDatas.Republican ? `${statesDatas.Republican}` : "0"}
     </span>
   </div>
-  <div className="py-4 bg-redish w-[35%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData[step]?.Republican ? `${Math.round(statesData[step].Republican)}%` : "0%"}
+  <div className="py-4 bg-white" >
+    <span className="poppins6 flex justify-center items-center" style={{ width: independentBarLength }}>
+      {statesDatas && statesDatas["Independent('Kennedy')"] ? `${statesDatas["Independent('Kennedy')"]}` : "0"}
     </span>
   </div>
 </div>
@@ -721,7 +748,7 @@ function ElectoralCollege() {
                   }}
                 >
                   <p className="text-white poppins4 hidden sm:hidden md:hidden lg:block truncate sm:text-[22px]">
-                    Republic
+                    Republican
                   </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-center text-[14px] sm:text-[28px] text-white">
@@ -850,8 +877,8 @@ function ElectoralCollege() {
                     width: `${previousData?.states?.[step]?.previous_election_state?.[4]?.vote_percentage}%`,
                   }}
                 >
-                  <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
-                    Republic
+                  <p className="poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
+                    Republican
                   </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-[14px] sm:text-[28px] text-white">
@@ -978,8 +1005,8 @@ function ElectoralCollege() {
                     width: `  ${previousData?.states?.[step]?.previous_election_state?.[7]?.vote_percentage}%`,
                   }}
                 >
-                  <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
-                    Republic
+                  <p className="poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
+                    Republican
                   </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-[14px] sm:text-[28px] text-white">
