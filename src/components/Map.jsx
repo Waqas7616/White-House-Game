@@ -119,13 +119,13 @@ function Map() {
     <div className="w-10/12 m-auto relative">
       {tooltip && (
         <div className="svgModal py-5 shadow-md shadow-black px-5 rounded-[10px]">
-          {statesData[step].state_image_url && (
+          {/* {statesData[step].state_image_url && ( */}
             <img
               src={`${ImageUrl}${statesData[step].state_image_url}`}
               alt={`${step} image`}
               className=" object-cover m-auto mb-2"
             />
-          )}
+          {/* )} */}
           <h1 className="text-[25px] orbit7 text-center text-white mb-3">
             {step}  {voteCount(step).electricalCollege}
           </h1>

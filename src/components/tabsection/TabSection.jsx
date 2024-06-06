@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import statsone from '../../images/statsone.png'
+import statsone from "../../images/statsone.png";
 import badge from "../../images/president.png";
 import ballot from "../../images/ballot.png";
 import kennedy from "../../images/image 46.png";
 
-import  republic from "../../images/democrat.png";
+import republic from "../../images/democrat.png";
 import democrat from "../../images/republican.png";
 import independ from "../../images/independent.png";
 import "../banner.css";
@@ -35,7 +35,6 @@ function TabSection() {
       .get("https://thewhitehousegame.com/public/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
-        
       })
       .catch((error) => {});
   }, []);
@@ -44,29 +43,25 @@ function TabSection() {
       user_state_id: id,
     });
     axios
-      .get(
-        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      )
+      .get(`https://thewhitehousegame.com/public/api/filter?${ParamBody}`, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
       .then((res) => {
         setStats(res.data);
-        console.log("count voters:", res.data)
+        console.log("count voters:", res.data);
         setPresident(
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "president"
           )
         );
-        
+
         setVicePresident(
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "vice_president"
           )
         );
-        
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -74,7 +69,6 @@ function TabSection() {
   }, [id]);
   const handleId = (selectedId) => {
     setId(selectedId);
-    
   };
 
   const [tabs, setTabs] = useState(0);
@@ -82,7 +76,6 @@ function TabSection() {
   const [viceVotes, setViceVotes] = useState(false);
   const expandVotes = () => {
     setExpandedVotes(!expandedVotes);
-  
   };
   const expandViceVotes = () => {
     setViceVotes(!viceVotes);
@@ -119,6 +112,29 @@ function TabSection() {
   //     );
   //   }
   // }, [id]);
+
+  const [statesData, setStatesData] = useState({});
+
+  useEffect(() => {
+    axios
+      .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then((res) => {
+        console.log("states ka data hai:", res.data.electoral_votes_by_party);
+        setStatesData(res.data.electoral_votes_by_party);
+      })
+      .catch((err) => {
+        console.log("error hai:", err);
+      });
+  }, []);
+
+  const maxVotes = Math.max(statesData.Democratic, statesData.Republican, statesData["Independent('Kennedy')\n"]);
+const democraticBarLength = maxVotes === statesData.Democratic ? '100%' : `${(statesData.Democratic / maxVotes) * 100}%`;
+const republicanBarLength = maxVotes === statesData.Republican ? '100%' : `${(statesData.Republican / maxVotes) * 100}%`;
+const independentBarLength = maxVotes === statesData["Independent('Kennedy')\n"] ? '100%' : `${(statesData["Independent('Kennedy')\n"] / maxVotes) * 100}%`;
 
   return (
     <div className="w-full bg-[#1c2452] py-8">
@@ -215,17 +231,21 @@ function TabSection() {
             className={`all-tab-content  ${tabs === 0 ? "block" : "hidden"}`}
           >
             <h2 className="orbit7 mt-8 text-whiteColor text-center w-[245px] flex justify-between items-center m-auto md:text-[60px]">
-        <span>
-          <img className="w-[50px]" src={statsone} alt="" />{" "}
-        </span>{" "}
-        stats
-      </h2>
+              <span>
+                <img className="w-[50px]" src={statsone} alt="" />{" "}
+              </span>{" "}
+              stats
+            </h2>
             <p className="poppins5 text-whiteColor mb-4 text-center">
               Who our players expect to win on November 5, 2024
             </p>
             <div className="search-section flex flex-col  sm:flex-row  justify-between">
               <div className="badge flex items-center justify-between">
-                <img className="w-8 h-8 lg:w-14 lg:h-14 object-cover" src={badge} alt="" />
+                <img
+                  className="w-8 h-8 lg:w-14 lg:h-14 object-cover"
+                  src={badge}
+                  alt=""
+                />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[34px] ms-3">
                   President
                 </h2>
@@ -291,14 +311,15 @@ function TabSection() {
               </div>
 
               <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
-                <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
-                
-                  <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
+                <img
+                  className="w-8 h-8 lg:w-10 lg:h-10 object-cover"
+                  src={ballot}
+                  alt="ballot"
+                />
+
+                <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
                   Votes : {stats?.data?.totalPredictions}
                 </h2>
-
-                
-                
               </div>
             </div>
 
@@ -306,11 +327,11 @@ function TabSection() {
             <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
               {!expandedVotes ? (
                 <>
-                  {president &&
-                   president?.length===0?
-                   <p className="poppins5 text-center text-white">
-                    No data available for this state
-                   </p>:
+                  {president && president?.length === 0 ? (
+                    <p className="poppins5 text-center text-white">
+                      No data available for this state
+                    </p>
+                  ) : (
                     president?.slice(0, 3).map((item, index) => (
                       <div
                         key={index}
@@ -348,7 +369,7 @@ function TabSection() {
                                 item.party_name === "Republican"
                                   ? republic
                                   : item.party_name === "Democratic"
-                                  ?   democrat
+                                  ? democrat
                                   : independ
                               }
                               alt=""
@@ -371,12 +392,13 @@ function TabSection() {
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage&&item.percentage.toFixed(2)}%
+                              {item.percentage && item.percentage.toFixed(2)}%
                             </div>
                           </div>
                         </div>
                       </div>
-                    ))}
+                    ))
+                  )}
 
                   {/* <div className="voteCount flex gap-1 sm:gap-5 items-center h-[60px] mt-8  bg-[#ED1C244D] rounded-l-lg">
                   <div className="president-info relative bg-redish px-1 sm:px-4 w-2/4 sm:w-1/4 h-full flex justify-between  items-center rounded-l-lg">
@@ -448,9 +470,9 @@ function TabSection() {
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
-                                  ?  republic
+                                  ? republic
                                   : item.party_name === "Democratic"
-                                  ?  democrat
+                                  ? democrat
                                   : independ
                               }
                               alt=""
@@ -473,7 +495,7 @@ function TabSection() {
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage&&item.percentage.toFixed(2)}%
+                              {item.percentage && item.percentage.toFixed(2)}%
                             </div>
                           </div>
                         </div>
@@ -506,7 +528,11 @@ function TabSection() {
 
             <div className="search-section flex flex-col sm:items-none  sm:flex-row  justify-between mt-16">
               <div className="badge flex items-center justify-between">
-                <img className="w-8 h-8 lg:w-14 lg:h-14 object-cover" src={badge} alt="" />
+                <img
+                  className="w-8 h-8 lg:w-14 lg:h-14 object-cover"
+                  src={badge}
+                  alt=""
+                />
                 <h2 className="poppins6 text-whiteColor text-nowrap md:text-[23px] lg:text-[30px] ms-3">
                   Vice President
                 </h2>
@@ -569,7 +595,11 @@ function TabSection() {
               </div> */}
 
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
-                <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
+                <img
+                  className="w-8 h-8 lg:w-10 lg:h-10 object-cover"
+                  src={ballot}
+                  alt="ballot"
+                />
                 <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
                   Votes : {stats?.data?.totalPredictions}
                 </h2>
@@ -580,11 +610,11 @@ function TabSection() {
             <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
               {!viceVotes ? (
                 <>
-                  {vicePresident &&
-                    vicePresident.length===0?
+                  {vicePresident && vicePresident.length === 0 ? (
                     <p className="poppins5 text-center text-white">
-                    No data available for this state
-                   </p>:
+                      No data available for this state
+                    </p>
+                  ) : (
                     vicePresident?.slice(0, 3).map((item, index) => (
                       <div
                         key={index}
@@ -620,9 +650,9 @@ function TabSection() {
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
-                                  ?republic
+                                  ? republic
                                   : item.party_name === "Democratic"
-                                  ?   democrat
+                                  ? democrat
                                   : independ
                               }
                               alt=""
@@ -645,12 +675,13 @@ function TabSection() {
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage&&item.percentage.toFixed(2)}%
+                              {item.percentage && item.percentage.toFixed(2)}%
                             </div>
                           </div>
                         </div>
                       </div>
-                    ))}
+                    ))
+                  )}
 
                   {/* <div className="voteCount flex gap-1 sm:gap-5 items-center h-[60px] mt-8  bg-[#ED1C244D] rounded-l-lg">
                   <div className="president-info relative bg-redish px-1 sm:px-4 w-2/4 sm:w-1/4 h-full flex justify-between  items-center rounded-l-lg">
@@ -724,7 +755,7 @@ function TabSection() {
                                 item.party_name === "Republican"
                                   ? republic
                                   : item.party_name === "Democratic"
-                                  ?  democrat
+                                  ? democrat
                                   : independ
                               }
                               alt=""
@@ -747,7 +778,7 @@ function TabSection() {
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage&&item.percentage.toFixed(2)}%
+                              {item.percentage && item.percentage.toFixed(2)}%
                             </div>
                           </div>
                         </div>
@@ -823,7 +854,7 @@ function TabSection() {
           </div>
         </div>
       </div>
-      
+
       <div
         className="w-full py-8"
         style={{
@@ -832,30 +863,126 @@ function TabSection() {
         }}
       >
         <div className="flex justify-center my-8 ">
-            <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto  text-center">270 to Win</h2>
-          </div>
-          <div className="flex justify-center my-8 ">
-            <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">What our game players Predict </h2>
-          </div>
-        <div className="flex w-9/12 m-auto my-8">
-          
-          <div className="flex-1">
-            {" "}
-            <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">Democratic</h3>
-            <div className="dem py-5   bg-blue-800"></div>
-          </div>
-          <div className="flex-1">
-            {" "}
-            <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">Republican</h3>
-            <div className="rep py-5 bg-redish"></div>
-          </div>
-          <div className="flex-1">
-            <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">
-              Independent
-            </h3>
-            <div className="ind py-5  bg-white"></div>
-          </div>
+          <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto  text-center">
+            270 to Win
+          </h2>
         </div>
+        <div className="flex justify-center my-8 ">
+          <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">
+            What our game players Predict{" "}
+          </h2>
+        </div>
+        
+        {/* <div className="flex w-9/12 m-auto my-8">
+  <div className="flex-1">
+    <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">
+      Democratic
+    </h3>
+    <div className="dem py-5 bg-blue-800" style={{ width: democraticBarLength }}>
+      <span className="poppins4 flex justify-center items-center">
+        {statesData && statesData.Democratic ? `${statesData.Democratic}` : "0"}
+      </span>
+    </div>
+  </div>
+  <div className="flex-1">
+    <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">
+      Republican
+    </h3>
+    <div className="rep py-5 bg-redish" style={{ width: republicanBarLength }}>
+      <span className="poppins4 flex justify-center items-center">
+        {statesData && statesData.Republican ? `${statesData.Republican}` : "0"}
+      </span>
+    </div>
+  </div>
+  <div className="flex-1">
+    <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">
+      Independent
+    </h3>
+    <div className="ind py-5 bg-white" style={{ width: independentBarLength }}>
+      <span className="poppins4 flex justify-center items-center">
+        {statesData && statesData["Independent('Kennedy')"] ? `${statesData["Independent('Kennedy')"]}` : "0"}
+      </span>
+    </div>
+  </div>
+</div> */}
+
+{/* <div className="flex w-9/12 m-auto my-8">
+  <div className="flex-1">
+    <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">
+      Democratic
+    </h3>
+    <div className="dem py-5 bg-blue-800" style={{ width: democraticBarLength }}>
+      <span className="poppins4 flex justify-center items-center">
+        {statesData && statesData.Democratic ? `${statesData.Democratic}` : "0"}
+      </span>
+    </div>
+  </div>
+  <div className="flex-1">
+    <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">
+      Republican
+    </h3>
+    <div className="rep py-5 bg-redish" style={{ width: republicanBarLength }}>
+      <span className="poppins4 flex justify-center items-center">
+        {statesData && statesData.Republican ? `${statesData.Republican}` : "0"}
+      </span>
+    </div>
+  </div>
+  <div className="flex-1">
+    <h3 className="text-center text-white poppins5 mb-2 text-[10px] lg:text-[24px]">
+      Independent
+    </h3>
+    <div className="ind py-5  bg-white" style={{ width: independentBarLength }}>
+      <span className="poppins4 flex justify-center items-center">
+        {statesData && statesData["Independent('Kennedy')\n"] ? `${statesData["Independent('Kennedy')\n"]}` : "0"}
+      </span>
+    </div>
+  </div>
+</div> */}
+
+{/* <div className="flex  w-9/12 m-auto my-8 ">
+  <div className="py-4 bg-[#031BBB]" style={{ width: democraticBarLength }}>
+    <span className="poppins4 flex justify-center items-center" >
+      {statesData && statesData.Democratic ? `${statesData.Democratic}` : "0"}
+    </span>
+  </div>
+  
+  <div className="py-4 bg-redish"style={{ width: republicanBarLength }} >
+    <span className="poppins4 flex justify-center items-center" >
+      {statesData && statesData.Republican ? `${statesData.Republican}` : "0"}
+    </span>
+  </div>
+  <div className="py-4 bg-white"style={{ width: independentBarLength }} >
+    <span className="poppins4 flex justify-center items-center" >
+      {statesData && statesData["Independent('Kennedy')\n"] ? `${statesData["Independent('Kennedy')\n"]}` : "0"}
+    </span>
+  </div>
+</div> */}
+<div className="flex flex-col w-9/12 m-auto my-8">
+    <div className="flex justify-between mb-2">
+      <span className="text-white">Democratic</span>
+      <span className="text-white">Republican</span>
+      <span className="text-white">Independent</span>
+    </div>
+    <div className="flex w-full">
+      <div className="flex-1 py-4 bg-[#031BBB]" style={{ width: democraticBarLength }}>
+        <span className="poppins4 flex justify-center items-center">
+          {statesData && statesData.Democratic ? `${statesData.Democratic}` : "0"}
+        </span>
+      </div>
+      <div className="flex-1 py-4 bg-redish" style={{ width: republicanBarLength }}>
+        <span className="poppins4 flex justify-center items-center">
+          {statesData && statesData.Republican ? `${statesData.Republican}` : "0"}
+        </span>
+      </div>
+      <div className="flex-1 py-4 bg-white" style={{ width: independentBarLength }}>
+        <span className="poppins4 flex justify-center items-center">
+          {statesData && statesData["Independent('Kennedy')"] ? `${statesData["Independent('Kennedy')"]}` : "0"}
+        </span>
+      </div>
+    </div>
+  </div>
+
+        
         <div className="w-10/12 m-auto mt-12">
           <Map />
         </div>
