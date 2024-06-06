@@ -17,6 +17,7 @@ import {
 import axios from "axios";
 import Prediction from "./Prediction";
 import StateWinner from "../components/statewinner/StateWinner";
+import abc from '../images/Alabamas 1.svg'
 
 function ElectoralCollege() {
   const { state_predictions, addPrediction, clearPredictions } =
@@ -167,6 +168,30 @@ function ElectoralCollege() {
     return {};
   };
 
+  const [statesDatas, setStatesDatas] = useState({});
+
+useEffect(() => {
+  axios
+    .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
+      headers: {
+        Accept: "application/json",
+      },
+    })
+    .then((res) => {
+      console.log("states ka data hai:", res.data.electoral_votes_by_party
+    );
+      setStatesDatas(res.data.electoral_votes_by_party);
+    })
+    .catch((err) => {
+      console.log("error hai:", err);
+    });
+}, []);
+
+//   const maxVotes = Math.max(statesDatas.Democratic, statesDatas.Republican, statesDatas["Independent('Kennedy')"]);
+// const democraticBarLength = maxVotes === statesDatas.Democratic ? '100%' : `${(statesDatas.Democratic / maxVotes) * 100}%`;
+// const republicanBarLength = maxVotes === statesDatas.Republican ? '100%' : `${(statesDatas.Republican / maxVotes) * 100}%`;
+// const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] ? '100%' : `${(statesDatas["Independent('Kennedy')"] / maxVotes) * 100}%`;
+
   return (
     <div className=" bg-[#1c2452]">
       <AppBanner
@@ -210,24 +235,28 @@ function ElectoralCollege() {
         </div>
 
         <div className="flex flex-col items-center lg:flex lg:flex-row lg:items-center ">
-          <div className="question flex flex-col justify-center items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
+          <div className="question flex flex-col justify-center gap-4 items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
             {previousData &&
               previousData?.states &&
               previousData?.states[step] && (
                 <img
                   src={`${imageUrl}${previousData?.states?.[step]?.state_image_url}`}
+                // src={abc}
                   alt=""
-                  className="w-12 lg:w-12 xl:w-20 2xl:w-24 object-cover mt-3"
+                  className="w-12 lg:w-12 xl:w-24 2xl:w-24 object-cover "
                 />
               )}
-            <div className="m-auto ">
+            <div className="">
               <h4 className="text-white text-center poppins6  text-[17px] sm:text-[16px] lg:text-[15px] xl:text-[19px]  ">
                 Who do you predict will win?
               </h4>
-              <h2 className="text-redish text-center poppins6 text-[19.4px] mt-2">
+              
+            </div>
+            <div>
+            <h2 className="text-redish text-center poppins6 text-[19.4px] ">
                 {previousData?.states?.[step]?.name}
               </h2>
-            </div>
+              </div>
           </div>
 
           <div className="badges my-10">
@@ -647,23 +676,27 @@ function ElectoralCollege() {
           </div>
         </div> */}
 
-        {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
-  <div className="py-4 bg-[#031BBB] w-[50%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData[step]?.Democratic ? `${Math.round(statesData[step].Democratic)}%` : "0%"}
+{/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
+  <div>
+    
+  <div className="py-4 bg-[#031BBB]" >
+    <span className="poppins6 text-white flex justify-center items-center" style={{ width: democraticBarLength }}>
+      {statesDatas && statesDatas.Democratic ? `${statesDatas.Democratic}` : "0"}
     </span>
   </div>
-  <div className="py-4 bg-white w-[15%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData[step]?.["Independent('Kennedy')"] ? `${Math.round(statesData[step]["Independent('Kennedy')"])}%` : "0%"}
+  </div>
+  
+  <div className="py-4 bg-redish" >
+    <span className="poppins6 text-white flex justify-center items-center" style={{ width: republicanBarLength }}>
+      {statesDatas && statesDatas.Republican ? `${statesDatas.Republican}` : "0"}
     </span>
   </div>
-  <div className="py-4 bg-redish w-[35%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData[step]?.Republican ? `${Math.round(statesData[step].Republican)}%` : "0%"}
+  <div className="py-4 bg-white" >
+    <span className="poppins6 flex justify-center items-center" style={{ width: independentBarLength }}>
+      {statesDatas && statesDatas["Independent('Kennedy')"] ? `${statesDatas["Independent('Kennedy')"]}` : "0"}
     </span>
   </div>
-</div> */}
+</div>  */}
 
         {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
   <div className="py-4 bg-[#031BBB] w-[50%]">
@@ -683,7 +716,7 @@ function ElectoralCollege() {
   </div>
 </div> */}
 
-        {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
+        <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
           <div
             className="py-4 bg-[#031BBB]"
             style={{ width: democraticBarLength }}
@@ -715,9 +748,9 @@ function ElectoralCollege() {
                 : "0"}
             </span>
           </div>
-        </div> */}
+        </div>
 
-        <div className="flex flex-col items-center w-full mb-[83px]">
+        {/* <div className="flex flex-col items-center w-full mb-[83px]">
           <div className="flex justify-between items-center text-center w-full mb-4">
             <span className="text-white poppins6 ">Democratic</span>
             <span className="text-white poppins6 mr-12 ">Republican</span>
@@ -755,7 +788,7 @@ function ElectoralCollege() {
               </span>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="result-card ">
           <h2 className="text-white mb-12 poppins6 text-[25.4px] md:text-[56.4px]">
@@ -822,7 +855,7 @@ function ElectoralCollege() {
                   }}
                 >
                   <p className="text-white poppins4 hidden sm:hidden md:hidden lg:block truncate sm:text-[22px]">
-                    Republic
+                    Republican
                   </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-center text-[14px] sm:text-[28px] text-white">
@@ -951,8 +984,8 @@ function ElectoralCollege() {
                     width: `${previousData?.states?.[step]?.previous_election_state?.[4]?.vote_percentage}%`,
                   }}
                 >
-                  <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
-                    Republic
+                  <p className="poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
+                    Republican
                   </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-[14px] sm:text-[28px] text-white">
@@ -1079,8 +1112,8 @@ function ElectoralCollege() {
                     width: `  ${previousData?.states?.[step]?.previous_election_state?.[7]?.vote_percentage}%`,
                   }}
                 >
-                  <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
-                    Republic
+                  <p className="poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
+                    Republican
                   </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-[14px] sm:text-[28px] text-white">

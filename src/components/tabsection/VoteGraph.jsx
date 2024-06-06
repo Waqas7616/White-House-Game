@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import kennedy from "../../images/image 46.png";
 import stats from "../../images/stats.png";
-import badge from "../../images/president.png";
-import ballot from "../../images/ballot.png";
+import badge from "../../images/president.svg";
+import ballot from "../../images/vote.svg";
 import male from "../../images/Condidates/Male.png";
 import female from "../../images/Condidates/Female.png";
-import independ from "../../images/independent.png";
-import democrat from "../../images/democrat.png";
-import republic from "../../images/republican.png";
+import independ from "../../images/Constitution_Party_(USA)_logo 1.svg";
+import democrat from "../../images/Democratic_Party-logo-108C42372F-seeklogo 1.svg";
+import republic from "../../images/Republicanlogo 1.svg";
 import axios from "axios";
 
 export default function VoteGraph() {
@@ -105,7 +105,7 @@ export default function VoteGraph() {
       </p>
       <div className="search-section flex flex-col  sm:flex-row  justify-between mt-12">
         <div className="badge flex items-center justify-between">
-          <img src={badge} alt="" />
+          <img className="w-8 h-8 lg:w-14 lg:h-14 object-cover" src={badge} alt="" />
           <h2 className="poppins6 text-whiteColor text-[20px] md:text-[25px] lg:text-[36px] ms-3">
             President
           </h2>
@@ -139,7 +139,7 @@ export default function VoteGraph() {
           </div>
         </div>
         <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
-          <img src={ballot} alt="ballot" />
+          <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
           <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
             Votes : {candidatedata?.data?.totalPredictions}
           </h2>
@@ -148,7 +148,7 @@ export default function VoteGraph() {
       <div className="stats relative py-8 px-4 bg-white/5 rounded-[10px] mt-8">
         {!expendedCandidates ? (
           <>
-            {candidatedata?.data?.candidate_percentages
+            {candidatedata?.data?.candidate_percentages.filter((item)=>item.position==="president")
               .slice(0, 3)
               .map((item, index) => (
                 <div
@@ -181,7 +181,7 @@ export default function VoteGraph() {
                       />
                     </div>
                     <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                      {item.candidate_name.split(" ")[1]}
+                      {item.candidate_name}
                     </p>
                     <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
                       <img
@@ -271,7 +271,7 @@ export default function VoteGraph() {
           </>
         ) : (
           <>
-            {candidatedata?.data?.candidate_percentages.map((item, index) => (
+            {candidatedata?.data?.candidate_percentages.filter((item)=>item.position==="president").map((item, index) => (
               <div
                 key={index}
                 className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px]  rounded-[8px] mt-8 ${

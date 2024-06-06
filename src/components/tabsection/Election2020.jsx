@@ -3,7 +3,8 @@ import "../banner.css";
 import kennedy from "../../images/image 46.png";
 import stats from "../../images/stats.png";
 import badge from "../../images/president.png";
-import ballot from "../../images/ballot.png";
+import ballot from "../../images/vote.svg";
+
 import male from "../../images/Condidates/Male.png";
 import female from "../../images/Condidates/Female.png";
 import independ from "../../images/independent.png";
@@ -108,7 +109,7 @@ export default function Election2020() {
       </p>
       <div className="search-section text-center">
         <div className="votes-count flex items-center justify-end">
-          <img src={ballot} alt="ballot" />
+          <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
           <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
             Votes : {polling?.data?.TotalVotes}
           </h2>
@@ -189,7 +190,7 @@ export default function Election2020() {
                         </div>
                         <p className="flex-1 text-center">
                           {" "}
-                          {item.percentage_2020 && item?.percentage_2020}%{" "}
+                          {item.percentage_2020 ? (+item.percentage_2020).toFixed(1) + '%' : 'N/A'}
                         </p>
                       </div>
                     </div>
@@ -294,7 +295,7 @@ export default function Election2020() {
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {item.percentage}%
+                  {item.percentage&&item.percentage.toFixed(1)}%
                 </div>
               </div>
             </div>
@@ -374,7 +375,7 @@ export default function Election2020() {
                     className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                   >
                     {" "}
-                    {item.percentage}%
+                    {item.percentage&&item.percentage.toFixed(1)}%
                   </div>
                 </div>
               </div>

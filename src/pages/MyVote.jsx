@@ -64,7 +64,7 @@ export default function MyVote() {
         bannerDesc={"America votes on Tuesday, November 5 2024"}
         bg={bg}
       />
-      <div className="w-full py-[100px] bg-[#1c2452]">
+      <div className="w-full pt-[100px] bg-[#1c2452]">
         <div className="resp m-auto w-10/12">
           <div className="">
             <img className="m-auto" src={logo} alt="" />
@@ -105,12 +105,12 @@ export default function MyVote() {
                   alt=""
                 />
                 <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                  {userVote?.PredictedCandidateDetails?.[0]?.party_name}
+                  {userVote?.PredictedCandidateDetails?.[0]?.party_name.split("(")[0]}
                 </h2>
               </div>
               <div className="flex gap-4 items-center justify-start w-full m-auto ">
                 <div className="w-[200px] h-[220px] m-auto relative">
-                  <h4 className="poppins6 text-white xl:text-[20px]">
+                  <h4 className="poppins6  xl:text-[20px] mb-2">
                     President
                   </h4>
                   {/* w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] */}
@@ -122,7 +122,7 @@ export default function MyVote() {
                     />
                   </div>
                   <h2
-                    className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
+                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
                       userVote?.PredictedCandidateDetails?.[0]?.party_name ===
                       "Democratic"
                         ? "bg-[#1c2452] text-white"
@@ -136,7 +136,7 @@ export default function MyVote() {
                   </h2>
                 </div>
                 <div className="w-[200px] h-[220px] m-auto relative">
-                  <h4 className="poppins6 text-white xl:text-[20px]">
+                  <h4 className="poppins6  xl:text-[20px] mb-2">
                     Vice President
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
@@ -147,7 +147,7 @@ export default function MyVote() {
                     />
                   </div>
                   <h2
-                    className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
+                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
                       userVote?.PredictedCandidateDetails?.[1]?.party_name ===
                       "Democratic"
                         ? "bg-[#1c2452] text-white"
@@ -169,7 +169,7 @@ export default function MyVote() {
             {/* other parties */}
 
             <div
-              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative ${
+              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative opacity-50 ${
                 selected?.[0]?.party_name === "Republican"
                   ? "bg-redish"
                   : selected?.[0]?.party_name === "Democratic"
@@ -194,12 +194,12 @@ export default function MyVote() {
                   alt=""
                 />
                 <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                  {selected?.[0]?.party_name}
+                  {selected?.[0]?.party_name.split("(")[0]}
                 </h2>
               </div>
               <div className="flex gap-4 items-center justify-start w-full m-auto ">
                 <div className="w-[200px] h-[220px] m-auto relative">
-                  <h4 className="poppins6 text-white xl:text-[20px]">
+                  <h4 className="poppins6  xl:text-[20px] mb-2">
                     President
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
@@ -210,7 +210,7 @@ export default function MyVote() {
                     />
                   </div>
                   <h2
-                    className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
+                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
                       selected?.[0]?.party_name === "Democratic"
                         ? "bg-[#1c2452] text-white"
                         : selected?.[0]?.party_name === "Republican"
@@ -222,7 +222,7 @@ export default function MyVote() {
                   </h2>
                 </div>
                 <div className="w-[200px] h-[220px] m-auto relative">
-                  <h4 className="poppins6 text-white xl:text-[20px]">
+                  <h4 className="poppins6  xl:text-[20px] mb-2">
                     Vice President
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
@@ -233,7 +233,7 @@ export default function MyVote() {
                     />
                   </div>
                   <h2
-                    className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
+                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
                       selected?.[1]?.party_name === "Democratic"
                         ? " bg-[#1c2452] text-white"
                         : selected?.[1]?.party_name === "Republican"
@@ -247,7 +247,7 @@ export default function MyVote() {
               </div>
             </div>
             <div
-              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative ${
+              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative opacity-50 ${
                 selected?.[2]?.party_name === "Republican"
                   ? "bg-redish"
                   : selected?.[2]?.party_name === "Democratic"
@@ -273,12 +273,12 @@ export default function MyVote() {
                   alt=""
                 />
                 <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                  {selected?.[2]?.party_name}
+                  {selected?.[2]?.party_name.split("(")[0]}
                 </h2>
               </div>
               <div className="flex gap-4 items-center justify-start w-full m-auto ">
                 <div className="w-[200px] h-[220px] m-auto relative">
-                  <h4 className="poppins6 text-white xl:text-[20px]">
+                  <h4 className="poppins6  xl:text-[20px] mb-2">
                     President
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
@@ -289,7 +289,7 @@ export default function MyVote() {
                     />
                   </div>
                   <h2
-                    className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
+                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
                       selected?.[2]?.party_name === "Democratic"
                         ? "bg-[#1c2452]  text-white"
                         : selected?.[2]?.party_name === "Republican"
@@ -301,7 +301,7 @@ export default function MyVote() {
                   </h2>
                 </div>
                 <div className="w-[200px] h-[220px] m-auto relative">
-                  <h4 className="poppins6 text-white xl:text-[20px]">
+                  <h4 className="poppins6  xl:text-[20px] mb-2">
                     Vice President
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
@@ -312,7 +312,7 @@ export default function MyVote() {
                     />
                   </div>
                   <h2
-                    className={`poppins6  text-center text-[10px]  absolute bottom-0 md:ml-4 ${
+                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
                       selected?.[3]?.party_name === "Democratic"
                         ? " bg-[#1c2452] text-white"
                         : selected?.[3]?.party_name === "Republican"

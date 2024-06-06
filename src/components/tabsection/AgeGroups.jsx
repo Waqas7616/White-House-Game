@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "../banner.css";
 import kennedy from "../../images/image 46.png";
 import stats from "../../images/stats.png";
-import badge from "../../images/president.png";
-import ballot from "../../images/ballot.png";
+import badge from "../../images/president.svg";
+
+import ballot from "../../images/vote.svg";
+
 import male from "../../images/Condidates/Male.png";
 import female from "../../images/Condidates/Female.png";
 import independ from "../../images/independent.png";
@@ -115,7 +117,7 @@ export default function AgeGroups() {
         </p>
         <div className="search-section flex flex-col  sm:flex-row  justify-between my-16">
           <div className="badge flex items-center justify-between">
-            <img src={badge} alt="" />
+            <img className="w-8 h-8 lg:w-14 lg:h-14 object-cover" src={badge} alt="" />
             <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
               President
             </h2>
@@ -182,7 +184,7 @@ export default function AgeGroups() {
           </div>
 
           <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
-            <img src={ballot} alt="ballot" />
+            <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
             <h2 className="poppins6 text-whiteColor md:text-[28px] lg:text-[36px] ms-3">
               Votes : {ageGroupPer?.data?.totalPredictions}
             </h2>
