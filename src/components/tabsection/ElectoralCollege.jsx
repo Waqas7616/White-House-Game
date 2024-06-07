@@ -88,18 +88,9 @@ export default function ElectoralCollege() {
   const handleId = (selectedId) => {
     setId(selectedId);
   };
-  // useEffect(() => {
-  //   if (stats?.data) {
-  //     setPresident(
-  //       stats?.data?.candidate_percentages.filter(
-  //         (item) => item.position === "president"
-  //       )
-  //     );
-      
-  //   }
-  // }, [id]);
+  
   console.log("chup sha", president);
-  // console.log("tinga ka", vicePresident);
+  
 
 
 
@@ -147,9 +138,7 @@ export default function ElectoralCollege() {
                     id="search"
                     className="bg-transparent w-full outline-none"
                   >
-                    {/* <option className="bg-[#000]" value="">
-                    Select All States
-                  </option> */}
+                    
                     {allstates?.map((item) => (
                       <option
                         className="bg-[#1c2452]"
@@ -235,7 +224,7 @@ export default function ElectoralCollege() {
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage}%
+                              {item.percentage&&item.percentage===100?item.percentage:item.percentage.toFixed(1)}%
                             </div>
                   </div>
                 </div>
@@ -243,19 +232,7 @@ export default function ElectoralCollege() {
             ))}
             
 
-            {/* <div className="voteCount flex gap-1 sm:gap-5 items-center h-[60px] mt-8  bg-[#ED1C244D] rounded-l-lg">
-                  <div className="president-info relative bg-redish px-1 sm:px-4 w-2/4 sm:w-1/4 h-full flex justify-between  items-center rounded-l-lg">
-                    <div className=' overflow-hidden overflow-y-hidden mb-[20px] ' ><img className='w-full h-full object-cover' src={kennedy} alt="" /></div>
-                    <p className="poppins4 text-whiteColor w-[30%] sm:w-auto overflow-hidden text-ellipsis whitespace-nowrap  ">Robbert F. Kennedy</p>
-                    <img className='w-[20px] sm:w-auto' src={president} alt="" />
-
-                  </div>
-                  <div className="president-votes w-3/4">
-                    <div class="w-[98%] h-[31px] bg-[#454C72] rounded-full dark:bg-gray-700">
-                      <div class="bg-redish text-xs font-medium text-whiteColor h-full text-center p-2 poppins5  leading-none rounded-full" style={{ width: "45%" }}> 45%</div>
-                    </div>
-                  </div>
-                </div> */}
+            
             <button
               className="absolute bottom-[-20px] left-[50%]"
               onClick={expandVotes}
@@ -304,7 +281,7 @@ export default function ElectoralCollege() {
                               alt=""
                             />
                           </div>
-                  <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+                  <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis sm:text-nowrap">
                     {item.candidate_name}
                   </p>
                   <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
@@ -337,7 +314,7 @@ export default function ElectoralCollege() {
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage}%
+                              {item.percentage&&item.percentage===100?item.percentage:item.percentage.toFixed(1)}%
                             </div>
                   </div>
                 </div>

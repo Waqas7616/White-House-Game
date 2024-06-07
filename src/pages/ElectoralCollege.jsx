@@ -17,7 +17,6 @@ import {
 import axios from "axios";
 import Prediction from "./Prediction";
 import StateWinner from "../components/statewinner/StateWinner";
-import abc from '../images/Alabamas 1.svg'
 
 function ElectoralCollege() {
   const { state_predictions, addPrediction, clearPredictions } =
@@ -93,25 +92,6 @@ function ElectoralCollege() {
     }
   };
 
-  // const submitData = () => {
-  //     axios.post('http://pankhay.com/thewhitehousegame/public/api/submit_electoral_college_prediction', {
-  //         "state_predictions": state_predictions
-  //     }, {
-  //         headers: {
-  //             Authorization: `Bearer ${token}`,
-  //             Accept: 'application/json',
-  //             'Content-Type': 'application/json'
-  //         }
-  //     })
-  //         .then((response) => {
-  //             alert(response);
-  //         })
-  //         .catch((err) => {
-  //             alert(err);
-  //         });
-
-  // }
-
   const [statesData, setStatesData] = useState({});
 
   useEffect(() => {
@@ -129,11 +109,6 @@ function ElectoralCollege() {
         console.log("error hai:", err);
       });
   }, []);
-
-  // const totalVotes = statesData && statesData.Democratic + statesData["Independent('Kennedy')"] + statesData.Republican;
-  // const democraticPercentage = (statesData && (statesData.Democratic / totalVotes) * 100) || 0;
-  // const independentPercentage = (statesData && (statesData["Independent('Kennedy')"] / totalVotes) * 100) || 0;
-  // const republicanPercentage = (statesData && (statesData.Republican / totalVotes) * 100) || 0;
 
   const maxVotes = Math.max(
     statesData.Democratic,
@@ -167,30 +142,6 @@ function ElectoralCollege() {
     }
     return {};
   };
-
-  const [statesDatas, setStatesDatas] = useState({});
-
-useEffect(() => {
-  axios
-    .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
-      headers: {
-        Accept: "application/json",
-      },
-    })
-    .then((res) => {
-      console.log("states ka data hai:", res.data.electoral_votes_by_party
-    );
-      setStatesDatas(res.data.electoral_votes_by_party);
-    })
-    .catch((err) => {
-      console.log("error hai:", err);
-    });
-}, []);
-
-//   const maxVotes = Math.max(statesDatas.Democratic, statesDatas.Republican, statesDatas["Independent('Kennedy')"]);
-// const democraticBarLength = maxVotes === statesDatas.Democratic ? '100%' : `${(statesDatas.Democratic / maxVotes) * 100}%`;
-// const republicanBarLength = maxVotes === statesDatas.Republican ? '100%' : `${(statesDatas.Republican / maxVotes) * 100}%`;
-// const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] ? '100%' : `${(statesDatas["Independent('Kennedy')"] / maxVotes) * 100}%`;
 
   return (
     <div className=" bg-[#1c2452]">
@@ -235,28 +186,24 @@ useEffect(() => {
         </div>
 
         <div className="flex flex-col items-center lg:flex lg:flex-row lg:items-center ">
-          <div className="question flex flex-col justify-center gap-4 items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
+          <div className="question flex flex-col justify-center items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
             {previousData &&
               previousData?.states &&
               previousData?.states[step] && (
                 <img
                   src={`${imageUrl}${previousData?.states?.[step]?.state_image_url}`}
-                // src={abc}
                   alt=""
-                  className="w-12 lg:w-12 xl:w-24 2xl:w-24 object-cover "
+                  className="w-12 lg:w-12 xl:w-20 2xl:w-24 object-cover mt-3"
                 />
               )}
-            <div className="">
+            <div className="m-auto ">
               <h4 className="text-white text-center poppins6  text-[17px] sm:text-[16px] lg:text-[15px] xl:text-[19px]  ">
                 Who do you predict will win?
               </h4>
-              
-            </div>
-            <div>
-            <h2 className="text-redish text-center poppins6 text-[19.4px] ">
+              <h2 className="text-redish text-center poppins6 text-[19.4px] mt-2">
                 {previousData?.states?.[step]?.name}
               </h2>
-              </div>
+            </div>
           </div>
 
           <div className="badges my-10">
@@ -300,193 +247,6 @@ useEffect(() => {
             </div>
           </div>
         </div>
-        {/* <button
-          onClick={handleSteps}
-          className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 mb-[108px] py-2 text-white uppercase rounded-[6px] ${
-            selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          disabled={selectedButtonId === null}
-        >
-          {step === previousData?.states?.length - 1 ? "submit" : "next"}
-          <h6 className="text-white text-right mb-8">{`${step + 1} of ${
-            previousData?.states?.length
-          }`}</h6>
-        </button> */}
-
-        {/* <button
-          onClick={handleSteps}
-          className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 mb-[108px] py-2 text-white uppercase rounded-[6px] ${
-            selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-          } flex justify-between items-center`}
-          disabled={selectedButtonId === null}
-        >
-          <span>
-            {step === previousData?.states?.length - 1 ? "Submit" : "Next"}
-          </span>
-          <h6 className="text-white mb-0 ml-2">{`${step + 1} of ${
-            previousData?.states?.length
-          }`}</h6>
-        </button> */}
-
-        {/* <div className="flex items-center justify-between w-full mb-[108px]">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={() => {
-      setSelectedButtonId(0);
-      if (step > 0) {
-        setStep(step - 1);
-        setSelectedButtonId(null);
-        console.log("Decrementing step:", step - 1);
-      }
-    }}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-  </svg>
-
-  <button
-    onClick={handleSteps}
-    className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 py-2 text-white uppercase rounded-[6px] ${
-      selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-    } flex justify-between items-center`}
-    disabled={selectedButtonId === null}
-  >
-    <span>
-      {step === previousData?.states?.length - 1 ? "Submit" : "Next"}
-    </span>
-    <h6 className="text-white mb-0 ml-2">{`${step + 1} of ${
-      previousData?.states?.length
-    }`}</h6>
-  </button>
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={handleSteps}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-  </svg>
-</div> */}
-
-        {/* <button
-  onClick={handleSteps}
-  className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 py-2 text-white uppercase rounded-[6px] ${
-    selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-  } flex justify-between items-center`}
-  disabled={selectedButtonId === null}
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={() => {
-      setSelectedButtonId(0);
-      if (step > 0) {
-        setStep(step - 1);
-        setSelectedButtonId(null);
-        console.log("Decrementing step:", step - 1);
-      }
-    }}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-  </svg>
-
-  <span>
-    {step === previousData?.states?.length - 1 ? "Submit" : "Next"}
-  </span>
-  <h6 className="text-white mb-0 ml-2">{`${step + 1} of ${
-    previousData?.states?.length
-  }`}</h6>
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={handleSteps}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-  </svg>
-</button> */}
-
-        {/* <div className="flex items-center justify-center w-full mt-12 mb-[108px]">
-          <button
-            onClick={() => {
-              if (step > 0) {
-                setStep(step - 1);
-                setSelectedButtonId(null);
-                console.log("Decrementing step:", step - 1);
-              }
-            }}
-            className="bg-redish p-2 rounded-l-[6px]"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"
-              />
-            </svg>
-          </button>
-
-          <button
-            onClick={handleSteps}
-            className={`btn bg-redish  w-[258px] sm:w-[200px] px-8 py-2 text-white uppercase  ${
-              selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-            } flex justify-center items-center`}
-            disabled={selectedButtonId === null}
-          >
-            <span>
-              {step === previousData?.states?.length - 1 ? "Submit" : ""}
-            </span>
-            <h6 className="text-white mb-0 ml-2 text-[16px] lowercase">{`${
-              step + 1
-            } of ${previousData?.states?.length}`}</h6>
-          </button>
-
-          <button
-            onClick={handleSteps}
-            className={`bg-redish p-2 rounded-r-[6px] ${
-              !selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-            // disabled={!selectedButtonId === null}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </button>
-        </div> */}
 
         <div className="flex items-center justify-center  w-full mt-5 mb-[60px] mx-auto">
           <button
@@ -555,167 +315,6 @@ useEffect(() => {
           </button>
         </div>
 
-        {/* <button
-  className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 py-2 text-white uppercase rounded-[6px] ${
-    selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-  } flex justify-between items-center`}
-  disabled={selectedButtonId === null}
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={(e) => {
-      e.stopPropagation(); // Prevent the button's onClick from triggering
-      if (step > 0) {
-        setStep(step - 1);
-        setSelectedButtonId(null);
-        console.log("Decrementing step:", step - 1);
-      }
-    }}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-  </svg>
-
-  <span>
-    {step === previousData?.states?.length - 1 ? "Submit" : "Next"}
-  </span>
-  <h6 className="text-white mb-0 ml-2">{`${step + 1} of ${
-    previousData?.states?.length
-  }`}</h6>
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={(e) => {
-      e.stopPropagation(); // Prevent the button's onClick from triggering
-      handleSteps();
-    }}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-  </svg>
-</button> */}
-
-        {/* <button
-  className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 py-2 text-white uppercase rounded-[6px] ${
-    selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-  } flex justify-between items-center`}
-  disabled={selectedButtonId === null}
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={(e) => {
-      e.stopPropagation(); // Prevent the button's onClick from triggering
-      if (step > 0) {
-        setStep(step - 1);
-        setSelectedButtonId(null);
-        console.log("Decrementing step:", step - 1);
-      }
-    }}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-  </svg>
-
-  <span>
-    {step === previousData?.states?.length - 1 ? "Submit" : ""}
-  </span>
-  <h6 className="text-white mb-0 ml-2">{`${step + 1} of ${
-    previousData?.states?.length
-  }`}</h6>
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={(e) => {
-      e.stopPropagation(); // Prevent the button's onClick from triggering
-      handleSteps();
-    }}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-  </svg>
-</button> */}
-
-        {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
-          <div className="py-4 bg-[#031BBB] w-[50%]">
-          <span className="poppins4">
-              {!statesData[step].Democratic
-                ? "0%"
-                : `${Math.round(statesData[step].Democratic)}%`}
-            </span>
-          </div>
-          <div className="py-4 bg-white w-[15%]">
-          
-            <span className="poppins4">
-              {!statesData[step]["Independent('Kennedy')"]
-                ? "0%"
-                : `${Math.round(statesData[step]["Independent('Kennedy')"])}%`}
-            </span>
-          </div>
-          <div className="py-4 bg-redish w-[35%]">
-          <span className="poppins4">
-              {!statesData[step].Republican
-                ? "0%"
-                : `${Math.round(statesData[step].Republican)}%`}
-            </span>
-          </div>
-        </div> */}
-
-{/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
-  <div>
-    
-  <div className="py-4 bg-[#031BBB]" style={{ width: democraticBarLength }}>
-    <span className="poppins6 text-white flex justify-center items-center" >
-      {statesDatas && statesDatas.Democratic ? `${statesDatas.Democratic}` : "0"}
-    </span>
-  </div>
-  </div>
-  
-  <div className="py-4 bg-redish" style={{ width: republicanBarLength }}>
-    <span className="poppins6 text-white flex justify-center items-center" >
-      {statesDatas && statesDatas.Republican ? `${statesDatas.Republican}` : "0"}
-    </span>
-  </div>
-  <div className="py-4 bg-white" style={{ width: independentBarLength }}>
-    <span className="poppins6 flex justify-center items-center" >
-      {statesDatas && statesDatas["Independent('Kennedy')"] ? `${statesDatas["Independent('Kennedy')"]}` : "0"}
-    </span>
-  </div>
-</div>  */}
-
-        {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
-  <div className="py-4 bg-[#031BBB] w-[50%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData && statesData.Democratic ? `${statesData.Democratic}` : "0"}
-    </span>
-  </div>
-  <div className="py-4 bg-white w-[15%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData && statesData["Independent('Kennedy')"] ? `${statesData["Independent('Kennedy')"]}` : "0"}
-    </span>
-  </div>
-  <div className="py-4 bg-redish w-[35%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData && statesData.Republican ? `${statesData.Republican}` : "0"}
-    </span>
-  </div>
-</div> */}
-
         <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
           <div
             className="py-4 bg-[#031BBB]"
@@ -749,47 +348,6 @@ useEffect(() => {
             </span>
           </div>
         </div>
-
-        {/* <div className="flex flex-col items-center w-full mb-[83px]">
-          <div className="flex justify-between items-center text-center w-full mb-4">
-            <span className="text-white poppins6 ">Democratic</span>
-            <span className="text-white poppins6 mr-12 ">Republican</span>
-            <span className="text-white poppins6">Independent</span>
-          </div>
-          <div className="flex w-full bg-[#131A41] rounded-[10.65px]">
-            <div
-              className="py-4 bg-[#031BBB]"
-              style={{ width: democraticBarLength }}
-            >
-              <span className="poppins4 flex justify-center items-center">
-                {statesData && statesData.Democratic
-                  ? `${statesData.Democratic}`
-                  : "0"}
-              </span>
-            </div>
-            <div
-              className="py-4 bg-redish"
-              style={{ width: republicanBarLength }}
-            >
-              <span className="poppins4 flex justify-center items-center">
-                {statesData && statesData.Republican
-                  ? `${statesData.Republican}`
-                  : "0"}
-              </span>
-            </div>
-            <div
-              className="py-4 bg-white"
-              style={{ width: independentBarLength }}
-            >
-              <span className="poppins4 flex justify-center items-center">
-                {statesData && statesData["Independent('Kennedy')"]
-                  ? `${statesData["Independent('Kennedy')"]}`
-                  : "0"}
-              </span>
-            </div>
-          </div>
-        </div> */}
-
         <div className="result-card ">
           <h2 className="text-white mb-12 poppins6 text-[25.4px] md:text-[56.4px]">
             Past results
@@ -855,7 +413,7 @@ useEffect(() => {
                   }}
                 >
                   <p className="text-white poppins4 hidden sm:hidden md:hidden lg:block truncate sm:text-[22px]">
-                    Republican
+                    Republic
                   </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-center text-[14px] sm:text-[28px] text-white">
@@ -907,15 +465,6 @@ useEffect(() => {
                   </p>
                   <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-14 text-[#131A41] opacity-70 ">
                     <p className="flex items-center gap-3 ">
-                      {/* <svg width="71" height="26" viewBox="0 0 71 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15.4206 25.6655C13.236 25.4884 11.2068 24.5159 9.75432 22.9501C8.96506 22.1374 7.99225 21.5067 6.90942 21.1056C6.22945 20.8731 5.4907 20.8463 4.7942 21.029C4.0977 21.2116 3.47739 21.5947 3.01777 22.126L3.02935 22.1091L0.5625 20.5403C1.3621 19.5248 2.47213 18.7704 3.73985 18.3811C5.00757 17.9918 6.37071 17.9866 7.64164 18.3663C9.19979 18.8624 10.6063 19.7158 11.7378 20.8512C13.8044 22.6294 14.9993 23.4987 17.5612 22.2647C19.7316 21.2117 20.4122 18.9459 21.1994 16.3282C22.089 13.3783 23.0881 10.0337 26.6565 8.38845C27.3986 7.9969 28.2265 7.77582 29.074 7.74245C29.9214 7.70908 30.7654 7.86437 31.5388 8.19624C32.7182 8.81181 33.7672 9.63089 34.6327 10.6118C36.3614 12.3419 37.5325 13.3725 39.7637 12.7987C42.3018 12.1456 44.0736 9.89267 45.949 7.50814C48.2425 4.59214 50.8414 1.28858 55.3082 0.864535C55.5944 0.837679 55.8789 0.825195 56.1606 0.825195C63.7868 0.825195 69.874 10.3108 70.1379 10.7292L67.5985 12.1879C67.5437 12.1002 62.113 3.65214 56.174 3.65214C55.9833 3.65214 55.7916 3.66115 55.5989 3.67906C52.4307 3.9773 50.4335 6.51584 48.3194 9.20286C46.2246 11.8658 44.0586 14.6191 40.5346 15.5252C36.4888 16.5669 34.1732 14.2533 32.4831 12.5571C30.7174 10.7903 29.8575 10.0452 27.9451 10.9273C25.573 12.0227 24.8656 14.3746 24.0472 17.0998C23.1933 19.9465 22.2238 23.1778 18.9029 24.7849C17.832 25.3381 16.6383 25.64 15.4206 25.6655Z" fill="url(#paint0_linear_650_2374)" />
-                                                <defs>
-                                                    <linearGradient id="paint0_linear_650_2374" x1="58.7276" y1="5.1971" x2="50.1242" y2="32.2101" gradientUnits="userSpaceOnUse">
-                                                        <stop stop-color="#131A41" />
-                                                        <stop offset="1" stop-color="white" stop-opacity="0.2" />
-                                                    </linearGradient>
-                                                </defs>
-                                            </svg> */}
                       {
                         previousData?.states?.[step]
                           ?.previous_election_state?.[2]?.vote_percentage
@@ -984,8 +533,8 @@ useEffect(() => {
                     width: `${previousData?.states?.[step]?.previous_election_state?.[4]?.vote_percentage}%`,
                   }}
                 >
-                  <p className="poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
-                    Republican
+                  <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
+                    Republic
                   </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-[14px] sm:text-[28px] text-white">
@@ -1037,15 +586,6 @@ useEffect(() => {
                   </p>
                   <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-2   text-[#131A41] opacity-70">
                     <p className="flex items-center gap-3">
-                      {/* <svg width="71" height="26" viewBox="0 0 71 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15.4206 25.6655C13.236 25.4884 11.2068 24.5159 9.75432 22.9501C8.96506 22.1374 7.99225 21.5067 6.90942 21.1056C6.22945 20.8731 5.4907 20.8463 4.7942 21.029C4.0977 21.2116 3.47739 21.5947 3.01777 22.126L3.02935 22.1091L0.5625 20.5403C1.3621 19.5248 2.47213 18.7704 3.73985 18.3811C5.00757 17.9918 6.37071 17.9866 7.64164 18.3663C9.19979 18.8624 10.6063 19.7158 11.7378 20.8512C13.8044 22.6294 14.9993 23.4987 17.5612 22.2647C19.7316 21.2117 20.4122 18.9459 21.1994 16.3282C22.089 13.3783 23.0881 10.0337 26.6565 8.38845C27.3986 7.9969 28.2265 7.77582 29.074 7.74245C29.9214 7.70908 30.7654 7.86437 31.5388 8.19624C32.7182 8.81181 33.7672 9.63089 34.6327 10.6118C36.3614 12.3419 37.5325 13.3725 39.7637 12.7987C42.3018 12.1456 44.0736 9.89267 45.949 7.50814C48.2425 4.59214 50.8414 1.28858 55.3082 0.864535C55.5944 0.837679 55.8789 0.825195 56.1606 0.825195C63.7868 0.825195 69.874 10.3108 70.1379 10.7292L67.5985 12.1879C67.5437 12.1002 62.113 3.65214 56.174 3.65214C55.9833 3.65214 55.7916 3.66115 55.5989 3.67906C52.4307 3.9773 50.4335 6.51584 48.3194 9.20286C46.2246 11.8658 44.0586 14.6191 40.5346 15.5252C36.4888 16.5669 34.1732 14.2533 32.4831 12.5571C30.7174 10.7903 29.8575 10.0452 27.9451 10.9273C25.573 12.0227 24.8656 14.3746 24.0472 17.0998C23.1933 19.9465 22.2238 23.1778 18.9029 24.7849C17.832 25.3381 16.6383 25.64 15.4206 25.6655Z" fill="url(#paint0_linear_650_2374)" />
-                                                <defs>
-                                                    <linearGradient id="paint0_linear_650_2374" x1="58.7276" y1="5.1971" x2="50.1242" y2="32.2101" gradientUnits="userSpaceOnUse">
-                                                        <stop stop-color="#131A41" />
-                                                        <stop offset="1" stop-color="white" stop-opacity="0.2" />
-                                                    </linearGradient>
-                                                </defs>
-                                            </svg> */}
                       {
                         previousData?.states?.[step]
                           ?.previous_election_state?.[5]?.vote_percentage
@@ -1112,8 +652,8 @@ useEffect(() => {
                     width: `  ${previousData?.states?.[step]?.previous_election_state?.[7]?.vote_percentage}%`,
                   }}
                 >
-                  <p className="poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
-                    Republican
+                  <p className="poppins6 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
+                    Republic
                   </p>
                   <div className="value ">
                     <p className="flex items-center gap-3 poppins4 text-[14px] sm:text-[28px] text-white">
@@ -1165,15 +705,6 @@ useEffect(() => {
                   </p>
                   <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-0 text-[#131A41] opacity-70">
                     <p className="flex items-center gap-3 -ml-5 sm:ml-4">
-                      {/* <svg width="71" height="26" viewBox="0 0 71 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15.4206 25.6655C13.236 25.4884 11.2068 24.5159 9.75432 22.9501C8.96506 22.1374 7.99225 21.5067 6.90942 21.1056C6.22945 20.8731 5.4907 20.8463 4.7942 21.029C4.0977 21.2116 3.47739 21.5947 3.01777 22.126L3.02935 22.1091L0.5625 20.5403C1.3621 19.5248 2.47213 18.7704 3.73985 18.3811C5.00757 17.9918 6.37071 17.9866 7.64164 18.3663C9.19979 18.8624 10.6063 19.7158 11.7378 20.8512C13.8044 22.6294 14.9993 23.4987 17.5612 22.2647C19.7316 21.2117 20.4122 18.9459 21.1994 16.3282C22.089 13.3783 23.0881 10.0337 26.6565 8.38845C27.3986 7.9969 28.2265 7.77582 29.074 7.74245C29.9214 7.70908 30.7654 7.86437 31.5388 8.19624C32.7182 8.81181 33.7672 9.63089 34.6327 10.6118C36.3614 12.3419 37.5325 13.3725 39.7637 12.7987C42.3018 12.1456 44.0736 9.89267 45.949 7.50814C48.2425 4.59214 50.8414 1.28858 55.3082 0.864535C55.5944 0.837679 55.8789 0.825195 56.1606 0.825195C63.7868 0.825195 69.874 10.3108 70.1379 10.7292L67.5985 12.1879C67.5437 12.1002 62.113 3.65214 56.174 3.65214C55.9833 3.65214 55.7916 3.66115 55.5989 3.67906C52.4307 3.9773 50.4335 6.51584 48.3194 9.20286C46.2246 11.8658 44.0586 14.6191 40.5346 15.5252C36.4888 16.5669 34.1732 14.2533 32.4831 12.5571C30.7174 10.7903 29.8575 10.0452 27.9451 10.9273C25.573 12.0227 24.8656 14.3746 24.0472 17.0998C23.1933 19.9465 22.2238 23.1778 18.9029 24.7849C17.832 25.3381 16.6383 25.64 15.4206 25.6655Z" fill="url(#paint0_linear_650_2374)" />
-                                                <defs>
-                                                    <linearGradient id="paint0_linear_650_2374" x1="58.7276" y1="5.1971" x2="50.1242" y2="32.2101" gradientUnits="userSpaceOnUse">
-                                                        <stop stop-color="#131A41" />
-                                                        <stop offset="1" stop-color="white" stop-opacity="0.2" />
-                                                    </linearGradient>
-                                                </defs>
-                                            </svg> */}
                       {
                         previousData?.states?.[step]
                           ?.previous_election_state?.[8]?.vote_percentage
