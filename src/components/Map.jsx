@@ -119,22 +119,23 @@ function Map() {
     <div className="w-10/12 m-auto relative">
       {tooltip && (
         <div className="svgModal py-5 shadow-md shadow-black px-5 rounded-[10px]">
-          {/* {statesData[step].state_image_url && ( */}
+          
+          {statesData[step].state_image_url && (
             <img
               src={`${ImageUrl}${statesData[step].state_image_url}`}
               alt={`${step} image`}
               className=" object-cover m-auto mb-2"
             />
-          {/* )} */}
+           )} 
           <h1 className="text-[25px] orbit7 text-center text-white mb-3">
             {step}  {voteCount(step).electricalCollege}
           </h1>
           <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 px-3">
             DEMOCRATIC:{" "}
             <span className="poppins4">
-              {!statesData[step]
+              {!statesData[step].Democratic
                 ? "0%"
-                : `${Math.round(statesData[step])}%`}
+                : `${Math.round(statesData[step].Democratic)}%`}
             </span>
           </p>
           <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 uppercase px-3">

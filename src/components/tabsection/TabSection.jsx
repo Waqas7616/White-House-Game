@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import statsone from '../../images/statsone.png'
+import statsone from "../../images/statsone.png";
 import badge from "../../images/president.svg";
-import badge2 from '../../images/vice president.svg'
+import badge2 from "../../images/vice president.svg";
 import ballot from "../../images/vote.svg";
 import kennedy from "../../images/image 46.png";
 
-import  republic from "../../images/Democratic_Party-logo-108C42372F-seeklogo 1.svg";
+import republic from "../../images/Democratic_Party-logo-108C42372F-seeklogo 1.svg";
 import democrat from "../../images/Republicanlogo 1.svg";
 import independ from "../../images/Constitution_Party_(USA)_logo 1.svg";
 import "../banner.css";
@@ -97,22 +97,7 @@ function TabSection() {
     votes: candidate.votes,
     percentage: Math.round((candidate.votes / totalVotes) * 100),
   }));
-  // console.log("all data", percentages);
-
-  // useEffect(() => {
-  //   if (stats?.data) {
-  //     setPresident(
-  //       stats?.data?.candidate_percentages.filter(
-  //         (item) => item.position === "president"
-  //       )
-  //     );
-  //     setVicePresident(
-  //       stats?.data?.candidate_percentages.filter(
-  //         (item) => item.position === "vice_president"
-  //       )
-  //     );
-  //   }
-  // }, [id]);
+  
   const [statesData, setStatesData] = useState({});
 
   useEffect(() => {
@@ -131,33 +116,25 @@ function TabSection() {
       });
   }, []);
 
-  const maxVotes = Math.max(statesData.Democratic, statesData.Republican, statesData["Independent('Kennedy')"]);
-const democraticBarLength = maxVotes === statesData.Democratic ? '100%' : `${(statesData.Democratic / maxVotes) * 100}%`;
-const republicanBarLength = maxVotes === statesData.Republican ? '100%' : `${(statesData.Republican / maxVotes) * 100}%`;
-const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ? '100%' : `${(statesData["Independent('Kennedy')"] / maxVotes) * 100}%`;
+  const maxVotes = Math.max(
+    statesData.Democratic,
+    statesData.Republican,
+    statesData["Independent('Kennedy')"]
+  );
+  const democraticBarLength =
+    maxVotes === statesData.Democratic
+      ? "100%"
+      : `${(statesData.Democratic / maxVotes) * 100}%`;
+  const republicanBarLength =
+    maxVotes === statesData.Republican
+      ? "100%"
+      : `${(statesData.Republican / maxVotes) * 100}%`;
+  const independentBarLength =
+    maxVotes === statesData["Independent('Kennedy')"]
+      ? "100%"
+      : `${(statesData["Independent('Kennedy')"] / maxVotes) * 100}%`;
 
-  // const [statesData, setStatesData] = useState({});
-
-  // useEffect(() => {
-  //   axios
-  //     .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
-  //       headers: {
-  //         Accept: "application/json",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log("states ka data hai:", res.data.electoral_votes_by_party);
-  //       setStatesData(res.data.electoral_votes_by_party);
-  //     })
-  //     .catch((err) => {
-  //       console.log("error hai:", err);
-  //     });
-  // }, []);
-
-//   const maxVotes = Math.max(statesData.Democratic, statesData.Republican, statesData["Independent('Kennedy')\n"]);
-// const democraticBarLength = maxVotes === statesData.Democratic ? '100%' : `${(statesData.Democratic / maxVotes) * 100}%`;
-// const republicanBarLength = maxVotes === statesData.Republican ? '100%' : `${(statesData.Republican / maxVotes) * 100}%`;
-// const independentBarLength = maxVotes === statesData["Independent('Kennedy')\n"] ? '100%' : `${(statesData["Independent('Kennedy')\n"] / maxVotes) * 100}%`;
+ 
 
   return (
     <div className="w-full bg-[#1c2452] py-8">
@@ -273,29 +250,7 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
                   President
                 </h2>
               </div>
-              {/* <div className="searchBar flex flex-col justify-center items-center ">
-                <label
-                  htmlFor="search "
-                  className="text-whiteColor text-center poppins4 text-[14px]"
-                >
-                  Select State
-                </label>
-                <select
-                  name="states"
-                  id="search"
-                  className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[230px] lg:w-[359px] px-3 py-2 rounded-[10px] text-whiteColor"
-                >
-                  <option className="bg-[#000] " value="">
-                    Select State
-                  </option>
-                  <option className="bg-[#000] " value="ny">
-                    New york
-                  </option>
-                  <option className="bg-[#000] " value="hst">
-                    Houston
-                  </option>
-                </select>
-              </div> */}
+             
 
               <div className="searchBar flex  flex-col items-center ">
                 <label
@@ -317,9 +272,7 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
                     id="search"
                     className="bg-transparent w-full outline-none "
                   >
-                    {/* <option className="bg-[#000]" value="">
-                    Select All States
-                  </option> */}
+                    
                     {allstates?.map((item) => (
                       <option
                         className="bg-[#1c2452]"
@@ -415,7 +368,10 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage&&item.percentage===100?item.percentage : item.percentage.toFixed(2)}%
+                              {item.percentage && item.percentage === 100
+                                ? item.percentage
+                                : item.percentage.toFixed(1)}
+                              %
                             </div>
                           </div>
                         </div>
@@ -423,19 +379,7 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
                     ))
                   )}
 
-                  {/* <div className="voteCount flex gap-1 sm:gap-5 items-center h-[60px] mt-8  bg-[#ED1C244D] rounded-l-lg">
-                  <div className="president-info relative bg-redish px-1 sm:px-4 w-2/4 sm:w-1/4 h-full flex justify-between  items-center rounded-l-lg">
-                    <div className=' overflow-hidden overflow-y-hidden mb-[20px] ' ><img className='w-full h-full object-cover' src={kennedy} alt="" /></div>
-                    <p className="poppins4 text-whiteColor w-[30%] sm:w-auto overflow-hidden text-ellipsis whitespace-nowrap  ">Robbert F. Kennedy</p>
-                    <img className='w-[20px] sm:w-auto' src={president} alt="" />
-
-                  </div>
-                  <div className="president-votes w-3/4">
-                    <div class="w-[98%] h-[31px] bg-[#454C72] rounded-full dark:bg-gray-700">
-                      <div class="bg-redish text-xs font-medium text-whiteColor h-full text-center p-2 poppins5  leading-none rounded-full" style={{ width: "45%" }}> 45%</div>
-                    </div>
-                  </div>
-                </div> */}
+              
                   <button
                     className="absolute bottom-[-20px] left-[50%]"
                     onClick={expandVotes}
@@ -485,7 +429,7 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
                               alt=""
                             />
                           </div>
-                          <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
+                          <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis sm:text-nowrap">
                             {item.candidate_name}
                           </p>
                           <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
@@ -518,7 +462,10 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage&&item.percentage===100?item.percentage : item.percentage.toFixed(2)}%
+                              {item.percentage && item.percentage === 100
+                                ? item.percentage
+                                : item.percentage.toFixed(1)}
+                              %
                             </div>
                           </div>
                         </div>
@@ -551,7 +498,11 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
 
             <div className="search-section flex flex-col sm:items-none  sm:flex-row  justify-between mt-16">
               <div className="badge flex items-center justify-between">
-                <img className="w-8 h-8 lg:w-14 lg:h-14 object-cover" src={badge2} alt="" />
+                <img
+                  className="w-8 h-8 lg:w-14 lg:h-14 object-cover"
+                  src={badge2}
+                  alt=""
+                />
                 <h2 className="poppins6 text-whiteColor text-nowrap md:text-[23px] lg:text-[30px] ms-3">
                   Vice President
                 </h2>
@@ -694,7 +645,10 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage&&item.percentage===100?item.percentage : item.percentage.toFixed(2)}%
+                              {item.percentage && item.percentage === 100
+                                ? item.percentage
+                                : item.percentage.toFixed(1)}
+                              %
                             </div>
                           </div>
                         </div>
@@ -797,7 +751,10 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
                               className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                             >
                               {" "}
-                              {item.percentage&&item.percentage===100?item.percentage : item.percentage.toFixed(2)}%
+                              {item.percentage && item.percentage === 100
+                                ? item.percentage
+                                : item.percentage.toFixed(1)}
+                              %
                             </div>
                           </div>
                         </div>
@@ -882,35 +839,59 @@ const independentBarLength = maxVotes === statesData["Independent('Kennedy')"] ?
         }}
       >
         <div className="flex justify-center my-8 ">
-            <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto  text-center">270 to Win</h2>
+          <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto  text-center">
+            270 to Win
+          </h2>
+        </div>
+        <div className="flex justify-center my-8 ">
+          <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">
+            What our game players Predict{" "}
+          </h2>
+        </div>
+
+        <div className="flex w-9/12 m-auto my-8 mb-[83px] flex-col items-center">
+          <div className="flex w-full justify-around items-center mb-4">
+            <span className="poppins6 text-white ">Democratic</span>
+            <span className="poppins6 text-white ">Republican</span>
+            <span className="poppins6 text-white ">Independent</span>
           </div>
-          <div className="flex justify-center my-8 ">
-            <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">What our game players Predict </h2>
+
+          <div className="flex w-full">
+            <div
+              className="py-4 bg-[#031BBB]"
+              style={{ width: democraticBarLength }}
+            >
+              <span className="poppins4 flex justify-center items-center">
+                {statesData && statesData.Democratic
+                  ? `${statesData.Democratic}`
+                  : "0"}
+              </span>
+            </div>
+
+            <div
+              className="py-4 bg-redish"
+              style={{ width: republicanBarLength }}
+            >
+              <span className="poppins4 flex justify-center items-center">
+                {statesData && statesData.Republican
+                  ? `${statesData.Republican}`
+                  : "0"}
+              </span>
+            </div>
+
+            <div
+              className="py-4 bg-white"
+              style={{ width: independentBarLength }}
+            >
+              <span className="poppins4 flex justify-center items-center">
+                {statesData && statesData["Independent('Kennedy')"]
+                  ? `${statesData["Independent('Kennedy')"]}`
+                  : "0"}
+              </span>
+            </div>
           </div>
-          <div className="flex flex-col w-9/12 m-auto my-8">
-    <div className="flex justify-around mb-2">
-      <span className="text-white poppins6">Democratic</span>
-      <span className="text-white poppins6">Republican</span>
-      <span className="text-white poppins6">Independent</span>
-    </div>
-    <div className="flex w-full">
-      <div className="flex-1 py-4 bg-[#031BBB]" style={{ width: democraticBarLength }}>
-        <span className="poppins4 flex justify-center items-center">
-          {statesData && statesData.Democratic ? `${statesData.Democratic}` : "0"}
-        </span>
-      </div>
-      <div className="flex-1 py-4 bg-redish" style={{ width: republicanBarLength }}>
-        <span className="poppins4 flex justify-center items-center">
-          {statesData && statesData.Republican ? `${statesData.Republican}` : "0"}
-        </span>
-      </div>
-      <div className="flex-1 py-4 bg-white" style={{ width: independentBarLength }}>
-        <span className="poppins4 flex justify-center items-center">
-          {statesData && statesData["Independent('Kennedy')"] ? `${statesData["Independent('Kennedy')"]}` : "0"}
-        </span>
-      </div>
-    </div>
-  </div>
+        </div>
+
         <div className="w-10/12 m-auto mt-12">
           <Map />
         </div>
