@@ -116,7 +116,7 @@ export default function MyVote() {
                   {/* w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] */}
                   <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
                     <img
-                      className="h-full w-full object-cover"
+                      className="w-[200px] !h-[220px]"
                       src={`${imageUrl}${userVote?.PredictedCandidateDetails?.[0]?.candidate_image}`}
                       alt=""
                     />
@@ -141,7 +141,7 @@ export default function MyVote() {
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
                     <img
-                      className="h-full w-full object-cover"
+                      className="w-[200px] !h-[220px]"
                       src={`${imageUrl}${userVote?.PredictedCandidateDetails?.[1]?.candidate_image}`}
                       alt=""
                     />
@@ -204,7 +204,7 @@ export default function MyVote() {
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
                     <img
-                      className="h-full w-full object-cover"
+                      className="w-[200px] !h-[220px]"
                       src={`${imageUrl}${selected?.[0]?.candidate_image}`}
                       alt=""
                     />
@@ -227,7 +227,7 @@ export default function MyVote() {
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
                     <img
-                      className="h-full w-full object-cover"
+                      className="w-[200px] !h-[220px]"
                       src={`${imageUrl}${selected?.[1]?.candidate_image}`}
                       alt=""
                     />
@@ -283,7 +283,7 @@ export default function MyVote() {
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
                     <img
-                      className="h-full w-full object-cover"
+                      className="w-[200px] !h-[220px] object-cover"
                       src={`${imageUrl}${selected?.[2]?.candidate_image}`}
                       alt=""
                     />
@@ -306,7 +306,7 @@ export default function MyVote() {
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
                     <img
-                      className="h-full w-full object-cover"
+                      className="w-[200px] !h-[220px] object-cover"
                       src={`${imageUrl}${selected?.[3]?.candidate_image}`}
                       alt=""
                     />

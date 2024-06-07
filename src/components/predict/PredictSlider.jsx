@@ -12,9 +12,12 @@ function PredictSlider({
   party_name,
   afterChange,
   selecClass,
+  imageValue,
 }) {
   const { setPresident, setVicePresident, setParty } = useStatePredictions();
   const [imageSelect, setImageSelect] = useState(false);
+
+
   const [candidatedata, setCandidateData] = useState([]);
   const [data2Index, setData2Index] = useState(0);
 
@@ -38,6 +41,7 @@ function PredictSlider({
           }
         );
         setCandidateData(response?.data?.votter_candidate);
+        console.log("waqaswaqas", candidatedata);
       } catch (error) {
         console.log("Error: ", error);
       }
@@ -53,6 +57,7 @@ function PredictSlider({
       (party_name === "Republican" && setParty(party)) ||
       (party_name === "Independent('Kennedy')" && setParty(party));
     setImageSelect(true);
+    imageValue();
   };
   const [arrow, setArrow] = useState(true);
 
@@ -60,11 +65,11 @@ function PredictSlider({
     <div
       {...props}
       // onClick={() => console.log(slide)}
-      className="absolute bottom-[-25%] right-2 sm:top-[40%] w-14 sm:w-[90px] sm:h-[91px] md:right-[0%]  cursor-pointer "
+      className="absolute bottom-[-25%] right-2 sm:top-[30%] w-14 sm:w-[75px] sm:h-[75px] md:right-[0%]  cursor-pointer "
     >
       <span
         onClick={() => setImageSelect(false)}
-        className={`text-2xl opacity-[0.3]  hover:opacity-100 ${
+        className={` opacity-[0.3]  hover:opacity-100 ${
           selecClass ? "block" : "hidden"
         }`}
       >
@@ -147,18 +152,18 @@ function PredictSlider({
   const CustomPrevArrow = (props) => (
     <div
       {...props}
-      className="absolute bottom-[-25%] left-2 sm:top-[40%] sm:left-[0%] w-14 sm:w-[90px] sm:h-[91px]   z-50  cursor-pointer"
+      className="absolute bottom-[-25%] left-2 sm:top-[30%] sm:left-[0%] w-14 sm:w-[75px] sm:h-[75px]   z-50  cursor-pointer"
     >
       <span
         onClick={() => setImageSelect(false)}
-        className={`text-2xl  opacity-[0.3] hover:opacity-100 ${
+        className={`  opacity-[0.3] hover:opacity-100 ${
           selecClass === true ? "block" : "hidden"
         }`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          // width="90"
-          // height="91"
+          // width="w-fit"
+          // height="w-fit"
           viewBox="0 0 90 91"
           fill="none"
         >
@@ -223,7 +228,7 @@ function PredictSlider({
   );
 
   const settings = {
-    arrows: true,
+    arrows: selecClass?true:false,
     infinite: true,
 
     draggable: selecClass ? true : false,
@@ -240,65 +245,66 @@ function PredictSlider({
   return (
     <div className="relative ">
       <Slider {...settings}>
-        {data1==='president'?
-        candidatedata
-          ?.filter((item) => item.party.party_name === party_name)
-          .map((item, index) => (
-            <div
-              key={index}
-              onClick={() => handleImage(item?.id, item?.votter_party_id)}
-              className={`w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
-                imageSelect && "border-white border-[10px] rounded[28.43px]"
-              }`}
-            >
-              <img
-                onClick={() => setArrow(false)}
-                className="w-full h-full object-cover"
-                src={`${imageUrl}${item?.candidate_image}`}
-                alt=""
-              />
-              <h2
-                className={`poppins6  text-center text-[10px] md:text-[16px] absolute bottom-8 md:ml-4 ${
-                  party_name === "Democratic"
-                    ? "bg-[#1c2452] text-white"
-                    : party_name === "Republican"
-                    ? "bg-redish text-white"
-                    : "bg-white text-black"
-                } px-1  md:px-4 md:py-1 z-50`}
-              >
-                {item?.candidate_name}
-              </h2>
-            </div>
-          ))
-        :(data1==='VicePresident'&&
-        candidatedata.sort((a,b)=>a-b)
-        ?.filter((item) => item.party.party_name === party_name)
-        .map((item, index) => (
-          <div
-            key={index}
-            onClick={() => handleImage(item?.id, item?.votter_party_id)}
-            className={`w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${imageSelect && "border-white border-[10px] rounded[28.43px]"
-              }`}
-          >
-            <img
-              onClick={()=>setArrow(false)}
-              className="w-full h-full object-cover"
-              src={`${imageUrl}${item?.candidate_image}`}
-              alt=""
-            />
-            <h2
-              className={`poppins6  text-center text-[10px] md:text-[16px] absolute bottom-8 md:ml-4 ${party_name === "Democratic"
-                  ? "bg-redish text-white"
-                  : party_name === "Republican"
-                    ? "bg-[#1c2452] text-white"
-                    : "bg-white text-black"
-                } px-1  md:px-4 md:py-1 z-50`}
-            >
-              {item?.candidate_name}
-            </h2>
-          </div>
-        ))
-        )}
+        {data1 === "president"
+          ? candidatedata
+              ?.filter((item) => item.party.party_name === party_name)
+              .map((item, index) => (
+                <div
+                  key={index}
+                  onClick={() => handleImage(item?.id, item?.votter_party_id)}
+                  className={`w-[200px] h-[220px]    rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
+                    imageSelect && "border-white border-[10px] rounded[28.43px]"
+                  }`}
+                >
+                  <img
+                    onClick={() => setArrow(false)}
+                    className="w-full h-full object-cover"
+                    src={`${imageUrl}${item?.candidate_image}`}
+                    alt=""
+                  />
+                  <h2
+                    className={`poppins6  text-center text-[10px] md:text-[12px] absolute bottom-8 md:ml-4 ${
+                      party_name === "Democratic"
+                        ? "bg-[#1c2452] text-white"
+                        : party_name === "Republican"
+                        ? "bg-redish text-white"
+                        : "bg-white text-black"
+                    } px-1  md:px-4 md:py-1 z-50`}
+                  >
+                    {item?.candidate_name}
+                  </h2>
+                </div>
+              ))
+          : data1 === "VicePresident" &&
+            candidatedata
+              ?.filter((item) => item.party.party_name === party_name)
+              .map((item, index) => (
+                <div
+                  key={index}
+                  onClick={() => handleImage(item?.id, item?.votter_party_id)}
+                  className={`w-[200px] h-[220px]    rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
+                    imageSelect && "border-white border-[10px] rounded[28.43px]"
+                  }`}
+                >
+                  <img
+                    onClick={() => setArrow(false)}
+                    className="w-full h-full object-cover"
+                    src={`${imageUrl}${item?.candidate_image}`}
+                    alt=""
+                  />
+                  <h2
+                    className={`poppins6  text-center text-[10px] md:text-[12px] absolute bottom-8 md:ml-4 ${
+                      party_name === "Democratic"
+                        ? "bg-[#1c2452] text-white"
+                        : party_name === "Republican"
+                        ? "bg-redish text-white"
+                        : "bg-white text-black"
+                    } px-1  md:px-4 md:py-1 z-50`}
+                  >
+                    {item?.candidate_name}
+                  </h2>
+                </div>
+              ))}
       </Slider>
     </div>
   );
