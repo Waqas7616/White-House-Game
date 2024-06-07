@@ -124,6 +124,7 @@ export const PutData = () => {
   let id = localStorage.getItem("id");
   console.log(id, "data");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [votedIn2020, setVotedIn2020] = useState("No");
   const [payload, setPayLoad] = useState({
     id: id,
     language_id: "",
@@ -143,21 +144,24 @@ export const PutData = () => {
     user_votter_party: "",
   });
 
-  // const handleSubscriptionChange = (e) => {
-  //   const value = e.target.value === "yes" ? "yes" : "No"; // Set "No" if unselected
-  //   setPayLoad({ ...payload, is_subscription_newsletter: value });
-  // };
+  
 
   const handleSubscriptionChange = (e) => {
     const isChecked = e.target.checked;
     const value = isChecked ? "yes" : "No";
-    setIsSubscribed(isChecked); // Update state to reflect checkbox state
+    setIsSubscribed(isChecked); 
     setPayLoad({ ...payload, is_subscription_newsletter: value });
 
-    // Check if not checked, update the payload to "No"
+    
     if (!isChecked) {
       setPayLoad({ ...payload, is_subscription_newsletter: "No" });
     }
+  };
+
+  const handleVoteChange = (e) => {
+    const value = e.target.value;
+    setVotedIn2020(value);
+    setPayLoad({ ...payload, is_votted_2020: value });
   };
 
   const handleSaveButtonClick = async () => {
@@ -702,9 +706,10 @@ export const PutData = () => {
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                   id="red"
                   value="yes"
-                  onChange={(e) =>
-                    setPayLoad({ ...payload, is_votted_2020: e.target.value })
-                  }
+                  // onChange={(e) =>
+                  //   setPayLoad({ ...payload, is_votted_2020: e.target.value })
+                  // }
+                  onChange={handleVoteChange}
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -734,6 +739,9 @@ export const PutData = () => {
                   type="radio"
                   class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                   id="no"
+                  onChange={handleVoteChange}
+                  defaultChecked
+                  
                 />
                 <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                   <svg
@@ -755,6 +763,8 @@ export const PutData = () => {
             </div>
           </div>
         </div>
+        {votedIn2020 === "yes" && (
+          <>
         <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
 
         <div className="flex justify-center items-center mt-10">
@@ -959,6 +969,8 @@ export const PutData = () => {
           </div>
         </div>
         <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
+        </>
+        )}
 
         <div className="flex justify-center items-center mt-10 ">
           <h2 className="font-poppins text-white font-bold  text-[14px] md:text-[18px] w-[345px] text-center">

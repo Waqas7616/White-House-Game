@@ -25,9 +25,11 @@ export const Modal = ({ candidate, onClose }) => {
   return (
     <div className="">
       <div className="rounded-lg ">
-        <Card className={`relative max-w-[20rem] overflow-hidden h-[450px] rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
-                      candidate?.party?.party_name
-                    )}`}>
+        <Card
+          className={`relative max-w-[20rem] overflow-hidden h-[450px] rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
+            candidate?.party?.party_name
+          )}`}
+        >
           <CardHeader
             floated={false}
             shadow={false}
@@ -53,7 +55,7 @@ export const Modal = ({ candidate, onClose }) => {
                   <div
                     className={`border-2 w-[69px] ${getBackgroundColor(
                       candidate?.party?.party_name
-                    )}`} 
+                    )}`}
                   />
                 </div>
                 <div className="w-[48px] h-[48px] flex justify-center items-center rounded-full bg-white">
@@ -64,7 +66,7 @@ export const Modal = ({ candidate, onClose }) => {
                   />
                 </div>
                 <div className="flex justify-center items-center ">
-                <div
+                  <div
                     className={`border-2 w-[69px] ${getBackgroundColor(
                       candidate?.party?.party_name
                     )}`}
@@ -104,29 +106,35 @@ export const Modal = ({ candidate, onClose }) => {
             <Typography
               variant="body1"
               color="textPrimary"
-              className="mb-3  text-[11px]  font-poppins"
+              className="mb-3  text-[10px]  font-poppins"
             >
-              <span className="font-extrabold">Occupation:</span>{" "}
-              {candidate?.occupation}
+              {/* <span className="font-extrabold">Occupation:</span>{" "} */}
+              {candidate?.occupation_1}
             </Typography>
             <Typography
               variant="body1"
               color="textPrimary"
-              className="mb-3  text-[11px] font-poppins"
+              className="mb-3  text-[9px] font-poppins"
             >
-              <ul >
-                              {candidate?.position
-                                .split(",")
-                                .map((positionItem, index) => (
-                                  <li
-                                    key={index}
-                                    className=""
-                                  >
-                                    {positionItem.trim()}
-                                  </li>
-                                ))}
-                            </ul>
+              <ul>
+                {candidate?.position_1.split(",").map((positionItem, index) => (
+                  <li key={index} className="">
+                    {positionItem.trim()}
+                  </li>
+                ))}
+              </ul>
             </Typography>
+            {/* <Typography
+              variant="body1"
+              color="textPrimary"
+              className="mb-3 text-[11px] font-poppins line-clamp-6"
+            >
+              {candidate?.position_1.split(",").map((positionItem, index) => (
+                <span key={index} className="block">
+                  {positionItem.trim()}
+                </span>
+              ))}
+            </Typography> */}
           </div>
         </Card>
       </div>
