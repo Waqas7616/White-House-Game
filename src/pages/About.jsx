@@ -8,8 +8,11 @@ import foriegn from "../images/foriegnicon.png";
 import play from "../images/gameplay.png";
 import DownloadApp from "../components/DownloadApp";
 import bg from "../images/div.png";
+import { useNavigate } from "react-router-dom";
 
 function About() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <AppBanner
@@ -17,7 +20,14 @@ function About() {
         bg={bg}
         bannerTitle={"US"}
         bannerDesc={
-          "We believe the 2024 Presidential Election is the most important since 1860. The results of that election triggered a Civil War. Will this one do the same?"
+          <>
+            The 2024 Presidential Election is the most important
+            since 1860.
+            <br />
+            The results of that election triggered a Civil War.
+            <br />
+            Will this one do the same?
+          </>
         }
       />
 
@@ -93,18 +103,26 @@ function About() {
         <div className="resp w-10/12 m-auto">
           <h2 className="orbit9 text-center xl:text-[50px] text-white xl:w-[70%] m-auto">
             Who designed and built
-            <br /> The White House Game
+            <br /> The <span className="text-[#1C2452]">White House</span> Game
           </h2>
           <p className="poppins3 text-white/90 xl:text-[20px] text-center xl:w-[70%] m-auto mt-8">
             The game was designed and built by{" "}
             <span>
-              <a href="https://abacusmultimedia.com/" className="poppins6 hover:underline">Abacus Multimedia</a>
+              <a
+                href="https://abacusmultimedia.com/"
+                className="poppins6 hover:underline"
+              >
+                Abacus Multimedia{" "}
+              </a>
+              
             </span>{" "}
             as an example of what we can do. We have a team of highly skilled
-            graphic designers and our own frontend and backend teams. We have
-            our SEO technicians, supervise language translations in-house and
-            have our own content creators. If you need an App or Website built
-            on any budget, contact us.
+            graphic designers and our own frontend and backend teams. We have a
+            team of highly skilled graphic designers and our own frontend and
+            backend development teams, our SEO technicians, supervise language
+            translations in-house and have our own content creators.
+            <br /> If you need an App or Website built on any budget, <span className="cursor-pointer poppins6 hover:underline" onClick={()=>navigate("/contact")}>contact us.</span>{" "}
+            
           </p>
         </div>
       </div>

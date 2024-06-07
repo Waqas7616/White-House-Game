@@ -25,7 +25,7 @@ export const Modal = ({ candidate, onClose }) => {
   return (
     <div className="">
       <div className="rounded-lg ">
-        <Card className={`relative max-w-[20rem] overflow-hidden h-[450px] rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
+        <Card className={`relative max-w-[20rem] overflow-hidden  rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
                       candidate?.party?.party_name
                     )}`}>
           <CardHeader
@@ -75,7 +75,7 @@ export const Modal = ({ candidate, onClose }) => {
           </CardHeader>
 
           <div
-            className={` flex flex-col justify-start px-5 h-[220px] pt-3  ${getBackgroundColor(
+            className={` flex flex-col justify-start px-5  pt-3  ${getBackgroundColor(
               candidate?.party?.party_name
             )} ${getTextColor(candidate?.party?.party_name)}`}
           >
@@ -91,7 +91,7 @@ export const Modal = ({ candidate, onClose }) => {
               color="textSecondary"
               className="mb-3  text-[12px] font-poppins"
             >
-              Born: {candidate?.dob}
+              Born {candidate?.dob}
             </Typography>
             <Typography
               variant="body1"

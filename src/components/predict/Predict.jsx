@@ -9,11 +9,12 @@ import check from "../../images/check.png";
 import axios from "axios";
 import { Await } from "react-router-dom";
 
-function Predict({ titleImage, party, afterchange, submitData,name }) {
+function Predict({ titleImage, party, afterchange, submitData, name }) {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [candidateData, setCandidateData] = useState([]);
-  console.log("candidateData", candidateData)
-
+  console.log("candidateData", candidateData);
+  const [presdborder, setPresdborder] = useState(true);
+  const [viceborder, setViceborder] = useState(true);
 
   const [sliderBackground, setSliderBackground] = useState("transparent");
 
@@ -39,68 +40,88 @@ function Predict({ titleImage, party, afterchange, submitData,name }) {
     setSliderBackground(
       "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)"
     );
-    submitData()
-
+    submitData();
   };
   // const data = [obama, west];
-
+  const getButtonBackground = (party) => {
+    switch (party) {
+      case "Democratic":
+        return "bg-blue-500 text-white";
+      case "Republican":
+        return "bg-red-500 text-white";
+      case "Independent":
+        return "bg-green-500 text-white";
+      default:
+        return "bg-white !text-black";
+    }
+  };
 
   return (
-    <div className="bg-[#1c2452] py-[100px]">
-      <div className="resp m-auto w-10/12">
-        <img src={question} alt="" className="m-auto" />
-        <img src={titleImage} alt="" className="m-auto mt-5" />
-        <p className="poppins4 text-white text-center xl:w-[55%] xl:text-[30px] m-auto mt-5">
-          Select who you think will be the {name} Party&apos;s Presidential
-          candidate on
-        </p>
-        <p className="poppins4 text-white/80 xl:text-[22px] text-center justify-center flex items-center gap-2 m-auto mt-5">
+    <div className="bg-[#1c2452] pb-[20px]">
+      <div className=" m-auto ">
+        {/* <img src={question} alt="" className="m-auto" /> */}
+        {/* <img src={titleImage} alt="" className="m-auto mt-5" /> */}
+        {/* <p className="poppins4 text-white text-center xl:w-[55%] xl:text-[30px] m-auto mt-5">
+        Predict America’s next President and Vice President <br />Select who you predict will be the candidates on
+        </p> */}
+        {/* <p className="poppins4 text-white/80 xl:text-[22px] text-center justify-center flex items-center gap-2 m-auto mt-5">
           <img src={calender} alt="" />
           Tuesday, November
           <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
-        </p>
+        </p> */}
 
         <div
-          className={`w-full rounded-lg  relative mt-12 ${isButtonClicked && "border-8"
-            }`}
+          className={` m-auto rounded-lg  relative mt-12 ${
+            isButtonClicked && "border-8 px-3"
+          }`}
           style={{ background: sliderBackground }}
         >
-          <div className="flex gap-4 items-center justify-start w-full m-auto mt-[50px]">
-            <div className="w-[120px] h-[130px] sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[562px] xl-a:h-[572px] m-auto">
-              <h4 className="poppins6 text-white xl:text-[38px]">President</h4>
-              <div
-
-
-              >
+          <div className="flex gap-4 items-center justify-start  m-auto mt-[50px]">
+            <div className="w-[200px] h-[220px]  m-auto">
+              <h4 className="poppins6 text-white xl:text-[20px]">President</h4>
+              <div>
                 <PredictSlider
                   party_name={party}
                   // data={data}
                   printData={console.log("hello")}
                   data1="president"
+                  imageValue={() => setPresdborder(false)}
                   selecClass={isButtonClicked ? false : true}
-
                 />
               </div>
-
             </div>
-            <div className="w-[120px] h-[130px] sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[562px] xl-a:h-[572px] m-auto">
-              <h4 className="poppins6 text-white xl:text-[38px]">
+            <div className="w-[200px] h-[220px]  m-auto">
+              <h4 className="poppins6 text-white xl:text-[20px]">
                 Vice President
               </h4>
               <div>
-                <PredictSlider party_name={party}  afterChange={afterchange} data1="VicePresident" selecClass={isButtonClicked ? false : true} />
+                <PredictSlider
+                  party_name={party}
+                  afterChange={afterchange}
+                  imageValue={() => setViceborder(false)}
+                  data1="VicePresident"
+                  selecClass={isButtonClicked ? false : true}
+                />
               </div>
-
             </div>
-
           </div>
 
           <div className="flex justify-center relative  mt-24">
             {/* Button */}
-            <button
+            {/* <button
               onClick={handleButtonClick}
               className={`rounded-lg px-5 py-3 bg-red-500 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 ${isButtonClicked ? "hidden" : ""
                 }`}
+            >
+              <img src={check} className="w-4" alt="" />{" "}
+              {isButtonClicked ? "Selected" : "Select"}
+            </button> */}
+            <button
+              disabled={presdborder || viceborder}
+              onClick={handleButtonClick}
+              className={`rounded-lg px-5 py-3 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 ${
+                isButtonClicked ? "hidden" : getButtonBackground(party)
+              } ${presdborder || viceborder ? "opacity-40" : ""}`}
             >
               <img src={check} className="w-4" alt="" />{" "}
               {isButtonClicked ? "Selected" : "Select"}
