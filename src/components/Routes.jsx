@@ -20,6 +20,7 @@ import Candidate from "./candidate/Candidate";
 import TermsCondition from "../pages/TermsCondition"
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import MyVote from "../pages/MyVote";
+import PredictionAndElectoral from "../pages/PredictionAndElectoral";
 
 function AppRoutes() {
   const [user, setUser] = useState();
@@ -74,6 +75,7 @@ function AppRoutes() {
         <Route path="/termscondition" element={<TermsCondition/>}/>
         <Route path="/privacypolicy" element={<PrivacyPolicy/>}/>
         <Route path="/myvote" element={<MyVote/>}/>
+        <Route path="/predictandelectoral" element={<PredictionAndElectoral/>}/>
       </Routes>
     </Router>
   );

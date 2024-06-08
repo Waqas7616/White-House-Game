@@ -31,7 +31,7 @@ const initialElectoralCount = {
 function ElectoralCollege() {
   const { state_predictions, addPrediction, clearPredictions } =
     useStatePredictions();
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(56);
   const [partyClick, setPartyClick] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
   const [electoralCount, setElectoralCount] = useState(() => {
@@ -253,7 +253,7 @@ function ElectoralCollege() {
         redTitle={"Electoral"}
         bg={electoral}
         bannerDesc={
- <>538 Electoral College delegates <br/>decide who will be<br/>President of the United States</>
+ <>The Electoral College has <span className="text-redish orbit7">538</span>  delegates <br/>Whoever wins <span className="text-redish orbit7">270</span> decides who will be<br/>President of the United States<br/><span className="!mt-12">Predict who wins each State </span></>
         }
       />
 
@@ -277,7 +277,8 @@ function ElectoralCollege() {
             </div>
             <div className="name">
               <h6 className="poppins6 text-white text-center text-[20px] sm:text-[33px]">
-                {previousData?.states?.[step]?.name}
+                {/* {previousData?.states?.[step]?.name==='USA'?'United States of America':previousData?.states?.[step]?.name} */}
+                United States of America
               </h6>
               <p className="poppins4 text-white text-center text-[12px] sm:text-[28px]">
                 {/* 9 Electoral College votes */}
@@ -318,7 +319,7 @@ function ElectoralCollege() {
           </div>
 
          
-          <div className="badges mb-10">
+          <div className="badges mb-4">
           
             <div className="flex flex-col lg:flex lg:flex-row lg:justify-between lg:gap-3 ">
               <div
@@ -364,7 +365,7 @@ function ElectoralCollege() {
           </div>
         </div>
 
-        <div className="flex items-center justify-center  w-full mt-5 mb-[60px] mx-auto">
+        <div className="flex items-center justify-center  w-full mt-3 mb-4 mx-auto">
           <button
             onClick={() => {
               if (step > 0) {
@@ -591,9 +592,10 @@ function ElectoralCollege() {
     </span>
   </div>
 </div> */}
-        <h2 className="text-white mb-3 poppins6 text-[25.4px] md:text-[36.4px]">
+        <h2 className="text-white  poppins6 text-[25.4px] md:text-[36.4px]">
           Your Electoral College Tally
         </h2>
+        <div className="flex justify-between">
         <div className="flex gap-5 items-center mb-4">
           <div className="dem flex gap-3 items-center">
             <div className="w-8 h-2 bg-[#031BBB]"></div>
@@ -608,7 +610,9 @@ function ElectoralCollege() {
             <p className="poppins5 text-white">Independent</p>
           </div>
         </div>
-        <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-8 w-full">
+        <p className="poppins5 text-white pr-5">270 to win</p>
+        </div>
+        <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-3 w-full">
           <div
             className="py-4 bg-[#031BBB]"
             style={{

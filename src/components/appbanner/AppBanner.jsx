@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 import text from "../../images/whitehouse.png";
 import { Link } from "react-router-dom";
 
-function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
+function AppBanner({ bannerDesc,bannerDesc2,bannerDesc3,bannerDesc4, bannerTitle, redTitle, bg }) {
   const [active, setActive] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
@@ -200,9 +200,13 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
             {" "}
             <span className="text-redish">{redTitle}</span> {bannerTitle}
           </h1>
-          <p className="text-whiteColor space  poppins4 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px] xl:text-[30px]">
+          <p className="text-whiteColor space   orbit6 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px] xl:text-[30px]">
             {bannerDesc}
           </p>
+          <p className="text-whiteColor space  orbit6 mt-20 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px] xl:text-[30px]">
+            {bannerDesc2}
+          </p>
+         
         </div>
       </div>
     </div>

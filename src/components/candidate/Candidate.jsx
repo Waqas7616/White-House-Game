@@ -273,7 +273,7 @@ const Candidate = () => {
           bannerTitle={"Data"}
           redTitle={"Candidate"}
           bannerDesc={
-            <>Candidates and potential Candidates for <br/>President and Vice Presiden</>
+            <>Candidates and potential Candidates for <br/>President and Vice President</>
           }
           bg={bg}
         />

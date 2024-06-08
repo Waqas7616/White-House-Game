@@ -9,6 +9,7 @@ import republic from "../images/democrat.png";
 import democrat from "../images/republican.png";
 import independ from "../images/independent.png";
 import check from "../images/check.png";
+import calender from '../images/calender.png'
 
 
 export default function MyVote() {
@@ -61,26 +62,27 @@ export default function MyVote() {
       <AppBanner
         bannerTitle={"Vote"}
         redTitle={"My"}
-        bannerDesc={"America votes on Tuesday, November 5 2024"}
+        bannerDesc={<>America votes<br/><span className="flex justify-center items-center mb-12"><img src={calender} alt="" />Tuesday, November 5 2024</span><br/> </>  }
+        bannerDesc2={<p>This is <span className="text-redish !orbit6">My Prediction</span></p>}
         bg={bg}
       />
-      <div className="w-full pt-[100px] bg-[#1c2452]">
+      <div className="w-full pt-[30px] bg-[#1c2452]">
         <div className="resp m-auto w-10/12">
-          <div className="">
+          <div className="flex justify-center w-[55%] m-auto">
             <img className="m-auto" src={logo} alt="" />
 
-            <p className="poppins4 text-white/90 xl:text-[24px] mt-6 text-center w-[43%] m-auto">
+            <p className="poppins4 text-white/90 xl:text-[24px] mt-6 text-center  m-auto">
               This is my Prediction who the candidates will be and who will be
-              our next
+              our next President and Vice President
             </p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap justify-evenly gap-4">
             <div
               // style={{
               //   background:
               //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
               // }}
-              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative ${
+              className={` rounded-lg  pb-24 pt-9 mt-5 px-2 relative ${
                 userVote?.PredictedCandidateDetails?.[0]?.party_name ===
                 "Republican"
                   ? "bg-redish"
@@ -169,7 +171,7 @@ export default function MyVote() {
             {/* other parties */}
 
             <div
-              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative opacity-50 ${
+              className={` rounded-lg px-2 pb-24 pt-9 mt-5  relative opacity-50 ${
                 selected?.[0]?.party_name === "Republican"
                   ? "bg-redish"
                   : selected?.[0]?.party_name === "Democratic"
@@ -202,9 +204,9 @@ export default function MyVote() {
                   <h4 className="poppins6  xl:text-[20px] mb-2">
                     President
                   </h4>
-                  <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
+                  <div className="w-[200px] h-[220px] rounded-[28.43px] object-cover  overflow-hidden   ">
                     <img
-                      className="w-[200px] !h-[220px]"
+                      className="w-[200px] !h-[220px] object-cover"
                       src={`${imageUrl}${selected?.[0]?.candidate_image}`}
                       alt=""
                     />
@@ -227,7 +229,7 @@ export default function MyVote() {
                   </h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
                     <img
-                      className="w-[200px] !h-[220px]"
+                      className="w-[200px] !h-[220px] object-cover"
                       src={`${imageUrl}${selected?.[1]?.candidate_image}`}
                       alt=""
                     />
@@ -247,7 +249,7 @@ export default function MyVote() {
               </div>
             </div>
             <div
-              className={`w-full rounded-lg  pb-24 pt-9 mt-5  relative opacity-50 ${
+              className={`px-2 rounded-lg  pb-24 pt-9 mt-5  relative opacity-50 ${
                 selected?.[2]?.party_name === "Republican"
                   ? "bg-redish"
                   : selected?.[2]?.party_name === "Democratic"

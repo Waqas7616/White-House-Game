@@ -15,7 +15,7 @@ export const Version = () => {
         if (selectedOption === "predict") {
             navigate('/predict');
         } else if (selectedOption === "electoral") {
-            navigate('/electoral');
+            navigate('/predictandelectoral');
         }
     };
 

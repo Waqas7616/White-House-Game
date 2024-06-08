@@ -356,7 +356,7 @@ const StateWinner = () => {
         </div>
         <div className="flex justify-center mb-9 ">
           <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">
-            What our players are predicting{" "}
+          Who you are predicting will win{" "}
           </h2>
         </div>
         <div
@@ -369,19 +369,19 @@ const StateWinner = () => {
               style={{ zIndex: 1 }}
             >
               <tr className="bg-[#272f5b] border-b-2 dark:bg-gray-800 dark:border-gray-700">
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                <th className="px-6 orbit7 py-3 lg:py-10 text-[9px] lg:text-[22px]">
                   <div className="flex justify-center items-center">
                     <span>2020 Winner</span>
                   </div>
                 </th>
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                <th className="px-6 orbit7 py-3 lg:py-10 text-[9px] lg:text-[25px]">
                   <div className="flex justify-center items-center">
-                    <span>STATE</span>
+                    <span>State</span>
                   </div>
                 </th>
-                <th className="px-6 py-3 lg:py-10 text-[9px] lg:text-[22px]">
+                <th className="px-6 orbit7 py-3 lg:py-10 text-[9px] lg:text-[22px]">
                   <div className="flex justify-center items-center">
-                    <span>2024 Prediction</span>
+                    <span>2024 Your Prediction</span>
                   </div>
                 </th>
               </tr>

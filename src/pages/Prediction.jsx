@@ -73,15 +73,15 @@ console.log('check this',voting)
   return (
     <div className="">
       <AppBanner
-        redTitle={"YOUR"}
+        redTitle={"MAKE A"}
         bg={bg}
         bannerTitle={"PREDICTION"}
         bannerDesc={
-          <>Predict the next President of the United States <br/> and tell the world what you think!</>
+          <>Predict the next President and Vice President of the United States<br/> Start by predicting each party’s candidates</>
         }
       />
        <p className="poppins4 text-white text-center xl:w-[55%] xl:text-[30px] m-auto mt-5">
-        Predict America’s next President and Vice President <br />Select who you predict will be the candidates on
+       Scroll the candidates and click to select <br />who you believe will be nominees on
         </p>
         <p className="poppins4 text-white/80 xl:text-[22px] text-center justify-center flex items-center gap-2 m-auto mt-5">
           <img src={calender} alt="" />
@@ -120,7 +120,7 @@ console.log('check this',voting)
        <div className="flex items-center gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded"><span className=""><img className="w-10" src={independent} alt="" /></span>
         <h2>Independent</h2>
         </div>
-        <p className="absolute right-0 top-[7px] text-[10px] w-[52%] text-white">Select who you believe will be the <br/> leading Independent candidates on election day</p>
+        <p className="absolute right-0 top-[7px] text-[10px] w-[52%] text-white">Select leading Independent or <br/>third party on election day</p>
         </div>
       <Predict
       name={'Independent'}
@@ -134,7 +134,7 @@ console.log('check this',voting)
       </div>
       <div className="buttons flex items-center justify-center gap-4 xl:mt-[54px] mb-3 ">
         {/* <button className="rounded-[6px] text-white poppins-6 border-[1px] border-white px-5 py-2 sm:px-10 sm:py-2 ">Edit my predictions</button> */}
-        <button onClick={sendPrediction} className="rounded-[6px] text-white poppins-6 border-[1px] border-redish px-10 py-2 bg-redish">Submit my prediction</button>
+        <button onClick={sendPrediction} className="rounded-[6px] text-white poppins-6 border-[1px] border-redish px-10 py-2 bg-redish">Submit your prediction</button>
       </div>
       <DownloadApp />
     </div>
