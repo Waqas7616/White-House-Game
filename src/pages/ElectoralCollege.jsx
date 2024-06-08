@@ -288,7 +288,7 @@ function ElectoralCollege() {
           </div>
         </div>
         <div className="flex mb-2 justify-end w-full">
-          <div onClick={()=>handleRemoval()}>{partyClick && (
+          <div onClick={()=>handleRemoval(selectedButtonId)}>{partyClick && (
                   <EditButton/>
                 )}{" "}</div>
             
