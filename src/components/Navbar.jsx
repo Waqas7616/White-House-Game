@@ -15,7 +15,12 @@ function Navbar() {
   // const token = localStorage.getItem("token");
   const [showModal, setShowModal] = useState(false);
   // const login = localStorage.getItem("email")
-
+  const data = {
+    title: "My",
+    title2: "Account",
+    desc: "Honest information helps us predict ",
+    desc2: "the mood of the nation",
+  };
   const handlePredictClick = () => {
     setShowModal(true);
 
@@ -134,7 +139,7 @@ function Navbar() {
               </li>
             </Link> */}
             <Link
-            target="_blank"
+              target="_blank"
               to={
                 "http://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
               }
@@ -167,6 +172,16 @@ function Navbar() {
             >
               Tell us who you think will win ?
             </li>
+            <Link to={"/myvote"}>
+              {" "}
+              <li
+                className={`nav-link poppins4 hover:text-redish ${
+                  location.pathname === "/myvote" ? "active" : ""
+                }  cursor-pointer hover:font-[500] text-whiteColor`}
+              >
+                My Vote
+              </li>
+            </Link>
             {/* </Link> */}
             <div className="fixed flex items-center justify-center w-full h-full left-0 top-[10.5rem]  z-50 ">
               <div className=" z-50  modal-container ">
@@ -205,18 +220,18 @@ function Navbar() {
               >
                 <button
                   className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
-                    location.pathname === "/myvote"
+                    location.pathname === "/putdata"
                       ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
                       : ""
                   }`}
-                  onClick={() => navigate("/myvote")}
+                  onClick={() => navigate("/putdata", { state: { data } })}
                 >
-                  My Vote
+                  My Account
                 </button>
                 <button
                   onClick={logOut}
                   className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
-                    location.pathname !== "/myvote"
+                    location.pathname !== "/putdata"
                       ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
                       : ""
                   }`}
@@ -313,6 +328,12 @@ function Navbar() {
             >
               Tell us who you think will win ?
             </li>
+            <Link to={"/myvote"}>
+              {" "}
+              <li className="nav-link poppins4 hover:text-redish cursor-pointer hover:font-[500] text-whiteColor">
+                My Vote
+              </li>
+            </Link>
             {showModal && (
               <div className="relative flex items-center justify-center w-full h-full left-0 -top-52  z-50 ">
                 <div className=" z-50 modal-container ">
@@ -320,8 +341,6 @@ function Navbar() {
                 </div>
               </div>
             )}
-
-           
           </div>
           <div className="download-button flex items-center justify-between gap-2">
             {/* <svg

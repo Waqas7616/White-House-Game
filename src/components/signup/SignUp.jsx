@@ -514,6 +514,7 @@ import DownloadApp from "../DownloadApp";
 
 export const SignUp = () => {
   const [name, setName] = useState(""); // State for name
+  
   const [email, setEmail] = useState(""); // State for email
   const [password, setPassword] = useState(""); // State for password
   const [confirmed, setConfirmed] = useState(""); // State for confirm password
