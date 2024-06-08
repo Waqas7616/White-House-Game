@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AppBanner from "../components/appbanner/AppBanner";
-import bg from "../images/predictbg.png";
+import bg from "../images/prediction.jpg";
 import Predict from "../components/predict/Predict";
 import dem from "../images/demTITLE.png";
 import rep from "../images/repTITLE.png";

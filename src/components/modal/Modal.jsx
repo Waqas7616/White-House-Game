@@ -25,7 +25,7 @@ export const Modal = ({ candidate, onClose }) => {
   return (
     <div className="">
       <div className="rounded-lg ">
-        <Card className={`relative max-w-[20rem] overflow-hidden  rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
+        <Card className={`relative max-w-[20rem] overflow-hidden w-[450px] rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
                       candidate?.party?.party_name
                     )}`}>
           <CardHeader
