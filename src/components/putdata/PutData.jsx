@@ -3,14 +3,16 @@ import logo1 from "../../images/logo1.png";
 import Layer from "../../images/Layer.png";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation} from "react-router-dom";
 import AppBanner from "../appbanner/AppBanner";
 import bg from "../../images/images1.jpg";
 import { Spinner } from "@material-tailwind/react";
 import CustomSpinner from "../spinner";
 
 export const PutData = () => {
+  const location = useLocation()
   const navigate = useNavigate();
+  const data=location.state?.data;
   const [AgeGroup, setAgeGroup] = useState([]);
   const[isLoading,setIsLoading]=useState(false);
   useEffect(() => {
@@ -234,16 +236,18 @@ export const PutData = () => {
 
   return (
     <>
-      <div className="h-screen">
-        <AppBanner
-          bannerTitle={"an account"}
-          redTitle={"create"}
-          bannerDesc={"And help us predict the mood of the nation"}
-          bg={bg}
-        />
-        <div className="bg-[#1c2452] py-10 m-auto w-[80%] ">
-          <div className="bg-[#1c2452] pb-10 m-auto  ">
-            {/* <div className="flex justify-center pt-5 ">
+    <div className="h-screen">
+    <AppBanner
+        bannerTitle={data.title2}
+        redTitle={data.title}
+        bannerDesc={<>{data.desc}<br/>{data.desc2}</> }
+        
+        bg={bg}
+      />
+      <div className="bg-[#1c2452] py-10 m-auto w-[80%] ">
+    
+      <div className="bg-[#1c2452] pb-10 m-auto  ">
+        {/* <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">
             Forgot Password
           </h2>
@@ -749,7 +753,7 @@ export const PutData = () => {
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="veteran"
                       value="No"
-                      defaultChecked
+                    
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,

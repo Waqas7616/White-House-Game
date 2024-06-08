@@ -9,7 +9,11 @@ import Navbar from "../Navbar";
 
 function EmailVerification(props) {
   const navigate = useNavigate();
-
+  const data={
+    title:'Create',
+    title2:'An Account',
+    desc:'And help us predict the mood of the nation'
+  }
   // console.log("Email from props:", props.email);
   // const { email } = props.location.state;
 
@@ -115,7 +119,7 @@ function EmailVerification(props) {
 
         // alert("OTP verified successfully!");
         // Redirect or perform any other action upon successful OTP verification
-        navigate("/PutData");
+        navigate("/PutData",{state:{data}});
       } else {
         alert("OTP verification failed. Please try again.");
       }
