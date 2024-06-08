@@ -3,12 +3,15 @@ import logo1 from "../../images/logo1.png";
 import Layer from "../../images/Layer.png";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation} from "react-router-dom";
 import AppBanner from "../appbanner/AppBanner";
 import bg from '../../images/images1.jpg'
+import DownloadApp from "../DownloadApp";
 
 export const PutData = () => {
+  const location = useLocation()
   const navigate = useNavigate();
+  const data=location.state?.data;
   const [AgeGroup, setAgeGroup] = useState([]);
   useEffect(() => {
     axios
@@ -190,9 +193,10 @@ export const PutData = () => {
     <>
     <div className="h-screen">
     <AppBanner
-        bannerTitle={"an account"}
-        redTitle={"create"}
-        bannerDesc={"And help us predict the mood of the nation"}
+        bannerTitle={data.title2}
+        redTitle={data.title}
+        bannerDesc={<>{data.desc}<br/>{data.desc2}</> }
+        
         bg={bg}
       />
       <div className="bg-[#1c2452] py-10 m-auto w-[80%] ">
@@ -844,7 +848,7 @@ export const PutData = () => {
                 class="mt-px font-poppins text-white text-[11px] md:text-[14px] cursor-pointer select-none"
                 htmlFor="react"
               >
-                Trump/Pense
+                Trump/Pence
               </label>
             </div>
           </div>
@@ -1196,6 +1200,7 @@ export const PutData = () => {
           </div>
       </div>
       </div>
+      <DownloadApp/>
       </div>
     </>
   );
