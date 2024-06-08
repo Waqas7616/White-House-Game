@@ -304,10 +304,10 @@ function CustomSlider() {
               {data?.map((item, index) => (
                 <div
                   key={index}
-                  className="candidate flex flex-col items-center justify-between gap-[10px] "
+                  className="candidate flex flex-col items-center justify-center gap-[10px] "
                   onClick={() => handleCandidateClick(index)}
                 >
-                  <div className="image w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%]  flex">
+                  <div className="image w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%]  m-auto">
                     <img
                       className=" w-[129px] h-[129px] sm:w-[130px] sm:h-[130px] md:w-[145px] md:h-[145px]   rounded-[50%] object-cover cursor-pointer"
                       src={`${imageUrl}${item?.candidate_image}`}
@@ -315,7 +315,7 @@ function CustomSlider() {
                       onClick={() => handleCandidateClick(index)}
                     />
                   </div>
-                  <h5 className="poppins5 text-[12px] text-left -ml-10 mt-2 sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px]  xl:text-center xl:ml-1 text-blackColor">
+                  <h5 className="poppins5 text-[12px] text-left mt-2 sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px]  xl:text-center xl:ml-1 text-blackColor">
                     {/* {item.candidate_name.split(" ")[1]} */}
                     {/* {item.candidate_name === "Robert F Kennedy"
                       ? `${item.candidate_name.split(" ")[0]} ${item.candidate_name.split(" ")[1]}`
