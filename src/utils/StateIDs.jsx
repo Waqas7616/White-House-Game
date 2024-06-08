@@ -4,6 +4,7 @@ const StatePredictionsContext = React.createContext();
 
 function StatePredictionsProvider({ children }) {
   const [state_predictions, setState_predictions] = useState([]);
+  console.log("state_Pridictions",state_predictions)
   const [voting,setVoting]=useState([])
   const [president, setPresident] = useState();
   const [vicePresident, setVicePresident] = useState();
@@ -16,11 +17,17 @@ const addVoting=(vote)=>{
 }
 
   const addPrediction = (prediction) => {
+    
     setState_predictions((prevPredictions) => [...prevPredictions, prediction]);
+    // setState_predictions((prev)=>{
+    //   const newArrayPredection=[...prev];
+    //   newArrayPredection[step]=prediction;
+    //   return newArrayPredection;
+    // })
   };
 
   const clearPredictions = () => {
-    setState_predictions([]);
+    setState_predictions((prevPredictions)=>prevPredictions.slice(0,-1));
   };
  
   const removeToken=()=>{

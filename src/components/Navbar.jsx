@@ -49,6 +49,7 @@ function Navbar() {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("id");
+    localStorage.removeItem("electoralCount");
     setIsLoggedIn(false);
     navigate("/login"); // Session expire karne ke baad isLoggedIn state ko false kar denge
   };
