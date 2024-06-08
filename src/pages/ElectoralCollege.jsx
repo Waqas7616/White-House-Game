@@ -10,6 +10,7 @@ import question from "../images/question.png";
 import democratic from "../images/democraticflag.png";
 import republican from "../images/republicflag.png";
 import independent from "../images/independentflag.png";
+import close from "../images/closeMenu.png";
 import {
   useStatePredictions,
   StatePredictionsProvider,
@@ -17,23 +18,99 @@ import {
 import axios from "axios";
 import Prediction from "./Prediction";
 import StateWinner from "../components/statewinner/StateWinner";
-import abc from '../images/Alabamas 1.svg'
+import abc from "../images/Alabamas 1.svg";
+import EditButton from "../components/EditButton";
+
+const initialElectoralCount = {
+  Democratic: 0,
+  Republican: 0,
+  Independent: 0,
+  total: 538,
+};
 
 function ElectoralCollege() {
   const { state_predictions, addPrediction, clearPredictions } =
     useStatePredictions();
   const [step, setStep] = useState(0);
+  const [partyClick, setPartyClick] = useState(false);
+  const [forceUpdate, setForceUpdate] = useState(0);
+  const [electoralCount, setElectoralCount] = useState(() => {
+    const storedCount = localStorage.getItem("electoralCount");
+    return storedCount ? JSON.parse(storedCount) : initialElectoralCount;
+  });
+  const [demLength, setDemLength] = useState();
+  const [repLength, setRepLength] = useState();
+  const [indLength, setIndLength] = useState();
   const [previousData, setPreviousData] = useState([]);
   const [selectedButtonId, setSelectedButtonId] = useState(null);
 
+  useEffect(() => {
+    setDemLength((electoralCount.Democratic / electoralCount.total) * 100);
+    setRepLength((electoralCount.Republican / electoralCount.total) * 100);
+    setIndLength((electoralCount.Independent / electoralCount.total) * 100);
+
+    console.log("the lengthy:", demLength);
+  }, [electoralCount]);
+ 
+
+  const handleRemoval=(partyId)=>{
+    setSelectedButtonId(null);
+    setPartyClick(false)
+    clearPredictions();
+    setElectoralCount((prev) => ({
+      ...prev,
+      Democratic:
+        partyId === 1
+          ? prev.Democratic -
+            previousData?.states?.[step]?.electrical_collage_number
+          : prev.Democratic,
+      Republican:
+        partyId === 2
+          ? prev.Republican -
+            previousData?.states?.[step]?.electrical_collage_number
+          : prev.Republican,
+      Independent:
+        partyId === 3
+          ? prev.Independent -
+            previousData?.states?.[step]?.electrical_collage_number
+          : prev.Independent,
+    }));
+  }
+  
+
   const handleClick = (stateId, partyId) => {
+    console.log("states data :",stateId, partyId)
+    setPartyClick(true);
     // Add prediction
-    addPrediction({
-      state_id: stateId,
-      party_id: partyId,
-    });
-    setSelectedButtonId(partyId);
+    if (!partyClick) {
+      addPrediction({
+        state_id: stateId,
+        party_id: partyId,
+      });
+    console.log("states data : nnn",)
+
+      setSelectedButtonId(partyId);
+      setElectoralCount((prev) => ({
+        ...prev,
+        Democratic:
+          partyId === 1
+            ? prev.Democratic +
+              previousData?.states?.[step]?.electrical_collage_number
+            : prev.Democratic,
+        Republican:
+          partyId === 2
+            ? prev.Republican +
+              previousData?.states?.[step]?.electrical_collage_number
+            : prev.Republican,
+        Independent:
+          partyId === 3
+            ? prev.Independent +
+              previousData?.states?.[step]?.electrical_collage_number
+            : prev.Independent,
+      }));
+    }
   };
+
   const token = localStorage.getItem("token");
   const imageUrl = "https://thewhitehousegame.com/public/";
 
@@ -59,14 +136,15 @@ function ElectoralCollege() {
   useEffect(() => {
     console.log("hello predictions", state_predictions);
     console.log("hello results", previousData);
+    console.log('hello button id:',selectedButtonId)
   }, [state_predictions]);
 
   const handleSteps = () => {
+    setPartyClick(false);
     setSelectedButtonId(0);
     if (step < previousData?.states?.length - 1) {
       setStep(step + 1);
       setSelectedButtonId(null);
-      console.log("Incrementing step:", step + 1);
     } else if (step === previousData?.states?.length - 1) {
       axios
         .post(
@@ -83,13 +161,14 @@ function ElectoralCollege() {
           }
         )
         .then((response) => {
-          console.log("API response:", response);
+          // console.log("API response:", response);
           // Handle success response
         })
         .catch((error) => {
           console.error("API error:", error);
           // Handle error
         });
+        localStorage.setItem("electoralCount", JSON.stringify(electoralCount));
     }
   };
 
@@ -122,7 +201,7 @@ function ElectoralCollege() {
         },
       })
       .then((res) => {
-        console.log("states ka data hai:", res.data.electoral_votes_by_party);
+        // console.log("states ka data hai:", res.data.electoral_votes_by_party);
         setStatesData(res.data.electoral_votes_by_party);
       })
       .catch((err) => {
@@ -170,27 +249,26 @@ function ElectoralCollege() {
 
   const [statesDatas, setStatesDatas] = useState({});
 
-useEffect(() => {
-  axios
-    .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
-      headers: {
-        Accept: "application/json",
-      },
-    })
-    .then((res) => {
-      console.log("states ka data hai:", res.data.electoral_votes_by_party
-    );
-      setStatesDatas(res.data.electoral_votes_by_party);
-    })
-    .catch((err) => {
-      console.log("error hai:", err);
-    });
-}, []);
+  useEffect(() => {
+    axios
+      .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
+        headers: {
+          Accept: "application/json",
+        },
+      })
+      .then((res) => {
+        // console.log("states ka data hai:", res.data.electoral_votes_by_party);
+        setStatesDatas(res.data.electoral_votes_by_party);
+      })
+      .catch((err) => {
+        console.log("error hai:", err);
+      });
+  }, []);
 
-//   const maxVotes = Math.max(statesDatas.Democratic, statesDatas.Republican, statesDatas["Independent('Kennedy')"]);
-// const democraticBarLength = maxVotes === statesDatas.Democratic ? '100%' : `${(statesDatas.Democratic / maxVotes) * 100}%`;
-// const republicanBarLength = maxVotes === statesDatas.Republican ? '100%' : `${(statesDatas.Republican / maxVotes) * 100}%`;
-// const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] ? '100%' : `${(statesDatas["Independent('Kennedy')"] / maxVotes) * 100}%`;
+  //   const maxVotes = Math.max(statesDatas.Democratic, statesDatas.Republican, statesDatas["Independent('Kennedy')"]);
+  // const democraticBarLength = maxVotes === statesDatas.Democratic ? '100%' : `${(statesDatas.Democratic / maxVotes) * 100}%`;
+  // const republicanBarLength = maxVotes === statesDatas.Republican ? '100%' : `${(statesDatas.Republican / maxVotes) * 100}%`;
+  // const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] ? '100%' : `${(statesDatas["Independent('Kennedy')"] / maxVotes) * 100}%`;
 
   return (
     <div className=" bg-[#1c2452]">
@@ -199,12 +277,12 @@ useEffect(() => {
         redTitle={"Electoral"}
         bg={electoral}
         bannerDesc={
-          "Predict the next President of the United States and tell the world what you think!"
+ <>538 Electoral College delegates <br/>decide who will be<br/>President of the United States</>
         }
       />
 
       <div className="voting w-10/12  resp m-auto py-[102px] bg-[#1c2452]">
-        <div className="state-data  mb-[110px] m-auto px-[120px] h-72 sm:h-64 bg-redish rounded-[18.06px] relative flex flex-col justify-center  sm:flex sm:flex-row sm:justify-evenly items-center">
+        <div className="state-data  mb-6 m-auto px-[120px] h-72 sm:h-64 bg-redish rounded-[18.06px] relative flex flex-col justify-center  sm:flex sm:flex-row sm:justify-evenly items-center">
           <img src={circle} alt="" className="absolute right-0" />
           <div className="map ">
             <img
@@ -233,15 +311,20 @@ useEffect(() => {
             </div>
           </div>
         </div>
-
-        <div className="flex flex-col items-center lg:flex lg:flex-row lg:items-center ">
+        <div className="flex mb-2 justify-end w-full">
+          <div onClick={()=>handleRemoval()}>{partyClick && (
+                  <EditButton/>
+                )}{" "}</div>
+            
+          </div>
+        <div className="flex flex-col items-start lg:flex lg:flex-row lg:items-start ">
           <div className="question flex flex-col justify-center gap-4 items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
             {previousData &&
               previousData?.states &&
               previousData?.states[step] && (
                 <img
                   src={`${imageUrl}${previousData?.states?.[step]?.state_image_url}`}
-                // src={abc}
+                  // src={abc}
                   alt=""
                   className="w-12 lg:w-12 xl:w-24 2xl:w-24 object-cover "
                 />
@@ -250,20 +333,23 @@ useEffect(() => {
               <h4 className="text-white text-center poppins6  text-[17px] sm:text-[16px] lg:text-[15px] xl:text-[19px]  ">
                 Who do you predict will win?
               </h4>
-              
             </div>
             <div>
-            <h2 className="text-redish text-center poppins6 text-[19.4px] ">
+              <h2 className="text-redish text-center poppins6 text-[19.4px] ">
                 {previousData?.states?.[step]?.name}
               </h2>
-              </div>
+            </div>
           </div>
 
-          <div className="badges my-10">
+         
+          <div className="badges mb-10">
+          
             <div className="flex flex-col lg:flex lg:flex-row lg:justify-between lg:gap-3 ">
               <div
                 className={`${
-                  selectedButtonId === 1 ? "border-red-600 border-[10px]" : ""
+                  selectedButtonId === 1
+                    ? "border-red-600 border-[10px] relative"
+                    : ""
                 } rounded-[54px] border-[10px] border-[#1c2452] ${
                   selectedButtonId !== 1 && selectedButtonId !== null
                     ? "opacity-50"
@@ -271,6 +357,7 @@ useEffect(() => {
                 }`}
                 onClick={() => handleClick(previousData?.states?.[step]?.id, 1)}
               >
+                
                 <img src={democratic} className="" alt="" />
               </div>
               <div
@@ -494,7 +581,7 @@ useEffect(() => {
               if (step > 0) {
                 setStep(step - 1);
                 setSelectedButtonId(null);
-                console.log("Decrementing step:", step - 1);
+                // console.log("Decrementing step:", step - 1);
               }
             }}
             className={`bg-redish p-2 rounded-l-[6px] ${
@@ -676,7 +763,7 @@ useEffect(() => {
           </div>
         </div> */}
 
-{/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
+        {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
   <div>
     
   <div className="py-4 bg-[#031BBB]" style={{ width: democraticBarLength }}>
@@ -715,37 +802,74 @@ useEffect(() => {
     </span>
   </div>
 </div> */}
-
-        <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
+        <h2 className="text-white mb-3 poppins6 text-[25.4px] md:text-[36.4px]">
+          Your Electoral College Tally
+        </h2>
+        <div className="flex gap-5 items-center mb-4">
+          <div className="dem flex gap-3 items-center">
+            <div className="w-8 h-2 bg-[#031BBB]"></div>
+            <p className="poppins5 text-white">Democratic</p>
+          </div>
+          <div className="dem flex gap-3 items-center">
+            <div className="w-8 h-2 bg-redish"></div>
+            <p className="poppins5 text-white">Republican</p>
+          </div>
+          <div className="dem flex gap-3 items-center">
+            <div className="w-8 h-2 bg-white"></div>
+            <p className="poppins5 text-white">Independent</p>
+          </div>
+        </div>
+        <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-8 w-full">
           <div
             className="py-4 bg-[#031BBB]"
-            style={{ width: democraticBarLength }}
+            style={{
+              width: `${
+                demLength || repLength || indLength > 0
+                  ? `${demLength}%`
+                  : "33%"
+              }`,
+            }}
           >
             <span className="poppins4 flex justify-center items-center">
-              {statesData && statesData.Democratic
+              {/* {statesData && statesData.Democratic
                 ? `${statesData.Democratic}`
-                : "0"}
+                : "0"} */}
+              {electoralCount.Democratic > 0 && electoralCount.Democratic}
             </span>
           </div>
 
           <div
             className="py-4 bg-redish"
-            style={{ width: republicanBarLength }}
+            style={{
+              width: `${
+                demLength || repLength || indLength > 0
+                  ? `${repLength}%`
+                  : "33%"
+              }`,
+            }}
           >
             <span className="poppins4 flex justify-center items-center">
-              {statesData && statesData.Republican
+              {/* {statesData && statesData.Republican
                 ? `${statesData.Republican}`
-                : "0"}
+                : "0"} */}
+              {electoralCount.Republican > 0 && electoralCount.Republican}
             </span>
           </div>
           <div
             className="py-4 bg-white"
-            style={{ width: independentBarLength }}
+            style={{
+              width: `${
+                demLength || repLength || indLength > 0
+                  ? `${indLength}%`
+                  : "33%"
+              }`,
+            }}
           >
             <span className="poppins4 flex justify-center items-center">
-              {statesData && statesData["Independent('Kennedy')"]
+              {/* {statesData && statesData["Independent('Kennedy')"]
                 ? `${statesData["Independent('Kennedy')"]}`
-                : "0"}
+                : "0"} */}
+              {electoralCount.Independent > 0 && electoralCount.Independent}
             </span>
           </div>
         </div>
@@ -791,7 +915,7 @@ useEffect(() => {
         </div> */}
 
         <div className="result-card ">
-          <h2 className="text-white mb-12 poppins6 text-[25.4px] md:text-[56.4px]">
+          <h2 className="text-white mb-4 poppins6 text-[25.4px] md:text-[36.4px]">
             Past results
           </h2>
           <div className="result rounded-[10.65px] bg-[#131A41] px-8 py-5">
