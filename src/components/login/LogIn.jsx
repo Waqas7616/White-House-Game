@@ -7,6 +7,7 @@ import Navbar from "../Navbar";
 import AppBanner from "../appbanner/AppBanner";
 import { useStatePredictions } from "../../utils/StateIDs";
 import DownloadApp from "../DownloadApp";
+import CustomSpinner from "../spinner";
 
 export const LogIn = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("")
+  const [isLoading,setIsLoading]=useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -24,17 +26,22 @@ export const LogIn = () => {
     return emailRegex.test(email)
   }
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     if (!email || !password) {
       setError("Email and Passwords are required")
+      setIsLoading(false)
     } else if (!isValidEmail) {
       setError("Invalid Email");
+      setIsLoading(false)
     } else if (password.length < 8) {
       setError('Password should contain atleast 8 characters')
+      setIsLoading(false)
     } else {
 
 
       try {
+        
         const response = await axios.post(
           "https://thewhitehousegame.com/public/api/login",
           {
@@ -51,10 +58,12 @@ export const LogIn = () => {
           localStorage.setItem("email", response.data.user.email);
           localStorage.setItem("id", response.data.user.id);
           setToken(response.data.user.token);
+          setIsLoading(false);
           navigate("/");
+          window.location.reload();
         }
       } catch (error) {
-
+setIsLoading(false);
         setError(error.response.data.error)
       }
     };
@@ -193,9 +202,10 @@ export const LogIn = () => {
               {error}
             </p>
             <div className="flex justify-center mt-5 ">
-              <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
+              {isLoading?<CustomSpinner/>:<button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
                 Log In
-              </button>
+              </button>}
+              
             </div>
           </form>
           <div className="flex justify-center items-center gap-2 mt-2">

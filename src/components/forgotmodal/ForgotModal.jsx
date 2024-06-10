@@ -5,8 +5,8 @@ import check from "../../images/check.png"
 
 export const ForgotModal = ({closeModal}) => {
   return (
-    <>
-    <div className="max-w-[16rem] md:max-w-sm mx-auto rounded-lg bg-[#131A41] px-10 py-10">
+    <div className='w-full  h-screen fixed top-0 backdrop-blur-md z-50'>
+    <div className="max-w-[16rem] md:max-w-sm mx-auto rounded-lg absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#131A41] px-10 py-10">
         <div className='flex justify-center items-center '>
             <img className='h-20 w-20' src={check} alt="" />
         </div>
@@ -25,6 +25,6 @@ export const ForgotModal = ({closeModal}) => {
           </div>
           
         </div>
-    </>
+    </div>
   )
 }

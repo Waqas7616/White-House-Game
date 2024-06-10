@@ -6,6 +6,7 @@ import axios from "axios";
 import Democraticlogo from "../../images/Democraticlogo.png";
 import Independentlogo from "../../images/Independentlogo.png";
 import Republicanlogo from "../../images/Republicanlogo.png";
+import { useLocation } from "react-router-dom";
 
 const TABLE_HEAD = ["2020", "State", "2024"];
 
@@ -168,6 +169,7 @@ const TABLE_HEAD = ["2020", "State", "2024"];
 // export default StateWinner;
 
 const StateWinner = () => {
+  const location=useLocation();
   const [statesData, setStatesData] = useState([]);
   const [originalData, setOriginalData] = useState({});
   const [step, setStep] = useState("");
@@ -356,7 +358,8 @@ const StateWinner = () => {
         </div>
         <div className="flex justify-center mb-9 ">
           <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">
-          Who you are predicting will win{" "}
+          {location.pathname==='/'?'What our players are predicting':'Who you are predicting will win'}
+          {" "}
           </h2>
         </div>
         <div
@@ -381,7 +384,7 @@ const StateWinner = () => {
                 </th>
                 <th className="px-6 orbit7 py-3 lg:py-10 text-[9px] lg:text-[22px]">
                   <div className="flex justify-center items-center">
-                    <span>2024 Your Prediction</span>
+                    <span>{location.pathname==='/'?'Your Prediction':'2024 Your Prediction'}</span>
                   </div>
                 </th>
               </tr>

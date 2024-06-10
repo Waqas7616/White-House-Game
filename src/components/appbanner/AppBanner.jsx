@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
 import text from "../../images/whitehouse.png";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 
 function AppBanner({ bannerDesc,bannerDesc2,bannerDesc3,bannerDesc4, bannerTitle, redTitle, bg }) {
+  const location=useLocation();
   const [active, setActive] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
@@ -198,12 +199,12 @@ function AppBanner({ bannerDesc,bannerDesc2,bannerDesc3,bannerDesc4, bannerTitle
         <div className="flex flex-col text-center items-center justify-center h-[80%]">
           <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
             {" "}
-            <span className="text-redish">{redTitle}</span> {bannerTitle}
+            <span className="text-redish ">{redTitle}</span> {bannerTitle}
           </h1>
-          <p className="text-whiteColor space   orbit6 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px] xl:text-[30px]">
+          <p className={`text-whiteColor space   orbit6 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px]  ${location.pathname==='/predictandelectoral'?'xl:text-[20px]':'xl:text-[25px]'}`}>
             {bannerDesc}
           </p>
-          <p className="text-whiteColor space  orbit6 mt-20 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px] xl:text-[30px]">
+          <p className={`text-whiteColor space  orbit6 mt-20 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px]  ${location.pathname==='/predictandelectoral'?'xl:text-[15px]':'xl:text-[25px]'}`}>
             {bannerDesc2}
           </p>
          

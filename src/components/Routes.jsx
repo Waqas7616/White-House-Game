@@ -21,6 +21,7 @@ import TermsCondition from "../pages/TermsCondition"
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import MyVote from "../pages/MyVote";
 import PredictionAndElectoral from "../pages/PredictionAndElectoral";
+import CustomSpinner from "./spinner";
 
 function AppRoutes() {
   const [user, setUser] = useState();
@@ -37,7 +38,7 @@ function AppRoutes() {
   if (loading) {
     return (
       <div className="text-white h-screen w-[100vw] flex justify-center items-center text-[50px]">
-        Loading
+       <CustomSpinner/>
       </div>
     );
   }
