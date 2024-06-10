@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
 import text from "../../images/whitehouse.png";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
   const [active, setActive] = useState(0);
@@ -44,6 +45,15 @@ function AppBanner({ bannerDesc, bannerTitle, redTitle, bg }) {
   }, []); // Run this effect only once, when the component mounts
   return (
     <div className="banner">
+       <Helmet>
+        <title>The White House Game | Who will run the free world?</title>
+        <meta name="keywords" content="2024 Presidential election, prediction, play." />
+        <meta
+          name="description"
+          content="Who runs America affects the entire world. So who wins on November 5, 2024 matters. Will Donald Trump return or will Biden surprise voters again? Can Kennedy break the two party mould?"
+        />
+        <meta name="language" content="en" />
+      </Helmet>
       <div className="bg-redish hidden sm:flex">
         <div className="top-section resp  px-4 py-3 flex justify-between w-10/12 m-auto items-center ">
           {/* <div className="social-icons flex gap-3  ">

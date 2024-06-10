@@ -7,6 +7,7 @@ import Navbar from "../Navbar";
 import AppBanner from "../appbanner/AppBanner";
 import { useStatePredictions } from "../../utils/StateIDs";
 import DownloadApp from "../DownloadApp";
+import { Helmet } from "react-helmet";
 
 export const LogIn = () => {
   const navigate = useNavigate();
@@ -68,6 +69,12 @@ export const LogIn = () => {
         redTitle={"Log"}
         bannerDesc={"Log in to continue"}
       /> */}
+      <Helmet>
+        <title>The White House Game | Log In to your account</title>
+        <meta name="keywords" content="2024 Presidential election, log in, login." />
+        <meta name="description" content="To play The White House Game or update your prediction, open an account. You can also view all our interesting statistics about the 2024 election." />
+      </Helmet>
+
       
       <Navbar />
       <div className="flex flex-col text-center items-center justify-center mt-2">

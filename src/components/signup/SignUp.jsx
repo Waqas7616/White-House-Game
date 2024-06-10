@@ -510,6 +510,7 @@ import AppBanner from "../appbanner/AppBanner";
 import Navbar from "../Navbar";
 import { ForgotModal } from "../forgotmodal/ForgotModal";
 import DownloadApp from "../DownloadApp";
+import { Helmet } from "react-helmet";
 // import ForgotModal from "../ForgotModal"; // Import the ForgotModal component
 
 export const SignUp = () => {
@@ -588,6 +589,12 @@ export const SignUp = () => {
 
   return (
     <div className="h-screen">
+      <Helmet>
+        <title>The White House Game | Log In to your account</title>
+        <meta name="keywords" content="2024 Presidential election, log in, login." />
+        <meta name="description" content="To play The White House Game or update your prediction, open an account. You can also view all our interesting statistics about the 2024 election." />
+      </Helmet>
+
       <Navbar />
       <div className="flex flex-col text-center items-center justify-center mt-2">
         <h1 className="text-whiteColor sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">

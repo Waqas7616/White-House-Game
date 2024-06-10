@@ -64,7 +64,7 @@ export default function MyVote() {
         bannerDesc={"America votes on Tuesday, November 5 2024"}
         bg={bg}
       />
-      <div className="w-full pt-[100px] bg-[#1c2452]">
+      <div className="w-full pt-[30px] bg-[#1c2452]">
         <div className="resp m-auto w-10/12">
           <div className="">
             <img className="m-auto" src={logo} alt="" />
