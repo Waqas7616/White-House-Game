@@ -70,7 +70,7 @@ export default function MyVote() {
       .then((res) => (setStatName = Object.keys(res.data.data)))
       .catch((e) => console.log("elecotral error is", e));
   }, []);
-  console.log("barwa waqas da dir:", selected);
+  // console.log("barwa waqas da dir:", selected);
   console.log("my ele", statName);
 
   // const getStatesDetails=()=>{
@@ -436,7 +436,13 @@ export default function MyVote() {
             </div>
           </div>
         </div> */}
-        <div className="w-10/12 m-auto">stat wommer</div>
+        <div className="w-10/12 m-auto">
+        <div className="text-center">
+          <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto mt-3 text-center">
+            State Winners
+          </h2>
+        </div>
+        </div>
 
         <div className="w-10/12 m-auto mt-12"><Map/></div>
       </div>

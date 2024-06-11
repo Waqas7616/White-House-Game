@@ -31,6 +31,7 @@ function PartyPrediction() {
     vice_president_id: 3,
   });
   const [predict, setPredict] = useState(0);
+  const [disabled, setDisabled] = useState(true);
   const location = useLocation();
   const data = location.state || {};
   // console.log("transferred data", data);
@@ -58,6 +59,7 @@ function PartyPrediction() {
         alert(error);
       });
     setTest(true);
+    setDisabled(true);
   }, [test]);
 
   // console.log("my data is :", candidateData);
@@ -69,7 +71,7 @@ function PartyPrediction() {
       "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)"
     );
     setPredict(e);
-
+    setDisabled(false);
     // console.log("selected party", partyData);
   };
   useEffect(() => {
@@ -121,7 +123,7 @@ function PartyPrediction() {
         // console.log("my error message is :", err.data.error);
       });
     setPopUp(true);
-    localStorage.setItem('election_path','President only')
+    localStorage.setItem("election_path", "President only");
   };
 
   useEffect(() => {
@@ -256,7 +258,7 @@ function PartyPrediction() {
             Tuesday, November
             <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
           </p>
-          <div className="main-dev flex justify-between gap-4 m-auto mt-12">
+          <div className="main-dev flex flex-col md:flex-row justify-between gap-4 m-auto mt-12">
             <div>
               <div className="flex items-center m-auto gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded mb-5">
                 <span className="">
@@ -320,7 +322,7 @@ function PartyPrediction() {
               </div>
             </div>
             <div className="">
-            <div className="flex items-center m-auto gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded mb-5">
+              <div className="flex items-center m-auto gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded mb-5">
                 <span className="">
                   <img className="w-10" src={badge2} alt="" />
                 </span>
@@ -382,7 +384,7 @@ function PartyPrediction() {
             </div>
 
             <div className="">
-            <div className="flex items-center m-auto gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded mb-5">
+              <div className="flex items-center m-auto gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded mb-5">
                 <span className="">
                   <img className="w-10" src={badge3} alt="" />
                 </span>
@@ -396,7 +398,7 @@ function PartyPrediction() {
                   className={`w-full rounded-lg  relative ${
                     predict === 3 && "border-8 px-2"
                   }`}
-                > 
+                >
                   <div className="flex gap-4 items-center justify-start w-full m-auto mt-[50px] pb-28 border-8 border-transparent px-2 rounded-lg">
                     <div className="w-[200px] h-[220px] m-auto">
                       <h4 className="poppins6 text-white  xl:text-[20px] mb-2">
@@ -449,7 +451,10 @@ function PartyPrediction() {
       <div className="flex justify-center relative gap-8 mt-8 mb-3">
         <button
           onClick={sendPartyData}
-          className={`rounded-lg px-5 py-3 border-[1px] border-white h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 `}
+          disabled={disabled}
+          className={`rounded-lg px-5 py-3 border-[1px] border-white h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 ${
+            disabled ? "opacity-40" : ""
+          }`}
         >
           Done
         </button>
