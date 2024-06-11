@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AppBanner from "../components/appbanner/AppBanner";
-import electoral from "../images/electoral.png";
+import electoral from "../images/Usa.jpg";
 import vector from "../images/bg-vector.png";
 import DownloadApp from "../components/DownloadApp";
 import circle from "../images/Ellipse 3.png";

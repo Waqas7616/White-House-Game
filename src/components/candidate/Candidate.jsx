@@ -273,15 +273,14 @@ const Candidate = () => {
           bannerTitle={"Data"}
           redTitle={"Candidate"}
           bannerDesc={
-            "Candidates and potential Candidates for President and Vice President"
+            <>Candidates and potential Candidates for <br/>President and Vice Presiden</>
           }
           bg={bg}
         />
         <div className="mt-5 m-auto w-[85%] border-none">
           <div className="flex justify-center my-8 ">
             <h2 className="text-[#fff] text-[9px] md:text-[18px] orbit7 w-9/12 m-auto  text-center">
-              A lot can happen before the country votes on Tuesday November 5,
-              2024{" "}
+            A lot can happen before voting on Tuesday November 5, 2024{" "}
             </h2>
           </div>
           <Slider {...settings}>
@@ -381,16 +380,16 @@ const Candidate = () => {
                           <h3 className="mb-3 font-extrabold poppins6 text-[25px] text-black">
                             {item?.candidate_name}
                           </h3>
-                          <p className=" text-[18px] poppins4 text-black">
+                          <p className="text-[14px] md:text-[16px] lg:text-[18px] poppins4 text-black">
                             Born: {item?.dob}
                           </p>
-                          <p className="mb-3 text-[18px] poppins4 text-black">
+                          <p className="mb-3 text-[14px] md:text-[16px] lg:text-[18px] poppins4 text-black w-auto md:w-[80%] acer:w-[70%] 2xl:w-[60%]">
                             {item?.birth_place}
                           </p>
-                          <p className="mb-3 text-[18px] poppins4 text-black">
+                          <p className="mb-3 text-[14px] md:text-[16px] lg:text-[18px] poppins4 text-black">
                             Occupation: {item?.occupation}
                           </p>
-                          <p className="mb-3 text-[18px] poppins6 text-black">
+                          <p className="mb-3 text-[14px] md:text-[16px] lg:text-[18px] poppins6 text-black">
                             {item?.party?.party_name ===
                               "Independent('Kennedy')" &&
                             (item?.id === 33 || item.id===34)
@@ -398,7 +397,9 @@ const Candidate = () => {
                               : item?.party?.party_name ===
                                   "Independent('Kennedy')" &&
                                   (item?.id === 3 || item.id===10)
-                              ? "Green Party Independent"
+                              ? "Green Party Independent": item?.party?.party_name ===
+                              "Independent('Kennedy')" &&
+                              (item?.id === 36 )?"Libertarian Party Independent"
                               : item?.party?.party_name.split('(')[0]}
                           </p>
                           <p className=" text-[18px] poppins4 text-black ">

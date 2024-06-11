@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AppBanner from "../components/appbanner/AppBanner";
-import bg from "../images/predictbg.png";
+import bg from "../images/prediction.jpg";
 import question from "../images/question.png";
 import title from "../images/demTITLE.png";
 import title2 from "../images/repTITLE.png";
