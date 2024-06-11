@@ -22,6 +22,7 @@ import PrivacyPolicy from "../pages/PrivacyPolicy";
 import MyVote from "../pages/MyVote";
 import PredictionAndElectoral from "../pages/PredictionAndElectoral";
 import CustomSpinner from "./spinner";
+import PaymentPage from "../pages/payment/Payment";
 
 function AppRoutes() {
   const [user, setUser] = useState();
@@ -75,7 +76,7 @@ function AppRoutes() {
         <Route path="/forgetmodal" element={<ForgotModal/>}/>
         <Route path="/termscondition" element={<TermsCondition/>}/>
         <Route path="/privacypolicy" element={<PrivacyPolicy/>}/>
-        <Route path="/myvote" element={<MyVote/>}/>
+        <Route path="/payment" element={<PaymentPage/>}/>
         <Route path="/predictandelectoral" element={<PredictionAndElectoral/>}/>
       </Routes>
     </Router>

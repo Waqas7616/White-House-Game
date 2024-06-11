@@ -31,7 +31,7 @@ const initialElectoralCount = {
 function ElectoralCollege() {
   const { state_predictions, addPrediction, clearPredictions } =
     useStatePredictions();
-  const [step, setStep] = useState(56);
+  const [step, setStep] = useState(0);
   const [partyClick, setPartyClick] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
   const [electoralCount, setElectoralCount] = useState(() => {
