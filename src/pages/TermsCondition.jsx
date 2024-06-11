@@ -4,6 +4,7 @@ import AppBanner from "../components/appbanner/AppBanner";
 import Terms from "../images/Terms.png";
 import logo from "../images/logo.png";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function TermsCondition() {
   const navigate = useNavigate();
@@ -53,6 +54,18 @@ export default function TermsCondition() {
   return (
     <>
       <div className=" h-screen">
+      <Helmet>
+        <title>The White House Game | Terms and Conditions</title>
+        <meta
+          name="keywords"
+          content="terms and conditions, rules, legal, white house game"
+        />
+        <meta
+          name="description"
+          content="To make sure our game is fun and useful and forbidden to inappropriate users and spam, it is obligatory for our player members to respect our Terms and Conditions."
+        />
+        <meta name="language" content="en" />
+      </Helmet>
         <AppBanner
           bannerTitle={"CONDITIONS"}
           redTitle={"TERMS AND"}

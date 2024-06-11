@@ -3,6 +3,7 @@ import AppBanner from "../components/appbanner/AppBanner";
 import logo from "../images/logo.png";
 import Privacy from "../images/Privacy.png";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function PrivacyPolicy() {
   const navigate = useNavigate();
@@ -129,6 +130,18 @@ export default function PrivacyPolicy() {
   return (
     <>
       <div className=" h-screen">
+      <Helmet>
+        <title>The White House Game | Privacy Policy</title>
+        <meta
+          name="keywords"
+          content="privacy policy, data protection, legal, white house game"
+        />
+        <meta
+          name="description"
+          content="Your data is important and we genuinely believe in protecting our player’s information from snooping and hacking, including that done by government agencies."
+        />
+        <meta name="language" content="en" />
+      </Helmet>
         <AppBanner
           bannerTitle={"Policies"}
           redTitle={"Privacy "}

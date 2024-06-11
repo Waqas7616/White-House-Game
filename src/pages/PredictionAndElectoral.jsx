@@ -26,6 +26,10 @@ function PredictionAndElectoral() {
       president_id: president,
       vice_president_id: vicePresident,
     });
+
+    const [isSelectionComplete, setIsSelectionComplete] = useState(false);
+
+
     useEffect(() => {
       setData({
         votter_party_id: party,
@@ -36,6 +40,10 @@ function PredictionAndElectoral() {
   console.log('waqas voting data',data)
     const token = localStorage.getItem("token");
   
+    const handleSelectionChange = (isComplete) => {
+      setIsSelectionComplete(isComplete);
+    };
+
     const submitData = () => {
       addVoting({
         votter_party_id: party,
@@ -89,7 +97,7 @@ function PredictionAndElectoral() {
             Tuesday, November
             <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
           </p>
-         <div className="resp w-10/12 m-auto flex items-center justify-between mt-12">
+         <div className="resp w-10/12 m-auto flex flex-col md:flex-row items-center justify-between mt-12">
          <div>
           <div className="flex items-center gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded"><span className=""><img className="w-10" src={democratic} alt="" /></span>
           <h2>Democratic</h2>
@@ -99,6 +107,7 @@ function PredictionAndElectoral() {
           titleImage={dem}
           party={"Democratic"}
           submitData={submitData}
+        onSelectionChange={handleSelectionChange}
           
         // afterchange={(index)=>{console.log(candidateData.filter((item)=>item?.party.party_name==="Democratic")[index])}}
         // afterchange={(index) => { console.log(index) }}
@@ -114,6 +123,8 @@ function PredictionAndElectoral() {
           titleImage={rep}
           party={"Republican"}
           submitData={submitData}
+        onSelectionChange={handleSelectionChange}
+
         />
          </div>
          <div>
@@ -128,6 +139,7 @@ function PredictionAndElectoral() {
           titleImage={ind}
           party={"Independent('Kennedy')"}
           submitData={submitData}
+          onSelectionChange={handleSelectionChange}
   
   
         />
@@ -135,7 +147,7 @@ function PredictionAndElectoral() {
         </div>
         <div className="buttons flex flex-col items-center justify-center gap-4 xl:mt-4  ">
           {/* <button className="rounded-[6px] text-white poppins-6 border-[1px] border-white px-5 py-2 sm:px-10 sm:py-2 ">Edit my predictions</button> */}
-          <button onClick={sendPrediction} className="rounded-[6px] text-white poppins-6 border-[1px] border-redish px-10 py-2 bg-redish">Next</button>
+          <button onClick={sendPrediction} disabled={!isSelectionComplete} className={`rounded-[6px] text-white poppins-6 border-[1px] border-redish px-10 py-2 bg-redish ${!isSelectionComplete?"opacity-40":""}`}>Next</button>
           <small className="text-white">Now predict the Electoral College</small>
         </div>
         <DownloadApp />

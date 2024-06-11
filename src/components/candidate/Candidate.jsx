@@ -8,6 +8,7 @@ import Democraticlogo from "../../images/Democratic_Party-logo-108C42372F-seeklo
 import Republicanlogo from "../../images/Republicanlogo 1.svg";
 import Independentlogo from "../../images/Constitution_Party_(USA)_logo 1.svg";
 import bg from "../../images/candidatebg.jpg";
+import { Helmet } from "react-helmet";
 
 const Candidate = () => {
   const [showCard, setShowCard] = useState(null);
@@ -269,6 +270,11 @@ const Candidate = () => {
   return (
     <>
       <div className="h-screen">
+      <Helmet>
+        <title>The White House Game | Candidates</title>
+        <meta name="keywords" content="2024 Presidential election, prediction, Candidates." lang="en" />
+        <meta name="description" content="Democrats have selected America’s oldest candidate while the Republicans nominate a convicted criminal. Tell us who expect to win the most important election since 1860." lang="en" />
+      </Helmet>
         <AppBanner
           bannerTitle={"Data"}
           redTitle={"Candidate"}

@@ -4,10 +4,16 @@ import bg from "../images/form.png";
 import Shop from "../components/Shop";
 import DownloadApp from "../components/DownloadApp";
 import background from "../images/contactbg.png";
+import { Helmet } from "react-helmet";
 
 function Contact() {
   return (
     <div>
+       <Helmet>
+        <title>The White House Game | Contact Us</title>
+        <meta name="keywords" content="2024 Presidential election, contact us, USA." lang="en" />
+        <meta name="description" content="We hope you enjoyed playing The White House Game where you predict the next President. Here is how to Contact Us. Lets start a conversation." lang="en" />
+      </Helmet>
       <AppBanner
         bannerTitle={"US"}
         bg={background}

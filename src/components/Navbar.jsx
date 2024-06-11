@@ -123,7 +123,7 @@ function Navbar() {
             <Link to={"/"}>
               {" "}
               <li
-                className={`nav-link poppins4 hover:text-redish ${
+                className={`nav-link poppins4 hover:text-redish  ${
                   location.pathname === "/" ? "active" : ""
                 } cursor-pointer hover:font-[500] text-whiteColor`}
               >
