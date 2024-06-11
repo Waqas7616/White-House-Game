@@ -5,8 +5,8 @@ import badge2 from "../../images/vice president.svg";
 import ballot from "../../images/vote.svg";
 import kennedy from "../../images/image 46.png";
 
-import republic from "../../images/Democratic_Party-logo-108C42372F-seeklogo 1.svg";
-import democrat from "../../images/Republicanlogo 1.svg";
+import democrat from "../../images/Democratic_Party-logo-108C42372F-seeklogo 1.svg";
+import republic from "../../images/Republicanlogo 1.svg";
 import independ from "../../images/Constitution_Party_(USA)_logo 1.svg";
 import "../banner.css";
 import VoteGraph from "./VoteGraph";
@@ -97,7 +97,7 @@ function TabSection() {
     votes: candidate.votes,
     percentage: Math.round((candidate.votes / totalVotes) * 100),
   }));
-  
+
   const [statesData, setStatesData] = useState({});
 
   useEffect(() => {
@@ -133,8 +133,6 @@ function TabSection() {
     maxVotes === statesData["Independent('Kennedy')"]
       ? "100%"
       : `${(statesData["Independent('Kennedy')"] / maxVotes) * 100}%`;
-
- 
 
   return (
     <div className="w-full bg-[#1c2452] py-8">
@@ -250,7 +248,6 @@ function TabSection() {
                   President
                 </h2>
               </div>
-             
 
               <div className="searchBar flex  flex-col items-center ">
                 <label
@@ -272,7 +269,6 @@ function TabSection() {
                     id="search"
                     className="bg-transparent w-full outline-none "
                   >
-                    
                     {allstates?.map((item) => (
                       <option
                         className="bg-[#1c2452]"
@@ -379,7 +375,6 @@ function TabSection() {
                     ))
                   )}
 
-              
                   <button
                     className="absolute bottom-[-20px] left-[50%]"
                     onClick={expandVotes}

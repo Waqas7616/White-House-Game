@@ -117,208 +117,193 @@ select::-ms-expand {
     z-index: -1; /* Ensure background is behind content */
 }
 
-  
-  /* SPINNER */
- /* Inspired by: m3.material.io/components/progress-indicators/overview */
 
-.loader {
-    width: 48px;
-    /* Subpixels get cut off */
-    overflow: visible;
-    -webkit-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    transform: rotate(-90deg);
-    -webkit-transform-origin: center;
-    -ms-transform-origin: center;
-    transform-origin: center;
-  
-    --active: #7627a3;
-    --track: #f2d4fe;
-  
-    --duration: 8s;
-  
-    -webkit-animation: spin 2s linear infinite;
-  
-    animation: spin 2s linear infinite;
+/* EDIT BUTTON STARTS HERE */
+.edit-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none !important;
   }
   
-  @-webkit-keyframes spin {
+  .edit-svgIcon {
+    width: 17px;
+    transition-duration: 0.3s;
+  }
+  
+  .edit-svgIcon path {
+    fill: white;
+  }
+  
+  .edit-button:hover {
+    width: 120px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: #ed1c24;
+    align-items: center;
+  }
+  
+  .edit-button:hover .edit-svgIcon {
+    width: 20px;
+    transition-duration: 0.3s;
+    transform: translateY(60%);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+  
+  .edit-button::before {
+    display: none;
+    content: "Edit";
+    color: white;
+    transition-duration: 0.3s;
+    font-size: 2px;
+  }
+  
+  .edit-button:hover::before {
+    display: block;
+    padding-right: 10px;
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(0px);
+    transition-duration: 0.3s;
+  }
+  
+
+  /* LOADER HERE  */
+  .loader {
+    width: 80px;
+    height: 50px;
+    position: relative;
+  }
+  
+  .loader-text {
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    color: #C8B6FF;
+    animation: text_713 3.5s ease both infinite;
+    font-size: .8rem;
+    letter-spacing: 1px;
+  }
+  
+  .load {
+    background-color: #9A79FF;
+    border-radius: 50px;
+    display: block;
+    height: 16px;
+    width: 16px;
+    bottom: 0;
+    position: absolute;
+    transform: translateX(64px);
+    animation: loading_713 3.5s ease both infinite;
+  }
+  
+  .load::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #D1C2FF;
+    border-radius: inherit;
+    animation: loading2_713 3.5s ease both infinite;
+  }
+  
+  @keyframes text_713 {
     0% {
-      rotate: 0deg;
+      letter-spacing: 1px;
+      transform: translateX(0px);
+    }
+  
+    40% {
+      letter-spacing: 2px;
+      transform: translateX(26px);
+    }
+  
+    80% {
+      letter-spacing: 1px;
+      transform: translateX(32px);
+    }
+  
+    90% {
+      letter-spacing: 2px;
+      transform: translateX(0px);
     }
   
     100% {
-      rotate: 360deg;
+      letter-spacing: 1px;
+      transform: translateX(0px);
     }
   }
   
-  @keyframes spin {
+  @keyframes loading_713 {
     0% {
-      rotate: 0deg;
+      width: 16px;
+      transform: translateX(0px);
+    }
+  
+    40% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+  
+    80% {
+      width: 16px;
+      transform: translateX(64px);
+    }
+  
+    90% {
+      width: 100%;
+      transform: translateX(0px);
     }
   
     100% {
-      rotate: 360deg;
+      width: 16px;
+      transform: translateX(0px);
     }
   }
   
-  .active {
-    stroke: var(--active);
-    stroke-linecap: round;
-    stroke-dashoffset: 360;
-    -webkit-animation: active-animation var(--duration) ease-in-out infinite;
-    animation: active-animation var(--duration) ease-in-out infinite;
-  }
-  
-  @-webkit-keyframes active-animation {
+  @keyframes loading2_713 {
     0% {
-      stroke-dasharray: 0 0 0 360 0 360;
+      transform: translateX(0px);
+      width: 16px;
     }
-    12.5% {
-      stroke-dasharray: 0 0 270 90 270 90;
-    }
-    25% {
-      stroke-dasharray: 0 270 0 360 0 360;
-    }
-    37.5% {
-      stroke-dasharray: 0 270 270 90 270 90;
-    }
-    50% {
-      stroke-dasharray: 0 540 0 360 0 360;
-    }
-    50.001% {
-      stroke-dasharray: 0 180 0 360 0 360;
-    }
-    62.5% {
-      stroke-dasharray: 0 180 270 90 270 90;
-    }
-    75% {
-      stroke-dasharray: 0 450 0 360 0 360;
-    }
-    87.5% {
-      stroke-dasharray: 0 450 270 90 270 90;
-    }
-    87.501% {
-      stroke-dasharray: 0 90 270 90 270 90;
-    }
-    100% {
-      stroke-dasharray: 0 360 1 360 0 360;
-    }
-  }
   
-  @keyframes active-animation {
-    0% {
-      stroke-dasharray: 0 0 0 360 0 360;
+    40% {
+      transform: translateX(0%);
+      width: 80%;
     }
-    12.5% {
-      stroke-dasharray: 0 0 270 90 270 90;
-    }
-    25% {
-      stroke-dasharray: 0 270 0 360 0 360;
-    }
-    37.5% {
-      stroke-dasharray: 0 270 270 90 270 90;
-    }
-    50% {
-      stroke-dasharray: 0 540 0 360 0 360;
-    }
-    50.001% {
-      stroke-dasharray: 0 180 0 360 0 360;
-    }
-    62.5% {
-      stroke-dasharray: 0 180 270 90 270 90;
-    }
-    75% {
-      stroke-dasharray: 0 450 0 360 0 360;
-    }
-    87.5% {
-      stroke-dasharray: 0 450 270 90 270 90;
-    }
-    87.501% {
-      stroke-dasharray: 0 90 270 90 270 90;
-    }
-    100% {
-      stroke-dasharray: 0 360 1 360 0 360;
-    }
-  }
   
-  .track {
-    stroke: var(--track);
-    stroke-linecap: round;
-    stroke-dashoffset: 360;
-    -webkit-animation: track-animation var(--duration) ease-in-out infinite;
-    animation: track-animation var(--duration) ease-in-out infinite;
-  }
+    80% {
+      width: 100%;
+      transform: translateX(0px);
+    }
   
-  @-webkit-keyframes track-animation {
-    0% {
-      stroke-dasharray: 0 20 320 40 320 40;
+    90% {
+      width: 80%;
+      transform: translateX(15px);
     }
-    12.5% {
-      stroke-dasharray: 0 290 50 310 50 310;
-    }
-    25% {
-      stroke-dasharray: 0 290 320 40 320 40;
-    }
-    37.5% {
-      stroke-dasharray: 0 560 50 310 50 310;
-    }
-    37.501% {
-      stroke-dasharray: 0 200 50 310 50 310;
-    }
-    50% {
-      stroke-dasharray: 0 200 320 40 320 40;
-    }
-    62.5% {
-      stroke-dasharray: 0 470 50 310 50 310;
-    }
-    62.501% {
-      stroke-dasharray: 0 110 50 310 50 310;
-    }
-    75% {
-      stroke-dasharray: 0 110 320 40 320 40;
-    }
-    87.5% {
-      stroke-dasharray: 0 380 50 310 50 310;
-    }
-    100% {
-      stroke-dasharray: 0 380 320 40 320 40;
-    }
-  }
   
-  @keyframes track-animation {
-    0% {
-      stroke-dasharray: 0 20 320 40 320 40;
-    }
-    12.5% {
-      stroke-dasharray: 0 290 50 310 50 310;
-    }
-    25% {
-      stroke-dasharray: 0 290 320 40 320 40;
-    }
-    37.5% {
-      stroke-dasharray: 0 560 50 310 50 310;
-    }
-    37.501% {
-      stroke-dasharray: 0 200 50 310 50 310;
-    }
-    50% {
-      stroke-dasharray: 0 200 320 40 320 40;
-    }
-    62.5% {
-      stroke-dasharray: 0 470 50 310 50 310;
-    }
-    62.501% {
-      stroke-dasharray: 0 110 50 310 50 310;
-    }
-    75% {
-      stroke-dasharray: 0 110 320 40 320 40;
-    }
-    87.5% {
-      stroke-dasharray: 0 380 50 310 50 310;
-    }
     100% {
-      stroke-dasharray: 0 380 320 40 320 40;
+      transform: translateX(0px);
+      width: 16px;
     }
   }
+   
+   
+  
   

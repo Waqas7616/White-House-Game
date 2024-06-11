@@ -3,16 +3,20 @@ import logo1 from "../../images/logo1.png";
 import Layer from "../../images/Layer.png";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import AppBanner from "../appbanner/AppBanner";
 import bg from "../../images/images1.jpg";
 import { Spinner } from "@material-tailwind/react";
 import CustomSpinner from "../spinner";
+import DownloadApp from "../DownloadApp";
 
 export const PutData = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+  const data = location.state?.data;
   const [AgeGroup, setAgeGroup] = useState([]);
-  const[isLoading,setIsLoading]=useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [myAccountData, setMyAccountData] = useState([]);
   useEffect(() => {
     axios
       .get("https://thewhitehousegame.com/public/api/get_user_age")
@@ -125,7 +129,7 @@ export const PutData = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [votedIn2020, setVotedIn2020] = useState("No");
   const [condition, setCondition] = useState(false);
-  const [newPayload,setNewPayload]=useState(null)
+  const [newPayload, setNewPayload] = useState(null);
   const [payload, setPayLoad] = useState({
     id: id,
     language_id: "",
@@ -162,7 +166,7 @@ export const PutData = () => {
     setPayLoad({ ...payload, is_votted_2020: value });
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     let adjustedPayload = { ...payload };
     console.log("adjuste payload", adjustedPayload);
 
@@ -171,37 +175,33 @@ export const PutData = () => {
       delete adjustedPayload.source;
       console.log("Adjusted payload before sending:", adjustedPayload);
       setCondition(true);
-      setNewPayload(adjustedPayload)
+      setNewPayload(adjustedPayload);
     }
-  },[payload,newPayload])
+  }, [payload, newPayload]);
 
   const handleSaveButtonClick = async () => {
-    setIsLoading(true)
-// alert(newPayload)
-  //   let adjustedPayload = { ...payload };
-  // console.log("adjusted payload", adjustedPayload);
+    setIsLoading(true);
+    // alert(newPayload)
+    //   let adjustedPayload = { ...payload };
+    // console.log("adjusted payload", adjustedPayload);
 
-  // if (adjustedPayload.is_votted_2020 === "No") {
-  //   delete adjustedPayload.voter_candidate_id;
-  //   console.log("Adjusted payload before sending:", adjustedPayload);
-  // }
+    // if (adjustedPayload.is_votted_2020 === "No") {
+    //   delete adjustedPayload.voter_candidate_id;
+    //   console.log("Adjusted payload before sending:", adjustedPayload);
+    // }
 
-  
-  // let finalPayload = {
-  //   ...payload,
-  //   ...adjustedPayload
-  // };
+    // let finalPayload = {
+    //   ...payload,
+    //   ...adjustedPayload
+    // };
 
+    // let adjustedPayload = { ...payload };
+    // console.log("adjusted payload before delete", adjustedPayload);
 
-
-  // let adjustedPayload = { ...payload };
-  // console.log("adjusted payload before delete", adjustedPayload);
-
-  // if (adjustedPayload.is_votted_2020 === "No") {
-  //   delete adjustedPayload.voter_candidate_id;
-  //   console.log("Adjusted payload after delete:", adjustedPayload);
-  // }
-
+    // if (adjustedPayload.is_votted_2020 === "No") {
+    //   delete adjustedPayload.voter_candidate_id;
+    //   console.log("Adjusted payload after delete:", adjustedPayload);
+    // }
 
     try {
       const response = await axios.post(
@@ -217,9 +217,9 @@ export const PutData = () => {
           },
         }
       );
-      if(response.status===200){
+      if (response.status === 200) {
         setIsLoading(false);
-      }else{
+      } else {
         setIsLoading(false);
       }
       console.log("My payload is:", payload);
@@ -228,34 +228,58 @@ export const PutData = () => {
       navigate("/login");
     } catch (error) {
       console.error("Error:", error);
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
+  useEffect(() => {
+    axios
+      .get(
+        `https://thewhitehousegame.com/public/api/get_user_info/${payload.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        setMyAccountData(res.data);
+      })
+      .catch((err) => console.log("error", err));
+  }, []);
+  console.log("iiiiiiiiiiiiiiiiiiiiiiii", myAccountData);
 
   return (
     <>
       <div className="h-screen">
         <AppBanner
-          bannerTitle={"an account"}
-          redTitle={"create"}
-          bannerDesc={"And help us predict the mood of the nation"}
+          bannerTitle={data.title2}
+          redTitle={data.title}
+          bannerDesc={
+            <>
+              {data.desc}
+              <br />
+              {data.desc2}
+            </>
+          }
           bg={bg}
         />
-        <div className="bg-[#1c2452] py-10 m-auto w-[80%] ">
+        <div className="bg-[#1c2452] pb-10 mt-[30px] m-auto w-[80%] ">
           <div className="bg-[#1c2452] pb-10 m-auto  ">
             {/* <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">
             Forgot Password
           </h2>
         </div> */}
-            <div className="flex justify-center pt-5">
+            {/* <div className="flex justify-center pt-5">
               <img src={logo1} alt="" />
-            </div>
+            </div> */}
             <div className="flex justify-center pt-5">
               <img src={Layer} alt="" />
             </div>
             <div className="flex justify-center pt-3">
-              <h2 className="text-white font-poppins text-[11px]">
+              <h2 className="text-white font-poppins text-[15px]">
                 Answer as many of these questions as you like
               </h2>
             </div>
@@ -711,7 +735,7 @@ export const PutData = () => {
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
-                          is_veteran: e.target.value ,
+                          is_veteran: e.target.value,
                         })
                       }
                     />
@@ -749,11 +773,10 @@ export const PutData = () => {
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="veteran"
                       value="No"
-                      defaultChecked
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
-                          is_veteran: e.target.value ,
+                          is_veteran: e.target.value,
                         })
                       }
                     />
@@ -807,7 +830,6 @@ export const PutData = () => {
                           is_votted_2020: e.target.value,
                         })
                       }
-                      
                     />
                     <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                       <svg
@@ -849,7 +871,6 @@ export const PutData = () => {
                           is_votted_2020: e.target.value,
                         })
                       }
-                      
                     />
                     <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                       <svg
@@ -1335,21 +1356,23 @@ export const PutData = () => {
                     class="mt-px font-poppins text-white text-nowrap text-[11px] md:text-[14px] cursor-pointer select-none"
                     htmlFor="react"
                   >
-                    Join our monthly newsletter
+                    Join our White House News newsletter
                   </label>
                 </div>
               </div>
             </div>
             <hr class="h-px my-8 bg-[#FFFFFF] opacity-[10%] border-0 dark:bg-white mx-20" />
             <div className="flex justify-center mt-5 ">
-              {isLoading?<CustomSpinner/>:<button
-                onClick={handleSaveButtonClick}
-                className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins"
-              >
-                Save
-              </button>}
-             
-              
+              {isLoading ? (
+                <CustomSpinner />
+              ) : (
+                <button
+                  onClick={handleSaveButtonClick}
+                  className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins"
+                >
+                  Save
+                </button>
+              )}
             </div>
             <div className="mt-7">
               <h2 className="text-center font-poppins text-white text-[14px] md:text-[18px] ">
@@ -1361,6 +1384,7 @@ export const PutData = () => {
             </div>
           </div>
         </div>
+        <DownloadApp />
       </div>
     </>
   );

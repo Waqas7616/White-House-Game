@@ -20,6 +20,8 @@ import Candidate from "./candidate/Candidate";
 import TermsCondition from "../pages/TermsCondition"
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import MyVote from "../pages/MyVote";
+import PredictionAndElectoral from "../pages/PredictionAndElectoral";
+import CustomSpinner from "./spinner";
 
 function AppRoutes() {
   const [user, setUser] = useState();
@@ -36,7 +38,7 @@ function AppRoutes() {
   if (loading) {
     return (
       <div className="text-white h-screen w-[100vw] flex justify-center items-center text-[50px]">
-        Loading
+       <CustomSpinner/>
       </div>
     );
   }
@@ -74,6 +76,7 @@ function AppRoutes() {
         <Route path="/termscondition" element={<TermsCondition/>}/>
         <Route path="/privacypolicy" element={<PrivacyPolicy/>}/>
         <Route path="/myvote" element={<MyVote/>}/>
+        <Route path="/predictandelectoral" element={<PredictionAndElectoral/>}/>
       </Routes>
     </Router>
   );

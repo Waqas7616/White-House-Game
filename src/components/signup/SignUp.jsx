@@ -510,10 +510,13 @@ import AppBanner from "../appbanner/AppBanner";
 import Navbar from "../Navbar";
 import { ForgotModal } from "../forgotmodal/ForgotModal";
 import DownloadApp from "../DownloadApp";
+import { Helmet } from "react-helmet";
+import CustomSpinner from "../spinner";
 // import ForgotModal from "../ForgotModal"; // Import the ForgotModal component
 
 export const SignUp = () => {
   const [name, setName] = useState(""); // State for name
+
   const [email, setEmail] = useState(""); // State for email
   const [password, setPassword] = useState(""); // State for password
   const [confirmed, setConfirmed] = useState(""); // State for confirm password
@@ -521,23 +524,28 @@ export const SignUp = () => {
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false); // State to show the modal
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     if (!name || !email || !password || !confirmed) {
       setError("All fields are required");
+      setIsLoading(false);
     } else if (!isValidEmail(email)) {
       setError("Invalid Email");
+      setIsLoading(false);
     } else if (password !== confirmed) {
       setError("Passwords do not match");
+      setIsLoading(false);
     } else if (password.length < 8) {
       setError("Password must contain 8 characters");
+      setIsLoading(false);
     } else {
       try {
         const response = await axios.post(
@@ -564,14 +572,17 @@ export const SignUp = () => {
           localStorage.setItem("id", response.data.user.id);
 
           // Show the modal
+          setIsLoading(false);
           setShowModal(true);
         } else {
           // Registration failed, show error message
           alert("Registration failed. Please try again later.");
+          setIsLoading(false);
         }
       } catch (error) {
         console.error("Error:", error);
         setError(error.response.data.message);
+        setIsLoading(false);
       }
     }
   };
@@ -587,6 +598,18 @@ export const SignUp = () => {
 
   return (
     <div className="h-screen">
+      <Helmet>
+        <title>The White House Game | Log In to your account</title>
+        <meta
+          name="keywords"
+          content="2024 Presidential election, log in, login."
+        />
+        <meta
+          name="description"
+          content="To play The White House Game or update your prediction, open an account. You can also view all our interesting statistics about the 2024 election."
+        />
+      </Helmet>
+
       <Navbar />
       <div className="flex flex-col text-center items-center justify-center mt-2">
         <h1 className="text-whiteColor sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
@@ -761,9 +784,13 @@ export const SignUp = () => {
             </div>
             <p className="text-redish poppins4 mt-2">{error}</p>
             <div className="flex justify-center mt-5">
-              <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
-                Sign Up
-              </button>
+              {isLoading ? (
+                <CustomSpinner />
+              ) : (
+                <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
+                  Sign Up
+                </button>
+              )}
             </div>
           </form>
           <div className="flex justify-center items-center gap-2 mt-2">

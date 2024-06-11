@@ -188,9 +188,9 @@ export default function VoteGraph() {
                         className="w-[20px] sm:w-auto"
                         src={
                           item.party_name === "Republican"
-                            ? democrat
+                            ? republic
                             : item.party_name === "Democratic"
-                            ?  republic
+                            ?  democrat
                             : independ
                         }
                         alt=""
@@ -309,9 +309,9 @@ export default function VoteGraph() {
                       className="w-[20px] sm:w-auto"
                       src={
                         item.party_name === "Republican"
-                          ? democrat
+                          ? republic
                           : item.party_name === "Democratic"
-                          ?  republic
+                          ?  democrat
                           : independ
                       }
                       alt=""

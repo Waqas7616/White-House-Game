@@ -19,7 +19,7 @@ const Candidate = () => {
   const CustomNextArrow = (props) => (
     <div
       {...props}
-      className="absolute  right-[.5%]  sm:-right-[1.5%]  md:-right-[5.5%]  lg:-right-[4.6%] top-[50%] translate-y-[-50%] xl:-right-[0%]  transform cursor-pointer"
+      className="absolute  right-[.5%]  sm:-right-[1.5%]  md:-right-[5.5%]  lg:-right-[4.6%] top-[50%] translate-y-[-50%] xl:-right-[2%]  transform cursor-pointer"
     >
       <span className="text-2xl opacity-[0.5] hover:opacity-100">
         <svg
@@ -100,7 +100,7 @@ const Candidate = () => {
   const CustomPrevArrow = (props) => (
     <div
       {...props}
-      className="absolute w-fit  left-[-3%] top-[50%] translate-y-[-50%] sm:-right-[1.5%]  md:-right-[2.5%]  lg:-right-[1.5%] z-50  cursor-pointer"
+      className="absolute w-fit  left-[-2%] top-[50%] translate-y-[-50%] sm:-right-[1.5%]  md:-right-[2.5%]  lg:-right-[1.5%] z-50  cursor-pointer"
     >
       <span className="text-2xl opacity-[0.5] hover:opacity-100">
         <svg
@@ -273,14 +273,14 @@ const Candidate = () => {
           bannerTitle={"Data"}
           redTitle={"Candidate"}
           bannerDesc={
-            <>Candidates and potential Candidates for <br/>President and Vice Presiden</>
+            <>Candidates and potential Candidates for <br/>President and Vice President</>
           }
           bg={bg}
         />
         <div className="mt-5 m-auto w-[85%] border-none">
           <div className="flex justify-center my-8 ">
             <h2 className="text-[#fff] text-[9px] md:text-[18px] orbit7 w-9/12 m-auto  text-center">
-            A lot can happen before voting on Tuesday November 5, 2024{" "}
+              A lot can happen before voting on Tuesday November 5, 2024{" "}
             </h2>
           </div>
           <Slider {...settings}>
@@ -377,32 +377,33 @@ const Candidate = () => {
                           }}
                         />
                         <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-start items-start text-white">
-                          <h3 className="mb-3 font-extrabold poppins6 text-[25px] text-black">
+                          <h3 className="mb-3 font-extrabold poppins6 text-[20px] md:text-[25px] text-black">
                             {item?.candidate_name}
                           </h3>
                           <p className="text-[14px] md:text-[16px] lg:text-[18px] poppins4 text-black">
                             Born: {item?.dob}
                           </p>
-                          <p className="mb-3 text-[14px] md:text-[16px] lg:text-[18px] poppins4 text-black w-auto md:w-[80%] acer:w-[70%] 2xl:w-[60%]">
+                          <p className="mb-3 text-[12px] md:text-[14px] lg:text-[15px] xl:text-[18px] poppins4 text-black w-auto md:w-[80%] acer:w-[70%] 2xl:w-[60%]">
                             {item?.birth_place}
                           </p>
-                          <p className="mb-3 text-[14px] md:text-[16px] lg:text-[18px] poppins4 text-black">
+                          <p className="mb-3 text-[12px] md:text-[14px] lg:text-[15px] xl:text-[18px] poppins4 text-black">
                             Occupation: {item?.occupation}
                           </p>
-                          <p className="mb-3 text-[14px] md:text-[16px] lg:text-[18px] poppins6 text-black">
+                          <p className="mb-3 text-[12px] md:text-[14px] lg:text-[15px] xl:text-[18px] poppins6 text-black">
                             {item?.party?.party_name ===
                               "Independent('Kennedy')" &&
-                            (item?.id === 33 || item.id===34)
+                            (item?.id === 33 || item.id === 34)
                               ? "Kennedy Independent"
                               : item?.party?.party_name ===
                                   "Independent('Kennedy')" &&
-                                  (item?.id === 3 || item.id===10)
-                              ? "Green Party Independent": item?.party?.party_name ===
-                              "Independent('Kennedy')" &&
-                              (item?.id === 36 )?"Libertarian Party Independent"
-                              : item?.party?.party_name.split('(')[0]}
+                                (item?.id === 3 || item.id === 10)
+                              ? "Green Party Independent"
+                              : item?.party?.party_name ===
+                                  "Independent('Kennedy')" && item?.id === 36
+                              ? "Libertarian Party Independent"
+                              : item?.party?.party_name.split("(")[0]}
                           </p>
-                          <p className=" text-[18px] poppins4 text-black ">
+                          <p className=" text-[12px] md:text-[14px] lg:text-[15px] xl:text-[18px] poppins4 text-black ">
                             <ul>
                               {item.position &&
                                 item?.position
@@ -410,7 +411,7 @@ const Candidate = () => {
                                   .map((positionItem, index) => (
                                     <li
                                       key={index}
-                                      className="mb-2 text-[18px] poppins4 text-black"
+                                      className="mb-2 text-[12px] md:text-[14px] lg:text-[15px] xl:text-[18px] poppins4 text-black"
                                     >
                                       {positionItem.trim()}
                                     </li>
