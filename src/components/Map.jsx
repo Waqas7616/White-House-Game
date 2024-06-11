@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Mao.css";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 function Map() {
+  const location=useLocation();
   const [tooltip, setTooltip] = useState(false);
   const [step, setStep] = useState("");
   const [statesData, setStatesData] = useState([]);
@@ -118,7 +120,7 @@ function Map() {
   return (
     <div className="w-10/12 m-auto relative">
       {tooltip && (
-        <div className="svgModal py-5 shadow-md shadow-black px-5 rounded-[10px]">
+        <div className={`svgModal py-5 shadow-md shadow-black px-5 rounded-[10px] ${location.pathname==='/myvote'&&'hidden'}`}>
           
           {statesData[step].state_image_url && (
             <img

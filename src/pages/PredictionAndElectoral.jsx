@@ -67,7 +67,7 @@ function PredictionAndElectoral() {
         .catch((err) => {
           alert("the error is :", err.message);
         });
-      navigate('/party-prediction', { state: { voting } })
+      navigate('/electoral')
     }
   
     return (
