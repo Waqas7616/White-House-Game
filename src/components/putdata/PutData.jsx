@@ -247,7 +247,7 @@ export const PutData = () => {
         setMyAccountData(res.data);
       })
       .catch((err) => console.log("error", err));
-  }, []);
+  }, [jwtToken]);
   console.log("iiiiiiiiiiiiiiiiiiiiiiii", myAccountData);
 
   return (

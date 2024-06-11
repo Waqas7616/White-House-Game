@@ -9,7 +9,7 @@ import check from "../../images/check.png";
 import axios from "axios";
 import { Await } from "react-router-dom";
 
-function Predict({ titleImage, party, afterchange, submitData, name }) {
+function Predict({ titleImage, party, afterchange, submitData, name, onSelectionChange  }) {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [candidateData, setCandidateData] = useState([]);
   console.log("candidateData", candidateData);
@@ -17,6 +17,12 @@ function Predict({ titleImage, party, afterchange, submitData, name }) {
   const [viceborder, setViceborder] = useState(true);
 
   const [sliderBackground, setSliderBackground] = useState("transparent");
+
+  useEffect(() => {
+    if (onSelectionChange) {
+      onSelectionChange(!presdborder && !viceborder);
+    }
+  }, [presdborder, viceborder, onSelectionChange]);
 
   // useEffect(() => {
   //   axios
