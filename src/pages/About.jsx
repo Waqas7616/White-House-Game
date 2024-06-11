@@ -9,12 +9,19 @@ import play from "../images/gameplay.png";
 import DownloadApp from "../components/DownloadApp";
 import bg from "../images/div.png";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function About() {
   const navigate = useNavigate();
 
   return (
     <div>
+       <Helmet>
+        <title>The White House Game | About Us</title>
+        <meta name="keywords" content="White House, game, app, presidential election, 2024, Trump, Biden, Kennedy, opinion polls, statistics, about us." />
+        <meta name="description" content="Our game is based on a 2004 board game with the same name with a few variations. The same person invented both versions." />
+        <meta name="language" content="en" />
+      </Helmet>
       <AppBanner
         redTitle={"About"}
         bg={bg}

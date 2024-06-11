@@ -9,8 +9,9 @@ import republic from "../images/democrat.png";
 import democrat from "../images/republican.png";
 import independ from "../images/independent.png";
 import check from "../images/check.png";
-import calender from '../images/calender.png'
-
+import calender from "../images/calender.png";
+import StateWinner from "../components/statewinner/StateWinner";
+import Map from "../components/Map";
 
 export default function MyVote() {
   const [userVote, setUserVote] = useState([]);
@@ -22,7 +23,6 @@ export default function MyVote() {
   const token = localStorage.getItem("token");
   // console.log(token)
   const imageUrl = "https://thewhitehousegame.com/public/";
-  
 
   useEffect(() => {
     axios
@@ -54,16 +54,46 @@ export default function MyVote() {
       })
       .catch((err) => {});
   }, []);
+  const [statName, setStatName] = useState("");
+  useEffect(() => {
+    axios
+      .get(
+        "https://thewhitehousegame.com/public/api/getFinalizeCandidateElectroral",
 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
+        }
+      )
+      .then((res) => (setStatName = Object.keys(res.data.data)))
+      .catch((e) => console.log("elecotral error is", e));
+  }, []);
   console.log("barwa waqas da dir:", selected);
+  console.log("my ele", statName);
+
+  // const getStatesDetails=()=>{
+  //   const stateName=Object.keys
+  // }
 
   return (
     <div>
       <AppBanner
         bannerTitle={"Vote"}
         redTitle={"My"}
-        bannerDesc={<>America votes<br/><span className="flex justify-center items-center mb-12"><img src={calender} alt="" />Tuesday, November 5 2024</span><br/> </>  }
-        bannerDesc2={<p>This is <span className="text-redish !orbit6">My Prediction</span></p>}
+        bannerDesc={
+          <>
+            America votes
+            <br />
+            <span className="flex justify-center items-center mb-12">
+              <img src={calender} alt="" />
+              Tuesday, November 5 2024
+            </span>
+            <br />{" "}
+          </>
+        }
+        // bannerDesc2={<p>This is <span className="text-redish !orbit6">My Prediction</span></p>}
         bg={bg}
       />
       <div className="w-full pt-[30px] bg-[#1c2452]">
@@ -72,8 +102,9 @@ export default function MyVote() {
             <img className="m-auto" src={logo} alt="" />
 
             <p className="poppins4 text-white/90 xl:text-[24px] mt-6 text-center  m-auto">
-              This is my Prediction who the candidates will be and who will be
-              our next President and Vice President
+              This is <span className="text-redish">My Prediction</span> who the
+              candidates will be and who will be our next President and Vice
+              President
             </p>
           </div>
           <div className="flex flex-wrap justify-evenly gap-4">
@@ -107,14 +138,16 @@ export default function MyVote() {
                   alt=""
                 />
                 <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                  {userVote?.PredictedCandidateDetails?.[0]?.party_name.split("(")[0]}
+                  {
+                    userVote?.PredictedCandidateDetails?.[0]?.party_name.split(
+                      "("
+                    )[0]
+                  }
                 </h2>
               </div>
               <div className="flex gap-4 items-center justify-start w-full m-auto ">
                 <div className="w-[200px] h-[220px] m-auto relative">
-                  <h4 className="poppins6  xl:text-[20px] mb-2">
-                    President
-                  </h4>
+                  <h4 className="poppins6  xl:text-[20px] mb-2">President</h4>
                   {/* w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] */}
                   <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
                     <img
@@ -201,9 +234,7 @@ export default function MyVote() {
               </div>
               <div className="flex gap-4 items-center justify-start w-full m-auto ">
                 <div className="w-[200px] h-[220px] m-auto relative">
-                  <h4 className="poppins6  xl:text-[20px] mb-2">
-                    President
-                  </h4>
+                  <h4 className="poppins6  xl:text-[20px] mb-2">President</h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px] object-cover  overflow-hidden   ">
                     <img
                       className="w-[200px] !h-[220px] object-cover"
@@ -280,9 +311,7 @@ export default function MyVote() {
               </div>
               <div className="flex gap-4 items-center justify-start w-full m-auto ">
                 <div className="w-[200px] h-[220px] m-auto relative">
-                  <h4 className="poppins6  xl:text-[20px] mb-2">
-                    President
-                  </h4>
+                  <h4 className="poppins6  xl:text-[20px] mb-2">President</h4>
                   <div className="w-[200px] h-[220px] rounded-[28.43px]   overflow-hidden   ">
                     <img
                       className="w-[200px] !h-[220px] object-cover"
@@ -345,6 +374,73 @@ export default function MyVote() {
           </div>
         </div>
       </div>
+      {/* section */}
+
+      <div
+        className="w-full py-8"
+        style={{
+          background:
+            "linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)",
+        }}
+      >
+        {/* <div className="flex justify-center my-8 ">
+          <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto  text-center">
+            270 to Win
+          </h2>
+        </div>
+        <div className="flex justify-center my-8 ">
+          <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">
+            What our game players Predict{" "}
+          </h2>
+        </div>
+
+        <div className="flex w-9/12 m-auto my-8 mb-[83px] flex-col items-center">
+          <div className="flex w-full justify-around items-center mb-4">
+            <span className="poppins6 text-white ">Democratic</span>
+            <span className="poppins6 text-white ">Republican</span>
+            <span className="poppins6 text-white ">Independent</span>
+          </div>
+
+          <div className="flex w-full">
+            <div
+              className="py-4 bg-[#031BBB]"
+              style={{ width: democraticBarLength }}
+            >
+              <span className="poppins4 flex justify-center items-center">
+                {statesData && statesData.Democratic
+                  ? `${statesData.Democratic}`
+                  : "0"}
+              </span>
+            </div>
+
+            <div
+              className="py-4 bg-redish"
+              style={{ width: republicanBarLength }}
+            >
+              <span className="poppins4 flex justify-center items-center">
+                {statesData && statesData.Republican
+                  ? `${statesData.Republican}`
+                  : "0"}
+              </span>
+            </div>
+
+            <div
+              className="py-4 bg-white"
+              style={{ width: independentBarLength }}
+            >
+              <span className="poppins4 flex justify-center items-center">
+                {statesData && statesData["Independent('Kennedy')"]
+                  ? `${statesData["Independent('Kennedy')"]}`
+                  : "0"}
+              </span>
+            </div>
+          </div>
+        </div> */}
+        <div className="w-10/12 m-auto">stat wommer</div>
+
+        <div className="w-10/12 m-auto mt-12"><Map/></div>
+      </div>
+
       <DownloadApp />
     </div>
   );

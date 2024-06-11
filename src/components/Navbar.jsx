@@ -172,7 +172,7 @@ function Navbar() {
             >
               Tell us who you think will win ?
             </li>
-            <Link to={"/myvote"}>
+            {/* <Link to={"/myvote"}>
               {" "}
               <li
                 className={`nav-link poppins4 hover:text-redish ${
@@ -181,7 +181,7 @@ function Navbar() {
               >
                 My Vote
               </li>
-            </Link>
+            </Link> */}
             {/* </Link> */}
             <div className="fixed flex items-center justify-center w-full h-full left-0 top-[10.5rem]  z-50 ">
               <div className=" z-50  modal-container ">
@@ -214,7 +214,7 @@ function Navbar() {
               <div
                 className={` ${
                   isLoggedIn
-                    ? "languages flex items-center gap-2 bg-[#131841] w-60 h-10 rounded-[5px] p-1"
+                    ? "languages flex items-center gap-2 bg-[#131841] w-80 h-10 rounded-[5px] p-1"
                     : ""
                 }`}
               >
@@ -229,15 +229,27 @@ function Navbar() {
                   My Account
                 </button>
                 <button
+                  onClick={() => navigate("/myvote")}
+                  className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
+                    location.pathname == "/myvote"
+                      ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
+                      : ""
+                  }`}
+                >
+                  My Vote
+                </button>
+                <button
                   onClick={logOut}
                   className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
-                    location.pathname !== "/putdata"
+                    location.pathname !== "/putdata" &&
+                    location.pathname !== "/myvote"
                       ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
                       : ""
                   }`}
                 >
                   Log Out
                 </button>
+               
               </div>
             )}
 
