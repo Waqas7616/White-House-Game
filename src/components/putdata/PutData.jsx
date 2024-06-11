@@ -14,6 +14,7 @@ export const PutData = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state?.data;
+  console.log("sokh data:", data);
   const [AgeGroup, setAgeGroup] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [myAccountData, setMyAccountData] = useState([]);
@@ -148,6 +149,7 @@ export const PutData = () => {
 
     user_votter_party: "",
   });
+  console.log("payload",payload)
 
   const handleSubscriptionChange = (e) => {
     const isChecked = e.target.checked;
@@ -181,34 +183,12 @@ export const PutData = () => {
 
   const handleSaveButtonClick = async () => {
     setIsLoading(true);
-    // alert(newPayload)
-    //   let adjustedPayload = { ...payload };
-    // console.log("adjusted payload", adjustedPayload);
-
-    // if (adjustedPayload.is_votted_2020 === "No") {
-    //   delete adjustedPayload.voter_candidate_id;
-    //   console.log("Adjusted payload before sending:", adjustedPayload);
-    // }
-
-    // let finalPayload = {
-    //   ...payload,
-    //   ...adjustedPayload
-    // };
-
-    // let adjustedPayload = { ...payload };
-    // console.log("adjusted payload before delete", adjustedPayload);
-
-    // if (adjustedPayload.is_votted_2020 === "No") {
-    //   delete adjustedPayload.voter_candidate_id;
-    //   console.log("Adjusted payload after delete:", adjustedPayload);
-    // }
 
     try {
       const response = await axios.post(
         "https://thewhitehousegame.com/public/api/update_user_info",
         condition ? newPayload : payload,
-        // finalPayload,
-        // adjustedPayload,
+
         {
           headers: {
             Authorization: `Bearer ${jwtToken}`,
@@ -231,9 +211,217 @@ export const PutData = () => {
       setIsLoading(false);
     }
   };
-  useEffect(() => {
-    axios
-      .get(
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `https://thewhitehousegame.com/public/api/get_user_info/${payload.id}`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${jwtToken}`,
+  //           "Content-Type": "application/json",
+  //           Accept: "application/json",
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       setMyAccountData(res.data);
+  //     })
+  //     .catch((err) => console.log("error", err));
+  // }, [jwtToken]);
+  // console.log("iiiiiiiiiiiiiiiiiiiiiiii", myAccountData);
+
+  //   useEffect(() => {
+  //     const fetchUserData = async () => {
+  //         try {
+  //             const response = await axios.get(
+  //                 `https://thewhitehousegame.com/public/api/get_user_info/${payload.id}`,
+  //                 {
+  //                     headers: {
+  //                         Authorization: `Bearer ${jwtToken}`,
+  //                         "Content-Type": "application/json",
+  //                         Accept: "application/json",
+  //                     },
+  //                 }
+  //             );
+  //             setMyAccountData(response.data);
+  //             // User ki information ko payload mein set karna
+  //             setPayLoad({
+  //                 ...payload,
+  //                 language_id: response.data.language_id,
+  //                 user_age_id: response.data.user_age_id,
+  //                 user_ethnicity_id: response.data.user_ethnicity_id,
+  //                 user_country_birth_id: response.data.user_country_birth_id,
+  //                 user_employement_id: response.data.user_employement_id,
+  //                 user_gender_id: response.data.user_gender_id,
+  //                 education_id: response.data.education_id,
+  //                 user_state_id: response.data.user_state_id,
+  //                 is_veteran: response.data.is_veteran,
+  //                 is_votted_2020: response.data.is_votted_2020,
+  //                 voter_candidate_id: response.data.voter_candidate_id,
+  //                 source: response.data.source,
+  //                 is_subscription_newsletter: response.data.is_subscription_newsletter,
+  //                 user_votter_party: response.data.user_votter_party,
+  //             });
+  //         } catch (err) {
+  //             console.log("error", err);
+  //         }
+  //     };
+
+  //     if (jwtToken) {
+  //         fetchUserData();
+  //     }
+  // }, [jwtToken]);
+
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://thewhitehousegame.com/public/api/get_user_info/${payload.id}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${jwtToken}`,
+  //             "Content-Type": "application/json",
+  //             Accept: "application/json",
+  //           },
+  //         }
+  //       );
+  //       setMyAccountData(response.data.data);
+  //       console.log("data of account:",response)
+  //       // User ki information ko payload mein set karna
+  //       setPayLoad({
+  //         ...payload,
+  //         language_id: response.data.data.language_id,
+  //         user_age_id: response.data.data.user_age_id,
+  //         user_ethnicity_id: response.data.data.user_ethnicity_id,
+  //         user_country_birth_id: response.data.data.user_country_birth_id,
+  //         user_employement_id: response.data.data.user_employement_id,
+  //         user_gender_id: response.data.data.user_gender_id,
+  //         education_id: response.data.data.education_id,
+  //         user_state_id: response.data.data.user_state_id,
+  //         is_veteran: response.data.data.is_veteran,
+  //         is_votted_2020: response.data.data.is_votted_2020,
+  //         voter_candidate_id: response.data.data.voter_candidate_id,
+  //         source: response.data.data.source,
+  //         is_subscription_newsletter: response.data.is_subscription_newsletter,
+  //         user_votter_party: response.data.data.user_votter_party,
+  //       });
+  //     } catch (err) {
+  //       console.log("error", err);
+  //     }
+  //   };
+
+  //   if (jwtToken && payload.id) {
+  //     fetchUserData();
+  //   }
+  //   console.log("data histay:", payload)
+    
+  // }, [jwtToken, payload.id]);
+
+
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://thewhitehousegame.com/public/api/get_user_info/${payload.id}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${jwtToken}`,
+  //             "Content-Type": "application/json",
+  //             Accept: "application/json",
+  //           },
+  //         }
+  //       );
+  //       setMyAccountData(response.data.data);
+  //       console.log("data of account:", response.data.data);
+        
+  //       setPayLoad((prevPayload) => ({
+  //         ...prevPayload,
+  //         language_id: response.data.data.language_id,
+  //         user_age_id: response.data.data.user_age_id,
+  //         user_ethnicity_id: response.data.data.user_ethnicity_id,
+  //         user_country_birth_id: response.data.data.user_country_birth_id,
+  //         user_employement_id: response.data.data.user_employement_id,
+  //         user_gender_id: response.data.data.user_gender_id,
+  //         education_id: response.data.data.education_id,
+  //         user_state_id: response.data.data.user_state_id,
+  //         is_veteran: response.data.data.is_veteran,
+  //         is_votted_2020: response.data.data.is_votted_2020,
+  //         voter_candidate_id: response.data.data.voter_candidate_id,
+  //         source: response.data.data.source,
+  //         is_subscription_newsletter: response.data.data.is_subscription_newsletter,
+  //         user_votter_party: response.data.data.user_votter_party,
+  //       }));
+        
+  //     } catch (err) {
+  //       console.log("error", err);
+  //     }
+  //   };
+  
+  //   if (jwtToken && payload.id) {
+  //     fetchUserData();
+  //   }
+
+  //   console.log("data histay:", payload)
+  // }, [jwtToken, payload.id]);
+
+//   useEffect(() => {
+//     const fetchUserData = async () => {
+//       try {
+//         const response = await axios.get(
+//           `https://thewhitehousegame.com/public/api/get_user_info/${payload.id}`,
+//           {
+//             headers: {
+//               Authorization: `Bearer ${jwtToken}`,
+//               "Content-Type": "application/json",
+//               Accept: "application/json",
+//             },
+//           }
+//         );
+//         console.log("Response data:", response.data.data);
+        
+//         // Ensure data consistency
+//         const userData = response.data;
+
+//         setMyAccountData(userData);
+//         // User ki information ko payload mein set karna
+//         setPayLoad({
+//           ...payload,
+//           language_id: userData.language_id || '',
+//           user_age_id: userData.user_age_id || '',
+//           user_ethnicity_id: userData.user_ethnicity_id || '',
+//           user_country_birth_id: userData.user_country_birth_id || '',
+//           user_employement_id: userData.user_employement_id || '',
+//           user_gender_id: userData.user_gender_id || '',
+//           education_id: userData.education_id || '',
+//           user_state_id: userData.user_state_id || '',
+//           is_veteran: userData.is_veteran || '',
+//           is_votted_2020: userData.is_votted_2020 || '',
+//           voter_candidate_id: userData.voter_candidate_id || '',
+//           source: userData.source || '',
+//           is_subscription_newsletter: userData.is_subscription_newsletter || '',
+//           user_votter_party: userData.user_votter_party || ''
+//         });
+
+//         console.log("Updated payload:", payload);
+        
+//       } catch (err) {
+//         console.log("error", err);
+//       }
+//     };
+
+//     if (jwtToken && payload.id) {
+//       fetchUserData();
+//     }
+//   }, [jwtToken, payload.id]);
+
+// useEffect(() => {
+//   console.log("Payload dataone:", payload);
+// }, [payload]);
+
+useEffect(() => {
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get(
         `https://thewhitehousegame.com/public/api/get_user_info/${payload.id}`,
         {
           headers: {
@@ -242,13 +430,55 @@ export const PutData = () => {
             Accept: "application/json",
           },
         }
-      )
-      .then((res) => {
-        setMyAccountData(res.data);
-      })
-      .catch((err) => console.log("error", err));
-  }, [jwtToken]);
-  console.log("iiiiiiiiiiiiiiiiiiiiiiii", myAccountData);
+      );
+      console.log("Response data:", response.data.data);
+      
+      // Ensure data consistency
+      const userData = response.data.data;
+
+      setMyAccountData(userData);
+      // User ki information ko payload mein set karna
+      const updatedPayload = {
+        ...payload,
+        language_id: userData.language_id || '',
+        user_age_id: userData.user_age_id || '',
+        user_ethnicity_id: userData.user_ethnicity_id || '',
+        user_country_birth_id: userData.user_country_birth_id || '',
+        user_employement_id: userData.user_employement_id || '',
+        user_gender_id: userData.user_gender_id || '',
+        education_id: userData.education_id || '',
+        user_state_id: userData.user_state_id || '',
+        is_veteran: userData.is_veteran || '',
+        is_votted_2020: userData.is_votted_2020 || '',
+        voter_candidate_id: userData.voter_candidate_id || '',
+        source: userData.source || '',
+        is_subscription_newsletter: userData.is_subscription_newsletter || '',
+        user_votter_party: userData.user_votter_party || ''
+
+
+        
+      };
+
+      setPayLoad(userData,updatedPayload);
+      console.log("Updated payload:", userData);
+
+    } catch (err) {
+      console.log("error", err);
+    }
+  };
+
+  if (jwtToken && payload.id) {
+    fetchUserData();
+  }
+}, [jwtToken, payload.id]);
+
+// Payload update hone par logging
+useEffect(() => {
+console.log("Payload data:", payload);
+}, [payload]);
+
+
+  
 
   return (
     <>
@@ -300,13 +530,20 @@ export const PutData = () => {
                       type="radio"
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="male"
+                      // value="1"
+                      // value={payload.language_id}
+                      // value={payload.user_gender_id || "1"}
                       value="1"
+                      checked={payload.user_gender_id === "1"|| payload.gender==="Male"}
                       onChange={(e) =>
                         setPayLoad({
+                          
                           ...payload,
                           user_gender_id: e.target.value,
+                          
                         })
                       }
+                      
                     />
                     <span class="absolute text-red-500 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
                       <svg
@@ -341,7 +578,11 @@ export const PutData = () => {
                       type="radio"
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="female"
+                      // value="2"
+                      // value={payload.language_id}
+                      // value={payload.user_gender_id || "2"}
                       value="2"
+                      checked={payload.user_gender_id === "2" || payload.gender==="female"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
@@ -386,6 +627,7 @@ export const PutData = () => {
                   className="bg-transparent w-full outline-none"
                   name="states"
                   id="search"
+                  value={payload.user_age_id || payload.age }
                   onChange={(e) =>
                     setPayLoad({
                       ...payload,
@@ -394,7 +636,7 @@ export const PutData = () => {
                   }
                 >
                   <option className="bg-[#000]" value="">
-                    Select your age group
+                    {payload.age ? payload.age : "Select your age group"}
                   </option>
                   {AgeGroup?.map((item) => (
                     <option
@@ -502,6 +744,7 @@ export const PutData = () => {
                     <select
                       name="states"
                       id="search"
+                      value={payload.user_state_id || payload.state}
                       className="bg-transparent outline-none w-full"
                       onChange={(e) =>
                         setPayLoad({
@@ -511,7 +754,7 @@ export const PutData = () => {
                       }
                     >
                       <option className="bg-[#000]" value="">
-                        Where you live
+                        {payload.state ? payload.state : "Where you live"}
                       </option>
                       {allstates?.map((item) => (
                         <option
@@ -539,6 +782,7 @@ export const PutData = () => {
                     <select
                       name="states"
                       id="search"
+                      value={payload.user_ethnicity_id || payload.ethnicity}
                       className="bg-transparent outline-none w-full"
                       onChange={(e) =>
                         setPayLoad({
@@ -548,7 +792,7 @@ export const PutData = () => {
                       }
                     >
                       <option className="bg-[#000]" value="">
-                        Select your ethnicity
+                       {payload.ethnicity ? payload.ethnicity : "Select your ethnicity"}
                       </option>
                       {ethnicityData?.map((item) => (
                         <option
@@ -576,6 +820,7 @@ export const PutData = () => {
                     <select
                       name="states"
                       id="search"
+                      value={payload.user_country_birth_id || payload.user_country_birth}
                       className="bg-transparent w-full outline-none"
                       onChange={(e) =>
                         setPayLoad({
@@ -584,9 +829,11 @@ export const PutData = () => {
                         })
                       }
                     >
-                      {/* <option className="bg-[#000]" value="">
-                   USA
-                  </option> */}
+                      <option className="bg-[#000]" value="">
+                      {payload.user_country_birth ? payload.user_country_birth : "Select  your country of birth"}
+
+                  </option>
+                  
                       {CountryBirth?.map((item) => (
                         <option
                           className="bg-[#000]"
@@ -613,6 +860,7 @@ export const PutData = () => {
                     <select
                       name="states"
                       id="search"
+                      value={payload.language_id || payload.language}
                       className="bg-transparent w-full outline-none"
                       onChange={(e) =>
                         setPayLoad({
@@ -621,9 +869,9 @@ export const PutData = () => {
                         })
                       }
                     >
-                      {/* <option className="bg-[#000]" value="">
-                    Select All Languages
-                  </option> */}
+                      <option className="bg-[#000]" value="">
+                    {payload.language ? payload.language : "Select your language"}
+                  </option>
                       {byLanguage?.map((item) => (
                         <option
                           className="bg-[#000]"
@@ -650,6 +898,7 @@ export const PutData = () => {
                     <select
                       name="states"
                       id="search"
+                      value={payload.user_employement_id || payload.employment}
                       className="bg-transparent w-full outline-none"
                       onChange={(e) =>
                         setPayLoad({
@@ -659,7 +908,7 @@ export const PutData = () => {
                       }
                     >
                       <option className="bg-[#000]" value="">
-                        Select best description
+                        {payload.employment ? payload.employment : "Select best description"}
                       </option>
                       {Employment?.map((item) => (
                         <option
@@ -687,6 +936,7 @@ export const PutData = () => {
                     <select
                       name="states"
                       id="search"
+                      value={payload.education_id || payload.education}
                       className="bg-transparent w-full outline-none"
                       onChange={(e) =>
                         setPayLoad({
@@ -696,7 +946,7 @@ export const PutData = () => {
                       }
                     >
                       <option className="bg-[#000]" value="">
-                        Select best description
+                        {payload.education ? payload.education : "Select best description"}
                       </option>
                       {highereducation?.map((item) => (
                         <option
@@ -731,7 +981,10 @@ export const PutData = () => {
                       type="radio"
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="veteran"
+                      // value="yes"
+                      // value={payload.is_veteran || "yes"}
                       value="yes"
+                      checked={payload.is_veteran === "yes"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
@@ -772,7 +1025,10 @@ export const PutData = () => {
                       type="radio"
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="veteran"
+                      // value="No"
+                      // value={payload.is_veteran || "No"}
                       value="No"
+                      checked={payload.is_veteran === "No"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
@@ -823,7 +1079,10 @@ export const PutData = () => {
                       type="radio"
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="red"
+                      // value="yes"
+                      // value={payload.is_votted_2020 || "yes"}
                       value="yes"
+                      checked={payload.is_votted_2020 === "yes"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
@@ -864,7 +1123,10 @@ export const PutData = () => {
                       type="radio"
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="No"
+                      // value="No"
+                      // value={payload.is_votted_2020 || "No"}
                       value="No"
+                      checked={payload.is_votted_2020 === "No"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
@@ -919,7 +1181,10 @@ export const PutData = () => {
                           type="radio"
                           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                           id="bidenHarris"
+                          // value="1"
+                          // value={payload.voter_candidate_id || "1"}
                           value="1"
+                          checked={payload.voter_candidate_id === "1"}
                           onChange={(e) =>
                             setPayLoad({
                               ...payload,
@@ -960,7 +1225,10 @@ export const PutData = () => {
                           type="radio"
                           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                           id="Trump/Pense"
+                          // value="2"
+                          // value={payload.voter_candidate_id || "2"}
                           value="2"
+                          checked={payload.voter_candidate_id === "2"}
                           onChange={(e) =>
                             setPayLoad({
                               ...payload,
@@ -1006,7 +1274,10 @@ export const PutData = () => {
                           type="radio"
                           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                           id="Other"
+                          // value="3"
+                          // value={payload.voter_candidate_id || "3"}
                           value="3"
+                          checked={payload.voter_candidate_id === "3"}
                           onChange={(e) =>
                             setPayLoad({
                               ...payload,
@@ -1059,7 +1330,10 @@ export const PutData = () => {
                           type="radio"
                           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                           id="polling"
+                          // value="polling"
+                          // value={payload.source || "polling"}
                           value="polling"
+                          checked={payload.source === "polling"}
                           onChange={(e) =>
                             setPayLoad({ ...payload, source: e.target.value })
                           }
@@ -1097,7 +1371,10 @@ export const PutData = () => {
                           type="radio"
                           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                           id="mail"
+                          // value="mail"
+                          // value={payload.source || "mail"}
                           value="mail"
+                          checked={payload.source === "mail"}
                           onChange={(e) =>
                             setPayLoad({ ...payload, source: e.target.value })
                           }
@@ -1149,7 +1426,10 @@ export const PutData = () => {
                       type="radio"
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="Democratic"
+                      // value="1"
+                      // value={payload.user_votter_party || "1"}
                       value="1"
+                      checked={payload.user_votter_party === "1"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
@@ -1190,7 +1470,10 @@ export const PutData = () => {
                       type="radio"
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="Republican"
+                      // value="2"
+                      // value={payload.user_votter_party || "2"}
                       value="2"
+                      checked={payload.user_votter_party === "2"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
@@ -1236,7 +1519,10 @@ export const PutData = () => {
                       type="radio"
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="Independent"
+                      // value="3"
+                      // value={payload.user_votter_party || "3"}
                       value="3"
+                      checked={payload.user_votter_party === "3"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
@@ -1277,7 +1563,10 @@ export const PutData = () => {
                       type="radio"
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="Other"
+                      // value="4"
+                      // value={payload.user_votter_party || "4"}
                       value="4"
+                      checked={payload.user_votter_party === "4"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
@@ -1331,8 +1620,6 @@ export const PutData = () => {
                       class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="subscribe"
                       value="yes"
-                      //     checked={payload.is_subscription_newsletter === "yes"}
-                      // onChange={handleSubscriptionChange}
                       checked={isSubscribed}
                       onChange={handleSubscriptionChange}
                     />
