@@ -8,6 +8,8 @@ import { Card } from "@material-tailwind/react";
 
 export const Version = () => {
     const navigate  = useNavigate();
+    const path=localStorage.getItem('election_path');
+    console.log('path',path);
 
     const [selectedOption, setSelectedOption] = useState(null);
 
@@ -15,7 +17,7 @@ export const Version = () => {
         if (selectedOption === "predict") {
             navigate('/predict');
         } else if (selectedOption === "electoral") {
-            navigate('/electoral');
+            navigate('/predictandelectoral');
         }
     };
 

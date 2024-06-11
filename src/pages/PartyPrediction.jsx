@@ -121,6 +121,7 @@ function PartyPrediction() {
         // console.log("my error message is :", err.data.error);
       });
     setPopUp(true);
+    localStorage.setItem('election_path','President only')
   };
 
   useEffect(() => {
@@ -203,12 +204,12 @@ function PartyPrediction() {
               <p className="poppins4 text-white text-center mb-5">
                 You have not completed Electoral College!
               </p>
-              <button
+              {/* <button
                 onClick={() => navigate("/electoral")}
                 className="bg-redish px-5 m-auto block py-3 rounded-[6px] poppins6 text-white text-center mb-3"
               >
                 Complete electoral college
-              </button>
+              </button> */}
               <p className="text-white text-center poppins4">
                 A lot can happen before election day
               </p>
@@ -452,12 +453,12 @@ function PartyPrediction() {
         >
           Done
         </button>
-        <button
+        {/* <button
           onClick={() => navigate("/electoral")}
           className={`rounded-lg px-5 py-3 bg-red-500 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 `}
         >
           Complete electoral college
-        </button>
+        </button> */}
       </div>
 
       <DownloadApp />

@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function DownloadApp() {
   const navigate = useNavigate();
   return (
-    <div className="bg-[#1C2452] pt-20 pb-4">
+    <div className="bg-[#1C2452] pt-5 pb-4">
       <div
         className="w-10/12 resp m-auto rounded-[48px]  flex items-center justify-start relative pr-14"
         style={{

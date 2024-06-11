@@ -8,7 +8,9 @@ import DownloadApp from "../DownloadApp";
 import Navbar from "../Navbar";
 
 function EmailVerification(props) {
+
   const navigate = useNavigate();
+  const token=localStorage.getItem('token');
   const data={
     title:'Create',
     title2:'An Account',
@@ -129,6 +131,21 @@ function EmailVerification(props) {
     }
   };
 
+  const resendOtp=()=>{
+    axios.post("https://thewhitehousegame.com/public/api/resendOTP",
+
+      {
+        "email":email
+      },
+      {
+        headers:{
+          Authorization:`Bearer ${token}`,
+          Accept:'application/json'
+        }
+      }
+    ).then((res)=>console.log(res))
+  }
+
   return (
     <>
       <div className="h-screen">
@@ -184,11 +201,12 @@ function EmailVerification(props) {
                 <p className="text-white font-poppins text-[12px]">
                   Your OTP will be expired in 1:59
                 </p>
+                <p onClick={resendOtp}>Resend OTP</p>
               </div>
               <div className="max-w-[260px] mx-auto mt-4 flex justify-center">
                 <button
                   type="submit"
-                  className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition-colors duration-150"
+                  className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none focus:ring focus:ring-indigo-300 focus-visible:outline-none  transition-colors duration-150"
                 >
                   Verify OTP
                 </button>
