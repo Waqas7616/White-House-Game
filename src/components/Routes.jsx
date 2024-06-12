@@ -17,7 +17,7 @@ import PartyPrediction from "../pages/PartyPrediction";
 import { Navigate } from "react-router-dom";
 import StateWinner from "./statewinner/StateWinner";
 import Candidate from "./candidate/Candidate";
-import TermsCondition from "../pages/TermsCondition"
+import TermsCondition from "../pages/TermsCondition";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import MyVote from "../pages/MyVote";
 import PredictionAndElectoral from "../pages/PredictionAndElectoral";
@@ -39,7 +39,7 @@ function AppRoutes() {
   if (loading) {
     return (
       <div className="text-white h-screen w-[100vw] flex justify-center items-center text-[50px]">
-       <CustomSpinner/>
+        <CustomSpinner />
       </div>
     );
   }
@@ -71,13 +71,17 @@ function AppRoutes() {
         />
 
         <Route path="/party-prediction" element={<PartyPrediction />} />
-        <Route path="/statewinner" element={<StateWinner/>}/>
-        <Route path="/candidate" element={<Candidate/>}/>
-        <Route path="/forgetmodal" element={<ForgotModal/>}/>
-        <Route path="/termscondition" element={<TermsCondition/>}/>
-        <Route path="/privacypolicy" element={<PrivacyPolicy/>}/>
-        <Route path="/payment" element={<PaymentPage/>}/>
-        <Route path="/predictandelectoral" element={<PredictionAndElectoral/>}/>
+        <Route path="/statewinner" element={<StateWinner />} />
+        <Route path="/candidate" element={<Candidate />} />
+        <Route path="/forgetmodal" element={<ForgotModal />} />
+        <Route path="/termscondition" element={<TermsCondition />} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/myvote" element={<MyVote />} />
+        <Route
+          path="/predictandelectoral"
+          element={<PredictionAndElectoral />}
+        />
       </Routes>
     </Router>
   );

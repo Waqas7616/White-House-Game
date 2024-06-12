@@ -377,7 +377,7 @@ const StateWinner = () => {
                   </div>
                 </th>
                 <th className="px-6 orbit7 py-3 lg:py-10 text-[9px] lg:text-[25px]">
-                  <div className="flex justify-center items-center">
+                  <div className="flex justify-center items-center ">
                     <span>State</span>
                   </div>
                 </th>

@@ -245,6 +245,13 @@ function CustomSlider() {
         },
       },
       {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
         breakpoint: 600,
         settings: {
           slidesToShow: 3,

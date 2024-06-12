@@ -91,12 +91,12 @@ const token=localStorage.getItem('token');
   };
   const OPTIONS = {
     showIcon: true,
-    appearance:{
-        theme:'flat',
-        variables:{
-            colorText:'#fff',
-            colorPrimary:'#ffc101'
-        }
+    appearance: {
+      theme: 'flat',
+      variables: {
+        colorText: '#fff',       // Set text color to white
+        colorPrimary: '#ffc101'  // Set primary color
+      }
     }
   };
   return (

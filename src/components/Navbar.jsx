@@ -231,7 +231,7 @@ function Navbar() {
                   My Account
                 </button>
                 <button
-                  onClick={() => navigate("/payment")}
+                  onClick={() => navigate("/myvote")}
                   className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
                     location.pathname == "/myvote"
                       ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "

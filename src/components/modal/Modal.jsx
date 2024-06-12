@@ -25,7 +25,7 @@ export const Modal = ({ candidate, onClose }) => {
   return (
     <div className="">
       <div className="rounded-lg ">
-        <Card className={`relative max-w-[20rem] overflow-hidden w-[450px] rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
+        <Card className={`relative max-w-[20rem] overflow-hidden md:w-[450px] rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
                       candidate?.party?.party_name
                     )}`}>
           <CardHeader
@@ -38,7 +38,7 @@ export const Modal = ({ candidate, onClose }) => {
               <img
                 src={`${imageUrl}${candidate?.candidate_image}`}
                 alt="ui/ux review check"
-                className="w-full  "
+                className="w-full h-[280px] object-cover"
               />
               <div className="absolute top-2 right-3 ">
                 <img
