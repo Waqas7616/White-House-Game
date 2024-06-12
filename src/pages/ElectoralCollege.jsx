@@ -277,8 +277,8 @@ function ElectoralCollege() {
             </div>
             <div className="name">
               <h6 className="poppins6 text-white text-center text-[20px] sm:text-[33px]">
-                {/* {previousData?.states?.[step]?.name==='USA'?'United States of America':previousData?.states?.[step]?.name} */}
-                United States of America
+                {previousData?.states?.[step]?.name==='USA'?'United States of America':previousData?.states?.[step]?.name}
+                {/* United States of America */}
               </h6>
               <p className="poppins4 text-white text-center text-[12px] sm:text-[28px]">
                 {/* 9 Electoral College votes */}
@@ -288,14 +288,15 @@ function ElectoralCollege() {
             </div>
           </div>
         </div>
-        <div className="flex mb-2 justify-end w-full">
-          <div onClick={()=>handleRemoval(selectedButtonId)}>{partyClick && (
+        
+        <div className="flex mb-2 justify-end w-full h-12">
+        <div onClick={()=>handleRemoval(selectedButtonId)}>{partyClick && (
                   <EditButton/>
                 )}{" "}</div>
             
           </div>
         <div className="flex flex-col items-start lg:flex lg:flex-row lg:items-start ">
-          <div className="question flex flex-col justify-center gap-4 items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
+          <div className="question flex flex-col justify-center gap-3 items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
             {previousData &&
               previousData?.states &&
               previousData?.states[step] && (
@@ -306,7 +307,7 @@ function ElectoralCollege() {
                   className="w-12 lg:w-12 xl:w-20 2xl:w-24 object-cover mt-3"
                 />
               )}
-            <div className="m-auto ">
+            <div className="mx-auto ">
               <h4 className="text-white text-center poppins6  text-[17px] sm:text-[16px] lg:text-[15px] xl:text-[19px]  ">
                 Who do you predict will win?
               </h4>

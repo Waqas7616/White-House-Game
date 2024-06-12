@@ -31,7 +31,7 @@ function AppRoutes() {
   useEffect(() => {
     const user = localStorage.getItem("email");
     const tokens = localStorage.getItem("token");
-    setLoading(false);
+  setLoading(false);
     setUser(user);
     setLocalToken(tokens);
   }, [loading, localToken, user]);
