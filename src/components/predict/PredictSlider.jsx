@@ -252,7 +252,7 @@ function PredictSlider({
                 <div
                   key={index}
                   onClick={() => handleImage(item?.id, item?.votter_party_id)}
-                  className={`w-[200px] h-[220px]    rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
+                  className={`w-[124px] h-[154px] md:w-[200px] md:h-[220px]    rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
                     imageSelect && "border-white border-[10px] rounded[28.43px]"
                   }`}
                 >
@@ -282,7 +282,7 @@ function PredictSlider({
                 <div
                   key={index}
                   onClick={() => handleImage(item?.id, item?.votter_party_id)}
-                  className={`w-[200px] h-[220px]    rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
+                  className={`w-[124px] h-[154px] md:w-[200px] md:h-[220px]    rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
                     imageSelect && "border-white border-[10px] rounded[28.43px]"
                   }`}
                 >

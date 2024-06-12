@@ -71,17 +71,14 @@ function AppRoutes() {
         />
 
         <Route path="/party-prediction" element={<PartyPrediction />} />
-        <Route path="/statewinner" element={<StateWinner />} />
-        <Route path="/candidate" element={<Candidate />} />
-        <Route path="/forgetmodal" element={<ForgotModal />} />
-        <Route path="/termscondition" element={<TermsCondition />} />
-        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/myvote" element={<MyVote />} />
-        <Route
-          path="/predictandelectoral"
-          element={<PredictionAndElectoral />}
-        />
+        <Route path="/statewinner" element={<StateWinner/>}/>
+        <Route path="/candidate" element={<Candidate/>}/>
+        <Route path="/forgetmodal" element={<ForgotModal/>}/>
+        <Route path="/termscondition" element={<TermsCondition/>}/>
+        <Route path="/privacypolicy" element={<PrivacyPolicy/>}/>
+        <Route path="/payment" element={<PaymentPage/>}/>
+        <Route path="/myvote" element={<MyVote/>}/>
+        <Route path="/predictandelectoral" element={<PredictionAndElectoral/>}/>
       </Routes>
     </Router>
   );
