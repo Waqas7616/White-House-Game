@@ -134,8 +134,8 @@ function Predict({ titleImage, party, afterchange, submitData, name, onSelection
             </button>
 
             {isButtonClicked && (
-              <img
-                className="w-12 h-12 absolute left-[49%] transform -translate-x-2 -translate-y-5"
+              <img onClick={()=>{setIsButtonClicked(false);setSliderBackground("transparent")}}
+                className="w-12 cursor-pointer h-12 absolute left-[49%] transform -translate-x-2 -translate-y-5"
                 src={check}
                 alt=""
               />

@@ -23,7 +23,9 @@ function PartyPrediction() {
   const [popPresident, setPopPresident] = useState();
   const [popvicePresident, setPopvicePresident] = useState();
   const [popUp, setPopUp] = useState(false);
+  const [popUps, setPopUps] = useState(false);
   const [test, setTest] = useState(false);
+  const [error,setError]=useState("")
   const [sliderBackground, setSliderBackground] = useState("transparent");
   const [partyData, setPartyData] = useState({
     votter_party_id: 1,
@@ -56,7 +58,7 @@ function PartyPrediction() {
         setCandidateData(response?.data);
       })
       .catch((error) => {
-        alert(error);
+        
       });
     setTest(true);
     setDisabled(true);
@@ -118,12 +120,18 @@ function PartyPrediction() {
       )
       .then((res) => {
         console.log("my response message is :", res.data.message);
-      })
+        setPopUp(true);
+      }
+   
+    )
       .catch((err) => {
-        // console.log("my error message is :", err.data.error);
+        
+        console.log('the error is:',err.response.data.error)
+        setError(err.response.data.error);
+        setPopUps(true)
       });
-    setPopUp(true);
-    localStorage.setItem("election_path", "President only");
+    
+    
   };
 
   useEffect(() => {
@@ -142,7 +150,19 @@ function PartyPrediction() {
 
   return (
     <div className="">
-      {popUp && (
+      
+      {popUps&&
+      <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
+        <div className="popup flex flex-col items-center justify-center bg-[#1C2452] w-5/12  h-[55vh] rounded-[30px] ">
+        <div>
+        <h2 className="text-white text-center m-auto">{error}</h2>
+        
+        <button onClick={()=>navigate('/payment')} className="bg-redish m-auto w-[50%] block text-white poppins5 py-3 rounded-md mt-4">Pay</button></div></div>
+        
+      </div>
+      }
+      {popUp &&  
+      (
         <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
           <div className="popup bg-[#1C2452] w-5/12  h-[95vh] rounded-[30px]  ">
             <div className="popup-content">

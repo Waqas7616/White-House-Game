@@ -20,6 +20,31 @@ function EmailVerification(props) {
   // const { email } = props.location.state;
 
   const [email, setEmail] = useState(""); // State to store email from local storage
+  const [timeLeft, setTimeLeft] = useState(120); 
+  const [isRunning, setIsRunning] = useState(true);
+  const [error,setError]=useState();
+  const [isLoading,setIsLoading]=useState(false);
+
+  useEffect(() => {
+    let intervalId;
+
+    if (isRunning && timeLeft > 0) {
+      intervalId = setInterval(() => {
+        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      setIsRunning(false); // Stop the timer when timeLeft reaches 0
+    }
+
+    // Clean up function to clear the interval when the component unmounts or timeLeft becomes 0
+    return () => clearInterval(intervalId);
+  }, [isRunning,timeLeft]);
+
+ const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");
@@ -123,15 +148,16 @@ function EmailVerification(props) {
         // Redirect or perform any other action upon successful OTP verification
         navigate("/PutData",{state:{data}});
       } else {
-        alert("OTP verification failed. Please try again.");
+        setError(response.data.message)
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred while verifying OTP. Please try again later.");
+      setError(error.response.data.message)
     }
   };
 
   const resendOtp=()=>{
+    
     axios.post("https://thewhitehousegame.com/public/api/resendOTP",
 
       {
@@ -143,7 +169,8 @@ function EmailVerification(props) {
           Accept:'application/json'
         }
       }
-    ).then((res)=>console.log(res))
+    ).then((res)=>{setIsRunning(true);setTimeLeft(120);console.log(res)})
+    
   }
 
   return (
@@ -160,6 +187,7 @@ function EmailVerification(props) {
           <div className="flex justify-center pt-5 ">
             <h2 className="text-white text-[23px] font-poppins">
               Email Verification
+              
             </h2>
           </div>
           <div className="flex justify-center pt-5">
@@ -198,18 +226,28 @@ function EmailVerification(props) {
                 ))}
               </div>
               <div className="flex justify-center items-center mt-3">
-                <p className="text-white font-poppins text-[12px]">
-                  Your OTP will be expired in 1:59
-                </p>
-                <p onClick={resendOtp}>Resend OTP</p>
+                
+              {error?     <p className="text-redish poppins5 text-center">{error}</p>:<> 
+              {timeLeft!==0&&<p className="text-white font-poppins text-[12px]">
+                Your OTP will be expired in {formatTime(timeLeft)}
+              </p>} </>
+              }
+               
               </div>
+        
               <div className="max-w-[260px] mx-auto mt-4 flex justify-center">
-                <button
+                {timeLeft===0?<div
+                  onClick={resendOtp}
+                  className="w-full inline-flex cursor-pointer justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none    transition-colors duration-150"
+                >
+                  Resend OTP
+                </div>:<button
                   type="submit"
-                  className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none focus:ring focus:ring-indigo-300 focus-visible:outline-none  transition-colors duration-150"
+                  className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none  focus-visible:outline-none  transition-colors duration-150"
                 >
                   Verify OTP
-                </button>
+                </button>}
+                
               </div>
             </form>
           </div>
