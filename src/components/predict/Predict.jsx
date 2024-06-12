@@ -83,7 +83,7 @@ function Predict({ titleImage, party, afterchange, submitData, name, onSelection
           style={{ background: sliderBackground }}
         >
           <div className="flex gap-4 items-center justify-start  m-auto mt-[50px]">
-            <div className="w-[200px] h-[220px]  m-auto">
+            <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px]  m-auto">
               <h4 className="poppins6 text-white xl:text-[20px]">President</h4>
               <div>
                 <PredictSlider
@@ -96,7 +96,7 @@ function Predict({ titleImage, party, afterchange, submitData, name, onSelection
                 />
               </div>
             </div>
-            <div className="w-[200px] h-[220px]  m-auto">
+            <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px]  m-auto">
               <h4 className="poppins6 text-white xl:text-[20px]">
                 Vice President
               </h4>

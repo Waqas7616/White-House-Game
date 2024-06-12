@@ -77,6 +77,7 @@ function AppRoutes() {
         <Route path="/termscondition" element={<TermsCondition/>}/>
         <Route path="/privacypolicy" element={<PrivacyPolicy/>}/>
         <Route path="/payment" element={<PaymentPage/>}/>
+        <Route path="/myvote" element={<MyVote/>}/>
         <Route path="/predictandelectoral" element={<PredictionAndElectoral/>}/>
       </Routes>
     </Router>
