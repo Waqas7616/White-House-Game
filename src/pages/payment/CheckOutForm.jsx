@@ -132,7 +132,7 @@ const CheckoutForm = () => {
   return (
     <div className='m-auto w-10/12'>
 <Navbar/>
-<h1 className="text-whiteColor text-center sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
+<h1 className="text-whiteColor text-center sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] uppercase orbit9">
           {" "}
           <span className="text-redish">Payment</span> 
         </h1>
