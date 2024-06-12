@@ -846,9 +846,9 @@ function TabSection() {
 
         <div className="flex w-9/12 m-auto my-8 mb-[83px] flex-col items-center">
           <div className="flex w-full justify-around items-center mb-4">
-            <span className="poppins6 text-white ">Democratic</span>
-            <span className="poppins6 text-white ">Republican</span>
-            <span className="poppins6 text-white ">Independent</span>
+            <span className="poppins6 text-white text-[9px] md:text-[17px] ">Democratic</span>
+            <span className="poppins6 text-white text-[9px] md:text-[17px] ">Republican</span>
+            <span className="poppins6 text-white text-[9px] md:text-[17px] ">Independent</span>
           </div>
 
           <div className="flex w-full">

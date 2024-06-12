@@ -582,7 +582,7 @@ console.log("Payload data:", payload);
                       // value={payload.language_id}
                       // value={payload.user_gender_id || "2"}
                       value="2"
-                      checked={payload.user_gender_id === "2" || payload.gender==="female"}
+                      checked={payload.user_gender_id === "2" || payload.gender==="Female"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
