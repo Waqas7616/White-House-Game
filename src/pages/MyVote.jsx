@@ -107,14 +107,14 @@ export default function MyVote() {
             <br />{" "}
           </>
         }
-        bannerDesc2={
-          <p>
-            This is{" "}
-            <span className="text-redish !orbit6 uppercase mt-10">
-              My Prediction
-            </span>
-          </p>
-        }
+        // bannerDesc2={
+        //   <p>
+        //     This is{" "}
+        //     <span className="text-redish !orbit6 uppercase mt-10">
+        //       My Prediction
+        //     </span>
+        //   </p>
+        // }
         bg={bg}
       />
       <div className="w-full pt-[30px] bg-[#1c2452]">

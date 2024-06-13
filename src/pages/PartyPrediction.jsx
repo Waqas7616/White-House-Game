@@ -16,6 +16,7 @@ import badge from "../images/Democraticlogo.png";
 import badge2 from "../images/Republicanlogo.png";
 import badge3 from "../images/Independentlogo.png";
 import Predict from "../components/predict/Predict";
+import logo1 from "../images/logo1.png";
 
 function PartyPrediction() {
   const navigate = useNavigate();
@@ -143,22 +144,54 @@ function PartyPrediction() {
 
   return (
     <div className="">
-      {popUps && (
-        <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
-          <div className="popup flex flex-col items-center justify-center bg-[#1C2452] w-5/12  h-[55vh] rounded-[30px] ">
-            <div>
-              <h2 className="text-white text-center m-auto">{error}</h2>
+      
 
-              <button
-                onClick={() => navigate("/payment")}
-                className="bg-redish m-auto w-[50%] block text-white poppins5 py-3 rounded-md mt-4"
-              >
-                Pay
-              </button>
+      {popUps && (
+        <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
+          <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12  relative">
+            <div className="text-center mb-6">
+              <img className="w-[80px] h-[80px]" src={logo1} alt="" />
             </div>
+            <button
+              onClick={() => setPopUps(false)}
+              className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <div className="text-center mb-5">
+              <h2 className="text-white text-center m-auto">
+                Payment of{" "}
+                <span className="font-extrabold text-white">$1.49</span> is
+                required to <br /> submit your prediction
+              </h2>
+            </div>
+            <button
+              onClick={() => navigate("/payment")}
+              className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
+            >
+              Pay Now
+            </button>
+            <p className="text-gray-400 text-center text-[9px] md:text-[9px] lg:text-[11px]">
+              The payment is to stop fake and multiple voting and spam. <br />{" "}
+              Payments received are used to maintain our website and apps.
+            </p>
           </div>
         </div>
       )}
+
       {popUp && (
         <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
           <div className="popup bg-[#1C2452] w-5/12  h-[95vh] rounded-[30px]  ">
