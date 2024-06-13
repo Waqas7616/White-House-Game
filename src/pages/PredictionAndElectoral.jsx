@@ -37,7 +37,6 @@ function PredictionAndElectoral() {
         vice_president_id: vicePresident,
       });
     }, [president, vicePresident])
-  console.log('waqas voting data',data)
     const token = localStorage.getItem("token");
   
     const handleSelectionChange = (isComplete) => {
@@ -52,7 +51,6 @@ function PredictionAndElectoral() {
       });
   
     };
-  console.log('check this',voting)
   
     const sendPrediction = () => {
       axios
@@ -70,10 +68,9 @@ function PredictionAndElectoral() {
           }
         )
         .then((res) => {
-          alert("res is :", res.message);
         })
         .catch((err) => {
-          alert("the error is :", err.message);
+          console.log("the error is :", err.message);
         });
       navigate('/electoral')
     }
@@ -97,7 +94,7 @@ function PredictionAndElectoral() {
             Tuesday, November
             <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
           </p>
-         <div className="resp w-10/12 m-auto flex flex-wrap items-center gap-12 justify-center mt-12">
+         <div className="resp w-10/12 m-auto flex flex-wrap items-center gap-6 justify-center mt-12">
          <div>
           <div className="flex items-center gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded"><span className=""><img className="w-10" src={democratic} alt="" /></span>
           <h2>Democratic</h2>

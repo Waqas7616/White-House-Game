@@ -139,7 +139,6 @@ function EmailVerification(props) {
         }
       );
 
-      console.log(response.data); // Log the response data
 
       if (response.status === 200) {
         localStorage.setItem("token", response?.data?.access_token);
@@ -169,7 +168,7 @@ function EmailVerification(props) {
           Accept:'application/json'
         }
       }
-    ).then((res)=>{setIsRunning(true);setTimeLeft(120);console.log(res)})
+    ).then((res)=>{setIsRunning(true);setTimeLeft(120);})
     
   }
 

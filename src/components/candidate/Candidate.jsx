@@ -225,7 +225,6 @@ const Candidate = () => {
           }
         );
         setData(response.data.votter_candidate);
-        console.log("candidatessss Data", data);
         setLoading(false);
       } catch (error) {
         setLoading(false);

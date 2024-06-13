@@ -17,7 +17,6 @@ export default function ByLanguage() {
   const [id, setId] = useState(1);
   const [byLanguage, setByLanguage] = useState([]);
   const [language, setLanguage] = useState([]);
-  console.log("language", language);
 
   useEffect(() => {
     axios

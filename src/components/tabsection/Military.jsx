@@ -30,7 +30,6 @@ export default function Military() {
         }
       )
       .then((res) => {
-        console.log("employment response :", employmentStatus);
         setEmploymentStatus(res.data);
       })
       .catch((err) => {

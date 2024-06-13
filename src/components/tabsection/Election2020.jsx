@@ -34,7 +34,6 @@ export default function Election2020() {
           )
           
         );
-        console.log("2020 election", response);
         setMail(
           response?.data?.source_percentages?.filter(
             (item) => item.source === "mail"
@@ -43,7 +42,6 @@ export default function Election2020() {
       })
       .catch((err) => {});
   }, []);
-  console.log("votepercentage", votePercentage);
 
   const candidateData = [
     {

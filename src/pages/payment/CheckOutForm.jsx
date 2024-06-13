@@ -16,7 +16,7 @@ const CheckoutForm = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
-  const [amount, setAmount] = useState(1); // Example amount, you can change this as needed
+  const [amount, setAmount] = useState(149); // Example amount, you can change this as needed
   const [cardBrand, setCardBrand] = useState(null);
   const token = localStorage.getItem("token");
 
@@ -69,13 +69,11 @@ const CheckoutForm = () => {
 
       if (response.data.success) {
         const clientSecret = response.data.client_secret;
-        console.log("Client Secret:", clientSecret); // Log the client secret
 
         const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
         navigate('/party-prediction')
 
         if (paymentIntent.status === "succeeded") {
-          console.log("Payment already succeeded!");
           return; // Payment already succeeded, no need to confirm again
         }
 
@@ -87,7 +85,6 @@ const CheckoutForm = () => {
           console.error("Error confirming payment:", confirmError); // Log full error details
           throw new Error(confirmError.message);
         } else {
-          console.log("Payment successful!");
         }
       } else {
         throw new Error(response.data.error);

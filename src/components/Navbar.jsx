@@ -393,7 +393,7 @@ function Navbar() {
                 <h2
                   onClick={() => navigate("/LogIn")}
                   // onClick={() => setIsLoggedIn(true)}
-                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor mt-6 mb-3`}
                 >
                   Login
                 </h2>
@@ -402,15 +402,15 @@ function Navbar() {
               <div>
                 <h2
                   onClick={logOut}
-                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor`}
+                  className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor mt-6 mb-3`}
                 >
                   Logout
                 </h2>
               </div>
             )}
-            <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px] my-8">
+            {/* <button className="bg-[#ED1C24] py-[12px] px-[30px] text-white rounded-[100px] my-8">
               Download Now
-            </button>
+            </button> */}
           </div>
         </>
       )}

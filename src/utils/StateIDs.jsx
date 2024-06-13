@@ -4,7 +4,6 @@ const StatePredictionsContext = React.createContext();
 
 function StatePredictionsProvider({ children }) {
   const [state_predictions, setState_predictions] = useState([]);
-  console.log("state_Pridictions",state_predictions)
   const [voting,setVoting]=useState([])
   const [president, setPresident] = useState();
   const [vicePresident, setVicePresident] = useState();

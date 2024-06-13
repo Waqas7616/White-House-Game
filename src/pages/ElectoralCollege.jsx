@@ -56,7 +56,6 @@ function ElectoralCollege() {
     setRepLength((electoralCount.Republican / electoralCount.total) * 100);
     setIndLength((electoralCount.Independent / electoralCount.total) * 100);
 
-    console.log("the lengthy:", demLength);
   }, [electoralCount]);
 
   const handleRemoval = (partyId) => {
@@ -84,7 +83,6 @@ function ElectoralCollege() {
   };
 
   const handleClick = (stateId, partyId) => {
-    console.log("states data :", stateId, partyId);
     setPartyClick(true);
     // Add prediction
     if (!partyClick) {
@@ -92,7 +90,6 @@ function ElectoralCollege() {
         state_id: stateId,
         party_id: partyId,
       });
-      console.log("states data : nnn");
 
       setSelectedButtonId(partyId);
       setElectoralCount((prev) => ({
@@ -138,11 +135,8 @@ function ElectoralCollege() {
       });
   }, []);
 
-  useEffect(() => {
-    console.log("hello predictions", state_predictions);
-    console.log("hello results", previousData);
-    console.log("hello button id:", selectedButtonId);
-  }, [state_predictions]);
+  // useEffect(() => {
+  // }, [state_predictions]);
 
   const handleSteps = () => {
     setPartyClick(false);
@@ -166,7 +160,6 @@ function ElectoralCollege() {
           }
         )
         .then((response) => {
-          console.log("API response:", response.data.message);
           // Handle success response
         })
         .catch((error) => {

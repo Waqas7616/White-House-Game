@@ -20,7 +20,6 @@ export default function AgeGroups() {
   const [ageGroupPer, setAgeGroupPer] = useState([]);
   const [AgeGroup, setAgeGroup] = useState([]);
   const [tabName, setTabName] = useState("Under 16 years old");
-  console.log("ageGroup", ageGroupPer);
   useEffect(() => {
     axios
       .get("https://thewhitehousegame.com/api/public/api/get_user_age")

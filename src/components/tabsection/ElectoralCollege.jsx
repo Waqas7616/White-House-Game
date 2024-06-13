@@ -89,7 +89,6 @@ export default function ElectoralCollege() {
     setId(selectedId);
   };
   
-  console.log("chup sha", president);
   
 
 

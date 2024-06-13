@@ -41,13 +41,11 @@ function PredictSlider({
           }
         );
         setCandidateData(response?.data?.votter_candidate);
-        console.log("waqaswaqas", candidatedata);
       } catch (error) {
         console.log("Error: ", error);
       }
     };
     fetchData();
-    console.log("class selected is :", selecClass);
   }, []);
 
   const handleImage = (id, party) => {

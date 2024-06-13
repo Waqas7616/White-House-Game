@@ -48,7 +48,6 @@ function CustomSlider() {
           }
         );
         setData(response.data.votter_candidate);
-        console.log("halaka :", response);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -322,8 +321,7 @@ function CustomSlider() {
                       onClick={() => handleCandidateClick(index)}
                     />
                   </div>
-                  <h5 className="poppins5 text-[12px] text-left mt-2 sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px]  xl:text-center xl:ml-1 text-blackColor">
-                    {/* {item.candidate_name.split(" ")[1]} */}
+                  <h5 className="poppins5 text-[12px] text-center md:text-center mt-2 sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px]   xl:text-center xl:ml-1 text-blackColor">                    {/* {item.candidate_name.split(" ")[1]} */}
                     {/* {item.candidate_name === "Robert F Kennedy"
                       ? `${item.candidate_name.split(" ")[0]} ${item.candidate_name.split(" ")[1]}`
                       : item.candidate_name} */}

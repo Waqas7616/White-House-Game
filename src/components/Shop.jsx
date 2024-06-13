@@ -184,7 +184,6 @@ export default function Shop() {
     setChangeColor(index);
     localStorage.setItem("activeIndex", index);
   };
-  console.log("hhshsjh", initialActiveIndex);
   const settings1 = {
     className: "center",
     centerMode: true,

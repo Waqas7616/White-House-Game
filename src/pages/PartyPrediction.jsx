@@ -118,11 +118,9 @@ function PartyPrediction() {
         }
       )
       .then((res) => {
-        console.log("my response message is :", res.data.message);
         setPopUp(true);
       })
       .catch((err) => {
-        console.log("the error is:", err.response.data.error);
         setError(err.response.data.error);
         setPopUps(true);
       });
@@ -308,7 +306,7 @@ function PartyPrediction() {
             Tuesday, November
             <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
           </p>
-          <div className="main-dev flex flex-wrap items-center gap-12 justify-center mt-12">
+          <div className="main-dev flex flex-wrap items-center gap-6 justify-center mt-12">
             <div>
               <div className="flex items-center m-auto gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded mb-5">
                 <span className="">

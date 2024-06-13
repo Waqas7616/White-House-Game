@@ -51,7 +51,6 @@ function TabSection() {
       })
       .then((res) => {
         setStats(res.data);
-        console.log("count voters:", res.data);
         setPresident(
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "president"
@@ -108,7 +107,6 @@ function TabSection() {
         },
       })
       .then((res) => {
-        console.log("states ka data hai:", res.data.electoral_votes_by_party);
         setStatesData(res.data.electoral_votes_by_party);
       })
       .catch((err) => {

@@ -34,7 +34,6 @@ const [error,setError]=useState("");
       vice_president_id: vicePresident,
     });
   }, [president, vicePresident])
-console.log('waqas voting data',data)
   const token = localStorage.getItem("token");
 
   const handleSelectionChange = (isComplete) => {
@@ -68,10 +67,10 @@ console.log('waqas voting data',data)
         }
       )
       .then((res) => {
-        alert("res is :", res.message);
+        
       })
       .catch((err) => {
-        alert("the error is :", err.message);
+        console.log("the error is :", err.message);
       });
     navigate('/party-prediction', { state: { voting } })
   }
