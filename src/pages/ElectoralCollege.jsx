@@ -58,11 +58,10 @@ function ElectoralCollege() {
 
     console.log("the lengthy:", demLength);
   }, [electoralCount]);
- 
 
-  const handleRemoval=(partyId)=>{
+  const handleRemoval = (partyId) => {
     setSelectedButtonId(null);
-    setPartyClick(false)
+    setPartyClick(false);
     clearPredictions();
     setElectoralCount((prev) => ({
       ...prev,
@@ -82,11 +81,10 @@ function ElectoralCollege() {
             previousData?.states?.[step]?.electrical_collage_number
           : prev.Independent,
     }));
-  }
-  
+  };
 
   const handleClick = (stateId, partyId) => {
-    console.log("states data :",stateId, partyId)
+    console.log("states data :", stateId, partyId);
     setPartyClick(true);
     // Add prediction
     if (!partyClick) {
@@ -94,7 +92,7 @@ function ElectoralCollege() {
         state_id: stateId,
         party_id: partyId,
       });
-    console.log("states data : nnn",)
+      console.log("states data : nnn");
 
       setSelectedButtonId(partyId);
       setElectoralCount((prev) => ({
@@ -143,7 +141,7 @@ function ElectoralCollege() {
   useEffect(() => {
     console.log("hello predictions", state_predictions);
     console.log("hello results", previousData);
-    console.log('hello button id:',selectedButtonId)
+    console.log("hello button id:", selectedButtonId);
   }, [state_predictions]);
 
   const handleSteps = () => {
@@ -168,7 +166,7 @@ function ElectoralCollege() {
           }
         )
         .then((response) => {
-          // console.log("API response:", response);
+          console.log("API response:", response.data.message);
           // Handle success response
         })
         .catch((error) => {
@@ -177,7 +175,7 @@ function ElectoralCollege() {
           setPopUp(true)
           // Handle error
         });
-        localStorage.setItem("electoralCount", JSON.stringify(electoralCount));
+      localStorage.setItem("electoralCount", JSON.stringify(electoralCount));
     }
   };
 
@@ -307,7 +305,16 @@ function ElectoralCollege() {
         redTitle={"Electoral"}
         bg={electoral}
         bannerDesc={
- <>The Electoral College has <span className="text-redish orbit7">538</span>  delegates <br/>Whoever wins <span className="text-redish orbit7">270</span> decides who will be<br/>President of the United States<br/><span className="!mt-12">Predict who wins each State </span></>
+          <>
+            The Electoral College has{" "}
+            <span className="text-redish orbit7">538</span> delegates <br />
+            Whoever wins <span className="text-redish orbit7">270</span> decides
+            who will be
+            <br />
+            President of the United States
+            <br />
+            <span className="!mt-12">Predict who wins each State </span>
+          </>
         }
       />
 
@@ -333,7 +340,9 @@ function ElectoralCollege() {
             </div>
             <div className="name">
               <h6 className="poppins6 text-white text-center text-[20px] sm:text-[33px]">
-                {previousData?.states?.[step]?.name==='USA'?'United States of America':previousData?.states?.[step]?.name}
+                {previousData?.states?.[step]?.name === "USA"
+                  ? "United States of America"
+                  : previousData?.states?.[step]?.name}
                 {/* United States of America */}
               </h6>
               <p className="poppins4 text-white text-center text-[12px] sm:text-[28px]">
@@ -345,13 +354,12 @@ function ElectoralCollege() {
             </div>
           </div>
         </div>
-        
+
         <div className="flex mb-2 justify-end w-full h-12">
-        <div onClick={()=>handleRemoval(selectedButtonId)}>{partyClick && (
-                  <EditButton/>
-                )}{" "}</div>
-            
+          <div onClick={() => handleRemoval(selectedButtonId)}>
+            {partyClick && <EditButton />}{" "}
           </div>
+        </div>
         <div className="flex flex-col items-start lg:flex lg:flex-row lg:items-start ">
           <div className="question flex flex-col justify-center gap-3 items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
             {previousData &&
@@ -376,9 +384,7 @@ function ElectoralCollege() {
             </div>
           </div>
 
-         
           <div className="badges mb-4">
-          
             <div className="flex flex-col lg:flex lg:flex-row lg:justify-between lg:gap-3 ">
               <div
                 className={`${
@@ -392,7 +398,6 @@ function ElectoralCollege() {
                 }`}
                 onClick={() => handleClick(previousData?.states?.[step]?.id, 1)}
               >
-                
                 <img src={democratic} className="" alt="" />
               </div>
               <div
@@ -654,21 +659,21 @@ function ElectoralCollege() {
           Your Electoral College Tally
         </h2>
         <div className="flex justify-between">
-        <div className="flex gap-5 items-center mb-4">
-          <div className="dem flex gap-3 items-center">
-            <div className="w-8 h-2 bg-[#031BBB]"></div>
-            <p className="poppins5 text-white">Democratic</p>
+          <div className="flex gap-5 items-center mb-4">
+            <div className="dem flex gap-3 items-center">
+              <div className="w-8 h-2 bg-[#031BBB]"></div>
+              <p className="poppins5 text-white">Democratic</p>
+            </div>
+            <div className="dem flex gap-3 items-center">
+              <div className="w-8 h-2 bg-redish"></div>
+              <p className="poppins5 text-white">Republican</p>
+            </div>
+            <div className="dem flex gap-3 items-center">
+              <div className="w-8 h-2 bg-white"></div>
+              <p className="poppins5 text-white">Independent</p>
+            </div>
           </div>
-          <div className="dem flex gap-3 items-center">
-            <div className="w-8 h-2 bg-redish"></div>
-            <p className="poppins5 text-white">Republican</p>
-          </div>
-          <div className="dem flex gap-3 items-center">
-            <div className="w-8 h-2 bg-white"></div>
-            <p className="poppins5 text-white">Independent</p>
-          </div>
-        </div>
-        <p className="poppins5 text-white pr-5">270 to win</p>
+          <p className="poppins5 text-white pr-5">270 to win</p>
         </div>
         <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-3 w-full">
           <div

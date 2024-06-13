@@ -16,6 +16,7 @@ import badge from "../images/Democraticlogo.png";
 import badge2 from "../images/Republicanlogo.png";
 import badge3 from "../images/Independentlogo.png";
 import Predict from "../components/predict/Predict";
+import logo1 from "../images/logo1.png";
 
 function PartyPrediction() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ function PartyPrediction() {
   const [popUp, setPopUp] = useState(false);
   const [popUps, setPopUps] = useState(false);
   const [test, setTest] = useState(false);
-  const [error,setError]=useState("")
+  const [error, setError] = useState("");
   const [sliderBackground, setSliderBackground] = useState("transparent");
   const [partyData, setPartyData] = useState({
     votter_party_id: 1,
@@ -57,9 +58,7 @@ function PartyPrediction() {
       .then((response) => {
         setCandidateData(response?.data);
       })
-      .catch((error) => {
-        
-      });
+      .catch((error) => {});
     setTest(true);
     setDisabled(true);
   }, [test]);
@@ -121,17 +120,12 @@ function PartyPrediction() {
       .then((res) => {
         console.log("my response message is :", res.data.message);
         setPopUp(true);
-      }
-   
-    )
+      })
       .catch((err) => {
-        
-        console.log('the error is:',err.response.data.error)
+        console.log("the error is:", err.response.data.error);
         setError(err.response.data.error);
-        setPopUps(true)
+        setPopUps(true);
       });
-    
-    
   };
 
   useEffect(() => {
@@ -151,18 +145,54 @@ function PartyPrediction() {
   return (
     <div className="">
       
-      {popUps&&
-      <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
-        <div className="popup flex flex-col items-center justify-center bg-[#1C2452] w-5/12  h-[55vh] rounded-[30px] ">
-        <div>
-        <h2 className="text-white text-center m-auto">{error}</h2>
-        
-        <button onClick={()=>navigate('/payment')} className="bg-redish m-auto w-[50%] block text-white poppins5 py-3 rounded-md mt-4">Pay</button></div></div>
-        
-      </div>
-      }
-      {popUp &&  
-      (
+
+      {popUps && (
+        <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
+          <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12  relative">
+            <div className="text-center mb-6">
+              <img className="w-[80px] h-[80px]" src={logo1} alt="" />
+            </div>
+            <button
+              onClick={() => setPopUps(false)}
+              className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <div className="text-center mb-5">
+              <h2 className="text-white text-center m-auto">
+                Payment of{" "}
+                <span className="font-extrabold text-white">$1.49</span> is
+                required to <br /> submit your prediction
+              </h2>
+            </div>
+            <button
+              onClick={() => navigate("/payment")}
+              className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
+            >
+              Pay Now
+            </button>
+            <p className="text-gray-400 text-center text-[9px] md:text-[9px] lg:text-[11px]">
+              The payment is to stop fake and multiple voting and spam. <br />{" "}
+              Payments received are used to maintain our website and apps.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {popUp && (
         <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
           <div className="popup bg-[#1C2452] w-5/12  h-[95vh] rounded-[30px]  ">
             <div className="popup-content">
@@ -278,7 +308,7 @@ function PartyPrediction() {
             Tuesday, November
             <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
           </p>
-          <div className="main-dev flex flex-col md:flex-row justify-between gap-4 m-auto mt-12">
+          <div className="main-dev flex flex-wrap items-center gap-12 justify-center mt-12">
             <div>
               <div className="flex items-center m-auto gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded mb-5">
                 <span className="">
@@ -297,11 +327,11 @@ function PartyPrediction() {
             `}
                 >
                   <div className="flex gap-4 items-center  w-full m-auto mt-[50px] pb-28 border-8 border-transparent px-2 rounded-lg">
-                    <div className="w-[200px] h-[220px] m-auto">
+                    <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] m-auto">
                       <h4 className="poppins6 text-white  xl:text-[20px] mb-2">
                         President
                       </h4>
-                      <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden ">
+                      <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] rounded-[28.43px]  overflow-hidden ">
                         <img
                           className="w-[200px] !h-[220px] object-cover"
                           src={`${imageUrl}${candidateData?.chosen_candidate?.[0]?.voter_candidate?.candidate_image}`}
@@ -309,13 +339,13 @@ function PartyPrediction() {
                         />
                       </div>
                     </div>
-                    <div className="w-[200px] h-[220px] m-auto">
+                    <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] m-auto">
                       <h4 className="poppins6 text-white  xl:text-[20px] mb-2">
                         Vice President
                       </h4>
-                      <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden   ">
+                      <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] rounded-[28.43px]  overflow-hidden   ">
                         <img
-                          className="w-[200px] !h-[220px] object-cover"
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
                           src={`${imageUrl}${candidateData?.chosen_candidate?.[1]?.voter_candidate?.candidate_image}`}
                           alt=""
                         />
@@ -358,25 +388,25 @@ function PartyPrediction() {
                   }`}
                 >
                   <div className="flex gap-4 items-center justify-start w-full m-auto mt-[50px] pb-28 border-8 border-transparent px-2 rounded-lg">
-                    <div className="w-[200px] h-[220px] m-auto">
+                    <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] m-auto">
                       <h4 className="poppins6 text-white  xl:text-[20px] mb-2">
                         President
                       </h4>
-                      <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden ">
+                      <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] rounded-[28.43px]  overflow-hidden ">
                         <img
-                          className="w-[200px] !h-[220px] object-cover"
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
                           src={`${imageUrl}${candidateData?.chosen_candidate?.[2]?.voter_candidate?.candidate_image}`}
                           alt=""
                         />
                       </div>
                     </div>
-                    <div className="w-[200px] h-[220px] m-auto">
+                    <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] m-auto">
                       <h4 className="poppins6 text-white  xl:text-[20px] mb-2">
                         Vice President
                       </h4>
-                      <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden ">
+                      <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] rounded-[28.43px]  overflow-hidden ">
                         <img
-                          className="w-[200px] !h-[220px] object-cover"
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
                           src={`${imageUrl}${candidateData?.chosen_candidate?.[3]?.voter_candidate?.candidate_image}`}
                           alt=""
                         />
@@ -420,25 +450,25 @@ function PartyPrediction() {
                   }`}
                 >
                   <div className="flex gap-4 items-center justify-start w-full m-auto mt-[50px] pb-28 border-8 border-transparent px-2 rounded-lg">
-                    <div className="w-[200px] h-[220px] m-auto">
+                    <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] m-auto">
                       <h4 className="poppins6 text-white  xl:text-[20px] mb-2">
                         President
                       </h4>
-                      <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden ">
+                      <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] rounded-[28.43px]  overflow-hidden ">
                         <img
-                          className="w-[200px] !h-[220px] object-cover"
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
                           src={`${imageUrl}${candidateData?.chosen_candidate?.[4]?.voter_candidate?.candidate_image}`}
                           alt=""
                         />
                       </div>
                     </div>
-                    <div className="w-[200px] h-[220px] m-auto">
+                    <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] m-auto">
                       <h4 className="poppins6 text-white  xl:text-[20px] mb-2">
                         Vice President
                       </h4>
-                      <div className="w-[200px] h-[220px] rounded-[28.43px]  overflow-hidden ">
+                      <div className="w-[124px] h-[154px] md:w-[200px] md:h-[220px] rounded-[28.43px]  overflow-hidden ">
                         <img
-                          className="w-[200px] !h-[220px] object-cover"
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
                           src={`${imageUrl}${candidateData?.chosen_candidate?.[5]?.voter_candidate?.candidate_image}`}
                           alt=""
                         />
@@ -476,7 +506,7 @@ function PartyPrediction() {
             disabled ? "opacity-40" : ""
           }`}
         >
-          Done
+          Submit
         </button>
         {/* <button
           onClick={() => navigate("/electoral")}
