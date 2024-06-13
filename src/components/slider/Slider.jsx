@@ -34,13 +34,13 @@ function CustomSlider() {
 
   const [loading, setLoading] = useState(true);
 
-  const imageUrl = "https://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://thewhitehousegame.com/public/api/get_votter_candidate",
+          "https://thewhitehousegame.com/api/public/api/get_votter_candidate",
           {
             headers: {
               Accept: "application/json",
@@ -241,6 +241,13 @@ function CustomSlider() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
           slidesToScroll: 1,
         },
       },

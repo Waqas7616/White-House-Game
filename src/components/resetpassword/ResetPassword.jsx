@@ -39,7 +39,7 @@ export const ResetPassword = () => {
         
 
         const response = await axios.post(
-          "https://thewhitehousegame.com/public/api/rest_password",
+          "https://thewhitehousegame.com/api/public/api/rest_password",
           {
             password: newPassword,
             confirm_password: confirmPassword,

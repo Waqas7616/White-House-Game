@@ -21,7 +21,7 @@ import axios from "axios";
 export default function ElectoralCollege() {
   const [expandedVotes, setExpandedVotes] = useState(false);
   const [viceVotes, setViceVotes] = useState(false);
-  const imageUrl = "https://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(1);
@@ -53,7 +53,7 @@ export default function ElectoralCollege() {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/public/api/get_user_state")
+      .get("https://thewhitehousegame.com/api/public/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
         // console.log("all states123", response.data.user_state);
@@ -66,7 +66,7 @@ export default function ElectoralCollege() {
     });
     axios
       .get(
-        `https://thewhitehousegame.com/public/api/filter?${ParamBody}`,
+        `https://thewhitehousegame.com/api/public/api/filter?${ParamBody}`,
         {
           headers: {
             Accept: "application/json",

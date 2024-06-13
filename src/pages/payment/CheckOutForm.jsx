@@ -55,7 +55,7 @@ const CheckoutForm = () => {
 
     try {
       const response = await axios.post(
-        "https://thewhitehousegame.com/public/api/processPayment",
+        "https://thewhitehousegame.com/api/public/api/processPayment",
         {
           payment_method_id: paymentMethod.id,
           amount: amount,
