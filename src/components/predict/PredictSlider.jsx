@@ -27,13 +27,13 @@ function PredictSlider({
   // const [vicePresidentId, setVicePresidentId] = useState("")
   // console.log("presidentId :", presidentId)
   // console.log("vicePresidentId :", vicePresidentId)
-  const imageUrl = "https://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://thewhitehousegame.com/public/api/get_votter_candidate",
+          "https://thewhitehousegame.com/api/public/api/get_votter_candidate",
           {
             headers: {
               Accept: "application/json",

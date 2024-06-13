@@ -17,7 +17,7 @@ import PartyPrediction from "../pages/PartyPrediction";
 import { Navigate } from "react-router-dom";
 import StateWinner from "./statewinner/StateWinner";
 import Candidate from "./candidate/Candidate";
-import TermsCondition from "../pages/TermsCondition"
+import TermsCondition from "../pages/TermsCondition";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import MyVote from "../pages/MyVote";
 import PredictionAndElectoral from "../pages/PredictionAndElectoral";
@@ -39,7 +39,7 @@ function AppRoutes() {
   if (loading) {
     return (
       <div className="text-white h-screen w-[100vw] flex justify-center items-center text-[50px]">
-       <CustomSpinner/>
+        <CustomSpinner />
       </div>
     );
   }

@@ -44,7 +44,7 @@ export const LogIn = () => {
       try {
         
         const response = await axios.post(
-          "https://thewhitehousegame.com/public/api/login",
+          "https://thewhitehousegame.com/api/public/api/login",
           {
             email: email,
             password: password,

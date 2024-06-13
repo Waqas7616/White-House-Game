@@ -38,7 +38,7 @@ function PartyPrediction() {
   const data = location.state || {};
   // console.log("transferred data", data);
   const [candidateData, setCandidateData] = useState([]);
-  const imageUrl = "https://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/api/public/";
   // const id=localStorage.getItem('id');
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
@@ -46,7 +46,7 @@ function PartyPrediction() {
   useEffect(() => {
     axios
       .get(
-        `https://thewhitehousegame.com/public/api/get_predict_party_candidate/${id}`,
+        `https://thewhitehousegame.com/api/public/api/get_predict_party_candidate/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -106,7 +106,7 @@ function PartyPrediction() {
   const sendPartyData = () => {
     axios
       .post(
-        "https://thewhitehousegame.com/public/api/predict_party_leader",
+        "https://thewhitehousegame.com/api/public/api/predict_party_leader",
         partyData,
         {
           headers: {

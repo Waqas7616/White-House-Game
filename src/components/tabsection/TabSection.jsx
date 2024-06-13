@@ -23,7 +23,7 @@ import axios from "axios";
 import StateWinner from "../statewinner/StateWinner";
 
 function TabSection() {
-  const imageUrl = "https://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(1);
@@ -33,7 +33,7 @@ function TabSection() {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/public/api/get_user_state")
+      .get("https://thewhitehousegame.com/api/public/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
       })
@@ -44,7 +44,7 @@ function TabSection() {
       user_state_id: id,
     });
     axios
-      .get(`https://thewhitehousegame.com/public/api/filter?${ParamBody}`, {
+      .get(`https://thewhitehousegame.com/api/public/api/filter?${ParamBody}`, {
         headers: {
           Accept: "application/json",
         },
@@ -102,7 +102,7 @@ function TabSection() {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
+      .get("https://thewhitehousegame.com/api/public/api/getVoterPartyCount", {
         headers: {
           Accept: "application/json",
         },
@@ -845,10 +845,10 @@ function TabSection() {
         </div>
 
         <div className="flex w-9/12 m-auto my-8 mb-[83px] flex-col items-center">
-          <div className="flex w-full justify-around items-center mb-4">
-            <span className="poppins6 text-white text-[9px] md:text-[17px] ">Democratic</span>
-            <span className="poppins6 text-white text-[9px] md:text-[17px] ">Republican</span>
-            <span className="poppins6 text-white text-[9px] md:text-[17px] ">Independent</span>
+          <div className="flex w-full justify-between items-center mb-4">
+            <span className="poppins6 text-white text-[12px] md:text-[16px]">Democratic</span>
+            <span className="poppins6 text-white text-[12px] md:text-[16px]">Republican</span>
+            <span className="poppins6 text-white text-[12px] md:text-[16px]">Independent</span>
           </div>
 
           <div className="flex w-full">

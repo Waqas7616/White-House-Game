@@ -174,7 +174,7 @@ const Candidate = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const imageUrl = "https://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   const getBackgroundColor = (partyName) => {
     if (
@@ -217,7 +217,7 @@ const Candidate = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://thewhitehousegame.com/public/api/get_votter_candidate",
+          "https://thewhitehousegame.com/api/public/api/get_votter_candidate",
           {
             headers: {
               Accept: "application/json",

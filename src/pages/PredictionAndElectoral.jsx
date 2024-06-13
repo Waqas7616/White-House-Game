@@ -57,7 +57,7 @@ function PredictionAndElectoral() {
     const sendPrediction = () => {
       axios
         .post(
-          "https://thewhitehousegame.com/public/api/select_party_leaders",
+          "https://thewhitehousegame.com/api/public/api/select_party_leaders",
           {
             "parties": voting
           },

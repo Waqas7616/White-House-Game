@@ -27,11 +27,11 @@ export default function MyVote() {
   console.log("users voting", userVote);
   const token = localStorage.getItem("token");
   // console.log(token)
-  const imageUrl = "https://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/public/api/userVotings", {
+      .get("https://thewhitehousegame.com/api/public/api/userVotings", {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: "application/json",
@@ -62,7 +62,7 @@ export default function MyVote() {
   useEffect(() => {
     axios
       .get(
-        "https://thewhitehousegame.com/public/api/getFinalizeCandidateElectroral",
+        "https://thewhitehousegame.com/api/public/api/getFinalizeCandidateElectroral",
 
         {
           headers: {

@@ -9,11 +9,11 @@ function Map() {
   const [step, setStep] = useState("");
   const [statesData, setStatesData] = useState([]);
   const [largeParty, setLargeParty] = useState("");
-  const ImageUrl = "https://thewhitehousegame.com/public/";
+  const ImageUrl = "https://thewhitehousegame.com/api/public/";
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
+      .get("https://thewhitehousegame.com/api/public/api/getVoterPartyCount", {
         headers: {
           Accept: "application/json",
         },

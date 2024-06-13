@@ -213,7 +213,7 @@ function Banner() {
             </div>
           </div>
         </div>
-        <div className="main-banner relative overflow-hidden h-[85vh] lg:z-30">
+        <div className="main-banner relative overflow-hidden h-[56vh] md:h-[85vh] lg:z-30">
           <Navbar />
           <div className="title-info w-10/12 m-auto  h-[80%] flex flex-col justify-center resp">
             <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9">
@@ -223,7 +223,7 @@ function Banner() {
               Predict the next President of the United States and tell the world
               what you think!
             </p>
-            <div className="buttons mt-16 flex gap-4">
+            <div className="buttons mt-8 md:mt-16 flex gap-4">
               <button className="border-0">
                 <img
                   className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]"
