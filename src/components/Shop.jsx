@@ -271,7 +271,7 @@ export default function Shop() {
     <div className="CondidateList-section py-12 bg-white">
       <div className="w-8/12 m-auto resp">
         <div>
-          <h2 className="md:text-[36px] text-[#000] orbit9 flex justify-between items-center mb-5">
+          <h2 className="text-[14px] md:text-[36px] text-[#000] orbit9 flex justify-between items-center mb-5">
             {" "}
             <span>
             The <span className="text-redish">White House </span>{" "}Shop</span>

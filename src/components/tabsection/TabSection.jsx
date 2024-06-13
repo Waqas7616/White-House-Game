@@ -853,10 +853,10 @@ function TabSection() {
 
           <div className="flex w-full">
             <div
-              className="py-4 bg-[#031BBB]"
-              style={{ width: democraticBarLength }}
+              className="py-4 bg-[#031BBB] min-w-[30%]"
+              style={{ width: democraticBarLength || "30%" }}
             >
-              <span className="poppins4 flex justify-center items-center">
+              <span className="poppins6 flex justify-center items-center">
                 {statesData && statesData.Democratic
                   ? `${statesData.Democratic}`
                   : "0"}
@@ -864,10 +864,10 @@ function TabSection() {
             </div>
 
             <div
-              className="py-4 bg-redish"
-              style={{ width: republicanBarLength }}
+              className="py-4 bg-redish min-w-[30%]"
+              style={{ width: republicanBarLength || "30%" }}
             >
-              <span className="poppins4 flex justify-center items-center">
+              <span className="poppins6 flex justify-center items-center">
                 {statesData && statesData.Republican
                   ? `${statesData.Republican}`
                   : "0"}
@@ -875,10 +875,10 @@ function TabSection() {
             </div>
 
             <div
-              className="py-4 bg-white"
-              style={{ width: independentBarLength }}
+              className="py-4 bg-white min-w-[30%]"
+              style={{ width: independentBarLength || "30%" }}
             >
-              <span className="poppins4 flex justify-center items-center">
+              <span className="poppins6 flex justify-center items-center">
                 {statesData && statesData["Independent('Kennedy')"]
                   ? `${statesData["Independent('Kennedy')"]}`
                   : "0"}
