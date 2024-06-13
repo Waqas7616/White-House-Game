@@ -20,7 +20,7 @@ function Prediction() {
   // const [president, setPresident] = useState();
   const navigate = useNavigate();
   const { president, vicePresident, party, voting, addVoting } = useStatePredictions()
-
+const [error,setError]=useState("");
   const [data, setData] = useState({
     votter_party_id: party,
     president_id: president,
@@ -49,7 +49,8 @@ console.log('waqas voting data',data)
     });
 
   };
-console.log('check this',voting)
+
+
 
   const sendPrediction = () => {
     axios
@@ -98,12 +99,15 @@ console.log('check this',voting)
         <div className="flex items-center gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded"><span className=""><img className="w-10" src={democratic} alt="" /></span>
         <h2>Democratic</h2>
         </div>
+        <p className="text-redish">{error}</p>
       <Predict
       name={'Democratic'}
         titleImage={dem}
         party={"Democratic"}
         submitData={submitData}
         onSelectionChange={handleSelectionChange}
+      
+        
       // afterchange={(index)=>{console.log(candidateData.filter((item)=>item?.party.party_name==="Democratic")[index])}}
       // afterchange={(index) => { console.log(index) }}
       />
@@ -113,12 +117,14 @@ console.log('check this',voting)
       <div className="flex items-center gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded"><span className=""><img className="w-10" src={republican} alt="" /></span>
         <h2>Republican</h2>
         </div>
+        
       <Predict
       name={'Republican'}
         titleImage={rep}
         party={"Republican"}
         submitData={submitData}
         onSelectionChange={handleSelectionChange}
+        
       />
        </div>
        <div>
@@ -128,12 +134,14 @@ console.log('check this',voting)
         </div>
         <p className="absolute right-0 top-[7px] text-[10px] w-[52%] text-white">Select who you believe will be the <br/>leading Independents on election day</p>
         </div>
+        
       <Predict
       name={'Independent'}
         titleImage={ind}
         party={"Independent('Kennedy')"}
         submitData={submitData}
         onSelectionChange={handleSelectionChange}
+       
 
       />
       </div>

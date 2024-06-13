@@ -13,10 +13,10 @@ function PredictSlider({
   afterChange,
   selecClass,
   imageValue,
+  
 }) {
-  const { setPresident, setVicePresident, setParty } = useStatePredictions();
+  const { president,setPresident,vicePresident, setVicePresident, setParty } = useStatePredictions();
   const [imageSelect, setImageSelect] = useState(false);
-
 
   const [candidatedata, setCandidateData] = useState([]);
   const [data2Index, setData2Index] = useState(0);
@@ -57,6 +57,7 @@ function PredictSlider({
       (party_name === "Republican" && setParty(party)) ||
       (party_name === "Independent('Kennedy')" && setParty(party));
     setImageSelect(true);
+    
     imageValue();
   };
   const [arrow, setArrow] = useState(true);

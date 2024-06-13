@@ -8,10 +8,13 @@ import west from "../../images/Condidates/Cornel West.jpg";
 import check from "../../images/check.png";
 import axios from "axios";
 import { Await } from "react-router-dom";
+import { useStatePredictions } from "../../utils/StateIDs";
 
-function Predict({ titleImage, party, afterchange, submitData, name, onSelectionChange  }) {
+function Predict({ titleImage, party, afterchange, submitData, name, onSelectionChange, }) {
+  const { president, vicePresident, } = useStatePredictions()
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [candidateData, setCandidateData] = useState([]);
+  const [error,setError]=useState("")
   console.log("candidateData", candidateData);
   const [presdborder, setPresdborder] = useState(true);
   const [viceborder, setViceborder] = useState(true);
@@ -42,11 +45,17 @@ function Predict({ titleImage, party, afterchange, submitData, name, onSelection
   //     });
   // }, []);
   const handleButtonClick = () => {
+    if(president!==vicePresident){
     setIsButtonClicked(true);
     setSliderBackground(
       "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)"
     );
     submitData();
+    setError("")
+  }else{
+      setError("Please select different candidates")
+    }
+    console.log('dir',president)
   };
   // const data = [obama, west];
   const getButtonBackground = (party) => {
@@ -93,6 +102,7 @@ function Predict({ titleImage, party, afterchange, submitData, name, onSelection
                   data1="president"
                   imageValue={() => setPresdborder(false)}
                   selecClass={isButtonClicked ? false : true}
+                 
                 />
               </div>
             </div>
@@ -111,7 +121,7 @@ function Predict({ titleImage, party, afterchange, submitData, name, onSelection
               </div>
             </div>
           </div>
-
+<p className="text-redish translate-y-12 poppins5">{error}</p>
           <div className="flex justify-center relative  mt-24">
             {/* Button */}
             {/* <button

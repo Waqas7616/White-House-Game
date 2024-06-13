@@ -10,6 +10,7 @@ import question from "../images/question.png";
 import democratic from "../images/democraticflag.png";
 import republican from "../images/republicflag.png";
 import independent from "../images/independentflag.png";
+import logo1 from '../images/logo1.png'
 import close from "../images/closeMenu.png";
 import {
   useStatePredictions,
@@ -20,6 +21,9 @@ import Prediction from "./Prediction";
 import StateWinner from "../components/statewinner/StateWinner";
 import abc from "../images/Alabamas 1.svg";
 import EditButton from "../components/EditButton";
+import { useNavigate } from "react-router-dom";
+import usa from '../images/usa-outline.svg'
+import usflag from '../images/usflag.webp'
 
 const initialElectoralCount = {
   Democratic: 0,
@@ -29,6 +33,7 @@ const initialElectoralCount = {
 };
 
 function ElectoralCollege() {
+  const navigate=useNavigate();
   const { state_predictions, addPrediction, clearPredictions } =
     useStatePredictions();
   const [step, setStep] = useState(0);
@@ -43,6 +48,8 @@ function ElectoralCollege() {
   const [indLength, setIndLength] = useState();
   const [previousData, setPreviousData] = useState([]);
   const [selectedButtonId, setSelectedButtonId] = useState(null);
+  const [error,setError]=useState("");
+  const [popUp,setPopUp]=useState(false)
 
   useEffect(() => {
     setDemLength((electoralCount.Democratic / electoralCount.total) * 100);
@@ -163,7 +170,9 @@ function ElectoralCollege() {
           // Handle success response
         })
         .catch((error) => {
-          console.error("API error:", error);
+          console.error("API error:", error.response.data.error);
+          setError(error.response.data.error);
+          setPopUp(true)
           // Handle error
         });
       localStorage.setItem("electoralCount", JSON.stringify(electoralCount));
@@ -246,6 +255,51 @@ function ElectoralCollege() {
 
   return (
     <div className=" bg-[#1c2452]">
+       {popUp && (
+        <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
+          <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12 sm:h-[55vh] relative">
+            <div className="text-center mb-6">
+              <img className="w-[80px] h-[80px]" src={logo1} alt="" />
+            </div>
+            <button
+              onClick={() => setPopUp(false)}
+              className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <div className="text-center mb-5">
+              <h2 className="text-white text-center m-auto">
+                Payment of{" "}
+                <span className="font-extrabold text-white">$1.49</span> is
+                required to <br /> submit your prediction
+              </h2>
+            </div>
+            <button
+              onClick={() => navigate("/payment")}
+              className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
+            >
+              Pay Now
+            </button>
+            <p className="text-gray-400 text-center text-[11px]">
+              The payment is to stop fake and multiple voting and spam. <br />{" "}
+              Payments received are used to maintain our website and apps.
+            </p>
+          </div>
+        </div>
+      )}
       <AppBanner
         bannerTitle={"College"}
         redTitle={"Electoral"}
@@ -270,7 +324,8 @@ function ElectoralCollege() {
           <div className="map ">
             <img
               className="w-12 sm:w-[150px]"
-              src={`${imageUrl}${previousData?.states?.[step]?.map_url}`}
+              src={previousData?.states?.[step]?.name==='USA'?usa:`${imageUrl}${previousData?.states?.[step]?.map_url}`}
+
               alt=""
             />
           </div>
@@ -278,7 +333,8 @@ function ElectoralCollege() {
             <div className="flag pt-5 sm:pt-0">
               <img
                 className="w-12 sm:w-[100px]"
-                src={`${imageUrl}${previousData?.states?.[step]?.image_url}`}
+                src={previousData?.states?.[step]?.name==='USA'?usflag:`${imageUrl}${previousData?.states?.[step]?.image_url}`}
+              
                 alt=""
               />
             </div>
@@ -290,9 +346,10 @@ function ElectoralCollege() {
                 {/* United States of America */}
               </h6>
               <p className="poppins4 text-white text-center text-[12px] sm:text-[28px]">
-                {/* 9 Electoral College votes */}
-                {previousData?.states?.[step]?.electrical_collage_number}{" "}
-                Electoral College votes
+              {previousData?.states?.[step]?.name==='USA'?'Click submit for your predictions':`${previousData?.states?.[step]?.electrical_collage_number}${" "} ${"Electoral College Votes"}`}
+              
+
+               
               </p>
             </div>
           </div>
