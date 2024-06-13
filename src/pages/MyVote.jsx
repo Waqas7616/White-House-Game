@@ -91,6 +91,7 @@ export default function MyVote() {
     a[0].localeCompare(b[0])
   );
   console.log("check444", sortedElections);
+  const noData = !userVote?.PredictedCandidateDetails || !selected;
   return (
     <div>
       <AppBanner
@@ -129,254 +130,278 @@ export default function MyVote() {
             </p>
           </div>
           <div className="flex flex-wrap justify-evenly gap-4">
-            <div
-              // style={{
-              //   background:
-              //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
-              // }}
-              className={` rounded-lg  pb-24 pt-9 mt-5 px-2 relative ${
-                userVote?.PredictedCandidateDetails?.[0]?.party_name ===
-                "Republican"
-                  ? "bg-redish"
-                  : userVote?.PredictedCandidateDetails?.[0]?.party_name ===
-                    "Democratic"
-                  ? "bg-[#546BED]"
-                  : "bg-white"
-              }`}
-            >
-              <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
-                <img
-                  className="w-[20px] h-[20px] sm:w-auto"
-                  src={
+            {noData ? (
+              <div className="text-center w-full mt-5">
+                <h2 className="text-xl font-bold">No data available</h2>
+              </div>
+            ) : (
+              <>
+                <div
+                  // style={{
+                  //   background:
+                  //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
+                  // }}
+                  className={` rounded-lg  pb-24 pt-9 mt-5 px-2 relative ${
                     userVote?.PredictedCandidateDetails?.[0]?.party_name ===
                     "Republican"
-                      ? republic
+                      ? "bg-redish"
                       : userVote?.PredictedCandidateDetails?.[0]?.party_name ===
                         "Democratic"
-                      ? democrat
-                      : independ
-                  }
-                  alt=""
-                />
-                <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                  {
-                    userVote?.PredictedCandidateDetails?.[0]?.party_name.split(
-                      "("
-                    )[0]
-                  }
-                </h2>
-              </div>
-              <div className="flex gap-4 items-center justify-start w-[269px] md:w-full m-auto ">
-                <div className="w-[128px] h-[164px] md:w-[200px] md:h-[220px] m-auto relative">
-                  <h4 className="poppins6  xl:text-[20px] mb-2">President</h4>
-                  {/* w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] */}
-                  <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] rounded-[28.43px]  overflow-hidden   ">
+                      ? "bg-[#546BED]"
+                      : "bg-white"
+                  }`}
+                >
+                  <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
                     <img
-                      className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px]"
-                      src={`${imageUrl}${userVote?.PredictedCandidateDetails?.[0]?.candidate_image}`}
+                      className="w-[20px] h-[20px] sm:w-auto"
+                      src={
+                        userVote?.PredictedCandidateDetails?.[0]?.party_name ===
+                        "Republican"
+                          ? republic
+                          : userVote?.PredictedCandidateDetails?.[0]
+                              ?.party_name === "Democratic"
+                          ? democrat
+                          : independ
+                      }
+                      alt=""
+                    />
+                    <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
+                      {
+                        userVote?.PredictedCandidateDetails?.[0]?.party_name.split(
+                          "("
+                        )[0]
+                      }
+                    </h2>
+                  </div>
+                  <div className="flex gap-4 items-center justify-start w-[269px] md:w-full m-auto ">
+                    <div className="w-[128px] h-[164px] md:w-[200px] md:h-[220px] m-auto relative">
+                      <h4 className="poppins6  xl:text-[20px] mb-2">
+                        President
+                      </h4>
+                      {/* w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] */}
+                      <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] rounded-[28.43px]  overflow-hidden   ">
+                        <img
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
+                          src={`${imageUrl}${userVote?.PredictedCandidateDetails?.[0]?.candidate_image}`}
+                          alt=""
+                        />
+                      </div>
+                      <h2
+                        className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
+                          userVote?.PredictedCandidateDetails?.[0]
+                            ?.party_name === "Democratic"
+                            ? "bg-[#1c2452] text-white"
+                            : userVote?.PredictedCandidateDetails?.[0]
+                                ?.party_name === "Republican"
+                            ? "bg-redish text-white"
+                            : "bg-white text-black"
+                        } px-1  md:px-4 md:py-1 z-50`}
+                      >
+                        {
+                          userVote?.PredictedCandidateDetails?.[0]
+                            ?.candidate_name
+                        }
+                      </h2>
+                    </div>
+                    <div className="w-[200px] h-[166px] md:w-[200px] md:h-[220px] m-auto relative">
+                      <h4 className="poppins6  xl:text-[20px] mb-2">
+                        Vice President
+                      </h4>
+                      <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] rounded-[28.43px]   overflow-hidden   ">
+                        <img
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
+                          src={`${imageUrl}${userVote?.PredictedCandidateDetails?.[1]?.candidate_image}`}
+                          alt=""
+                        />
+                      </div>
+                      <h2
+                        className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
+                          userVote?.PredictedCandidateDetails?.[1]
+                            ?.party_name === "Democratic"
+                            ? "bg-[#1c2452] text-white"
+                            : userVote?.PredictedCandidateDetails?.[1]
+                                ?.party_name === "Republican"
+                            ? " bg-redish text-white"
+                            : "bg-white text-black"
+                        } px-1  md:px-4 md:py-1 z-50`}
+                      >
+                        {
+                          userVote?.PredictedCandidateDetails?.[1]
+                            ?.candidate_name
+                        }
+                      </h2>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-3 left-32 md:bottom-3 md:left-52">
+                    <img
+                      className="w-[40px] h-[40px] m-auto"
+                      src={check}
                       alt=""
                     />
                   </div>
-                  <h2
-                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
-                      userVote?.PredictedCandidateDetails?.[0]?.party_name ===
-                      "Democratic"
-                        ? "bg-[#1c2452] text-white"
-                        : userVote?.PredictedCandidateDetails?.[0]
-                            ?.party_name === "Republican"
-                        ? "bg-redish text-white"
-                        : "bg-white text-black"
-                    } px-1  md:px-4 md:py-1 z-50`}
-                  >
-                    {userVote?.PredictedCandidateDetails?.[0]?.candidate_name}
-                  </h2>
                 </div>
-                <div className="w-[200px] h-[166px] md:w-[200px] md:h-[220px] m-auto relative">
-                  <h4 className="poppins6  xl:text-[20px] mb-2">
-                    Vice President
-                  </h4>
-                  <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] rounded-[28.43px]   overflow-hidden   ">
-                    <img
-                      className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px]"
-                      src={`${imageUrl}${userVote?.PredictedCandidateDetails?.[1]?.candidate_image}`}
-                      alt=""
-                    />
-                  </div>
-                  <h2
-                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
-                      userVote?.PredictedCandidateDetails?.[1]?.party_name ===
-                      "Democratic"
-                        ? "bg-[#1c2452] text-white"
-                        : userVote?.PredictedCandidateDetails?.[1]
-                            ?.party_name === "Republican"
-                        ? " bg-redish text-white"
-                        : "bg-white text-black"
-                    } px-1  md:px-4 md:py-1 z-50`}
-                  >
-                    {userVote?.PredictedCandidateDetails?.[1]?.candidate_name}
-                  </h2>
-                </div>
-              </div>
-              <div className="absolute bottom-3 left-32 md:bottom-3 md:left-52">
-                <img className="w-[40px] h-[40px] m-auto" src={check} alt="" />
-              </div>
-            </div>
 
-            {/* other parties */}
+                {/* other parties */}
 
-            <div
-              className={` rounded-lg px-2 pb-24 pt-9 mt-5  relative opacity-50 ${
-                selected?.[0]?.party_name === "Republican"
-                  ? "bg-redish"
-                  : selected?.[0]?.party_name === "Democratic"
-                  ? "bg-[#546BED]"
-                  : "bg-white"
-              }`}
-              // style={{
-              //   background:
-              //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
-              // }}
-            >
-              <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
-                <img
-                  className="w-[20px] h-[20px] sm:w-auto"
-                  src={
+                <div
+                  className={` rounded-lg px-2 pb-24 pt-9 mt-5  relative opacity-50 ${
                     selected?.[0]?.party_name === "Republican"
-                      ? republic
+                      ? "bg-redish"
                       : selected?.[0]?.party_name === "Democratic"
-                      ? democrat
-                      : independ
-                  }
-                  alt=""
-                />
-                <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                  {selected?.[0]?.party_name.split("(")[0]}
-                </h2>
-              </div>
-              <div className="flex gap-4 items-center justify-start w-[269px] md:w-full m-auto ">
-                <div className="w-[128px] h-[164px] md:w-[200px] md:h-[220px] m-auto relative">
-                  <h4 className="poppins6  xl:text-[20px] mb-2">President</h4>
-                  <div className="w-[128px] h-[164px] md:w-[200px] md:h-[220px] rounded-[28.43px] object-cover  overflow-hidden   ">
+                      ? "bg-[#546BED]"
+                      : "bg-white"
+                  }`}
+                  // style={{
+                  //   background:
+                  //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
+                  // }}
+                >
+                  <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
                     <img
-                      className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
-                      src={`${imageUrl}${selected?.[0]?.candidate_image}`}
+                      className="w-[20px] h-[20px] sm:w-auto"
+                      src={
+                        selected?.[0]?.party_name === "Republican"
+                          ? republic
+                          : selected?.[0]?.party_name === "Democratic"
+                          ? democrat
+                          : independ
+                      }
                       alt=""
                     />
+                    <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
+                      {selected?.[0]?.party_name.split("(")[0]}
+                    </h2>
                   </div>
-                  <h2
-                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
-                      selected?.[0]?.party_name === "Democratic"
-                        ? "bg-[#1c2452] text-white"
-                        : selected?.[0]?.party_name === "Republican"
-                        ? "bg-redish text-white"
-                        : "bg-white text-black"
-                    } px-1  md:px-4 md:py-1 z-50`}
-                  >
-                    {selected?.[0]?.candidate_name}
-                  </h2>
-                </div>
-                <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] m-auto relative">
-                  <h4 className="poppins6  xl:text-[20px] mb-2">
-                    Vice President
-                  </h4>
-                  <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] rounded-[28.43px]  overflow-hidden   ">
-                    <img
-                      className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
-                      src={`${imageUrl}${selected?.[1]?.candidate_image}`}
-                      alt=""
-                    />
+                  <div className="flex gap-4 items-center justify-start w-[269px] md:w-full m-auto ">
+                    <div className="w-[128px] h-[164px] md:w-[200px] md:h-[220px] m-auto relative">
+                      <h4 className="poppins6  xl:text-[20px] mb-2">
+                        President
+                      </h4>
+                      <div className="w-[128px] h-[164px] md:w-[200px] md:h-[220px] rounded-[28.43px] object-cover  overflow-hidden   ">
+                        <img
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
+                          src={`${imageUrl}${selected?.[0]?.candidate_image}`}
+                          alt=""
+                        />
+                      </div>
+                      <h2
+                        className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
+                          selected?.[0]?.party_name === "Democratic"
+                            ? "bg-[#1c2452] text-white"
+                            : selected?.[0]?.party_name === "Republican"
+                            ? "bg-redish text-white"
+                            : "bg-white text-black"
+                        } px-1  md:px-4 md:py-1 z-50`}
+                      >
+                        {selected?.[0]?.candidate_name}
+                      </h2>
+                    </div>
+                    <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] m-auto relative">
+                      <h4 className="poppins6  xl:text-[20px] mb-2">
+                        Vice President
+                      </h4>
+                      <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] rounded-[28.43px]  overflow-hidden   ">
+                        <img
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
+                          src={`${imageUrl}${selected?.[1]?.candidate_image}`}
+                          alt=""
+                        />
+                      </div>
+                      <h2
+                        className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
+                          selected?.[1]?.party_name === "Democratic"
+                            ? " bg-[#1c2452] text-white"
+                            : selected?.[1]?.party_name === "Republican"
+                            ? "bg-redish text-white"
+                            : "bg-white text-black"
+                        } px-1  md:px-4 md:py-1 z-50`}
+                      >
+                        {selected?.[1]?.candidate_name}
+                      </h2>
+                    </div>
                   </div>
-                  <h2
-                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
-                      selected?.[1]?.party_name === "Democratic"
-                        ? " bg-[#1c2452] text-white"
-                        : selected?.[1]?.party_name === "Republican"
-                        ? "bg-redish text-white"
-                        : "bg-white text-black"
-                    } px-1  md:px-4 md:py-1 z-50`}
-                  >
-                    {selected?.[1]?.candidate_name}
-                  </h2>
                 </div>
-              </div>
-            </div>
-            <div
-              className={`px-2 rounded-lg  pb-24 pt-9 mt-5  relative opacity-50 ${
-                selected?.[2]?.party_name === "Republican"
-                  ? "bg-redish"
-                  : selected?.[2]?.party_name === "Democratic"
-                  ? "bg-[#546BED]"
-                  : "bg-white"
-              }`}
-
-              // style={{
-              //   background:
-              //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
-              // }}
-            >
-              <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
-                <img
-                  className="w-[20px] h-[20px] sm:w-auto"
-                  src={
+                <div
+                  className={`px-2 rounded-lg  pb-24 pt-9 mt-5  relative opacity-50 ${
                     selected?.[2]?.party_name === "Republican"
-                      ? republic
+                      ? "bg-redish"
                       : selected?.[2]?.party_name === "Democratic"
-                      ? democrat
-                      : independ
-                  }
-                  alt=""
-                />
-                <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                  {selected?.[2]?.party_name.split("(")[0]}
-                </h2>
-              </div>
-              <div className="flex gap-4 items-center justify-start w-[269px] md:w-full m-auto ">
-                <div className="w-[128px] h-[164px] md:w-[200px] md:h-[220px] m-auto relative">
-                  <h4 className="poppins6  xl:text-[20px] mb-2">President</h4>
-                  <div className="w-[128px] h-[164px] md:w-[200px] md:h-[220px] rounded-[28.43px]   overflow-hidden   ">
+                      ? "bg-[#546BED]"
+                      : "bg-white"
+                  }`}
+
+                  // style={{
+                  //   background:
+                  //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
+                  // }}
+                >
+                  <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
                     <img
-                      className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
-                      src={`${imageUrl}${selected?.[2]?.candidate_image}`}
+                      className="w-[20px] h-[20px] sm:w-auto"
+                      src={
+                        selected?.[2]?.party_name === "Republican"
+                          ? republic
+                          : selected?.[2]?.party_name === "Democratic"
+                          ? democrat
+                          : independ
+                      }
                       alt=""
                     />
+                    <h2 className="text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
+                      {selected?.[2]?.party_name.split("(")[0]}
+                    </h2>
                   </div>
-                  <h2
-                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
-                      selected?.[2]?.party_name === "Democratic"
-                        ? "bg-[#1c2452]  text-white"
-                        : selected?.[2]?.party_name === "Republican"
-                        ? " bg-redish text-white"
-                        : "bg-white text-black"
-                    } px-1  md:px-4 md:py-1 z-50`}
-                  >
-                    {selected?.[2]?.candidate_name}
-                  </h2>
-                </div>
-                <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] m-auto relative">
-                  <h4 className="poppins6  xl:text-[20px] mb-2">
-                    Vice President
-                  </h4>
-                  <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] rounded-[28.43px]  overflow-hidden   ">
-                    <img
-                      className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
-                      src={`${imageUrl}${selected?.[3]?.candidate_image}`}
-                      alt=""
-                    />
+                  <div className="flex gap-4 items-center justify-start w-[269px] md:w-full m-auto ">
+                    <div className="w-[128px] h-[164px] md:w-[200px] md:h-[220px] m-auto relative">
+                      <h4 className="poppins6  xl:text-[20px] mb-2">
+                        President
+                      </h4>
+                      <div className="w-[128px] h-[164px] md:w-[200px] md:h-[220px] rounded-[28.43px]   overflow-hidden   ">
+                        <img
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
+                          src={`${imageUrl}${selected?.[2]?.candidate_image}`}
+                          alt=""
+                        />
+                      </div>
+                      <h2
+                        className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
+                          selected?.[2]?.party_name === "Democratic"
+                            ? "bg-[#1c2452]  text-white"
+                            : selected?.[2]?.party_name === "Republican"
+                            ? " bg-redish text-white"
+                            : "bg-white text-black"
+                        } px-1  md:px-4 md:py-1 z-50`}
+                      >
+                        {selected?.[2]?.candidate_name}
+                      </h2>
+                    </div>
+                    <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] m-auto relative">
+                      <h4 className="poppins6  xl:text-[20px] mb-2">
+                        Vice President
+                      </h4>
+                      <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] rounded-[28.43px]  overflow-hidden   ">
+                        <img
+                          className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
+                          src={`${imageUrl}${selected?.[3]?.candidate_image}`}
+                          alt=""
+                        />
+                      </div>
+                      <h2
+                        className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
+                          selected?.[3]?.party_name === "Democratic"
+                            ? " bg-[#1c2452] text-white"
+                            : selected?.[3]?.party_name === "Republican"
+                            ? "bg-redish text-white"
+                            : "bg-white text-black"
+                        } px-1  md:px-4 md:py-1 z-50`}
+                      >
+                        {selected?.[3]?.candidate_name}
+                      </h2>
+                    </div>
                   </div>
-                  <h2
-                    className={`poppins6  text-center text-[10px]  absolute -bottom-4 md:ml-4 ${
-                      selected?.[3]?.party_name === "Democratic"
-                        ? " bg-[#1c2452] text-white"
-                        : selected?.[3]?.party_name === "Republican"
-                        ? "bg-redish text-white"
-                        : "bg-white text-black"
-                    } px-1  md:px-4 md:py-1 z-50`}
-                  >
-                    {selected?.[3]?.candidate_name}
-                  </h2>
                 </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
 
           <div className="text-center flex justify-center items-center gap-5">
