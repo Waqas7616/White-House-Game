@@ -132,7 +132,7 @@ const CheckoutForm = () => {
   return (
     <div className='m-auto w-10/12'>
 <Navbar/>
-<h1 className="text-whiteColor text-center sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px]  uppercase orbit9">
+<h1 className="text-whiteColor text-center sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] uppercase orbit9">
           {" "}
           <span className="text-redish">Payment</span> 
         </h1>
@@ -148,6 +148,16 @@ const CheckoutForm = () => {
         </div>
     <div className="bg-[#131a41] w-[30rem] rounded-md m-auto mt-8">
       <form className="checkout-form px-5 py-12  m-auto flex flex-col gap-4" onSubmit={handleSubmit}>
+        {/* <div className="form-group">
+          <label className="text-white poppins5 block mb-3">Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            className="form-control"
+          />
+        </div> */}
          <div className="form-group ">
           <label className="text-white poppins5 block mb-3">Card Number:</label>
           <CardNumberElement options={OPTIONS} 
