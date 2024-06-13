@@ -23,7 +23,7 @@ import axios from "axios";
 import StateWinner from "../statewinner/StateWinner";
 
 function TabSection() {
-  const imageUrl = "https://thewhitehousegame.com/public/";
+  const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(1);
@@ -33,7 +33,7 @@ function TabSection() {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/public/api/get_user_state")
+      .get("https://thewhitehousegame.com/api/public/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
       })
@@ -44,7 +44,7 @@ function TabSection() {
       user_state_id: id,
     });
     axios
-      .get(`https://thewhitehousegame.com/public/api/filter?${ParamBody}`, {
+      .get(`https://thewhitehousegame.com/api/public/api/filter?${ParamBody}`, {
         headers: {
           Accept: "application/json",
         },
@@ -102,7 +102,7 @@ function TabSection() {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
+      .get("https://thewhitehousegame.com/api/public/api/getVoterPartyCount", {
         headers: {
           Accept: "application/json",
         },

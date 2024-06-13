@@ -23,7 +23,7 @@ export default function AgeGroups() {
   console.log("ageGroup", ageGroupPer);
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/public/api/get_user_age")
+      .get("https://thewhitehousegame.com/api/public/api/get_user_age")
       .then((response) => {
         // console.log("Age Group:", response.data.user_age);
 
@@ -39,7 +39,7 @@ export default function AgeGroups() {
       user_age_id: id,
     });
     axios
-      .get(`https://thewhitehousegame.com/public/api/filter?${ParamBody}`, {
+      .get(`https://thewhitehousegame.com/api/public/api/filter?${ParamBody}`, {
         headers: {
           Accept: "application/json",
         },

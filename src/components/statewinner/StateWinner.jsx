@@ -174,11 +174,11 @@ const StateWinner = () => {
   const [originalData, setOriginalData] = useState({});
   const [step, setStep] = useState("");
 
-  const ImageUrl = "https://thewhitehousegame.com/public/";
+  const ImageUrl = "https://thewhitehousegame.com/api/public/";
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/public/api/getVoterPartyCount", {
+      .get("https://thewhitehousegame.com/api/public/api/getVoterPartyCount", {
         headers: {
           Accept: "application/json",
         },

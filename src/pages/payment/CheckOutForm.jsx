@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
@@ -9,19 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import Vector from '../../images/Vector.png'
 import Navbar from '../../components/Navbar';
 
-=======
-import React, { useState } from "react";
-import {
-  useStripe,
-  useElements,
-  CardNumberElement,
-  CardExpiryElement,
-  CardCvcElement,
-} from "@stripe/react-stripe-js";
-import axios from "axios";
-import CustomSpinner from "../../components/spinner";
-import theme from "@material-tailwind/react/theme";
->>>>>>> bfbaa5ec59bc90c1e4f6fa46ef1535867d0f8930
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -69,7 +55,7 @@ const CheckoutForm = () => {
 
     try {
       const response = await axios.post(
-        "https://thewhitehousegame.com/public/api/processPayment",
+        "https://thewhitehousegame.com/api/public/api/processPayment",
         {
           payment_method_id: paymentMethod.id,
           amount: amount,
@@ -85,14 +71,8 @@ const CheckoutForm = () => {
         const clientSecret = response.data.client_secret;
         console.log("Client Secret:", clientSecret); // Log the client secret
 
-<<<<<<< HEAD
         const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
         navigate('/party-prediction')
-=======
-        const { paymentIntent } = await stripe.retrievePaymentIntent(
-          clientSecret
-        );
->>>>>>> bfbaa5ec59bc90c1e4f6fa46ef1535867d0f8930
 
         if (paymentIntent.status === "succeeded") {
           console.log("Payment already succeeded!");
@@ -121,7 +101,6 @@ const CheckoutForm = () => {
   };
   const OPTIONS = {
     showIcon: true,
-<<<<<<< HEAD
     
     style: {
       base: {
@@ -146,24 +125,14 @@ const CheckoutForm = () => {
         colorPrimary: '#ffc101'
       }
     }
-=======
-    appearance: {
-      theme: "flat",
-      variables: {
-        colorText: "#fff",
-        colorPrimary: "#ffc101",
-      },
-    },
->>>>>>> bfbaa5ec59bc90c1e4f6fa46ef1535867d0f8930
   };
 
 
 
   return (
-<<<<<<< HEAD
     <div className='m-auto w-10/12'>
 <Navbar/>
-<h1 className="text-whiteColor text-center sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
+<h1 className="text-whiteColor text-center sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px]  uppercase orbit9">
           {" "}
           <span className="text-redish">Payment</span> 
         </h1>
@@ -179,27 +148,6 @@ const CheckoutForm = () => {
         </div>
     <div className="bg-[#131a41] w-[30rem] rounded-md m-auto mt-8">
       <form className="checkout-form px-5 py-12  m-auto flex flex-col gap-4" onSubmit={handleSubmit}>
-        {/* <div className="form-group">
-=======
-    <div className="m-auto w-10/12">
-      <h1></h1>
-      <div className="bg-[#131a41] w-[30rem] m-auto">
-        <form
-          className="checkout-form px-5 py-12  m-auto flex flex-col gap-4"
-          onSubmit={handleSubmit}
-        >
-          {/* <div className="form-group">
->>>>>>> bfbaa5ec59bc90c1e4f6fa46ef1535867d0f8930
-          <label className="text-white poppins5 block mb-3">Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            className="form-control"
-          />
-        </div> */}
-<<<<<<< HEAD
          <div className="form-group ">
           <label className="text-white poppins5 block mb-3">Card Number:</label>
           <CardNumberElement options={OPTIONS} 
@@ -237,63 +185,6 @@ const CheckoutForm = () => {
         
       </form>
     </div>
-=======
-          <div className="form-group ">
-            <label className="text-white poppins5 block mb-3">
-              Card Number:
-            </label>
-            <CardNumberElement
-              options={OPTIONS}
-              style={{ color: "#fff" }}
-              className="form-control bg-[#1c2452] w-full py-4 px-2 !text-white rounded-lg border-[1px] border-[rgba(255,255,255,0.6)]"
-            />
-          </div>
-          <div className="form-group">
-            <label className="text-white poppins5 block mb-3">
-              Amount (in cents):
-            </label>
-            <input
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              required
-              className="form-control bg-[#1c2452] w-full py-3 px-2 !text-white rounded-lg border-[1px] border-[rgba(255,255,255,0.6)]"
-              disabled
-            />
-          </div>
-          {cardBrand && (
-            <img
-              src={`https://js.stripe.com/v3/fingerprintjs/assets/powered_by_stripe_${cardBrand}.svg`}
-              alt=""
-            />
-          )}
-          <div className="form-group">
-            <label className="text-white poppins5 block mb-3">
-              Expiry Date:
-            </label>
-            <CardExpiryElement className="form-control bg-[#1c2452] w-full py-4 px-2 !text-white rounded-lg border-[1px] border-[rgba(255,255,255,0.6)]" />
-          </div>
-          <div className="form-group">
-            <label className="text-white poppins5 block mb-3">CVV:</label>
-            <CardCvcElement className="form-control bg-[#1c2452] w-full py-4 px-2 text-white rounded-lg border-[1px] border-[rgba(255,255,255,0.6)]" />
-          </div>
-          {error && <div className="text-redish poppins4">{error}</div>}
-          {loading ? (
-            <div className="w-fit m-auto">
-              <CustomSpinner />
-            </div>
-          ) : (
-            <button
-              type="submit"
-              disabled={!stripe || loading}
-              className="bg-redish py-3 rounded-md text-white poppins5"
-            >
-              Pay
-            </button>
-          )}
-        </form>
-      </div>
->>>>>>> bfbaa5ec59bc90c1e4f6fa46ef1535867d0f8930
     </div>
   );
 };
