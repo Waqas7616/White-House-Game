@@ -88,19 +88,9 @@ export default function DownloadApp() {
                Who we are
               </h2>
             
-              {/* <a
-                href="https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
-                class="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
-              >
-                <h2>White House Shop</h2>
-              </a> */}
+             
             </div>
-            {/* <div className="flex items-center justify-center gap-4 mt-4">
-              <i className="text-white fa-brands fa-facebook-f"></i>
-              <i className="text-white fa-brands fa-twitter"></i>
-              <i className="text-white fa-brands fa-linkedin-in"></i>
-              <i className="text-white fa-brands fa-instagram"></i>
-            </div> */}
+            
           </div>
           <div>
             <h2 className="text-[#fff] orbit7 text-[14px] lg:text-[18px]">
