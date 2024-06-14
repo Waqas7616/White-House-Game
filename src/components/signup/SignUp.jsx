@@ -9,6 +9,7 @@ import { ForgotModal } from "../forgotmodal/ForgotModal";
 import DownloadApp from "../DownloadApp";
 import { Helmet } from "react-helmet";
 import CustomSpinner from "../spinner";
+import secureLocalStorage from "react-secure-storage";
 
 
 export const SignUp = () => {

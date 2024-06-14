@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Vector from '../../images/Vector.png'
 import Navbar from '../../components/Navbar';
+import secureLocalStorage from 'react-secure-storage';
 
 
 const CheckoutForm = () => {

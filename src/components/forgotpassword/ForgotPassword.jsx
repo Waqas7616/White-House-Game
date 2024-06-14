@@ -9,6 +9,7 @@ import Navbar from "../Navbar";
 import { ForgotModal } from "../forgotmodal/ForgotModal";
 import DownloadApp from "../DownloadApp";
 import { Helmet } from "react-helmet";
+import secureLocalStorage from "react-secure-storage";
 
 export const ForgotPassword = () => {
   const navigate = useNavigate();
