@@ -23,11 +23,8 @@ import MyVote from "../pages/MyVote";
 import PredictionAndElectoral from "../pages/PredictionAndElectoral";
 import CustomSpinner from "./spinner";
 import PaymentPage from "../pages/payment/Payment";
-<<<<<<< HEAD
 import securesecureLocalStorage from "react-secure-storage";
-=======
 import ScrollTop from "./scrolltop/ScrollTop";
->>>>>>> c398f017c460fdb17a63624b6abb671f498facdd
 
 function AppRoutes() {
   const [user, setUser] = useState();
