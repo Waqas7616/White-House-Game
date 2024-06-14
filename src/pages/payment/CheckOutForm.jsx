@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import CustomSpinner from '../../components/spinner';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation} from 'react-router-dom';
 
 
 import Vector from '../../images/Vector.png'
@@ -10,7 +10,9 @@ import Navbar from '../../components/Navbar';
 import secureLocalStorage from 'react-secure-storage';
 
 
-const CheckoutForm = () => {
+
+const CheckoutForm = ({path}) => {
+  const location=useLocation();
   const stripe = useStripe();
   const elements = useElements();
   const navigate=useNavigate();
@@ -20,7 +22,8 @@ const CheckoutForm = () => {
   const [amount, setAmount] = useState(149); // Example amount, you can change this as needed
   const [cardBrand, setCardBrand] = useState(null);
   const token = secureLocalStorage.getItem("token");
-
+const {mydata}=location.state || {};
+console.log('kkk',mydata);
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -72,7 +75,7 @@ const CheckoutForm = () => {
         const clientSecret = response.data.client_secret;
 
         const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
-        navigate('/party-prediction')
+        navigate(path==="President"?'/party-prediction':'/electoral');
 
         if (paymentIntent.status === "succeeded") {
           return; // Payment already succeeded, no need to confirm again

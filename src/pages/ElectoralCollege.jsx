@@ -45,7 +45,9 @@ function ElectoralCollege() {
         path:window.location.pathname
       });
         },[])
-  const [step, setStep] = useState(0);
+       const myData= secureLocalStorage.getItem('electoral_data')
+ const myStep= secureLocalStorage.getItem('electoral_step')
+  const [step, setStep] = useState(myStep||0);
   const [partyClick, setPartyClick] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
   const [electoralCount, setElectoralCount] = useState(() => {
@@ -143,9 +145,14 @@ function ElectoralCollege() {
         );
       });
   }, []);
+  
 
   // useEffect(() => {
   // }, [state_predictions]);
+
+  const data={
+    message:'Electoral'
+  };
 
   const handleSteps = () => {
     setPartyClick(false);
@@ -162,7 +169,7 @@ function ElectoralCollege() {
         .post(
           "https://thewhitehousegame.com/api/public/api/submit_electoral_college_prediction",
           {
-            state_predictions: state_predictions,
+            state_predictions: state_predictions || myData,
           },
           {
             headers: {
@@ -294,7 +301,10 @@ function ElectoralCollege() {
               </h2>
             </div>
             <button
-              onClick={() => navigate("/payment")}
+              onClick={() => {navigate("/payment", { state: { data } });
+            secureLocalStorage.setItem('electoral_data',state_predictions);
+            secureLocalStorage.setItem('electoral_step',step);
+            }}
               className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
             >
               Pay Now

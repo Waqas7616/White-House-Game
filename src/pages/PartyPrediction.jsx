@@ -44,12 +44,15 @@ function PartyPrediction() {
   const [disabled, setDisabled] = useState(true);
   const location = useLocation();
   const data = location.state || {};
-  // console.log("transferred data", data);
+  console.log("transferred data", data);
   const [candidateData, setCandidateData] = useState([]);
   const imageUrl = "https://thewhitehousegame.com/api/public/";
   // const id=secureLocalStorage.getItem('id');
   const token = secureLocalStorage.getItem("token");
   const id = secureLocalStorage.getItem("id");
+  const newdata={
+    message:"President"
+  }
 
   useEffect(() => {
     axios
@@ -188,7 +191,7 @@ function PartyPrediction() {
               </h2>
             </div>
             <button
-              onClick={() => navigate("/payment")}
+              onClick={() => navigate("/payment",{state:{newdata}})}
               className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
             >
               Pay Now
@@ -203,7 +206,7 @@ function PartyPrediction() {
 
       {popUp && (
         <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
-          <div className="popup bg-[#1C2452] w-5/12  h-[95vh] rounded-[30px]  ">
+          <div className="popup bg-[#1C2452] w-10/12 lg:w-6/12 xl:w-5/12 h-[95vh]  xl:h-[85vh] 2xl:h-[40vh] rounded-[30px]  ">
             <div className="popup-content">
               <img src={logo} className="m-auto w-[90px]" alt="" />
               <h1 className="poppins6 text-white text-center">
@@ -228,7 +231,7 @@ function PartyPrediction() {
                 </div>
               </div>
               <div
-                className="flex gap-5 w-fit m-auto items-center justify-center p-4 border-[2px] border-white rounded-[18.5px] mb-10"
+                className="flex gap-5 w-fit m-auto xl:h-[20%]  items-center justify-center p-4 border-[2px] border-white rounded-[18.5px] mb-10"
                 style={{
                   background:
                     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
@@ -236,7 +239,7 @@ function PartyPrediction() {
               >
                 <div>
                   <h1 className="text-white poppins6 mb-2">President</h1>
-                  <div className="w-[200px] h-[180px]  overflow-hidden rounded-[10.96px]">
+                  <div className="w-[100px] md:w-[200px] md:h-[180px]  overflow-hidden rounded-[10.96px]">
                     {popPresident && popPresident.voter_candidate && (
                       <img
                         className="w-full object-cover"
@@ -248,7 +251,7 @@ function PartyPrediction() {
                 </div>
                 <div>
                   <h1 className="text-white poppins6 mb-2">Vice President</h1>
-                  <div className="w-[200px] h-[180px]  overflow-hidden rounded-[10.96px]">
+                  <div className="w-[100px] md:w-[200px] md:h-[180px]  overflow-hidden rounded-[10.96px]">
                     {popvicePresident && popvicePresident.voter_candidate && (
                       <img
                         className="w-full object-cover"
@@ -259,18 +262,8 @@ function PartyPrediction() {
                   </div>
                 </div>
               </div>
-              <h1 className="poppins6 text-white text-center">
-                Electoral College
-              </h1>
-              <p className="poppins4 text-white text-center mb-5">
-                You have not completed Electoral College!
-              </p>
-              {/* <button
-                onClick={() => navigate("/electoral")}
-                className="bg-redish px-5 m-auto block py-3 rounded-[6px] poppins6 text-white text-center mb-3"
-              >
-                Complete electoral college
-              </button> */}
+              
+           
               <p className="text-white text-center poppins4">
                 A lot can happen before election day
               </p>
@@ -284,6 +277,12 @@ function PartyPrediction() {
               <p className="text-white text-center poppins4 text-[13px] w-1/2 m-auto mt-5">
                 If you change your mind and would like to update your Prediction{" "}
               </p>
+              <button
+                onClick={() => navigate("/predict")}
+                className="bg-redish px-5 m-auto mt-3 block py-3 rounded-[6px] poppins6 text-white text-center mb-3"
+              >
+                Update your predictions
+              </button>
               <button
                 onClick={() => setPopUp(false)}
                 className="rounded-[6px] border-[1px] px-20 block m-auto py-3 mt-5 border-white poppins7 text-white text-center"

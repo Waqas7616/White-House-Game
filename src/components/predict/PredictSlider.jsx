@@ -55,7 +55,7 @@ function PredictSlider({
     fetchData();
   }, []);
 
-  const handleImage = (id, party) => {
+  const handleImage = (id, party,name) => {
     (data1 === "president" && setPresident(id)) ||
       (data1 === "VicePresident" && setVicePresident(id));
     (party_name === "Democratic" && setParty(party)) ||
@@ -66,7 +66,7 @@ function PredictSlider({
     imageValue();
     ReactGA.event({
       category:data1,
-      action:`this candidate is selected for ${data1} position`,
+      action:`${name}  is selected for ${data1} position`,
       label:party_name,
       value:id
     })
@@ -263,7 +263,7 @@ function PredictSlider({
               .map((item, index) => (
                 <div
                   key={index}
-                  onClick={() => handleImage(item?.id, item?.votter_party_id)}
+                  onClick={() => handleImage(item?.id, item?.votter_party_id,item?.candidate_name)}
                   className={`w-[124px] h-[154px] md:w-[200px] md:h-[220px]    rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
                     imageSelect && "border-white border-[10px] rounded[28.43px]"
                   }`}
