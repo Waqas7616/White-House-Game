@@ -23,6 +23,7 @@ import MyVote from "../pages/MyVote";
 import PredictionAndElectoral from "../pages/PredictionAndElectoral";
 import CustomSpinner from "./spinner";
 import PaymentPage from "../pages/payment/Payment";
+import ScrollTop from "./scrolltop/ScrollTop";
 
 function AppRoutes() {
   const [user, setUser] = useState();
@@ -45,6 +46,7 @@ function AppRoutes() {
   }
   return (
     <Router>
+      <ScrollTop/>
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/about" element={<About />} />
