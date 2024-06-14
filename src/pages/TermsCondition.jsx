@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Navbar from "../components/Navbar";
 import AppBanner from "../components/appbanner/AppBanner";
 import Terms from "../images/Terms.png";
@@ -10,7 +10,10 @@ import ReactGA from 'react-ga4'
 export default function TermsCondition() {
   const navigate = useNavigate();
   useEffect(()=>{
-    ReactGA.pageview(window.location.pathname);
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });
       },[])
   const paragraph = [
     "1.	As well as complying with the laws of your country of citizenship, country of residence and where you are using our services, you are also obligated to obey our terms and conditions.",

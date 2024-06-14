@@ -40,7 +40,10 @@ function ElectoralCollege() {
   const { state_predictions, addPrediction, clearPredictions } =
     useStatePredictions();
     useEffect(()=>{
-      ReactGA.pageview(window.location.pathname);
+      ReactGA.send({
+        hitType:'pageview',
+        path:window.location.pathname
+      });
         },[])
   const [step, setStep] = useState(0);
   const [partyClick, setPartyClick] = useState(false);

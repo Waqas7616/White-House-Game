@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import AppBanner from "../components/appbanner/AppBanner";
 import bg from "../images/form.png";
 import Shop from "../components/Shop";
@@ -9,7 +9,10 @@ import ReactGA from 'react-ga4'
 
 function Contact() {
   useEffect(()=>{
-    ReactGA.pageview(window.location.pathname);
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });
       },[])
   return (
     <div>

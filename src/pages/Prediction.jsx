@@ -22,7 +22,10 @@ function Prediction() {
   const navigate = useNavigate();
   const { president, vicePresident, party, voting, addVoting } = useStatePredictions()
   useEffect(()=>{
-    ReactGA.pageview(window.location.pathname);
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });
       },[])
 const [error,setError]=useState("");
   const [data, setData] = useState({

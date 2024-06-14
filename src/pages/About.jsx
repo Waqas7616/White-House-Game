@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import AppBanner from "../components/appbanner/AppBanner";
 import mobile from "../images/about-mobile.png";
 // import count1 from '../images/1.png'
@@ -17,7 +17,10 @@ function About() {
   const navigate = useNavigate();
 
   useEffect(()=>{
-    ReactGA.pageview(window.location.pathname);
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });
       },[])
 
   return (

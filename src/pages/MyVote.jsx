@@ -20,8 +20,10 @@ import ReactGA from 'react-ga4';
 
 export default function MyVote() {
   useEffect(()=>{
-    ReactGA.pageview(window.location.pathname);
-      },[])
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });      },[])
   const [userVote, setUserVote] = useState([]);
   const [selected, setSelected] = useState([]);
   const [president, setPresident] = useState([]);

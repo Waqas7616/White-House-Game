@@ -7,8 +7,10 @@ import { Helmet } from "react-helmet";
 import ReactGA from 'react-ga4';
 function Homepage() {
   useEffect(()=>{
-ReactGA.pageview(window.location.pathname);
-  },[])
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });  },[])
   return (
     <div>
       <Helmet>

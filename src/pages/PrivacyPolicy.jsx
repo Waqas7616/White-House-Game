@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import AppBanner from "../components/appbanner/AppBanner";
 import logo from "../images/logo.png";
 import Privacy from "../images/Privacy.png";
@@ -8,7 +8,10 @@ import ReactGA from 'react-ga4'
 export default function PrivacyPolicy() {
   const navigate = useNavigate();
   useEffect(()=>{
-    ReactGA.pageview(window.location.pathname);
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });
       },[])
   const paragraph = [
     "1. What is policy covers",
