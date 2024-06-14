@@ -48,7 +48,6 @@ function CustomSlider() {
           }
         );
         setData(response.data.votter_candidate);
-        console.log("halaka :", response);
         setLoading(false);
       } catch (error) {
         setLoading(false);

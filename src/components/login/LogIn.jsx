@@ -51,10 +51,8 @@ export const LogIn = () => {
           }
         );
 
-        console.log(response.data);
 
         if (response.status === 200) {
-          console.log("login res", response);
           localStorage.setItem("token", response.data.user.token);
           localStorage.setItem("email", response.data.user.email);
           localStorage.setItem("id", response.data.user.id);

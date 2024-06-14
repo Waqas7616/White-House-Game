@@ -184,7 +184,6 @@ const StateWinner = () => {
         },
       })
       .then((res) => {
-        console.log("state result data:", res.data.data_of_2020.original.data);
         setOriginalData(res.data.data_of_2020.original.data);
         const parsedData = [];
 
@@ -212,8 +211,6 @@ const StateWinner = () => {
         console.log("Error fetching data:", err);
       });
   }, []);
-  console.log("hamzaaa123", statesData);
-  console.log("original data;", originalData);
 
   const getLeadingParty = (parties) => {
     if (!parties || parties.length === 0) return "";
@@ -224,7 +221,6 @@ const StateWinner = () => {
   };
   
   const filteredArray=statesData.filter((state)=>state.state!=='USA');
-  console.log('hamza555',filteredArray)
 
   return (
     <>

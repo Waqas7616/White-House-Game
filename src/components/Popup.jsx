@@ -16,10 +16,8 @@ function CandidatePopup({ candidateIndex, onClose, data }) {
 
 
                 if (!candidateDocSnapshot.empty) {
-                    console.log('hello')
                     // Retrieve data from snapshot.data()
                     setCandidateData(candidateDocSnapshot.data());
-                    console.log('candidate data:', candidateDocSnapshot.data());
                 } else {
                     console.log(`Candidate data for ${candidateIndex} not found.`);
                 }

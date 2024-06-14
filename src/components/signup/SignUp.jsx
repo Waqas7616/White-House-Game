@@ -61,7 +61,6 @@ export const SignUp = () => {
           }
         );
 
-        console.log(response.data); 
 
         
         if (response.status === 200) {
@@ -73,7 +72,7 @@ export const SignUp = () => {
           setShowModal(true);
         } else {
           
-          alert("Registration failed. Please try again later.");
+          console.log("Registration failed. Please try again later.");
           setIsLoading(false);
         }
       } catch (error) {

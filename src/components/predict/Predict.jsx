@@ -15,7 +15,6 @@ function Predict({ titleImage, party, afterchange, submitData, name, onSelection
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [candidateData, setCandidateData] = useState([]);
   const [error,setError]=useState("")
-  console.log("candidateData", candidateData);
   const [presdborder, setPresdborder] = useState(true);
   const [viceborder, setViceborder] = useState(true);
 
@@ -55,7 +54,6 @@ function Predict({ titleImage, party, afterchange, submitData, name, onSelection
   }else{
       setError("Please select different candidates")
     }
-    console.log('dir',president)
   };
   // const data = [obama, west];
   const getButtonBackground = (party) => {
@@ -98,7 +96,7 @@ function Predict({ titleImage, party, afterchange, submitData, name, onSelection
                 <PredictSlider
                   party_name={party}
                   // data={data}
-                  printData={console.log("hello")}
+                  printData={""}
                   data1="president"
                   imageValue={() => setPresdborder(false)}
                   selecClass={isButtonClicked ? false : true}

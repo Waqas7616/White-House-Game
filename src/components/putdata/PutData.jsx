@@ -14,7 +14,6 @@ export const PutData = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state?.data;
-  console.log("sokh data:", data);
   const [AgeGroup, setAgeGroup] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [myAccountData, setMyAccountData] = useState([]);
@@ -22,7 +21,6 @@ export const PutData = () => {
     axios
       .get("https://thewhitehousegame.com/api/public/api/get_user_age")
       .then((response) => {
-        console.log("Age Group:", response.data.user_age);
 
         setAgeGroup(response.data.user_age);
       })
@@ -114,11 +112,9 @@ export const PutData = () => {
   }, []);
 
   const [jwtToken, setJwtToken] = useState("");
-  console.log("token :", jwtToken);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    console.log("token", storedToken);
     if (storedToken) {
       setJwtToken(storedToken);
     } else {
@@ -126,7 +122,6 @@ export const PutData = () => {
   }, []);
   const email = localStorage.getItem("email");
   let id = localStorage.getItem("id");
-  console.log(id, "data");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [votedIn2020, setVotedIn2020] = useState("No");
   const [condition, setCondition] = useState(false);
@@ -149,7 +144,6 @@ export const PutData = () => {
 
     user_votter_party: "",
   });
-  console.log("payload",payload)
 
   const handleSubscriptionChange = (e) => {
     const isChecked = e.target.checked;
@@ -170,12 +164,10 @@ export const PutData = () => {
 
   useEffect(() => {
     let adjustedPayload = { ...payload };
-    console.log("adjuste payload", adjustedPayload);
 
     if (adjustedPayload.is_votted_2020 === "No") {
       delete adjustedPayload.voter_candidate_id;
       delete adjustedPayload.source;
-      console.log("Adjusted payload before sending:", adjustedPayload);
       setCondition(true);
       setNewPayload(adjustedPayload);
     }
@@ -202,8 +194,6 @@ export const PutData = () => {
       } else {
         setIsLoading(false);
       }
-      console.log("My payload is:", payload);
-      console.log(response.data);
 
       navigate("/login");
     } catch (error) {
@@ -431,7 +421,6 @@ useEffect(() => {
           },
         }
       );
-      console.log("Response data:", response.data.data);
       
       // Ensure data consistency
       const userData = response.data.data;
@@ -460,7 +449,6 @@ useEffect(() => {
       };
 
       setPayLoad(userData,updatedPayload);
-      console.log("Updated payload:", userData);
 
     } catch (err) {
       console.log("error", err);
@@ -473,9 +461,8 @@ useEffect(() => {
 }, [jwtToken, payload.id]);
 
 // Payload update hone par logging
-useEffect(() => {
-console.log("Payload data:", payload);
-}, [payload]);
+// useEffect(() => {
+// }, [payload]);
 
 
   

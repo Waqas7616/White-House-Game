@@ -9,6 +9,7 @@ export const ResetPassword = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [error,setError]=useState("")
 
     const togglePasswordVisibility = () => {
       setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -31,7 +32,7 @@ export const ResetPassword = () => {
       e.preventDefault();
 
       if (newPassword !== confirmPassword) {
-        alert("Passwords do not match");
+        setError("Passwords do not match");
         return;
       }
 
@@ -54,16 +55,14 @@ export const ResetPassword = () => {
           }
         );
 
-        console.log(response.data);
 
         if (response.status === 200) {
-          alert("Password reset successful!");
+          
         } else {
-          alert("Password reset failed. Please try again.");
+          console("Password reset failed. Please try again.");
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("An error occurred. Please try again later.");
       }
     };
 
@@ -182,7 +181,7 @@ export const ResetPassword = () => {
                 )}
               </button>
             </div>
-
+<p className="poppins5 text-redish">{error}</p>
             <div className="flex justify-center mt-5 ">
               <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
                 Save Changes

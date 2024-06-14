@@ -40,7 +40,6 @@ export default function EmploymentStatus() {
         }
       )
       .then((res) => {
-        console.log("employment response :", res.data);
         setEmploymentStatus(res.data);
       })
       .catch((err) => {

@@ -17,9 +17,8 @@ export default function Ethnicity() {
   const [ethnicityData, setEthnicityData] = useState([]);
   const [ethnicity2, setEthnicity2] = useState([])
   const [id, setId] = useState(1);
-  useEffect(() => {
-    console.log("hello", id);
-  }, [id]);
+  // useEffect(() => {
+  // }, [id]);
 
   useEffect(() => {
     axios

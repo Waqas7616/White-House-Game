@@ -24,7 +24,6 @@ export default function MyVote() {
   const [finalData, setFinalData] = useState({});
   const [lastElection, setLastElection] = useState({});
   const navigate = useNavigate();
-  console.log("users voting", userVote);
   const token = localStorage.getItem("token");
   // console.log(token)
   const imageUrl = "https://thewhitehousegame.com/api/public/";
@@ -44,11 +43,9 @@ export default function MyVote() {
         const predictedCandidateNames = data?.PredictedCandidateDetails?.map(
           (candidate) => candidate.candidate_name
         );
-        console.log("shdjhsajhjs", predictedCandidateNames);
         const filteredCandidates = data?.SelectedCandidates?.filter(
           (e) => !predictedCandidateNames.includes(e.candidate_name)
         );
-        console.log("sssssssssssssss", filteredCandidates);
         setSelected(filteredCandidates);
         setPresident(
           filteredCandidates?.filter((e) => e.position === "president")
@@ -59,6 +56,7 @@ export default function MyVote() {
       })
       .catch((err) => {});
   }, []);
+  
   useEffect(() => {
     axios
       .get(
@@ -73,25 +71,23 @@ export default function MyVote() {
       )
       .then((res) => {
         setFinalData(res.data);
-        console.log(
-          "finalize dat: ",
-          res.data.previousElection2020.original.data
-        );
+        
         setLastElection(res.data.previousElection2020.original.data);
       })
       .catch((e) => console.log("elecotral error is", e));
   }, []);
-  console.log("barwa waqas da dir:", selected);
-  console.log("my ele", finalData);
-  console.log("my ele22222", Object.entries(finalData));
   // const getStatesDetails=()=>{
   //   const stateName=Object.keys
   // }
   const sortedElections = Object.entries(lastElection).sort((a, b) =>
     a[0].localeCompare(b[0])
   );
-  console.log("check444", sortedElections);
-  const noData = !userVote?.PredictedCandidateDetails || !selected;
+  console.log(finalData)
+  const newdata = finalData?.data ? Object.entries(finalData?.data) : null;
+  const elecotral = finalData?.electoral_votes_by_party ? Object.entries(finalData?.electoral_votes_by_party) : null;
+
+
+
   return (
     <div>
       <AppBanner
@@ -130,9 +126,9 @@ export default function MyVote() {
             </p>
           </div>
           <div className="flex flex-wrap justify-evenly gap-4">
-            {noData ? (
+            {userVote?.SelectedCandidates?.length === 0 ? (
               <div className="text-center w-full mt-5">
-                <h2 className="text-xl font-bold">No data available</h2>
+                <h2 className="text-xl poppins6 text-white">You have not made any predictions yet !</h2>
               </div>
             ) : (
               <>
@@ -424,10 +420,9 @@ export default function MyVote() {
 
       <div
         className="w-full py-8"
-        style={{
-          background:
-            "linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)",
-        }}
+        style={newdata?.length > 0 ? {
+          background: "linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)",
+      } : {}}
       >
         {/* <div className="flex justify-center my-8 ">
           <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto  text-center">
@@ -482,6 +477,7 @@ export default function MyVote() {
             </div>
           </div>
         </div> */}
+        {elecotral?.length >0 &&
         <div className="m-auto w-10/12">
           <h2 className="text-white  poppins6 text-[25.4px] md:text-[36.4px]">
             My Electoral College Prediction
@@ -515,11 +511,9 @@ export default function MyVote() {
               }}
             >
               <span className="poppins4 flex justify-center items-center">
-                {/* {statesData && statesData.Democratic
-                ? `${statesData.Democratic}`
-                : "0"} */}
-                {finalData.electoral_votes_by_party &&
-                  Object.entries(finalData.electoral_votes_by_party).find(
+                
+                {finalData?.electoral_votes_by_party &&
+                  Object.entries(finalData?.electoral_votes_by_party).find(
                     ([party_name]) => party_name === "Democratic"
                   )[1]}
               </span>
@@ -532,11 +526,9 @@ export default function MyVote() {
               }}
             >
               <span className="poppins4 flex justify-center items-center">
-                {/* {statesData && statesData.Republican
-                ? `${statesData.Republican}`
-                : "0"} */}
-                {finalData.electoral_votes_by_party &&
-                  Object.entries(finalData.electoral_votes_by_party).find(
+                
+                {finalData?.electoral_votes_by_party &&
+                  Object.entries(finalData?.electoral_votes_by_party).find(
                     ([party_name]) => party_name === "Republican"
                   )[1]}
               </span>
@@ -548,9 +540,7 @@ export default function MyVote() {
               }}
             >
               <span className="poppins4 flex justify-center items-center">
-                {/* {statesData && statesData["Independent('Kennedy')"]
-                ? `${statesData["Independent('Kennedy')"]}`
-                : "0"} */}
+                
                 {finalData.electoral_votes_by_party &&
                   Object.entries(finalData.electoral_votes_by_party).find(
                     ([party_name]) => party_name === "Independent('Kennedy')"
@@ -559,7 +549,9 @@ export default function MyVote() {
             </div>
           </div>
         </div>
-        {finalData.data && (
+        }
+        
+        {newdata?.length > 0 &&  (
           <>
             <div className="w-10/12 m-auto mt-12">
               <Map />
@@ -597,14 +589,14 @@ export default function MyVote() {
                   </div>
                 </div>
 
-                {Object.entries(finalData.data).map(([state, data]) => (
+                {Object.entries(finalData.data)?.map(([state, data]) => (
                   <div
                     className=" w-fit md:w-auto flex gap-[20px] md:justify-between border-b-[1px] py-4 px-8"
                     key={state}
                   >
                     <div className="winner flex items-center gap-3">
                       {lastElection &&
-                        sortedElections.map(([title, badge], index) => (
+                        sortedElections?.map(([title, badge], index) => (
                           <React.Fragment key={index}>
                             {title === state && (
                               <span className="bg-white rounded-full p-1 w-[30px] h-[30px] md:w-[45px] md:h-[45px] flex justify-center items-center">
@@ -626,7 +618,7 @@ export default function MyVote() {
 
                       <p className="text-white font-poppins font-medium text-[9px] lg:text-[19px]">
                         {lastElection &&
-                          sortedElections.map(([title, party]) => (
+                          sortedElections?.map(([title, party]) => (
                             <div className="flex items-center gap-3">
                               {state === title ? party.winning_party : null}
                             </div>

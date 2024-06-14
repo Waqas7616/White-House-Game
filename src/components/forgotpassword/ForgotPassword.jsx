@@ -26,7 +26,6 @@ export const ForgotPassword = () => {
         }
       );
 
-      console.log(response.data);
 
       if (response.status === 200) {
         const receivedToken =
@@ -35,12 +34,12 @@ export const ForgotPassword = () => {
 
         setShowModal(true); // Modal show karen
       } else {
-        alert("Failed to send password reset instructions. Please try again.");
+        console.log("Failed to send password reset instructions. Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
 
-      alert("An error occurred. Please try again later.");
+      console.log("An error occurred. Please try again later.");
     }
   };
 
