@@ -24,6 +24,8 @@ import EditButton from "../components/EditButton";
 import { useNavigate } from "react-router-dom";
 import usa from '../images/usa-outline.svg'
 import usflag from '../images/usflag.webp'
+import secureLocalStorage from "react-secure-storage";
+import ReactGA from 'react-ga4';
 
 const initialElectoralCount = {
   Democratic: 0,
@@ -34,13 +36,20 @@ const initialElectoralCount = {
 
 function ElectoralCollege() {
   const navigate=useNavigate();
+
   const { state_predictions, addPrediction, clearPredictions } =
     useStatePredictions();
+    useEffect(()=>{
+      ReactGA.send({
+        hitType:'pageview',
+        path:window.location.pathname
+      });
+        },[])
   const [step, setStep] = useState(0);
   const [partyClick, setPartyClick] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
   const [electoralCount, setElectoralCount] = useState(() => {
-    const storedCount = localStorage.getItem("electoralCount");
+    const storedCount = secureLocalStorage.getItem("electoralCount");
     return storedCount ? JSON.parse(storedCount) : initialElectoralCount;
   });
   const [demLength, setDemLength] = useState();
@@ -113,7 +122,7 @@ function ElectoralCollege() {
     }
   };
 
-  const token = localStorage.getItem("token");
+  const token = secureLocalStorage.getItem("token");
   const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   useEffect(() => {
@@ -145,6 +154,10 @@ function ElectoralCollege() {
       setStep(step + 1);
       setSelectedButtonId(null);
     } else if (step === previousData?.states?.length - 1) {
+      ReactGA.event({
+        category:"Election",
+        action:'Prediction made through Electoral'
+      })
       axios
         .post(
           "https://thewhitehousegame.com/api/public/api/submit_electoral_college_prediction",
@@ -168,7 +181,7 @@ function ElectoralCollege() {
           setPopUp(true)
           // Handle error
         });
-      localStorage.setItem("electoralCount", JSON.stringify(electoralCount));
+      secureLocalStorage.setItem("electoralCount", JSON.stringify(electoralCount));
     }
   };
 

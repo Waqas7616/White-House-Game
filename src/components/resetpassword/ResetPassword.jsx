@@ -4,6 +4,7 @@ import Vector from "../../images/Vector.png";
 import axios from "axios";
 import Navbar from "../Navbar";
 import DownloadApp from "../DownloadApp";
+import secureLocalStorage from "react-secure-storage";
 
 export const ResetPassword = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +20,7 @@ export const ResetPassword = () => {
 
     useEffect(() => {
         
-      const storedToken = localStorage.getItem("token");
+      const storedToken = secureLocalStorage.getItem("token");
       // console.log("token", storedToken)
       if (storedToken) {
           setJwtToken(storedToken);

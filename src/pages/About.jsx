@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import AppBanner from "../components/appbanner/AppBanner";
 import mobile from "../images/about-mobile.png";
 // import count1 from '../images/1.png'
@@ -10,9 +10,18 @@ import DownloadApp from "../components/DownloadApp";
 import bg from "../images/div.png";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import ReactGA from 'react-ga4'
 
 function About() {
+
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });
+      },[])
 
   return (
     <div>

@@ -1,12 +1,18 @@
-import React from "react";
+import React,{useEffect} from "react";
 import AppBanner from "../components/appbanner/AppBanner";
 import logo from "../images/logo.png";
 import Privacy from "../images/Privacy.png";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-
+import ReactGA from 'react-ga4'
 export default function PrivacyPolicy() {
   const navigate = useNavigate();
+  useEffect(()=>{
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });
+      },[])
   const paragraph = [
     "1. What is policy covers",
     "1.1	The White House Game’s Privacy Policies describe how we collect, process, preserve, transfer and share our player’s and user’s personal and transactional data.",

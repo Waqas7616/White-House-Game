@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Vector from '../../images/Vector.png'
 import Navbar from '../../components/Navbar';
+import secureLocalStorage from 'react-secure-storage';
 
 
 const CheckoutForm = () => {
@@ -18,7 +19,7 @@ const CheckoutForm = () => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(149); // Example amount, you can change this as needed
   const [cardBrand, setCardBrand] = useState(null);
-  const token = localStorage.getItem("token");
+  const token = secureLocalStorage.getItem("token");
 
   const handleSubmit = async (event) => {
     event.preventDefault();

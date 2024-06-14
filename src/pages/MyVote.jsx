@@ -15,8 +15,15 @@ import Map from "../components/Map";
 import Democraticlogo from "../images/Democraticlogo.png";
 import Independentlogo from "../images/Independentlogo.png";
 import Republicanlogo from "../images/Republicanlogo.png";
+import secureLocalStorage from "react-secure-storage";
+import ReactGA from 'react-ga4';
 
 export default function MyVote() {
+  useEffect(()=>{
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });      },[])
   const [userVote, setUserVote] = useState([]);
   const [selected, setSelected] = useState([]);
   const [president, setPresident] = useState([]);
@@ -24,7 +31,7 @@ export default function MyVote() {
   const [finalData, setFinalData] = useState({});
   const [lastElection, setLastElection] = useState({});
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const token = secureLocalStorage.getItem("token");
   // console.log(token)
   const imageUrl = "https://thewhitehousegame.com/api/public/";
 

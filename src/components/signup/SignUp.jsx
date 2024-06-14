@@ -9,6 +9,7 @@ import { ForgotModal } from "../forgotmodal/ForgotModal";
 import DownloadApp from "../DownloadApp";
 import { Helmet } from "react-helmet";
 import CustomSpinner from "../spinner";
+import secureLocalStorage from "react-secure-storage";
 
 
 export const SignUp = () => {
@@ -64,8 +65,8 @@ export const SignUp = () => {
 
         
         if (response.status === 200) {
-          localStorage.setItem("email", email);
-          localStorage.setItem("id", response.data.user.id);
+          secureLocalStorage.setItem("email", email);
+          secureLocalStorage.setItem("id", response.data.user.id);
 
           
           setIsLoading(false);

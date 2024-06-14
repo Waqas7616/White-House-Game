@@ -23,6 +23,7 @@ import MyVote from "../pages/MyVote";
 import PredictionAndElectoral from "../pages/PredictionAndElectoral";
 import CustomSpinner from "./spinner";
 import PaymentPage from "../pages/payment/Payment";
+import securesecureLocalStorage from "react-secure-storage";
 import ScrollTop from "./scrolltop/ScrollTop";
 
 function AppRoutes() {
@@ -30,8 +31,8 @@ function AppRoutes() {
   const [localToken, setLocalToken] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const user = localStorage.getItem("email");
-    const tokens = localStorage.getItem("token");
+    const user = securesecureLocalStorage.getItem("email");
+    const tokens = securesecureLocalStorage.getItem("token");
   setLoading(false);
     setUser(user);
     setLocalToken(tokens);

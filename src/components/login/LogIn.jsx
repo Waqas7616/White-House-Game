@@ -9,6 +9,7 @@ import { useStatePredictions } from "../../utils/StateIDs";
 import DownloadApp from "../DownloadApp";
 import { Helmet } from "react-helmet";
 import CustomSpinner from "../spinner";
+import secureLocalStorage from "react-secure-storage";
 
 export const LogIn = () => {
   const navigate = useNavigate();
@@ -53,15 +54,16 @@ export const LogIn = () => {
 
 
         if (response.status === 200) {
-          localStorage.setItem("token", response.data.user.token);
-          localStorage.setItem("email", response.data.user.email);
-          localStorage.setItem("id", response.data.user.id);
+          secureLocalStorage.setItem("token", response.data.user.token);
+          secureLocalStorage.setItem("email", response.data.user.email);
+          secureLocalStorage.setItem("id", response.data.user.id);
           setToken(response.data.user.token);
           setIsLoading(false);
           navigate("/");
           window.location.reload();
         }
       } catch (error) {
+        console.log(error)
 setIsLoading(false);
         setError(error.response.data.error)
       }

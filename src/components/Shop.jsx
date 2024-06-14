@@ -20,6 +20,7 @@ import burgundy3 from "../images/burgundy3.png";
 import red4 from "../images/red4.png";
 import navy4 from "../images/navy4.png";
 import burgundy4 from "../images/burgundy4.png";
+import securesecureLocalStorage from "react-secure-storage";
 
 const CustomNextArrow = (props) => (
   <div
@@ -177,12 +178,12 @@ const CustomPrevArrow = (props) => (
 );
 
 export default function Shop() {
-  const initialActiveIndex = parseInt(localStorage.getItem("activeIndex")) || 1;
+  const initialActiveIndex = parseInt(securesecureLocalStorage.getItem("activeIndex")) || 1;
   const [changeColor, setChangeColor] = useState(initialActiveIndex);
   const ChangeIndex = (index) => {
     // console.log("Indes of shirt :", item);
     setChangeColor(index);
-    localStorage.setItem("activeIndex", index);
+    securesecureLocalStorage.setItem("activeIndex", index);
   };
   const settings1 = {
     className: "center",

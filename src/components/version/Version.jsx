@@ -4,11 +4,12 @@ import Layer from "../../images/Layer.png";
 import { useNavigate } from "react-router-dom";
 
 import { Card } from "@material-tailwind/react";
+import secureLocalStorage from "react-secure-storage";
 
 
 export const Version = () => {
     const navigate  = useNavigate();
-    const path=localStorage.getItem('election_path');
+    const path=secureLocalStorage.getItem('election_path');
 
     const [selectedOption, setSelectedOption] = useState(null);
 
