@@ -78,7 +78,8 @@ export default function ElectoralCollege() {
         setPresident(
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "president"
-          )
+          ),
+          console.log("aaaaa",stats)
         );
       })
       .catch((err) => {

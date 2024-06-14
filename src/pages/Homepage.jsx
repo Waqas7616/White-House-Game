@@ -13,7 +13,7 @@ function Homepage() {
     });  },[])
   return (
     <div>
-      <Helmet>
+      {/* <Helmet>
         <title>The White House Game | Who will run the free world?</title>
         <meta
           name="keywords"
@@ -24,7 +24,7 @@ function Homepage() {
           content="Who runs America affects the entire world. So who wins on November 5, 2024 matters. Will Donald Trump return or will Biden surprise voters again? Can Kennedy break the two party mould?"
         />
         <meta name="language" content="en" />
-      </Helmet>
+      </Helmet> */}
       <Banner />
       <TabSection />
       <Shop />
