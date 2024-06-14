@@ -21,6 +21,7 @@ import Military from "./Military";
 import ElectoralCollege from "./ElectoralCollege";
 import axios from "axios";
 import StateWinner from "../statewinner/StateWinner";
+import { Helmet } from "react-helmet";
 
 function TabSection() {
   const imageUrl = "https://thewhitehousegame.com/api/public/";
@@ -54,7 +55,7 @@ function TabSection() {
         setPresident(
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "president"
-          )
+          ),
         );
 
         setVicePresident(
@@ -134,6 +135,18 @@ function TabSection() {
 
   return (
     <div className="w-full bg-[#1c2452] py-8">
+      <Helmet>
+        <title>The White House Game | Who will run the free world?</title>
+        <meta
+          name="keywords"
+          content="2024 Presidential election, prediction, play."
+        />
+        <meta
+          name="description"
+          content="Who runs America affects the entire world. So who wins on November 5, 2024 matters. Will Donald Trump return or will Biden surprise voters again? Can Kennedy break the two party mould?"
+        />
+        <meta name="language" content="en" />
+      </Helmet>
       <div className="w-10/12 m-auto resp ">
         <div className="w-full overflow-x-auto lg:overflow-x-hidden tabs">
           <div
