@@ -10,9 +10,15 @@ import DownloadApp from "../components/DownloadApp";
 import bg from "../images/div.png";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import ReactGA from 'react-ga4'
 
 function About() {
+
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    ReactGA.pageview(window.location.pathname);
+      },[])
 
   return (
     <div>

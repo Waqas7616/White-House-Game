@@ -64,8 +64,8 @@ export const SignUp = () => {
 
         
         if (response.status === 200) {
-          localStorage.setItem("email", email);
-          localStorage.setItem("id", response.data.user.id);
+          secureLocalStorage.setItem("email", email);
+          secureLocalStorage.setItem("id", response.data.user.id);
 
           
           setIsLoading(false);

@@ -6,11 +6,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import DownloadApp from "../DownloadApp";
 import Navbar from "../Navbar";
+import securesecureLocalStorage from "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 function EmailVerification(props) {
 
   const navigate = useNavigate();
-  const token=localStorage.getItem('token');
+  const token=securesecureLocalStorage.getItem('token');
   const data={
     title:'Create',
     title2:'An Account',
@@ -47,7 +49,7 @@ function EmailVerification(props) {
   };
 
   useEffect(() => {
-    const storedEmail = localStorage.getItem("email");
+    const storedEmail = securesecureLocalStorage.getItem("email");
     // Retrieve email from local storage
     if (storedEmail) {
       setEmail(storedEmail);
@@ -141,7 +143,7 @@ function EmailVerification(props) {
 
 
       if (response.status === 200) {
-        localStorage.setItem("token", response?.data?.access_token);
+        secureLocalStorage.setItem("token", response?.data?.access_token);
 
         // alert("OTP verified successfully!");
         // Redirect or perform any other action upon successful OTP verification

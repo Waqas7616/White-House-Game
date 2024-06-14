@@ -19,7 +19,7 @@ export const ResetPassword = () => {
 
     useEffect(() => {
         
-      const storedToken = localStorage.getItem("token");
+      const storedToken = secureLocalStorage.getItem("token");
       // console.log("token", storedToken)
       if (storedToken) {
           setJwtToken(storedToken);

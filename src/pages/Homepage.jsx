@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "../components/banner";
 import TabSection from "../components/tabsection/TabSection";
 import Shop from "../components/Shop";
 import DownloadApp from "../components/DownloadApp";
 import { Helmet } from "react-helmet";
-
+import ReactGA from 'react-ga4';
 function Homepage() {
+  useEffect(()=>{
+ReactGA.pageview(window.location.pathname);
+  },[])
   return (
     <div>
       <Helmet>

@@ -9,6 +9,7 @@ import bg from "../../images/images1.jpg";
 import { Spinner } from "@material-tailwind/react";
 import CustomSpinner from "../spinner";
 import DownloadApp from "../DownloadApp";
+import secureLocalStorage from "react-secure-storage";
 
 export const PutData = () => {
   const location = useLocation();
@@ -114,14 +115,14 @@ export const PutData = () => {
   const [jwtToken, setJwtToken] = useState("");
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = secureLocalStorage.getItem("token");
     if (storedToken) {
       setJwtToken(storedToken);
     } else {
     }
   }, []);
-  const email = localStorage.getItem("email");
-  let id = localStorage.getItem("id");
+  const email = secureLocalStorage.getItem("email");
+  let id = secureLocalStorage.getItem("id");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [votedIn2020, setVotedIn2020] = useState("No");
   const [condition, setCondition] = useState(false);

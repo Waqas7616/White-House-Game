@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import { useStatePredictions } from "../../utils/StateIDs";
+import ReactGa from 'react-ga4'
 
 function PredictSlider({
   data,
@@ -17,6 +18,9 @@ function PredictSlider({
 }) {
   const { president,setPresident,vicePresident, setVicePresident, setParty } = useStatePredictions();
   const [imageSelect, setImageSelect] = useState(false);
+  useEffect(()=>{
+    ReactGA.pageview(window.location.pathname);
+      },[])
 
   const [candidatedata, setCandidateData] = useState([]);
   const [data2Index, setData2Index] = useState(0);
@@ -57,6 +61,12 @@ function PredictSlider({
     setImageSelect(true);
     
     imageValue();
+    ReactGa.event({
+      category:data1,
+      action:`this candidate is selected for ${data1} position`,
+      label:party_name,
+      value:id
+    })
   };
   const [arrow, setArrow] = useState(true);
 

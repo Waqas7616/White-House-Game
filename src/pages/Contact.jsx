@@ -5,8 +5,12 @@ import Shop from "../components/Shop";
 import DownloadApp from "../components/DownloadApp";
 import background from "../images/contactbg.png";
 import { Helmet } from "react-helmet";
+import ReactGA from 'react-ga4'
 
 function Contact() {
+  useEffect(()=>{
+    ReactGA.pageview(window.location.pathname);
+      },[])
   return (
     <div>
        <Helmet>

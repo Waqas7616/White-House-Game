@@ -5,16 +5,17 @@ import closeMenu from "../images/closeMenu.png";
 import { Link } from "react-router-dom";
 import { Version } from "./version/Version";
 import { useNavigate, useLocation } from "react-router-dom";
+import securesecureLocalStorage from "react-secure-storage";
 
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [active, setActive] = useState(1);
 
-  // const login = localStorage.getItem("email");
-  // const token = localStorage.getItem("token");
+  // const login = secureLocalStorage.getItem("email");
+  // const token = secureLocalStorage.getItem("token");
   const [showModal, setShowModal] = useState(false);
-  // const login = localStorage.getItem("email")
+  // const login = secureLocalStorage.getItem("email")
   const data = {
     title: "My",
     title2: "Account",
@@ -37,19 +38,19 @@ function Navbar() {
     };
   };
   // const logOut = () => {
-  //   localStorage.clear("token", "email");
+  //   secureLocalStorage.clear("token", "email");
 
   // };
 
   const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("email") && localStorage.getItem("token")
+    securesecureLocalStorage.getItem("email") && securesecureLocalStorage.getItem("token")
   );
 
   const logOut = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    localStorage.removeItem("id");
-    localStorage.removeItem("electoralCount");
+    securesecureLocalStorage.removeItem("token");
+    securesecureLocalStorage.removeItem("email");
+    securesecureLocalStorage.removeItem("id");
+    securesecureLocalStorage.removeItem("electoralCount");
     setIsLoggedIn(false);
     navigate("/login"); // Session expire karne ke baad isLoggedIn state ko false kar denge
   };

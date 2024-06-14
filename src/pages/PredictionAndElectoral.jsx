@@ -15,12 +15,16 @@ import axios from "axios";
 import { useStatePredictions } from "../utils/StateIDs";
 import DownloadApp from "../components/DownloadApp";
 import { useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
+import ReactGA from 'react-ga4'
 
 function PredictionAndElectoral() {
   
     const navigate = useNavigate();
     const { president, vicePresident, party, voting, addVoting } = useStatePredictions()
-  
+    useEffect(()=>{
+      ReactGA.pageview(window.location.pathname);
+        },[])
     const [data, setData] = useState({
       votter_party_id: party,
       president_id: president,
@@ -37,7 +41,7 @@ function PredictionAndElectoral() {
         vice_president_id: vicePresident,
       });
     }, [president, vicePresident])
-    const token = localStorage.getItem("token");
+    const token = secureLocalStorage.getItem("token");
   
     const handleSelectionChange = (isComplete) => {
       setIsSelectionComplete(isComplete);

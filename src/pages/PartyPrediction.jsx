@@ -17,9 +17,14 @@ import badge2 from "../images/Republicanlogo.png";
 import badge3 from "../images/Independentlogo.png";
 import Predict from "../components/predict/Predict";
 import logo1 from "../images/logo1.png";
+import secureLocalStorage from "react-secure-storage";
+import ReactGA from 'react-ga4';
 
 function PartyPrediction() {
   const navigate = useNavigate();
+  useEffect(()=>{
+    ReactGA.pageview(window.location.pathname);
+      },[])
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [popPresident, setPopPresident] = useState();
   const [popvicePresident, setPopvicePresident] = useState();
@@ -40,9 +45,9 @@ function PartyPrediction() {
   // console.log("transferred data", data);
   const [candidateData, setCandidateData] = useState([]);
   const imageUrl = "https://thewhitehousegame.com/api/public/";
-  // const id=localStorage.getItem('id');
-  const token = localStorage.getItem("token");
-  const id = localStorage.getItem("id");
+  // const id=secureLocalStorage.getItem('id');
+  const token = secureLocalStorage.getItem("token");
+  const id = secureLocalStorage.getItem("id");
 
   useEffect(() => {
     axios
@@ -105,6 +110,10 @@ function PartyPrediction() {
   }, [predict, candidateData]);
 
   const sendPartyData = () => {
+    ReactGA.event({
+      category:'Party Selection',
+      action: `${partyData?.voter_party_id===1 ? 'Democratic selected' : partyData.votter_party_id===2?'Republican selected':'Independent Selected'}`
+    })
     axios
       .post(
         "https://thewhitehousegame.com/api/public/api/predict_party_leader",
@@ -306,7 +315,7 @@ function PartyPrediction() {
             Tuesday, November
             <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
           </p>
-          <div className="main-dev flex flex-wrap items-center gap-6 justify-center mt-12">
+          <div className="main-dev flex flex-wrap items-center gap-3 justify-center mt-12">
             <div>
               <div className="flex items-center m-auto gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded mb-5">
                 <span className="">
