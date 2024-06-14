@@ -16,10 +16,19 @@ function Contact() {
       },[])
   return (
     <div>
-       <Helmet>
+      <Helmet>
         <title>The White House Game | Contact Us</title>
-        <meta name="keywords" content="2024 Presidential election, contact us, USA." lang="en" />
-        <meta name="description" content="We hope you enjoyed playing The White House Game where you predict the next President. Here is how to Contact Us. Lets start a conversation." lang="en" />
+        <meta
+          name="keywords"
+          content="2024 Presidential election, contact us, USA."
+          lang="en"
+        />
+        <meta
+          name="description"
+          content="We hope you enjoyed playing The White House Game where you predict the next President. Here is how to Contact Us. Lets start a conversation."
+          lang="en"
+        />
+        <link rel="stylesheet" href="https://thewhitehousegame.com/contact" />
       </Helmet>
       <AppBanner
         bannerTitle={"US"}
