@@ -129,7 +129,7 @@ export const PutData = () => {
   const [condition, setCondition] = useState(false);
   const [newPayload, setNewPayload] = useState(null);
   const [payload, setPayLoad] = useState({
-    id: id,
+    // id: id,
     language_id: "",
     user_age_id: "",
     user_ethnicity_id: "",
@@ -620,6 +620,7 @@ export const PutData = () => {
                   }
                 >
                   <option className="bg-[#000]" value="">
+                    
                     {payload.age ? payload.age : "Select your age group"}
                   </option>
                   {AgeGroup?.map((item) => (
@@ -1661,7 +1662,7 @@ export const PutData = () => {
               <h2 className="text-center font-poppins text-white text-[14px] md:text-[18px] ">
                 Would you like to see what others think?
               </h2>
-              <h2 className="mt-5 text-center font-poppins text-white text-[14px] md:text-[18px] font-bold">
+              <h2 onClick={() => navigate('/')} className="mt-5 text-center font-poppins text-white text-[14px] md:text-[18px] font-bold cursor-pointer hover:underline">
                 View our Stats
               </h2>
             </div>

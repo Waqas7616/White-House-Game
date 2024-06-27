@@ -195,7 +195,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Alaska").electricalCollege || 0 || 0}`}
+              {` ${voteCount("Alaska").electricalCollege || 3||3}`}
             </text>
 
             {/* HAWAII CYAN  */}
@@ -213,7 +213,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Hawaii").electricalCollege || 0}`}
+              {` ${voteCount("Hawaii").electricalCollege || 4}`}
             </text>
 
             {/* ALABAMA INDIGO  */}
@@ -231,7 +231,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Alabama").electricalCollege || 0}`}
+              {` ${voteCount("Alabama").electricalCollege || 9}`}
             </text>
 
             {/* ARKANSAS BROWN  */}
@@ -249,7 +249,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Arkansas").electricalCollege || 0}`}
+              {` ${voteCount("Arkansas").electricalCollege || 6}`}
             </text>
 
             {/* ARIZONA BLUE  */}
@@ -267,7 +267,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Arizona").electricalCollege || 0}`}
+              {` ${voteCount("Arizona").electricalCollege || 11}`}
             </text>
 
             {/* CALIFORNIA PURPLE  */}
@@ -285,7 +285,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("California").electricalCollege || 0}`}
+              {` ${voteCount("California").electricalCollege || 54}`}
             </text>
 
             {/* COLORADO black  */}
@@ -304,7 +304,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Colorado").electricalCollege || 0}`}
+              {` ${voteCount("Colorado").electricalCollege || 10}`}
             </text>
 
             {/* CONNECTICUT SKYBLUE  */}
@@ -331,7 +331,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              CT {` ${voteCount("Connecticut").electricalCollege || 0}`}
+              CT {` ${voteCount("Connecticut").electricalCollege || 7}`}
             </text>
 
             {/* DELAWARE lightgreen */}
@@ -359,7 +359,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              DE {` ${voteCount("Delaware").electricalCollege || 0}`}
+              DE {` ${voteCount("Delaware").electricalCollege || 3}`}
             </text>
 
             {/* FLORIDA PINK  */}
@@ -377,7 +377,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Florida").electricalCollege || 0}`}
+              {` ${voteCount("Florida").electricalCollege || 30}`}
             </text>
 
             {/* GEORGIA #F69e1e  */}
@@ -395,7 +395,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Georgia").electricalCollege || 0}`}
+              {` ${voteCount("Georgia").electricalCollege || 16}`}
             </text>
 
             {/* iowa gray  */}
@@ -413,7 +413,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Iowa").electricalCollege || 0}`}
+              {` ${voteCount("Iowa").electricalCollege || 6}`}
             </text>
 
             {/* Idaho fuchsia  */}
@@ -431,7 +431,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Idaho").electricalCollege || 0}`}
+              {` ${voteCount("Idaho").electricalCollege || 4}`}
             </text>
 
             {/* Illinois teal */}
@@ -449,7 +449,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Illinois").electricalCollege || 0}`}
+              {` ${voteCount("Illinois").electricalCollege || 19}`}
             </text>
 
             {/* Indiana maroon */}
@@ -467,7 +467,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Indiana").electricalCollege || 0}`}
+              {` ${voteCount("Indiana").electricalCollege || 11}`}
             </text>
 
             {/* Kansas navyblue */}
@@ -485,7 +485,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Kansas").electricalCollege || 0}`}
+              {` ${voteCount("Kansas").electricalCollege || 6}`}
             </text>
 
             {/* Kentucky royalblue */}
@@ -503,7 +503,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Kentucky").electricalCollege || 0}`}
+              {` ${voteCount("Kentucky").electricalCollege || 8}`}
             </text>
 
             {/* Louisiana magenta */}
@@ -521,7 +521,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Louisiana").electricalCollege || 0}`}
+              {` ${voteCount("Louisiana").electricalCollege || 8}`}
             </text>
 
             {/* Massachusetts firebrick */}
@@ -561,7 +561,7 @@ function Map() {
               fontSize="19"
               fontWeight="700"
             >
-              MA {voteCount("Massachusetts").electricalCollege || 0}
+              MA {voteCount("Massachusetts").electricalCollege || 11}
             </text>
 
             {/* Maryland khaki */}
@@ -588,7 +588,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              ML {` ${voteCount("Maryland").electricalCollege || 0}`}
+              ML {` ${voteCount("Maryland").electricalCollege || 10}`}
             </text>
 
             {/* Maine Lavender  */}
@@ -606,7 +606,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Maine").electricalCollege || 0}`}
+              {` ${voteCount("Maine").electricalCollege || 4}`}
             </text>
 
             {/* Michigan turquoise */}
@@ -624,7 +624,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Michigan").electricalCollege || 0}`}
+              {` ${voteCount("Michigan").electricalCollege || 15}`}
             </text>
 
             {/* Minnesota #ffc101  */}
@@ -642,7 +642,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Minnesota").electricalCollege || 0}`}
+              {` ${voteCount("Minnesota").electricalCollege || 10}`}
             </text>
 
             {/* Missouri hotpink */}
@@ -660,7 +660,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Missouri").electricalCollege || 0}`}
+              {` ${voteCount("Missouri").electricalCollege || 10}`}
             </text>
 
             {/* Mississippi coral */}
@@ -678,7 +678,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Mississippi").electricalCollege || 0}`}
+              {` ${voteCount("Mississippi").electricalCollege || 6}`}
             </text>
 
             {/* Montana orchid */}
@@ -696,7 +696,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Montana").electricalCollege || 0}`}
+              {` ${voteCount("Montana").electricalCollege || 4}`}
             </text>
 
             {/* North Carolina darkslategray */}
@@ -714,7 +714,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("North Carolina").electricalCollege || 0}`}
+              {` ${voteCount("North Carolina").electricalCollege || 16}`}
             </text>
 
             {/* North Dakota thistle */}
@@ -732,7 +732,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("North Dakota").electricalCollege || 0}`}
+              {` ${voteCount("North Dakota").electricalCollege || 3}`}
             </text>
 
             {/* Nebraska goldenrod */}
@@ -751,7 +751,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Nebraska").electricalCollege || 0}`}
+              {` ${voteCount("Nebraska").electricalCollege || 5}`}
             </text>
 
             {/* New Hampshire red  */}
@@ -778,7 +778,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              NH {` ${voteCount("New Hampshire").electricalCollege || 0}`}
+              NH {` ${voteCount("New Hampshire").electricalCollege || 4}`}
             </text>
 
             {/* NewJersey mistyrose */}
@@ -805,7 +805,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              NJ {` ${voteCount("New Jersey").electricalCollege || 0}`}
+              NJ {` ${voteCount("New Jersey").electricalCollege || 14}`}
             </text>
 
             {/* NewMexico orange */}
@@ -823,7 +823,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("New Mexico").electricalCollege || 0}`}
+              {` ${voteCount("New Mexico").electricalCollege || 5}`}
             </text>
 
             {/* Nevada indianred */}
@@ -841,7 +841,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Nevada").electricalCollege || 0}`}
+              {` ${voteCount("Nevada").electricalCollege || 6}`}
             </text>
 
             {/* Newyork tomato */}
@@ -859,7 +859,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("New York").electricalCollege || 0}`}
+              {` ${voteCount("New York").electricalCollege || 28}`}
             </text>
 
             {/* Ohio dimgray */}
@@ -877,7 +877,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Ohio").electricalCollege || 0}`}
+              {` ${voteCount("Ohio").electricalCollege || 17}`}
             </text>
 
             {/* Oklahoma forestgreen */}
@@ -895,7 +895,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Oklahoma").electricalCollege || 0}`}
+              {` ${voteCount("Oklahoma").electricalCollege || 7}`}
             </text>
 
             {/* oregon yellow */}
@@ -913,7 +913,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Oregon").electricalCollege || 0}`}
+              {` ${voteCount("Oregon").electricalCollege || 8}`}
             </text>
 
             {/* pennsylvania mediumorchid */}
@@ -931,7 +931,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Pennsylvania").electricalCollege || 0}`}
+              {` ${voteCount("Pennsylvania").electricalCollege || 19}`}
             </text>
 
             {/* Rhode island lime */}
@@ -958,7 +958,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              RI {` ${voteCount("Rhode Island").electricalCollege || 0}`}
+              RI {` ${voteCount("Rhode Island").electricalCollege || 4}`}
             </text>
 
             {/* SouthCarolina #698DC5  */}
@@ -976,7 +976,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("South Carolina").electricalCollege || 0}`}
+              {` ${voteCount("South Carolina").electricalCollege || 9}`}
             </text>
 
             {/* SouthDakota #DE0100  */}
@@ -994,7 +994,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("South Dakota").electricalCollege || 0}`}
+              {` ${voteCount("South Dakota").electricalCollege || 3}`}
             </text>
 
             {/* Tennessee lightcyan */}
@@ -1012,7 +1012,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Tennessee").electricalCollege || 0}`}
+              {` ${voteCount("Tennessee").electricalCollege || 11}`}
             </text>
 
             {/* Texas white  */}
@@ -1030,7 +1030,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Texas").electricalCollege || 0}`}
+              {` ${voteCount("Texas").electricalCollege || 40}`}
             </text>
 
             {/* utah dodgerblue */}
@@ -1048,7 +1048,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Utah").electricalCollege || 0}`}
+              {` ${voteCount("Utah").electricalCollege || 6}`}
             </text>
 
             {/* Virginia lime  */}
@@ -1066,7 +1066,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Virginia").electricalCollege || 0}`}
+              {` ${voteCount("Virginia").electricalCollege || 13}`}
             </text>
 
             {/* DC */}
@@ -1095,7 +1095,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              DC {` ${voteCount("DC").electricalCollege || 0}`}
+             DC {` ${voteCount("DC").electricalCollege || 3}`}
             </text>
             {/* vermont rosybrown */}
             <path
@@ -1121,7 +1121,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              VT {` ${voteCount("Vermont").electricalCollege || 0}`}
+              VT {` ${voteCount("Vermont").electricalCollege || 3}`}
             </text>
 
             {/* WASHINGTON  LIME*/}
@@ -1139,7 +1139,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Washington").electricalCollege || 0}`}
+              {` ${voteCount("Washington").electricalCollege || 12}`}
             </text>
 
             {/* Wisconsin white  */}
@@ -1157,7 +1157,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Wisconsin").electricalCollege || 0}`}
+              {` ${voteCount("Wisconsin").electricalCollege || 10}`}
             </text>
 
             {/* WestVirginia darkcyan */}
@@ -1175,7 +1175,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("West Virginia").electricalCollege || 0}`}
+              {` ${voteCount("West Virginia").electricalCollege || 4}`}
             </text>
 
             {/* Wyoming navajowhite */}
@@ -1193,7 +1193,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Wyoming").electricalCollege || 0}`}
+              {` ${voteCount("Wyoming").electricalCollege || 3}`}
             </text>
 
             {/* <path d="M752 345C759.732 345 766 338.732 766 331C766 323.268 759.732 317 752 317C744.268 317 738 323.268 738 331C738 338.732 744.268 345 752 345Z" fill="#698DC5" /> */}

@@ -96,7 +96,7 @@ export default function DownloadApp() {
             <h2 className="text-[#fff] orbit7 text-[14px] lg:text-[18px]">
               Join White House News
             </h2>
-            <p className="text-[#fff] poppins4 text-[11px] lg:text-[14px] my-1">
+            <p className="text-[#fff] poppins4 text-[11px] lg:text-[14px] my-1 text-center">
               Our free monthly newsletter
             </p>
             <div className="bg-[#fff] flex justify-between pl-2 rounded-l-[6px]">

@@ -4,6 +4,7 @@ import Vector from "../../images/Vector.png";
 import axios from "axios";
 import Navbar from "../Navbar";
 import DownloadApp from "../DownloadApp";
+import { Helmet } from "react-helmet";
 import secureLocalStorage from "react-secure-storage";
 import MobileNav from "../MobileNav";
 
@@ -73,6 +74,12 @@ export const ResetPassword = () => {
   return (
     <>
     <div className="h-screen">
+    <Helmet>
+        <title>The White House Game | Log In to your account</title>
+        <meta name="keywords" content="2024 Presidential election, log in, login." />
+        <meta name="description" content="To play The White House Game or update your prediction, open an account. You can also view all our interesting statistics about the 2024 election." />
+      </Helmet>
+      
     <div className="hidden lg:block">
           <Navbar />
         </div>

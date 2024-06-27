@@ -109,6 +109,7 @@ export default function MyVote() {
               Tuesday, November 5 2024
             </span>
             <br />{" "}
+            <span className="flex justify-center items-center">This is my prediction</span>
           </>
         }
         // bannerDesc2={
@@ -127,7 +128,7 @@ export default function MyVote() {
             <img className="m-auto" src={logo} alt="" />
 
             <p className="poppins4 text-white/90  xl:text-[24px] mt-6 text-center  m-auto">
-              This is <span className="text-redish">My Prediction</span> who the
+              This is <span className="text-redish">my Prediction</span> who the
               candidates will be and who will be our next President and Vice
               President
             </p>

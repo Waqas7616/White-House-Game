@@ -515,6 +515,7 @@ function ElectoralCollege() {
           </div>
         ) : (
           <div className="flex items-center justify-center  w-full mt-3 mb-4 mx-auto">
+
             <button
               onClick={() => {
                 if (step > 0) {
@@ -524,8 +525,9 @@ function ElectoralCollege() {
                 }
               }}
               className={`bg-redish p-2 rounded-l-[6px] ${
-                selectedButtonId === null ? "" : "opacity-50"
+                selectedButtonId === null ? "cursor-not-allowed" : "opacity-50"
               }`}
+              disabled={selectedButtonId === null}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -539,9 +541,12 @@ function ElectoralCollege() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M15.75 19.5 8.25 12l7.5-7.5"
+                  
                 />
+                
               </svg>
             </button>
+            
             <button
               onClick={handleSteps}
               className={`btn bg-redish w-[258px] sm:w-[200px] px-8 py-2 text-white uppercase ${
@@ -560,8 +565,9 @@ function ElectoralCollege() {
             <button
               onClick={handleSteps}
               className={`bg-redish p-2 rounded-r-[6px] ${
-                selectedButtonId === null ? "" : "opacity-50"
+                selectedButtonId === null ? "cursor-not-allowed" : "opacity-50"
               }`}
+              disabled={selectedButtonId === null}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -741,11 +747,11 @@ function ElectoralCollege() {
     </span>
   </div>
 </div> */}
-        <h2 className="text-white  poppins6 text-[25.4px] md:text-[36.4px]">
+        <h2 className="text-white  poppins6 text-[25.4px] md:text-[36.4px] mb-2">
           Your Electoral College Tally
         </h2>
         <div className="flex justify-between">
-          <div className="flex gap-5 items-center mb-4">
+          <div className="flex flex-col md:flex-row gap-5 items-center mb-4">
             <div className="dem flex gap-3 items-center">
               <div className="w-8 h-2 bg-[#031BBB]"></div>
               <p className="poppins5 text-white">Democratic</p>
@@ -1171,7 +1177,7 @@ function ElectoralCollege() {
                     Others
                   </p>
                   <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-0 text-[#131A41] opacity-70">
-                    <p className="flex items-center gap-3 -ml-5 sm:ml-4">
+                    <p className="flex items-center gap-3 -ml-0 sm:ml-4">
                       {
                         previousData?.states?.[step]
                           ?.previous_election_state?.[8]?.vote_percentage
