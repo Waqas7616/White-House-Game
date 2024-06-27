@@ -24,7 +24,7 @@ export default function ElectoralCollege() {
   const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   const [allstates, setAllStates] = useState([]);
-  const [id, setId] = useState(1);
+  const [id, setId] = useState(71);
   const [stats, setStats] = useState([]);
   const [president, setPresident] = useState();
   const expandVotes = () => {
@@ -79,7 +79,7 @@ export default function ElectoralCollege() {
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "president"
           ),
-          console.log("aaaaa",stats)
+         
         );
       })
       .catch((err) => {

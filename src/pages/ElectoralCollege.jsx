@@ -10,7 +10,7 @@ import question from "../images/question.png";
 import democratic from "../images/democraticflag.png";
 import republican from "../images/republicflag.png";
 import independent from "../images/independentflag.png";
-import logo1 from '../images/logo1.png'
+import logo1 from "../images/logo1.png";
 import close from "../images/closeMenu.png";
 import {
   useStatePredictions,
@@ -22,10 +22,12 @@ import StateWinner from "../components/statewinner/StateWinner";
 import abc from "../images/Alabamas 1.svg";
 import EditButton from "../components/EditButton";
 import { useNavigate } from "react-router-dom";
-import usa from '../images/usa-outline.svg'
-import usflag from '../images/usflag.webp'
+import usa from "../images/usa-outline.svg";
+import usflag from "../images/usflag.webp";
 import secureLocalStorage from "react-secure-storage";
-import ReactGA from 'react-ga4';
+import ReactGA from "react-ga4";
+import CustomSpinner from "../components/spinner";
+import check from "../images/check.png";
 
 const initialElectoralCount = {
   Democratic: 0,
@@ -35,19 +37,19 @@ const initialElectoralCount = {
 };
 
 function ElectoralCollege() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const { state_predictions, addPrediction, clearPredictions } =
     useStatePredictions();
-    useEffect(()=>{
-      ReactGA.send({
-        hitType:'pageview',
-        path:window.location.pathname
-      });
-        },[])
-       const myData= secureLocalStorage.getItem('electoral_data')
- const myStep= secureLocalStorage.getItem('electoral_step')
-  const [step, setStep] = useState(myStep||0);
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      path: window.location.pathname,
+    });
+  }, []);
+  const myData = secureLocalStorage.getItem("electoral_data");
+  const myStep = secureLocalStorage.getItem("electoral_step");
+  const [step, setStep] = useState(myStep || 0);
   const [partyClick, setPartyClick] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
   const [electoralCount, setElectoralCount] = useState(() => {
@@ -59,14 +61,15 @@ function ElectoralCollege() {
   const [indLength, setIndLength] = useState();
   const [previousData, setPreviousData] = useState([]);
   const [selectedButtonId, setSelectedButtonId] = useState(null);
-  const [error,setError]=useState("");
-  const [popUp,setPopUp]=useState(false)
+  const [error, setError] = useState("");
+  const [popUp, setPopUp] = useState(false);
+  const [popUp1, setPopup1] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setDemLength((electoralCount.Democratic / electoralCount.total) * 100);
     setRepLength((electoralCount.Republican / electoralCount.total) * 100);
     setIndLength((electoralCount.Independent / electoralCount.total) * 100);
-
   }, [electoralCount]);
 
   const handleRemoval = (partyId) => {
@@ -145,13 +148,12 @@ function ElectoralCollege() {
         );
       });
   }, []);
-  
 
   // useEffect(() => {
   // }, [state_predictions]);
 
-  const data={
-    message:'Electoral'
+  const newdata = {
+    message: "Electoral",
   };
 
   const handleSteps = () => {
@@ -161,10 +163,11 @@ function ElectoralCollege() {
       setStep(step + 1);
       setSelectedButtonId(null);
     } else if (step === previousData?.states?.length - 1) {
+      setLoading(true);
       ReactGA.event({
-        category:"Election",
-        action:'Prediction made through Electoral'
-      })
+        category: "Election",
+        action: "Prediction made through Electoral",
+      });
       axios
         .post(
           "https://thewhitehousegame.com/api/public/api/submit_electoral_college_prediction",
@@ -180,15 +183,22 @@ function ElectoralCollege() {
           }
         )
         .then((response) => {
-          // Handle success response
+          if (response.status === 200) {
+            setPopup1(true);
+            setLoading(false);
+          }
         })
         .catch((error) => {
-          console.error("API error:", error.response.data.error);
-          setError(error.response.data.error);
-          setPopUp(true)
+          // console.error("API error:", error.response.data.error);
+          setError(error?.response?.data?.error);
+          setPopUp(true);
+          setLoading(false);
           // Handle error
         });
-      secureLocalStorage.setItem("electoralCount", JSON.stringify(electoralCount));
+      secureLocalStorage.setItem(
+        "electoralCount",
+        JSON.stringify(electoralCount)
+      );
     }
   };
 
@@ -268,7 +278,7 @@ function ElectoralCollege() {
 
   return (
     <div className=" bg-[#1c2452]">
-       {popUp && (
+      {popUp && (
         <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
           <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12 sm:h-[55vh] relative">
             <div className="text-center mb-6">
@@ -301,10 +311,11 @@ function ElectoralCollege() {
               </h2>
             </div>
             <button
-              onClick={() => {navigate("/payment", { state: { data } });
-            secureLocalStorage.setItem('electoral_data',state_predictions);
-            secureLocalStorage.setItem('electoral_step',step);
-            }}
+              onClick={() => {
+                navigate("/payment", { state: { newdata } });
+                secureLocalStorage.setItem("electoral_data", state_predictions);
+                secureLocalStorage.setItem("electoral_step", step);
+              }}
               className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
             >
               Pay Now
@@ -313,6 +324,47 @@ function ElectoralCollege() {
               The payment is to stop fake and multiple voting and spam. <br />{" "}
               Payments received are used to maintain our website and apps.
             </p>
+          </div>
+        </div>
+      )}
+
+      {popUp1 && (
+        <div className="popup">
+          <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
+            <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12 sm:h-[35vh] relative">
+              <div className="text-center mb-6">
+                <img className="w-[80px] h-[80px]" src={logo1} alt="" />
+              </div>
+              <button
+                onClick={()=>navigate("/")}
+                className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              <p className="text-white text-center text-[16px]">
+                {" "}
+                Your prediction has been submitted successfully!
+              </p>
+              <div className="flex justify-center items-center mt-8">
+                <img className="h-12 w-12 " src={check} alt="" />
+              </div>
+              <button onClick={()=>navigate("/")} className="mt-8 text-white poppins5 bg-redish px-8 py-2 rounded">close</button>
+            </div>
+            
           </div>
         </div>
       )}
@@ -336,39 +388,53 @@ function ElectoralCollege() {
 
       <div className="voting w-10/12  resp m-auto py-[102px] bg-[#1c2452]">
         <div className="state-data  mb-6 m-auto px-[120px] h-72 sm:h-64 bg-redish rounded-[18.06px] relative flex flex-col justify-center  sm:flex sm:flex-row sm:justify-evenly items-center">
-          <img src={circle} alt="" className="absolute right-0" />
-          <div className="map ">
-            <img
-              className="w-12 sm:w-[150px]"
-              src={previousData?.states?.[step]?.name==='USA'?usa:`${imageUrl}${previousData?.states?.[step]?.map_url}`}
-
-              alt=""
-            />
-          </div>
-          <div className="info flex flex-col sm:flex sm:flex-row  md:justify-center gap-5 items-center">
-            <div className="flag pt-5 sm:pt-0">
-              <img
-                className="w-12 sm:w-[100px]"
-                src={previousData?.states?.[step]?.name==='USA'?usflag:`${imageUrl}${previousData?.states?.[step]?.image_url}`}
-              
-                alt=""
-              />
-            </div>
-            <div className="name">
-              <h6 className="poppins6 text-white text-center text-[20px] sm:text-[33px]">
-                {previousData?.states?.[step]?.name === "USA"
-                  ? "United States of America"
-                  : previousData?.states?.[step]?.name}
-                {/* United States of America */}
-              </h6>
-              <p className="poppins4 text-white text-center text-[12px] sm:text-[28px]">
-              {previousData?.states?.[step]?.name==='USA'?'Click submit for your predictions':`${previousData?.states?.[step]?.electrical_collage_number}${" "} ${"Electoral College Votes"}`}
-              
-
-               
-              </p>
-            </div>
-          </div>
+          {previousData.states?.[step].name === undefined ? (
+            <CustomSpinner />
+          ) : (
+            <>
+              <img src={circle} alt="" className="absolute right-0" />
+              <div className="map ">
+                <img
+                  className="w-12 sm:w-[150px]"
+                  src={
+                    previousData?.states?.[step]?.name === "USA"
+                      ? usa
+                      : `${imageUrl}${previousData?.states?.[step]?.map_url}`
+                  }
+                  alt=""
+                />
+              </div>
+              <div className="info flex flex-col sm:flex sm:flex-row  md:justify-center gap-5 items-center">
+                <div className="flag pt-5 sm:pt-0">
+                  <img
+                    className="w-12 sm:w-[100px]"
+                    src={
+                      previousData?.states?.[step]?.name === "USA"
+                        ? usflag
+                        : `${imageUrl}${previousData?.states?.[step]?.image_url}`
+                    }
+                    alt=""
+                  />
+                </div>
+                <div className="name">
+                  <h6 className="poppins6 text-white text-center text-[20px] sm:text-[33px]">
+                    {previousData?.states?.[step]?.name === "USA"
+                      ? "United States of America"
+                      : previousData?.states?.[step]?.name}
+                    {/* United States of America */}
+                  </h6>
+                  <p className="poppins4 text-white text-center text-[12px] sm:text-[28px]">
+                    {previousData?.states?.[step]?.name === "USA"
+                      ? "Click submit for your predictions"
+                      : `${
+                          previousData?.states?.[step]
+                            ?.electrical_collage_number
+                        }${" "} ${"Electoral College Votes"}`}
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         <div className="flex mb-2 justify-end w-full h-12">
@@ -443,73 +509,77 @@ function ElectoralCollege() {
             </div>
           </div>
         </div>
-
-        <div className="flex items-center justify-center  w-full mt-3 mb-4 mx-auto">
-          <button
-            onClick={() => {
-              if (step > 0) {
-                setStep(step - 1);
-                setSelectedButtonId(null);
-                // console.log("Decrementing step:", step - 1);
-              }
-            }}
-            className={`bg-redish p-2 rounded-l-[6px] ${
-              selectedButtonId === null ? "" : "opacity-50"
-            }`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
+        {loading ? (
+          <div className="flex items-center justify-center  w-full mt-3 mb-4 mx-auto">
+            <CustomSpinner />
+          </div>
+        ) : (
+          <div className="flex items-center justify-center  w-full mt-3 mb-4 mx-auto">
+            <button
+              onClick={() => {
+                if (step > 0) {
+                  setStep(step - 1);
+                  setSelectedButtonId(null);
+                  // console.log("Decrementing step:", step - 1);
+                }
+              }}
+              className={`bg-redish p-2 rounded-l-[6px] ${
+                selectedButtonId === null ? "" : "opacity-50"
+              }`}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5 8.25 12l7.5-7.5"
-              />
-            </svg>
-          </button>
-
-          <button
-            onClick={handleSteps}
-            className={`btn bg-redish w-[258px] sm:w-[200px] px-8 py-2 text-white uppercase ${
-              selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-            } flex justify-center items-center`}
-            disabled={selectedButtonId === null}
-          >
-            <span>
-              {step === previousData?.states?.length - 1 ? "Submit" : ""}
-            </span>
-            <h6 className="text-white mb-0 ml-2 text-[16px] lowercase">{`${
-              step + 1
-            } of ${previousData?.states?.length}`}</h6>
-          </button>
-
-          <button
-            onClick={handleSteps}
-            className={`bg-redish p-2 rounded-r-[6px] ${
-              selectedButtonId === null ? "" : "opacity-50"
-            }`}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5 8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
+            <button
+              onClick={handleSteps}
+              className={`btn bg-redish w-[258px] sm:w-[200px] px-8 py-2 text-white uppercase ${
+                selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
+              } flex justify-center items-center`}
+              disabled={selectedButtonId === null}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </button>
-        </div>
+              <span>
+                {step === previousData?.states?.length - 1 ? "Submit" : ""}
+              </span>
+              <h6 className="text-white mb-0 ml-2 text-[16px] lowercase">{`${
+                step + 1
+              } of ${previousData?.states?.length}`}</h6>
+            </button>
+
+            <button
+              onClick={handleSteps}
+              className={`bg-redish p-2 rounded-r-[6px] ${
+                selectedButtonId === null ? "" : "opacity-50"
+              }`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
+          </div>
+        )}
 
         {/* <button
   className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 py-2 text-white uppercase rounded-[6px] ${

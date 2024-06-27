@@ -25,6 +25,7 @@ import CustomSpinner from "./spinner";
 import PaymentPage from "../pages/payment/Payment";
 import securesecureLocalStorage from "react-secure-storage";
 import ScrollTop from "./scrolltop/ScrollTop";
+import SiteMap from "./SiteMap";
 
 function AppRoutes() {
   const [user, setUser] = useState();
@@ -82,6 +83,7 @@ function AppRoutes() {
         <Route path="/payment" element={<PaymentPage/>}/>
         <Route path="/myvote" element={<MyVote/>}/>
         <Route path="/predictandelectoral" element={<PredictionAndElectoral/>}/>
+        <Route path="/sitemap" element={<SiteMap/>}/>
       </Routes>
     </Router>
   );

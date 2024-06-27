@@ -5,6 +5,7 @@ import axios from "axios";
 import Navbar from "../Navbar";
 import DownloadApp from "../DownloadApp";
 import secureLocalStorage from "react-secure-storage";
+import MobileNav from "../MobileNav";
 
 export const ResetPassword = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -72,7 +73,12 @@ export const ResetPassword = () => {
   return (
     <>
     <div className="h-screen">
-      <Navbar />
+    <div className="hidden lg:block">
+          <Navbar />
+        </div>
+        <div className="block lg:hidden">
+          <MobileNav />
+        </div>
       <div className="flex flex-col text-center items-center justify-center mt-5">
         <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
           {" "}

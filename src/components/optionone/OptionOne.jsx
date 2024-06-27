@@ -77,7 +77,7 @@ export const OptionOne = () => {
           <img src={left} alt="" />
         </div>
 
-        <div class="absolute bottom-0 left-0 right-0 flex justify-center items-center ">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-center ">
           <img className="w-[85rem] h-[43rem]" src={rulesone} alt="" />
         </div>
         <div className="absolute flex justify-end items-center right-24 bottom-[40.5rem] cursor-pointer ">

@@ -27,7 +27,7 @@ function TabSection() {
   const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   const [allstates, setAllStates] = useState([]);
-  const [id, setId] = useState(1);
+  const [id, setId] = useState(71);
   const [stats, setStats] = useState([]);
   const [president, setPresident] = useState();
   const [vicePresident, setVicePresident] = useState();
@@ -55,7 +55,7 @@ function TabSection() {
         setPresident(
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "president"
-          ),
+          )
         );
 
         setVicePresident(
@@ -670,8 +670,8 @@ function TabSection() {
 
                   </div>
                   <div className="president-votes w-3/4">
-                    <div class="w-[98%] h-[31px] bg-[#454C72] rounded-full dark:bg-gray-700">
-                      <div class="bg-redish text-xs font-medium text-whiteColor h-full text-center p-2 poppins5  leading-none rounded-full" style={{ width: "45%" }}> 45%</div>
+                    <div className="w-[98%] h-[31px] bg-[#454C72] rounded-full dark:bg-gray-700">
+                      <div className="bg-redish text-xs font-medium text-whiteColor h-full text-center p-2 poppins5  leading-none rounded-full" style={{ width: "45%" }}> 45%</div>
                     </div>
                   </div>
                 </div> */}
@@ -857,9 +857,15 @@ function TabSection() {
 
         <div className="flex w-9/12 m-auto my-8 mb-[83px] flex-col items-center">
           <div className="flex w-full justify-between items-center mb-4">
-            <span className="poppins6 text-white text-[12px] md:text-[16px]">Democratic</span>
-            <span className="poppins6 text-white text-[12px] md:text-[16px]">Republican</span>
-            <span className="poppins6 text-white text-[12px] md:text-[16px]">Independent</span>
+            <span className="poppins6 text-white text-[12px] md:text-[16px]">
+              Democratic
+            </span>
+            <span className="poppins6 text-white text-[12px] md:text-[16px]">
+              Republican
+            </span>
+            <span className="poppins6 text-white text-[12px] md:text-[16px]">
+              Independent
+            </span>
           </div>
 
           <div className="flex w-full">
