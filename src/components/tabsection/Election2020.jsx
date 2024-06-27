@@ -25,15 +25,19 @@ export default function Election2020() {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/getVotesPercentage2020")
+      .get(
+        "https://thewhitehousegame.com/api/public/api/getVotesPercentage2020"
+      )
       .then((response) => {
         setVotePercentage(response.data);
+
         setPolling(
           response?.data?.source_percentages?.filter(
             (item) => item.source === "polling"
           )
-          
         );
+        
+
         setMail(
           response?.data?.source_percentages?.filter(
             (item) => item.source === "mail"
@@ -107,9 +111,13 @@ export default function Election2020() {
       </p>
       <div className="search-section text-center">
         <div className="votes-count flex items-center justify-end">
-          <img className="w-8 h-8 lg:w-10 lg:h-10 object-cover" src={ballot} alt="ballot" />
+          <img
+            className="w-8 h-8 lg:w-10 lg:h-10 object-cover"
+            src={ballot}
+            alt="ballot"
+          />
           <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
-            Votes : {polling?.data?.TotalVotes}
+            Votes : {polling?.data?.source_percentages?.TotalVotes}
           </h2>
         </div>
         <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-8">
@@ -148,7 +156,7 @@ export default function Election2020() {
                       className="w-[20px] sm:w-auto"
                       src={
                         item.party_name === "Republican"
-                          ?  democrat
+                          ? democrat
                           : item.party_name === "Democratic"
                           ? republic
                           : independ
@@ -157,7 +165,7 @@ export default function Election2020() {
                     />
                   </div>
                   <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
-                    {item.difference&&item.difference.toFixed(1) }%
+                    {item.difference && item.difference.toFixed(1)}%
                   </p>
                   <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
                     <img
@@ -188,7 +196,9 @@ export default function Election2020() {
                         </div>
                         <p className="flex-1 text-center">
                           {" "}
-                          {item.percentage_2020 ? (+item.percentage_2020).toFixed(1) + '%' : 'N/A'}
+                          {item.percentage_2020
+                            ? (+item.percentage_2020).toFixed(1) + "%"
+                            : "N/A"}
                         </p>
                       </div>
                     </div>
@@ -210,7 +220,9 @@ export default function Election2020() {
                           {2024}
                         </div>
                         <p className="flex-1 text-center">
-                          {item.percentage_2024&&item.percentage_2024.toFixed(1)}%
+                          {item.percentage_2024 &&
+                            item.percentage_2024.toFixed(1)}
+                          %
                         </p>
                       </div>
                     </div>
@@ -224,7 +236,88 @@ export default function Election2020() {
         Who voted at a polling station on election day 2020
       </h2>
       <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
-        {polling && polling?.slice(0, 3).map((item, index) => (
+        {polling &&
+          polling?.slice(0, 3).map((item, index) => (
+            <div
+              key={index}
+              className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
+                item.party === "Republican"
+                  ? "republic"
+                  : item.party === "Democratic"
+                  ? "democratic"
+                  : "independent"
+              } rounded-[8px] my-8`}
+            >
+              <div
+                style={{
+                  background: `${
+                    item.party === "Republican"
+                      ? " #ED1C24"
+                      : item.party === "Democratic"
+                      ? "#546BED"
+                      : "white"
+                  }`,
+                }}
+                className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-1 xl:gap-10 items-center rounded-l-lg`}
+              >
+                <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
+                  <img
+                    className="w-[20px] sm:w-auto"
+                    src={
+                      item.party === "Republican"
+                        ? democrat
+                        : item.party === "Democratic"
+                        ? republic
+                        : independ
+                    }
+                    alt=""
+                  />
+                </div>
+                <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0 truncate">
+                  {item.party}
+                </p>
+                {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
+                <img
+                  className="w-[20px] sm:w-auto"
+                  src={
+                    item.party_name === "republican"
+                      ? republic
+                      : item.party_name === "democratic"
+                      ? democrat
+                      : independ
+                  }
+                  alt=""
+                />
+              </div> */}
+              </div>
+              <div className="president-votes w-3/4">
+                <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
+                  <div
+                    style={{
+                      width: `${item.percentage}%`,
+                      background: `${
+                        item.party === "Democratic"
+                          ? "#546BED"
+                          : item.party === "Republican"
+                          ? "#ED1C24 "
+                          : "white"
+                      }`,
+                    }}
+                    className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
+                  >
+                    {" "}
+                    {item.percentage && item.percentage.toFixed(1)}%
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+      </div>
+      <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
+        Who voted using a Mail-in ballot or drop-box in 2020
+      </h2>
+      <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
+        {mail?.slice(0, 3).map((item, index) => (
           <div
             key={index}
             className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
@@ -239,7 +332,7 @@ export default function Election2020() {
               style={{
                 background: `${
                   item.party === "Republican"
-                    ? " #ED1C24"
+                    ? "#ED1C24"
                     : item.party === "Democratic"
                     ? "#546BED"
                     : "white"
@@ -252,7 +345,7 @@ export default function Election2020() {
                   className="w-[20px] sm:w-auto"
                   src={
                     item.party === "Republican"
-                      ?  democrat
+                      ? democrat
                       : item.party === "Democratic"
                       ? republic
                       : independ
@@ -286,99 +379,19 @@ export default function Election2020() {
                       item.party === "Democratic"
                         ? "#546BED"
                         : item.party === "Republican"
-                        ? "#ED1C24 "
+                        ? "#ED1C24"
                         : "white"
                     }`,
                   }}
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {item.percentage&&item.percentage.toFixed(1)}%
+                  {item.percentage && item.percentage.toFixed(1)}%
                 </div>
               </div>
             </div>
           </div>
         ))}
-      </div>
-      <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-12 text-center">
-        Who voted using a Mail-in ballot or drop-box in 2020
-      </h2>
-      <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
-        {mail?.slice(0, 3).map((item, index) => (
-            <div
-              key={index}
-              className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
-                item.party === "Republican"
-                  ? "republic"
-                  : item.party === "Democratic"
-                  ? "democratic"
-                  : "independent"
-              } rounded-[8px] my-8`}
-            >
-              <div
-                style={{
-                  background: `${
-                    item.party === "Republican"
-                      ? "#ED1C24"
-                      : item.party === "Democratic"
-                      ? "#546BED"
-                      : "white"
-                  }`,
-                }}
-                className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-1 xl:gap-10 items-center rounded-l-lg`}
-              >
-                <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
-                  <img
-                    className="w-[20px] sm:w-auto"
-                    src={
-                      item.party === "Republican"
-                        ? democrat
-                        : item.party === "Democratic"
-                        ?  republic
-                        : independ
-                    }
-                    alt=""
-                  />
-                </div>
-                <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
-                  {item.party}
-                </p>
-                {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
-                <img
-                  className="w-[20px] sm:w-auto"
-                  src={
-                    item.party_name === "republican"
-                      ? republic
-                      : item.party_name === "democratic"
-                      ? democrat
-                      : independ
-                  }
-                  alt=""
-                />
-              </div> */}
-              </div>
-              <div className="president-votes w-3/4">
-                <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
-                  <div
-                    style={{
-                      width: `${item.percentage}%`,
-                      background: `${
-                        item.party === "Democratic"
-                          ? "#546BED"
-                          : item.party === "Republican"
-                          ? "#ED1C24"
-                          : "white"
-                      }`,
-                    }}
-                    className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
-                  >
-                    {" "}
-                    {item.percentage&&item.percentage.toFixed(1)}%
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
       </div>
     </div>
   );

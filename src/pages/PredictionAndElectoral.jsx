@@ -86,7 +86,7 @@ function PredictionAndElectoral() {
           }
           bannerDesc2={<>US President and Vice President<br/>Start by predicting each party’s candidates<br/>Then predict which party wins each state<br/>This is will determine the 538 delegates to the Electoral College</>}
         />
-         <p className="poppins4 text-white text-center xl:w-[55%] xl:text-[30px] m-auto mt-5">
+         <p className="poppins4 text-white text-center xl:w-[55%] xl:text-[30px]  m-auto mt-5">
          Scroll the candidates and click to select <br />who you believe will be nominees on
           </p>
           <p className="poppins4 text-white/80 xl:text-[22px] text-center justify-center flex items-center gap-2 m-auto mt-5">
@@ -142,7 +142,7 @@ function PredictionAndElectoral() {
         />
         </div>
         </div>
-        <div className="buttons flex flex-col items-center justify-center gap-4 xl:mt-4  ">
+        <div className="buttons flex flex-col items-center justify-center gap-4 mt-3 xl:mt-4  ">
           {/* <button className="rounded-[6px] text-white poppins-6 border-[1px] border-white px-5 py-2 sm:px-10 sm:py-2 ">Edit my predictions</button> */}
           <button onClick={sendPrediction} disabled={!isSelectionComplete} className={`rounded-[6px] text-white poppins-6 border-[1px] border-redish px-10 py-2 bg-redish ${!isSelectionComplete?"opacity-40":""}`}>Next</button>
           <small className="text-white">Now predict the Electoral College</small>

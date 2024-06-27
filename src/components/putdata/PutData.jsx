@@ -21,7 +21,7 @@ export const PutData = () => {
     axios
       .get("https://thewhitehousegame.com/api/public/api/get_user_age")
       .then((response) => {
-
+console.log('my age is',response.data)
         setAgeGroup(response.data.user_age);
       })
       .catch((error) => {
@@ -127,7 +127,7 @@ export const PutData = () => {
   const [condition, setCondition] = useState(false);
   const [newPayload, setNewPayload] = useState(null);
   const [payload, setPayLoad] = useState({
-    id: id,
+    // id: id,
     language_id: "",
     user_age_id: "",
     user_ethnicity_id: "",
@@ -623,6 +623,7 @@ useEffect(() => {
                   }
                 >
                   <option className="bg-[#000]" value="">
+                    
                     {payload.age ? payload.age : "Select your age group"}
                   </option>
                   {AgeGroup?.map((item) => (
@@ -817,7 +818,7 @@ useEffect(() => {
                       }
                     >
                       <option className="bg-[#000]" value="">
-                      {payload.user_country_birth ? payload.user_country_birth : "Select  your country of birth"}
+                      {payload.user_country_birth ? payload.user_country_birth : "Your country of birth"}
 
                   </option>
                   
@@ -857,7 +858,10 @@ useEffect(() => {
                       }
                     >
                       <option className="bg-[#000]" value="">
-                    {payload.language ? payload.language : "Select your language"}
+                    {payload.language ? payload.language :  "Select language"}
+
+
+
                   </option>
                       {byLanguage?.map((item) => (
                         <option

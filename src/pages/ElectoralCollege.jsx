@@ -49,7 +49,7 @@ function ElectoralCollege() {
   const [previousData, setPreviousData] = useState([]);
   const [selectedButtonId, setSelectedButtonId] = useState(null);
   const [error,setError]=useState("");
-  const [popUp,setPopUp]=useState(false)
+  const [popUp,setPopUp]=useState(false);
 
   useEffect(() => {
     setDemLength((electoralCount.Democratic / electoralCount.total) * 100);
@@ -160,6 +160,7 @@ function ElectoralCollege() {
           }
         )
         .then((response) => {
+          
           // Handle success response
         })
         .catch((error) => {
@@ -457,6 +458,7 @@ function ElectoralCollege() {
             } flex justify-center items-center`}
             disabled={selectedButtonId === null}
           >
+            
             <span>
               {step === previousData?.states?.length - 1 ? "Submit" : ""}
             </span>
@@ -648,11 +650,11 @@ function ElectoralCollege() {
     </span>
   </div>
 </div> */}
-        <h2 className="text-white  poppins6 text-[25.4px] md:text-[36.4px]">
+        <h2 className="text-white  poppins6 text-[25.4px] md:text-[36.4px] mb-2">
           Your Electoral College Tally
         </h2>
         <div className="flex justify-between">
-          <div className="flex gap-5 items-center mb-4">
+          <div className="flex flex-col md:flex-row gap-5 items-center mb-4">
             <div className="dem flex gap-3 items-center">
               <div className="w-8 h-2 bg-[#031BBB]"></div>
               <p className="poppins5 text-white">Democratic</p>
@@ -1078,7 +1080,7 @@ function ElectoralCollege() {
                     Others
                   </p>
                   <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-0 text-[#131A41] opacity-70">
-                    <p className="flex items-center gap-3 -ml-5 sm:ml-4">
+                    <p className="flex items-center gap-3 -ml-0 sm:ml-4">
                       {
                         previousData?.states?.[step]
                           ?.previous_election_state?.[8]?.vote_percentage
