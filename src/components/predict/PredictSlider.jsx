@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import { useStatePredictions } from "../../utils/StateIDs";
+import ReactGA from 'react-ga4'
 
 function PredictSlider({
   data,
@@ -17,6 +18,12 @@ function PredictSlider({
 }) {
   const { president,setPresident,vicePresident, setVicePresident, setParty } = useStatePredictions();
   const [imageSelect, setImageSelect] = useState(false);
+  useEffect(()=>{
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });
+      },[])
 
   const [candidatedata, setCandidateData] = useState([]);
   const [data2Index, setData2Index] = useState(0);
@@ -48,7 +55,7 @@ function PredictSlider({
     fetchData();
   }, []);
 
-  const handleImage = (id, party) => {
+  const handleImage = (id, party,name) => {
     (data1 === "president" && setPresident(id)) ||
       (data1 === "VicePresident" && setVicePresident(id));
     (party_name === "Democratic" && setParty(party)) ||
@@ -57,6 +64,12 @@ function PredictSlider({
     setImageSelect(true);
     
     imageValue();
+    ReactGA.event({
+      category:data1,
+      action:`${name}  is selected for ${data1} position`,
+      label:party_name,
+      value:id
+    })
   };
   const [arrow, setArrow] = useState(true);
 
@@ -250,7 +263,7 @@ function PredictSlider({
               .map((item, index) => (
                 <div
                   key={index}
-                  onClick={() => handleImage(item?.id, item?.votter_party_id)}
+                  onClick={() => handleImage(item?.id, item?.votter_party_id,item?.candidate_name)}
                   className={`w-[124px] h-[154px] md:w-[200px] md:h-[220px]    rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
                     imageSelect && "border-white border-[10px] rounded[28.43px]"
                   }`}

@@ -17,10 +17,20 @@ import badge2 from "../images/Republicanlogo.png";
 import badge3 from "../images/Independentlogo.png";
 import Predict from "../components/predict/Predict";
 import logo1 from "../images/logo1.png";
+import secureLocalStorage from "react-secure-storage";
+import ReactGA from "react-ga4";
+import CustomSpinner from "../components/spinner";
 
 function PartyPrediction() {
   const navigate = useNavigate();
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      path: window.location.pathname,
+    });
+  }, []);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [popPresident, setPopPresident] = useState();
   const [popvicePresident, setPopvicePresident] = useState();
   const [popUp, setPopUp] = useState(false);
@@ -37,12 +47,15 @@ function PartyPrediction() {
   const [disabled, setDisabled] = useState(true);
   const location = useLocation();
   const data = location.state || {};
-  // console.log("transferred data", data);
+  console.log("transferred data", data);
   const [candidateData, setCandidateData] = useState([]);
   const imageUrl = "https://thewhitehousegame.com/api/public/";
-  // const id=localStorage.getItem('id');
-  const token = localStorage.getItem("token");
-  const id = localStorage.getItem("id");
+  // const id=secureLocalStorage.getItem('id');
+  const token = secureLocalStorage.getItem("token");
+  const id = secureLocalStorage.getItem("id");
+  const newdata = {
+    message: "President",
+  };
 
   useEffect(() => {
     axios
@@ -105,6 +118,17 @@ function PartyPrediction() {
   }, [predict, candidateData]);
 
   const sendPartyData = () => {
+    setLoading(true)
+    ReactGA.event({
+      category: "Party Selection",
+      action: `${
+        partyData?.voter_party_id === 1
+          ? "Democratic selected"
+          : partyData.votter_party_id === 2
+          ? "Republican selected"
+          : "Independent Selected"
+      }`,
+    });
     axios
       .post(
         "https://thewhitehousegame.com/api/public/api/predict_party_leader",
@@ -119,10 +143,12 @@ function PartyPrediction() {
       )
       .then((res) => {
         setPopUp(true);
+        setLoading(false)
       })
       .catch((err) => {
         setError(err.response.data.error);
         setPopUps(true);
+        setLoading(false)
       });
   };
 
@@ -142,8 +168,6 @@ function PartyPrediction() {
 
   return (
     <div className="">
-      
-
       {popUps && (
         <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
           <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12  relative">
@@ -177,7 +201,7 @@ function PartyPrediction() {
               </h2>
             </div>
             <button
-              onClick={() => navigate("/payment")}
+              onClick={() => navigate("/payment", { state: { newdata } })}
               className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
             >
               Pay Now
@@ -192,8 +216,8 @@ function PartyPrediction() {
 
       {popUp && (
         <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
-          <div className="popup bg-[#1C2452] w-5/12  h-[95vh] rounded-[30px]  ">
-            <div className="popup-content">
+          <div className="popup bg-[#1C2452] w-10/12 lg:w-6/12 xl:w-5/12 h-[95vh]  xl:h-[95vh] 2xl:h-[40vh] rounded-[30px]    ">
+            <div className="popup-content ">
               <img src={logo} className="m-auto w-[90px]" alt="" />
               <h1 className="poppins6 text-white text-center">
                 Who you expect to win
@@ -217,7 +241,7 @@ function PartyPrediction() {
                 </div>
               </div>
               <div
-                className="flex gap-5 w-fit m-auto items-center justify-center p-4 border-[2px] border-white rounded-[18.5px] mb-10"
+                className="flex gap-5 w-fit m-auto xl:h-[20%]  items-center justify-center p-4 border-[2px] border-white rounded-[18.5px] md:mb-4 2xl:mb-10"
                 style={{
                   background:
                     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
@@ -225,7 +249,7 @@ function PartyPrediction() {
               >
                 <div>
                   <h1 className="text-white poppins6 mb-2">President</h1>
-                  <div className="w-[200px] h-[180px]  overflow-hidden rounded-[10.96px]">
+                  <div className="w-[100px] md:w-[150px] md:h-[120px]  overflow-hidden rounded-[10.96px]">
                     {popPresident && popPresident.voter_candidate && (
                       <img
                         className="w-full object-cover"
@@ -237,7 +261,7 @@ function PartyPrediction() {
                 </div>
                 <div>
                   <h1 className="text-white poppins6 mb-2">Vice President</h1>
-                  <div className="w-[200px] h-[180px]  overflow-hidden rounded-[10.96px]">
+                  <div className="w-[100px] md:w-[150px] md:h-[120px]  overflow-hidden rounded-[10.96px]">
                     {popvicePresident && popvicePresident.voter_candidate && (
                       <img
                         className="w-full object-cover"
@@ -248,34 +272,29 @@ function PartyPrediction() {
                   </div>
                 </div>
               </div>
-              <h1 className="poppins6 text-white text-center">
-                Electoral College
-              </h1>
-              <p className="poppins4 text-white text-center mb-5">
-                You have not completed Electoral College!
-              </p>
-              {/* <button
-                onClick={() => navigate("/electoral")}
-                className="bg-redish px-5 m-auto block py-3 rounded-[6px] poppins6 text-white text-center mb-3"
-              >
-                Complete electoral college
-              </button> */}
-              <p className="text-white text-center poppins4">
+
+              <p className="text-white text-center poppins4 text-[12px] xl:text-[14px] 2xl:text-[16px]">
                 A lot can happen before election day
               </p>
-              <p className="poppins4 text-white/80 xl:text-[15px] text-center justify-center flex items-center gap-2 m-auto mt-2">
+              <p className="poppins4 text-white/80 text-[12px] xl:text-[14px] 2xl:text-[16px] text-center justify-center flex items-center gap-2 m-auto mb-1 2xl:mt-2">
                 <img className="w-[15px]" src={calender} alt="" />
                 Tuesday, November
                 <span className="poppins4 text-white xl:text-[15px]">
                   5, 2024
                 </span>
               </p>
-              <p className="text-white text-center poppins4 text-[13px] w-1/2 m-auto mt-5">
+              <p className="text-white text-center poppins4 text-[13px] w-1/2 m-auto mt-3 2xl:mt-5">
                 If you change your mind and would like to update your Prediction{" "}
               </p>
               <button
+                onClick={() => navigate("/predict")}
+                className="bg-redish px-5 m-auto mt-3 block py-2 2xl:py-3 rounded-[6px] text-[14px] poppins6 text-white text-center mb-3"
+              >
+                Update your predictions
+              </button>
+              <button
                 onClick={() => setPopUp(false)}
-                className="rounded-[6px] border-[1px] px-20 block m-auto py-3 mt-5 border-white poppins7 text-white text-center"
+                className="rounded-[6px] border-[1px] px-20 block m-auto py-2 2xl:py-3 mt-5 border-white poppins7 text-white text-center"
               >
                 Done
               </button>
@@ -306,7 +325,7 @@ function PartyPrediction() {
             Tuesday, November
             <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
           </p>
-          <div className="main-dev flex flex-wrap items-center gap-6 justify-center mt-12">
+          <div className="main-dev flex flex-wrap items-center gap-3 justify-center mt-12">
             <div>
               <div className="flex items-center m-auto gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded mb-5">
                 <span className="">
@@ -497,7 +516,8 @@ function PartyPrediction() {
       </div>
 
       <div className="flex justify-center relative gap-8 mt-8 mb-3">
-        <button
+        {loading?<CustomSpinner/>:
+         <button
           onClick={sendPartyData}
           disabled={disabled}
           className={`rounded-lg px-5 py-3 border-[1px] border-white h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 ${
@@ -506,6 +526,8 @@ function PartyPrediction() {
         >
           Submit
         </button>
+        }
+       
         {/* <button
           onClick={() => navigate("/electoral")}
           className={`rounded-lg px-5 py-3 bg-red-500 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 `}

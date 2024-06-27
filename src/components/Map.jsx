@@ -4,7 +4,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 function Map() {
-  const location=useLocation();
+  const location = useLocation();
   const [tooltip, setTooltip] = useState(false);
   const [step, setStep] = useState("");
   const [statesData, setStatesData] = useState([]);
@@ -117,17 +117,20 @@ function Map() {
   return (
     <div className="w-10/12 m-auto relative">
       {tooltip && (
-        <div className={`svgModal py-5 shadow-md shadow-black px-5 rounded-[10px] ${location.pathname==='/myvote'&&'hidden'}`}>
-          
+        <div
+          className={`svgModal py-5 shadow-md shadow-black px-5 rounded-[10px] ${
+            location.pathname === "/myvote" && "hidden"
+          }`}
+        >
           {statesData[step]?.state_image_url && (
             <img
               src={`${ImageUrl}${statesData[step]?.state_image_url}`}
               alt={`${step} image`}
               className=" object-cover m-auto mb-2"
             />
-           )} 
+          )}
           <h1 className="text-[25px] orbit7 text-center text-white mb-3">
-            {step}  {voteCount(step)?.electricalCollege || 0}
+            {step} {voteCount(step)?.electricalCollege || 0}
           </h1>
           <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 px-3">
             DEMOCRATIC:{" "}
@@ -150,7 +153,9 @@ function Map() {
             <span className="poppins4">
               {!statesData[step]?.["Independent('Kennedy')"]
                 ? "0%"
-                : `${Math.round(statesData[step]?.["Independent('Kennedy')"])}%`}
+                : `${Math.round(
+                    statesData[step]?.["Independent('Kennedy')"]
+                  )}%`}
             </span>
           </p>
         </div>
@@ -162,10 +167,10 @@ function Map() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g clip-path="url(#clip0_1_2)">
+        <g clipPath="url(#clip0_1_2)">
           <mask
             id="mask0_1_2"
-            maskType="luminance"
+            masktype="luminance"
             maskUnits="userSpaceOnUse"
             x="0"
             y="0"
@@ -192,7 +197,6 @@ function Map() {
             >
               {` ${voteCount("Alaska").electricalCollege || 3||3}`}
             </text>
-          
 
             {/* HAWAII CYAN  */}
             <path

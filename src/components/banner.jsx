@@ -14,6 +14,7 @@ import Navbar from "./Navbar";
 import text from "../images/whitehouse.png";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import MobileNav from "./MobileNav";
 
 function Banner() {
   const [active, setActive] = useState(0);
@@ -67,7 +68,7 @@ function Banner() {
   return (
     <>
       <div className="banner">
-      <Helmet>
+      {/* <Helmet>
         <title>The White House Game | Who will run the free world?</title>
         <meta name="keywords" content="2024 Presidential election, prediction, play." />
         <meta
@@ -75,7 +76,7 @@ function Banner() {
           content="Who runs America affects the entire world. So who wins on November 5, 2024 matters. Will Donald Trump return or will Biden surprise voters again? Can Kennedy break the two party mould?"
         />
         <meta name="language" content="en" />
-      </Helmet>
+      </Helmet> */}
         <div className="bg-redish hidden sm:flex">
           <div className="top-section resp  px-4 py-3 flex justify-between w-10/12 m-auto items-center ">
             {/* <div className="social-icons flex gap-3  ">
@@ -214,7 +215,13 @@ function Banner() {
           </div>
         </div>
         <div className="main-banner relative overflow-hidden h-[85vh] md:h-[85vh] lg:z-30">
-          <Navbar />
+          <div className="hidden lg:block">
+            <Navbar />
+          </div>
+          <div className="block lg:hidden">
+             <MobileNav/>
+          </div>
+         
           <div className="title-info w-10/12 m-auto  h-[80%] flex flex-col justify-center resp">
             <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] w-[50%] uppercase orbit9">
               the <span className="text-redish">white house </span>game

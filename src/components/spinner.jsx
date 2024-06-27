@@ -1,14 +1,12 @@
-import React from 'react'
+import React from "react";
 
 function CustomSpinner() {
   return (
-    <div class="loader">
-    <span class="loader-text">loading</span>
-      <span class="load"></span>
-  </div>
-  
-
-  )
+    <div className="loader">
+      <span className="loader-text">loading</span>
+      <span className="load"></span>
+    </div>
+  );
 }
 
 export default CustomSpinner;

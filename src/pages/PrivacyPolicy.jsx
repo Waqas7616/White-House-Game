@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AppBanner from "../components/appbanner/AppBanner";
 import logo from "../images/logo.png";
 import Privacy from "../images/Privacy.png";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-
+import ReactGA from "react-ga4";
 export default function PrivacyPolicy() {
   const navigate = useNavigate();
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      path: window.location.pathname,
+    });
+  }, []);
   const paragraph = [
     "1. What is policy covers",
     "1.1	The White House Game’s Privacy Policies describe how we collect, process, preserve, transfer and share our player’s and user’s personal and transactional data.",
@@ -130,18 +136,18 @@ export default function PrivacyPolicy() {
   return (
     <>
       <div className=" h-screen">
-      <Helmet>
-        <title>The White House Game | Privacy Policy</title>
-        <meta
-          name="keywords"
-          content="privacy policy, data protection, legal, white house game"
-        />
-        <meta
-          name="description"
-          content="Your data is important and we genuinely believe in protecting our player’s information from snooping and hacking, including that done by government agencies."
-        />
-        <meta name="language" content="en" />
-      </Helmet>
+        <Helmet>
+          <title>The White House Game | Privacy Policy</title>
+          <meta
+            name="keywords"
+            content="privacy policy, data protection, legal, white house game"
+          />
+          <meta
+            name="description"
+            content="Your data is important and we genuinely believe in protecting our player’s information from snooping and hacking, including that done by government agencies."
+          />
+          <meta name="language" content="en" />
+        </Helmet>
         <AppBanner
           bannerTitle={"Policies"}
           redTitle={"Privacy "}
@@ -189,9 +195,7 @@ export default function PrivacyPolicy() {
                 <li
                   key={index}
                   className={`mb-9 text-[14px] lg:text-[18px] xl:text-[24px] ${
-                    /^[0-9]+\.\s/.test(item)
-                      ? "poppins6"
-                      : "poppins4"
+                    /^[0-9]+\.\s/.test(item) ? "poppins6" : "poppins4"
                   }`}
                 >
                   {item}
@@ -250,7 +254,7 @@ export default function PrivacyPolicy() {
                 </h2>
                 <a
                   href="https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
-                  class="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
+                  className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
                 >
                   <h2>White House Shop</h2>
                 </a>
@@ -284,7 +288,14 @@ export default function PrivacyPolicy() {
           {/* <hr className="bg-[red] h-[1px]" /> */}
         </div>
         <p className="text-[10px] md:text-[14px] text-[#fff] poppins3 text-center mt-3 pb-20 mx-10 ml-10 md:mr-28 xl:mr-36">
-          The White House Game © 2024. All rights reserved. Sitemap
+          The White House Game © 2024. All rights reserved.{" "}
+          <span
+            className="font-[700] cursor-default hover:underline"
+            onClick={() => navigate("/sitemap")}
+          >
+            {" "}
+            Sitemap
+          </span>
         </p>
       </div>
     </>

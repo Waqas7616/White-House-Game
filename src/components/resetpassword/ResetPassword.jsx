@@ -5,6 +5,8 @@ import axios from "axios";
 import Navbar from "../Navbar";
 import DownloadApp from "../DownloadApp";
 import { Helmet } from "react-helmet";
+import secureLocalStorage from "react-secure-storage";
+import MobileNav from "../MobileNav";
 
 export const ResetPassword = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +22,7 @@ export const ResetPassword = () => {
 
     useEffect(() => {
         
-      const storedToken = localStorage.getItem("token");
+      const storedToken = secureLocalStorage.getItem("token");
       // console.log("token", storedToken)
       if (storedToken) {
           setJwtToken(storedToken);
@@ -77,7 +79,13 @@ export const ResetPassword = () => {
         <meta name="keywords" content="2024 Presidential election, log in, login." />
         <meta name="description" content="To play The White House Game or update your prediction, open an account. You can also view all our interesting statistics about the 2024 election." />
       </Helmet>
-      <Navbar />
+      
+    <div className="hidden lg:block">
+          <Navbar />
+        </div>
+        <div className="block lg:hidden">
+          <MobileNav />
+        </div>
       <div className="flex flex-col text-center items-center justify-center mt-5">
         <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
           {" "}

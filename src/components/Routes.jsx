@@ -23,15 +23,17 @@ import MyVote from "../pages/MyVote";
 import PredictionAndElectoral from "../pages/PredictionAndElectoral";
 import CustomSpinner from "./spinner";
 import PaymentPage from "../pages/payment/Payment";
+import securesecureLocalStorage from "react-secure-storage";
 import ScrollTop from "./scrolltop/ScrollTop";
+import SiteMap from "./SiteMap";
 
 function AppRoutes() {
   const [user, setUser] = useState();
   const [localToken, setLocalToken] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const user = localStorage.getItem("email");
-    const tokens = localStorage.getItem("token");
+    const user = securesecureLocalStorage.getItem("email");
+    const tokens = securesecureLocalStorage.getItem("token");
   setLoading(false);
     setUser(user);
     setLocalToken(tokens);
@@ -81,6 +83,7 @@ function AppRoutes() {
         <Route path="/payment" element={<PaymentPage/>}/>
         <Route path="/myvote" element={<MyVote/>}/>
         <Route path="/predictandelectoral" element={<PredictionAndElectoral/>}/>
+        <Route path="/sitemap" element={<SiteMap/>}/>
       </Routes>
     </Router>
   );

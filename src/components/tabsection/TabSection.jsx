@@ -21,12 +21,13 @@ import Military from "./Military";
 import ElectoralCollege from "./ElectoralCollege";
 import axios from "axios";
 import StateWinner from "../statewinner/StateWinner";
+import { Helmet } from "react-helmet";
 
 function TabSection() {
   const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   const [allstates, setAllStates] = useState([]);
-  const [id, setId] = useState(1);
+  const [id, setId] = useState(71);
   const [stats, setStats] = useState([]);
   const [president, setPresident] = useState();
   const [vicePresident, setVicePresident] = useState();
@@ -134,6 +135,18 @@ function TabSection() {
 
   return (
     <div className="w-full bg-[#1c2452] py-8">
+      <Helmet>
+        <title>The White House Game | Who will run the free world?</title>
+        <meta
+          name="keywords"
+          content="2024 Presidential election, prediction, play."
+        />
+        <meta
+          name="description"
+          content="Who runs America affects the entire world. So who wins on November 5, 2024 matters. Will Donald Trump return or will Biden surprise voters again? Can Kennedy break the two party mould?"
+        />
+        <meta name="language" content="en" />
+      </Helmet>
       <div className="w-10/12 m-auto resp ">
         <div className="w-full overflow-x-auto lg:overflow-x-hidden tabs">
           <div
@@ -657,8 +670,8 @@ function TabSection() {
 
                   </div>
                   <div className="president-votes w-3/4">
-                    <div class="w-[98%] h-[31px] bg-[#454C72] rounded-full dark:bg-gray-700">
-                      <div class="bg-redish text-xs font-medium text-whiteColor h-full text-center p-2 poppins5  leading-none rounded-full" style={{ width: "45%" }}> 45%</div>
+                    <div className="w-[98%] h-[31px] bg-[#454C72] rounded-full dark:bg-gray-700">
+                      <div className="bg-redish text-xs font-medium text-whiteColor h-full text-center p-2 poppins5  leading-none rounded-full" style={{ width: "45%" }}> 45%</div>
                     </div>
                   </div>
                 </div> */}
@@ -844,9 +857,15 @@ function TabSection() {
 
         <div className="flex w-9/12 m-auto my-8 mb-[83px] flex-col items-center">
           <div className="flex w-full justify-between items-center mb-4">
-            <span className="poppins6 text-white text-[12px] md:text-[16px]">Democratic</span>
-            <span className="poppins6 text-white text-[12px] md:text-[16px]">Republican</span>
-            <span className="poppins6 text-white text-[12px] md:text-[16px]">Independent</span>
+            <span className="poppins6 text-white text-[12px] md:text-[16px]">
+              Democratic
+            </span>
+            <span className="poppins6 text-white text-[12px] md:text-[16px]">
+              Republican
+            </span>
+            <span className="poppins6 text-white text-[12px] md:text-[16px]">
+              Independent
+            </span>
           </div>
 
           <div className="flex w-full">

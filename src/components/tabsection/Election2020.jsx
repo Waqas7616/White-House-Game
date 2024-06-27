@@ -117,7 +117,7 @@ export default function Election2020() {
             alt="ballot"
           />
           <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
-            Votes : {polling?.data?.source_percentages?.TotalVotes}
+            Votes : {votePercentage?.TotalVotes}
           </h2>
         </div>
         <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto my-8">

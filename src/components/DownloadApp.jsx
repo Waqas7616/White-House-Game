@@ -120,7 +120,7 @@ export default function DownloadApp() {
         {/* <hr className="bg-[red] h-[1px]" /> */}
       </div>
       <p className="text-[10px] md:text-[14px] text-[#fff] poppins3 text-center mt-3 pb-20 mx-10 ml-10 md:mr-28 xl:mr-36">
-        The White House Game © 2024. All rights reserved. Sitemap
+        The White House Game © 2024. All rights reserved. <span className="font-[700] cursor-default hover:underline" onClick={()=>navigate("/sitemap")}> Sitemap</span>
       </p>
     </div>
   );

@@ -14,14 +14,20 @@ import axios from "axios";
 import { useStatePredictions } from "../utils/StateIDs";
 import DownloadApp from "../components/DownloadApp";
 import { useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
+import ReactGA from 'react-ga4';
 
 function Prediction() {
-  // const [candidateData, setCandidateData] = useState([]);
-  // const [president, setPresident] = useState();
+  
   const navigate = useNavigate();
-  const { president, vicePresident, party, voting, addVoting } =
-    useStatePredictions();
-  const [error, setError] = useState("");
+  const { president, vicePresident, party, voting, addVoting } = useStatePredictions()
+  useEffect(()=>{
+    ReactGA.send({
+      hitType:'pageview',
+      path:window.location.pathname
+    });
+      },[])
+const [error,setError]=useState("");
   const [data, setData] = useState({
     votter_party_id: party,
     president_id: president,
@@ -34,8 +40,8 @@ function Prediction() {
       president_id: president,
       vice_president_id: vicePresident,
     });
-  }, [president, vicePresident]);
-  const token = localStorage.getItem("token");
+  }, [president, vicePresident])
+  const token = secureLocalStorage.getItem("token");
 
   const handleSelectionChange = (isComplete) => {
     setIsSelectionComplete(isComplete);
@@ -50,6 +56,11 @@ function Prediction() {
   };
 
   const sendPrediction = () => {
+    ReactGA.event({
+      category:'Election',
+action:"Election through President only",
+
+    })
     axios
       .post(
         "https://thewhitehousegame.com/api/public/api/select_party_leaders",

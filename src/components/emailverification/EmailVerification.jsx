@@ -6,24 +6,25 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import DownloadApp from "../DownloadApp";
 import Navbar from "../Navbar";
+import securesecureLocalStorage from "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 function EmailVerification(props) {
-
   const navigate = useNavigate();
-  const token=localStorage.getItem('token');
-  const data={
-    title:'Create',
-    title2:'An Account',
-    desc:'And help us predict the mood of the nation'
-  }
+  const token = securesecureLocalStorage.getItem("token");
+  const data = {
+    title: "Create",
+    title2: "An Account",
+    desc: "And help us predict the mood of the nation",
+  };
   // console.log("Email from props:", props.email);
   // const { email } = props.location.state;
 
   const [email, setEmail] = useState(""); // State to store email from local storage
-  const [timeLeft, setTimeLeft] = useState(120); 
+  const [timeLeft, setTimeLeft] = useState(120);
   const [isRunning, setIsRunning] = useState(true);
-  const [error,setError]=useState();
-  const [isLoading,setIsLoading]=useState(false);
+  const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     let intervalId;
@@ -38,16 +39,18 @@ function EmailVerification(props) {
 
     // Clean up function to clear the interval when the component unmounts or timeLeft becomes 0
     return () => clearInterval(intervalId);
-  }, [isRunning,timeLeft]);
+  }, [isRunning, timeLeft]);
 
- const formatTime = (time) => {
+  const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    return `${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   useEffect(() => {
-    const storedEmail = localStorage.getItem("email");
+    const storedEmail = securesecureLocalStorage.getItem("email");
     // Retrieve email from local storage
     if (storedEmail) {
       setEmail(storedEmail);
@@ -139,38 +142,41 @@ function EmailVerification(props) {
         }
       );
 
-
       if (response.status === 200) {
-        localStorage.setItem("token", response?.data?.access_token);
+        secureLocalStorage.setItem("token", response?.data?.access_token);
 
         // alert("OTP verified successfully!");
         // Redirect or perform any other action upon successful OTP verification
-        navigate("/PutData",{state:{data}});
+        navigate("/PutData", { state: { data } });
       } else {
-        setError(response.data.message)
+        setError(response.data.message);
       }
     } catch (error) {
       console.error("Error:", error);
-      setError(error.response.data.message)
+      setError(error.response.data.message);
     }
   };
 
-  const resendOtp=()=>{
-    
-    axios.post("https://thewhitehousegame.com/api/public/api/resendOTP",
+  const resendOtp = () => {
+    axios
+      .post(
+        "https://thewhitehousegame.com/api/public/api/resendOTP",
 
-      {
-        "email":email
-      },
-      {
-        headers:{
-          Authorization:`Bearer ${token}`,
-          Accept:'application/json'
+        {
+          email: email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
         }
-      }
-    ).then((res)=>{setIsRunning(true);setTimeLeft(120);})
-    
-  }
+      )
+      .then((res) => {
+        setIsRunning(true);
+        setTimeLeft(120);
+      });
+  };
 
   return (
     <>
@@ -186,7 +192,6 @@ function EmailVerification(props) {
           <div className="flex justify-center pt-5 ">
             <h2 className="text-white text-[23px] font-poppins">
               Email Verification
-              
             </h2>
           </div>
           <div className="flex justify-center pt-5">
@@ -199,7 +204,7 @@ function EmailVerification(props) {
           <div className="flex justify-center items-center h-full">
             <div className=" px-6 py-4  text-white rounded-lg">
               <p className="text-center font-poppins text-[12px]">
-                Code is send to examplemail.com
+                Code is send to {email}
               </p>
             </div>
           </div>
@@ -225,28 +230,35 @@ function EmailVerification(props) {
                 ))}
               </div>
               <div className="flex justify-center items-center mt-3">
-                
-              {error?     <p className="text-redish poppins5 text-center">{error}</p>:<> 
-              {timeLeft!==0&&<p className="text-white font-poppins text-[12px]">
-                Your OTP will be expired in {formatTime(timeLeft)}
-              </p>} </>
-              }
-               
+                {error ? (
+                  <p className="text-redish poppins5 text-center">{error}</p>
+                ) : (
+                  <>
+                    {timeLeft !== 0 && (
+                      <p className="text-white font-poppins text-[12px]">
+                        Your OTP will be expired in {formatTime(timeLeft)}
+                      </p>
+                    )}{" "}
+                  </>
+                )}
               </div>
-        
+
               <div className="max-w-[260px] mx-auto mt-4 flex justify-center">
-                {timeLeft===0?<div
-                  onClick={resendOtp}
-                  className="w-full inline-flex cursor-pointer justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none    transition-colors duration-150"
-                >
-                  Resend OTP
-                </div>:<button
-                  type="submit"
-                  className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none  focus-visible:outline-none  transition-colors duration-150"
-                >
-                  Verify OTP
-                </button>}
-                
+                {timeLeft === 0 ? (
+                  <div
+                    onClick={resendOtp}
+                    className="w-full inline-flex cursor-pointer justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none    transition-colors duration-150"
+                  >
+                    Resend OTP
+                  </div>
+                ) : (
+                  <button
+                    type="submit"
+                    className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none  focus-visible:outline-none  transition-colors duration-150"
+                  >
+                    Verify OTP
+                  </button>
+                )}
               </div>
             </form>
           </div>
