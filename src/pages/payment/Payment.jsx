@@ -10,8 +10,8 @@ const stripePromise = loadStripe('pk_live_51POuskFVvAnlzktrIL05dogBXeZqSYXht17Jw
 
 const PaymentPage = () => {
   const location=useLocation();
-  const {data}=location.state || {};
-  console.log('jjj3',data)
+  const {newdata}=location.state || {};
+  console.log('jjj3',newdata)
   useEffect(()=>{
     ReactGA.send({
       hitType:'pageview',
@@ -21,7 +21,7 @@ const PaymentPage = () => {
   
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm path={data.message}/>
+      <CheckoutForm path={newdata.message}/>
     </Elements>
   );
 };

@@ -1,20 +1,20 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import AppBanner from "../components/appbanner/AppBanner";
 import Terms from "../images/Terms.png";
 import logo from "../images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import ReactGA from 'react-ga4'
+import ReactGA from "react-ga4";
 
 export default function TermsCondition() {
   const navigate = useNavigate();
-  useEffect(()=>{
+  useEffect(() => {
     ReactGA.send({
-      hitType:'pageview',
-      path:window.location.pathname
+      hitType: "pageview",
+      path: window.location.pathname,
     });
-      },[])
+  }, []);
   const paragraph = [
     "1.	As well as complying with the laws of your country of citizenship, country of residence and where you are using our services, you are also obligated to obey our terms and conditions.",
     "1.1	The conditions we place on use are designed to maintain the integrity and reputation of our platform.",
@@ -61,18 +61,18 @@ export default function TermsCondition() {
   return (
     <>
       <div className=" h-screen">
-      <Helmet>
-        <title>The White House Game | Terms and Conditions</title>
-        <meta
-          name="keywords"
-          content="terms and conditions, rules, legal, white house game"
-        />
-        <meta
-          name="description"
-          content="To make sure our game is fun and useful and forbidden to inappropriate users and spam, it is obligatory for our player members to respect our Terms and Conditions."
-        />
-        <meta name="language" content="en" />
-      </Helmet>
+        <Helmet>
+          <title>The White House Game | Terms and Conditions</title>
+          <meta
+            name="keywords"
+            content="terms and conditions, rules, legal, white house game"
+          />
+          <meta
+            name="description"
+            content="To make sure our game is fun and useful and forbidden to inappropriate users and spam, it is obligatory for our player members to respect our Terms and Conditions."
+          />
+          <meta name="language" content="en" />
+        </Helmet>
         <AppBanner
           bannerTitle={"CONDITIONS"}
           redTitle={"TERMS AND"}
@@ -176,7 +176,7 @@ export default function TermsCondition() {
                 </h2>
                 <a
                   href="https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
-                  class="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
+                  className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
                 >
                   <h2>White House Shop</h2>
                 </a>
@@ -210,7 +210,14 @@ export default function TermsCondition() {
           {/* <hr className="bg-[red] h-[1px]" /> */}
         </div>
         <p className="text-[10px] md:text-[14px] text-[#fff] poppins3 text-center mt-3 pb-20 mx-10 ml-10 md:mr-28 xl:mr-36">
-          The White House Game © 2024. All rights reserved. Sitemap
+          The White House Game © 2024. All rights reserved.{" "}
+          <span
+            className="font-[700] cursor-default hover:underline"
+            onClick={() => navigate("/sitemap")}
+          >
+            {" "}
+            Sitemap
+          </span>
         </p>
       </div>
     </>

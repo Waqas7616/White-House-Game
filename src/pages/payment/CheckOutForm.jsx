@@ -22,8 +22,8 @@ const CheckoutForm = ({path}) => {
   const [amount, setAmount] = useState(149); // Example amount, you can change this as needed
   const [cardBrand, setCardBrand] = useState(null);
   const token = secureLocalStorage.getItem("token");
-const {mydata}=location.state || {};
-console.log('kkk',mydata);
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);

@@ -38,7 +38,7 @@ export const PredictNext = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="w-6 h-6 text-white absolute right-[37.5rem] top-3"
+            className="w-6 h-6 text-white absolute right-[37.5rem] top-3"
           >
             <path
               fillRule="evenodd"
@@ -47,7 +47,7 @@ export const PredictNext = () => {
             />
           </svg>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 flex justify-center items-center">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-center">
           <img className="w-[85rem] h-[10rem]" src={flagus} alt="" />
         </div>
       </div>

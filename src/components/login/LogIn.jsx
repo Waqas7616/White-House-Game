@@ -10,6 +10,7 @@ import DownloadApp from "../DownloadApp";
 import { Helmet } from "react-helmet";
 import CustomSpinner from "../spinner";
 import secureLocalStorage from "react-secure-storage";
+import MobileNav from "../MobileNav";
 
 export const LogIn = () => {
   const navigate = useNavigate();
@@ -17,33 +18,30 @@ export const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("")
-  const [isLoading,setIsLoading]=useState(false);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email)
-  }
+    return emailRegex.test(email);
+  };
   const handleSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
     if (!email || !password) {
-      setError("Email and Passwords are required")
-      setIsLoading(false)
+      setError("Email and Passwords are required");
+      setIsLoading(false);
     } else if (!isValidEmail) {
       setError("Invalid Email");
-      setIsLoading(false)
+      setIsLoading(false);
     } else if (password.length < 8) {
-      setError('Password should contain atleast 8 characters')
-      setIsLoading(false)
+      setError("Password should contain atleast 8 characters");
+      setIsLoading(false);
     } else {
-
-
       try {
-        
         const response = await axios.post(
           "https://thewhitehousegame.com/api/public/api/login",
           {
@@ -51,7 +49,6 @@ export const LogIn = () => {
             password: password,
           }
         );
-
 
         if (response.status === 200) {
           secureLocalStorage.setItem("token", response.data.user.token);
@@ -63,13 +60,12 @@ export const LogIn = () => {
           window.location.reload();
         }
       } catch (error) {
-        console.log(error)
-setIsLoading(false);
-        setError(error.response.data.error)
+        console.log(error);
+        setIsLoading(false);
+        setError(error.response.data.error);
       }
-    };
-
-  }
+    }
+  };
 
   return (
     <div className=" h-screen">
@@ -80,19 +76,28 @@ setIsLoading(false);
       /> */}
       <Helmet>
         <title>The White House Game | Log In to your account</title>
-        <meta name="keywords" content="2024 Presidential election, log in, login." />
-        <meta name="description" content="To play The White House Game or update your prediction, open an account. You can also view all our interesting statistics about the 2024 election." />
+        <meta
+          name="keywords"
+          content="2024 Presidential election, log in, login."
+        />
+        <meta
+          name="description"
+          content="To play The White House Game or update your prediction, open an account. You can also view all our interesting statistics about the 2024 election."
+        />
       </Helmet>
 
-      
-      <Navbar />
-      <div className="flex flex-col text-center items-center justify-center mt-2">
-          <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
-            {" "}
-            <span className="text-redish">Log</span> In
-          </h1>
-          
+      <div className="hidden lg:block">
+          <Navbar />
         </div>
+        <div className="block lg:hidden">
+          <MobileNav />
+        </div>
+      <div className="flex flex-col text-center items-center justify-center mt-2">
+        <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
+          {" "}
+          <span className="text-redish">Log</span> In
+        </h1>
+      </div>
       <div className="bg-[#1c2452] ">
         {/* <div className="flex justify-center pt-5 ">
           <h2 className="text-white text-[23px] font-poppins">Login</h2>
@@ -106,9 +111,7 @@ setIsLoading(false);
         </div> */}
         <div className="flex justify-center items-center h-full">
           <div className="w-[344px] px-6 py-4  text-white rounded-lg">
-            <p className="text-center font-poppins">
-            To play and view results
-            </p>
+            <p className="text-center font-poppins">To play and view results</p>
           </div>
         </div>
         <div className="flex justify-center items-center ml-64">
@@ -118,12 +121,12 @@ setIsLoading(false);
         <div className="pt-1 mx-3 sm:mx-5 lg:mx-0">
           <form
             onSubmit={handleSubmit}
-            class="max-w-sm mx-auto rounded-lg bg-[#131A41] px-10 py-10"
+            className="max-w-sm mx-auto rounded-lg bg-[#131A41] px-10 py-10"
           >
-            <div class="mb-5">
+            <div className="mb-5">
               <label
                 for="email"
-                class="block mb-2 text-sm font-medium text-white font-poppins"
+                className="block mb-2 text-sm font-medium text-white font-poppins"
               >
                 Email address
               </label>
@@ -133,7 +136,6 @@ setIsLoading(false);
                 value={email}
                 className={` border-[1px] border-white/15 bg-[#1c2452]  text-white text-sm rounded-lg outline-none  block w-full p-2.5 `}
                 placeholder="Enter your email"
-
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -150,7 +152,6 @@ setIsLoading(false);
                 id="password"
                 placeholder="*******"
                 className="border-[1px] border-white/15 bg-[#1c2452]  text-white text-sm rounded-lg outline-none  block w-full p-2.5 "
-
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button
@@ -165,7 +166,7 @@ setIsLoading(false);
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    class="w-5 h-5 text-white"
+                    className="w-5 h-5 text-white"
                   >
                     <path
                       strokeLinecap="round"
@@ -180,7 +181,7 @@ setIsLoading(false);
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
                     stroke="currentColor"
-                    class="w-5 h-5 text-white"
+                    className="w-5 h-5 text-white"
                   >
                     <path
                       strokeLinecap="round"
@@ -205,18 +206,21 @@ setIsLoading(false);
                 Forgot Password?
               </h6>
             </div>
-            <p className="text-redish poppins4 mt-2">
-              {error}
-            </p>
+            <p className="text-redish poppins4 mt-2">{error}</p>
             <div className="flex justify-center mt-5 ">
-              {isLoading?<CustomSpinner/>:<button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
-                Log In
-              </button>}
-              
+              {isLoading ? (
+                <CustomSpinner />
+              ) : (
+                <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
+                  Log In
+                </button>
+              )}
             </div>
           </form>
           <div className="flex justify-center items-center gap-2 mt-2">
-            <p className="text-white font-poppins text-[10px] lg:text-[16px]">Don’t have an account?</p>
+            <p className="text-white font-poppins text-[10px] lg:text-[16px]">
+              Don’t have an account?
+            </p>
             <button
               onClick={() => navigate("/SignUp")}
               className=" text-white font-poppins cursor-pointer text-[10px] lg:text-[16px] hover:underline"
@@ -226,7 +230,7 @@ setIsLoading(false);
           </div>
         </div>
         <div>
-          <DownloadApp/>
+          <DownloadApp />
         </div>
       </div>
     </div>

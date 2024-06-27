@@ -4,9 +4,18 @@ import text from "../../images/whitehouse.png";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useLocation } from "react-router-dom";
+import MobileNav from "../MobileNav";
 
-function AppBanner({ bannerDesc,bannerDesc2,bannerDesc3,bannerDesc4, bannerTitle, redTitle, bg }) {
-  const location=useLocation();
+function AppBanner({
+  bannerDesc,
+  bannerDesc2,
+  bannerDesc3,
+  bannerDesc4,
+  bannerTitle,
+  redTitle,
+  bg,
+}) {
+  const location = useLocation();
   const [active, setActive] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
@@ -47,7 +56,7 @@ function AppBanner({ bannerDesc,bannerDesc2,bannerDesc3,bannerDesc4, bannerTitle
   }, []); // Run this effect only once, when the component mounts
   return (
     <div className="banner">
-       {/* <Helmet>
+      {/* <Helmet>
         <title>The White House Game | Who will run the free world?</title>
         <meta name="keywords" content="2024 Presidential election, prediction, play." />
         <meta
@@ -206,19 +215,35 @@ function AppBanner({ bannerDesc,bannerDesc2,bannerDesc3,bannerDesc4, bannerTitle
           background: `linear-gradient(91deg, rgba(0, 0, 0, 0.65) 33.57%, rgba(0, 0, 0, 0.32) 118.84%), url(${bg})`,
         }}
       >
-        <Navbar />
+        <div className="hidden lg:block">
+          <Navbar />
+        </div>
+        <div className="block lg:hidden">
+          <MobileNav />
+        </div>
         <div className="flex flex-col text-center items-center justify-center h-[80%]">
           <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
             {" "}
             <span className="text-redish ">{redTitle}</span> {bannerTitle}
           </h1>
-          <p className={`text-whiteColor space   orbit6 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px]  ${location.pathname==='/predictandelectoral'?'xl:text-[20px]':'xl:text-[25px]'}`}>
+          <p
+            className={`text-whiteColor space   orbit6 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px]  ${
+              location.pathname === "/predictandelectoral"
+                ? "xl:text-[20px]"
+                : "xl:text-[25px]"
+            }`}
+          >
             {bannerDesc}
           </p>
-          <p className={`text-whiteColor  space  orbit6 mt-20 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px]  ${location.pathname==='/predictandelectoral'?'xl:text-[15px]':'xl:text-[25px]'}`}>
+          <p
+            className={`text-whiteColor  space  orbit6 mt-20 w-[90%] xl:w-[66%] 2xl:w-[36%] text-[10px]  ${
+              location.pathname === "/predictandelectoral"
+                ? "xl:text-[15px]"
+                : "xl:text-[25px]"
+            }`}
+          >
             {bannerDesc2}
           </p>
-         
         </div>
       </div>
     </div>

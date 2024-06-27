@@ -10,6 +10,7 @@ import { ForgotModal } from "../forgotmodal/ForgotModal";
 import DownloadApp from "../DownloadApp";
 import { Helmet } from "react-helmet";
 import secureLocalStorage from "react-secure-storage";
+import MobileNav from "../MobileNav";
 
 export const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ export const ForgotPassword = () => {
         }
       );
 
-
       if (response.status === 200) {
         const receivedToken =
           "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMTIyNDA0MTBiNGFmM2E5ZmEyODFkNzRmMWZmM2QyZmIzYzgxYWY2Njc4NDAwZGYwMDk1Y2NhMTMzYjM3M2FiMDRhYzBmOGVhY2Y4MzE1NTEiLCJpYXQiOjE3MDUzOTE5NTkuNDYzNTkzLCJuYmYiOjE3MDUzOTE5NTkuNDYzNTk2LCJleHAiOjE3MzcwMTQzNTkuNDQ5Nzc1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.UX0uRxow1rwAiewLOT-xaOKzS8V4x2mZJeyEcJ1S4QONpKLtVVU3sM518DlpkZfY6S7yApTqloUD04sGIXTrulKNIuaK1Qq75wNQsW1B7hVPdYRyvZ8NkOh6dLIw45hieV8Gzhq6zfpjSMULozRYzieNsJq174U_HN7Eb_VdEAnnuSw7_KlryVQrInqCJzr8PtNTemQT1KbOhG0iw4P2GURkbtrXc_qWOqSWbcC2Fk2cQf7Edp0dMCBn-_fePBgMNZKBu8mJIy-DO4Un74HsESQde_PxKgwTGtm7SH3EnR3R0gGnJ4vxcu-s5kUJ-zk6AoZxKbQIVgNJ-8TA7azYSqcZcV7THbQBnYsqC4guIcRObwdzXISgxq4IdAJsTsXPtfqb4GWuhfVp0PufnRHHpL9xz1diMNQBWh6-gO5p0wLxzC3pLtHgSJ0lXgZ3ZmcmISD8e5uQ4UT9DNnGeI7k9LYK8xa61UpiBIbrfX47Jt2mwPJQQWp1QVomWVaokFcwXNtDYtFifOiCYhDfmKDXN0XYg1BeJLcEzDItsbU1nIJgLTtaCKHiCGDVrKGo8mF0IDHq6VFJBvUdoiGJlV8Vc36tNOYKsvoKJQCWQKX3x3L_SR-MrdCowWqBXSaJYmewBZOvsHE7i4Xo2OITR4ZTBM3RRfnzEd8K2ZAWhqOVkxk";
@@ -35,7 +35,9 @@ export const ForgotPassword = () => {
 
         setShowModal(true); // Modal show karen
       } else {
-        console.log("Failed to send password reset instructions. Please try again.");
+        console.log(
+          "Failed to send password reset instructions. Please try again."
+        );
       }
     } catch (error) {
       console.error("Error:", error);
@@ -52,23 +54,34 @@ export const ForgotPassword = () => {
     <div className="h-screen">
       <Helmet>
         <title>The White House Game | Log In to your account</title>
-        <meta name="keywords" content="2024 Presidential election, log in, login." />
-        <meta name="description" content="To play The White House Game or update your prediction, open an account. You can also view all our interesting statistics about the 2024 election." />
+        <meta
+          name="keywords"
+          content="2024 Presidential election, log in, login."
+        />
+        <meta
+          name="description"
+          content="To play The White House Game or update your prediction, open an account. You can also view all our interesting statistics about the 2024 election."
+        />
       </Helmet>
 
-      <Navbar />
+      <div className="hidden lg:block">
+          <Navbar />
+        </div>
+        <div className="block lg:hidden">
+          <MobileNav />
+        </div>
       <div className="flex flex-col text-center items-center justify-center mt-2">
         <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
           {" "}
-          <span className="text-redish">Forgot</span><br /> Password
+          <span className="text-redish">Forgot</span>
+          <br /> Password
         </h1>
       </div>
       <div className="bg-[#1c2452] ">
         <div className="flex justify-center items-center h-full">
           <div className="w-[270px] px-6 py-4  text-white rounded-lg">
             <p className="text-center font-poppins text-[12px]">
-            Even we don’t know your password 
-So we’ll need to Reset it
+              Even we don’t know your password So we’ll need to Reset it
             </p>
           </div>
         </div>
@@ -79,12 +92,12 @@ So we’ll need to Reset it
         <div className="pt-2 mx-3 sm:mx-5 lg:mx-0 relative">
           <form
             onSubmit={handleSubmit}
-            class="max-w-sm mx-auto rounded-lg bg-[#131A41] px-7 py-7"
+            className="max-w-sm mx-auto rounded-lg bg-[#131A41] px-7 py-7"
           >
-            <div class="mb-5">
+            <div className="mb-5">
               <label
                 for="email"
-                class="block mb-2 text-sm font-medium text-white font-poppins"
+                className="block mb-2 text-sm font-medium text-white font-poppins"
               >
                 Email address
               </label>
@@ -109,11 +122,11 @@ So we’ll need to Reset it
             </p>
           </div>
           <div className="absolute -top-3 right-0 left-0 ">
-            {showModal && <ForgotModal closeModal={closeModal}/>}
+            {showModal && <ForgotModal closeModal={closeModal} />}
           </div>
         </div>
         <div>
-          <DownloadApp/>
+          <DownloadApp />
         </div>
       </div>
     </div>
