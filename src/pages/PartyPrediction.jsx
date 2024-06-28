@@ -60,7 +60,7 @@ function PartyPrediction() {
   useEffect(() => {
     axios
       .get(
-        `https://thewhitehousegame.com/api/public/api/get_predict_party_candidate/${id}`,
+        `https://thewhitehousegame.com/api/public/api/get_predict_party_candidate`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -165,6 +165,11 @@ function PartyPrediction() {
     }
   }, [candidateData, partyData.president_id, partyData.vice_president_id]);
   // console.log("selected party", partyData);
+
+  const handleClosePopup=()=>{
+    setPopUp(false)
+    navigate('/myvote')
+  }
 
   return (
     <div className="">
@@ -293,7 +298,7 @@ function PartyPrediction() {
                 Update your predictions
               </button>
               <button
-                onClick={() => setPopUp(false)}
+                onClick={handleClosePopup}
                 className="rounded-[6px] border-[1px] px-20 block m-auto py-2 2xl:py-3 mt-5 border-white poppins7 text-white text-center"
               >
                 Done

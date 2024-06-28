@@ -127,6 +127,7 @@ export const PutData = () => {
   const [condition, setCondition] = useState(false);
   const [newPayload, setNewPayload] = useState(null);
   const [payload, setPayLoad] = useState({
+    id:id,
     language_id: "",
     user_age_id: "",
     user_ethnicity_id: "",
@@ -194,7 +195,7 @@ export const PutData = () => {
         setIsLoading(false);
       }
 
-      navigate("/login");
+      navigate(data.title2==="Account"?"/":"/login");
     } catch (error) {
       console.error("Error:", error);
       setIsLoading(false);

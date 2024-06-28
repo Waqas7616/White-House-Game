@@ -250,7 +250,7 @@ export default function EmploymentStatus() {
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {Math.round(item.percentage)}%
+                  {item.percentage.toFixed(1)}%
                 </div>
               </div>
             </div>

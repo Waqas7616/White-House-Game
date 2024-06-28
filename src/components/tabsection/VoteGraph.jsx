@@ -98,7 +98,7 @@ export default function VoteGraph() {
       </h2>
       <p className="poppins5 text-whiteColor mb-4 text-center">By Sex</p>
       <p className="text-center poppins3 text-whiteColor text-[14px]">
-        How Males and Females indent to vote
+        How Males and Females intend to vote
       </p>
       <div className="search-section flex flex-col  sm:flex-row  justify-between mt-12">
         <div className="badge flex items-center justify-between">
@@ -234,7 +234,7 @@ export default function VoteGraph() {
                             </div>
                             <p className="flex-1 text-center">
                               {" "}
-                              {item.male_ratio && item.male_ratio.toFixed(2)}%
+                              {item.male_ratio.toFixed(1)}%
                             </p>
                           </div>
                         </div>
@@ -257,7 +257,7 @@ export default function VoteGraph() {
                               Female
                             </div>
                             <p className="flex-1 text-center">
-                              {Math.round(item.female_ratio)}%
+                              {item.female_ratio.toFixed(1)}%
                             </p>
                           </div>
                         </div>
@@ -320,7 +320,7 @@ export default function VoteGraph() {
                       />
                     </div>
                     <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                      {item.candidate_name.split(" ")[1]}
+                    {item.candidate_name}
                     </p>
                     <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
                       <img
@@ -358,7 +358,7 @@ export default function VoteGraph() {
                           </div>
                           <p className="flex-1 text-center">
                             {" "}
-                            {item.male_ratio}%
+                            {item.male_ratio.toFixed(1)}%
                           </p>
                         </div>
                       </div>
@@ -381,7 +381,7 @@ export default function VoteGraph() {
                             Female
                           </div>
                           <p className="flex-1 text-center">
-                            {item.female_ratio}%
+                            {item.female_ratio.toFixed(1)}%
                           </p>
                         </div>
                       </div>

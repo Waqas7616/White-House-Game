@@ -19,7 +19,8 @@ export default function CountryOfBirth() {
 
   const [CountryBirth, setCountryBirth] = useState([]);
   const [countryOfBirth, setCountryOfBirth] = useState([]);
-  const [id, setId] = useState(1);
+  const [president,setPresident]=useState([])
+  const [id, setId] = useState(187);
 
   useEffect(() => {
     axios
@@ -52,6 +53,7 @@ export default function CountryOfBirth() {
       )
       .then((res) => {
         setCountryOfBirth(res.data);
+        setPresident(res.data.data.candidate_percentages.filter((item)=>item.position==='president'))
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -156,11 +158,9 @@ export default function CountryOfBirth() {
           </div> */}
       </div>
       <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
-        {countryOfBirth?.data?.candidate_percentages.length===0?
+        {president.length===0?
         <p className="poppins5 text-center text-white">No one from this country has made predictions yet</p>:
-        countryOfBirth?.data?.candidate_percentages
-          .slice(0, 3)
-          .map((item, index) => (
+        president.map((item, index) => (
             <div
               key={index}
               className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
@@ -220,7 +220,7 @@ export default function CountryOfBirth() {
                     className="bg-whiteColor text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] "
                   >
                     {" "}
-                    {Math.round(item.percentage)}%
+                    {item.percentage.toFixed(1)}%
                   </div>
                 </div>
               </div>

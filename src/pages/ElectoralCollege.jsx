@@ -521,9 +521,9 @@ function ElectoralCollege() {
                 }
               }}
               className={`bg-redish p-2 rounded-l-[6px] ${
-                selectedButtonId === null ? "cursor-not-allowed" : "opacity-50"
+                selectedButtonId === null ? "" : "opacity-50"
               }`}
-              disabled={selectedButtonId === null}
+              // disabled={selectedButtonId === null}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
