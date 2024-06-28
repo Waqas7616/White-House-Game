@@ -98,7 +98,6 @@ export const Modal = ({ candidate, onClose }) => {
               color="textSecondary"
               className="mb-3  text-[11px]  font-poppins"
             >
-              {/* Georgetown University Hospital, Washington DC */}
               {candidate?.birth_place}
             </Typography>
             <Typography
@@ -106,7 +105,6 @@ export const Modal = ({ candidate, onClose }) => {
               color="textPrimary"
               className="mb-3  text-[10px]  font-poppins"
             >
-              {/* <span className="font-extrabold">Occupation:</span>{" "} */}
               {candidate?.occupation_1}
             </Typography>
             <Typography
@@ -122,17 +120,7 @@ export const Modal = ({ candidate, onClose }) => {
                 ))}
               </ul>
             </Typography>
-            {/* <Typography
-              variant="body1"
-              color="textPrimary"
-              className="mb-3 text-[11px] font-poppins line-clamp-6"
-            >
-              {candidate?.position_1.split(",").map((positionItem, index) => (
-                <span key={index} className="block">
-                  {positionItem.trim()}
-                </span>
-              ))}
-            </Typography> */}
+            
           </div>
         </Card>
       </div>

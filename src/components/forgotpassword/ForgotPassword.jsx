@@ -11,13 +11,21 @@ import DownloadApp from "../DownloadApp";
 import { Helmet } from "react-helmet";
 import secureLocalStorage from "react-secure-storage";
 import MobileNav from "../MobileNav";
+import CustomSpinner from "../spinner";
+import { useLocation } from "react-router-dom";
 
 export const ForgotPassword = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [isloading, setIsLoading] = useState(false);
+  const location = useLocation();
+  const dataone= {
+    email: email,
+  }
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     try {
@@ -29,11 +37,10 @@ export const ForgotPassword = () => {
       );
 
       if (response.status === 200) {
-        const receivedToken =
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMTIyNDA0MTBiNGFmM2E5ZmEyODFkNzRmMWZmM2QyZmIzYzgxYWY2Njc4NDAwZGYwMDk1Y2NhMTMzYjM3M2FiMDRhYzBmOGVhY2Y4MzE1NTEiLCJpYXQiOjE3MDUzOTE5NTkuNDYzNTkzLCJuYmYiOjE3MDUzOTE5NTkuNDYzNTk2LCJleHAiOjE3MzcwMTQzNTkuNDQ5Nzc1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.UX0uRxow1rwAiewLOT-xaOKzS8V4x2mZJeyEcJ1S4QONpKLtVVU3sM518DlpkZfY6S7yApTqloUD04sGIXTrulKNIuaK1Qq75wNQsW1B7hVPdYRyvZ8NkOh6dLIw45hieV8Gzhq6zfpjSMULozRYzieNsJq174U_HN7Eb_VdEAnnuSw7_KlryVQrInqCJzr8PtNTemQT1KbOhG0iw4P2GURkbtrXc_qWOqSWbcC2Fk2cQf7Edp0dMCBn-_fePBgMNZKBu8mJIy-DO4Un74HsESQde_PxKgwTGtm7SH3EnR3R0gGnJ4vxcu-s5kUJ-zk6AoZxKbQIVgNJ-8TA7azYSqcZcV7THbQBnYsqC4guIcRObwdzXISgxq4IdAJsTsXPtfqb4GWuhfVp0PufnRHHpL9xz1diMNQBWh6-gO5p0wLxzC3pLtHgSJ0lXgZ3ZmcmISD8e5uQ4UT9DNnGeI7k9LYK8xa61UpiBIbrfX47Jt2mwPJQQWp1QVomWVaokFcwXNtDYtFifOiCYhDfmKDXN0XYg1BeJLcEzDItsbU1nIJgLTtaCKHiCGDVrKGo8mF0IDHq6VFJBvUdoiGJlV8Vc36tNOYKsvoKJQCWQKX3x3L_SR-MrdCowWqBXSaJYmewBZOvsHE7i4Xo2OITR4ZTBM3RRfnzEd8K2ZAWhqOVkxk";
-        secureLocalStorage.setItem("JWT", receivedToken);
+        setIsLoading(false);
+        
 
-        setShowModal(true); // Modal show karen
+        setShowModal(true); 
       } else {
         console.log(
           "Failed to send password reset instructions. Please try again."
@@ -41,6 +48,7 @@ export const ForgotPassword = () => {
       }
     } catch (error) {
       console.error("Error:", error);
+      setIsLoading(false);
 
       console.log("An error occurred. Please try again later.");
     }
@@ -48,7 +56,7 @@ export const ForgotPassword = () => {
 
   const closeModal = () => {
     setShowModal(false);
-    navigate("/ResetPassword");
+    navigate("/otpmatch",{state:{dataone}});
   };
   return (
     <div className="h-screen">
@@ -111,9 +119,10 @@ export const ForgotPassword = () => {
               />
             </div>
             <div className="flex justify-center mt-5 ">
-              <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
+              {isloading ? (<CustomSpinner/>) : (<button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
                 Send
-              </button>
+              </button>)}
+              
             </div>
           </form>
           <div className="flex justify-center items-center gap-2 mt-2">

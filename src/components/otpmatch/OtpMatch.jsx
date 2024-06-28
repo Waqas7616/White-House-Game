@@ -2,14 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import logo1 from "../../images/logo1.png";
 import Vector from "../../images/Vector.png";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import DownloadApp from "../DownloadApp";
 import Navbar from "../Navbar";
 import securesecureLocalStorage from "react-secure-storage";
 import secureLocalStorage from "react-secure-storage";
+import CustomSpinner from "../spinner";
 
-function EmailVerification(props) {
+function OtpMatch(props) {
   const navigate = useNavigate();
+  const location = useLocation();
   const token = securesecureLocalStorage.getItem("token");
   const data = {
     title: "Create",
@@ -17,11 +19,12 @@ function EmailVerification(props) {
     desc: "And help us predict the mood of the nation",
   };
 
-  const [email, setEmail] = useState(""); 
+  const [email, setEmail] = useState("");
   const [timeLeft, setTimeLeft] = useState(120);
   const [isRunning, setIsRunning] = useState(true);
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const dataone = location.state?.dataone;
 
   useEffect(() => {
     let intervalId;
@@ -31,10 +34,9 @@ function EmailVerification(props) {
         setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
       }, 1000);
     } else if (timeLeft === 0) {
-      setIsRunning(false); 
+      setIsRunning(false);
     }
 
-    
     return () => clearInterval(intervalId);
   }, [isRunning, timeLeft]);
 
@@ -48,22 +50,20 @@ function EmailVerification(props) {
 
   useEffect(() => {
     const storedEmail = securesecureLocalStorage.getItem("email");
-    
+
     if (storedEmail) {
       setEmail(storedEmail);
     } else {
-      
     }
   }, []);
 
   const formRef = useRef(null);
-  const inputsRef = useRef(Array(4).fill(null)); 
+  const inputsRef = useRef(Array(4).fill(null));
 
-  
-  const [form, setForm] = useState(null); 
+  const [form, setForm] = useState(null);
 
   useEffect(() => {
-    setForm(formRef.current); 
+    setForm(formRef.current);
   }, []);
   const inputs = inputsRef.current;
 
@@ -114,19 +114,18 @@ function EmailVerification(props) {
     form.querySelector("button[type=submit]").focus();
   };
 
-  
-
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
-    const otp = inputsRef.current.map((input) => input.value).join(""); 
+    const otp = inputsRef.current.map((input) => input.value).join("");
 
     try {
       const response = await axios.post(
         "https://thewhitehousegame.com/api/public/api/match_otp",
         {
           otp: otp,
-          email: email,
+          email: dataone.email,
         },
         {
           headers: {
@@ -139,14 +138,15 @@ function EmailVerification(props) {
       if (response.status === 200) {
         secureLocalStorage.setItem("token", response?.data?.access_token);
 
-        
-        navigate("/PutData", { state: { data } });
+        navigate("/ResetPassword");
       } else {
         setError(response.data.message);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Error:", error);
       setError(error.response.data.message);
+      setIsLoading(false);
     }
   };
 
@@ -236,18 +236,21 @@ function EmailVerification(props) {
                 )}
               </div>
 
+              
               <div className="max-w-[260px] mx-auto mt-4 flex justify-center">
                 {timeLeft === 0 ? (
                   <div
                     onClick={resendOtp}
-                    className="w-full inline-flex cursor-pointer justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none    transition-colors duration-150"
+                    className="w-full inline-flex cursor-pointer justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none transition-colors duration-150"
                   >
                     Resend OTP
                   </div>
+                ) : isLoading ? (
+                  <CustomSpinner />
                 ) : (
                   <button
                     type="submit"
-                    className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none  focus-visible:outline-none  transition-colors duration-150"
+                    className="w-full inline-flex justify-center whitespace-nowrap rounded-lg bg-red-500 px-3.5 py-2.5 text-sm font-medium text-white shadow-sm shadow-indigo-950/10 focus:outline-none focus-visible:outline-none transition-colors duration-150"
                   >
                     Verify OTP
                   </button>
@@ -264,4 +267,4 @@ function EmailVerification(props) {
   );
 }
 
-export default EmailVerification;
+export default OtpMatch;

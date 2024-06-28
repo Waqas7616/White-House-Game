@@ -334,16 +334,7 @@ const Candidate = () => {
                 {showCard === index && (
                   <div className="absolute inset-0  shadow-2xl rounded-2xl overflow-hidden transform flip-animation z-10   border-none bg-[white]">
                     <div className="relative py-8 px-5 flex flex-col justify-start h-full">
-                      {/* <svg
-                        onClick={() => handleSvgClick(index)}
-                        className="flip absolute right-4 top-3 cursor-pointer fill-current"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M12 24c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12zm1-6h-2v-8h2v8zm-1-12.25c.69 0 1.25.56 1.25 1.25s-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25.56-1.25 1.25-1.25z" />
-                      </svg> */}
+                     
                       <svg
                         onClick={() => handleSvgClick(index)}
                         className="flip absolute right-4 top-3 cursor-pointer fill-current w-6"

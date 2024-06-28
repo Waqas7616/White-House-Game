@@ -216,7 +216,6 @@ function ElectoralCollege() {
         setStatesData(res.data.electoral_votes_by_party);
       })
       .catch((err) => {
-        console.log("error hai:", err);
       });
   }, []);
 
@@ -270,11 +269,6 @@ function ElectoralCollege() {
         console.log("error hai:", err);
       });
   }, []);
-
-  //   const maxVotes = Math.max(statesDatas.Democratic, statesDatas.Republican, statesDatas["Independent('Kennedy')"]);
-  // const democraticBarLength = maxVotes === statesDatas.Democratic ? '100%' : `${(statesDatas.Democratic / maxVotes) * 100}%`;
-  // const republicanBarLength = maxVotes === statesDatas.Republican ? '100%' : `${(statesDatas.Republican / maxVotes) * 100}%`;
-  // const independentBarLength = maxVotes === statesDatas["Independent('Kennedy')"] ? '100%' : `${(statesDatas["Independent('Kennedy')"] / maxVotes) * 100}%`;
 
   return (
     <div className=" bg-[#1c2452]">
@@ -524,7 +518,6 @@ function ElectoralCollege() {
                 if (step > 0) {
                   setStep(step - 1);
                   setSelectedButtonId(null);
-                  // console.log("Decrementing step:", step - 1);
                 }
               }}
               className={`bg-redish p-2 rounded-l-[6px] ${
@@ -588,166 +581,6 @@ function ElectoralCollege() {
           </div>
         )}
 
-        {/* <button
-  className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 py-2 text-white uppercase rounded-[6px] ${
-    selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-  } flex justify-between items-center`}
-  disabled={selectedButtonId === null}
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={(e) => {
-      e.stopPropagation(); // Prevent the button's onClick from triggering
-      if (step > 0) {
-        setStep(step - 1);
-        setSelectedButtonId(null);
-        console.log("Decrementing step:", step - 1);
-      }
-    }}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-  </svg>
-
-  <span>
-    {step === previousData?.states?.length - 1 ? "Submit" : "Next"}
-  </span>
-  <h6 className="text-white mb-0 ml-2">{`${step + 1} of ${
-    previousData?.states?.length
-  }`}</h6>
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={(e) => {
-      e.stopPropagation(); // Prevent the button's onClick from triggering
-      handleSteps();
-    }}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-  </svg>
-</button> */}
-
-        {/* <button
-  className={`btn bg-redish m-auto w-[258px] sm:w-[346px] block px-8 py-2 text-white uppercase rounded-[6px] ${
-    selectedButtonId === null ? "opacity-50 cursor-not-allowed" : ""
-  } flex justify-between items-center`}
-  disabled={selectedButtonId === null}
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={(e) => {
-      e.stopPropagation(); // Prevent the button's onClick from triggering
-      if (step > 0) {
-        setStep(step - 1);
-        setSelectedButtonId(null);
-        console.log("Decrementing step:", step - 1);
-      }
-    }}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
-  </svg>
-
-  <span>
-    {step === previousData?.states?.length - 1 ? "Submit" : ""}
-  </span>
-  <h6 className="text-white mb-0 ml-2">{`${step + 1} of ${
-    previousData?.states?.length
-  }`}</h6>
-
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="size-6 cursor-pointer"
-    onClick={(e) => {
-      e.stopPropagation(); // Prevent the button's onClick from triggering
-      handleSteps();
-    }}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-  </svg>
-</button> */}
-
-        {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
-          <div className="py-4 bg-[#031BBB] w-[50%]">
-          <span className="poppins4">
-              {!statesData[step].Democratic
-                ? "0%"
-                : `${Math.round(statesData[step].Democratic)}%`}
-            </span>
-          </div>
-          <div className="py-4 bg-white w-[15%]">
-          
-            <span className="poppins4">
-              {!statesData[step]["Independent('Kennedy')"]
-                ? "0%"
-                : `${Math.round(statesData[step]["Independent('Kennedy')"])}%`}
-            </span>
-          </div>
-          <div className="py-4 bg-redish w-[35%]">
-          <span className="poppins4">
-              {!statesData[step].Republican
-                ? "0%"
-                : `${Math.round(statesData[step].Republican)}%`}
-            </span>
-          </div>
-        </div> */}
-
-        {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px] w-full">
-  <div>
-    
-  <div className="py-4 bg-[#031BBB]" style={{ width: democraticBarLength }}>
-    <span className="poppins6 text-white flex justify-center items-center" >
-      {statesDatas && statesDatas.Democratic ? `${statesDatas.Democratic}` : "0"}
-    </span>
-  </div>
-  </div>
-  
-  <div className="py-4 bg-redish" style={{ width: republicanBarLength }}>
-    <span className="poppins6 text-white flex justify-center items-center" >
-      {statesDatas && statesDatas.Republican ? `${statesDatas.Republican}` : "0"}
-    </span>
-  </div>
-  <div className="py-4 bg-white" style={{ width: independentBarLength }}>
-    <span className="poppins6 flex justify-center items-center" >
-      {statesDatas && statesDatas["Independent('Kennedy')"] ? `${statesDatas["Independent('Kennedy')"]}` : "0"}
-    </span>
-  </div>
-</div>  */}
-
-        {/* <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-[83px]">
-  <div className="py-4 bg-[#031BBB] w-[50%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData && statesData.Democratic ? `${statesData.Democratic}` : "0"}
-    </span>
-  </div>
-  <div className="py-4 bg-white w-[15%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData && statesData["Independent('Kennedy')"] ? `${statesData["Independent('Kennedy')"]}` : "0"}
-    </span>
-  </div>
-  <div className="py-4 bg-redish w-[35%]">
-    <span className="poppins4 flex justify-center items-center">
-      {statesData && statesData.Republican ? `${statesData.Republican}` : "0"}
-    </span>
-  </div>
-</div> */}
         <h2 className="text-white  poppins6 text-[25.4px] md:text-[36.4px] mb-2">
           Your Electoral College Tally
         </h2>
@@ -815,9 +648,7 @@ function ElectoralCollege() {
             }}
           >
             <span className="poppins4 flex justify-center items-center">
-              {/* {statesData && statesData["Independent('Kennedy')"]
-                ? `${statesData["Independent('Kennedy')"]}`
-                : "0"} */}
+              
               {electoralCount.Independent > 0 && electoralCount.Independent}
             </span>
           </div>

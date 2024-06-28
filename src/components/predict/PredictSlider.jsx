@@ -28,12 +28,8 @@ function PredictSlider({
   const [candidatedata, setCandidateData] = useState([]);
   const [data2Index, setData2Index] = useState(0);
 
-  // console.log(candidatedata)
   const [currentSlide, setCurrentSlide] = useState(0);
-  // const [presidentId, setPresidentId] = useState("")
-  // const [vicePresidentId, setVicePresidentId] = useState("")
-  // console.log("presidentId :", presidentId)
-  // console.log("vicePresidentId :", vicePresidentId)
+  
   const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   useEffect(() => {
@@ -76,7 +72,6 @@ function PredictSlider({
   const CustomNextArrow = (props) => (
     <div
       {...props}
-      // onClick={() => console.log(slide)}
       className="absolute bottom-[-25%] right-2 sm:top-[30%] w-14 sm:w-[75px] sm:h-[75px] md:right-[0%]  cursor-pointer "
     >
       <span
@@ -87,8 +82,7 @@ function PredictSlider({
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          // width="90"
-          // height="91"
+          
           viewBox="0 0 90 91"
           fill="none"
         >
@@ -174,8 +168,7 @@ function PredictSlider({
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          // width="w-fit"
-          // height="w-fit"
+          
           viewBox="0 0 90 91"
           fill="none"
         >

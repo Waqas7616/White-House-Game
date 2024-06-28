@@ -69,11 +69,7 @@ export const LogIn = () => {
 
   return (
     <div className=" h-screen">
-      {/* <AppBanner
-        bannerTitle={"in"}
-        redTitle={"Log"}
-        bannerDesc={"Log in to continue"}
-      /> */}
+      
       <Helmet>
         <title>The White House Game | Log In to your account</title>
         <meta
@@ -99,16 +95,7 @@ export const LogIn = () => {
         </h1>
       </div>
       <div className="bg-[#1c2452] ">
-        {/* <div className="flex justify-center pt-5 ">
-          <h2 className="text-white text-[23px] font-poppins">Login</h2>
-
-        </div> */}
-        {/* <div className="flex justify-center pt-5">
-          <img src={logo1} alt="" />
-        </div> */}
-        {/* <div className="flex justify-center pt-3">
-          <h2 className="text-white font-poppins">Login to your account</h2>
-        </div> */}
+        
         <div className="flex justify-center items-center h-full">
           <div className="w-[344px] px-6 py-4  text-white rounded-lg">
             <p className="text-center font-poppins">To play and view results</p>
