@@ -336,7 +336,7 @@ function ElectoralCollege() {
                 <img className="w-[80px] h-[80px]" src={logo1} alt="" />
               </div>
               <button
-                onClick={()=>navigate("/")}
+                onClick={() => navigate("/")}
                 className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
               >
                 <svg
@@ -362,9 +362,13 @@ function ElectoralCollege() {
               <div className="flex justify-center items-center mt-8">
                 <img className="h-12 w-12 " src={check} alt="" />
               </div>
-              <button onClick={()=>navigate("/")} className="mt-8 text-white poppins5 bg-redish px-8 py-2 rounded">close</button>
+              <button
+                onClick={() => navigate("/")}
+                className="mt-8 text-white poppins5 bg-redish px-8 py-2 rounded"
+              >
+                close
+              </button>
             </div>
-            
           </div>
         </div>
       )}
@@ -515,7 +519,6 @@ function ElectoralCollege() {
           </div>
         ) : (
           <div className="flex items-center justify-center  w-full mt-3 mb-4 mx-auto">
-
             <button
               onClick={() => {
                 if (step > 0) {
@@ -525,9 +528,9 @@ function ElectoralCollege() {
                 }
               }}
               className={`bg-redish p-2 rounded-l-[6px] ${
-                selectedButtonId === null ? "cursor-not-allowed" : "opacity-50"
+                selectedButtonId === null ? "" : "opacity-50"
               }`}
-              disabled={selectedButtonId === null}
+              // disabled={selectedButtonId === null}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -541,12 +544,10 @@ function ElectoralCollege() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M15.75 19.5 8.25 12l7.5-7.5"
-                  
                 />
-                
               </svg>
             </button>
-            
+
             <button
               onClick={handleSteps}
               className={`btn bg-redish w-[258px] sm:w-[200px] px-8 py-2 text-white uppercase ${
