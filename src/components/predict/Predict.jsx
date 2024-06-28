@@ -1,26 +1,16 @@
 import React, { useEffect, useState } from "react";
-import question from "../../images/question.png";
-// import title from '../../images/demTITLE.png'
-import calender from "../../images/calender.png";
 import PredictSlider from "./PredictSlider";
-import obama from "../../images/Condidates/Barak Obama (Dem).jpg";
-import west from "../../images/Condidates/Cornel West.jpg";
 import check from "../../images/check.png";
-import axios from "axios";
-import { Await } from "react-router-dom";
 import { useStatePredictions } from "../../utils/StateIDs";
 
 function Predict({
-  titleImage,
   party,
   afterchange,
   submitData,
-  name,
   onSelectionChange,
 }) {
   const { president, vicePresident } = useStatePredictions();
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [candidateData, setCandidateData] = useState([]);
   const [error, setError] = useState("");
   const [presdborder, setPresdborder] = useState(true);
   const [viceborder, setViceborder] = useState(true);
@@ -33,23 +23,8 @@ function Predict({
     }
   }, [presdborder, viceborder, onSelectionChange]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       "https://pankhay.com/thewhitehousegame/public/api/get_votter_candidate",
-  //       {
-  //         headers: {
-  //           Accept: "application/json",
-  //         },
-  //       }
-  //     )
-  //     .then((res) => {
-  //       setCandidateData(res.data.votter_candidate);
-  //     })
-  //     .catch((err) => {
-  //       alert(err);
-  //     });
-  // }, []);
+  
+  
   const handleButtonClick = () => {
     if (president !== vicePresident) {
       setIsButtonClicked(true);
@@ -62,7 +37,6 @@ function Predict({
       setError("Please select different candidates");
     }
   };
-  // const data = [obama, west];
   const getButtonBackground = (party) => {
     switch (party) {
       case "Democratic":
@@ -79,16 +53,7 @@ function Predict({
   return (
     <div className="bg-[#1c2452] pb-[20px]">
       <div className=" m-auto ">
-        {/* <img src={question} alt="" className="m-auto" /> */}
-        {/* <img src={titleImage} alt="" className="m-auto mt-5" /> */}
-        {/* <p className="poppins4 text-white text-center xl:w-[55%] xl:text-[30px] m-auto mt-5">
-        Predict America’s next President and Vice President <br />Select who you predict will be the candidates on
-        </p> */}
-        {/* <p className="poppins4 text-white/80 xl:text-[22px] text-center justify-center flex items-center gap-2 m-auto mt-5">
-          <img src={calender} alt="" />
-          Tuesday, November
-          <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
-        </p> */}
+        
 
         <div
           className={` m-auto rounded-lg  relative mt-12 ${
@@ -127,15 +92,7 @@ function Predict({
           </div>
           <p className="text-redish translate-y-12 poppins5">{error}</p>
           <div className="flex justify-center relative  mt-24">
-            {/* Button */}
-            {/* <button
-              onClick={handleButtonClick}
-              className={`rounded-lg px-5 py-3 bg-red-500 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 ${isButtonClicked ? "hidden" : ""
-                }`}
-            >
-              <img src={check} className="w-4" alt="" />{" "}
-              {isButtonClicked ? "Selected" : "Select"}
-            </button> */}
+           
             <button
               disabled={presdborder || viceborder}
               onClick={handleButtonClick}

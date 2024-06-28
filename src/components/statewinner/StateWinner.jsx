@@ -20,7 +20,7 @@ const StateWinner = () => {
         },
       })
       .then((res) => {
-        console.log("stateData is :",res.data)
+        
         setOriginalData(res.data.data_of_2020.original.data);
         const parsedData = [];
 

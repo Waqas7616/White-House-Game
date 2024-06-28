@@ -89,7 +89,7 @@ export default function MyVote() {
   const sortedElections = Object.entries(lastElection).sort((a, b) =>
     a[0].localeCompare(b[0])
   );
-  console.log(finalData)
+  // console.log(finalData)
   const newdata = finalData?.data ? Object.entries(finalData?.data) : null;
   const elecotral = finalData?.electoral_votes_by_party ? Object.entries(finalData?.electoral_votes_by_party) : null;
 

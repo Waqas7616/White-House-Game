@@ -47,7 +47,7 @@ function PartyPrediction() {
   const [disabled, setDisabled] = useState(true);
   const location = useLocation();
   const data = location.state || {};
-  console.log("transferred data", data);
+  // console.log("transferred data", data);
   const [candidateData, setCandidateData] = useState([]);
   const imageUrl = "https://thewhitehousegame.com/api/public/";
   // const id=secureLocalStorage.getItem('id');

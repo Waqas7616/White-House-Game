@@ -26,6 +26,7 @@ import PaymentPage from "../pages/payment/Payment";
 import securesecureLocalStorage from "react-secure-storage";
 import ScrollTop from "./scrolltop/ScrollTop";
 import SiteMap from "./SiteMap";
+import OtpMatch from "./otpmatch/OtpMatch";
 
 function AppRoutes() {
   const [user, setUser] = useState();
@@ -84,6 +85,7 @@ function AppRoutes() {
         <Route path="/myvote" element={<MyVote/>}/>
         <Route path="/predictandelectoral" element={<PredictionAndElectoral/>}/>
         <Route path="/sitemap" element={<SiteMap/>}/>
+        <Route path="/otpmatch" element={<OtpMatch/>}/>
       </Routes>
     </Router>
   );

@@ -34,7 +34,7 @@ export default function ByLanguage() {
 
   useEffect(() => {
     const ParamBody = new URLSearchParams({
-      user_employement_id: id,
+      language_id: id,
     });
     axios
       .get(`https://thewhitehousegame.com/api/public/api/filter?${ParamBody}`, {
