@@ -269,16 +269,27 @@ const Candidate = () => {
   return (
     <>
       <div className="h-screen">
-      <Helmet>
-        <title>The White House Game | Candidates</title>
-        <meta name="keywords" content="2024 Presidential election, prediction, Candidates." lang="en" />
-        <meta name="description" content="Democrats have selected America’s oldest candidate while the Republicans nominate a convicted criminal. Tell us who expect to win the most important election since 1860." lang="en" />
-      </Helmet>
+        <Helmet>
+          <title>The White House Game | Candidates</title>
+          <meta
+            name="keywords"
+            content="2024 Presidential election, prediction, Candidates."
+            lang="en"
+          />
+          <meta
+            name="description"
+            content="Democrats have selected America’s oldest candidate while the Republicans nominate a convicted criminal. Tell us who expect to win the most important election since 1860."
+            lang="en"
+          />
+        </Helmet>
         <AppBanner
           bannerTitle={"Data"}
           redTitle={"Candidate"}
           bannerDesc={
-            <>Candidates and potential Candidates for <br/>President and Vice President</>
+            <>
+              Candidates and potential Candidates for <br />
+              President and Vice President
+            </>
           }
           bg={bg}
         />
@@ -322,10 +333,10 @@ const Candidate = () => {
                       />
                     </div>
                     <div className="flex flex-col text-right items-center mr-10">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      <h3 className="text-[13px]  xl-a:text-lg font-semibold text-gray-900 mb-2">
                         {item?.candidate_name}
                       </h3>
-                      <p className="text-gray-700">
+                      <p className="text-gray-700 text-[13px] xl-a:text-[16px]">
                         {item?.party?.party_name.split("(")[0]}
                       </p>
                     </div>
@@ -334,7 +345,6 @@ const Candidate = () => {
                 {showCard === index && (
                   <div className="absolute inset-0  shadow-2xl rounded-2xl overflow-hidden transform flip-animation z-10   border-none bg-[white]">
                     <div className="relative py-8 px-5 flex flex-col justify-start h-full">
-                     
                       <svg
                         onClick={() => handleSvgClick(index)}
                         className="flip absolute right-4 top-3 cursor-pointer fill-current w-6"

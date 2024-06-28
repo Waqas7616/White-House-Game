@@ -14,7 +14,7 @@ import down from "../../images/redarrow.png";
 import axios from "axios";
 
 export default function ByLanguage() {
-  const [id, setId] = useState(1);
+  const [id, setId] = useState(6);
   const [byLanguage, setByLanguage] = useState([]);
   const [language, setLanguage] = useState([]);
 
@@ -251,7 +251,7 @@ export default function ByLanguage() {
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {item.percentage}%
+                  {item.percentage.toFixed(1)}%
                 </div>
               </div>
             </div>

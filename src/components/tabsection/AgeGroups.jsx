@@ -233,7 +233,7 @@ export default function AgeGroups() {
                     />
                   </div>
                   <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
-                    {item.percentage}%
+                    {item.percentage.toFixed(1)}%
                   </p>
                   <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
                     <img
@@ -265,7 +265,7 @@ export default function AgeGroups() {
                         </div>
                         <p className="flex-1 text-center">
                           {" "}
-                          {item.male_ratio}%{" "}
+                          {item.male_ratio.toFixed(1)}%{" "}
                         </p>
                       </div>
                     </div>
@@ -288,7 +288,7 @@ export default function AgeGroups() {
                           Female
                         </div>
                         <p className="flex-1 text-center">
-                          {item.female_ratio}%
+                          {item.female_ratio.toFixed(1)}%
                         </p>
                       </div>
                     </div>
