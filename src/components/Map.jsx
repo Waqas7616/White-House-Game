@@ -25,79 +25,29 @@ function Map() {
         console.log("the error is :", err);
       });
   }, []);
-  // const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const handleToolTip = (e) => {
-    // const { pageX, pageY } = e;
     setTooltip(true);
     setStep(e);
-    // setTooltipPosition({ x: pageX + 10, y: pageY + 10 });
   };
-  // console.log('show me the modal please', statesData['Arkansas']["Independent('Kennedy')"])
   const handleMouseOut = () => {
     setTooltip(false);
   };
 
-  // const backgroundColor = (state) => {
-  //     if (statesData[state]) {
-  //         const parties = Object.keys(statesData[state]);
-  //         const counts = Object.values(statesData[state]);
-
-  //         const maxCount = Math.max(...counts);
-  //         const maxPartyIndex = counts.indexOf(maxCount);
-  //         const maxParty = parties[maxPartyIndex];
-  //         if (maxParty === 'Democratic') {
-  //             return '#ed1c24'
-  //         } else if (maxParty === 'Republican') {
-  //             return '#546bed'
-  //         } else {
-  //             return 'white'
-  //         }
-  //     }
-  // }
-
-  //   const backgroundColor = (state) => {
-  //     if (statesData[state]) {
-  //       const parties = Object.keys(statesData[state]);
-  //       const counts = Object.values(statesData[state]);
-  //       const maxCount = Math.max(...counts);
-  //       const maxPartyIndex = counts.indexOf(maxCount);
-  //       const maxParty = parties[maxPartyIndex];
-  //       if (maxParty === "Democratic") {
-  //         return "#ed1c24";
-  //       } else if (maxParty === "Republican") {
-  //         return "#546bed";
-  //       } else {
-  //         return "white";
-  //       }
-  //     }
-  //   };
-
   const backgroundColor = (state) => {
     if (statesData[state]) {
-      const democraticCount = statesData[state]?.Democratic || 0;
-      const republicanCount = statesData[state]?.Republican || 0;
-      if (democraticCount > republicanCount) {
-        return "#ed1c24"; // Democratic color
-      } else if (republicanCount > democraticCount) {
-        return "#546bed"; // Republican color
+      const democraticCount = statesData[state]?.winning_party;
+      // const republicanCount = statesData[state]?.Republican || 0;
+      // const independentCount = statesData[state]?.["Independent('Kennedy')"] || 0;
+      if (democraticCount === "Democratic") {
+        return "#546bed"; // Democratic color
+      } else if (democraticCount === "Republican") {
+        return "#ed1c24"; // Republican color
       } else {
         return "white"; // Default color if counts are equal or undefined
       }
     }
-    return "white"; // Default color if state data is not available
+    // Default color if state data is not available
   };
-
-  // const voteCount = (state) => {
-  //     if (statesData[state]) {
-  //         const parties = Object.keys(statesData[state]);
-  //         const count = Object.values(statesData[state]);
-  //         const maxCount = Math.max(...count);
-  //         const largeIndex = count.indexOf(maxCount);
-  //         const largeParty = parties[largeIndex]
-  //         return { largeParty, count: maxCount, };
-  //     }
-  //     return {}
-  // }
 
   const voteCount = (state) => {
     if (statesData[state]) {
@@ -139,7 +89,7 @@ function Map() {
                 ? "0%"
                 : `${Math.round(statesData[step]?.Democratic)}%`}
             </span>
-          </p>
+         </p>
           <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 uppercase px-3">
             Republican:{" "}
             <span className="poppins4">
@@ -195,7 +145,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-              {` ${voteCount("Alaska").electricalCollege || 3||3}`}
+              {` ${voteCount("Alaska").electricalCollege || 3 || 3}`}
             </text>
 
             {/* HAWAII CYAN  */}
@@ -1095,7 +1045,7 @@ function Map() {
               fontSize="19"
               fontWeight={700}
             >
-             DC {` ${voteCount("DC").electricalCollege || 3}`}
+              DC {` ${voteCount("DC").electricalCollege || 3}`}
             </text>
             {/* vermont rosybrown */}
             <path

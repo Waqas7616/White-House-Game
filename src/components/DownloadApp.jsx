@@ -97,7 +97,7 @@ export default function DownloadApp() {
               Join White House News
             </h2>
             <p className="text-[#fff] poppins4 text-[11px] lg:text-[14px] my-1 text-center">
-              Our free monthly newsletter
+              Our free newsletter
             </p>
             <div className="bg-[#fff] flex justify-between pl-2 rounded-l-[6px]">
               <input

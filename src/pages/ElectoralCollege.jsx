@@ -215,8 +215,7 @@ function ElectoralCollege() {
         // console.log("states ka data hai:", res.data.electoral_votes_by_party);
         setStatesData(res.data.electoral_votes_by_party);
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }, []);
 
   const maxVotes = Math.max(
@@ -252,23 +251,17 @@ function ElectoralCollege() {
     return {};
   };
 
-  const [statesDatas, setStatesDatas] = useState({});
-
-  useEffect(() => {
-    axios
-      .get("https://thewhitehousegame.com/api/public/api/getVoterPartyCount", {
-        headers: {
-          Accept: "application/json",
-        },
-      })
-      .then((res) => {
-        // console.log("states ka data hai:", res.data.electoral_votes_by_party);
-        setStatesDatas(res.data.electoral_votes_by_party);
-      })
-      .catch((err) => {
-        console.log("error hai:", err);
-      });
-  }, []);
+ 
+  const handleUpdatePrediction = () => {
+    clearPredictions();
+    setStep(0);
+    setElectoralCount(prev=>({
+      ...prev,
+      Democratic:0,
+      Republican:0,
+      Independent:0
+    }))
+  };
 
   return (
     <div className=" bg-[#1c2452]">
@@ -580,7 +573,15 @@ function ElectoralCollege() {
             </button>
           </div>
         )}
-
+        <div className="m-auto text-center my-4 mt-8">
+          <button
+            className="bg-redish text-white px-6 py-2 rounded "
+            onClick={handleUpdatePrediction}
+          >
+            {" "}
+            Update Prediction
+          </button>
+        </div>
         <h2 className="text-white  poppins6 text-[25.4px] md:text-[36.4px] mb-2">
           Your Electoral College Tally
         </h2>
@@ -603,7 +604,7 @@ function ElectoralCollege() {
         </div>
         <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-3 w-full">
           <div
-            className="py-4 bg-[#031BBB]"
+            className="py-4 bg-[#031BBB] text-white"
             style={{
               width: `${
                 demLength || repLength || indLength > 0
@@ -621,7 +622,7 @@ function ElectoralCollege() {
           </div>
 
           <div
-            className="py-4 bg-redish"
+            className="py-4 bg-redish text-white"
             style={{
               width: `${
                 demLength || repLength || indLength > 0
@@ -648,7 +649,6 @@ function ElectoralCollege() {
             }}
           >
             <span className="poppins4 flex justify-center items-center">
-              
               {electoralCount.Independent > 0 && electoralCount.Independent}
             </span>
           </div>

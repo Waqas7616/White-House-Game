@@ -10,6 +10,7 @@ import { Spinner } from "@material-tailwind/react";
 import CustomSpinner from "../spinner";
 import DownloadApp from "../DownloadApp";
 import secureLocalStorage from "react-secure-storage";
+import check from "../../images/check.png";
 
 export const PutData = () => {
   const location = useLocation();
@@ -126,8 +127,9 @@ export const PutData = () => {
   const [votedIn2020, setVotedIn2020] = useState("No");
   const [condition, setCondition] = useState(false);
   const [newPayload, setNewPayload] = useState(null);
+  const [popUp, setPopUP] = useState(false);
   const [payload, setPayLoad] = useState({
-    id:id,
+    id: id,
     language_id: "",
     user_age_id: "",
     user_ethnicity_id: "",
@@ -175,6 +177,7 @@ export const PutData = () => {
 
   const handleSaveButtonClick = async () => {
     setIsLoading(true);
+    // setPopUP(true);
 
     try {
       const response = await axios.post(
@@ -191,11 +194,12 @@ export const PutData = () => {
       );
       if (response.status === 200) {
         setIsLoading(false);
+        setPopUP(true)
       } else {
         setIsLoading(false);
       }
 
-      navigate(data.title2==="Account"?"/":"/login");
+      
     } catch (error) {
       console.error("Error:", error);
       setIsLoading(false);
@@ -248,10 +252,52 @@ export const PutData = () => {
     }
   }, [jwtToken, payload.id]);
 
-  
-
   return (
     <>
+      {popUp && (
+        <div className="popup">
+          <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
+            <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12 sm:h-[35vh] relative">
+              <div className="text-center mb-6">
+                <img className="w-[80px] h-[80px]" src={logo1} alt="" />
+              </div>
+              <button
+                onClick={() => navigate(data.title2 === "Account" ? "/" : "/login")}
+                className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              <p className="text-white text-center text-[16px]">
+                {" "}
+                Your Account is updated successfully!
+              </p>
+              <div className="flex justify-center items-center mt-8">
+                <img className="h-12 w-12 " src={check} alt="" />
+              </div>
+              <button
+                onClick={() => navigate("/")}
+                className="mt-8 text-white poppins5 bg-redish px-8 py-2 rounded"
+              >
+                close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="h-screen">
         <AppBanner
           bannerTitle={data.title2}
@@ -267,7 +313,6 @@ export const PutData = () => {
         />
         <div className="bg-[#1c2452] pb-10 mt-[30px] m-auto w-[80%] ">
           <div className="bg-[#1c2452] pb-10 m-auto  ">
-            
             <div className="flex justify-center pt-5">
               <img src={Layer} alt="" />
             </div>
@@ -293,7 +338,6 @@ export const PutData = () => {
                       type="radio"
                       className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="male"
-                      
                       value="1"
                       checked={
                         payload.user_gender_id === "1" ||
@@ -339,7 +383,6 @@ export const PutData = () => {
                       type="radio"
                       className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="female"
-                      
                       value="2"
                       checked={
                         payload.user_gender_id === "2" ||
@@ -755,7 +798,6 @@ export const PutData = () => {
                       type="radio"
                       className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="veteran"
-                      
                       value="yes"
                       checked={payload.is_veteran === "yes"}
                       onChange={(e) =>
@@ -798,7 +840,6 @@ export const PutData = () => {
                       type="radio"
                       className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="veteran"
-                      
                       value="No"
                       checked={payload.is_veteran === "No"}
                       onChange={(e) =>
@@ -851,7 +892,6 @@ export const PutData = () => {
                       type="radio"
                       className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="red"
-                      
                       value="yes"
                       checked={payload.is_votted_2020 === "yes"}
                       onChange={(e) =>
@@ -894,7 +934,6 @@ export const PutData = () => {
                       type="radio"
                       className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="No"
-                      
                       value="No"
                       checked={payload.is_votted_2020 === "No"}
                       onChange={(e) =>
@@ -951,7 +990,6 @@ export const PutData = () => {
                           type="radio"
                           className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                           id="bidenHarris"
-                          
                           value="1"
                           checked={payload.voter_candidate_id === "1"}
                           onChange={(e) =>
@@ -994,7 +1032,6 @@ export const PutData = () => {
                           type="radio"
                           className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                           id="Trump/Pense"
-                          
                           value="2"
                           checked={payload.voter_candidate_id === "2"}
                           onChange={(e) =>
@@ -1042,7 +1079,6 @@ export const PutData = () => {
                           type="radio"
                           className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                           id="Other"
-                          
                           value="3"
                           checked={payload.voter_candidate_id === "3"}
                           onChange={(e) =>
