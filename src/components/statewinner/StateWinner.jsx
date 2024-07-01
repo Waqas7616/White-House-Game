@@ -21,7 +21,7 @@ const StateWinner = () => {
       })
       .then((res) => {
         
-        setOriginalData(res.data.data_of_2020.original.data);
+        setOriginalData(res.data.data_of_2020.data);
         const parsedData = [];
 
         for (const state in res.data.data) {

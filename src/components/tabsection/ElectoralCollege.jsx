@@ -29,7 +29,7 @@ export default function ElectoralCollege() {
   const [president, setPresident] = useState();
   const expandVotes = () => {
     setExpandedVotes(!expandedVotes);
-    console.log("votes", expandedVotes);
+    // console.log("votes", expandedVotes);
   };
   const expandViceVotes = () => {
     setViceVotes(!viceVotes);

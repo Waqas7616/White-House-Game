@@ -16,14 +16,15 @@ import Democraticlogo from "../images/Democraticlogo.png";
 import Independentlogo from "../images/Independentlogo.png";
 import Republicanlogo from "../images/Republicanlogo.png";
 import secureLocalStorage from "react-secure-storage";
-import ReactGA from 'react-ga4';
+import ReactGA from "react-ga4";
 
 export default function MyVote() {
-  useEffect(()=>{
+  useEffect(() => {
     ReactGA.send({
-      hitType:'pageview',
-      path:window.location.pathname
-    });      },[])
+      hitType: "pageview",
+      path: window.location.pathname,
+    });
+  }, []);
   const [userVote, setUserVote] = useState([]);
   const [selected, setSelected] = useState([]);
   const [president, setPresident] = useState([]);
@@ -63,7 +64,7 @@ export default function MyVote() {
       })
       .catch((err) => {});
   }, []);
-  
+
   useEffect(() => {
     axios
       .get(
@@ -78,7 +79,7 @@ export default function MyVote() {
       )
       .then((res) => {
         setFinalData(res.data);
-        
+
         setLastElection(res.data.previousElection2020.original.data);
       })
       .catch((e) => console.log("elecotral error is", e));
@@ -89,12 +90,15 @@ export default function MyVote() {
   const sortedElections = Object.entries(lastElection).sort((a, b) =>
     a[0].localeCompare(b[0])
   );
+
   // console.log(finalData)
   const newdata = finalData?.data ? Object.entries(finalData?.data) : null;
-  const elecotral = finalData?.electoral_votes_by_party ? Object.entries(finalData?.electoral_votes_by_party) : null;
+  const elecotral = finalData?.electoral_votes_by_party
+    ? Object.entries(finalData?.electoral_votes_by_party)
+    : null;
 
-
-
+  const filtered = newdata !== null && newdata.pop();
+  // console.log("filter", sortedElections);
   return (
     <div>
       <AppBanner
@@ -109,7 +113,9 @@ export default function MyVote() {
               Tuesday, November 5 2024
             </span>
             <br />{" "}
-            <span className="flex justify-center items-center">This is my prediction</span>
+            <span className="flex justify-center items-center">
+              This is my prediction
+            </span>
           </>
         }
         // bannerDesc2={
@@ -136,7 +142,9 @@ export default function MyVote() {
           <div className="flex flex-wrap justify-evenly gap-4">
             {userVote?.SelectedCandidates?.length === 0 ? (
               <div className="text-center w-full mt-5">
-                <h2 className="text-xl poppins6 text-white">You have not made any predictions yet !</h2>
+                <h2 className="text-xl poppins6 text-white">
+                  You have not made any predictions yet !
+                </h2>
               </div>
             ) : (
               <>
@@ -428,138 +436,87 @@ export default function MyVote() {
 
       <div
         className="w-full py-8"
-        style={newdata?.length > 0 ? {
-          background: "linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)",
-      } : {}}
+        style={
+          newdata?.length > 0
+            ? {
+                background:
+                  "linear-gradient(90.68deg, rgba(28, 36, 82, 0.3) -24.33%, rgba(190, 30, 46, 0.3) 93.83%, rgba(237, 28, 36, 0.3) 124.99%)",
+              }
+            : {}
+        }
       >
-        {/* <div className="flex justify-center my-8 ">
-          <h2 className="text-[#fff] text-[14px] md:text-[36px] orbit7 w-9/12 m-auto  text-center">
-            270 to Win
-          </h2>
-        </div>
-        <div className="flex justify-center my-8 ">
-          <h2 className="text-[#fff] text-[9px] md:text-[14px] orbit7 w-9/12 m-auto  text-center">
-            What our game players Predict{" "}
-          </h2>
-        </div>
+        {elecotral?.length > 0 && (
+          <div className="m-auto w-10/12">
+            <h2 className="text-white  poppins6 text-[25.4px] md:text-[36.4px]">
+              My Electoral College Prediction
+            </h2>
 
-        <div className="flex w-9/12 m-auto my-8 mb-[83px] flex-col items-center">
-          <div className="flex w-full justify-around items-center mb-4">
-            <span className="poppins6 text-white ">Democratic</span>
-            <span className="poppins6 text-white ">Republican</span>
-            <span className="poppins6 text-white ">Independent</span>
-          </div>
-
-          <div className="flex w-full">
-            <div
-              className="py-4 bg-[#031BBB]"
-              style={{ width: democraticBarLength }}
-            >
-              <span className="poppins4 flex justify-center items-center">
-                {statesData && statesData.Democratic
-                  ? `${statesData.Democratic}`
-                  : "0"}
-              </span>
-            </div>
-
-            <div
-              className="py-4 bg-redish"
-              style={{ width: republicanBarLength }}
-            >
-              <span className="poppins4 flex justify-center items-center">
-                {statesData && statesData.Republican
-                  ? `${statesData.Republican}`
-                  : "0"}
-              </span>
-            </div>
-
-            <div
-              className="py-4 bg-white"
-              style={{ width: independentBarLength }}
-            >
-              <span className="poppins4 flex justify-center items-center">
-                {statesData && statesData["Independent('Kennedy')"]
-                  ? `${statesData["Independent('Kennedy')"]}`
-                  : "0"}
-              </span>
-            </div>
-          </div>
-        </div> */}
-        {elecotral?.length >0 &&
-        <div className="m-auto w-10/12">
-          <h2 className="text-white  poppins6 text-[25.4px] md:text-[36.4px]">
-            My Electoral College Prediction
-          </h2>
-
-          <div className="flex justify-between flex-wrap">
-            <div className="flex gap-5 items-center mb-4 flex-wrap">
-              <div className="dem flex gap-3 items-center">
-                <div className="w-8 h-2 bg-[#031BBB]"></div>
-                <p className="poppins5 text-white">Democratic</p>
+            <div className="flex justify-between flex-wrap">
+              <div className="flex gap-5 items-center mb-4 flex-wrap">
+                <div className="dem flex gap-3 items-center">
+                  <div className="w-8 h-2 bg-[#031BBB]"></div>
+                  <p className="poppins5 text-white">Democratic</p>
+                </div>
+                <div className="dem flex gap-3 items-center">
+                  <div className="w-8 h-2 bg-redish"></div>
+                  <p className="poppins5 text-white">Republican</p>
+                </div>
+                <div className="dem flex gap-3 items-center">
+                  <div className="w-8 h-2 bg-white"></div>
+                  <p className="poppins5 text-white">Independent</p>
+                </div>
               </div>
-              <div className="dem flex gap-3 items-center">
-                <div className="w-8 h-2 bg-redish"></div>
-                <p className="poppins5 text-white">Republican</p>
-              </div>
-              <div className="dem flex gap-3 items-center">
-                <div className="w-8 h-2 bg-white"></div>
-                <p className="poppins5 text-white">Independent</p>
-              </div>
+              <p className="poppins5 text-white pr-5">270 to win</p>
             </div>
-            <p className="poppins5 text-white pr-5">270 to win</p>
-          </div>
-          {/* <p>{Object.entries(finalData.electoral_votes_by_party).map(([index,data])=>(
+            {/* <p>{Object.entries(finalData.electoral_votes_by_party).map(([index,data])=>(
           <p>{data.Democratic}</p>
         ))}</p> */}
-          <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-3 w-full">
-            <div
-              className="py-4 bg-[#031BBB]"
-              style={{
-                width: `${"33%"}`,
-              }}
-            >
-              <span className="poppins4 flex justify-center items-center">
-                
-                {finalData?.electoral_votes_by_party &&
-                  Object.entries(finalData?.electoral_votes_by_party).find(
-                    ([party_name]) => party_name === "Democratic"
-                  )[1]}
-              </span>
-            </div>
+            <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-3 w-full">
+              <div
+                className="py-4 bg-[#031BBB] text-white"
+                style={{
+                  width: `${"33%"}`,
+                }}
+              >
+                <span className="poppins4 flex justify-center items-center">
+                  {finalData?.electoral_votes_by_party &&
+                    Object.entries(finalData?.electoral_votes_by_party).find(
+                      ([party_name]) => party_name === "Democratic"
+                    )[1]}
+                </span>
+              </div>
 
-            <div
-              className="py-4 bg-redish"
-              style={{
-                width: `${"33%"}`,
-              }}
-            >
-              <span className="poppins4 flex justify-center items-center">
-                
-                {finalData?.electoral_votes_by_party &&
-                  Object.entries(finalData?.electoral_votes_by_party).find(
-                    ([party_name]) => party_name === "Republican"
-                  )[1]}
-              </span>
-            </div>
-            <div
-              className="py-4 bg-white"
-              style={{
-                width: `${"33%"}`,
-              }}
-            >
-              <span className="poppins4 flex justify-center items-center">
-                
-                {finalData.electoral_votes_by_party &&
-                  Object.entries(finalData.electoral_votes_by_party).find(
-                    ([party_name]) => party_name === "Independent('Kennedy')"
-                  )[1]}
-              </span>
+              <div
+                className="py-4 bg-redish text-white"
+                style={{
+                  width: `${"33%"}`,
+                }}
+              >
+                <span className="poppins4 flex justify-center items-center">
+                  {finalData?.electoral_votes_by_party &&
+                    Object.entries(finalData?.electoral_votes_by_party).find(
+                      ([party_name]) => party_name === "Republican"
+                    )[1]}
+                </span>
+              </div>
+              <div
+                className="py-4 bg-white"
+                style={{
+                  width: `${"33%"}`,
+                }}
+              >
+                <span className="poppins4 flex justify-center items-center">
+                  {finalData.electoral_votes_by_party &&
+                    Object.entries(finalData.electoral_votes_by_party).find(
+                      ([party_name]) => party_name === "Independent('Kennedy')"
+                    )[1]}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-        }
-        
-        {newdata?.length > 0 &&  (
+        )}
+
+        {newdata?.length > 0 && (
           <>
             <div className="w-10/12 m-auto mt-12">
               <Map />
@@ -597,7 +554,7 @@ export default function MyVote() {
                   </div>
                 </div>
 
-                {Object.entries(finalData.data)?.map(([state, data]) => (
+                {newdata?.map(([state, data]) => (
                   <div
                     className=" w-fit md:w-auto flex gap-[20px] md:justify-between border-b-[1px] py-4 px-8"
                     key={state}
@@ -639,7 +596,7 @@ export default function MyVote() {
                         src={`${imageUrl}${data.map_url}`}
                         alt=""
                       />
-                      <p className="font-medium font-poppins text-[9px] lg:text-[27px] text-white truncate w-10 md:w-16 lg:w-44 py-3">
+                      <p className="font-medium font-poppins text-[9px] lg:text-[27px] text-white  py-3">
                         {state}
                       </p>
                     </div>
