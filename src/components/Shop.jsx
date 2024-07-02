@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
-// import img from "../images/cloths.png";
+// import img loading="lazy" from "../images/cloths.png";
 // import ballot from "../images/ballot.png";
 import black from "../images/black.png";
 import red from "../images/red.png";
@@ -301,7 +301,7 @@ export default function Shop() {
                 </div>
                 <div className="bg-[#F9F6E5] flex justify-center flex-col items-center h-[410px] acer:h-[410px]  relative">
                   <div className="py-5">
-                    <img
+                    <img loading="lazy"
                       src={
                         changeColor === 1
                           ? black
@@ -375,7 +375,7 @@ export default function Shop() {
                 </div>
                 <div className="bg-[#E8F0F3] flex justify-center flex-col items-center h-[410px] acer:h-[410px]  relative">
                   <div className="">
-                    <img
+                    <img loading="lazy"
                       src={
                         changeColor === 4
                           ? burgundy2
@@ -449,7 +449,7 @@ export default function Shop() {
                 </div>
                 <div className="bg-[#f9f6e5] flex justify-center flex-col items-center h-[410px] acer:h-[410px]  relative">
                   <div className="">
-                    <img
+                    <img loading="lazy"
                       className=""
                       src={
                         changeColor === 7
@@ -524,7 +524,7 @@ export default function Shop() {
                 </div>
                 <div className="bg-[#E4E9ED] flex justify-center flex-col items-center h-[410px] acer:h-[410px]  relative">
                   <div className="">
-                    <img
+                    <img loading="lazy"
                       src={
                         changeColor === 10
                           ? burgundy4
@@ -598,7 +598,7 @@ export default function Shop() {
                 </div>
                 <div className="bg-[#E8F0F3] flex justify-center flex-col items-center h-[410px] acer:h-[410px]  relative">
                   <div className="">
-                    <img
+                    <img loading="lazy"
                       src={
                         changeColor === 13
                           ? burgundy3

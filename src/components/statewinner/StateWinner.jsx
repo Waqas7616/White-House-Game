@@ -116,7 +116,7 @@ const StateWinner = () => {
                       originalData[stateData.state].winning_party ===
                         "Democratic" && (
                         <span className="bg-white rounded-full p-2 w-[30px] h-[30px] md:w-[45px] md:h-[45px] flex justify-center items-center">
-                          <img
+                          <img loading="lazy"
                             className=" w-4 h-4 lg:w-6 lg:h-6"
                             src={Democraticlogo}
                             alt="Democratic"
@@ -127,7 +127,7 @@ const StateWinner = () => {
                       originalData[stateData.state].winning_party ===
                         "Republican" && (
                         <span className="bg-white rounded-full p-2 w-[30px] h-[30px] md:w-[45px] md:h-[45px] flex justify-center items-center">
-                          <img
+                          <img loading="lazy"
                             className="w-4 h-4 lg:w-7 lg:h-7"
                             src={Republicanlogo}
                             alt="Republican"
@@ -138,7 +138,7 @@ const StateWinner = () => {
                       originalData[stateData.state].winning_party ===
                         "Independent" && (
                         <span className="bg-white rounded-full p-1 w-[30px] h-[30px] md:w-[45px] md:h-[45px] flex justify-center items-center">
-                          <img
+                          <img loading="lazy"
                             className="w-4 h-4 lg:w-8 lg:h-8"
                             src={Independentlogo}
                             alt="Independent('Kennedy')"
@@ -155,7 +155,7 @@ const StateWinner = () => {
                     <div className="flex items-center justify-center  gap-3">
                       <span className="w-14 h-14 flex items-center object-cover">
                         {stateData.map_url ? (
-                          <img
+                          <img loading="lazy"
                             src={`${ImageUrl}${stateData.map_url}`}
                             alt={`${stateData.state} State Winner`}
                           />
@@ -181,7 +181,7 @@ const StateWinner = () => {
                             {getLeadingParty(stateData.parties)}
                           </span>
                           <span className="bg-white rounded-full p-2 w-[30px] h-[30px] md:w-[45px] md:h-[45px] flex justify-center items-center">
-                            <img
+                            <img loading="lazy"
                               className=" w-4 h-4 lg:w-7 lg:h-7 "
                               src={Democraticlogo}
                               alt="Democratic"
@@ -195,7 +195,7 @@ const StateWinner = () => {
                             {getLeadingParty(stateData.parties)}
                           </span>
                           <span className="bg-white rounded-full p-2 w-[30px] h-[30px] md:w-[45px] md:h-[45px] flex justify-center items-center">
-                            <img
+                            <img loading="lazy"
                               className="w-4 h-4 lg:w-7 lg:h-7"
                               src={Republicanlogo}
                               alt="Republican"
@@ -209,7 +209,7 @@ const StateWinner = () => {
                             {getLeadingParty(stateData.parties)}
                           </span>
                           <span className="bg-white rounded-full p-1 w-[30px] h-[30px] md:w-[45px] md:h-[45px] flex justify-center items-center">
-                            <img
+                            <img loading="lazy"
                               className="w-4 h-4 lg:w-8 lg:h-8"
                               src={Independentlogo}
                               alt="Independent('Kennedy')"

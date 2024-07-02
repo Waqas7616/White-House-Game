@@ -314,7 +314,7 @@ function CustomSlider() {
                   onClick={() => handleCandidateClick(index)}
                 >
                   <div className="image w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%]  m-auto">
-                    <img
+                    <img loading="lazy"
                       className=" w-[129px] h-[129px] sm:w-[130px] sm:h-[130px] md:w-[145px] md:h-[145px]   rounded-[50%] object-cover cursor-pointer"
                       src={`${imageUrl}${item?.candidate_image}`}
                       alt=""
@@ -339,7 +339,7 @@ function CustomSlider() {
                   className="candidate flex flex-col items-center justify-between gap-[10px]"
                 >
                   <div className="image w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%]  flex">
-                    <img
+                    <img loading="lazy"
                       className=" w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%] object-cover cursor-pointer"
                       src={`${imageUrl}${item?.candidate_image}`}
                       alt=""

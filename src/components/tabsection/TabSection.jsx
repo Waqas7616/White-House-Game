@@ -241,7 +241,7 @@ function TabSection() {
           >
             <h2 className="orbit7 mt-8 text-whiteColor text-center w-[245px] flex justify-between items-center m-auto md:text-[60px]">
               <span>
-                <img className="w-[50px]" src={statsone} alt="" />{" "}
+                <img loading="lazy" className="w-[50px]" src={statsone} alt="" />{" "}
               </span>{" "}
               stats
             </h2>
@@ -250,7 +250,7 @@ function TabSection() {
             </p>
             <div className="search-section flex flex-col  sm:flex-row  justify-between">
               <div className="badge flex items-center justify-between">
-                <img
+                <img loading="lazy"
                   className="w-8 h-8 lg:w-14 lg:h-14 object-cover"
                   src={badge}
                   alt=""
@@ -294,7 +294,7 @@ function TabSection() {
               </div>
 
               <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
-                <img
+                <img loading="lazy"
                   className="w-8 h-8 lg:w-10 lg:h-10 object-cover"
                   src={ballot}
                   alt="ballot"
@@ -336,7 +336,7 @@ function TabSection() {
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className=" overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
-                            <img
+                            <img loading="lazy"
                               className="w-full h-full object-cover"
                               src={`${imageUrl}${item.candidate_image}`}
                               alt=""
@@ -346,7 +346,7 @@ function TabSection() {
                             {item.candidate_name}
                           </p>
                           <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
-                            <img
+                            <img loading="lazy"
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
@@ -429,7 +429,7 @@ function TabSection() {
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className=" overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
-                            <img
+                            <img loading="lazy"
                               className="w-full h-full object-cover"
                               src={`${imageUrl}${item.candidate_image}`}
                               alt=""
@@ -439,7 +439,7 @@ function TabSection() {
                             {item.candidate_name}
                           </p>
                           <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
-                            <img
+                            <img loading="lazy"
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
@@ -504,7 +504,7 @@ function TabSection() {
 
             <div className="search-section flex flex-col sm:items-none  sm:flex-row  justify-between mt-16">
               <div className="badge flex items-center justify-between">
-                <img
+                <img loading="lazy"
                   className="w-8 h-8 lg:w-14 lg:h-14 object-cover"
                   src={badge2}
                   alt=""
@@ -516,7 +516,7 @@ function TabSection() {
               
 
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
-                <img
+                <img loading="lazy"
                   className="w-8 h-8 lg:w-10 lg:h-10 object-cover"
                   src={ballot}
                   alt="ballot"
@@ -557,7 +557,7 @@ function TabSection() {
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className="overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
-                            <img
+                            <img loading="lazy"
                               className="w-full h-full object-cover"
                               src={`${imageUrl}${item.candidate_image}`}
                               alt=""
@@ -567,7 +567,7 @@ function TabSection() {
                             {item.candidate_name}
                           </p>
                           <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
-                            <img
+                            <img loading="lazy"
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
@@ -609,9 +609,9 @@ function TabSection() {
 
                   {/* <div className="voteCount flex gap-1 sm:gap-5 items-center h-[60px] mt-8  bg-[#ED1C244D] rounded-l-lg">
                   <div className="president-info relative bg-redish px-1 sm:px-4 w-2/4 sm:w-1/4 h-full flex justify-between  items-center rounded-l-lg">
-                    <div className=' overflow-hidden overflow-y-hidden mb-[20px] ' ><img className='w-full h-full object-cover' src={kennedy} alt="" /></div>
+                    <div className=' overflow-hidden overflow-y-hidden mb-[20px] ' ><img loading="lazy" className='w-full h-full object-cover' src={kennedy} alt="" /></div>
                     <p className="poppins4 text-whiteColor w-[30%] sm:w-auto overflow-hidden text-ellipsis whitespace-nowrap  ">Robbert F. Kennedy</p>
-                    <img className='w-[20px] sm:w-auto' src={president} alt="" />
+                    <img loading="lazy" className='w-[20px] sm:w-auto' src={president} alt="" />
 
                   </div>
                   <div className="president-votes w-3/4">
@@ -663,7 +663,7 @@ function TabSection() {
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className="overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
-                            <img
+                            <img loading="lazy"
                               className="w-full h-full object-cover"
                               src={`${imageUrl}${item.candidate_image}`}
                               alt=""
@@ -673,7 +673,7 @@ function TabSection() {
                             {item.candidate_name}
                           </p>
                           <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
-                            <img
+                            <img loading="lazy"
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
