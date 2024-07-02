@@ -90,36 +90,7 @@ export default function CountryOfBirth() {
         Party support by country of birth
       </p>
       <div className="search-section flex flex-col  sm:flex-row  justify-center my-16">
-        {/* <div className="badge flex items-center justify-between">
-            <img src={badge} alt="" />
-            <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
-              President
-            </h2>
-          </div> */}
-
-        {/* <div className="searchBar flex flex-col ">
-            <label
-              htmlFor="search "
-              className="text-whiteColor text-center poppins4 text-[14px]"
-            >
-              Select State
-            </label>
-            <select
-              name="states"
-              id="search"
-              className="bg-transparent border-[1px] poppins4 text-[14px] border-whiteColor w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor"
-            >
-              <option className="bg-[#000] " value="">
-                Select State
-              </option>
-              <option className="bg-[#000] " value="ny">
-                New york
-              </option>
-              <option className="bg-[#000] " value="hst">
-                Houston
-              </option>
-            </select>
-          </div> */}
+             
 
         <div className="searchBar flex flex-col ">
           <label
@@ -150,12 +121,6 @@ export default function CountryOfBirth() {
           </div>
         </div>
 
-        {/* <div className="votes-count flex items-center justify-between">
-            <img src={ballot} alt="ballot" />
-            <h2 className="poppins6 text-whiteColor md:text-[36px] ms-3">
-              Votes : {totalVotes}
-            </h2>
-          </div> */}
       </div>
       <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
         {president.length===0?
@@ -188,7 +153,7 @@ export default function CountryOfBirth() {
                   />
                 </div>
                 <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                  {item.candidate_name.split(" ")[0]}
+                  {item.candidate_name}
                 </p>
                 <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                   <img
