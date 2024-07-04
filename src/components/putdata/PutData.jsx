@@ -121,13 +121,17 @@ export const PutData = () => {
     } else {
     }
   }, []);
+
   const email = secureLocalStorage.getItem("email");
+
   let id = secureLocalStorage.getItem("id");
+
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [votedIn2020, setVotedIn2020] = useState("No");
   const [condition, setCondition] = useState(false);
   const [newPayload, setNewPayload] = useState(null);
   const [popUp, setPopUP] = useState(false);
+
   const [payload, setPayLoad] = useState({
     id: id,
     language_id: "",
@@ -142,19 +146,20 @@ export const PutData = () => {
     is_votted_2020: "",
     voter_candidate_id: "",
     source: "",
-    is_subscription_newsletter: "No",
+    is_subscription_newsletter: "no",
 
     user_votter_party: "",
   });
+  // console.log("payload",payload)
 
   const handleSubscriptionChange = (e) => {
     const isChecked = e.target.checked;
-    const value = isChecked ? "yes" : "No";
+    const value = isChecked ? "yes" : "no";
     setIsSubscribed(isChecked);
     setPayLoad({ ...payload, is_subscription_newsletter: value });
 
     if (!isChecked) {
-      setPayLoad({ ...payload, is_subscription_newsletter: "No" });
+      setPayLoad({ ...payload, is_subscription_newsletter: "no" });
     }
   };
 
@@ -167,44 +172,13 @@ export const PutData = () => {
   useEffect(() => {
     let adjustedPayload = { ...payload };
 
-    if (adjustedPayload.is_votted_2020 === "No") {
+    if (adjustedPayload.is_votted_2020 === "no") {
       delete adjustedPayload.voter_candidate_id;
       delete adjustedPayload.source;
       setCondition(true);
       setNewPayload(adjustedPayload);
     }
   }, [payload, newPayload]);
-
-  const handleSaveButtonClick = async () => {
-    setIsLoading(true);
-    // setPopUP(true);
-
-    try {
-      const response = await axios.post(
-        "https://thewhitehousegame.com/api/public/api/update_user_info",
-        condition ? newPayload : payload,
-
-        {
-          headers: {
-            Authorization: `Bearer ${jwtToken}`,
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
-      if (response.status === 200) {
-        setIsLoading(false);
-        setPopUP(true)
-      } else {
-        setIsLoading(false);
-      }
-
-      
-    } catch (error) {
-      console.error("Error:", error);
-      setIsLoading(false);
-    }
-  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -242,6 +216,7 @@ export const PutData = () => {
         };
 
         setPayLoad(userData, updatedPayload);
+    
       } catch (err) {
         console.log("error", err);
       }
@@ -252,17 +227,49 @@ export const PutData = () => {
     }
   }, [jwtToken, payload.id]);
 
+  const handleSaveButtonClick = async () => {
+    setIsLoading(true);
+    
+    // setPopUP(true);
+
+    try {
+      const response = await axios.post(
+        "https://thewhitehousegame.com/api/public/api/update_user_info",
+        condition ? newPayload : payload,
+
+        {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      if (response.status === 200) {
+        setIsLoading(false);
+        setPopUP(true);
+      } else {
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       {popUp && (
         <div className="popup">
           <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
-            <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12 sm:h-[35vh] relative">
+            <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12  relative">
               <div className="text-center mb-6">
                 <img className="w-[80px] h-[80px]" src={logo1} alt="" />
               </div>
               <button
-                onClick={() => navigate(data.title2 === "Account" ? "/" : "/login")}
+                onClick={() =>
+                  navigate(data.title2 === "Account" ? "/" : "/login")
+                }
                 className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
               >
                 <svg
@@ -432,7 +439,7 @@ export const PutData = () => {
                   className="bg-transparent w-full outline-none"
                   name="states"
                   id="search"
-                  value={payload.user_age_id || payload.age}
+                  value={payload.user_age_id || payload.user_age}
                   onChange={(e) =>
                     setPayLoad({
                       ...payload,
@@ -841,7 +848,7 @@ export const PutData = () => {
                       className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="veteran"
                       value="No"
-                      checked={payload.is_veteran === "No"}
+                      checked={payload.is_veteran === "no"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,
@@ -935,7 +942,7 @@ export const PutData = () => {
                       className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="No"
                       value="No"
-                      checked={payload.is_votted_2020 === "No"}
+                      checked={payload.is_votted_2020 === "no"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,

@@ -87,10 +87,11 @@ export default function MyVote() {
   // const getStatesDetails=()=>{
   //   const stateName=Object.keys
   // }
-  const sortedElections = Object.entries(lastElection).sort((a, b) =>
+  const sortedElections = Object.entries(lastElection)?.sort((a, b) =>
     a[0].localeCompare(b[0])
   );
 
+  console.log("winners", sortedElections);
   // console.log(finalData)
   const newdata = finalData?.data ? Object.entries(finalData?.data) : null;
   const elecotral = finalData?.electoral_votes_by_party
@@ -468,9 +469,7 @@ export default function MyVote() {
               </div>
               <p className="poppins5 text-white pr-5">270 to win</p>
             </div>
-            {/* <p>{Object.entries(finalData.electoral_votes_by_party).map(([index,data])=>(
-          <p>{data.Democratic}</p>
-        ))}</p> */}
+
             <div className="flex p-2 bg-[#131A41] rounded-[10.65px] mb-3 w-full">
               <div
                 className="py-4 bg-[#031BBB] text-white"
@@ -479,10 +478,13 @@ export default function MyVote() {
                 }}
               >
                 <span className="poppins4 flex justify-center items-center">
-                  {finalData?.electoral_votes_by_party &&
-                    Object.entries(finalData?.electoral_votes_by_party).find(
-                      ([party_name]) => party_name === "Democratic"
-                    )[1]}
+                  {Object.entries(finalData.electoral_votes_by_party).find(
+                    ([party_name]) => party_name === "Democratic"
+                  )
+                    ? Object.entries(finalData?.electoral_votes_by_party).find(
+                        ([party_name]) => party_name === "Democratic"
+                      )[1]
+                    : 0}
                 </span>
               </div>
 
@@ -493,10 +495,13 @@ export default function MyVote() {
                 }}
               >
                 <span className="poppins4 flex justify-center items-center">
-                  {finalData?.electoral_votes_by_party &&
-                    Object.entries(finalData?.electoral_votes_by_party).find(
-                      ([party_name]) => party_name === "Republican"
-                    )[1]}
+                  {Object.entries(finalData.electoral_votes_by_party).find(
+                    ([party_name]) => party_name === "Republican"
+                  )
+                    ? Object.entries(finalData?.electoral_votes_by_party).find(
+                        ([party_name]) => party_name === "Republican"
+                      )[1]
+                    : 0}
                 </span>
               </div>
               <div
@@ -506,10 +511,14 @@ export default function MyVote() {
                 }}
               >
                 <span className="poppins4 flex justify-center items-center">
-                  {finalData.electoral_votes_by_party &&
-                    Object.entries(finalData.electoral_votes_by_party).find(
-                      ([party_name]) => party_name === "Independent('Kennedy')"
-                    )[1]}
+                  {Object.entries(finalData.electoral_votes_by_party).find(
+                    ([party_name]) => party_name === "Independent('Kennedy')"
+                  )
+                    ? Object.entries(finalData.electoral_votes_by_party).find(
+                        ([party_name]) =>
+                          party_name === "Independent('Kennedy')"
+                      )[1]
+                    : 0}
                 </span>
               </div>
             </div>
