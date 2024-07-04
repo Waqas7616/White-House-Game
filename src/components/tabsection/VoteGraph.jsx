@@ -157,7 +157,8 @@ export default function VoteGraph() {
       <div className="stats relative py-8 px-4 bg-white/5 rounded-[10px] mt-8">
         {!expendedCandidates ? (
           <>
-            {candidatedata?.data?.candidate_percentages && candidatedata?.data?.candidate_percentages.length === 0 ? (
+            {candidatedata?.data?.candidate_percentages &&
+            candidatedata?.data?.candidate_percentages.length === 0 ? (
               <p className="text-center text-white poppins5">
                 No one voted from this state yet
               </p>
@@ -266,24 +267,26 @@ export default function VoteGraph() {
                   </div>
                 ))
             )}
-            <button
-              className="absolute bottom-[-20px] left-[50%]"
-              onClick={expendCandidate}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                viewBox="0 0 72 72"
-                fill="none"
+            {candidatedata?.data?.candidate_percentages.lenth > 3 && (
+              <button
+                className="absolute bottom-[-20px] left-[50%]"
+                onClick={expendCandidate}
               >
-                <circle cx="36" cy="36" r="36" fill="#272F5B" />
-                <path
-                  d="M36.4022 54.8707L27.5334 46.0019L25 48.5353L36.4022 59.9375L47.8043 48.5353L45.2709 46.0019L36.4022 54.8707Z"
-                  fill="white"
-                />
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 72 72"
+                  fill="none"
+                >
+                  <circle cx="36" cy="36" r="36" fill="#272F5B" />
+                  <path
+                    d="M36.4022 54.8707L27.5334 46.0019L25 48.5353L36.4022 59.9375L47.8043 48.5353L45.2709 46.0019L36.4022 54.8707Z"
+                    fill="white"
+                  />
+                </svg>
+              </button>
+            )}
           </>
         ) : (
           <>
@@ -320,7 +323,7 @@ export default function VoteGraph() {
                       />
                     </div>
                     <p className="poppins4 w-[30%] sm:w-auto overflow-hidden whitespace-nowrap sm:whitespace-normal text-ellipsis">
-                    {item.candidate_name}
+                      {item.candidate_name}
                     </p>
                     <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
                       <img

@@ -385,8 +385,7 @@ function TabSection() {
                       </div>
                     ))
                   )}
-
-                  <button
+{president?.length>3&&(<button
                     className="absolute bottom-[-20px] left-[50%]"
                     onClick={expandVotes}
                   >
@@ -403,7 +402,8 @@ function TabSection() {
                         fill="white"
                       />
                     </svg>
-                  </button>
+                  </button>)}
+                  
                 </>
               ) : (
                 <>
@@ -513,7 +513,6 @@ function TabSection() {
                   Vice President
                 </h2>
               </div>
-              
 
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
                 <img loading="lazy"
@@ -620,7 +619,7 @@ function TabSection() {
                     </div>
                   </div>
                 </div> */}
-                  <button
+                {vicePresident?.length>3&&(<button
                     className="absolute bottom-[-20px] left-[50%]"
                     onClick={expandViceVotes}
                   >
@@ -637,7 +636,8 @@ function TabSection() {
                         fill="white"
                       />
                     </svg>
-                  </button>
+                  </button>)}
+                  
                 </>
               ) : (
                 <>

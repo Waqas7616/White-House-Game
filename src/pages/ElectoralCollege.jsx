@@ -49,7 +49,7 @@ function ElectoralCollege() {
   }, []);
   const myData = secureLocalStorage.getItem("electoral_data");
   const myStep = secureLocalStorage.getItem("electoral_step");
-  const [step, setStep] = useState(myStep || 0);
+  const [step, setStep] = useState(myStep||0);
   const [partyClick, setPartyClick] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
   const [electoralCount, setElectoralCount] = useState(() => {
@@ -251,18 +251,23 @@ function ElectoralCollege() {
     return {};
   };
 
- 
   const handleUpdatePrediction = () => {
     clearPredictions();
     setStep(0);
-    setElectoralCount(prev=>({
+    setElectoralCount((prev) => ({
       ...prev,
-      Democratic:0,
-      Republican:0,
-      Independent:0
-    }))
+      Democratic: 0,
+      Republican: 0,
+      Independent: 0,
+    }));
+    secureLocalStorage.removeItem("electoral_data");
+    secureLocalStorage.removeItem("electoral_step");
+    secureLocalStorage.removeItem("electoralCount");
   };
 
+  const sortedData = previousData?.states?.sort((a, b) =>a.name!=='USA'&& a.name.localeCompare(b.name));
+  console.log(sortedData)
+  
   return (
     <div className=" bg-[#1c2452]">
       {popUp && (
@@ -318,7 +323,7 @@ function ElectoralCollege() {
       {popUp1 && (
         <div className="popup">
           <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
-            <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12 sm:h-[35vh] relative">
+            <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12  relative">
               <div className="text-center mb-6">
                 <img className="w-[80px] h-[80px]" src={logo1} alt="" />
               </div>
@@ -379,18 +384,18 @@ function ElectoralCollege() {
 
       <div className="voting w-10/12  resp m-auto py-[102px] bg-[#1c2452]">
         <div className="state-data  mb-6 m-auto px-[120px] h-72 sm:h-64 bg-redish rounded-[18.06px] relative flex flex-col justify-center  sm:flex sm:flex-row sm:justify-evenly items-center">
-          {previousData.states?.[step].name === undefined ? (
+          {sortedData?.[step].name === undefined ? (
             <CustomSpinner />
           ) : (
             <>
               <img src={circle} alt="" className="absolute right-0" />
               <div className="map ">
                 <img
-                  className="w-12 sm:w-[150px]"
+                  className="w-12 sm:w-[95px]"
                   src={
-                    previousData?.states?.[step]?.name === "USA"
+                    sortedData?.[step]?.name === "USA"
                       ? usa
-                      : `${imageUrl}${previousData?.states?.[step]?.map_url}`
+                      : `${imageUrl}${sortedData?.[step]?.map_url}`
                   }
                   alt=""
                 />
@@ -398,27 +403,27 @@ function ElectoralCollege() {
               <div className="info flex flex-col sm:flex sm:flex-row  md:justify-center gap-5 items-center">
                 <div className="flag pt-5 sm:pt-0">
                   <img
-                    className="w-12 sm:w-[100px]"
+                    className="w-12 sm:w-[95px]"
                     src={
-                      previousData?.states?.[step]?.name === "USA"
+                      sortedData?.[step]?.name === "USA"
                         ? usflag
-                        : `${imageUrl}${previousData?.states?.[step]?.image_url}`
+                        : `${imageUrl}${sortedData?.[step]?.image_url}`
                     }
                     alt=""
                   />
                 </div>
                 <div className="name">
                   <h6 className="poppins6 text-white text-center text-[20px] sm:text-[33px]">
-                    {previousData?.states?.[step]?.name === "USA"
+                    {sortedData?.[step]?.name === "USA"
                       ? "United States of America"
-                      : previousData?.states?.[step]?.name}
+                      : sortedData?.[step]?.name}
                     {/* United States of America */}
                   </h6>
                   <p className="poppins4 text-white text-center text-[12px] sm:text-[28px]">
-                    {previousData?.states?.[step]?.name === "USA"
+                    {sortedData?.[step]?.name === "USA"
                       ? "Click submit for your predictions"
                       : `${
-                          previousData?.states?.[step]
+                        sortedData?.[step]
                             ?.electrical_collage_number
                         }${" "} ${"Electoral College Votes"}`}
                   </p>
@@ -436,10 +441,10 @@ function ElectoralCollege() {
         <div className="flex flex-col items-start lg:flex lg:flex-row lg:items-start ">
           <div className="question flex flex-col justify-center gap-3 items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
             {previousData &&
-              previousData?.states &&
-              previousData?.states[step] && (
+              sortedData &&
+              sortedData[step] && (
                 <img
-                  src={`${imageUrl}${previousData?.states?.[step]?.state_image_url}`}
+                  src={`${imageUrl}${sortedData?.[step]?.state_image_url}`}
                   // src={abc}
                   alt=""
                   className="w-12 lg:w-12 xl:w-20 2xl:w-24 object-cover mt-3"
@@ -452,7 +457,7 @@ function ElectoralCollege() {
             </div>
             <div>
               <h2 className="text-redish text-center poppins6 text-[19.4px] ">
-                {previousData?.states?.[step]?.name}
+                {sortedData?.[step]?.name}
               </h2>
             </div>
           </div>
@@ -469,7 +474,7 @@ function ElectoralCollege() {
                     ? "opacity-50"
                     : ""
                 }`}
-                onClick={() => handleClick(previousData?.states?.[step]?.id, 1)}
+                onClick={() => handleClick(sortedData?.[step]?.id, 1)}
               >
                 <img src={democratic} className="" alt="" />
               </div>
@@ -481,7 +486,7 @@ function ElectoralCollege() {
                     ? "opacity-50"
                     : ""
                 }`}
-                onClick={() => handleClick(previousData?.states?.[step]?.id, 2)}
+                onClick={() => handleClick(sortedData?.[step]?.id, 2)}
               >
                 <img src={republican} alt="" />
               </div>
@@ -493,7 +498,7 @@ function ElectoralCollege() {
                     ? "opacity-50"
                     : ""
                 }`}
-                onClick={() => handleClick(previousData?.states?.[step]?.id, 3)}
+                onClick={() => handleClick(sortedData?.[step]?.id, 3)}
               >
                 <img src={independent} alt="" />
               </div>
@@ -666,7 +671,7 @@ function ElectoralCollege() {
                 <div
                   className={`py-6 rounded-l-[10.65px] px-4 bg-[#5b4fd1]   flex justify-between items-center`}
                   style={{
-                    width: `${previousData?.states?.[step]?.previous_election_state?.[0]?.vote_percentage}%`,
+                    width: `${sortedData?.[step]?.previous_election_state?.[0]?.vote_percentage}%`,
                   }}
                 >
                   <p className="text-white poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] opacity-70">
@@ -705,7 +710,7 @@ function ElectoralCollege() {
                         </defs>
                       </svg>
                       {
-                        previousData?.states?.[step]
+                        sortedData?.[step]
                           ?.previous_election_state?.[0]?.vote_percentage
                       }
                     </p>
@@ -714,7 +719,7 @@ function ElectoralCollege() {
                 <div
                   className={`py-6 flex justify-between px-4 bg-redish `}
                   style={{
-                    width: `${previousData?.states?.[step]?.previous_election_state?.[1]?.vote_percentage}%`,
+                    width: `${sortedData?.[step]?.previous_election_state?.[1]?.vote_percentage}%`,
                   }}
                 >
                   <p className="text-white poppins4 hidden sm:hidden md:hidden lg:block truncate sm:text-[22px]">
@@ -753,7 +758,7 @@ function ElectoralCollege() {
                         </defs>
                       </svg>{" "}
                       {
-                        previousData?.states?.[step]
+                        sortedData?.[step]
                           ?.previous_election_state?.[1]?.vote_percentage
                       }
                     </p>
@@ -762,7 +767,7 @@ function ElectoralCollege() {
                 <div
                   className="py-6 flex flex-col sm:flex sm:justify-between relative px-10 sm:px-20 items-center rounded-r-[10.65px] bg-white "
                   style={{
-                    width: `${previousData?.states?.[step]?.previous_election_state?.[2]?.vote_percentage}%`,
+                    width: `${sortedData?.[step]?.previous_election_state?.[2]?.vote_percentage}%`,
                   }}
                 >
                   <p className="poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-[#131A41] opacity-70 absolute left-1">
@@ -771,7 +776,7 @@ function ElectoralCollege() {
                   <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-14 text-[#131A41] opacity-70 ">
                     <p className="flex items-center gap-3 ">
                       {
-                        previousData?.states?.[step]
+                        sortedData?.[step]
                           ?.previous_election_state?.[2]?.vote_percentage
                       }
                     </p>
@@ -787,7 +792,7 @@ function ElectoralCollege() {
                 <div
                   className="py-6 rounded-l-[10.65px] px-4 bg-[#5b4fd1]  flex justify-between items-center"
                   style={{
-                    width: `${previousData?.states?.[step]?.previous_election_state?.[3]?.vote_percentage}%`,
+                    width: `${sortedData?.[step]?.previous_election_state?.[3]?.vote_percentage}%`,
                   }}
                 >
                   <p className="text-white poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] opacity-70">
@@ -826,7 +831,7 @@ function ElectoralCollege() {
                         </defs>
                       </svg>{" "}
                       {
-                        previousData?.states?.[step]
+                        sortedData?.[step]
                           ?.previous_election_state?.[3]?.vote_percentage
                       }
                     </p>
@@ -835,7 +840,7 @@ function ElectoralCollege() {
                 <div
                   className="py-6 flex justify-between px-4 bg-redish "
                   style={{
-                    width: `${previousData?.states?.[step]?.previous_election_state?.[4]?.vote_percentage}%`,
+                    width: `${sortedData?.[step]?.previous_election_state?.[4]?.vote_percentage}%`,
                   }}
                 >
                   <p className="poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
@@ -874,7 +879,7 @@ function ElectoralCollege() {
                         </defs>
                       </svg>{" "}
                       {
-                        previousData?.states?.[step]
+                        sortedData?.[step]
                           ?.previous_election_state?.[4]?.vote_percentage
                       }
                     </p>
@@ -883,7 +888,7 @@ function ElectoralCollege() {
                 <div
                   className="py-6 flex justify-between px-10 sm:px-20 relative items-center rounded-r-[10.65px] bg-white "
                   style={{
-                    width: `${previousData?.states?.[step]?.previous_election_state?.[5]?.vote_percentage}%`,
+                    width: `${sortedData?.[step]?.previous_election_state?.[5]?.vote_percentage}%`,
                   }}
                 >
                   <p className="poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-[#131A41] absolute left-1 opacity-70">
@@ -892,7 +897,7 @@ function ElectoralCollege() {
                   <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-2   text-[#131A41] opacity-70">
                     <p className="flex items-center gap-3">
                       {
-                        previousData?.states?.[step]
+                        sortedData?.[step]
                           ?.previous_election_state?.[5]?.vote_percentage
                       }
                     </p>
@@ -906,7 +911,7 @@ function ElectoralCollege() {
                 <div
                   className="py-6 rounded-l-[10.65px] px-4 bg-[#5b4fd1]  flex justify-between items-center"
                   style={{
-                    width: `${previousData?.states?.[step]?.previous_election_state?.[6]?.vote_percentage}%`,
+                    width: `${sortedData?.[step]?.previous_election_state?.[6]?.vote_percentage}%`,
                   }}
                 >
                   <p className="text-white poppins4 hidden sm:hidden md:hidden lg:block text-[22px] opacity-70">
@@ -945,7 +950,7 @@ function ElectoralCollege() {
                         </defs>
                       </svg>{" "}
                       {
-                        previousData?.states?.[step]
+                        sortedData?.[step]
                           ?.previous_election_state?.[6]?.vote_percentage
                       }
                     </p>
@@ -954,7 +959,7 @@ function ElectoralCollege() {
                 <div
                   className="py-6 flex justify-between px-4 bg-redish "
                   style={{
-                    width: `  ${previousData?.states?.[step]?.previous_election_state?.[7]?.vote_percentage}%`,
+                    width: `  ${sortedData?.[step]?.previous_election_state?.[7]?.vote_percentage}%`,
                   }}
                 >
                   <p className="poppins4 hidden sm:hidden md:hidden lg:block sm:text-[22px] text-white">
@@ -993,7 +998,7 @@ function ElectoralCollege() {
                         </defs>
                       </svg>{" "}
                       {
-                        previousData?.states?.[step]
+                        sortedData?.[step]
                           ?.previous_election_state?.[7]?.vote_percentage
                       }
                     </p>
@@ -1002,7 +1007,7 @@ function ElectoralCollege() {
                 <div
                   className="py-6 flex justify-between px-10 sm:px-20 items-center relative rounded-r-[10.65px] bg-white "
                   style={{
-                    width: `  ${previousData?.states?.[step]?.previous_election_state?.[8]?.vote_percentage}%`,
+                    width: `  ${sortedData?.[step]?.previous_election_state?.[8]?.vote_percentage}%`,
                   }}
                 >
                   <p className="poppins4 hidden sm:hidden md:hidden lg:block text-[22px] text-[#131A41] absolute left-1 opacity-70">
@@ -1011,7 +1016,7 @@ function ElectoralCollege() {
                   <div className="value poppins4 text-[14px] sm:text-[22px] -ml-5 sm:ml-0 text-[#131A41] opacity-70">
                     <p className="flex items-center gap-3 -ml-0 sm:ml-4">
                       {
-                        previousData?.states?.[step]
+                       sortedData?.[step]
                           ?.previous_election_state?.[8]?.vote_percentage
                       }
                     </p>

@@ -232,8 +232,7 @@ export default function ElectoralCollege() {
             ))}
             
 
-            
-            <button
+            {president?.length>3&&( <button
               className="absolute bottom-[-20px] left-[50%]"
               onClick={expandVotes}
             >
@@ -250,7 +249,8 @@ export default function ElectoralCollege() {
                   fill="white"
                 />
               </svg>
-            </button>
+            </button>)}
+           
           </>      
         ) : (
           <>
