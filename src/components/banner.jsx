@@ -167,7 +167,7 @@ function Banner() {
               </button>
             </div>
             <div className="whiteHouseText">
-            <Link to="/"><img src={text} className="w-44" alt="" /></Link>
+            <Link to="/"><img src={text} loading="lazy" className="w-44" alt="" /></Link>
             </div>
             <div className="couter ">
               <h2 className="poppins5 text-center text-white mb-2">Voting starts</h2>
@@ -232,14 +232,14 @@ function Banner() {
             </p>
             <div className="buttons mt-8 md:mt-16 flex gap-4">
               <button className="border-0">
-                <img
+                <img loading="lazy"
                   className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]"
                   src={ios}
                   alt=""
                 />
               </button>
               <button className="border-0">
-                <img
+                <img loading="lazy"
                   className="w-[6.5rem]  md:w-[10rem] lg:w-[14rem]"
                   src={playstore}
                   alt=""
@@ -247,7 +247,7 @@ function Banner() {
               </button>
             </div>
           </div>
-          <img
+          <img loading="lazy"
             className="w-[50%] absolute md:-z-10 bottom-[-8%] right-0"
             src={presidents}
             alt=""
