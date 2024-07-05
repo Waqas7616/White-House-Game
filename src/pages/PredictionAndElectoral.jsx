@@ -17,6 +17,7 @@ import DownloadApp from "../components/DownloadApp";
 import { useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import ReactGA from 'react-ga4'
+import { Helmet } from "react-helmet";
 
 function PredictionAndElectoral() {
   
@@ -84,6 +85,12 @@ function PredictionAndElectoral() {
   
     return (
       <div className="">
+        <Helmet>
+      <title>The White House Game | Electoral College</title>
+      <meta name="keywords" content="2024 Presidential election, predict, Electoral College, predict, play." />
+      <meta name="description" content="An Electoral College of 538 delegates decides who occupies the White House. Our game lets you pick state winners and whoever gets 270 votes gets to rule The Free World." />
+      <meta lang="en" />
+    </Helmet>
         <AppBanner
           redTitle={"MAKE A"}
           bg={bg}

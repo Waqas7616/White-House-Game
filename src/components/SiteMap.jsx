@@ -2,6 +2,7 @@ import React from "react";
 import AppBanner from "./appbanner/AppBanner";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import DownloadApp from "./DownloadApp";
+import { Helmet } from "react-helmet";
 
 export default function SiteMap() {
   const navigate = useNavigate();
@@ -14,6 +15,17 @@ export default function SiteMap() {
   };
   return (
     <div>
+       <Helmet>
+        <title>The White House Game | Site Map Information Quick Links</title>
+        <meta
+          name="description"
+          content="Explore quick links for navigating The White House Game. Predict the next President, view candidates, and learn about our terms and privacy policy."
+        />
+        <meta
+          name="keywords"
+          content="The White House Game, presidential election, candidates, predict president, terms and conditions, privacy policy"
+        />
+      </Helmet>
       <AppBanner bannerTitle={"Map"} redTitle={"Site"} />
       <h2 className="text-center text-white poppins5 mt-12 text-[30px]">
         Information Quick Links

@@ -15,19 +15,20 @@ import { useStatePredictions } from "../utils/StateIDs";
 import DownloadApp from "../components/DownloadApp";
 import { useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
-import ReactGA from 'react-ga4';
+import ReactGA from "react-ga4";
+import { Helmet } from "react-helmet";
 
 function Prediction() {
-  
   const navigate = useNavigate();
-  const { president, vicePresident, party, voting, addVoting } = useStatePredictions()
-  useEffect(()=>{
+  const { president, vicePresident, party, voting, addVoting } =
+    useStatePredictions();
+  useEffect(() => {
     ReactGA.send({
-      hitType:'pageview',
-      path:window.location.pathname
+      hitType: "pageview",
+      path: window.location.pathname,
     });
-      },[])
-const [error,setError]=useState("");
+  }, []);
+  const [error, setError] = useState("");
   const [data, setData] = useState({
     votter_party_id: party,
     president_id: president,
@@ -40,7 +41,7 @@ const [error,setError]=useState("");
       president_id: president,
       vice_president_id: vicePresident,
     });
-  }, [president, vicePresident])
+  }, [president, vicePresident]);
   const token = secureLocalStorage.getItem("token");
 
   const handleSelectionChange = (isComplete) => {
@@ -57,10 +58,9 @@ const [error,setError]=useState("");
 
   const sendPrediction = () => {
     ReactGA.event({
-      category:'Election',
-action:"Election through President only",
-
-    })
+      category: "Election",
+      action: "Election through President only",
+    });
     axios
       .post(
         "https://thewhitehousegame.com/api/public/api/select_party_leaders",
@@ -84,6 +84,18 @@ action:"Election through President only",
 
   return (
     <div className="">
+      <Helmet>
+        <title>The White House Game | Predict Next President</title>
+        <meta
+          name="keywords"
+          content="2024 Presidential election, prediction, next president."
+        />
+        <meta
+          name="description"
+          content="Our game lets you predict which candidates each party will select and who the ultimate winner will be. You can also predict the Electoral College if you want to."
+        />
+        <meta lang="en" />
+      </Helmet>
       <AppBanner
         redTitle={"MAKE A"}
         bg={bg}
@@ -163,7 +175,6 @@ action:"Election through President only",
         </div>
       </div>
       <div className="buttons flex items-center justify-center gap-4 xl:mt-[54px] mb-3 ">
-        
         {/* <button className="rounded-[6px] text-white poppins-6 border-[1px] border-white px-5 py-2 sm:px-10 sm:py-2 ">Edit my predictions</button> */}
         <button
           onClick={sendPrediction}

@@ -65,7 +65,7 @@ function CustomSlider() {
       {...props}
       className="absolute top-[13%] right-[.5%] sm:top-[13%] sm:-right-[1.5%] md:top-[13%] md:-right-[5.5%] lg:top-[13%] lg:-right-[1%] xl:top-[13%] xl:-right-[1%]  transform cursor-pointer"
     >
-      <span className="text-2xl opacity-[0.5] hover:opacity-100">
+      <span className=" opacity-[0.5] hover:opacity-100">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="90"
@@ -147,7 +147,7 @@ function CustomSlider() {
       {...props}
       className="absolute w-fit top-[13%] left-[-1.5%] sm:top-[13%] sm:-right-[1.5%] md:top-[13%] md:-right-[1.5%] lg:top-[13%] lg:-right-[1%] z-50  cursor-pointer"
     >
-      <span className="text-2xl opacity-[0.5] hover:opacity-100">
+      <span className=" opacity-[0.5] hover:opacity-100">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="90"

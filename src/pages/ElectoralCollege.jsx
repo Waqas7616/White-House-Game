@@ -28,6 +28,7 @@ import secureLocalStorage from "react-secure-storage";
 import ReactGA from "react-ga4";
 import CustomSpinner from "../components/spinner";
 import check from "../images/check.png";
+import { Helmet } from "react-helmet";
 
 const initialElectoralCount = {
   Democratic: 0,
@@ -269,6 +270,13 @@ function ElectoralCollege() {
   console.log(sortedData)
   
   return (
+    <>
+    <Helmet>
+      <title>The White House Game | Electoral College</title>
+      <meta name="keywords" content="2024 Presidential election, predict, Electoral College, predict, play." />
+      <meta name="description" content="If you enjoy politics then you will enjoy predicting who will be the next President. Predict each party to win the states and whoever gets 270 votes rules The Free World." />
+      <meta lang="en" />
+    </Helmet>
     <div className=" bg-[#1c2452]">
       {popUp && (
         <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
@@ -1032,6 +1040,7 @@ function ElectoralCollege() {
 
       <DownloadApp />
     </div>
+    </>
   );
 }
 
