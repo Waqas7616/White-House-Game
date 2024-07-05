@@ -257,7 +257,7 @@ function PartyPrediction() {
                   <div className="w-[100px] md:w-[150px] md:h-[120px]  overflow-hidden rounded-[10.96px]">
                     {popPresident && popPresident.voter_candidate && (
                       <img
-                        className="w-full object-cover"
+                        className="w-[100px] md:w-[150px] md:h-[120px] object-cover"
                         src={`${imageUrl}${popPresident.voter_candidate.candidate_image}`}
                         alt=""
                       />
@@ -269,7 +269,7 @@ function PartyPrediction() {
                   <div className="w-[100px] md:w-[150px] md:h-[120px]  overflow-hidden rounded-[10.96px]">
                     {popvicePresident && popvicePresident.voter_candidate && (
                       <img
-                        className="w-full object-cover"
+                        className="w-[100px] md:w-[150px] md:h-[120px] object-cover"
                         src={`${imageUrl}${popvicePresident.voter_candidate.candidate_image}`}
                         alt=""
                       />
@@ -289,7 +289,7 @@ function PartyPrediction() {
                 </span>
               </p>
               <p className="text-white text-center poppins4 text-[13px] w-1/2 m-auto mt-3 2xl:mt-5">
-                If you change your mind and would like to update your Prediction{" "}
+              If you would like to change your Prediction{" "}
               </p>
               <button
                 onClick={() => navigate("/predict")}
@@ -301,7 +301,7 @@ function PartyPrediction() {
                 onClick={handleClosePopup}
                 className="rounded-[6px] border-[1px] px-20 block m-auto py-2 2xl:py-3 mt-5 border-white poppins7 text-white text-center"
               >
-                Done
+                 Close
               </button>
             </div>
           </div>

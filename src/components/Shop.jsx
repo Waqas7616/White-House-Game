@@ -268,9 +268,9 @@ export default function Shop() {
   //   },
   // ];
   return (
-    <div className="CondidateList-section py-12 bg-white">
-      <div className="w-8/12 m-auto resp">
-        <div>
+    <div className="CondidateList-section py-12 bg-white ">
+      <div className="w-8/12 m-auto resp ">
+        <div className="w-11/12 m-auto">
           <h2 className="text-[14px] md:text-[36px] text-[#000] orbit9 flex justify-between items-center mb-5">
             {" "}
             <span>

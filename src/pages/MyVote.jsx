@@ -17,6 +17,7 @@ import Independentlogo from "../images/Independentlogo.png";
 import Republicanlogo from "../images/Republicanlogo.png";
 import secureLocalStorage from "react-secure-storage";
 import ReactGA from "react-ga4";
+import { Helmet } from "react-helmet";
 
 export default function MyVote() {
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function MyVote() {
   const [lastElection, setLastElection] = useState({});
   const navigate = useNavigate();
   const token = secureLocalStorage.getItem("token");
-  // console.log(token)
+ 
   const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   useEffect(() => {
@@ -84,10 +85,11 @@ export default function MyVote() {
       })
       .catch((e) => console.log("elecotral error is", e));
   }, []);
+  console.log('abc',lastElection)
   // const getStatesDetails=()=>{
   //   const stateName=Object.keys
   // }
-  const sortedElections = Object.entries(lastElection)?.sort((a, b) =>
+  const sortedElections = Object.entries(lastElection)?.sort((a,b) =>
     a[0].localeCompare(b[0])
   );
 
@@ -99,9 +101,26 @@ export default function MyVote() {
     : null;
 
   const filtered = newdata !== null && newdata.pop();
+  if (newdata) {
+  newdata.sort((a, b) => {
+    if (a[0] < b[0]) {
+      return -1;
+    }
+    if (a[0] > b[0]) {
+      return 1;
+    }
+    return 0;
+  });
+}
   // console.log("filter", sortedElections);
   return (
     <div>
+      <Helmet>
+      <title>The White House Game | My Vote Next President</title>
+      <meta name="keywords" content="2024 Presidential election, prediction, next president." />
+      <meta name="description" content="American voters elect an Electoral College which chooses the President. The White House Game lets you predict who the party candidates will be and who you think will win." />
+      <meta lang="en" />
+    </Helmet>
       <AppBanner
         bannerTitle={"Vote"}
         redTitle={"My"}

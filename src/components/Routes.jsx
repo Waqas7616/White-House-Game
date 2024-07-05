@@ -35,7 +35,7 @@ function AppRoutes() {
   useEffect(() => {
     const user = securesecureLocalStorage.getItem("email");
     const tokens = securesecureLocalStorage.getItem("token");
-  setLoading(false);
+    setLoading(false);
     setUser(user);
     setLocalToken(tokens);
   }, [loading, localToken, user]);
@@ -49,7 +49,7 @@ function AppRoutes() {
   }
   return (
     <Router>
-      <ScrollTop/>
+      <ScrollTop />
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -67,7 +67,10 @@ function AppRoutes() {
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/emailverification" element={<EmailVerification />} />
         <Route path="/forgotmodal" element={<ForgotModal />} />
-        <Route path="/putdata" element={<PutData />} />
+        <Route
+          path="/putdata"
+          element={localToken || user ? <PutData /> : <Navigate to="/" />}
+        />
         <Route
           path="/electoral"
           element={
@@ -75,17 +78,20 @@ function AppRoutes() {
           }
         />
 
-        <Route path="/party-prediction" element={<PartyPrediction />} />
-        <Route path="/statewinner" element={<StateWinner/>}/>
-        <Route path="/candidate" element={<Candidate/>}/>
-        <Route path="/forgetmodal" element={<ForgotModal/>}/>
-        <Route path="/termscondition" element={<TermsCondition/>}/>
-        <Route path="/privacypolicy" element={<PrivacyPolicy/>}/>
-        <Route path="/payment" element={<PaymentPage/>}/>
-        <Route path="/myvote" element={<MyVote/>}/>
-        <Route path="/predictandelectoral" element={<PredictionAndElectoral/>}/>
-        <Route path="/sitemap" element={<SiteMap/>}/>
-        <Route path="/otpmatch" element={<OtpMatch/>}/>
+        <Route path="/party-prediction" element={localToken || user ? <PartyPrediction /> :<Navigate to="/" /> } />
+        <Route path="/statewinner" element={<StateWinner />} />
+        <Route path="/candidate" element={<Candidate />} />
+        <Route path="/forgetmodal" element={<ForgotModal />} />
+        <Route path="/termscondition" element={<TermsCondition />} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="/payment" element={localToken || user ? <PaymentPage />:<Navigate to="/" />} />
+        <Route path="/myvote" element={localToken || user?<MyVote />:<Navigate to="/" />} />
+        <Route
+          path="/predictandelectoral"
+          element={<PredictionAndElectoral />}
+        />
+        <Route path="/sitemap" element={<SiteMap />} />
+        <Route path="/otpmatch" element={<OtpMatch />} />
       </Routes>
     </Router>
   );
