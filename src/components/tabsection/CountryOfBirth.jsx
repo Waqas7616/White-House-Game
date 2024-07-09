@@ -53,7 +53,7 @@ export default function CountryOfBirth() {
       )
       .then((res) => {
         setCountryOfBirth(res.data);
-        setPresident(res.data.data.candidate_percentages.filter((item)=>item.position==='president'))
+        setPresident(res.data.data.candidate_percentages.filter((item)=>item.position==='president').sort((a,b)=>b.percentage-a.percentage))
       })
       .catch((err) => {
         console.error("Error:", err);

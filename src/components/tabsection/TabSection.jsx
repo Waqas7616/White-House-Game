@@ -55,13 +55,13 @@ function TabSection() {
         setPresident(
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "president"
-          )
+          ).sort((a,b)=>b.percentage-a.percentage)
         );
 
         setVicePresident(
           res?.data?.data?.candidate_percentages.filter(
             (item) => item.position === "vice_president"
-          )
+          ).sort((a,b)=>b.percentage-a.percentage)
         );
       })
       .catch((err) => {
