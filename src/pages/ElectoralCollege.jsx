@@ -267,7 +267,6 @@ function ElectoralCollege() {
   };
 
   const sortedData = previousData?.states?.sort((a, b) =>a.name!=='USA'&& a.name.localeCompare(b.name));
-  console.log(sortedData)
   
   return (
     <>
