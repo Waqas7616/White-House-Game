@@ -88,7 +88,7 @@ function AppRoutes() {
         <Route path="/myvote" element={localToken || user?<MyVote />:<Navigate to="/" />} />
         <Route
           path="/predictandelectoral"
-          element={<PredictionAndElectoral />}
+          element={localToken || user ?<PredictionAndElectoral />: <Navigate to="/login" />}
         />
         <Route path="/sitemap" element={<SiteMap />} />
         <Route path="/otpmatch" element={<OtpMatch />} />

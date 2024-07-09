@@ -11,6 +11,7 @@ import CustomSpinner from "../spinner";
 import DownloadApp from "../DownloadApp";
 import secureLocalStorage from "react-secure-storage";
 import check from "../../images/check.png";
+import { Helmet } from "react-helmet";
 
 export const PutData = () => {
   const location = useLocation();
@@ -281,7 +282,6 @@ export const PutData = () => {
   
   const handleSaveButtonClick = async () => {
     setIsLoading(true);
-console.log('my payload values are :',payload)
     // setPopUP(true);
 
     try {
@@ -311,6 +311,17 @@ console.log('my payload values are :',payload)
 // console.log(payload)
   return (
     <>
+      <Helmet>
+        <title>The White House Game | My Account </title>
+        <meta
+          name="description"
+          content="Access your account on The White House Game to manage your predictions, view your voting history, and update your personal information."
+        />
+        <meta
+          name="keywords"
+          content="The White House Game, My Account, manage predictions, voting history, personal information"
+        />
+      </Helmet>
       {popUp && (
         <div className="popup">
           <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">

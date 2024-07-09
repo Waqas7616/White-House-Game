@@ -236,6 +236,28 @@ select::-ms-expand {
     border-radius: inherit;
     animation: loading2_713 3.5s ease both infinite;
   }
+
+  .board{
+    background-image: url('../src/images/board.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .board::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.708); /* Adjust the color and opacity as needed */
+    z-index: 1; /* Ensure the overlay is on top of the background but below other content */
+  }
+  
+  .board-content {
+    position: relative;
+    z-index: 2; /* Ensure the content is on top of the overlay */
+  }
   
   @keyframes text_713 {
     0% {
