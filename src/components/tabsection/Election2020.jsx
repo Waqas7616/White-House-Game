@@ -12,6 +12,7 @@ import democrat from "../../images/democrat.png";
 import republic from "../../images/republican.png";
 import up from "../../images/greenarrow.png";
 import down from "../../images/redarrow.png";
+import down2 from "../../images/decrease.png";
 import axios from "axios";
 
 export default function Election2020() {
@@ -170,7 +171,7 @@ export default function Election2020() {
                   <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
                     <img
                       className=" sm:w-auto"
-                      src={item.difference > 0 ? up : down}
+                      src={item.difference > 0 ? up : item.party_name==="Republican"?down2:down}
                       alt=""
                     />
                   </div>

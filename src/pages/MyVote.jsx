@@ -46,6 +46,7 @@ export default function MyVote() {
         },
       })
       .then((response) => {
+        console.log('voting response',response.data.PredictedCandidateDetails)
         const data = response.data;
         setUserVote(data);
 

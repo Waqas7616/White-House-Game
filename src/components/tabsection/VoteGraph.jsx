@@ -164,7 +164,7 @@ export default function VoteGraph() {
               </p>
             ) : (
               candidatedata?.data?.candidate_percentages
-                .filter((item) => item.position === "president")
+                .filter((item) => item.position === "president").sort((a,b)=>b.percentage-a.percentage)
                 .slice(0, 3)
                 .map((item, index) => (
                   <div
