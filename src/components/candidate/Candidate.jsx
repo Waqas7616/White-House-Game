@@ -409,7 +409,7 @@ const Candidate = () => {
                               ? "Libertarian Party Independent"
                               : item?.party?.party_name.split("(")[0]}
                           </p>
-                          <p className=" text-[12px] md:text-[14px] lg:text-[15px] xl:text-[18px] poppins4 text-black ">
+                          <p className=" text-[12px] md:text-[14px] lg:text-[15px] xl:text-[16px] poppins4 text-black ">
                             <ul>
                               {item.position &&
                                 item?.position
@@ -417,7 +417,7 @@ const Candidate = () => {
                                   .map((positionItem, index) => (
                                     <li
                                       key={index}
-                                      className="mb-2 text-[12px] md:text-[14px] lg:text-[15px] xl:text-[18px] poppins4 text-black"
+                                      className="mb-2 text-[12px] md:text-[13px] lg:text-[13px] xl:text-[15px] 2xl:text-[18px] poppins4 text-black"
                                     >
                                       {positionItem.trim()}
                                     </li>
