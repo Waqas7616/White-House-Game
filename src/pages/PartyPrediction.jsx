@@ -221,17 +221,17 @@ function PartyPrediction() {
 
       {popUp && (
         <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
-          <div className="popup bg-[#1C2452] w-10/12 lg:w-6/12 xl:w-5/12 h-[95vh]  xl:h-[95vh] 2xl:h-[40vh] rounded-[30px]    ">
+          <div className="popup bg-[#1C2452] px-16 rounded-[30px] py-2 md:py-3 lg:py-4 xl:py-8 2xl:py-12   ">
             <div className="popup-content ">
-              <img src={logo} className="m-auto w-[90px]" alt="" />
-              <h1 className="poppins6 text-white text-center">
+              <img src={logo} className="m-auto w-[45px] lg:w-[50px] xl:w-[90px]" alt="" />
+              <h1 className="poppins6 text-white text-center text-[13px] xl:text-[16px]">
                 Who you expect to win
               </h1>
               <div
                 style={{ background: `url(${confetti})` }}
                 className="p-4 w-20 mb-2 rounded-full m-auto flex justify-center items-center"
               >
-                <div className="party-badge bg-white rounded-full w-10 h-10 flex items-center justify-center">
+                <div className="party-badge bg-white rounded-full xl:w-10 xl:h-10 md:w-[30px] md:h-[30px] flex items-center justify-center">
                   <img
                     className="w-5"
                     src={
@@ -246,18 +246,18 @@ function PartyPrediction() {
                 </div>
               </div>
               <div
-                className="flex gap-5 w-fit m-auto xl:h-[20%]  items-center justify-center p-4 border-[2px] border-white rounded-[18.5px] md:mb-4 2xl:mb-10"
+                className="flex gap-5 w-fit m-auto  items-center justify-center p-4 border-[2px] border-white rounded-[18.5px] md:mb-4 2xl:mb-10"
                 style={{
                   background:
                     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
                 }}
               >
                 <div>
-                  <h1 className="text-white poppins6 mb-2">President</h1>
-                  <div className="w-[100px] md:w-[150px] md:h-[120px]  overflow-hidden rounded-[10.96px]">
+                  <h1 className="text-white text-[12px] xl:text-[16px] poppins6 mb-2">President</h1>
+                  <div className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px]  overflow-hidden rounded-[10.96px]">
                     {popPresident && popPresident.voter_candidate && (
                       <img
-                        className="w-[100px] md:w-[150px] md:h-[120px] object-cover"
+                        className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px] object-cover"
                         src={`${imageUrl}${popPresident.voter_candidate.candidate_image}`}
                         alt=""
                       />
@@ -265,11 +265,11 @@ function PartyPrediction() {
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-white poppins6 mb-2">Vice President</h1>
-                  <div className="w-[100px] md:w-[150px] md:h-[120px]  overflow-hidden rounded-[10.96px]">
+                  <h1 className="text-white text-[12px] xl:text-[16px] poppins6 mb-2">Vice President</h1>
+                  <div className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px]  overflow-hidden rounded-[10.96px]">
                     {popvicePresident && popvicePresident.voter_candidate && (
                       <img
-                        className="w-[100px] md:w-[150px] md:h-[120px] object-cover"
+                        className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px] object-cover"
                         src={`${imageUrl}${popvicePresident.voter_candidate.candidate_image}`}
                         alt=""
                       />

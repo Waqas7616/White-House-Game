@@ -32,7 +32,7 @@ export default function DownloadApp() {
             </h2>
             <p className="text-[#fff] pt-3 sm:pt-1 pl-[20px] lg:pl-0 text-[8px] md:text-[10px] lg:text-[10px] xl:text-[14px] xl-a:text-[18px] acer:text-[20px] 2xl:text-[25px] lg:w-[432px] xl:w-[625px] 2xl:w-[906px]">
               Predict who you think will win. Open an account and if you change
-              your mind, update your choice. This game is for THINKING people
+              your mind, update your choice. This game is for THINKING people.
             </p>
             <div className="mt-8 flex justify-center items-center sm:flex sm:justify-normal gap-3 pb-5 ps-3 sm:ps-0 lg:ps-0 sm:pb-5 ">
               <img className="w-[5rem] sm:w-[10rem]" src={app} alt="app" />

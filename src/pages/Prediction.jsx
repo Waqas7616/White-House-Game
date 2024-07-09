@@ -116,7 +116,7 @@ function Prediction() {
         Tuesday, November
         <span className="poppins5 text-white xl:text-[22px]">5, 2024</span>
       </p>
-      <div className="resp w-10/12 m-auto flex flex-wrap gap-6 items-center justify-center mt-12">
+      <div className="resp  m-auto flex flex-wrap gap-6 items-center justify-center mt-12">
         <div>
           <div className="flex items-center gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded">
             <span className="">

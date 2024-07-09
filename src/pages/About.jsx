@@ -37,8 +37,7 @@ function About() {
         bannerTitle={"US"}
         bannerDesc={
           <>
-            The 2024 Presidential Election is the most important
-            since 1860.
+            We believe the 2024 Presidential Election is the most important since 1860.
             <br />
             The results of that election triggered a Civil War.
             <br />
@@ -115,16 +114,17 @@ function About() {
 
       {/* DESIGNED SEC  */}
 
-      <div className="bg-gradient-to-r from-[#ED1C24] from-0% via-[#BE1E2E]  to-[#1C2452]  py-[100px]">
-        <div className="resp w-10/12 m-auto">
-          <h2 className="orbit9 text-center xl:text-[50px] text-white xl:w-[70%] m-auto">
+      <div className="board relative  py-[100px]">
+        <div className="board-content resp w-10/12 m-auto">
+          <h2 className="  text-redish orbit9 text-center xl:text-[50px]  xl:w-[70%] m-auto">
             Who designed and built
-            <br /> The <span className="text-[#1C2452]">White House</span> Game
+            <br /> The <span className="text-[#fff]">White House</span> Game?
           </h2>
           <p className="poppins3 text-white/90 xl:text-[20px] text-center xl:w-[70%] m-auto mt-8">
             The game was designed and built by{" "}
             <span>
               <a
+              target="_blank"
                 href="https://abacusmultimedia.com/"
                 className="poppins6 hover:underline"
               >
@@ -132,14 +132,11 @@ function About() {
               </a>
               
             </span>{" "}
-            as an example of what we can do. We have a team of highly skilled
-            graphic designers and our own frontend and backend teams. We have a
-            team of highly skilled graphic designers and our own frontend and
-            backend development teams, our SEO technicians, supervise language
-            translations in-house and have our own content creators.
-            <br /> If you need an App or Website built on any budget, <span className="cursor-pointer poppins6 hover:underline" onClick={()=>navigate("/contact")}>contact us.</span>{" "}
+            as an example of what we can do. We have a team of skilled graphic designers and our own frontend and backend development teams, SEO technicians, in-house language translators and digital content creators.
+            
             
           </p>
+          <p className="poppins3 text-white/90 xl:text-[20px] text-center mt-3">If you need an App or Website built on any budget, <span className="cursor-pointer poppins6 hover:underline" onClick={()=>navigate("/contact")}>contact us.</span></p>
         </div>
       </div>
 
@@ -162,8 +159,7 @@ function About() {
                   Why isn’t it free?
                 </h5>
                 <p className="mt-4 poppins4 text-[#333333] xl:text-[19.45px]">
-                  We wanted to prevent bots and fake accounts affected the
-                  results
+                To pay for development and maintenance costs without advertising and to discourage fake account we charge a membership fee of USD$1.49.
                 </p>
               </div>
             </div>
@@ -178,8 +174,7 @@ function About() {
                   Which party do we support?
                 </h5>
                 <p className="mt-4 poppins4 text-[#333333] xl:text-[19.45px]">
-                  We don’t support any party and strive to be fair and
-                  impartial.
+                We don’t support any party or candidates and go to great lengths to be fair and impartial.
                 </p>
               </div>
             </div>

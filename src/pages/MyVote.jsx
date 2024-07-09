@@ -85,7 +85,6 @@ export default function MyVote() {
       })
       .catch((e) => console.log("elecotral error is", e));
   }, []);
-  console.log('abc',lastElection)
   // const getStatesDetails=()=>{
   //   const stateName=Object.keys
   // }
@@ -93,7 +92,6 @@ export default function MyVote() {
     a[0].localeCompare(b[0])
   );
 
-  console.log("winners", sortedElections);
   // console.log(finalData)
   const newdata = finalData?.data ? Object.entries(finalData?.data) : null;
   const elecotral = finalData?.electoral_votes_by_party
