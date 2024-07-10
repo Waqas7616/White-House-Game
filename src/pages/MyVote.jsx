@@ -18,6 +18,7 @@ import Republicanlogo from "../images/Republicanlogo.png";
 import secureLocalStorage from "react-secure-storage";
 import ReactGA from "react-ga4";
 import { Helmet } from "react-helmet";
+import CustomSpinner from "../components/spinner";
 
 export default function MyVote() {
   useEffect(() => {
@@ -32,12 +33,14 @@ export default function MyVote() {
   const [vicePresident, setVicePresident] = useState([]);
   const [finalData, setFinalData] = useState({});
   const [lastElection, setLastElection] = useState({});
+  const [loading,setLoading]=useState(false)
   const navigate = useNavigate();
   const token = secureLocalStorage.getItem("token");
  
   const imageUrl = "https://thewhitehousegame.com/api/public/";
 
   useEffect(() => {
+    setLoading(true)
     axios
       .get("https://thewhitehousegame.com/api/public/api/userVotings", {
         headers: {
@@ -48,6 +51,7 @@ export default function MyVote() {
       .then((response) => {
         const data = response.data;
         setUserVote(data);
+        setLoading(false)
 
         const predictedCandidateNames = data?.PredictedCandidateDetails?.map(
           (candidate) => candidate.candidate_name
@@ -63,7 +67,7 @@ export default function MyVote() {
           filteredCandidates?.filter((e) => e.position === "vice_president")
         );
       })
-      .catch((err) => {});
+      .catch((err) => {setLoading(false)});
   }, []);
 
   useEffect(() => {
@@ -158,7 +162,10 @@ export default function MyVote() {
             </p>
           </div>
           <div className="flex flex-wrap justify-evenly gap-4">
-            {userVote?.SelectedCandidates?.length === 0 ? (
+
+            {loading?<CustomSpinner/>:<>
+            {userVote?.SelectedCandidates?.length === 0 || userVote?.SelectedCandidates===undefined ?  (
+
               <div className="text-center w-full mt-5">
                 <h2 className="text-xl poppins6 text-white">
                   You have not made any predictions yet !
@@ -167,18 +174,15 @@ export default function MyVote() {
             ) : (
               <>
                 <div
-                  // style={{
-                  //   background:
-                  //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
-                  // }}
+                 
                   className={` rounded-lg  pb-24 pt-9 mt-5 px-2 relative ${
                     userVote?.PredictedCandidateDetails?.[0]?.party_name ===
                     "Republican"
-                      ? "bg-redish"
+                      ? "bg-redish order-2"
                       : userVote?.PredictedCandidateDetails?.[0]?.party_name ===
                         "Democratic"
-                      ? "bg-[#546BED]"
-                      : "bg-white"
+                      ? "bg-[#546BED] order-1"
+                      : "bg-white order-3"
                   }`}
                 >
                   <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
@@ -208,7 +212,6 @@ export default function MyVote() {
                       <h4 className="poppins6  xl:text-[20px] mb-2">
                         President
                       </h4>
-                      {/* w-[120px] h-[130px]  sm:w-[260px] sm:h-[270px] md:w-[300px] md:h-[310px] lg:w-[350px] lg:h-[360px] lg-a:w-[450px] lg-a:h-[460px] xl:w-[500px] xl:h-[510px] xl-a:w-[567.38px] xl-a:h-[572.84px] */}
                       <div className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] rounded-[28.43px]  overflow-hidden   ">
                         <img
                           className="w-[124px] h-[154px] md:w-[200px] md:!h-[220px] object-cover"
@@ -276,15 +279,12 @@ export default function MyVote() {
                 <div
                   className={` rounded-lg px-2 pb-24 pt-9 mt-5  relative opacity-50 ${
                     selected?.[0]?.party_name === "Republican"
-                      ? "bg-redish"
+                      ? "bg-redish order-2"
                       : selected?.[0]?.party_name === "Democratic"
-                      ? "bg-[#546BED]"
-                      : "bg-white"
+                      ? "bg-[#546BED] order-1"
+                      : "bg-white order-3"
                   }`}
-                  // style={{
-                  //   background:
-                  //     "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
-                  // }}
+                  
                 >
                   <div className="mx-3 mb-3 px-3 py-2 rounded flex items-center gap-4 bg-[rgba(252,222,222,0.2)] w-fit">
                     <img
@@ -354,10 +354,10 @@ export default function MyVote() {
                 <div
                   className={`px-2 rounded-lg  pb-24 pt-9 mt-5  relative opacity-50 ${
                     selected?.[2]?.party_name === "Republican"
-                      ? "bg-redish"
+                      ? "bg-redish order-2"
                       : selected?.[2]?.party_name === "Democratic"
-                      ? "bg-[#546BED]"
-                      : "bg-white"
+                      ? "bg-[#546BED] order-1"
+                      : "bg-white order-3"
                   }`}
 
                   // style={{
@@ -431,7 +431,7 @@ export default function MyVote() {
                   </div>
                 </div>
               </>
-            )}
+            )}</>}
           </div>
 
           <div className="text-center flex justify-center items-center gap-5">
