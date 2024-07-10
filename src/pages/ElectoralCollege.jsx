@@ -50,7 +50,7 @@ function ElectoralCollege() {
   }, []);
   const myData = secureLocalStorage.getItem("electoral_data");
   const myStep = secureLocalStorage.getItem("electoral_step");
-  const [step, setStep] = useState(myStep||55);
+  const [step, setStep] = useState(myStep||0);
   const [partyClick, setPartyClick] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
   const [electoralCount, setElectoralCount] = useState(() => {
