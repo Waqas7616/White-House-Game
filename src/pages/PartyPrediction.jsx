@@ -164,11 +164,10 @@ function PartyPrediction() {
       setPopvicePresident(vicePresident);
     }
   }, [candidateData, partyData.president_id, partyData.vice_president_id]);
-  // console.log("selected party", partyData);
 
   const handleClosePopup=()=>{
     setPopUp(false)
-    navigate('/myvote')
+    navigate('/')
   }
 
   return (

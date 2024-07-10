@@ -27,11 +27,36 @@ import securesecureLocalStorage from "react-secure-storage";
 import ScrollTop from "./scrolltop/ScrollTop";
 import SiteMap from "./SiteMap";
 import OtpMatch from "./otpmatch/OtpMatch";
+import axios from "axios";
+// import { useNavigate } from 'react-router-dom';
+
+const useAxiosInterceptor = (Navigate) => {
+  useEffect(() => {
+    const interceptor = axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response && error.response.status === 401) {
+          securesecureLocalStorage.removeItem("token");
+          securesecureLocalStorage.removeItem("email");
+          Navigate("/login");
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.response.eject(interceptor);
+    };
+  }, [Navigate]);
+};
 
 function AppRoutes() {
   const [user, setUser] = useState();
   const [localToken, setLocalToken] = useState();
   const [loading, setLoading] = useState(true);
+
+  useAxiosInterceptor(Navigate);
+
   useEffect(() => {
     const user = securesecureLocalStorage.getItem("email");
     const tokens = securesecureLocalStorage.getItem("token");
@@ -78,17 +103,34 @@ function AppRoutes() {
           }
         />
 
-        <Route path="/party-prediction" element={localToken || user ? <PartyPrediction /> :<Navigate to="/" /> } />
+        <Route
+          path="/party-prediction"
+          element={
+            localToken || user ? <PartyPrediction /> : <Navigate to="/" />
+          }
+        />
         <Route path="/statewinner" element={<StateWinner />} />
         <Route path="/candidate" element={<Candidate />} />
         <Route path="/forgetmodal" element={<ForgotModal />} />
         <Route path="/termscondition" element={<TermsCondition />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
-        <Route path="/payment" element={localToken || user ? <PaymentPage />:<Navigate to="/" />} />
-        <Route path="/myvote" element={localToken || user?<MyVote />:<Navigate to="/" />} />
+        <Route
+          path="/payment"
+          element={localToken || user ? <PaymentPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/myvote"
+          element={localToken || user ? <MyVote /> : <Navigate to="/" />}
+        />
         <Route
           path="/predictandelectoral"
-          element={localToken || user ?<PredictionAndElectoral />: <Navigate to="/login" />}
+          element={
+            localToken || user ? (
+              <PredictionAndElectoral />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route path="/sitemap" element={<SiteMap />} />
         <Route path="/otpmatch" element={<OtpMatch />} />

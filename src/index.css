@@ -80,7 +80,7 @@ select::-ms-expand {
 
 @media(min-width:1439px) {
     .resp {
-        width: 1410px !important;
+        width: 1420px !important;
         margin-inline: auto !important;
     }
 }
