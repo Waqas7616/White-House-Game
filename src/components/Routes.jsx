@@ -27,35 +27,35 @@ import securesecureLocalStorage from "react-secure-storage";
 import ScrollTop from "./scrolltop/ScrollTop";
 import SiteMap from "./SiteMap";
 import OtpMatch from "./otpmatch/OtpMatch";
-import axios from "axios";
+// import axios from "axios";
 // import { useNavigate } from 'react-router-dom';
 
-const useAxiosInterceptor = (Navigate) => {
-  useEffect(() => {
-    const interceptor = axios.interceptors.response.use(
-      (response) => response,
-      (error) => {
-        if (error.response && error.response.status === 401) {
-          securesecureLocalStorage.removeItem("token");
-          securesecureLocalStorage.removeItem("email");
-          Navigate("/login");
-        }
-        return Promise.reject(error);
-      }
-    );
+// const useAxiosInterceptor = (Navigate) => {
+//   useEffect(() => {
+//     const interceptor = axios.interceptors.response.use(
+//       (response) => response,
+//       (error) => {
+//         if (error.response && error.response.status === 401) {
+//           securesecureLocalStorage.removeItem("token");
+//           securesecureLocalStorage.removeItem("email");
+//           Navigate("/login");
+//         }
+//         return Promise.reject(error);
+//       }
+//     );
 
-    return () => {
-      axios.interceptors.response.eject(interceptor);
-    };
-  }, [Navigate]);
-};
+//     return () => {
+//       axios.interceptors.response.eject(interceptor);
+//     };
+//   }, [Navigate]);
+// };
 
 function AppRoutes() {
   const [user, setUser] = useState();
   const [localToken, setLocalToken] = useState();
   const [loading, setLoading] = useState(true);
 
-  useAxiosInterceptor(Navigate);
+  // useAxiosInterceptor(Navigate);
 
   useEffect(() => {
     const user = securesecureLocalStorage.getItem("email");

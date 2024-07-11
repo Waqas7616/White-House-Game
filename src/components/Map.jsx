@@ -47,6 +47,7 @@ function Map() {
       }
     }
     // Default color if state data is not available
+    return "rgba(0,0,0,0.2)";
   };
 
   const voteCount = (state) => {
@@ -89,7 +90,7 @@ function Map() {
                 ? "0%"
                 : `${Math.round(statesData[step]?.Democratic)}%`}
             </span>
-         </p>
+          </p>
           <p className="text-[20px] flex justify-between poppins6 text-white text-center mb-2 uppercase px-3">
             Republican:{" "}
             <span className="poppins4">
