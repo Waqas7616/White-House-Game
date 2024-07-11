@@ -82,7 +82,7 @@ function AppRoutes() {
         <Route
           path="/predict"
           element={
-            localToken || user ? <Prediction /> : <Navigate to="/login" />
+            localToken && user ? <Prediction /> : <Navigate to="/login" />
           }
         />
 
@@ -94,19 +94,19 @@ function AppRoutes() {
         <Route path="/forgotmodal" element={<ForgotModal />} />
         <Route
           path="/putdata"
-          element={localToken || user ? <PutData /> : <Navigate to="/" />}
+          element={localToken && user ? <PutData /> : <Navigate to="/" />}
         />
         <Route
           path="/electoral"
           element={
-            localToken || user ? <ElectoralCollege /> : <Navigate to="/login" />
+            localToken && user ? <ElectoralCollege /> : <Navigate to="/login" />
           }
         />
 
         <Route
           path="/party-prediction"
           element={
-            localToken || user ? <PartyPrediction /> : <Navigate to="/" />
+            localToken && user ? <PartyPrediction /> : <Navigate to="/" />
           }
         />
         <Route path="/statewinner" element={<StateWinner />} />
@@ -116,16 +116,16 @@ function AppRoutes() {
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route
           path="/payment"
-          element={localToken || user ? <PaymentPage /> : <Navigate to="/" />}
+          element={localToken && user ? <PaymentPage /> : <Navigate to="/" />}
         />
         <Route
           path="/myvote"
-          element={localToken || user ? <MyVote /> : <Navigate to="/" />}
+          element={localToken && user ? <MyVote /> : <Navigate to="/" />}
         />
         <Route
           path="/predictandelectoral"
           element={
-            localToken || user ? (
+            localToken && user ? (
               <PredictionAndElectoral />
             ) : (
               <Navigate to="/login" />

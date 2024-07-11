@@ -20,7 +20,7 @@ function OtpMatch(props) {
   };
 
   const [email, setEmail] = useState("");
-  const [timeLeft, setTimeLeft] = useState(120);
+  const [timeLeft, setTimeLeft] = useState(180);
   const [isRunning, setIsRunning] = useState(true);
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -167,7 +167,7 @@ function OtpMatch(props) {
       )
       .then((res) => {
         setIsRunning(true);
-        setTimeLeft(120);
+        setTimeLeft(180);
       });
   };
 
@@ -236,7 +236,6 @@ function OtpMatch(props) {
                 )}
               </div>
 
-              
               <div className="max-w-[260px] mx-auto mt-4 flex justify-center">
                 {timeLeft === 0 ? (
                   <div

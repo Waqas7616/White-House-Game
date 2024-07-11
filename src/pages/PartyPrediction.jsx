@@ -287,7 +287,7 @@ function PartyPrediction() {
                   5, 2024
                 </span>
               </p>
-              <p className="text-white text-center poppins4 text-[13px] w-1/2 m-auto mt-3 2xl:mt-5">
+              <p className="text-white text-center poppins4 text-[13px] m-auto mt-3 2xl:mt-5">
               If you would like to change your Prediction{" "}
               </p>
               <button
