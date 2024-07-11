@@ -7,6 +7,7 @@ import DownloadApp from "../DownloadApp";
 import Navbar from "../Navbar";
 import securesecureLocalStorage from "react-secure-storage";
 import secureLocalStorage from "react-secure-storage";
+import CustomSpinner from "../spinner";
 
 function EmailVerification(props) {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ function EmailVerification(props) {
     desc: "And help us predict the mood of the nation",
   };
 
-  const [email, setEmail] = useState(""); 
-  const [timeLeft, setTimeLeft] = useState(120);
+  const [email, setEmail] = useState("");
+  const [timeLeft, setTimeLeft] = useState(180);
   const [isRunning, setIsRunning] = useState(true);
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -31,10 +32,9 @@ function EmailVerification(props) {
         setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
       }, 1000);
     } else if (timeLeft === 0) {
-      setIsRunning(false); 
+      setIsRunning(false);
     }
 
-    
     return () => clearInterval(intervalId);
   }, [isRunning, timeLeft]);
 
@@ -48,22 +48,20 @@ function EmailVerification(props) {
 
   useEffect(() => {
     const storedEmail = securesecureLocalStorage.getItem("email");
-    
+
     if (storedEmail) {
       setEmail(storedEmail);
     } else {
-      
     }
   }, []);
 
   const formRef = useRef(null);
-  const inputsRef = useRef(Array(4).fill(null)); 
+  const inputsRef = useRef(Array(4).fill(null));
 
-  
-  const [form, setForm] = useState(null); 
+  const [form, setForm] = useState(null);
 
   useEffect(() => {
-    setForm(formRef.current); 
+    setForm(formRef.current);
   }, []);
   const inputs = inputsRef.current;
 
@@ -114,12 +112,11 @@ function EmailVerification(props) {
     form.querySelector("button[type=submit]").focus();
   };
 
-  
-
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
-    const otp = inputsRef.current.map((input) => input.value).join(""); 
+    const otp = inputsRef.current.map((input) => input.value).join("");
 
     try {
       const response = await axios.post(
@@ -139,14 +136,15 @@ function EmailVerification(props) {
       if (response.status === 200) {
         secureLocalStorage.setItem("token", response?.data?.access_token);
 
-        
         navigate("/PutData", { state: { data } });
       } else {
         setError(response.data.message);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Error:", error);
       setError(error.response.data.message);
+      setIsLoading(false);
     }
   };
 
@@ -167,7 +165,7 @@ function EmailVerification(props) {
       )
       .then((res) => {
         setIsRunning(true);
-        setTimeLeft(120);
+        setTimeLeft(180);
       });
   };
 
@@ -244,6 +242,8 @@ function EmailVerification(props) {
                   >
                     Resend OTP
                   </div>
+                ) : isLoading ? (
+                  <CustomSpinner />
                 ) : (
                   <button
                     type="submit"

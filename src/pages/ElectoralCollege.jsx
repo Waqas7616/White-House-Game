@@ -29,6 +29,12 @@ import ReactGA from "react-ga4";
 import CustomSpinner from "../components/spinner";
 import check from "../images/check.png";
 import { Helmet } from "react-helmet";
+import logo from "../images/logo1.png";
+import badge from "../images/Democraticlogo.png";
+import confetti from "../images/confetti.png";
+import badge2 from "../images/Republicanlogo.png";
+import badge3 from "../images/Independentlogo.png";
+import calender from "../images/calender.png";
 
 const initialElectoralCount = {
   Democratic: 0,
@@ -50,7 +56,7 @@ function ElectoralCollege() {
   }, []);
   const myData = secureLocalStorage.getItem("electoral_data");
   const myStep = secureLocalStorage.getItem("electoral_step");
-  const [step, setStep] = useState(myStep||0);
+  const [step, setStep] = useState(myStep || 0);
   const [partyClick, setPartyClick] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
   const [electoralCount, setElectoralCount] = useState(() => {
@@ -66,6 +72,7 @@ function ElectoralCollege() {
   const [popUp, setPopUp] = useState(false);
   const [popUp1, setPopup1] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [winners, setWinners] = useState([]);
 
   useEffect(() => {
     setDemLength((electoralCount.Democratic / electoralCount.total) * 100);
@@ -81,27 +88,30 @@ function ElectoralCollege() {
       ...prev,
       Democratic:
         partyId === 1
-        ?  previousData?.states?.[step]?.name==="Maine" ||  previousData?.states?.[step]?.name==="Nebraska"?
-        prev.Democratic -
-        previousData?.states?.[step]?.electrical_collage_number_1
-        : prev.Democratic -
-        previousData?.states?.[step]?.electrical_collage_number
+          ? previousData?.states?.[step]?.name === "Maine" ||
+            previousData?.states?.[step]?.name === "Nebraska"
+            ? prev.Democratic -
+              previousData?.states?.[step]?.electrical_collage_number_1
+            : prev.Democratic -
+              previousData?.states?.[step]?.electrical_collage_number
           : prev.Democratic,
       Republican:
         partyId === 2
-        ?  previousData?.states?.[step]?.name==="Maine" ||  previousData?.states?.[step]?.name==="Nebraska"?
-        prev.Republican -
-        previousData?.states?.[step]?.electrical_collage_number_1
-        : prev.Republican -
-        previousData?.states?.[step]?.electrical_collage_number
+          ? previousData?.states?.[step]?.name === "Maine" ||
+            previousData?.states?.[step]?.name === "Nebraska"
+            ? prev.Republican -
+              previousData?.states?.[step]?.electrical_collage_number_1
+            : prev.Republican -
+              previousData?.states?.[step]?.electrical_collage_number
           : prev.Republican,
       Independent:
         partyId === 3
-        ?  previousData?.states?.[step]?.name==="Maine" ||  previousData?.states?.[step]?.name==="Nebraska"?
-        prev.Independent -
-        previousData?.states?.[step]?.electrical_collage_number_1
-        : prev.Independent -
-        previousData?.states?.[step]?.electrical_collage_number
+          ? previousData?.states?.[step]?.name === "Maine" ||
+            previousData?.states?.[step]?.name === "Nebraska"
+            ? prev.Independent -
+              previousData?.states?.[step]?.electrical_collage_number_1
+            : prev.Independent -
+              previousData?.states?.[step]?.electrical_collage_number
           : prev.Independent,
     }));
   };
@@ -119,28 +129,31 @@ function ElectoralCollege() {
       setElectoralCount((prev) => ({
         ...prev,
         Democratic:
-          partyId === 1 ?  previousData?.states?.[step]?.name==="Maine" ||  previousData?.states?.[step]?.name==="Nebraska"?
-          prev.Democratic +
-          previousData?.states?.[step]?.electrical_collage_number_1
-          : prev.Democratic +
-          previousData?.states?.[step]?.electrical_collage_number
-            
+          partyId === 1
+            ? previousData?.states?.[step]?.name === "Maine" ||
+              previousData?.states?.[step]?.name === "Nebraska"
+              ? prev.Democratic +
+                previousData?.states?.[step]?.electrical_collage_number_1
+              : prev.Democratic +
+                previousData?.states?.[step]?.electrical_collage_number
             : prev.Democratic,
         Republican:
           partyId === 2
-          ?  previousData?.states?.[step]?.name==="Maine" ||  previousData?.states?.[step]?.name==="Nebraska"?
-          prev.Republican +
-          previousData?.states?.[step]?.electrical_collage_number_1
-          : prev.Republican +
-          previousData?.states?.[step]?.electrical_collage_number
+            ? previousData?.states?.[step]?.name === "Maine" ||
+              previousData?.states?.[step]?.name === "Nebraska"
+              ? prev.Republican +
+                previousData?.states?.[step]?.electrical_collage_number_1
+              : prev.Republican +
+                previousData?.states?.[step]?.electrical_collage_number
             : prev.Republican,
         Independent:
           partyId === 3
-          ?  previousData?.states?.[step]?.name==="Maine" ||  previousData?.states?.[step]?.name==="Nebraska"?
-          prev.Independent +
-          previousData?.states?.[step]?.electrical_collage_number_1
-          : prev.Independent +
-          previousData?.states?.[step]?.electrical_collage_number
+            ? previousData?.states?.[step]?.name === "Maine" ||
+              previousData?.states?.[step]?.name === "Nebraska"
+              ? prev.Independent +
+                previousData?.states?.[step]?.electrical_collage_number_1
+              : prev.Independent +
+                previousData?.states?.[step]?.electrical_collage_number
             : prev.Independent,
       }));
     }
@@ -202,10 +215,10 @@ function ElectoralCollege() {
           }
         )
         .then((response) => {
-          if (response.status === 200) {
-            setPopup1(true);
-            setLoading(false);
-          }
+          setWinners(response.data.finalizedCandidates);
+          setPopup1(true);
+          setLoading(false);
+          console.log("winners", response.data.finalizedCandidates);
         })
         .catch((error) => {
           // console.error("API error:", error.response.data.error);
@@ -356,44 +369,96 @@ function ElectoralCollege() {
         )}
 
         {popUp1 && (
-          <div className="popup">
-            <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
-              <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12  relative">
-                <div className="text-center mb-6">
-                  <img className="w-[80px] h-[80px]" src={logo1} alt="" />
-                </div>
-                <button
-                  onClick={() => navigate("/")}
-                  className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
+          <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
+            <div className="popup bg-[#1C2452] px-16 rounded-[30px] py-2 md:py-3 lg:py-4 xl:py-8 2xl:py-12   ">
+              <div className="popup-content ">
+                <img
+                  src={logo}
+                  className="m-auto w-[45px] lg:w-[50px] xl:w-[90px]"
+                  alt=""
+                />
+                <h1 className="poppins6 text-white text-center text-[13px] xl:text-[16px]">
+                  Who you expect to win
+                </h1>
+                <div
+                  style={{ background: `url(${confetti})` }}
+                  className="p-4 w-20 mb-2 rounded-full m-auto flex justify-center items-center"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
+                  <div className="party-badge bg-white rounded-full xl:w-10 xl:h-10 md:w-[30px] md:h-[30px] flex items-center justify-center">
+                    <img
+                      className="w-5"
+                      src={
+                        winners[0]?.id === 1
+                          ? badge
+                          : winners[0]?.id === 2
+                          ? badge2
+                          : badge3
+                      }
+                      alt=""
                     />
-                  </svg>
-                </button>
-
-                <p className="text-white text-center text-[16px]">
-                  {" "}
-                  Your prediction has been submitted successfully!
-                </p>
-                <div className="flex justify-center items-center mt-8">
-                  <img className="h-12 w-12 " src={check} alt="" />
+                  </div>
                 </div>
+                <div
+                  className="flex gap-5 w-fit m-auto  items-center justify-center p-4 border-[2px] border-white rounded-[18.5px] md:mb-4 2xl:mb-10"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)",
+                  }}
+                >
+                  <div>
+                    <h1 className="text-white text-[12px] xl:text-[16px] poppins6 mb-2">
+                      President
+                    </h1>
+                    <div className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px]  overflow-hidden rounded-[10.96px]">
+                      {winners && (
+                        <img
+                          className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px] object-cover"
+                          src={`${imageUrl}${winners[0]?.voted_candidates?.candidate_image}`}
+                          alt=""
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <h1 className="text-white text-[12px] xl:text-[16px] poppins6 mb-2">
+                      Vice President
+                    </h1>
+                    <div className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px]  overflow-hidden rounded-[10.96px]">
+                      {winners && (
+                        <img
+                          className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px] object-cover"
+                          src={`${imageUrl}${winners[1]?.voted_candidates?.candidate_image}`}
+                          alt=""
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-white text-center poppins4 text-[12px] xl:text-[14px] 2xl:text-[16px]">
+                  A lot can happen before election day
+                </p>
+                <p className="poppins4 text-white/80 text-[12px] xl:text-[14px] 2xl:text-[16px] text-center justify-center flex items-center gap-2 m-auto mb-1 2xl:mt-2">
+                  <img className="w-[15px]" src={calender} alt="" />
+                  Tuesday, November
+                  <span className="poppins4 text-white xl:text-[15px]">
+                    5, 2024
+                  </span>
+                </p>
+                <p className="text-white text-center poppins4 text-[13px] m-auto mt-3 2xl:mt-5">
+                  If you would like to change your Prediction{" "}
+                </p>
+                <button
+                  onClick={() => navigate("/predict")}
+                  className="bg-redish px-5 m-auto mt-3 block py-2 2xl:py-3 rounded-[6px] text-[14px] poppins6 text-white text-center mb-3"
+                >
+                  Update your predictions
+                </button>
                 <button
                   onClick={() => navigate("/")}
-                  className="mt-8 text-white poppins5 bg-redish px-8 py-2 rounded"
+                  className="rounded-[6px] border-[1px] px-20 block m-auto py-2 2xl:py-3 mt-5 border-white poppins7 text-white text-center"
                 >
-                  close
+                  Close
                 </button>
               </div>
             </div>
@@ -455,14 +520,13 @@ function ElectoralCollege() {
                       {/* United States of America */}
                     </h6>
                     <p className="poppins4 text-white text-center text-[12px] sm:text-[28px]">
-  {sortedData?.[step]?.name === "USA" ? (
-    "Click submit for your predictions"
-  ) : sortedData?.[step]?.name === "Maine" || sortedData?.[step]?.name === "Nebraska" ? (
-    `${sortedData?.[step]?.electrical_collage_number_1} Electoral College Votes`
-  ) : (
-    `${sortedData?.[step]?.electrical_collage_number} Electoral College Votes`
-  )}
-</p>
+                      {sortedData?.[step]?.name === "USA"
+                        ? "Click submit for your predictions"
+                        : sortedData?.[step]?.name === "Maine" ||
+                          sortedData?.[step]?.name === "Nebraska"
+                        ? `${sortedData?.[step]?.electrical_collage_number_1} Electoral College Votes`
+                        : `${sortedData?.[step]?.electrical_collage_number} Electoral College Votes`}
+                    </p>
                   </div>
                 </div>
               </>
