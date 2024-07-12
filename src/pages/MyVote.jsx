@@ -101,7 +101,6 @@ export default function MyVote() {
   const elecotral = finalData?.electoral_votes_by_party
     ? Object.entries(finalData?.electoral_votes_by_party)
     : null;
-
   const filtered = newdata !== null && newdata.pop();
   if (newdata) {
   newdata.sort((a, b) => {

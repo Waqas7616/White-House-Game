@@ -117,7 +117,6 @@ export const PutData = () => {
 
   const storedToken = secureLocalStorage.getItem("token");
 
-
   const email = secureLocalStorage.getItem("email");
 
   let id = secureLocalStorage.getItem("id");
@@ -127,11 +126,10 @@ export const PutData = () => {
   const [condition, setCondition] = useState(false);
   const [newPayload, setNewPayload] = useState(null);
   const [popUp, setPopUP] = useState(false);
-
   const [payload, setPayLoad] = useState({
     // id: id,
     language_id: "",
-    user_age_id: "",
+    user_age_id: myAccountData.age,
     user_ethnicity_id: "",
     user_country_birth_id: "",
     user_employement_id: "",
@@ -174,7 +172,7 @@ export const PutData = () => {
       setCondition(true);
       setNewPayload(adjustedPayload);
     }
-  }, [payload,newPayload]);
+  }, [payload]);
 
   // useEffect(() => {
   //   const fetchUserData = async () => {
@@ -233,53 +231,49 @@ export const PutData = () => {
         },
       })
       .then((res) => {
-      
         setMyAccountData(res?.data?.data);
-        
       })
-      .catch((error)=>{
-        console.log('Error fetching user data:',error)
-      })
+      .catch((error) => {
+        console.log("Error fetching user data:", error);
+      });
   }, [storedToken]);
-
 
   useEffect(() => {
     setPayLoad((prevpayload) => ({
       ...prevpayload,
-      language_id: byLanguage.find(
-        (lang) => lang.name === myAccountData?.language
-      )?.id||"",
-      user_age_id: AgeGroup.find(
-        (age) => age.range === myAccountData?.age
-      )?.id||"",
+      language_id:
+        byLanguage.find((lang) => lang.name === myAccountData?.language)?.id ||
+        "",
+      user_age_id:
+        AgeGroup.find((age) => age.id === myAccountData?.age)?.id || "",
       user_ethnicity_id: ethnicityData.find(
         (ethnicith) => ethnicith.name === myAccountData?.ethnicity
       )?.id,
-      user_country_birth_id: CountryBirth.find(
-        (country) => country.name === myAccountData?.user_country_birth
-      )?.id||"",
-      user_employement_id: Employment.find(
-        (employ) =>
-          employ.employement_status === myAccountData?.employment
-      )?.id||"",
-      user_gender_id: myAccountData?.gender||"",
-      education_id: highereducation.find(
-        (edu) => edu.name === myAccountData?.education
-      )?.id||"",
-      user_state_id: allstates.find(
-        (state) => state.name === myAccountData?.state
-      )?.id||"",
-      is_veteran: myAccountData?.is_veteran||"",
-      // is_votted_2020: myAccountData?.is_votted_2020||"",
+      user_country_birth_id:
+        CountryBirth.find(
+          (country) => country.name === myAccountData?.user_country_birth
+        )?.id || "",
+      user_employement_id:
+        Employment.find(
+          (employ) => employ.employement_status === myAccountData?.employment
+        )?.id || "",
+      user_gender_id: myAccountData?.gender || "",
+      education_id:
+        highereducation.find((edu) => edu.name === myAccountData?.education)
+          ?.id || "",
+      user_state_id:
+        allstates.find((state) => state.name === myAccountData?.state)?.id ||
+        "",
+      is_veteran: myAccountData?.is_veteran || "",
+      is_votted_2020: myAccountData?.is_votted_2020 || "",
       voter_candidate_id: myAccountData?.voter_candidate_id,
-      source: myAccountData?.source||"",
+      source: myAccountData?.source || "",
       is_subscription_newsletter:
-        myAccountData?.is_subscription_newsletter||"",
+        myAccountData?.is_subscription_newsletter || "",
 
-      user_votter_party: myAccountData?.voter_party_id||"",
+      user_votter_party: myAccountData?.voter_party_id || "",
     }));
   }, [myAccountData]);
-  
   const handleSaveButtonClick = async () => {
     setIsLoading(true);
     // setPopUP(true);
@@ -308,7 +302,7 @@ export const PutData = () => {
       setIsLoading(false);
     }
   };
-// console.log(payload)
+  // console.log(payload)
   return (
     <>
       <Helmet>
@@ -496,8 +490,7 @@ export const PutData = () => {
                   className="bg-transparent w-full outline-none"
                   name="states"
                   id="search"
-                  
-                  value={payload.user_age_id || myAccountData.user_age_id}
+                  value={payload.user_age_id || myAccountData.age}
                   onChange={(e) =>
                     setPayLoad({
                       ...payload,
@@ -506,7 +499,9 @@ export const PutData = () => {
                   }
                 >
                   <option className="bg-[#000]" value="">
-                    {payload.user_age_id?payload.user_age_id:'Select age group'}
+                    {payload.user_age_id
+                      ? payload.user_age_id
+                      : "Select age group"}
                   </option>
                   {AgeGroup?.map((item) => (
                     <option
@@ -998,7 +993,7 @@ export const PutData = () => {
                       name="voted2020"
                       type="radio"
                       className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                      id="No"
+                      id="no"
                       value="no"
                       checked={payload.is_votted_2020 === "no"}
                       onChange={(e) =>
