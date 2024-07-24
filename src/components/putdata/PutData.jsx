@@ -261,9 +261,9 @@ export const PutData = () => {
       education_id:
         highereducation.find((edu) => edu.name === myAccountData?.education)
           ?.id || "",
-      user_state_id: allstates.find(
-        (state) => state.name === myAccountData?.state
-      )?.id || "",
+      user_state_id:
+        allstates.find((state) => state.name === myAccountData?.state)?.id ||
+        "",
       is_veteran: myAccountData?.is_veteran || "",
       is_votted_2020: myAccountData?.is_votted_2020 || "",
       voter_candidate_id: myAccountData?.voter_candidate_id || "",
@@ -271,7 +271,7 @@ export const PutData = () => {
       is_subscription_newsletter:
         myAccountData?.is_subscription_newsletter || "",
 
-      user_votter_party: myAccountData?.voter_party_id ||"",      
+      user_votter_party: myAccountData?.voter_party_id || "",
     }));
   }, [myAccountData]);
   const handleSaveButtonClick = async () => {
@@ -353,7 +353,9 @@ export const PutData = () => {
                 <img className="h-12 w-12 " src={check} alt="" />
               </div>
               <button
-                onClick={() => navigate(data.title2 === "Account" ? "/predict" : "/login")}
+                onClick={() =>
+                  navigate(data.title2 === "Account" ? "/predict" : "/login")
+                }
                 className="mt-8 text-white poppins5 bg-redish px-8 py-2 rounded"
               >
                 close
