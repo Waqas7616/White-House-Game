@@ -337,7 +337,8 @@ if(removedPredictions){
   const prevState=previousData?.states?.find(state=>state.id===prevStateId);
 
   const prevPartyId=removedPredictions.party_id;
-  const prevElectoralVotes=prevState?.electrical_collage_number || 0;
+  const prevElectoralVotes=prevState?.name.includes("Maine"||"Nebraska")?prevState?.electrical_collage_number_1:prevState?.electrical_collage_number || 0 ;
+  console.log('checkingt testing',prevElectoralVotes)
 setPID(prevPartyId)
   setElectoralCount((prev)=>({
     ...prev,
