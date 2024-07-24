@@ -815,7 +815,7 @@ function TabSection() {
 
           <div className="flex w-full">
             <div
-              className="py-4 bg-[#031BBB] min-w-[30%] text-white"
+              className="py-4 bg-[#031BBB] min-w-[30%] text-white w-full"
               style={{ width: democraticBarLength || "30%" }}
             >
               <span className="poppins6 flex justify-center items-center">
@@ -826,7 +826,7 @@ function TabSection() {
             </div>
 
             <div
-              className="py-4 bg-redish min-w-[30%] text-white"
+              className="py-4 bg-redish min-w-[30%] text-white w-full"
               style={{ width: republicanBarLength || "30%" }}
             >
               <span className="poppins6 flex justify-center items-center">
@@ -837,7 +837,7 @@ function TabSection() {
             </div>
 
             <div
-              className="py-4 bg-white min-w-[30%]"
+              className="py-4 bg-white min-w-[30%] w-full"
               style={{ width: independentBarLength || "30%" }}
             >
               <span className="poppins6 flex justify-center items-center">

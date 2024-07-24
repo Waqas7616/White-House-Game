@@ -35,6 +35,7 @@ import confetti from "../images/confetti.png";
 import badge2 from "../images/Republicanlogo.png";
 import badge3 from "../images/Independentlogo.png";
 import calender from "../images/calender.png";
+import usaarm from "../images/usa.jpeg";
 
 const initialElectoralCount = {
   Democratic: 0,
@@ -54,6 +55,7 @@ function ElectoralCollege() {
       path: window.location.pathname,
     });
   }, []);
+
   const myData = secureLocalStorage.getItem("electoral_data");
   const myStep = secureLocalStorage.getItem("electoral_step");
   const [step, setStep] = useState(myStep || 0);
@@ -63,6 +65,16 @@ function ElectoralCollege() {
     const storedCount = secureLocalStorage.getItem("electoralCount");
     return storedCount ? JSON.parse(storedCount) : initialElectoralCount;
   });
+  const [myParty, setMyParty] = useState();
+  const [prevElectoral, setPrevElectoral] = useState();
+
+  useEffect(() => {
+    const party = localStorage.getItem("partyId");
+    const count = localStorage.getItem("electoral");
+    setMyParty(party);
+    setPrevElectoral(count);
+  }, [step]);
+
   const [demLength, setDemLength] = useState();
   const [repLength, setRepLength] = useState();
   const [indLength, setIndLength] = useState();
@@ -80,7 +92,7 @@ function ElectoralCollege() {
     setIndLength((electoralCount.Independent / electoralCount.total) * 100);
   }, [electoralCount]);
 
-  const handleRemoval = (partyId) => {
+  const handleRemoval = (partyId, step) => {
     setSelectedButtonId(null);
     setPartyClick(false);
     clearPredictions();
@@ -126,6 +138,7 @@ function ElectoralCollege() {
       });
 
       setSelectedButtonId(partyId);
+      localStorage.setItem("partyId", partyId);
       setElectoralCount((prev) => ({
         ...prev,
         Democratic:
@@ -187,52 +200,11 @@ function ElectoralCollege() {
   const newdata = {
     message: "Electoral",
   };
-
-  const handleSteps = () => {
-    setPartyClick(false);
-    setSelectedButtonId(0);
-    if (step < previousData?.states?.length - 1) {
-      setStep(step + 1);
-      setSelectedButtonId(null);
-    } else if (step === previousData?.states?.length - 1) {
-      setLoading(true);
-      ReactGA.event({
-        category: "Election",
-        action: "Prediction made through Electoral",
-      });
-      axios
-        .post(
-          "https://thewhitehousegame.com/api/public/api/submit_electoral_college_prediction",
-          {
-            state_predictions: state_predictions || myData,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((response) => {
-          setWinners(response.data.finalizedCandidates);
-          setPopup1(true);
-          setLoading(false);
-          console.log("winners", response.data.finalizedCandidates);
-        })
-        .catch((error) => {
-          // console.error("API error:", error.response.data.error);
-          setError(error?.response?.data?.error);
-          setPopUp(true);
-          setLoading(false);
-          // Handle error
-        });
-      secureLocalStorage.setItem(
-        "electoralCount",
-        JSON.stringify(electoralCount)
-      );
+  useEffect(() => {
+    if (step === previousData?.states?.length - 1) {
+      setSelectedButtonId(4);
     }
-  };
+  }, [step]);
 
   const [statesData, setStatesData] = useState({});
 
@@ -244,7 +216,7 @@ function ElectoralCollege() {
         },
       })
       .then((res) => {
-        // console.log("states ka data hai:", res.data.electoral_votes_by_party);
+        // console.log("states ka data hai:", res.data);
         setStatesData(res.data.electoral_votes_by_party);
       })
       .catch((err) => {});
@@ -299,6 +271,92 @@ function ElectoralCollege() {
   const sortedData = previousData?.states?.sort(
     (a, b) => a.name !== "USA" && a.name.localeCompare(b.name)
   );
+
+  const handleSteps = (electric) => {
+    setPartyClick(false);
+    setSelectedButtonId(0);
+    if (step < previousData?.states?.length - 1) {
+      setStep(step + 1);
+      setSelectedButtonId(null);
+
+      localStorage.setItem("electoral", electric);
+    } else if (step === previousData?.states?.length - 1) {
+      setLoading(true);
+      ReactGA.event({
+        category: "Election",
+        action: "Prediction made through Electoral",
+      });
+      axios
+        .post(
+          "https://thewhitehousegame.com/api/public/api/submit_electoral_college_prediction",
+          {
+            state_predictions: state_predictions || myData,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          setWinners(response.data.finalizedCandidates);
+          setPopup1(true);
+          setLoading(false);
+          // console.log("winners", response.data);
+        })
+        .catch((error) => {
+          console.error("API error:", error.response.data.error);
+          setError(error?.response?.data?.error);
+          setPopUp(true);
+          setLoading(false);
+          // Handle error
+        });
+      secureLocalStorage.setItem(
+        "electoralCount",
+        JSON.stringify(electoralCount)
+      );
+    }
+  };
+
+  const handleBackClick = () => {
+    if (step > 0) {
+      // Remove the electoral votes from the previous state
+      const previousState = sortedData[step - 1];
+      const previousPartyId = state_predictions[step - 1]?.party_id;
+      const prevStateId = state_predictions[step - 1].state_id;
+      const lastElectoral = previousData?.states?.find(
+        (state) => state.id === prevStateId
+      ).electrical_collage_number;
+      setElectoralCount((prev) => ({
+        ...prev,
+        Democratic:
+          previousPartyId === 1
+            ? prev.Democratic - lastElectoral
+            : prev.Democratic,
+        Republican:
+          previousPartyId === 2
+            ? prev.Republican - lastElectoral
+            : prev.Republican,
+        Independent:
+          previousPartyId === 3
+            ? prev.Independent - lastElectoral
+            : prev.Independent,
+      }));
+
+      // Remove the last prediction
+      const newPredictions = [...state_predictions];
+      newPredictions.pop();
+      clearPredictions();
+      newPredictions.forEach((prediction) => addPrediction(prediction));
+
+      // Go back one step
+      setStep(step - 1);
+      setSelectedButtonId(null);
+      setPartyClick(false);
+    }
+  };
 
   return (
     <>
@@ -388,9 +446,9 @@ function ElectoralCollege() {
                     <img
                       className="w-5"
                       src={
-                        winners[0]?.id === 1
+                        winners?.president?.votter_party_id === 1
                           ? badge
-                          : winners[0]?.id === 2
+                          : winners?.president?.votter_party_id === 2
                           ? badge2
                           : badge3
                       }
@@ -413,7 +471,7 @@ function ElectoralCollege() {
                       {winners && (
                         <img
                           className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px] object-cover"
-                          src={`${imageUrl}${winners[0]?.voted_candidates?.candidate_image}`}
+                          src={`${imageUrl}${winners?.president?.voter_candidate?.candidate_image}`}
                           alt=""
                         />
                       )}
@@ -427,7 +485,7 @@ function ElectoralCollege() {
                       {winners && (
                         <img
                           className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px] object-cover"
-                          src={`${imageUrl}${winners[1]?.voted_candidates?.candidate_image}`}
+                          src={`${imageUrl}${winners?.vice_president?.voter_candidate?.candidate_image}`}
                           alt=""
                         />
                       )}
@@ -491,7 +549,11 @@ function ElectoralCollege() {
                 <img src={circle} alt="" className="absolute right-0" />
                 <div className="map  w-fit">
                   <img
-                    className="object-contain "
+                    className={`object-contain w-auto ${
+                      sortedData?.[step]?.name === "USA"
+                        ? "w-12 md:w-[95px]"
+                        : "w-auto"
+                    }`}
                     src={
                       sortedData?.[step]?.name === "USA"
                         ? usa
@@ -542,10 +604,14 @@ function ElectoralCollege() {
             <div className="question flex flex-col justify-center gap-3 items-center sm:w-[361px] sm:h-[201px] md:w-[361px] md:h-[284px] lg:w-[330px] lg:h-[186px] lg-a:w-[346px] lg-a:h-[230px] xl:w-[346px] xl:h-[300px] xl-a::w-[346px] xl-a:h-[304px]  2xl:w-[311px] 2xl:h-[324px] bg-[#131A41] rounded-[40px] xl:rounded-[54px] border-[10px] border-[#1c2452] px-7 py-4">
               {previousData && sortedData && sortedData[step] && (
                 <img
-                  src={`${imageUrl}${sortedData?.[step]?.state_image_url}`}
+                  src={
+                    sortedData?.[step]?.name === "USA"
+                      ? usaarm
+                      : `${imageUrl}${sortedData?.[step]?.state_image_url}`
+                  }
                   // src={abc}
                   alt=""
-                  className="w-12 lg:w-12 xl:w-20 2xl:w-24 object-cover mt-3"
+                  className="w-12 lg:w-12 xl:w-20 2xl:w-24 object-cover mt-3 rounded-full"
                 />
               )}
               <div className="mx-auto ">
@@ -561,44 +627,48 @@ function ElectoralCollege() {
             </div>
 
             <div className="badges mb-4">
-              <div className="flex flex-col lg:flex lg:flex-row lg:justify-between lg:gap-3 ">
+              <div className="flex  lg:flex lg:flex-row lg:justify-between lg:gap-3 ">
                 <div
                   className={`${
                     selectedButtonId === 1
-                      ? "border-red-600 border-[10px] relative"
+                      ? "w-12 md:w-auto border-red-600 border-[3px] md:border-[10px] relative"
                       : ""
-                  } rounded-[54px] border-[10px] border-[#1c2452] ${
+                  } rounded-[8px] md:rounded-[54px] border-[3px] md:border-[10px] border-[#1c2452] ${
                     selectedButtonId !== 1 && selectedButtonId !== null
                       ? "opacity-50"
                       : ""
                   }`}
                   onClick={() => handleClick(sortedData?.[step]?.id, 1)}
                 >
-                  <img src={democratic} className="" alt="" />
+                  <img src={democratic} className="w-12 md:w-auto" alt="" />
                 </div>
                 <div
                   className={`${
-                    selectedButtonId === 2 ? "border-red-600 border-[10px]" : ""
-                  } rounded-[54px] border-[10px] border-[#1c2452] ${
+                    selectedButtonId === 2
+                      ? "w-12 md:w-auto border-red-600 border-[3px] md:border-[10px]"
+                      : ""
+                  } rounded-[8px] md:rounded-[54px] border-[3px] md:border-[10px] border-[#1c2452] ${
                     selectedButtonId !== 2 && selectedButtonId !== null
                       ? "opacity-50"
                       : ""
                   }`}
                   onClick={() => handleClick(sortedData?.[step]?.id, 2)}
                 >
-                  <img src={republican} alt="" />
+                  <img src={republican} className="w-12 md:w-auto" alt="" />
                 </div>
                 <div
                   className={`${
-                    selectedButtonId === 3 ? "border-red-600 border-[10px]" : ""
-                  } rounded-[54px] border-[10px] border-[#1c2452] ${
+                    selectedButtonId === 3
+                      ? "w-12 md:w-auto border-red-600 border-[3px] md:border-[10px]"
+                      : ""
+                  } rounded-[8px] md:rounded-[54px] border-[3px] md:border-[10px] border-[#1c2452] ${
                     selectedButtonId !== 3 && selectedButtonId !== null
                       ? "opacity-50"
                       : ""
                   }`}
                   onClick={() => handleClick(sortedData?.[step]?.id, 3)}
                 >
-                  <img src={independent} alt="" />
+                  <img src={independent} className="w-12 md:w-auto" alt="" />
                 </div>
               </div>
             </div>
@@ -610,12 +680,14 @@ function ElectoralCollege() {
           ) : (
             <div className="flex items-center justify-center  w-full mt-3 mb-4 mx-auto">
               <button
-                onClick={() => {
-                  if (step > 0) {
-                    setStep(step - 1);
-                    setSelectedButtonId(null);
-                  }
-                }}
+                // onClick={() => {
+                //   if (step > 0) {
+                //     setStep(step - 1);
+                //     setSelectedButtonId(null);
+
+                //   }
+                // }}
+                onClick={handleBackClick}
                 className={`bg-redish p-2 rounded-l-[6px] ${
                   selectedButtonId === null ? "" : "opacity-50"
                 }`}
@@ -638,7 +710,9 @@ function ElectoralCollege() {
               </button>
 
               <button
-                onClick={handleSteps}
+                onClick={() =>
+                  handleSteps(sortedData?.[step]?.electrical_collage_number)
+                }
                 className={`btn bg-redish w-[258px] sm:w-[200px] px-8 py-2 text-white uppercase ${
                   selectedButtonId === null
                     ? "opacity-50 cursor-not-allowed"

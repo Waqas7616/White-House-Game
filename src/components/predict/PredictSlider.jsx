@@ -50,7 +50,7 @@ function PredictSlider({
     };
     fetchData();
   }, []);
-
+  
   const handleImage = (id, party,name) => {
     (data1 === "president" && setPresident(id)) ||
       (data1 === "VicePresident" && setVicePresident(id));
@@ -252,7 +252,7 @@ function PredictSlider({
       <Slider {...settings}>
         {data1 === "president"
           ? candidatedata
-              ?.filter((item) => item.party.party_name === party_name)
+              ?.filter((item) => item.party.party_name === party_name || item?.parties[0]?.party_name===party_name)
               .map((item, index) => (
                 <div
                   key={index}
@@ -282,7 +282,7 @@ function PredictSlider({
               ))
           : data1 === "VicePresident" &&
             candidatedata
-              ?.filter((item) => item.party.party_name === party_name)
+              ?.filter((item) => item.party.party_name === party_name || item?.parties[0]?.party_name===party_name)
               .map((item, index) => (
                 <div
                   key={index}
