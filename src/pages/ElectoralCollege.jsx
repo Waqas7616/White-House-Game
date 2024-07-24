@@ -550,7 +550,7 @@ function ElectoralCollege() {
                 <div className="map  w-fit">
                   <img
                     className={`object-contain w-auto ${
-                      sortedData?.[step]?.name === "USA"
+                      sortedData?.[step]?.name === "USA" || "Kansas"
                         ? "w-12 md:w-[95px]"
                         : "w-auto"
                     }`}
