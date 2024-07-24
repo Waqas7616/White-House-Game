@@ -58,6 +58,7 @@ function ElectoralCollege() {
 
   const myData = secureLocalStorage.getItem("electoral_data");
   const myStep = secureLocalStorage.getItem("electoral_step");
+  const [pID, setPID] = useState(null);
   const [step, setStep] = useState(myStep || 0);
   const [partyClick, setPartyClick] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
@@ -322,34 +323,37 @@ function ElectoralCollege() {
 
   const handleBackClick = () => {
     if (step > 0) {
-      // Remove the electoral votes from the previous state
-      const previousState = sortedData[step - 1];
-      const previousPartyId = state_predictions[step - 1]?.party_id;
-      const prevStateId = state_predictions[step - 1].state_id;
-      const lastElectoral = previousData?.states?.find(
-        (state) => state.id === prevStateId
-      ).electrical_collage_number;
-      setElectoralCount((prev) => ({
-        ...prev,
-        Democratic:
-          previousPartyId === 1
-            ? prev.Democratic - lastElectoral
-            : prev.Democratic,
-        Republican:
-          previousPartyId === 2
-            ? prev.Republican - lastElectoral
-            : prev.Republican,
-        Independent:
-          previousPartyId === 3
-            ? prev.Independent - lastElectoral
-            : prev.Independent,
-      }));
-
       // Remove the last prediction
       const newPredictions = [...state_predictions];
-      newPredictions.pop();
+      const removedPredictions = newPredictions.pop();
       clearPredictions();
       newPredictions.forEach((prediction) => addPrediction(prediction));
+
+      if (removedPredictions) {
+        const prevStateId = removedPredictions.state_id;
+        const prevState = previousData?.states?.find(
+          (state) => state.id === prevStateId
+        );
+
+        const prevPartyId = removedPredictions.party_id;
+        const prevElectoralVotes = prevState?.electrical_collage_number || 0;
+        setPID(prevPartyId);
+        setElectoralCount((prev) => ({
+          ...prev,
+          Democratic:
+            prevPartyId === 1
+              ? prev.Democratic - prevElectoralVotes
+              : prev.Democratic,
+          Republican:
+            prevPartyId === 2
+              ? prev.Republican - prevElectoralVotes
+              : prev.Republican,
+          Independent:
+            prevPartyId === 3
+              ? prev.Independent - prevElectoralVotes
+              : prev.Independent,
+        }));
+      }
 
       // Go back one step
       setStep(step - 1);
@@ -550,7 +554,7 @@ function ElectoralCollege() {
                 <div className="map  w-fit">
                   <img
                     className={`object-contain w-auto ${
-                      sortedData?.[step]?.name === "USA" || "Kansas"
+                      sortedData?.[step]?.name === "USA " || "Kansas"
                         ? "w-12 md:w-[95px]"
                         : "w-auto"
                     }`}
