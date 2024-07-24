@@ -58,7 +58,7 @@ function ElectoralCollege() {
 
   const myData = secureLocalStorage.getItem("electoral_data");
   const myStep = secureLocalStorage.getItem("electoral_step");
-  const [pID,setPID]=useState(null)
+  const [pID, setPID] = useState(null);
   const [step, setStep] = useState(myStep || 0);
   const [partyClick, setPartyClick] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
@@ -323,30 +323,37 @@ function ElectoralCollege() {
 
   const handleBackClick = () => {
     if (step > 0) {
-      
-     
-
       // Remove the last prediction
       const newPredictions = [...state_predictions];
-     const removedPredictions= newPredictions.pop();
+      const removedPredictions = newPredictions.pop();
       clearPredictions();
       newPredictions.forEach((prediction) => addPrediction(prediction));
 
-if(removedPredictions){
-  const prevStateId=removedPredictions.state_id;
-  const prevState=previousData?.states?.find(state=>state.id===prevStateId);
+      if (removedPredictions) {
+        const prevStateId = removedPredictions.state_id;
+        const prevState = previousData?.states?.find(
+          (state) => state.id === prevStateId
+        );
 
-  const prevPartyId=removedPredictions.party_id;
-  const prevElectoralVotes=prevState?.electrical_collage_number || 0;
-setPID(prevPartyId)
-  setElectoralCount((prev)=>({
-    ...prev,
-    Democratic:prevPartyId===1?prev.Democratic-prevElectoralVotes:prev.Democratic,
-    Republican:prevPartyId===2?prev.Republican-prevElectoralVotes:prev.Republican,
-    Independent:prevPartyId===3?prev.Independent-prevElectoralVotes:prev.Independent,
-  }))
-}
-
+        const prevPartyId = removedPredictions.party_id;
+        const prevElectoralVotes = prevState?.electrical_collage_number || 0;
+        setPID(prevPartyId);
+        setElectoralCount((prev) => ({
+          ...prev,
+          Democratic:
+            prevPartyId === 1
+              ? prev.Democratic - prevElectoralVotes
+              : prev.Democratic,
+          Republican:
+            prevPartyId === 2
+              ? prev.Republican - prevElectoralVotes
+              : prev.Republican,
+          Independent:
+            prevPartyId === 3
+              ? prev.Independent - prevElectoralVotes
+              : prev.Independent,
+        }));
+      }
 
       // Go back one step
       setStep(step - 1);
@@ -547,7 +554,7 @@ setPID(prevPartyId)
                 <div className="map  w-fit">
                   <img
                     className={`object-contain w-auto ${
-                      sortedData?.[step]?.name === "USA "||"Kansas"
+                      sortedData?.[step]?.name === "USA " || "Kansas"
                         ? "w-12 md:w-[95px]"
                         : "w-auto"
                     }`}
