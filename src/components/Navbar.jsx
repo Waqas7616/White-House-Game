@@ -13,15 +13,23 @@ function Navbar() {
   const [active, setActive] = useState(1);
 
   const [link, setLink] = useState(0);
-  // const login = localStorage.getItem("email");
-  // const token = localStorage.getItem("token");
   const [showModal, setShowModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    securesecureLocalStorage.getItem("email") &&
+      securesecureLocalStorage.getItem("token")
+  );
 
-  // const login = localStorage.getItem("email")
+  const electoralCount = securesecureLocalStorage.getItem("electoralCount");
 
-  // const login = secureLocalStorage.getItem("email");
-  // const token = secureLocalStorage.getItem("token");
-  // const login = secureLocalStorage.getItem("email")
+  const logOut = () => {
+    securesecureLocalStorage.removeItem("token");
+    securesecureLocalStorage.removeItem("email");
+    securesecureLocalStorage.removeItem("id");
+    securesecureLocalStorage.removeItem("electoralCount");
+    setIsLoggedIn(false);
+    navigate("/login"); // Session expire karne ke baad isLoggedIn state ko false kar denge
+  };
+
   const data = {
     title: "My",
     title2: "Account",
@@ -29,18 +37,7 @@ function Navbar() {
     desc2: "the mood of the nation",
   };
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (window.innerWidth < 768) {
-  //       setIsMobile(true);
-  //     }
-  //   };
-  //   handleResize();
-  //   window.addEventListener("resize", handleResize);
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, [location.pathname, isMobile]);
+
 
   const handlePredictClick = () => {
     setShowModal(true);
@@ -57,24 +54,8 @@ function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   };
-  // const logOut = () => {
-  //   secureLocalStorage.clear("token", "email");
 
-  // };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    securesecureLocalStorage.getItem("email") &&
-      securesecureLocalStorage.getItem("token")
-  );
-
-  const logOut = () => {
-    securesecureLocalStorage.removeItem("token");
-    securesecureLocalStorage.removeItem("email");
-    securesecureLocalStorage.removeItem("id");
-    securesecureLocalStorage.removeItem("electoralCount");
-    setIsLoggedIn(false);
-    navigate("/login"); // Session expire karne ke baad isLoggedIn state ko false kar denge
-  };
 
   // console.log("link value is :", link);
 
@@ -182,8 +163,9 @@ function Navbar() {
                   : ""
               }`}
             >
+              
               <button
-                className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
+                className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${isLoggedIn?"block":"hidden"} ${
                   location.pathname === "/putdata"
                     ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
                     : ""
@@ -192,7 +174,7 @@ function Navbar() {
               >
                 My Account
               </button>
-              <button
+              {isLoggedIn && ( <button
                 onClick={() => navigate("/myvote")}
                 className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
                   location.pathname == "/myvote"
@@ -201,7 +183,8 @@ function Navbar() {
                 }`}
               >
                 My Vote
-              </button>
+              </button>)}
+             
               <button
                 onClick={logOut}
                 className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
@@ -216,10 +199,11 @@ function Navbar() {
             </div>
           )}
 
+{!isLoggedIn && (
           <button
-            className={`w-full h-full ${!isLoggedIn ? "block" : "hidden"} ${
+            className={`w-full h-full ${
               location.pathname !== "/LogIn"
-                ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
+                ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white"
                 : "text-[rgba(255,255,255,.6)]"
             }`}
             onClick={() => {
@@ -228,6 +212,7 @@ function Navbar() {
           >
             Sign Up
           </button>
+        )}
         </div>
       </>
 

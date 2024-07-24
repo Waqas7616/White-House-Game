@@ -122,7 +122,7 @@ export const PutData = () => {
   let id = secureLocalStorage.getItem("id");
 
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const [votedIn2020, setVotedIn2020] = useState("No");
+  // const [votedIn2020, setVotedIn2020] = useState("no");
   const [condition, setCondition] = useState(false);
   const [newPayload, setNewPayload] = useState(null);
   const [popUp, setPopUP] = useState(false);
@@ -157,16 +157,16 @@ export const PutData = () => {
     }
   };
 
-  const handleVoteChange = (e) => {
-    const value = e.target.value;
-    setVotedIn2020(value);
-    setPayLoad({ ...payload, is_votted_2020: value });
-  };
+  // const handleVoteChange = (e) => {
+  //   const value = e.target.value;
+  //   setVotedIn2020(value);
+  //   setPayLoad({ ...payload, is_votted_2020: value });
+  // };
 
   useEffect(() => {
     let adjustedPayload = { ...payload };
 
-    if (adjustedPayload.is_votted_2020 === "no") {
+    if (adjustedPayload.is_votted_2020 === "No") {
       delete adjustedPayload.voter_candidate_id;
       delete adjustedPayload.source;
       setCondition(true);
@@ -261,17 +261,17 @@ export const PutData = () => {
       education_id:
         highereducation.find((edu) => edu.name === myAccountData?.education)
           ?.id || "",
-      user_state_id:
-        allstates.find((state) => state.name === myAccountData?.state)?.id ||
-        "",
+      user_state_id: allstates.find(
+        (state) => state.name === myAccountData?.state
+      )?.id || "",
       is_veteran: myAccountData?.is_veteran || "",
       is_votted_2020: myAccountData?.is_votted_2020 || "",
-      voter_candidate_id: myAccountData?.voter_candidate_id,
+      voter_candidate_id: myAccountData?.voter_candidate_id || "",
       source: myAccountData?.source || "",
       is_subscription_newsletter:
         myAccountData?.is_subscription_newsletter || "",
 
-      user_votter_party: myAccountData?.voter_party_id || "",
+      user_votter_party: myAccountData?.voter_party_id ||"",      
     }));
   }, [myAccountData]);
   const handleSaveButtonClick = async () => {
@@ -325,7 +325,7 @@ export const PutData = () => {
               </div>
               <button
                 onClick={() =>
-                  navigate(data.title2 === "Account" ? "/" : "/login")
+                  navigate(data.title2 === "Account" ? "/predict" : "/login")
                 }
                 className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
               >
@@ -353,7 +353,7 @@ export const PutData = () => {
                 <img className="h-12 w-12 " src={check} alt="" />
               </div>
               <button
-                onClick={() => navigate("/")}
+                onClick={() => navigate(data.title2 === "Account" ? "/predict" : "/login")}
                 className="mt-8 text-white poppins5 bg-redish px-8 py-2 rounded"
               >
                 close
@@ -900,8 +900,8 @@ export const PutData = () => {
                       type="radio"
                       className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
                       id="veteran"
-                      value="No"
-                      checked={payload.is_veteran === "No"}
+                      value="no"
+                      checked={payload.is_veteran === "no"}
                       onChange={(e) =>
                         setPayLoad({
                           ...payload,

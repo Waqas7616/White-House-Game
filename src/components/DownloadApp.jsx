@@ -54,7 +54,7 @@ export default function DownloadApp() {
                 Now you’ve played the Game - Buy the Shirt!
                 <a
                   href="https://thewhitehousegame.myspreadshop.com/the+white+house+game-A655354cb8ba6e22839f3b9c8?productType=654&sellable=nOkb1E5YopF90oXEZEz3-654-24&appearance=1138"
-                  className="ml-1 font-black text-redish "
+                  className="ml-1 font-black text-redish hover:underline"
                 >
                   OUR SHOP
                 </a>
@@ -63,19 +63,19 @@ export default function DownloadApp() {
             <div className="flex gap-3 sm:gap-8 mx-5 sm:mx-0 mt-3">
               <h2
                 onClick={() => navigate("/contact")}
-                className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
+                className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer hover:underline"
               >
                 Contact Us
               </h2>
               <h2
                 onClick={() => navigate("/privacypolicy")}
-                className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
+                className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer hover:underline"
               >
                 Privacy Policy
               </h2>
               <h2
                 onClick={() => navigate("/termscondition")}
-                className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
+                className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer hover:underline"
               >
                 Terms and Conditions
               </h2>
@@ -83,7 +83,7 @@ export default function DownloadApp() {
               {" "}
               <h2
               onClick={()=>navigate("/about")}
-                className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer"
+                className="text-[8px] text-nowrap lg:text-[12px] poppins4 text-[#fff] cursor-pointer hover:underline"
               >
                Who we are
               </h2>

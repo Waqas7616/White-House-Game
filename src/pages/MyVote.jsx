@@ -264,7 +264,7 @@ export default function MyVote() {
                       </h2>
                     </div>
                   </div>
-                  <div className="absolute bottom-3 left-32 md:bottom-3 md:left-52">
+                  <div className="absolute bottom-3 left-32 md:bottom-3 md:left-48">
                     <img
                       className="w-[40px] h-[40px] m-auto"
                       src={check}

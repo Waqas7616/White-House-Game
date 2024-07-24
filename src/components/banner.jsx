@@ -146,9 +146,9 @@ function Banner() {
             </div> */}
             <div className="languages flex items-center gap-6 bg-[#131841] w-60 h-10 rounded-[5px] p-1">
               <button
-                className={` w-full h-full ${
+                className={` w-full h-full  ${
                   active === 0
-                    ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white"
+                    ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
                     : "text-[rgba(255,255,255,.6)]"
                 }`}
                 onClick={() => setActive(0)}

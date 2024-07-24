@@ -178,6 +178,7 @@ function MobileNav() {
               Download Now
             </button> */}
           </div>
+          {!isLoggedIn && (
           <button
             className={`nav-link poppins4 hover:text-redish   cursor-pointer hover:font-[500] text-whiteColor mt-4 mb-3  ${
               !isLoggedIn ? "block" : "hidden"
@@ -188,6 +189,7 @@ function MobileNav() {
           >
             Sign Up
           </button>
+          )}
         </>
       )}
     </div>
