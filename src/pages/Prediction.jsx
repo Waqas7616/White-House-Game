@@ -11,7 +11,6 @@ import republican from "../images/Republicanlogo.png";
 import independent from "../images/Independentlogo.png";
 import logo1 from "../images/logo1.png";
 
-
 import axios from "axios";
 import { useStatePredictions } from "../utils/StateIDs";
 import DownloadApp from "../components/DownloadApp";
@@ -27,7 +26,7 @@ function Prediction() {
     useStatePredictions();
   const [status, setStatus] = useState(null);
   const [popup, setPopup] = useState(false);
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     ReactGA.send({
       hitType: "pageview",
@@ -67,7 +66,7 @@ function Prediction() {
       category: "Election",
       action: "Election through President only",
     });
-    setLoading(true)
+    setLoading(true);
     axios
       .post(
         "https://thewhitehousegame.com/api/public/api/select_party_leaders",
@@ -84,18 +83,16 @@ function Prediction() {
       )
       .then((res) => {
         setStatus(res.status);
-        setLoading(false)
+        setLoading(false);
         if (res.status === 200) {
           navigate("/party-prediction", { state: { voting } });
         }
-
-
       })
       .catch((err) => {
         console.log("the error is :", err);
         setError(err.message);
         setPopup(err.response.status !== 200 && true);
-        setLoading(false)
+        setLoading(false);
       });
   };
 
@@ -107,7 +104,10 @@ function Prediction() {
             <div className="text-center mb-6">
               <img className="w-[80px] h-[80px]" src={logo1} alt="" />
             </div>
-            <button onClick={()=>navigate("/login")} className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300">
+            <button
+              onClick={() => navigate("/login")}
+              className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -124,13 +124,15 @@ function Prediction() {
               </svg>
             </button>
             <div className="text-center mb-5">
-              <h2 className="text-white text-center m-auto">
-                {error}
-              </h2>
+              <h2 className="text-white text-center m-auto">{error}</h2>
             </div>
-           
-            <button onClick={()=>navigate("/login")} className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4">Log In</button>
-            
+
+            <button
+              onClick={() => navigate("/login")}
+              className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
+            >
+              Log In
+            </button>
           </div>
         </div>
       )}
@@ -227,17 +229,19 @@ function Prediction() {
         </div>
         <div className="buttons flex items-center justify-center gap-4 xl:mt-[54px] mb-3 ">
           {/* <button className="rounded-[6px] text-white poppins-6 border-[1px] border-white px-5 py-2 sm:px-10 sm:py-2 ">Edit my predictions</button> */}
-          {loading?<CustomSpinner/>:
-          <button
-            onClick={sendPrediction}
-            disabled={!isSelectionComplete}
-            className={`rounded-[6px] text-white poppins-6 border-[1px] border-redish px-10 py-2 bg-redish ${
-              !isSelectionComplete ? "opacity-40" : ""
-            }`}
-          >
-            Submit your prediction
-          </button>
-          }
+          {loading ? (
+            <CustomSpinner />
+          ) : (
+            <button
+              onClick={sendPrediction}
+              disabled={!isSelectionComplete}
+              className={`rounded-[6px] text-white poppins-6 border-[1px] border-redish px-10 py-2 bg-redish ${
+                !isSelectionComplete ? "opacity-40" : ""
+              }`}
+            >
+              Submit your prediction
+            </button>
+          )}
         </div>
         <DownloadApp />
       </div>
