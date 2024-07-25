@@ -329,31 +329,22 @@ function ElectoralCollege() {
       clearPredictions();
       newPredictions.forEach((prediction) => addPrediction(prediction));
 
-      if (removedPredictions) {
-        const prevStateId = removedPredictions.state_id;
-        const prevState = previousData?.states?.find(
-          (state) => state.id === prevStateId
-        );
+if(removedPredictions){
+  const prevStateId=removedPredictions.state_id;
+  const prevState=previousData?.states?.find(state=>state.id===prevStateId);
 
-        const prevPartyId = removedPredictions.party_id;
-        const prevElectoralVotes = prevState?.electrical_collage_number || 0;
-        setPID(prevPartyId);
-        setElectoralCount((prev) => ({
-          ...prev,
-          Democratic:
-            prevPartyId === 1
-              ? prev.Democratic - prevElectoralVotes
-              : prev.Democratic,
-          Republican:
-            prevPartyId === 2
-              ? prev.Republican - prevElectoralVotes
-              : prev.Republican,
-          Independent:
-            prevPartyId === 3
-              ? prev.Independent - prevElectoralVotes
-              : prev.Independent,
-        }));
-      }
+  const prevPartyId=removedPredictions.party_id;
+  const prevElectoralVotes=prevState?.name.includes("Maine"||"Nebraska")?prevState?.electrical_collage_number_1:prevState?.electrical_collage_number || 0 ;
+  
+
+  setElectoralCount((prev)=>({
+    ...prev,
+    Democratic:prevPartyId===1?prev.Democratic-prevElectoralVotes:prev.Democratic,
+    Republican:prevPartyId===2?prev.Republican-prevElectoralVotes:prev.Republican,
+    Independent:prevPartyId===3?prev.Independent-prevElectoralVotes:prev.Independent,
+  }))
+}
+      
 
       // Go back one step
       setStep(step - 1);
