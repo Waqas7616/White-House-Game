@@ -8,6 +8,7 @@ function Predict({
   afterchange,
   submitData,
   onSelectionChange,
+  myData,
 }) {
   const { president, vicePresident } = useStatePredictions();
   const [isButtonClicked, setIsButtonClicked] = useState(false);
@@ -22,15 +23,21 @@ function Predict({
       onSelectionChange(!presdborder && !viceborder);
     }
   }, [presdborder, viceborder, onSelectionChange]);
-
-  
-  
+  useEffect(() => {
+    console.log("my prop data is", myData);
+    if (myData === "ok") {
+      setIsButtonClicked(false);
+      setSliderBackground("");
+    }
+  }, [myData]);
   const handleButtonClick = () => {
     if (president !== vicePresident) {
       setIsButtonClicked(true);
+
       setSliderBackground(
         "linear-gradient(90deg, #ED1C24 0%, #BE1E2E 50%, #1C2452 100%)"
       );
+
       submitData();
       setError("");
     } else {
@@ -53,8 +60,6 @@ function Predict({
   return (
     <div className="bg-[#1c2452] pb-[20px]">
       <div className=" m-auto ">
-        
-
         <div
           className={` m-auto rounded-lg  relative mt-12 ${
             isButtonClicked && "border-8 px-3"
@@ -92,7 +97,6 @@ function Predict({
           </div>
           <p className="text-redish translate-y-12 poppins5">{error}</p>
           <div className="flex justify-center relative  mt-24">
-           
             <button
               disabled={presdborder || viceborder}
               onClick={handleButtonClick}

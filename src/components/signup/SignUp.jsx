@@ -12,16 +12,15 @@ import CustomSpinner from "../spinner";
 import secureLocalStorage from "react-secure-storage";
 import MobileNav from "../MobileNav";
 
-
 export const SignUp = () => {
-  const [name, setName] = useState(""); 
+  const [name, setName] = useState("");
 
-  const [email, setEmail] = useState(""); 
-  const [password, setPassword] = useState(""); 
-  const [confirmed, setConfirmed] = useState(""); 
-  const [showPassword, setShowPassword] = useState(false); 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmed, setConfirmed] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const [showModal, setShowModal] = useState(false); 
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const isValidEmail = (email) => {
@@ -48,7 +47,7 @@ export const SignUp = () => {
     } else {
       try {
         const response = await axios.post(
-          "https://thewhitehousegame.com/api/public/api/register",
+          "http://app.thewhitehousegame.com/api/register",
           {
             name: name,
             email: email,
@@ -63,17 +62,13 @@ export const SignUp = () => {
           }
         );
 
-
-        
         if (response.status === 200) {
           secureLocalStorage.setItem("email", email);
           secureLocalStorage.setItem("id", response.data.user.id);
 
-          
           setIsLoading(false);
           setShowModal(true);
         } else {
-          
           console.log("Registration failed. Please try again later.");
           setIsLoading(false);
         }
@@ -109,11 +104,11 @@ export const SignUp = () => {
       </Helmet>
 
       <div className="hidden lg:block">
-          <Navbar />
-        </div>
-        <div className="block lg:hidden">
-          <MobileNav />
-        </div>
+        <Navbar />
+      </div>
+      <div className="block lg:hidden">
+        <MobileNav />
+      </div>
       <div className="flex flex-col text-center items-center justify-center mt-2">
         <h1 className="text-whiteColor sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
           {" "}

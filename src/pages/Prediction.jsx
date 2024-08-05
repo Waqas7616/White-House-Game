@@ -27,6 +27,9 @@ function Prediction() {
   const [status, setStatus] = useState(null);
   const [popup, setPopup] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [myData, setMyData] = useState("");
+  const [duplicatePopup, setDuplicatePopup] = useState(false);
+
   useEffect(() => {
     ReactGA.send({
       hitType: "pageview",
@@ -60,8 +63,24 @@ function Prediction() {
       vice_president_id: vicePresident,
     });
   };
+  const checkDuplicateCandidates = () => {
+    const selectedCandidates = new Set();
+    for (const vote of voting) {
+      if (selectedCandidates.has(vote.president_id)) {
+        return true;
+      }
+      selectedCandidates.add(vote.president_id);
+    }
+    return false;
+  };
 
   const sendPrediction = () => {
+    if (checkDuplicateCandidates()) {
+      setDuplicatePopup(true);
+      setMyData("ok");
+
+      return;
+    }
     ReactGA.event({
       category: "Election",
       action: "Election through President only",
@@ -95,7 +114,7 @@ function Prediction() {
         setLoading(false);
       });
   };
-
+  console.log(myData);
   return (
     <>
       {popup && (
@@ -132,6 +151,51 @@ function Prediction() {
               className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
             >
               Log In
+            </button>
+          </div>
+        </div>
+      )}
+      {duplicatePopup && (
+        <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
+          <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12  relative">
+            <div className="text-center mb-6">
+              <img className="w-[80px] h-[80px]" src={logo1} alt="" />
+            </div>
+            <button
+              onClick={() => {
+                setDuplicatePopup(false);
+              }}
+              className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <div className="text-center mb-5">
+              <h2 className="text-white text-center m-auto">
+                Same candidate selected for multiple parties. Please change your
+                selection.
+              </h2>
+            </div>
+
+            <button
+              onClick={() => {
+                setDuplicatePopup(false);
+              }}
+              className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
+            >
+              Close
             </button>
           </div>
         </div>
@@ -177,17 +241,18 @@ function Prediction() {
               </span>
               <h2>Democratic</h2>
             </div>
-
-            <Predict
-              name={"Democratic"}
-              titleImage={dem}
-              party={"Democratic"}
-              submitData={submitData}
-              onSelectionChange={handleSelectionChange}
-
-              // afterchange={(index)=>{console.log(candidateData.filter((item)=>item?.party.party_name==="Democratic")[index])}}
-              // afterchange={(index) => { console.log(index) }}
-            />
+            <div>
+              <Predict
+                name={"Democratic"}
+                titleImage={dem}
+                party={"Democratic"}
+                submitData={submitData}
+                onSelectionChange={handleSelectionChange}
+                myData={myData}
+                // afterchange={(index)=>{console.log(candidateData.filter((item)=>item?.party.party_name==="Democratic")[index])}}
+                // afterchange={(index) => { console.log(index) }}
+              />
+            </div>
           </div>
           <div>
             <div className="flex items-center gap-3 bg-[rgba(252,222,222,0.2)] text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] text-white w-fit px-2 py-1 rounded">
@@ -203,6 +268,7 @@ function Prediction() {
               party={"Republican"}
               submitData={submitData}
               onSelectionChange={handleSelectionChange}
+              myData={myData}
             />
           </div>
           <div>
@@ -224,6 +290,7 @@ function Prediction() {
               party={"Independent('Kennedy')"}
               submitData={submitData}
               onSelectionChange={handleSelectionChange}
+              myData={myData}
             />
           </div>
         </div>
