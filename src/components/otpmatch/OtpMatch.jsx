@@ -153,7 +153,7 @@ function OtpMatch(props) {
   const resendOtp = () => {
     axios
       .post(
-        "https://thewhitehousegame.com/api/public/api/resendOTP",
+        "http://app.thewhitehousegame.com/api/resendOTP",
 
         {
           email: email,
