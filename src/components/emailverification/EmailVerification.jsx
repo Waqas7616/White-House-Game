@@ -120,7 +120,7 @@ function EmailVerification(props) {
 
     try {
       const response = await axios.post(
-        "http://app.thewhitehousegame.com/api/match_otp",
+        "https://app.thewhitehousegame.com/api/match_otp",
         {
           otp: otp,
           email: email,

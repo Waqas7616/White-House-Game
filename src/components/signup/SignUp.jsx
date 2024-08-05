@@ -47,7 +47,7 @@ export const SignUp = () => {
     } else {
       try {
         const response = await axios.post(
-          "http://app.thewhitehousegame.com/api/register",
+          "https://app.thewhitehousegame.com/api/register",
           {
             name: name,
             email: email,
