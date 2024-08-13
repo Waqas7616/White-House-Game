@@ -174,11 +174,11 @@ function ElectoralCollege() {
   };
 
   const token = secureLocalStorage.getItem("token");
-  const imageUrl = "https://thewhitehousegame.com/api/public/";
+  const imageUrl = "https://app.thewhitehousegame.com/";
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/getStateParty", {
+      .get("https://app.thewhitehousegame.com/api/getStateParty", {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "Application/json",
@@ -211,7 +211,7 @@ function ElectoralCollege() {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/getVoterPartyCount", {
+      .get("https://app.thewhitehousegame.com/api/getVoterPartyCount", {
         headers: {
           Accept: "application/json",
         },
@@ -289,7 +289,7 @@ function ElectoralCollege() {
       });
       axios
         .post(
-          "https://thewhitehousegame.com/api/public/api/submit_electoral_college_prediction",
+          "https://app.thewhitehousegame.com/api/submit_electoral_college_prediction",
           {
             state_predictions: state_predictions || myData,
           },
@@ -329,22 +329,35 @@ function ElectoralCollege() {
       clearPredictions();
       newPredictions.forEach((prediction) => addPrediction(prediction));
 
-if(removedPredictions){
-  const prevStateId=removedPredictions.state_id;
-  const prevState=previousData?.states?.find(state=>state.id===prevStateId);
+      if (removedPredictions) {
+        const prevStateId = removedPredictions.state_id;
+        const prevState = previousData?.states?.find(
+          (state) => state.id === prevStateId
+        );
 
-  const prevPartyId=removedPredictions.party_id;
-  const prevElectoralVotes=prevState?.name.includes("Maine"||"Nebraska")?prevState?.electrical_collage_number_1:prevState?.electrical_collage_number || 0 ;
-  
+        const prevPartyId = removedPredictions.party_id;
+        const prevElectoralVotes = prevState?.name.includes(
+          "Maine" || "Nebraska"
+        )
+          ? prevState?.electrical_collage_number_1
+          : prevState?.electrical_collage_number || 0;
 
-  setElectoralCount((prev)=>({
-    ...prev,
-    Democratic:prevPartyId===1?prev.Democratic-prevElectoralVotes:prev.Democratic,
-    Republican:prevPartyId===2?prev.Republican-prevElectoralVotes:prev.Republican,
-    Independent:prevPartyId===3?prev.Independent-prevElectoralVotes:prev.Independent,
-  }))
-}
-      
+        setElectoralCount((prev) => ({
+          ...prev,
+          Democratic:
+            prevPartyId === 1
+              ? prev.Democratic - prevElectoralVotes
+              : prev.Democratic,
+          Republican:
+            prevPartyId === 2
+              ? prev.Republican - prevElectoralVotes
+              : prev.Republican,
+          Independent:
+            prevPartyId === 3
+              ? prev.Independent - prevElectoralVotes
+              : prev.Independent,
+        }));
+      }
 
       // Go back one step
       setStep(step - 1);

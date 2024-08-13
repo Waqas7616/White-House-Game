@@ -15,18 +15,16 @@ import Ethnicity from "./Ethnicity";
 import axios from "axios";
 
 export default function CountryOfBirth() {
-  const imageUrl = "https://thewhitehousegame.com/api/public/";
+  const imageUrl = "https://app.thewhitehousegame.com/api/";
 
   const [CountryBirth, setCountryBirth] = useState([]);
   const [countryOfBirth, setCountryOfBirth] = useState([]);
-  const [president,setPresident]=useState([])
+  const [president, setPresident] = useState([]);
   const [id, setId] = useState(187);
 
   useEffect(() => {
     axios
-      .get(
-        "https://thewhitehousegame.com/api/public/api/get_all_user_country_birth"
-      )
+      .get("https://app.thewhitehousegame.com/api/get_all_user_country_birth")
       .then((response) => {
         //   console.log("Age Group:", response.data.user_country_birth
         // );
@@ -43,17 +41,18 @@ export default function CountryOfBirth() {
       user_country_birth_id: id,
     });
     axios
-      .get(
-        `https://thewhitehousegame.com/api/public/api/filter?${ParamBody}`,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      )
+      .get(`https://app.thewhitehousegame.com/api/filter?${ParamBody}`, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
       .then((res) => {
         setCountryOfBirth(res.data);
-        setPresident(res.data.data.candidate_percentages.filter((item)=>item.position==='president').sort((a,b)=>b.percentage-a.percentage))
+        setPresident(
+          res.data.data.candidate_percentages
+            .filter((item) => item.position === "president")
+            .sort((a, b) => b.percentage - a.percentage)
+        );
       })
       .catch((err) => {
         console.error("Error:", err);
@@ -90,8 +89,6 @@ export default function CountryOfBirth() {
         Party support by country of birth
       </p>
       <div className="search-section flex flex-col  sm:flex-row  justify-center my-16">
-             
-
         <div className="searchBar flex flex-col ">
           <label
             htmlFor="search"
@@ -100,32 +97,38 @@ export default function CountryOfBirth() {
             Select Country Of Birth
           </label>
           <div className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-2 py-2 rounded-[10px] text-whiteColor">
-          <select
-            onChange={(e) => {
-              const selectedName = e.target.value;
-              const selectedId = CountryBirth.find(
-                (item) => item.name === selectedName
-              )?.id;
-              handleId(selectedId);
-            }}
-            name="states"
-            id="search"
-            className="bg-transparent w-full outline-none"
-          >
-            {CountryBirth?.map((item) => (
-              <option className="bg-[#1c2452]" key={item.id} value={item?.name}>
-                {item?.name}
-              </option>
-            ))}
-          </select>
+            <select
+              onChange={(e) => {
+                const selectedName = e.target.value;
+                const selectedId = CountryBirth.find(
+                  (item) => item.name === selectedName
+                )?.id;
+                handleId(selectedId);
+              }}
+              name="states"
+              id="search"
+              className="bg-transparent w-full outline-none"
+            >
+              {CountryBirth?.map((item) => (
+                <option
+                  className="bg-[#1c2452]"
+                  key={item.id}
+                  value={item?.name}
+                >
+                  {item?.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
-
       </div>
       <div className="stats relative py-5 px-4 bg-white/5 rounded-[10px] mt-8">
-        {president.length===0?
-        <p className="poppins5 text-center text-white">No one from this country has made predictions yet</p>:
-        president.map((item, index) => (
+        {president.length === 0 ? (
+          <p className="poppins5 text-center text-white">
+            No one from this country has made predictions yet
+          </p>
+        ) : (
+          president.map((item, index) => (
             <div
               key={index}
               className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
@@ -162,7 +165,7 @@ export default function CountryOfBirth() {
                       item.party_name === "Republican"
                         ? democrat
                         : item.party_name === "Democratic"
-                        ?  republic
+                        ? republic
                         : independ
                     }
                     alt=""
@@ -190,7 +193,8 @@ export default function CountryOfBirth() {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+        )}
       </div>
     </div>
   );

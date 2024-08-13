@@ -11,7 +11,7 @@ import republic from "../../images/Republicanlogo 1.svg";
 import axios from "axios";
 
 export default function VoteGraph() {
-  const imageUrl = "https://thewhitehousegame.com/api/public/";
+  const imageUrl = "https://app.thewhitehousegame.com/";
 
   const [expendedCandidates, setExpandedCandidates] = useState(false);
   const [id, setId] = useState(71);
@@ -28,7 +28,7 @@ export default function VoteGraph() {
   };
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/get_user_state")
+      .get("https://app.thewhitehousegame.com/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
       })
@@ -39,7 +39,7 @@ export default function VoteGraph() {
       user_state_id: id,
     });
     axios
-      .get(`https://thewhitehousegame.com/api/public/api/filter?${ParamBody}`, {
+      .get(`https://app.thewhitehousegame.com/api/filter?${ParamBody}`, {
         headers: {
           Accept: "application/json",
         },
@@ -164,7 +164,8 @@ export default function VoteGraph() {
               </p>
             ) : (
               candidatedata?.data?.candidate_percentages
-                .filter((item) => item.position === "president").sort((a,b)=>b.percentage-a.percentage)
+                .filter((item) => item.position === "president")
+                .sort((a, b) => b.percentage - a.percentage)
                 .slice(0, 3)
                 .map((item, index) => (
                   <div

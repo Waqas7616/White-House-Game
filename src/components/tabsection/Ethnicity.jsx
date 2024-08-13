@@ -15,14 +15,14 @@ import axios from "axios";
 
 export default function Ethnicity() {
   const [ethnicityData, setEthnicityData] = useState([]);
-  const [ethnicity2, setEthnicity2] = useState([])
+  const [ethnicity2, setEthnicity2] = useState([]);
   const [id, setId] = useState(1);
   // useEffect(() => {
   // }, [id]);
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/get_user_ethnicty")
+      .get("https://app.thewhitehousegame.com/api/get_user_ethnicty")
       .then((response) => {
         //  console.log("Ethnicity Data:", response.data.user_ethnicity);
 
@@ -37,14 +37,11 @@ export default function Ethnicity() {
       user_ethnicity_id: id,
     });
     axios
-      .get(
-        `https://thewhitehousegame.com/api/public/api/filter?${ParamBody}`,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      )
+      .get(`https://app.thewhitehousegame.com/api/filter?${ParamBody}`, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
       .then((res) => {
         setEthnicity2(res.data);
       })
@@ -90,7 +87,7 @@ export default function Ethnicity() {
     const pollingpercentage = Math.round(
       (parseInt(candidate.pollingStation, 10) /
         parseInt(formerTotalVotes, 10)) *
-      100
+        100
     );
 
     return {
@@ -131,25 +128,28 @@ export default function Ethnicity() {
             Select Etnicity
           </label>
           <div className="bg-transparent border-[1px] poppins4 text-[14px] ml-8 md:ml-0 border-whiteColor w-[226px] md:w-[263px] lg:w-[420px] px-3 py-2 rounded-[10px] text-whiteColor">
-          <select
-            onChange={(e) => {
-              const selectedName = e.target.value;
-              const selectedId = ethnicityData.find(
-                (item) => item.name === selectedName
-              )?.id;
-              handleId(selectedId);
-            }}
-            name="states"
-            id="search"
-            className="bg-transparent w-full outline-none"
-          >
-
-            {ethnicityData?.map((item) => (
-              <option className="bg-[#1c2452]" key={item.id} value={item?.name}>
-                {item?.name}
-              </option>
-            ))}
-          </select>
+            <select
+              onChange={(e) => {
+                const selectedName = e.target.value;
+                const selectedId = ethnicityData.find(
+                  (item) => item.name === selectedName
+                )?.id;
+                handleId(selectedId);
+              }}
+              name="states"
+              id="search"
+              className="bg-transparent w-full outline-none"
+            >
+              {ethnicityData?.map((item) => (
+                <option
+                  className="bg-[#1c2452]"
+                  key={item.id}
+                  value={item?.name}
+                >
+                  {item?.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
@@ -185,46 +185,51 @@ export default function Ethnicity() {
           </div> */}
       </div>
       <div className="stats relative py-2 px-4 bg-white/5 rounded-[10px] mt-8">
-        {ethnicity2?.data?.party_percentages.length===0?
-        <p className="poppins5 text-center text-white">No data for this ethnicity yet</p>:
-        ethnicity2?.data?.party_percentages.slice(0, 3).map((item, index) => (
-          <div
-            key={index}
-            className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${item.party_name === "Republican"
-                ? "republic"
-                : item.party_name === "Democratic"
+        {ethnicity2?.data?.party_percentages.length === 0 ? (
+          <p className="poppins5 text-center text-white">
+            No data for this ethnicity yet
+          </p>
+        ) : (
+          ethnicity2?.data?.party_percentages.slice(0, 3).map((item, index) => (
+            <div
+              key={index}
+              className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
+                item.party_name === "Republican"
+                  ? "republic"
+                  : item.party_name === "Democratic"
                   ? "democratic"
                   : "independent"
               } rounded-[8px] my-8`}
-          >
-            <div
-              style={{
-                background: `${item.party_name === "Republican"
-                    ? "#ED1C24"
-                    : item.party_name === "Democratic"
+            >
+              <div
+                style={{
+                  background: `${
+                    item.party_name === "Republican"
+                      ? "#ED1C24"
+                      : item.party_name === "Democratic"
                       ? "#546BED"
                       : "white"
                   }`,
-              }}
-              className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-2 xl:gap-10 items-center rounded-l-lg`}
-            >
-              <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
-                <img
-                  className="w-[20px] sm:w-auto"
-                  src={
-                    item.party_name === "Republican"
-                      ?  democrat
-                      : item.party_name === "Democratic"
+                }}
+                className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-2 xl:gap-10 items-center rounded-l-lg`}
+              >
+                <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px] shadow-xl shadow-[#0000004d]">
+                  <img
+                    className="w-[20px] sm:w-auto"
+                    src={
+                      item.party_name === "Republican"
+                        ? democrat
+                        : item.party_name === "Democratic"
                         ? republic
                         : independ
-                  }
-                  alt=""
-                />
-              </div>
-              <p className="poppins4 w-[30%] sm:w-auto  text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
-                {item.party_name && item.party_name.split("(")[0]}
-              </p>
-              {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
+                    }
+                    alt=""
+                  />
+                </div>
+                <p className="poppins4 w-[30%] sm:w-auto  text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px]">
+                  {item.party_name && item.party_name.split("(")[0]}
+                </p>
+                {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                 <img
                   className="w-[20px] sm:w-auto"
                   src={
@@ -237,28 +242,30 @@ export default function Ethnicity() {
                   alt=""
                 />
               </div> */}
-            </div>
-            <div className="president-votes w-3/4">
-              <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
-                <div
-                  style={{
-                    width: `${item.percentage}%`,
-                    background: `${item.party_name === "Democratic"
-                        ? "#546BED"
-                        : item.party_name === "Republican"
+              </div>
+              <div className="president-votes w-3/4">
+                <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
+                  <div
+                    style={{
+                      width: `${item.percentage}%`,
+                      background: `${
+                        item.party_name === "Democratic"
+                          ? "#546BED"
+                          : item.party_name === "Republican"
                           ? "#ED1C24"
                           : "white"
                       }`,
-                  }}
-                  className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
-                >
-                  {" "}
-                  {item.percentage.toFixed(1)}%
+                    }}
+                    className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
+                  >
+                    {" "}
+                    {item.percentage.toFixed(1)}%
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );

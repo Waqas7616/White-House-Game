@@ -9,7 +9,7 @@ import secureLocalStorage from "react-secure-storage";
 import MobileNav from "../MobileNav";
 import CustomSpinner from "../spinner";
 import { useNavigate } from "react-router-dom";
-import check from "../../images/check.png"
+import check from "../../images/check.png";
 
 export const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,8 +17,8 @@ export const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [isloading, setisLoading] = useState(false);
-const [popup, setPopUp] = useState(false);
-const navigate = useNavigate();
+  const [popup, setPopUp] = useState(false);
+  const navigate = useNavigate();
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
@@ -45,7 +45,7 @@ const navigate = useNavigate();
 
     try {
       const response = await axios.post(
-        "https://thewhitehousegame.com/api/public/api/rest_password",
+        "https://app.thewhitehousegame.com/api/rest_password",
         {
           password: newPassword,
           confirm_password: confirmPassword,
@@ -75,46 +75,50 @@ const navigate = useNavigate();
   return (
     <>
       <div className="h-screen">
-      {popup && (
-        <div className="popup">
-          <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
-            <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12 sm:h-[52vh] relative">
-              <div className="text-center mb-6">
-                <img className="w-[80px] h-[80px]" src={logo1} alt="" />
-              </div>
-              <button
-                onClick={()=>navigate("/")}
-                className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+        {popup && (
+          <div className="popup">
+            <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
+              <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12 sm:h-[52vh] relative">
+                <div className="text-center mb-6">
+                  <img className="w-[80px] h-[80px]" src={logo1} alt="" />
+                </div>
+                <button
+                  onClick={() => navigate("/")}
+                  className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
 
-              <p className="text-white text-center text-[16px]">
-                {" "}
-                Your Password has been changed successfully!
-              </p>
-              <div className="flex justify-center items-center mt-8">
-                <img className="h-12 w-12 " src={check} alt="" />
+                <p className="text-white text-center text-[16px]">
+                  {" "}
+                  Your Password has been changed successfully!
+                </p>
+                <div className="flex justify-center items-center mt-8">
+                  <img className="h-12 w-12 " src={check} alt="" />
+                </div>
+                <button
+                  onClick={() => navigate("/")}
+                  className="mt-8 text-white poppins5 bg-redish px-8 py-2 rounded"
+                >
+                  close
+                </button>
               </div>
-              <button onClick={()=>navigate("/")} className="mt-8 text-white poppins5 bg-redish px-8 py-2 rounded">close</button>
             </div>
-            
           </div>
-        </div>
-      )}
+        )}
         <Helmet>
           <title>The White House Game | Log In to your account</title>
           <meta

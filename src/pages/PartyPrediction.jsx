@@ -49,7 +49,7 @@ function PartyPrediction() {
   const data = location.state || {};
   // console.log("transferred data", data);
   const [candidateData, setCandidateData] = useState([]);
-  const imageUrl = "https://thewhitehousegame.com/api/public/";
+  const imageUrl = "https://app.thewhitehousegame.com/";
   // const id=secureLocalStorage.getItem('id');
   const token = secureLocalStorage.getItem("token");
   const id = secureLocalStorage.getItem("id");
@@ -60,7 +60,7 @@ function PartyPrediction() {
   useEffect(() => {
     axios
       .get(
-        `https://thewhitehousegame.com/api/public/api/get_predict_party_candidate`,
+        `https://app.thewhitehousegame.com/api/get_predict_party_candidate`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -118,7 +118,7 @@ function PartyPrediction() {
   }, [predict, candidateData]);
 
   const sendPartyData = () => {
-    setLoading(true)
+    setLoading(true);
     ReactGA.event({
       category: "Party Selection",
       action: `${
@@ -131,7 +131,7 @@ function PartyPrediction() {
     });
     axios
       .post(
-        "https://thewhitehousegame.com/api/public/api/predict_party_leader",
+        "https://app.thewhitehousegame.com/api/predict_party_leader",
         partyData,
         {
           headers: {
@@ -143,12 +143,12 @@ function PartyPrediction() {
       )
       .then((res) => {
         setPopUp(true);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         setError(err.response.data.error);
         setPopUps(true);
-        setLoading(false)
+        setLoading(false);
       });
   };
 
@@ -165,10 +165,10 @@ function PartyPrediction() {
     }
   }, [candidateData, partyData.president_id, partyData.vice_president_id]);
 
-  const handleClosePopup=()=>{
-    setPopUp(false)
-    navigate('/')
-  }
+  const handleClosePopup = () => {
+    setPopUp(false);
+    navigate("/");
+  };
 
   return (
     <div className="">
@@ -222,7 +222,11 @@ function PartyPrediction() {
         <div className="w-full h-screen bg-black/60 fixed z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] bottom-0 flex justify-center items-center">
           <div className="popup bg-[#1C2452] px-16 rounded-[30px] py-2 md:py-3 lg:py-4 xl:py-8 2xl:py-12   ">
             <div className="popup-content ">
-              <img src={logo} className="m-auto w-[45px] lg:w-[50px] xl:w-[90px]" alt="" />
+              <img
+                src={logo}
+                className="m-auto w-[45px] lg:w-[50px] xl:w-[90px]"
+                alt=""
+              />
               <h1 className="poppins6 text-white text-center text-[13px] xl:text-[16px]">
                 Who you expect to win
               </h1>
@@ -252,7 +256,9 @@ function PartyPrediction() {
                 }}
               >
                 <div>
-                  <h1 className="text-white text-[12px] xl:text-[16px] poppins6 mb-2">President</h1>
+                  <h1 className="text-white text-[12px] xl:text-[16px] poppins6 mb-2">
+                    President
+                  </h1>
                   <div className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px]  overflow-hidden rounded-[10.96px]">
                     {popPresident && popPresident.voter_candidate && (
                       <img
@@ -264,7 +270,9 @@ function PartyPrediction() {
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-white text-[12px] xl:text-[16px] poppins6 mb-2">Vice President</h1>
+                  <h1 className="text-white text-[12px] xl:text-[16px] poppins6 mb-2">
+                    Vice President
+                  </h1>
                   <div className="w-[100px] h-[100px] md:w-[90px] md:h-[90px] lg:w-[100px] lg:h-[100] xl:w-[110px] xl:h-[120px]  overflow-hidden rounded-[10.96px]">
                     {popvicePresident && popvicePresident.voter_candidate && (
                       <img
@@ -288,7 +296,7 @@ function PartyPrediction() {
                 </span>
               </p>
               <p className="text-white text-center poppins4 text-[13px] m-auto mt-3 2xl:mt-5">
-              If you would like to change your Prediction{" "}
+                If you would like to change your Prediction{" "}
               </p>
               <button
                 onClick={() => navigate("/predict")}
@@ -300,7 +308,7 @@ function PartyPrediction() {
                 onClick={handleClosePopup}
                 className="rounded-[6px] border-[1px] px-20 block m-auto py-2 2xl:py-3 mt-5 border-white poppins7 text-white text-center"
               >
-                 Close
+                Close
               </button>
             </div>
           </div>
@@ -520,18 +528,20 @@ function PartyPrediction() {
       </div>
 
       <div className="flex justify-center relative gap-8 mt-8 mb-3">
-        {loading?<CustomSpinner/>:
-         <button
-          onClick={sendPartyData}
-          disabled={disabled}
-          className={`rounded-lg px-5 py-3 border-[1px] border-white h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 ${
-            disabled ? "opacity-40" : ""
-          }`}
-        >
-          Submit
-        </button>
-        }
-       
+        {loading ? (
+          <CustomSpinner />
+        ) : (
+          <button
+            onClick={sendPartyData}
+            disabled={disabled}
+            className={`rounded-lg px-5 py-3 border-[1px] border-white h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 ${
+              disabled ? "opacity-40" : ""
+            }`}
+          >
+            Submit
+          </button>
+        )}
+
         {/* <button
           onClick={() => navigate("/electoral")}
           className={`rounded-lg px-5 py-3 bg-red-500 h-[40px] sm:w-[300px] sm:h-[50px] flex items-center justify-center gap-1 text-white font-poppins ml-3 `}
