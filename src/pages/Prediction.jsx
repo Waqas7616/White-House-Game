@@ -88,7 +88,7 @@ function Prediction() {
     setLoading(true);
     axios
       .post(
-        "https://thewhitehousegame.com/api/public/api/select_party_leaders",
+        "https://app.thewhitehousegame.com/api/select_party_leaders",
         {
           parties: voting,
         },

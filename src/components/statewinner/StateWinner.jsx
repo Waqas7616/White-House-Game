@@ -9,20 +9,20 @@ const StateWinner = () => {
   const location = useLocation();
   const [statesData, setStatesData] = useState([]);
   const [originalData, setOriginalData] = useState({});
-  const [newData,setNewData]=useState({})
+  const [newData, setNewData] = useState({});
 
-  const ImageUrl = "https://thewhitehousegame.com/api/public/";
+  const ImageUrl = "https://app.thewhitehousegame.com/";
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/getVoterPartyCount", {
+      .get("https://app.thewhitehousegame.com/api/getVoterPartyCount", {
         headers: {
           Accept: "application/json",
         },
       })
       .then((res) => {
         setOriginalData(res.data.data_of_2020.data);
-        setNewData(res?.data?.data)
+        setNewData(res?.data?.data);
         const parsedData = [];
 
         for (const state in res.data.data) {
@@ -172,10 +172,11 @@ const StateWinner = () => {
                   </td>
                   <td className="px-6 py-3 lg:py-10 flex-1">
                     <span className="mr-2 lg:mr-4 flex items-center justify-center">
-                      {newData[stateData.state].winning_party === "Democratic" && (
+                      {newData[stateData.state].winning_party ===
+                        "Democratic" && (
                         <div className="flex items-center gap-3">
                           <span className="text-white font-poppins font-medium text-[9px] lg:text-[19px]">
-                          {newData[stateData.state].winning_party}
+                            {newData[stateData.state].winning_party}
                           </span>
                           <span className="bg-white rounded-full p-2 w-[30px] h-[30px] md:w-[45px] md:h-[45px] flex justify-center items-center">
                             <img
@@ -187,10 +188,11 @@ const StateWinner = () => {
                           </span>
                         </div>
                       )}
-                      {newData[stateData.state].winning_party === "Republican" && (
+                      {newData[stateData.state].winning_party ===
+                        "Republican" && (
                         <div className="flex items-center gap-3">
                           <span className="text-white font-poppins font-medium text-[9px] lg:text-[19px] ">
-                          {newData[stateData.state].winning_party}
+                            {newData[stateData.state].winning_party}
                           </span>
                           <span className="bg-white rounded-full p-2 w-[30px] h-[30px] md:w-[45px] md:h-[45px] flex justify-center items-center">
                             <img
@@ -202,10 +204,15 @@ const StateWinner = () => {
                           </span>
                         </div>
                       )}
-                      {newData[stateData.state].winning_party === "Independent('Kennedy')" && (
+                      {newData[stateData.state].winning_party ===
+                        "Independent('Kennedy')" && (
                         <div className="flex items-center gap-3">
                           <span className="text-white font-poppins font-medium text-[9px] lg:text-[19px]">
-                            {newData[stateData.state].winning_party.split('(')[0]}
+                            {
+                              newData[stateData.state].winning_party.split(
+                                "("
+                              )[0]
+                            }
                           </span>
                           <span className="bg-white rounded-full p-1 w-[30px] h-[30px] md:w-[45px] md:h-[45px] flex justify-center items-center">
                             <img

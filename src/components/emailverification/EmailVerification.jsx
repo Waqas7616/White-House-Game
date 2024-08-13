@@ -151,7 +151,7 @@ function EmailVerification(props) {
   const resendOtp = () => {
     axios
       .post(
-        "https://thewhitehousegame.com/api/public/api/resendOTP",
+        "https://app.thewhitehousegame.com/api/resendOTP",
 
         {
           email: email,

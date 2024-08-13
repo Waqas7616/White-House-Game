@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import { useStatePredictions } from "../../utils/StateIDs";
-import ReactGA from 'react-ga4'
+import ReactGA from "react-ga4";
 
 function PredictSlider({
   data,
@@ -14,29 +14,29 @@ function PredictSlider({
   afterChange,
   selecClass,
   imageValue,
-  
 }) {
-  const { president,setPresident,vicePresident, setVicePresident, setParty } = useStatePredictions();
+  const { president, setPresident, vicePresident, setVicePresident, setParty } =
+    useStatePredictions();
   const [imageSelect, setImageSelect] = useState(false);
-  useEffect(()=>{
+  useEffect(() => {
     ReactGA.send({
-      hitType:'pageview',
-      path:window.location.pathname
+      hitType: "pageview",
+      path: window.location.pathname,
     });
-      },[])
+  }, []);
 
   const [candidatedata, setCandidateData] = useState([]);
   const [data2Index, setData2Index] = useState(0);
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  
-  const imageUrl = "https://thewhitehousegame.com/api/public/";
+
+  const imageUrl = "https://app.thewhitehousegame.com/";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://thewhitehousegame.com/api/public/api/get_votter_candidate",
+          "https://app.thewhitehousegame.com/api/get_votter_candidate",
           {
             headers: {
               Accept: "application/json",
@@ -50,22 +50,22 @@ function PredictSlider({
     };
     fetchData();
   }, []);
-  
-  const handleImage = (id, party,name) => {
+
+  const handleImage = (id, party, name) => {
     (data1 === "president" && setPresident(id)) ||
       (data1 === "VicePresident" && setVicePresident(id));
     (party_name === "Democratic" && setParty(party)) ||
       (party_name === "Republican" && setParty(party)) ||
       (party_name === "Independent('Kennedy')" && setParty(party));
     setImageSelect(true);
-    
+
     imageValue();
     ReactGA.event({
-      category:data1,
-      action:`${name}  is selected for ${data1} position`,
-      label:party_name,
-      value:id
-    })
+      category: data1,
+      action: `${name}  is selected for ${data1} position`,
+      label: party_name,
+      value: id,
+    });
   };
   const [arrow, setArrow] = useState(true);
 
@@ -80,12 +80,7 @@ function PredictSlider({
           selecClass ? "block" : "hidden"
         }`}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          
-          viewBox="0 0 90 91"
-          fill="none"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 91" fill="none">
           <g filter="url(#filter0_d_49_552)">
             <rect
               x="25"
@@ -166,12 +161,7 @@ function PredictSlider({
           selecClass === true ? "block" : "hidden"
         }`}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          
-          viewBox="0 0 90 91"
-          fill="none"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 91" fill="none">
           <g>
             <g filter="url(#paint0_linear_49_552)">
               <rect
@@ -233,7 +223,7 @@ function PredictSlider({
   );
 
   const settings = {
-    arrows: selecClass?true:false,
+    arrows: selecClass ? true : false,
     infinite: true,
 
     draggable: selecClass ? true : false,
@@ -252,11 +242,21 @@ function PredictSlider({
       <Slider {...settings}>
         {data1 === "president"
           ? candidatedata
-              ?.filter((item) => item.party.party_name === party_name || item?.parties[0]?.party_name===party_name)
+              ?.filter(
+                (item) =>
+                  item.party.party_name === party_name ||
+                  item?.parties[0]?.party_name === party_name
+              )
               .map((item, index) => (
                 <div
                   key={index}
-                  onClick={() => handleImage(item?.id, item?.votter_party_id,item?.candidate_name)}
+                  onClick={() =>
+                    handleImage(
+                      item?.id,
+                      item?.votter_party_id,
+                      item?.candidate_name
+                    )
+                  }
                   className={`w-[124px] h-[154px] md:w-[200px] md:h-[220px]    rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
                     imageSelect && "border-white border-[10px] rounded[28.43px]"
                   }`}
@@ -282,7 +282,11 @@ function PredictSlider({
               ))
           : data1 === "VicePresident" &&
             candidatedata
-              ?.filter((item) => item.party.party_name === party_name || item?.parties[0]?.party_name===party_name)
+              ?.filter(
+                (item) =>
+                  item.party.party_name === party_name ||
+                  item?.parties[0]?.party_name === party_name
+              )
               .map((item, index) => (
                 <div
                   key={index}

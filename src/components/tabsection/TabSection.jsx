@@ -24,7 +24,7 @@ import StateWinner from "../statewinner/StateWinner";
 import { Helmet } from "react-helmet";
 
 function TabSection() {
-  const imageUrl = "https://thewhitehousegame.com/api/public/";
+  const imageUrl = "https://app.thewhitehousegame.com/";
 
   const [allstates, setAllStates] = useState([]);
   const [id, setId] = useState(71);
@@ -34,7 +34,7 @@ function TabSection() {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/get_user_state")
+      .get("https://app.thewhitehousegame.com/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
       })
@@ -45,7 +45,7 @@ function TabSection() {
       user_state_id: id,
     });
     axios
-      .get(`https://thewhitehousegame.com/api/public/api/filter?${ParamBody}`, {
+      .get(`https://app.thewhitehousegame.com/api/filter?${ParamBody}`, {
         headers: {
           Accept: "application/json",
         },
@@ -53,15 +53,15 @@ function TabSection() {
       .then((res) => {
         setStats(res.data);
         setPresident(
-          res?.data?.data?.candidate_percentages.filter(
-            (item) => item.position === "president"
-          ).sort((a,b)=>b.percentage-a.percentage)
+          res?.data?.data?.candidate_percentages
+            .filter((item) => item.position === "president")
+            .sort((a, b) => b.percentage - a.percentage)
         );
 
         setVicePresident(
-          res?.data?.data?.candidate_percentages.filter(
-            (item) => item.position === "vice_president"
-          ).sort((a,b)=>b.percentage-a.percentage)
+          res?.data?.data?.candidate_percentages
+            .filter((item) => item.position === "vice_president")
+            .sort((a, b) => b.percentage - a.percentage)
         );
       })
       .catch((err) => {
@@ -102,7 +102,7 @@ function TabSection() {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/getVoterPartyCount", {
+      .get("https://app.thewhitehousegame.com/api/getVoterPartyCount", {
         headers: {
           Accept: "application/json",
         },
@@ -241,7 +241,12 @@ function TabSection() {
           >
             <h2 className="orbit7 mt-8 text-whiteColor text-center w-[245px] flex justify-between items-center m-auto md:text-[60px]">
               <span>
-                <img loading="lazy" className="w-[50px]" src={statsone} alt="" />{" "}
+                <img
+                  loading="lazy"
+                  className="w-[50px]"
+                  src={statsone}
+                  alt=""
+                />{" "}
               </span>{" "}
               stats
             </h2>
@@ -250,7 +255,8 @@ function TabSection() {
             </p>
             <div className="search-section flex flex-col  sm:flex-row  justify-between">
               <div className="badge flex items-center justify-between">
-                <img loading="lazy"
+                <img
+                  loading="lazy"
                   className="w-8 h-8 lg:w-14 lg:h-14 object-cover"
                   src={badge}
                   alt=""
@@ -294,7 +300,8 @@ function TabSection() {
               </div>
 
               <div className="votes-count flex items-center justify-between sm:mt-0 mt-5">
-                <img loading="lazy"
+                <img
+                  loading="lazy"
                   className="w-8 h-8 lg:w-10 lg:h-10 object-cover"
                   src={ballot}
                   alt="ballot"
@@ -336,7 +343,8 @@ function TabSection() {
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className=" overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
-                            <img loading="lazy"
+                            <img
+                              loading="lazy"
                               className="w-full h-full object-cover"
                               src={`${imageUrl}${item.candidate_image}`}
                               alt=""
@@ -346,7 +354,8 @@ function TabSection() {
                             {item.candidate_name}
                           </p>
                           <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
-                            <img loading="lazy"
+                            <img
+                              loading="lazy"
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
@@ -385,25 +394,26 @@ function TabSection() {
                       </div>
                     ))
                   )}
-{president?.length>3&&(<button
-                    className="absolute bottom-[-20px] left-[50%]"
-                    onClick={expandVotes}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="40"
-                      height="40"
-                      viewBox="0 0 72 72"
-                      fill="none"
+                  {president?.length > 3 && (
+                    <button
+                      className="absolute bottom-[-20px] left-[50%]"
+                      onClick={expandVotes}
                     >
-                      <circle cx="36" cy="36" r="36" fill="#272F5B" />
-                      <path
-                        d="M36.4022 54.8707L27.5334 46.0019L25 48.5353L36.4022 59.9375L47.8043 48.5353L45.2709 46.0019L36.4022 54.8707Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </button>)}
-                  
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 72 72"
+                        fill="none"
+                      >
+                        <circle cx="36" cy="36" r="36" fill="#272F5B" />
+                        <path
+                          d="M36.4022 54.8707L27.5334 46.0019L25 48.5353L36.4022 59.9375L47.8043 48.5353L45.2709 46.0019L36.4022 54.8707Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </button>
+                  )}
                 </>
               ) : (
                 <>
@@ -429,7 +439,8 @@ function TabSection() {
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className=" overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
-                            <img loading="lazy"
+                            <img
+                              loading="lazy"
                               className="w-full h-full object-cover"
                               src={`${imageUrl}${item.candidate_image}`}
                               alt=""
@@ -439,7 +450,8 @@ function TabSection() {
                             {item.candidate_name}
                           </p>
                           <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
-                            <img loading="lazy"
+                            <img
+                              loading="lazy"
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
@@ -504,7 +516,8 @@ function TabSection() {
 
             <div className="search-section flex flex-col sm:items-none  sm:flex-row  justify-between mt-16">
               <div className="badge flex items-center justify-between">
-                <img loading="lazy"
+                <img
+                  loading="lazy"
                   className="w-8 h-8 lg:w-14 lg:h-14 object-cover"
                   src={badge2}
                   alt=""
@@ -515,7 +528,8 @@ function TabSection() {
               </div>
 
               <div className="votes-count flex items-center justify-between sm:ms-10 sm:mt-0 mt-5">
-                <img loading="lazy"
+                <img
+                  loading="lazy"
                   className="w-8 h-8 lg:w-10 lg:h-10 object-cover"
                   src={ballot}
                   alt="ballot"
@@ -556,7 +570,8 @@ function TabSection() {
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className="overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
-                            <img loading="lazy"
+                            <img
+                              loading="lazy"
                               className="w-full h-full object-cover"
                               src={`${imageUrl}${item.candidate_image}`}
                               alt=""
@@ -566,7 +581,8 @@ function TabSection() {
                             {item.candidate_name}
                           </p>
                           <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
-                            <img loading="lazy"
+                            <img
+                              loading="lazy"
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
@@ -619,25 +635,26 @@ function TabSection() {
                     </div>
                   </div>
                 </div> */}
-                {vicePresident?.length>3&&(<button
-                    className="absolute bottom-[-20px] left-[50%]"
-                    onClick={expandViceVotes}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="40"
-                      height="40"
-                      viewBox="0 0 72 72"
-                      fill="none"
+                  {vicePresident?.length > 3 && (
+                    <button
+                      className="absolute bottom-[-20px] left-[50%]"
+                      onClick={expandViceVotes}
                     >
-                      <circle cx="36" cy="36" r="36" fill="#272F5B" />
-                      <path
-                        d="M36.4022 54.8707L27.5334 46.0019L25 48.5353L36.4022 59.9375L47.8043 48.5353L45.2709 46.0019L36.4022 54.8707Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </button>)}
-                  
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 72 72"
+                        fill="none"
+                      >
+                        <circle cx="36" cy="36" r="36" fill="#272F5B" />
+                        <path
+                          d="M36.4022 54.8707L27.5334 46.0019L25 48.5353L36.4022 59.9375L47.8043 48.5353L45.2709 46.0019L36.4022 54.8707Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </button>
+                  )}
                 </>
               ) : (
                 <>
@@ -663,7 +680,8 @@ function TabSection() {
                           } px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex justify-between items-center rounded-l-lg`}
                         >
                           <div className="overflow-hidden overflow-y-hidden w-[50px] h-[60px]">
-                            <img loading="lazy"
+                            <img
+                              loading="lazy"
                               className="w-full h-full object-cover"
                               src={`${imageUrl}${item.candidate_image}`}
                               alt=""
@@ -673,7 +691,8 @@ function TabSection() {
                             {item.candidate_name}
                           </p>
                           <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
-                            <img loading="lazy"
+                            <img
+                              loading="lazy"
                               className="w-[20px] sm:w-auto"
                               src={
                                 item.party_name === "Republican"
