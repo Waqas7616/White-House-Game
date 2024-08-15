@@ -26,6 +26,8 @@ function PredictionAndElectoral() {
   const [popup, setPopup] = useState(false);
   const [error, setError] = useState("");
 
+  const [duplicatePopup, setDuplicatePopup] = useState(false);
+
   const navigate = useNavigate();
   const { president, vicePresident, party, voting, addVoting } =
     useStatePredictions();
@@ -64,7 +66,24 @@ function PredictionAndElectoral() {
     });
   };
 
+  const checkDuplicateCandidates = () => {
+    const selectedCandidates = new Set();
+    for (const vote of voting) {
+      if (selectedCandidates.has(vote.president_id)) {
+        return true;
+      }
+      selectedCandidates.add(vote.president_id);
+    }
+    return false;
+  };
+
   const sendPrediction = () => {
+    if (checkDuplicateCandidates()) {
+      setDuplicatePopup(true);
+      // setMyData("ok");
+
+      return;
+    }
     setLoading(true);
     axios
       .post(
@@ -130,6 +149,53 @@ function PredictionAndElectoral() {
               className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
             >
               Log In
+            </button>
+          </div>
+        </div>
+      )}
+      {duplicatePopup && (
+        <div className="w-full h-screen bg-black/60 fixed z-50 top-0 left-0 flex justify-center items-center">
+          <div className="popup flex flex-col items-center justify-center  bg-[#1C2452] w-full max-w-md h-auto py-8 px-6 rounded-[30px] sm:w-5/12  relative">
+            <div className="text-center mb-6">
+              <img className="w-[80px] h-[80px]" src={logo1} alt="" />
+            </div>
+            <button
+              onClick={() => {
+                // resetSelections();
+                setDuplicatePopup(false);
+              }}
+              className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <div className="text-center mb-5">
+              <h2 className="text-white text-center m-auto">
+                Same candidate selected for multiple parties. Please change your
+                selection.
+              </h2>
+            </div>
+
+            <button
+              onClick={() => {
+                // resetSelections();
+                setDuplicatePopup(false);
+              }}
+              className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
+            >
+              Close
             </button>
           </div>
         </div>

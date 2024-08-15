@@ -126,7 +126,7 @@ function Navbar() {
           >
             Tell us who you think will win?
           </li>
-          <div className="fixed flex items-center justify-center w-full h-full left-0 top-[10.5rem]  z-50 ">
+          <div className="fixed flex items-center justify-center w-full h-full left-0 top-[15.7rem]  z-50 ">
             <div className=" z-50  modal-container ">
               {showModal && <Version />}
             </div>
