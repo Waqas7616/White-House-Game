@@ -73,6 +73,10 @@ function Prediction() {
     }
     return false;
   };
+  // const resetSelections = () => {
+  //   resetVoting();
+  //   setIsSelectionComplete(false);
+  // };
 
   const sendPrediction = () => {
     if (checkDuplicateCandidates()) {
@@ -114,7 +118,7 @@ function Prediction() {
         setLoading(false);
       });
   };
-  console.log(myData);
+  // console.log(myData);
   return (
     <>
       {popup && (
@@ -163,6 +167,7 @@ function Prediction() {
             </div>
             <button
               onClick={() => {
+                // resetSelections();
                 setDuplicatePopup(false);
               }}
               className="absolute top-4 right-4 text-white hover:text-gray-400 transition-colors duration-300"
@@ -191,6 +196,7 @@ function Prediction() {
 
             <button
               onClick={() => {
+                // resetSelections();
                 setDuplicatePopup(false);
               }}
               className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"

@@ -19,53 +19,53 @@
 }
 
 body {
-    background-color: #1c2452;
+  background-color: #1c2452;
 }
 
 .orbit9 {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
 }
 
 .orbit7 {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
 }
 
 .poppins3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
 }
 
 .poppins4 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 .poppins5 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
 }
 
 .poppins6 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
 
 .svgModal {
-    position: absolute !important;
-    max-width: 300px !important;
-    min-width: 300px;
-    background-color: #3a0404;
-    z-index: 999999 !important;
-    top: 60% !important;
-    right: -13% !important;
-    transform: translateY(-50%);
+  position: absolute !important;
+  max-width: 300px !important;
+  min-width: 300px;
+  background-color: #3a0404;
+  z-index: 999999 !important;
+  top: 60% !important;
+  right: -13% !important;
+  transform: translateY(-50%);
 }
 
 .space {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 400;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
 }
 
 /* select option {
@@ -74,32 +74,33 @@ body {
 } */
 
 select::-ms-expand {
-    display: none !important;
-    padding-right: 40px !important;
+  display: none !important;
+  padding-right: 40px !important;
 }
 
 @media(min-width:1439px) {
-    .resp {
-        width: 1420px !important;
-        margin-inline: auto !important;
-    }
+  .resp {
+    width: 1420px !important;
+    margin-inline: auto !important;
+  }
 }
 
 @keyframes flip {
-    from {
-      transform: perspective(400px) rotateY(0);
-    }
-    to {
-      transform: perspective(400px) rotateY(180deg);
-    }
-  }
-  
-  .flip-animation {
-    animation-name: flip;
-    animation-duration: 0.6s;
+  from {
+    transform: perspective(400px) rotateY(0);
   }
 
-  /* .backgroundImageWithOpacity::before {
+  to {
+    transform: perspective(400px) rotateY(180deg);
+  }
+}
+
+.flip-animation {
+  animation-name: flip;
+  animation-duration: 0.6s;
+}
+
+/* .backgroundImageWithOpacity::before {
     content: '';
     position: absolute;
     top: 0;
@@ -112,233 +113,236 @@ select::-ms-expand {
     
   } */
 
-  .backgroundImageWithOpacity {
-    position: relative;
-    background-size: cover;
-    /* background-position: center; */
-    
+.backgroundImageWithOpacity {
+  position: relative;
+  background-size: cover;
+  /* background-position: center; */
+
 }
 
 .backgroundImageWithOpacity::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: inherit;
-    opacity: 0.05; /* Yahan aap opacity adjust kar sakte hain */
-    z-index: -1; /* Ensure background is behind content */
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  opacity: 0.05;
+  /* Yahan aap opacity adjust kar sakte hain */
+  z-index: -1;
+  /* Ensure background is behind content */
 }
 
 
 /* EDIT BUTTON STARTS HERE */
 .edit-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgb(20, 20, 20);
-    border: none;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
-    cursor: pointer;
-    transition-duration: 0.3s;
-    overflow: hidden;
-    position: relative;
-    text-decoration: none !important;
-  }
-  
-  .edit-svgIcon {
-    width: 17px;
-    transition-duration: 0.3s;
-  }
-  
-  .edit-svgIcon path {
-    fill: white;
-  }
-  
-  .edit-button:hover {
-    width: 120px;
-    border-radius: 50px;
-    transition-duration: 0.3s;
-    background-color: #ed1c24;
-    align-items: center;
-  }
-  
-  .edit-button:hover .edit-svgIcon {
-    width: 20px;
-    transition-duration: 0.3s;
-    transform: translateY(60%);
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-  
-  .edit-button::before {
-    display: none;
-    content: "Edit";
-    color: white;
-    transition-duration: 0.3s;
-    font-size: 2px;
-  }
-  
-  .edit-button:hover::before {
-    display: block;
-    padding-right: 10px;
-    font-size: 13px;
-    opacity: 1;
-    transform: translateY(0px);
-    transition-duration: 0.3s;
-  }
-  
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none !important;
+}
 
-  /* LOADER HERE  */
-  .loader {
-    width: 80px;
-    height: 50px;
-    position: relative;
-  }
-  
-  .loader-text {
-    position: absolute;
-    top: 0;
-    padding: 0;
-    margin: 0;
-    color: #C8B6FF;
-    animation: text_713 3.5s ease both infinite;
-    font-size: .8rem;
+.edit-svgIcon {
+  width: 17px;
+  transition-duration: 0.3s;
+}
+
+.edit-svgIcon path {
+  fill: white;
+}
+
+.edit-button:hover {
+  width: 120px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: #ed1c24;
+  align-items: center;
+}
+
+.edit-button:hover .edit-svgIcon {
+  width: 20px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.edit-button::before {
+  display: none;
+  content: "Edit";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+.edit-button:hover::before {
+  display: block;
+  padding-right: 10px;
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(0px);
+  transition-duration: 0.3s;
+}
+
+
+/* LOADER HERE  */
+.loader {
+  width: 80px;
+  height: 50px;
+  position: relative;
+}
+
+.loader-text {
+  position: absolute;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  color: #C8B6FF;
+  animation: text_713 3.5s ease both infinite;
+  font-size: .8rem;
+  letter-spacing: 1px;
+}
+
+.load {
+  background-color: #9A79FF;
+  border-radius: 50px;
+  display: block;
+  height: 16px;
+  width: 16px;
+  bottom: 0;
+  position: absolute;
+  transform: translateX(64px);
+  animation: loading_713 3.5s ease both infinite;
+}
+
+.load::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #D1C2FF;
+  border-radius: inherit;
+  animation: loading2_713 3.5s ease both infinite;
+}
+
+.board {
+  background-image: url('../src/images/board.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.board::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.708);
+  /* Adjust the color and opacity as needed */
+  z-index: 1;
+  /* Ensure the overlay is on top of the background but below other content */
+}
+
+.board-content {
+  position: relative;
+  z-index: 2;
+  /* Ensure the content is on top of the overlay */
+}
+
+@keyframes text_713 {
+  0% {
     letter-spacing: 1px;
+    transform: translateX(0px);
   }
-  
-  .load {
-    background-color: #9A79FF;
-    border-radius: 50px;
-    display: block;
-    height: 16px;
+
+  40% {
+    letter-spacing: 2px;
+    transform: translateX(26px);
+  }
+
+  80% {
+    letter-spacing: 1px;
+    transform: translateX(32px);
+  }
+
+  90% {
+    letter-spacing: 2px;
+    transform: translateX(0px);
+  }
+
+  100% {
+    letter-spacing: 1px;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes loading_713 {
+  0% {
     width: 16px;
-    bottom: 0;
-    position: absolute;
+    transform: translateX(0px);
+  }
+
+  40% {
+    width: 100%;
+    transform: translateX(0px);
+  }
+
+  80% {
+    width: 16px;
     transform: translateX(64px);
-    animation: loading_713 3.5s ease both infinite;
   }
-  
-  .load::before {
-    position: absolute;
-    content: "";
+
+  90% {
     width: 100%;
-    height: 100%;
-    background-color: #D1C2FF;
-    border-radius: inherit;
-    animation: loading2_713 3.5s ease both infinite;
+    transform: translateX(0px);
   }
 
-  .board{
-    background-image: url('../src/images/board.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  100% {
+    width: 16px;
+    transform: translateX(0px);
   }
-  .board::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
+}
+
+@keyframes loading2_713 {
+  0% {
+    transform: translateX(0px);
+    width: 16px;
+  }
+
+  40% {
+    transform: translateX(0%);
+    width: 80%;
+  }
+
+  80% {
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.708); /* Adjust the color and opacity as needed */
-    z-index: 1; /* Ensure the overlay is on top of the background but below other content */
-  }
-  
-  .board-content {
-    position: relative;
-    z-index: 2; /* Ensure the content is on top of the overlay */
-  }
-  
-  @keyframes text_713 {
-    0% {
-      letter-spacing: 1px;
-      transform: translateX(0px);
-    }
-  
-    40% {
-      letter-spacing: 2px;
-      transform: translateX(26px);
-    }
-  
-    80% {
-      letter-spacing: 1px;
-      transform: translateX(32px);
-    }
-  
-    90% {
-      letter-spacing: 2px;
-      transform: translateX(0px);
-    }
-  
-    100% {
-      letter-spacing: 1px;
-      transform: translateX(0px);
-    }
-  }
-  
-  @keyframes loading_713 {
-    0% {
-      width: 16px;
-      transform: translateX(0px);
-    }
-  
-    40% {
-      width: 100%;
-      transform: translateX(0px);
-    }
-  
-    80% {
-      width: 16px;
-      transform: translateX(64px);
-    }
-  
-    90% {
-      width: 100%;
-      transform: translateX(0px);
-    }
-  
-    100% {
-      width: 16px;
-      transform: translateX(0px);
-    }
-  }
-  
-  @keyframes loading2_713 {
-    0% {
-      transform: translateX(0px);
-      width: 16px;
-    }
-  
-    40% {
-      transform: translateX(0%);
-      width: 80%;
-    }
-  
-    80% {
-      width: 100%;
-      transform: translateX(0px);
-    }
-  
-    90% {
-      width: 80%;
-      transform: translateX(15px);
-    }
-  
-    100% {
-      transform: translateX(0px);
-      width: 16px;
-    }
+    transform: translateX(0px);
   }
 
+  90% {
+    width: 80%;
+    transform: translateX(15px);
+  }
 
- 
+  100% {
+    transform: translateX(0px);
+    width: 16px;
+  }
+}

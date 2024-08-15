@@ -62,7 +62,7 @@ export const LogIn = () => {
       } catch (error) {
         console.log(error);
         setIsLoading(false);
-        setError(error.response.data.error);
+        setError("Incorrect email or password");
       }
     }
   };
