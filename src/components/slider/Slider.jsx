@@ -34,13 +34,13 @@ function CustomSlider() {
 
   const [loading, setLoading] = useState(true);
 
-  const imageUrl = "https://thewhitehousegame.com/api/public/";
+  const imageUrl = "https://app.thewhitehousegame.com/";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://thewhitehousegame.com/api/public/api/get_votter_candidate",
+          "https://app.thewhitehousegame.com/api/get_votter_candidate",
           {
             headers: {
               Accept: "application/json",
@@ -314,7 +314,8 @@ function CustomSlider() {
                   onClick={() => handleCandidateClick(index)}
                 >
                   <div className="image w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%]  m-auto">
-                    <img loading="lazy"
+                    <img
+                      loading="lazy"
                       className=" w-[129px] h-[129px] sm:w-[130px] sm:h-[130px] md:w-[145px] md:h-[145px]   rounded-[50%] object-cover cursor-pointer"
                       src={`${imageUrl}${item?.candidate_image}`}
                       alt=""
@@ -339,7 +340,8 @@ function CustomSlider() {
                   className="candidate flex flex-col items-center justify-between gap-[10px]"
                 >
                   <div className="image w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%]  flex">
-                    <img loading="lazy"
+                    <img
+                      loading="lazy"
                       className=" w-[129px] h-[129px] sm:w-[150px] sm:h-[150px] rounded-[50%] object-cover cursor-pointer"
                       src={`${imageUrl}${item?.candidate_image}`}
                       alt=""
@@ -350,7 +352,7 @@ function CustomSlider() {
                     {/* {item.candidate_name === "Robert F Kennedy"
                       ? item.candidate_name.split(" ")[2]
                       : item.candidate_name.split(" ")[0]} */}
-                      {item.candidate_name}
+                    {item.candidate_name}
                   </h5>
                 </div>
               ))}

@@ -43,7 +43,7 @@ export const LogIn = () => {
     } else {
       try {
         const response = await axios.post(
-          "https://thewhitehousegame.com/api/public/api/login",
+          "https://app.thewhitehousegame.com/api/login",
           {
             email: email,
             password: password,
@@ -62,14 +62,13 @@ export const LogIn = () => {
       } catch (error) {
         console.log(error);
         setIsLoading(false);
-        setError(error.response.data.error);
+        setError("Incorrect email or password");
       }
     }
   };
 
   return (
     <div className=" h-screen">
-      
       <Helmet>
         <title>The White House Game | Log In to your account</title>
         <meta
@@ -83,11 +82,11 @@ export const LogIn = () => {
       </Helmet>
 
       <div className="hidden lg:block">
-          <Navbar />
-        </div>
-        <div className="block lg:hidden">
-          <MobileNav />
-        </div>
+        <Navbar />
+      </div>
+      <div className="block lg:hidden">
+        <MobileNav />
+      </div>
       <div className="flex flex-col text-center items-center justify-center mt-2">
         <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
           {" "}
@@ -95,7 +94,6 @@ export const LogIn = () => {
         </h1>
       </div>
       <div className="bg-[#1c2452] ">
-        
         <div className="flex justify-center items-center h-full">
           <div className="w-[344px] px-6 py-4  text-white rounded-lg">
             <p className="text-center font-poppins">To play and view results</p>

@@ -5,7 +5,7 @@ import closeMenu from "../images/closeMenu.png";
 import { Link } from "react-router-dom";
 import { Version } from "./version/Version";
 import { useNavigate, useLocation } from "react-router-dom";
-import securesecureLocalStorage from "react-secure-storage";
+import secureLocalStorage from "react-secure-storage";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -15,17 +15,16 @@ function Navbar() {
   const [link, setLink] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(
-    securesecureLocalStorage.getItem("email") &&
-      securesecureLocalStorage.getItem("token")
+    secureLocalStorage.getItem("email") && secureLocalStorage.getItem("token")
   );
 
-  const electoralCount = securesecureLocalStorage.getItem("electoralCount");
+  const electoralCount = secureLocalStorage.getItem("electoralCount");
 
   const logOut = () => {
-    securesecureLocalStorage.removeItem("token");
-    securesecureLocalStorage.removeItem("email");
-    securesecureLocalStorage.removeItem("id");
-    securesecureLocalStorage.removeItem("electoralCount");
+    secureLocalStorage.removeItem("token");
+    secureLocalStorage.removeItem("email");
+    secureLocalStorage.removeItem("id");
+    secureLocalStorage.removeItem("electoralCount");
     setIsLoggedIn(false);
     navigate("/login"); // Session expire karne ke baad isLoggedIn state ko false kar denge
   };
@@ -36,8 +35,6 @@ function Navbar() {
     desc: "Honest information helps us predict ",
     desc2: "the mood of the nation",
   };
-
-
 
   const handlePredictClick = () => {
     setShowModal(true);
@@ -54,8 +51,6 @@ function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   };
-
-
 
   // console.log("link value is :", link);
 
@@ -131,7 +126,7 @@ function Navbar() {
           >
             Tell us who you think will win?
           </li>
-          <div className="fixed flex items-center justify-center w-full h-full left-0 top-[10.5rem]  z-50 ">
+          <div className="fixed flex items-center justify-center w-full h-full left-0 top-[15.7rem]  z-50 ">
             <div className=" z-50  modal-container ">
               {showModal && <Version />}
             </div>
@@ -163,9 +158,10 @@ function Navbar() {
                   : ""
               }`}
             >
-              
               <button
-                className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${isLoggedIn?"block":"hidden"} ${
+                className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
+                  isLoggedIn ? "block" : "hidden"
+                } ${
                   location.pathname === "/putdata"
                     ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
                     : ""
@@ -174,17 +170,19 @@ function Navbar() {
               >
                 My Account
               </button>
-              {isLoggedIn && ( <button
-                onClick={() => navigate("/myvote")}
-                className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
-                  location.pathname == "/myvote"
-                    ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
-                    : ""
-                }`}
-              >
-                My Vote
-              </button>)}
-             
+              {isLoggedIn && (
+                <button
+                  onClick={() => navigate("/myvote")}
+                  className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
+                    location.pathname == "/myvote"
+                      ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white "
+                      : ""
+                  }`}
+                >
+                  My Vote
+                </button>
+              )}
+
               <button
                 onClick={logOut}
                 className={` w-full h-full text-center cursor-pointer text-[rgba(255,255,255,.6)] ${
@@ -199,20 +197,20 @@ function Navbar() {
             </div>
           )}
 
-{!isLoggedIn && (
-          <button
-            className={`w-full h-full ${
-              location.pathname !== "/LogIn"
-                ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white"
-                : "text-[rgba(255,255,255,.6)]"
-            }`}
-            onClick={() => {
-              navigate("/signup");
-            }}
-          >
-            Sign Up
-          </button>
-        )}
+          {!isLoggedIn && (
+            <button
+              className={`w-full h-full ${
+                location.pathname !== "/LogIn"
+                  ? "bg-[#1A2250] rounded-[5px] border-[1px] border-[rgba(255,255,255,.2)] text-white"
+                  : "text-[rgba(255,255,255,.6)]"
+              }`}
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              Sign Up
+            </button>
+          )}
         </div>
       </>
 

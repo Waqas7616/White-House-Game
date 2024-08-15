@@ -59,7 +59,7 @@ const CheckoutForm = ({ path }) => {
 
     try {
       const response = await axios.post(
-        "https://thewhitehousegame.com/api/public/api/processPayment",
+        "https://app.thewhitehousegame.com/api/processPayment",
         {
           payment_method_id: paymentMethod.id,
           amount: amount,
@@ -177,7 +177,7 @@ const CheckoutForm = ({ path }) => {
             </label>
             <input
               type="text"
-              value={`$${(amount / 100)}`}
+              value={`$${amount / 100}`}
               onChange={(e) => setAmount(e.target.value)}
               required
               className="form-control bg-[#1c2452] w-full py-3 px-2 !text-white rounded-lg border-[1px] border-[rgba(255,255,255,0.6)]"

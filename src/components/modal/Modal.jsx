@@ -2,7 +2,7 @@ import cross from "../../images/cross.png";
 import { Card, CardHeader, Typography } from "@material-tailwind/react";
 
 export const Modal = ({ candidate, onClose }) => {
-  const imageUrl = "https://thewhitehousegame.com/api/public/";
+  const imageUrl = "https://app.thewhitehousegame.com/";
 
   const getBackgroundColor = (partyName) => {
     if (partyName === "Democratic") {
@@ -25,9 +25,11 @@ export const Modal = ({ candidate, onClose }) => {
   return (
     <div className="">
       <div className="rounded-lg ">
-        <Card className={`relative max-w-[20rem] overflow-hidden md:w-[450px] rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
-                      candidate?.party?.party_name
-                    )}`}>
+        <Card
+          className={`relative max-w-[20rem] overflow-hidden md:w-[450px] rounded-lg shadow-2xl bg-black-50/50  ${getBackgroundColor(
+            candidate?.party?.party_name
+          )}`}
+        >
           <CardHeader
             floated={false}
             shadow={false}
@@ -35,13 +37,15 @@ export const Modal = ({ candidate, onClose }) => {
             className="m-0 rounded-none "
           >
             <div className=" overflow-hidden ">
-              <img loading="lazy"
+              <img
+                loading="lazy"
                 src={`${imageUrl}${candidate?.candidate_image}`}
                 alt="ui/ux review check"
                 className="w-full h-[280px] object-cover"
               />
               <div className="absolute top-2 right-3 ">
-                <img loading="lazy"
+                <img
+                  loading="lazy"
                   onClick={onClose}
                   className="w-7 h-7 cursor-pointer"
                   src={cross}
@@ -57,7 +61,8 @@ export const Modal = ({ candidate, onClose }) => {
                   />
                 </div>
                 <div className="w-[48px] h-[48px] flex justify-center items-center rounded-full bg-white">
-                  <img loading="lazy"
+                  <img
+                    loading="lazy"
                     className=" h-9 w-9"
                     src={`${imageUrl}${candidate?.party?.party_badge}`}
                     alt=""
@@ -120,7 +125,6 @@ export const Modal = ({ candidate, onClose }) => {
                 ))}
               </ul>
             </Typography>
-            
           </div>
         </Card>
       </div>

@@ -20,9 +20,9 @@ export const ForgotPassword = () => {
   const [showModal, setShowModal] = useState(false);
   const [isloading, setIsLoading] = useState(false);
   const location = useLocation();
-  const dataone= {
+  const dataone = {
     email: email,
-  }
+  };
 
   const handleSubmit = async (e) => {
     setIsLoading(true);
@@ -30,7 +30,7 @@ export const ForgotPassword = () => {
 
     try {
       const response = await axios.post(
-        "https://thewhitehousegame.com/api/public/api/forget_password",
+        "https://app.thewhitehousegame.com/api/forget_password",
         {
           email: email,
         }
@@ -38,9 +38,8 @@ export const ForgotPassword = () => {
 
       if (response.status === 200) {
         setIsLoading(false);
-        
 
-        setShowModal(true); 
+        setShowModal(true);
       } else {
         console.log(
           "Failed to send password reset instructions. Please try again."
@@ -56,7 +55,7 @@ export const ForgotPassword = () => {
 
   const closeModal = () => {
     setShowModal(false);
-    navigate("/otpmatch",{state:{dataone}});
+    navigate("/otpmatch", { state: { dataone } });
   };
   return (
     <div className="h-screen">
@@ -73,11 +72,11 @@ export const ForgotPassword = () => {
       </Helmet>
 
       <div className="hidden lg:block">
-          <Navbar />
-        </div>
-        <div className="block lg:hidden">
-          <MobileNav />
-        </div>
+        <Navbar />
+      </div>
+      <div className="block lg:hidden">
+        <MobileNav />
+      </div>
       <div className="flex flex-col text-center items-center justify-center mt-2">
         <h1 className="text-whiteColor  sm:text-[33px] md:text-[40px] lg:text-[54px] xl-a:text-[78px] xl:w-[90%] 2xl:w-[50%] uppercase orbit9">
           {" "}
@@ -119,10 +118,13 @@ export const ForgotPassword = () => {
               />
             </div>
             <div className="flex justify-center mt-5 ">
-              {isloading ? (<CustomSpinner/>) : (<button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
-                Send
-              </button>)}
-              
+              {isloading ? (
+                <CustomSpinner />
+              ) : (
+                <button className="rounded-lg px-5 py-3 bg-red-500 w-[380px] h-[50px] text-white font-poppins">
+                  Send
+                </button>
+              )}
             </div>
           </form>
           <div className="flex justify-center items-center gap-2 mt-2">

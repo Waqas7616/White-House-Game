@@ -122,7 +122,7 @@ function OtpMatch(props) {
 
     try {
       const response = await axios.post(
-        "https://thewhitehousegame.com/api/public/api/match_otp",
+        "https://app.thewhitehousegame.com/api/match_otp",
         {
           otp: otp,
           email: dataone.email,
@@ -153,7 +153,7 @@ function OtpMatch(props) {
   const resendOtp = () => {
     axios
       .post(
-        "https://thewhitehousegame.com/api/public/api/resendOTP",
+        "https://app.thewhitehousegame.com/api/resendOTP",
 
         {
           email: email,

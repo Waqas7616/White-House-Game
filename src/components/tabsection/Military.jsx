@@ -21,14 +21,11 @@ export default function Military() {
       is_veteran: "yes",
     });
     axios
-      .get(
-        `https://thewhitehousegame.com/api/public/api/filter?${ParamBody}`,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      )
+      .get(`https://app.thewhitehousegame.com/api/filter?${ParamBody}`, {
+        headers: {
+          Accept: "application/json",
+        },
+      })
       .then((res) => {
         setEmploymentStatus(res.data);
       })
@@ -74,7 +71,7 @@ export default function Military() {
     const pollingpercentage = Math.round(
       (parseInt(candidate.pollingStation, 10) /
         parseInt(formerTotalVotes, 10)) *
-      100
+        100
     );
 
     return {
@@ -214,21 +211,23 @@ export default function Military() {
         {employmentStatus?.data?.party_percentages.map((item, index) => (
           <div
             key={index}
-            className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${item.party_name === "Republican"
+            className={`voteCount flex gap-1 sm:gap-5 items-center h-[60px] ${
+              item.party_name === "Republican"
                 ? "republic"
                 : item.party_name === "Democratic"
-                  ? "democratic"
-                  : "independent"
-              } rounded-[8px] my-8`}
+                ? "democratic"
+                : "independent"
+            } rounded-[8px] my-8`}
           >
             <div
               style={{
-                background: `${item.party_name === "Republican"
+                background: `${
+                  item.party_name === "Republican"
                     ? " #ED1C24 "
                     : item.party_name === "Democratic"
-                      ? "#546BED"
-                      : "white"
-                  }`,
+                    ? "#546BED"
+                    : "white"
+                }`,
               }}
               className={`president-info relative  px-1 sm:px-4  w-2/4 sm:w-1/4 h-full flex gap-2 xl:gap-10 items-center rounded-l-lg`}
             >
@@ -239,14 +238,14 @@ export default function Military() {
                     item.party_name === "Republican"
                       ? democrat
                       : item.party_name === "Democratic"
-                        ?  republic
-                        : independ
+                      ? republic
+                      : independ
                   }
                   alt=""
                 />
               </div>
               <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] md:text-[13px] xl:text-[22px] sm:whitespace-normal text-ellipsis">
-                {item.party_name && item.party_name.split('(')[0]}
+                {item.party_name && item.party_name.split("(")[0]}
               </p>
               {/* <div className="bg-whiteColor rounded-full flex justify-center items-center h-[30px] w-[30px]">
                 <img
@@ -267,17 +266,18 @@ export default function Military() {
                 <div
                   style={{
                     width: `${item.percentage}%`,
-                    background: `${item.party_name === "Democratic"
+                    background: `${
+                      item.party_name === "Democratic"
                         ? "#546BED"
                         : item.party_name === "Republican"
-                          ? "#ED1C24"
-                          : "white"
-                      }`,
+                        ? "#ED1C24"
+                        : "white"
+                    }`,
                   }}
                   className={`text-xs font-medium text-black-100 h-full text-center p-2 poppins5  leading-none rounded-[8px] `}
                 >
                   {" "}
-                  {item.percentage&& item.percentage.toFixed(1)}%
+                  {item.percentage && item.percentage.toFixed(1)}%
                 </div>
               </div>
             </div>

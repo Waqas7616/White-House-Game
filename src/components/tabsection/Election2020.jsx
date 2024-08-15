@@ -26,9 +26,7 @@ export default function Election2020() {
 
   useEffect(() => {
     axios
-      .get(
-        "https://thewhitehousegame.com/api/public/api/getVotesPercentage2020"
-      )
+      .get("https://app.thewhitehousegame.com/api/getVotesPercentage2020")
       .then((response) => {
         setVotePercentage(response.data);
 
@@ -37,7 +35,6 @@ export default function Election2020() {
             (item) => item.source === "polling"
           )
         );
-        
 
         setMail(
           response?.data?.source_percentages?.filter(
@@ -171,7 +168,13 @@ export default function Election2020() {
                   <div className=" rounded-full flex justify-center items-center h-[30px] w-[30px] ">
                     <img
                       className=" sm:w-auto"
-                      src={item.difference > 0 ? up : item.party_name==="Republican"?down2:down}
+                      src={
+                        item.difference > 0
+                          ? up
+                          : item.party_name === "Republican"
+                          ? down2
+                          : down
+                      }
                       alt=""
                     />
                   </div>
@@ -275,9 +278,10 @@ export default function Election2020() {
                   />
                 </div>
                 <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0 truncate">
-                  {item.party==="Independent('Kennedy')"?"Independent":item.party}
+                  {item.party === "Independent('Kennedy')"
+                    ? "Independent"
+                    : item.party}
                 </p>
-                
               </div>
               <div className="president-votes w-3/4">
                 <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">
@@ -345,7 +349,6 @@ export default function Election2020() {
               <p className="poppins4 w-[30%] sm:w-auto text-[10px] sm:text-[12px] lg:[14px] xl:[22px] pl-1 sm:pl-0">
                 {item.party}
               </p>
-              
             </div>
             <div className="president-votes w-3/4">
               <div className="w-[98%] h-[31px] bg-[#454C72] rounded-[8px] dark:bg-gray-700">

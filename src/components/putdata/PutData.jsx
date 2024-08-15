@@ -22,7 +22,7 @@ export const PutData = () => {
   const [myAccountData, setMyAccountData] = useState([]);
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/get_user_age")
+      .get("https://app.thewhitehousegame.com/api/get_user_age")
       .then((response) => {
         setAgeGroup(response.data.user_age);
       })
@@ -35,7 +35,7 @@ export const PutData = () => {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/get_user_state")
+      .get("https://app.thewhitehousegame.com/api/get_user_state")
       .then((response) => {
         setAllStates(response.data.user_state);
       })
@@ -48,7 +48,7 @@ export const PutData = () => {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/get_user_ethnicty")
+      .get("https://app.thewhitehousegame.com/api/get_user_ethnicty")
       .then((response) => {
         setEthnicityData(response.data.user_ethnicity);
       })
@@ -61,9 +61,7 @@ export const PutData = () => {
 
   useEffect(() => {
     axios
-      .get(
-        "https://thewhitehousegame.com/api/public/api/get_all_user_country_birth"
-      )
+      .get("https://app.thewhitehousegame.com/api/get_all_user_country_birth")
       .then((response) => {
         setCountryBirth(response.data.user_country_birth);
       })
@@ -76,7 +74,7 @@ export const PutData = () => {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/get_all_language")
+      .get("https://app.thewhitehousegame.com/api/get_all_language")
       .then((response) => {
         setByLanguage(response.data.language);
       })
@@ -89,9 +87,7 @@ export const PutData = () => {
 
   useEffect(() => {
     axios
-      .get(
-        "https://thewhitehousegame.com/api/public/api/get_all_user_employement"
-      )
+      .get("https://app.thewhitehousegame.com/api/get_all_user_employement")
       .then((response) => {
         setEmployment(response.data.user_employement);
       })
@@ -104,7 +100,7 @@ export const PutData = () => {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/get_all_education")
+      .get("https://app.thewhitehousegame.com/api/get_all_education")
       .then((response) => {
         setHigherEducation(response.data.education);
       })
@@ -178,7 +174,7 @@ export const PutData = () => {
   //   const fetchUserData = async () => {
   //     try {
   //       const response = await axios.get(
-  //         `https://thewhitehousegame.com/api/public/api/get_user_info`,
+  //         `https://app.thewhitehousegame.com/api/get_user_info`,
   //         {
   //           headers: {
   //             Authorization: `Bearer ${jwtToken}`,
@@ -223,7 +219,7 @@ export const PutData = () => {
 
   useEffect(() => {
     axios
-      .get("https://thewhitehousegame.com/api/public/api/get_user_info", {
+      .get("https://app.thewhitehousegame.com/api/get_user_info", {
         headers: {
           Authorization: `Bearer ${storedToken}`,
           "Content-Type": "application/json",
@@ -237,6 +233,7 @@ export const PutData = () => {
         console.log("Error fetching user data:", error);
       });
   }, [storedToken]);
+  console.log("myaccount", myAccountData);
 
   useEffect(() => {
     setPayLoad((prevpayload) => ({
@@ -280,7 +277,7 @@ export const PutData = () => {
 
     try {
       const response = await axios.post(
-        "https://thewhitehousegame.com/api/public/api/update_user_info",
+        "https://app.thewhitehousegame.com/api/update_user_info",
         condition ? newPayload : payload,
 
         {
@@ -1051,7 +1048,7 @@ export const PutData = () => {
                           name="candidate"
                           type="radio"
                           className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10"
-                          id="bidenHarris"
+                          id="Biden/Harris"
                           value="1"
                           checked={payload.voter_candidate_id === 1}
                           onChange={(e) =>
