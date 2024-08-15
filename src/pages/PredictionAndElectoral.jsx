@@ -25,18 +25,25 @@ function PredictionAndElectoral() {
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState(false);
   const [error, setError] = useState("");
-
+const [myData,setMyData]=useState(false)
   const [duplicatePopup, setDuplicatePopup] = useState(false);
 
   const navigate = useNavigate();
   const { president, vicePresident, party, voting, addVoting } =
     useStatePredictions();
+
+
   useEffect(() => {
     ReactGA.send({
       hitType: "pageview",
       path: window.location.pathname,
     });
   }, []);
+
+  const handleDuplicatePopup=()=>{
+    setDuplicatePopup(false);
+    setMyData(!myData)
+  }
   const [data, setData] = useState({
     votter_party_id: party,
     president_id: president,
@@ -189,10 +196,7 @@ function PredictionAndElectoral() {
             </div>
 
             <button
-              onClick={() => {
-                // resetSelections();
-                setDuplicatePopup(false);
-              }}
+              onClick={handleDuplicatePopup}
               className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
             >
               Close
@@ -259,6 +263,7 @@ function PredictionAndElectoral() {
             party={"Democratic"}
             submitData={submitData}
             onSelectionChange={handleSelectionChange}
+            myData={myData}
 
             // afterchange={(index)=>{console.log(candidateData.filter((item)=>item?.party.party_name==="Democratic")[index])}}
             // afterchange={(index) => { console.log(index) }}
@@ -277,6 +282,7 @@ function PredictionAndElectoral() {
             party={"Republican"}
             submitData={submitData}
             onSelectionChange={handleSelectionChange}
+            myData={myData}
           />
         </div>
         <div>
@@ -298,6 +304,7 @@ function PredictionAndElectoral() {
             party={"Independent('Kennedy')"}
             submitData={submitData}
             onSelectionChange={handleSelectionChange}
+            myData={myData}
           />
         </div>
       </div>

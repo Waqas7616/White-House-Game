@@ -14,10 +14,12 @@ function PredictSlider({
   afterChange,
   selecClass,
   imageValue,
+  imgData
 }) {
   const { president, setPresident, vicePresident, setVicePresident, setParty } =
     useStatePredictions();
   const [imageSelect, setImageSelect] = useState(false);
+  
   useEffect(() => {
     ReactGA.send({
       hitType: "pageview",
@@ -50,6 +52,13 @@ function PredictSlider({
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log("my image data is", imgData);
+   
+      setImageSelect(false)
+    
+  }, [imgData]);
 
   const handleImage = (id, party, name) => {
     (data1 === "president" && setPresident(id)) ||

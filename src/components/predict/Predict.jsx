@@ -9,12 +9,14 @@ function Predict({
   submitData,
   onSelectionChange,
   myData,
+  
 }) {
   const { president, vicePresident } = useStatePredictions();
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [error, setError] = useState("");
   const [presdborder, setPresdborder] = useState(true);
   const [viceborder, setViceborder] = useState(true);
+  const [imgData,setImgData]=useState()
 
   const [sliderBackground, setSliderBackground] = useState("transparent");
 
@@ -24,11 +26,14 @@ function Predict({
     }
   }, [presdborder, viceborder, onSelectionChange]);
   useEffect(() => {
-    console.log("my prop data is", myData);
-    if (myData === "ok") {
+    console.log("my prop data is", imgData);
+   
       setIsButtonClicked(false);
       setSliderBackground("");
-    }
+      setImgData(myData)
+      setPresdborder(true);
+      setViceborder(true)
+    
   }, [myData]);
   const handleButtonClick = () => {
     if (president !== vicePresident) {
@@ -77,6 +82,7 @@ function Predict({
                   data1="president"
                   imageValue={() => setPresdborder(false)}
                   selecClass={isButtonClicked ? false : true}
+                  imgData={myData}
                 />
               </div>
             </div>
@@ -91,6 +97,7 @@ function Predict({
                   imageValue={() => setViceborder(false)}
                   data1="VicePresident"
                   selecClass={isButtonClicked ? false : true}
+                  imgData={myData}
                 />
               </div>
             </div>

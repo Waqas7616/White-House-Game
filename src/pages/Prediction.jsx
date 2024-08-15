@@ -27,9 +27,13 @@ function Prediction() {
   const [status, setStatus] = useState(null);
   const [popup, setPopup] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [myData, setMyData] = useState("");
+  const [myData, setMyData] = useState(false);
   const [duplicatePopup, setDuplicatePopup] = useState(false);
 
+const handleDuplicatePopup=()=>{
+  setDuplicatePopup(false);
+  setMyData(!myData)
+}
   useEffect(() => {
     ReactGA.send({
       hitType: "pageview",
@@ -81,7 +85,8 @@ function Prediction() {
   const sendPrediction = () => {
     if (checkDuplicateCandidates()) {
       setDuplicatePopup(true);
-      setMyData("ok");
+      
+
 
       return;
     }
@@ -195,10 +200,7 @@ function Prediction() {
             </div>
 
             <button
-              onClick={() => {
-                // resetSelections();
-                setDuplicatePopup(false);
-              }}
+              onClick={handleDuplicatePopup}
               className="bg-redish w-full sm:w-[50%] block text-white poppins5 py-3 rounded-md text-center mb-4"
             >
               Close
