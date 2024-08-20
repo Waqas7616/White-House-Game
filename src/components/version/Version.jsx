@@ -30,7 +30,7 @@ export const Version = () => {
   return (
     <>
       <Card className="max-w-[18rem] lg:max-w-[30rem] flex justify-center mx-auto lg:mt-6 lg:mb-6  ">
-        <div className="bg-[#1c2452]  rounded-lg">
+        <div className="bg-[#1c2452] relative z-50 rounded-lg">
           <div className="flex justify-center items-center pt-3 lg:pt-5">
             <img className="w-10 h-10 lg:w-20 lg:h-20" src={Layer} alt="" />
           </div>

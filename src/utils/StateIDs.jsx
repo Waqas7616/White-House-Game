@@ -29,6 +29,10 @@ function StatePredictionsProvider({ children }) {
     // })
   };
 
+  const clearVoting=()=>{
+    setVoting([]);
+  }
+
   const clearPredictions = () => {
     setState_predictions((prevPredictions) => prevPredictions.slice(0, -1));
   };
@@ -53,6 +57,7 @@ function StatePredictionsProvider({ children }) {
         setPresident,
         vicePresident,
         setVicePresident,
+        clearVoting
         // resetVoting,
       }}
     >

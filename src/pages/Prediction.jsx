@@ -22,8 +22,9 @@ import CustomSpinner from "../components/spinner";
 
 function Prediction() {
   const navigate = useNavigate();
-  const { president, vicePresident, party, voting, addVoting } =
+  const { president, vicePresident, party, voting, addVoting,clearVoting } =
     useStatePredictions();
+
   const [status, setStatus] = useState(null);
   const [popup, setPopup] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -32,7 +33,8 @@ function Prediction() {
 
 const handleDuplicatePopup=()=>{
   setDuplicatePopup(false);
-  setMyData(!myData)
+  clearVoting();
+  setMyData(true)
 }
   useEffect(() => {
     ReactGA.send({
@@ -68,13 +70,17 @@ const handleDuplicatePopup=()=>{
     });
   };
   const checkDuplicateCandidates = () => {
-    const selectedCandidates = new Set();
+    const selectedPresidents = new Set();
+    const selectedVicePresidents = new Set();
+  
     for (const vote of voting) {
-      if (selectedCandidates.has(vote.president_id)) {
+      if (selectedPresidents.has(vote.president_id) || selectedVicePresidents.has(vote.vice_president_id) || vote.president_id===vote.vice_president_id) {
         return true;
       }
-      selectedCandidates.add(vote.president_id);
+      selectedPresidents.add(vote.president_id);
+      selectedVicePresidents.add(vote.vice_president_id);
     }
+  
     return false;
   };
   // const resetSelections = () => {
@@ -122,6 +128,7 @@ const handleDuplicatePopup=()=>{
         setPopup(err.response.status !== 200 && true);
         setLoading(false);
       });
+      clearVoting();
   };
   // console.log(myData);
   return (

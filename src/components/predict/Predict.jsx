@@ -16,7 +16,7 @@ function Predict({
   const [error, setError] = useState("");
   const [presdborder, setPresdborder] = useState(true);
   const [viceborder, setViceborder] = useState(true);
-  const [imgData,setImgData]=useState()
+  const [imgData,setImgData]=useState(false)
 
   const [sliderBackground, setSliderBackground] = useState("transparent");
 
@@ -27,12 +27,14 @@ function Predict({
   }, [presdborder, viceborder, onSelectionChange]);
   useEffect(() => {
     console.log("my prop data is", imgData);
-   
+   if(myData){
       setIsButtonClicked(false);
       setSliderBackground("");
       setImgData(myData)
       setPresdborder(true);
       setViceborder(true)
+   }
+    
     
   }, [myData]);
   const handleButtonClick = () => {

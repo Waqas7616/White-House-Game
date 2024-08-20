@@ -29,7 +29,7 @@ function PredictSlider({
 
   const [candidatedata, setCandidateData] = useState([]);
   const [data2Index, setData2Index] = useState(0);
-
+console.log('candidate data',candidatedata)
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const imageUrl = "https://app.thewhitehousegame.com/";
@@ -67,7 +67,7 @@ function PredictSlider({
       (party_name === "Republican" && setParty(party)) ||
       (party_name === "Independent('Kennedy')" && setParty(party));
     setImageSelect(true);
-
+console.log('just testing ',party)
     imageValue();
     ReactGA.event({
       category: data1,
@@ -262,7 +262,9 @@ function PredictSlider({
                   onClick={() =>
                     handleImage(
                       item?.id,
-                      item?.votter_party_id,
+                      party_name==="Republican"
+                      ?item?.parties[0]?.pivot?.votter_party_id||item?.votter_party_id
+                      :item?.votter_party_id,
                       item?.candidate_name
                     )
                   }
@@ -299,7 +301,12 @@ function PredictSlider({
               .map((item, index) => (
                 <div
                   key={index}
-                  onClick={() => handleImage(item?.id, item?.votter_party_id)}
+                  onClick={() => handleImage(item?.id,
+                    party_name==="Republican"
+                    ?item?.parties[0]?.pivot?.votter_party_id||item?.votter_party_id
+                    :item?.votter_party_id,
+                    item?.candidate_name
+                    )}
                   className={`w-[124px] h-[154px] md:w-[200px] md:h-[220px]    rounded-[28.43px] border-[10px] border-transparent overflow-hidden hover:border-[10px] cursor-pointer ${
                     imageSelect && "border-white border-[10px] rounded[28.43px]"
                   }`}

@@ -162,7 +162,7 @@ export const PutData = () => {
   useEffect(() => {
     let adjustedPayload = { ...payload };
 
-    if (adjustedPayload.is_votted_2020 === "No") {
+    if (adjustedPayload.is_votted_2020 === "no") {
       delete adjustedPayload.voter_candidate_id;
       delete adjustedPayload.source;
       setCondition(true);
@@ -170,6 +170,10 @@ export const PutData = () => {
     }
   }, [payload]);
 
+// console.log('payload',payload),
+// console.log('considion',condition),
+
+// console.log('newpayload',newPayload)
   // useEffect(() => {
   //   const fetchUserData = async () => {
   //     try {
@@ -233,7 +237,7 @@ export const PutData = () => {
         console.log("Error fetching user data:", error);
       });
   }, [storedToken]);
-  console.log("myaccount", myAccountData);
+ 
 
   useEffect(() => {
     setPayLoad((prevpayload) => ({
